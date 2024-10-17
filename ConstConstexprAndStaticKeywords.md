@@ -142,7 +142,7 @@ class ClassName {
 ###### Syntax
 
 ```CPP
-ReturnType functionName() const;
+RetType funcName() const;
 ```
 
 ###### Explanation
@@ -160,7 +160,7 @@ ReturnType functionName() const;
 ###### Syntax
 
 ```CPP
-void functionName( const Type param1, ... );
+void funcName( const Type param1, ... );
 ```
 
 ###### Explanation
@@ -173,7 +173,7 @@ void functionName( const Type param1, ... );
 ###### Syntax
 
 ```CPP
-const ReturnType functionName( ... ) {
+const RetType funcName( ... ) {
     // Function body
 }
 ```
@@ -190,7 +190,7 @@ const ReturnType functionName( ... ) {
 ###### Syntax
 
 ```CPP
-const returnType* functionName() {
+const returnType* funcName() {
     // Function body
 }
 ```
@@ -207,7 +207,7 @@ const returnType* functionName() {
 ###### Syntax
 
 ```CPP
-const returnType& functionName() {
+const returnType& funcName() {
     // Function body
 }
 ```
@@ -301,11 +301,11 @@ class ClassName {
 ###### Syntax
 
 ```CPP
-constexpr ReturnType functionName( ... ) {
+constexpr RetType funcName( ... ) {
     // Function body
 }
 
-constexpr ReturnType var_name = functionName( ... );
+constexpr RetType var_name = funcName( ... );
 ```
 
 ###### Explanation
@@ -317,7 +317,7 @@ constexpr ReturnType var_name = functionName( ... );
    compile time**, which means **the result** of the function is also **evaluated at compile time**.
 3. Additionally, its **parameters** should be **`const` values** or **constant expressions** to
    ensure that the function is executed at compile time.
-4. **`ReturnType`** must be **a literal type**, which includes integral types, floating-point types,
+4. **`RetType`** must be **a literal type**, which includes integral types, floating-point types,
    pointers, and certain user-defined types.
 
 ##### (5) `constexpr` Constructors (C++11 and later):
@@ -370,7 +370,7 @@ constexpr ClassName obj_name( ... );
 ###### Syntax
 
 ```CPP
-ReturnType functionName() {
+RetType funcName() {
     static Type count = val; // Initialized only once and retains value between calls.
     ...
 }
@@ -433,12 +433,12 @@ Type2 ClassName::_staticMember2 = 0;
 ```CPP
 class ClassName {
 public:
-    static ReturnType functionName( ... ) {
+    static RetType funcName( ... ) {
         // Function body
     }
 };
 
-ReturnType var_name = ClassName::functionName( ... );
+RetType var_name = ClassName::funcName( ... );
 ```
 
 ###### Explanation
@@ -455,7 +455,7 @@ ReturnType var_name = ClassName::functionName( ... );
 ###### Syntax
 
 ```CPP
-static ReturnType functionName() {
+static RetType funcName() {
     // Function body
 }
 ```

@@ -493,7 +493,7 @@ class ClassName {
 // Declared and defined inside the class
 class ClassName {
    public:
-      ReturnType functionName( parameters ) { ... };
+      RetType funcName( parameters ) { ... };
 };
 ```
 
@@ -501,11 +501,11 @@ class ClassName {
 // declared inside the class
 class ClassName {
    public:
-      ReturnType functionName( parameters ) { ... };
+      RetType funcName( parameters ) { ... };
 };
 
 // Defined outside the class
-ReturnType ClassName::functionName( parameters ) { ... };
+RetType ClassName::funcName( parameters ) { ... };
 ```
 
 #### Explanation
@@ -534,14 +534,14 @@ ReturnType ClassName::functionName( parameters ) { ... };
 ```CPP
 class BaseClassName {
    public:
-      virtual ReturnType functionName( parameters ){
+      virtual RetType funcName( parameters ){
          // Virtual method in base class
       };
 };
 
 class DerivedClassName: public BaseClassName {
    public:
-      ReturnType functionName( parameters ) override{
+      RetType funcName( parameters ) override{
          // Override the base class method
       };
 };

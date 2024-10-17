@@ -100,7 +100,7 @@
 ### 3) Definition Syntax
 
 ```CPP
-ReturnType funcName( parameter_list ) {
+RetType funcName( parameter_list ) {
    // function body
 };
 ```
@@ -108,7 +108,7 @@ ReturnType funcName( parameter_list ) {
 ### 4) Declaration Syntax
 
 ```CPP
-ReturnType funcName( parameter_list );
+RetType funcName( parameter_list );
 ```
 
 ### 5) Reference Syntax
@@ -118,7 +118,7 @@ funcName( argument_list );
 ```
 
 ```CPP
-ReturnType var_name = funcName( argument_list );
+RetType var_name = funcName( argument_list );
 ```
 
 ### 6) How to Pass an Argument to a Function
@@ -230,19 +230,19 @@ auto func_ptr_name = &funcName;
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
 // The implicit conversion occurs.
-ReturnType ( *func_ptr_name )( parameter_type_list ) = funcName;
+RetType ( *func_ptr_name )( parameter_type_list ) = funcName;
 ```
 
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
 // The implicit conversion does not occur.
-ReturnType ( *func_ptr_name )( parameter_type_list ) = &funcName;
+RetType ( *func_ptr_name )( parameter_type_list ) = &funcName;
 ```
 
 #### (2) Declaration and Assignment Syntax
 
 ```CPP
-ReturnType ( *func_ptr_name )( parameter_type_list );
+RetType ( *func_ptr_name )( parameter_type_list );
 // The implicit conversion occurs.
 func_ptr_name = funcName;
 ```
@@ -250,7 +250,7 @@ func_ptr_name = funcName;
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
 // The implicit conversion does not occur.
-ReturnType ( *func_ptr_name )( parameter_type_list );
+RetType ( *func_ptr_name )( parameter_type_list );
 func_ptr_name = &funcName;
 ```
 
@@ -263,7 +263,7 @@ auto result = func_ptr_name( arguement_list );
 
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
-ReturnType result = func_ptr_name( arguement_list );
+RetType result = func_ptr_name( arguement_list );
 ```
 
 ```CPP
@@ -274,14 +274,14 @@ func_pt_name( arguement_list );
 #### (3) Syntax for Function Pinter Declaration Using `typedef`
 
 ```CPP
-typedef ReturnType ( *FuncPtrName )( parameter_types );
+typedef RetType ( *FuncPtrName )( parameter_types );
 FuncPtrName func_ptr_name;
 ```
 
 #### (4) Syntax for Function Pinter Declaration Using `using`
 
 ```CPP
-using FuncPtrName = ReturnType ( * )( parameter_types );
+using FuncPtrName = RetType ( * )( parameter_types );
 FuncPtrName func_ptr_name;
 ```
 
@@ -306,13 +306,13 @@ FuncPtrName func_ptr_name;
 ##### Code for Passing It as a Variable
 
 ```CPP
-[capture]( parameters ) -> ReturnType { body };
+[capture]( parameters ) -> RetType { body };
 ```
 
 ##### Code for Defining It as a Function
 
 ```CPP
-auto functionName =  [capture]( parameters ) -> ReturnType { body };
+auto funcName =  [capture]( parameters ) -> RetType { body };
 ```
 
 #### Explanation
@@ -320,7 +320,7 @@ auto functionName =  [capture]( parameters ) -> ReturnType { body };
 1. capture: Specifies which variables from the surrounding scope are captured by the lambda. This
    can be done by value (`=`) or by reference (`&`).
 2. parameters: The parameters for the lambda function, similar to any regular function.
-3. ReturnType (**optional**): The return type of the lambda. If **omitted**, C++ will attempt to
+3. RetType (**optional**): The return type of the lambda. If **omitted**, C++ will attempt to
    deduce it automatically.
 4. body: The function body where the logic of the lambda resides.
 
@@ -338,53 +338,53 @@ auto functionName =  [capture]( parameters ) -> ReturnType { body };
 ##### Example 1: Capture Nothing
 
 ```CPP
-auto functionName =  []( parameters ) -> ReturnType { body };
+auto funcName =  []( parameters ) -> RetType { body };
 ```
 
 ##### Example 2: A Default Capture Mode `[=]` - Capture All Variables by Value
 
 ```CPP
 // A default capture mode[=]: captures all variables by value.
-auto functionName =  [=]( parameters ) -> ReturnType { body };
+auto funcName =  [=]( parameters ) -> RetType { body };
 ```
 
 ##### Example 3: A Default Capture Mode `[&]` - Capture All Variables by Value
 
 ```CPP
 // A default capture mode[&]: captures all variables by value.
-auto functionName =  [&]( parameters ) -> ReturnType { body };
+auto funcName =  [&]( parameters ) -> RetType { body };
 ```
 
 ##### Example 4: Specify Some Variables Captured by Value
 
 ```CPP
-auto functionName =  [var1, var2, ...]( parameters ) -> ReturnType { body };
+auto funcName =  [var1, var2, ...]( parameters ) -> RetType { body };
 ```
 
 ##### Example 5: Specify Some Variables Captured by Reference
 
 ```CPP
-auto functionName =  [&var1, &var2, ...]( parameters ) -> ReturnType { body };
+auto funcName =  [&var1, &var2, ...]( parameters ) -> RetType { body };
 ```
 
 ##### Example 6: Specify Some Variables Captured by Reference and Others by Value
 
 ```CPP
 // In the capture list, the default capture must appear first.
-auto functionName =  [=, &var1, &var2, ...]( parameters ) -> ReturnType { body };
+auto funcName =  [=, &var1, &var2, ...]( parameters ) -> RetType { body };
 ```
 
 ##### Example 7: Specify Some Variables Captured by Value and Others by Reference
 
 ```CPP
 // In the capture list, the default capture must appear first.
-auto functionName =  [&, =var1, =var2, ...]( parameters ) -> ReturnType { body };
+auto funcName =  [&, =var1, =var2, ...]( parameters ) -> RetType { body };
 ```
 
 ##### Example 8: Specify Some Variables Captured by Reference and Some by Value
 
 ```CPP
-auto functionName =  [&var1, &var2, ..., varn1, varn2, ...]( parameters ) -> ReturnType { body };
+auto funcName =  [&var1, &var2, ..., varn1, varn2, ...]( parameters ) -> RetType { body };
 ```
 
 #### `mutable` Lambda Functions
@@ -392,11 +392,11 @@ auto functionName =  [&var1, &var2, ..., varn1, varn2, ...]( parameters ) -> Ret
 ##### Syntax
 
 ```CPP
-[capture]( parameters ) mutable -> ReturnType { body };
+[capture]( parameters ) mutable -> RetType { body };
 ```
 
 ```CPP
-auto functionName =  [capture]( parameters ) mutable -> ReturnType { body };
+auto funcName =  [capture]( parameters ) mutable -> RetType { body };
 ```
 
 ##### Explanation
