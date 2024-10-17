@@ -1,15 +1,23 @@
-# Memu
-## GCC
-[Gcc](./Gcc.md)
-## `make` and Makefile
-[`make` and Makefile](./makeAndMakefile.md)
-## CPP Perface
-[CPP Perface](./CPP.md)
-## Function
-[Function](./Function.md)
-## Introduction to C++ STL
-[Introduction to C++ STL](./IntroductionToTheCPPSTL.md)
-## Array
-[Array](./Array.md)
-## Class
-[Class](./Class.md)
+# FromGccToCPP
+
+## [Gcc](./Gcc.md)
+
+## [`make` and Makefile](./makeAndMakefile.md)
+
+## [CPP Perface](./CPPPerface.md)
+
+## [Memory Partitions](./Memory Partitions.md)
+
+## [`auto` and `decltype`](./AutoAndDecldef.md)
+
+## [`using` and `typedef`](./UsingAndTypedef.md)
+
+## [`const`, `constexpr` and `static`](./ConstConstexprAndStaticKeywords.md)
+
+## [Function](./Function.md)
+
+## [Introduction to C++ STL](./IntroductionToTheCPPSTL.md)
+
+## [Array](./Array.md)
+
+## [Class](./Class.md)
