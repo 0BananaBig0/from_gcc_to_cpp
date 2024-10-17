@@ -845,7 +845,7 @@ class ClassName {
 
 ##### Custom Move Constructor
 
-##### Syntax
+###### Syntax
 
 ```CPP
 class ClassName {
@@ -868,7 +868,7 @@ class ClassName {
 };
 ```
 
-##### Explanation
+###### Explanation
 
 1. A custom move constructor is **defined** when:
    - A class manages resources that **require special handling** (e.g., dynamic memory, file
@@ -1060,72 +1060,9 @@ class ClassName {
 
 ##### Characteristics
 
-#### (6) `using`
-
-##### Purpose
-
-1. Brings a base class's function into the derived class's scope, especially useful for overloaded
-   functions.
-
-##### Example
-
-```CPP
-class Base {
-   public:
-      void show() { std::cout << "Base show" << std::endl; }
-
-      void show( int i ) {
-         std::cout << "Base show with int: " << i << std::endl;
-      }
-};
-
-class Derived: public Base {
-   public:
-      using Base::show;   // Bring Base::show into scope
-
-      void show( double d ) {   // Overload in Derived
-         std::cout << "Derived show with double: " << d << std::endl;
-      }
-};
-
-int main() {
-   Derived d;
-   d.show();         // Calls Base::show()
-   d.show( 10 );     // Calls Base::show(int)
-   d.show( 10.5 );   // Calls Derived::show(double)
-}
-```
+#### `using`
 
 #### (2) `virtual`
-
-##### Purpose
-
-1. Allows a member function in a base class to be overridden in derived classes, enabling
-   **polymorphism**.
-
-##### Example
-
-```CPP
-class Base {
-   public:
-      virtual void show() {   // Virtual function
-         std::cout << "Base class show function called." << std::endl;
-      }
-};
-
-class Derived: public Base {
-   public:
-      void show() override {   // Override base class function
-         std::cout << "Derived class show function called." << std::endl;
-      }
-};
-
-int main() {
-   Base* b = new Derived();
-   b->show();   // Calls Derived's show()
-   delete b;
-}
-```
 
 ##### Characteristics
 
@@ -1189,129 +1126,3 @@ int main() {
 1. In cases where performance is very important, you should avoid using virtual functions as much as
    possible.
 
-### The Difference Between Hiding, Overloading, Overriding, and Overwriting
-
-#### (1) Hiding (Name Hiding)
-
-##### Explanation
-
-1. Hiding occurs when **a derived class** declares a function (or variable) with **the same name**
-   as a function (or variable) in **the base class**, regardless of the parameters. The base class
-   function is hidden in the derived class scope, even if the signatures (parameter types) differ.
-   This can lead to confusion or errors because the base class function is no longer accessible
-   directly from the derived class.
-
-##### Example
-
-```CPP
-class Base {
-   public:
-      void show() { std::cout << "Base class show" << std::endl; }
-};
-
-class Derived: public Base {
-   public:
-      void show( int x ) {
-         std::cout << "Derived class show with a value " << x << std::endl;
-      }
-};
-
-int main() {
-   Derived d;
-   d.show();   // Error: Base::show() is hidden by Derived::show(int)
-}
-```
-
-##### How to Access Hidden Function
-
-```CPP
-   d.Base::show();   // Calls Base class show()
-```
-
-#### (2) Overloading
-
-##### Explanation
-
-1. Overloading occurs when **two or more functions** in **the same scope** have **the same name**
-   but **different parameter types or numbers of parameters**. Additionally, **a normal function and
-   a const function** can be considered overloaded. However, **the return type does not** play a
-   role in distinguishing overloaded functions; you cannot overload functions solely based on
-   different return types. Overloading is resolved at compile time (static polymorphism). C++ allows
-   overloading based on the number of arguments, their types, or both.
-
-##### Example
-
-```CPP
-class Example {
-   public:
-      void func( int x ) {
-         std::cout << "Function with int: " << x << std::endl;
-      }
-
-      void func( double x ) {
-         std::cout << "Function with double: " << x << std::endl;
-      }
-
-      void func( int x, double y ) {
-         std::cout << "Function with int and double: " << x << ", " << y
-                   << std::endl;
-      }
-};
-```
-
-#### (3) Overriding
-
-##### Explanation
-
-1. Overriding occurs when **a derived class** provides **its own implementation** of **a virtual
-   function ( or a pure virtual function )** that is **already defined** in the base class. The
-   function in the derived class must have **the same signature** as the base class's virtual
-   function. Overriding is resolved at runtime (dynamic polymorphism).
-
-##### Example
-
-```CPP
-class Base {
-   public:
-      virtual void show() { std::cout << "Base class show" << std::endl; }
-};
-
-class Derived: public Base {
-   public:
-      void show() override {   // This function overrides Base::show
-         std::cout << "Derived class show" << std::endl;
-      }
-};
-
-int main() {
-   Base* obj = new Derived();
-   obj->show();   // Calls Derived class show (runtime polymorphism)
-}
-```
-
-#### (4) Overwriting (Not a C++ Term)
-
-##### Explanation
-
-1. Overwriting is **not a formal term in C++**. However, it is sometimes colloquially used to
-   describe a situation where **a function or variable in a derived class replaces or redefines a
-   function or variable from a base class**. This serves as a general description rather than a
-   specific C++ concept. Additionally, the term "overwriting" typically refers to the process of
-   **replacing an existing value in memory**, which includes assigning a new value to an existing
-   variable to replace the old value and writing data to unintended memory locations, often
-   resulting in undefined behavior or memory corruption. This can occur in various contexts, such as
-   variables, function definitions, or data structures.
-
-##### Example
-
-```CPP
-class Base {
-   public:
-      int _x = 10;
-};
-
-class Derived: public Base {
-   public:
-      int _x = 20;   // Overwrites Base::x
-};
-```
