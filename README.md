@@ -1,23 +1,12 @@
-# FromGccToCPP
-
-## [Gcc](./Gcc.md)
-
-## [`make` and Makefile](./makeAndMakefile.md)
-
-## [CPP Perface](./CPPPerface.md)
-
-## [Memory Partitions](./Memory Partitions.md)
-
-## [`auto` and `decltype`](./AutoAndDecldef.md)
-
-## [`using` and `typedef`](./UsingAndTypedef.md)
-
-## [`const`, `constexpr` and `static`](./ConstConstexprAndStaticKeywords.md)
-
-## [Function](./Function.md)
-
-## [Introduction to C++ STL](./IntroductionToTheCPPSTL.md)
-
-## [Array](./Array.md)
-
-## [Class](./Class.md)
+- FromGccToCPP
+  - [Gcc](./Gcc.md)
+  - [`make` and Makefile](./makeAndMakefile.md)
+  - [CPP Perface](./CPPPerface.md)
+  - [Memory Partitions](./MemoryPartitions.md)
+  - [`auto` and `decltype`](./AutoAndDecldef.md)
+  - [`using` and `typedef`](./UsingAndTypedef.md)
+  - [`const`, `constexpr` and `static`](./ConstConstexprAndStaticKeywords.md)
+  - [Function](./Function.md)
+  - [Introduction to C++ STL](./IntroductionToTheCPPSTL.md)
+  - [Array](./Array.md)
+  - [Class](./Class.md)
