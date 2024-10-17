@@ -1,31 +1,33 @@
 <!-- vim-markdown-toc GFM -->
 
-* [Operator](#operator)
-  * [Explanation](#explanation)
-  * [Categories](#categories)
-  * [Operator Overloading](#operator-overloading)
-    * [Syntax](#syntax)
-    * [Explanation](#explanation-1)
-    * [Copy-assignment Operator](#copy-assignment-operator)
-      * [Default Copy-assignment Operator](#default-copy-assignment-operator)
-        * [Syntax](#syntax-1)
-        * [Explanation](#explanation-2)
-      * [Copy-assignment Operator Overloading](#copy-assignment-operator-overloading)
-        * [Syntax](#syntax-2)
-        * [Explanation](#explanation-3)
-    * [Move-assignment Operator](#move-assignment-operator)
-      * [Default Move-assignment Operator](#default-move-assignment-operator)
-        * [Syntax](#syntax-3)
-        * [Explanation](#explanation-4)
-      * [Move-assignment Operator Overloading](#move-assignment-operator-overloading)
-        * [Syntax](#syntax-4)
-        * [Explanation](#explanation-5)
-    * [Conversion Operator](#conversion-operator)
-      * [Conversion Operator Overloading](#conversion-operator-overloading)
-      * [Syntax](#syntax-5)
-      * [Explanation](#explanation-6)
+- [Operator](#operator)
+  - [Explanation](#explanation)
+  - [Categories](#categories)
+  - [Operator Overloading](#operator-overloading)
+    - [Syntax](#syntax)
+    - [Explanation](#explanation-1)
+    - [Copy-assignment Operator](#copy-assignment-operator)
+      - [Default Copy-assignment Operator](#default-copy-assignment-operator)
+        - [Syntax](#syntax-1)
+        - [Explanation](#explanation-2)
+      - [Copy-assignment Operator Overloading](#copy-assignment-operator-overloading)
+        - [Syntax](#syntax-2)
+        - [Explanation](#explanation-3)
+    - [Move-assignment Operator](#move-assignment-operator)
+      - [Default Move-assignment Operator](#default-move-assignment-operator)
+        - [Syntax](#syntax-3)
+        - [Explanation](#explanation-4)
+      - [Move-assignment Operator Overloading](#move-assignment-operator-overloading)
+        - [Syntax](#syntax-4)
+        - [Explanation](#explanation-5)
+    - [Conversion Operator](#conversion-operator)
+      - [Conversion Operator Overloading](#conversion-operator-overloading)
+      - [Syntax](#syntax-5)
+      - [Explanation](#explanation-6)
+    - [`explicit` Conversion Operator](#explicit-conversion-operator)
 
 <!-- vim-markdown-toc -->
+
 ## Operator
 
 ### Explanation
@@ -214,3 +216,15 @@ operator TargetType() const {
    (e.g., passing an object to a function expecting a different type).
 3. **Explicit Conversion**: If marked with `explicit`, the conversion will only occur when
    explicitly requested, thus preventing unintended conversions.
+
+##### Notes
+
+1. If we **implement a smart pointer** by ourselves, pass it as a reference into a function and want
+   to judge it if it is a null pointer, **bool conversion operator is needed**.
+2. If a class **only possesses one useful member**, and we want to **assign it to a primitive-type
+   variables** outside of the class without calling any function, **bool conversion operator is
+   need**.
+3. **Problem**: less readability of code, not work if functions have been overloaded.
+4. **Advantange**: make code cleaner.
+
+#### `explicit` Conversion Operator
