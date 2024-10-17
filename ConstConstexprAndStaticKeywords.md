@@ -160,7 +160,7 @@ RetType funcName() const;
 ###### Syntax
 
 ```CPP
-void funcName( const Type param1, ... );
+void funcName( const Type para1, ... );
 ```
 
 ###### Explanation
@@ -173,7 +173,7 @@ void funcName( const Type param1, ... );
 ###### Syntax
 
 ```CPP
-const RetType funcName( ... ) {
+const RetType funcName( para_list ) {
     // Function body
 }
 ```
@@ -301,11 +301,11 @@ class ClassName {
 ###### Syntax
 
 ```CPP
-constexpr RetType funcName( ... ) {
+constexpr RetType funcName( para_list ) {
     // Function body
 }
 
-constexpr RetType var_name = funcName( ... );
+constexpr RetType var_name = funcName( para_list );
 ```
 
 ###### Explanation
@@ -328,13 +328,13 @@ constexpr RetType var_name = funcName( ... );
 class ClassName {
    public:
       // Initialize member variables at compile-time.
-      constexpr ClassName( ... ): ... {};
+      constexpr ClassName( para_list ): ... {};
 
    private:
       ...
 };
 
-constexpr ClassName obj_name( ... );
+constexpr ClassName obj_name( para_list );
 ```
 
 ###### Explanation
@@ -433,12 +433,12 @@ Type2 ClassName::_staticMember2 = 0;
 ```CPP
 class ClassName {
 public:
-    static RetType funcName( ... ) {
+    static RetType funcName( para_list ) {
         // Function body
     }
 };
 
-RetType var_name = ClassName::funcName( ... );
+RetType var_name = ClassName::funcName( para_list );
 ```
 
 ###### Explanation

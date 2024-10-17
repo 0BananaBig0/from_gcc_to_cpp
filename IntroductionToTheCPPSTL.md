@@ -128,7 +128,7 @@
 #### Usage
 
 1. Function objects can be created by overloading the `operator()`.
-2. Lambda expressions can be defined using the syntax `[capture](parameters) { body; }`.
+2. Lambda expressions can be defined using the syntax `[capture]( para_list ) { body; }`.
 3. More information about lambdas is provided in Section
    [10) Lambda Functions](#10-lambda-functions).
 

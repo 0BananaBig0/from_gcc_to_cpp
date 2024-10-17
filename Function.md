@@ -114,11 +114,11 @@ RetType funcName( parameter_list );
 ### 5) Reference Syntax
 
 ```CPP
-funcName( argument_list );
+funcName( arg_list );
 ```
 
 ```CPP
-RetType var_name = funcName( argument_list );
+RetType var_name = funcName( arg_list );
 ```
 
 ### 6) How to Pass an Argument to a Function
@@ -230,19 +230,19 @@ auto func_ptr_name = &funcName;
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
 // The implicit conversion occurs.
-RetType ( *func_ptr_name )( parameter_type_list ) = funcName;
+RetType ( *func_ptr_name )( para_type_list ) = funcName;
 ```
 
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
 // The implicit conversion does not occur.
-RetType ( *func_ptr_name )( parameter_type_list ) = &funcName;
+RetType ( *func_ptr_name )( para_type_list ) = &funcName;
 ```
 
 #### (2) Declaration and Assignment Syntax
 
 ```CPP
-RetType ( *func_ptr_name )( parameter_type_list );
+RetType ( *func_ptr_name )( para_type_list );
 // The implicit conversion occurs.
 func_ptr_name = funcName;
 ```
@@ -250,7 +250,7 @@ func_ptr_name = funcName;
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
 // The implicit conversion does not occur.
-RetType ( *func_ptr_name )( parameter_type_list );
+RetType ( *func_ptr_name )( para_type_list );
 func_ptr_name = &funcName;
 ```
 
@@ -306,13 +306,13 @@ FuncPtrName func_ptr_name;
 ##### Code for Passing It as a Variable
 
 ```CPP
-[capture]( parameters ) -> RetType { body };
+[capture]( para_list ) -> RetType { body };
 ```
 
 ##### Code for Defining It as a Function
 
 ```CPP
-auto funcName =  [capture]( parameters ) -> RetType { body };
+auto funcName =  [capture]( para_list ) -> RetType { body };
 ```
 
 #### Explanation
@@ -338,53 +338,53 @@ auto funcName =  [capture]( parameters ) -> RetType { body };
 ##### Example 1: Capture Nothing
 
 ```CPP
-auto funcName =  []( parameters ) -> RetType { body };
+auto funcName =  []( para_list ) -> RetType { body };
 ```
 
 ##### Example 2: A Default Capture Mode `[=]` - Capture All Variables by Value
 
 ```CPP
 // A default capture mode[=]: captures all variables by value.
-auto funcName =  [=]( parameters ) -> RetType { body };
+auto funcName =  [=]( para_list ) -> RetType { body };
 ```
 
 ##### Example 3: A Default Capture Mode `[&]` - Capture All Variables by Value
 
 ```CPP
 // A default capture mode[&]: captures all variables by value.
-auto funcName =  [&]( parameters ) -> RetType { body };
+auto funcName =  [&]( para_list ) -> RetType { body };
 ```
 
 ##### Example 4: Specify Some Variables Captured by Value
 
 ```CPP
-auto funcName =  [var1, var2, ...]( parameters ) -> RetType { body };
+auto funcName =  [var1, var2, ...]( para_list ) -> RetType { body };
 ```
 
 ##### Example 5: Specify Some Variables Captured by Reference
 
 ```CPP
-auto funcName =  [&var1, &var2, ...]( parameters ) -> RetType { body };
+auto funcName =  [&var1, &var2, ...]( para_list ) -> RetType { body };
 ```
 
 ##### Example 6: Specify Some Variables Captured by Reference and Others by Value
 
 ```CPP
 // In the capture list, the default capture must appear first.
-auto funcName =  [=, &var1, &var2, ...]( parameters ) -> RetType { body };
+auto funcName =  [=, &var1, &var2, ...]( para_list ) -> RetType { body };
 ```
 
 ##### Example 7: Specify Some Variables Captured by Value and Others by Reference
 
 ```CPP
 // In the capture list, the default capture must appear first.
-auto funcName =  [&, =var1, =var2, ...]( parameters ) -> RetType { body };
+auto funcName =  [&, =var1, =var2, ...]( para_list ) -> RetType { body };
 ```
 
 ##### Example 8: Specify Some Variables Captured by Reference and Some by Value
 
 ```CPP
-auto funcName =  [&var1, &var2, ..., varn1, varn2, ...]( parameters ) -> RetType { body };
+auto funcName =  [&var1, &var2, ..., varn1, varn2, ...]( para_list ) -> RetType { body };
 ```
 
 #### `mutable` Lambda Functions
@@ -392,11 +392,11 @@ auto funcName =  [&var1, &var2, ..., varn1, varn2, ...]( parameters ) -> RetType
 ##### Syntax
 
 ```CPP
-[capture]( parameters ) mutable -> RetType { body };
+[capture]( para_list ) mutable -> RetType { body };
 ```
 
 ```CPP
-auto funcName =  [capture]( parameters ) mutable -> RetType { body };
+auto funcName =  [capture]( para_list ) mutable -> RetType { body };
 ```
 
 ##### Explanation

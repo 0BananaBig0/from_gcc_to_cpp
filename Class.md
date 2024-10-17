@@ -226,11 +226,11 @@ ClassName obj_name; // Default Constructor
 ```
 
 ```CPP
-ClassName obj_name( parameters ); // Parameterized Constructor
+ClassName obj_name( para_list ); // Parameterized Constructor
 ```
 
 ```CPP
-ClassName obj_name1( parameters ); // Parameterized Constructor
+ClassName obj_name1( para_list ); // Parameterized Constructor
 ClassName obj_name2( obj_name1 ); // Copy Constructor
 ```
 
@@ -238,11 +238,11 @@ ClassName obj_name2( obj_name1 ); // Copy Constructor
 // Not Recommend, although the compiler may optimize it so that only one constructor is called.
 // First, Parameterized Constructor
 // Second, Copy Constructor
-ClassName obj_name = ClassName( parameters );
+ClassName obj_name = ClassName( para_list );
 ```
 
 ```CPP
-ClassName obj_name1( parameters ); // Parameterized Constructor
+ClassName obj_name1( para_list ); // Parameterized Constructor
 ClassName obj_name2( std::move( obj_name1 ) ); // Move Constructor
 ```
 
@@ -312,7 +312,7 @@ ClassName* obj_ptr = new ClassName; // Default Constructor
 ```
 
 ```CPP
-ClassName* obj_ptr = new ClassName( parameters ); // Parameterized Constructor
+ClassName* obj_ptr = new ClassName( para_list ); // Parameterized Constructor
 ```
 
 ```CPP
@@ -493,7 +493,7 @@ class ClassName {
 // Declared and defined inside the class
 class ClassName {
    public:
-      RetType funcName( parameters ) { ... };
+      RetType funcName( para_list ) { ... };
 };
 ```
 
@@ -501,11 +501,11 @@ class ClassName {
 // declared inside the class
 class ClassName {
    public:
-      RetType funcName( parameters ) { ... };
+      RetType funcName( para_list ) { ... };
 };
 
 // Defined outside the class
-RetType ClassName::funcName( parameters ) { ... };
+RetType ClassName::funcName( para_list ) { ... };
 ```
 
 #### Explanation
@@ -534,14 +534,14 @@ RetType ClassName::funcName( parameters ) { ... };
 ```CPP
 class BaseClassName {
    public:
-      virtual RetType funcName( parameters ){
+      virtual RetType funcName( para_list ){
          // Virtual method in base class
       };
 };
 
 class DerivedClassName: public BaseClassName {
    public:
-      RetType funcName( parameters ) override{
+      RetType funcName( para_list ) override{
          // Override the base class method
       };
 };
@@ -567,7 +567,7 @@ class DerivedClassName: public BaseClassName {
 ```CPP
 class ClassName {
    public:
-      ClassName( parameters ){
+      ClassName( para_list ){
       };
 };
 ```
@@ -631,7 +631,7 @@ class ClassName {
 class ClassName {
    public:
       // Parameterized Constructor
-      ClassName( parameters ){
+      ClassName( para_list ){
       };
 };
 ```
