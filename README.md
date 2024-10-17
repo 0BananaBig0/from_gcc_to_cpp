@@ -1,1 +1,1 @@
-# from_gcc_to_cpp
+{% include "FromGccToCPP.md" %}
