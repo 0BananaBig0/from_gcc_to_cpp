@@ -1,3 +1,21 @@
+<!-- vim-markdown-toc GFM -->
+
+* [The Difference Between Hiding, Overloading, Overriding, and Overwriting](#the-difference-between-hiding-overloading-overriding-and-overwriting)
+  * [(1) Hiding (Name Hiding)](#1-hiding-name-hiding)
+    * [Syntax](#syntax)
+    * [Explanation](#explanation)
+    * [How to Access Hidden Function](#how-to-access-hidden-function)
+  * [(2) Overloading](#2-overloading)
+    * [Explanation](#explanation-1)
+    * [Syntax](#syntax-1)
+  * [(3) Overriding](#3-overriding)
+    * [Explanation](#explanation-2)
+    * [Example](#example)
+  * [(4) Overwriting (Not a C++ Term)](#4-overwriting-not-a-c-term)
+    * [Explanation](#explanation-3)
+    * [Example](#example-1)
+
+<!-- vim-markdown-toc -->
 ### The Difference Between Hiding, Overloading, Overriding, and Overwriting
 
 #### (1) Hiding (Name Hiding)

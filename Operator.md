@@ -1,3 +1,31 @@
+<!-- vim-markdown-toc GFM -->
+
+* [Operator](#operator)
+  * [Explanation](#explanation)
+  * [Categories](#categories)
+  * [Operator Overloading](#operator-overloading)
+    * [Syntax](#syntax)
+    * [Explanation](#explanation-1)
+    * [Copy-assignment Operator](#copy-assignment-operator)
+      * [Default Copy-assignment Operator](#default-copy-assignment-operator)
+        * [Syntax](#syntax-1)
+        * [Explanation](#explanation-2)
+      * [Copy-assignment Operator Overloading](#copy-assignment-operator-overloading)
+        * [Syntax](#syntax-2)
+        * [Explanation](#explanation-3)
+    * [Move-assignment Operator](#move-assignment-operator)
+      * [Default Move-assignment Operator](#default-move-assignment-operator)
+        * [Syntax](#syntax-3)
+        * [Explanation](#explanation-4)
+      * [Move-assignment Operator Overloading](#move-assignment-operator-overloading)
+        * [Syntax](#syntax-4)
+        * [Explanation](#explanation-5)
+    * [Conversion Operator](#conversion-operator)
+      * [Conversion Operator Overloading](#conversion-operator-overloading)
+      * [Syntax](#syntax-5)
+      * [Explanation](#explanation-6)
+
+<!-- vim-markdown-toc -->
 ## Operator
 
 ### Explanation
