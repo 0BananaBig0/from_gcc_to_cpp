@@ -1,40 +1,41 @@
 <!-- vim-markdown-toc GFM -->
 
-* [Array](#array)
-  * [Explanation](#explanation)
-  * [Characteristics](#characteristics)
-    * [1) Homogeneous Data Types](#1-homogeneous-data-types)
-    * [2) Contiguous Memory Allocation](#2-contiguous-memory-allocation)
-  * [Raw Array](#raw-array)
-    * [Explanation](#explanation-1)
-    * [Characteristics](#characteristics-1)
-    * [One-dimensional Raw Array](#one-dimensional-raw-array)
-      * [Declaration Syntax](#declaration-syntax)
-      * [Initialization Syntax](#initialization-syntax)
-      * [Syntax for Deleting One-dimensional Raw Array Pointers](#syntax-for-deleting-one-dimensional-raw-array-pointers)
-    * [Multidimensional Raw Array ( **Not Recommend** )](#multidimensional-raw-array--not-recommend-)
-      * [Declaration Syntax](#declaration-syntax-1)
-      * [Initialization Syntax](#initialization-syntax-1)
-      * [Syntax for Deleting Multidimensional Raw Array Pointers](#syntax-for-deleting-multidimensional-raw-array-pointers)
-  * [`std::array`](#stdarray)
-    * [Explanation](#explanation-2)
-    * [Characteristics](#characteristics-2)
-    * [A Simple Implementation of `std::array`](#a-simple-implementation-of-stdarray)
-    * [One-dimensional `std::array`](#one-dimensional-stdarray)
-      * [Declaration Syntax](#declaration-syntax-2)
-      * [Initialization Syntax](#initialization-syntax-2)
-      * [Syntax for Deleting One-dimensional `std::array` Pointers](#syntax-for-deleting-one-dimensional-stdarray-pointers)
-    * [Multidimensional `std::array` ( **Not Recommend** )](#multidimensional-stdarray--not-recommend-)
-      * [Declaration Syntax](#declaration-syntax-3)
-      * [Initialization Syntax](#initialization-syntax-3)
-      * [Member Functions](#member-functions)
-        * [(1) Element Access](#1-element-access)
-        * [(2) Capacity](#2-capacity)
-        * [(3) Modifiers](#3-modifiers)
-        * [(4) Iterators](#4-iterators)
-    * [Notes](#notes)
+- [Array](#array)
+  - [Explanation](#explanation)
+  - [Characteristics](#characteristics)
+    - [1) Homogeneous Data Types](#1-homogeneous-data-types)
+    - [2) Contiguous Memory Allocation](#2-contiguous-memory-allocation)
+  - [Raw Array](#raw-array)
+    - [Explanation](#explanation-1)
+    - [Characteristics](#characteristics-1)
+    - [One-dimensional Raw Array](#one-dimensional-raw-array)
+      - [Declaration Syntax](#declaration-syntax)
+      - [Initialization Syntax](#initialization-syntax)
+      - [Syntax for Deleting One-dimensional Raw Array Pointers](#syntax-for-deleting-one-dimensional-raw-array-pointers)
+    - [Multidimensional Raw Array ( **Not Recommend** )](#multidimensional-raw-array--not-recommend-)
+      - [Declaration Syntax](#declaration-syntax-1)
+      - [Initialization Syntax](#initialization-syntax-1)
+      - [Syntax for Deleting Multidimensional Raw Array Pointers](#syntax-for-deleting-multidimensional-raw-array-pointers)
+  - [`std::array`](#stdarray)
+    - [Explanation](#explanation-2)
+    - [Characteristics](#characteristics-2)
+    - [A Simple Implementation of `std::array`](#a-simple-implementation-of-stdarray)
+    - [One-dimensional `std::array`](#one-dimensional-stdarray)
+      - [Declaration Syntax](#declaration-syntax-2)
+      - [Initialization Syntax](#initialization-syntax-2)
+      - [Syntax for Deleting One-dimensional `std::array` Pointers](#syntax-for-deleting-one-dimensional-stdarray-pointers)
+    - [Multidimensional `std::array` ( **Not Recommend** )](#multidimensional-stdarray--not-recommend-)
+      - [Declaration Syntax](#declaration-syntax-3)
+      - [Initialization Syntax](#initialization-syntax-3)
+      - [Member Functions](#member-functions)
+        - [(1) Element Access](#1-element-access)
+        - [(2) Capacity](#2-capacity)
+        - [(3) Modifiers](#3-modifiers)
+        - [(4) Iterators](#4-iterators)
+    - [Notes](#notes)
 
 <!-- vim-markdown-toc -->
+
 ## Array
 
 ### Explanation
@@ -216,6 +217,10 @@ delete[] a3d;
 
 1. `std::array` is **a container** from the C++ Standard Library that provides **a fixed-size
    array**. It is **a template class**, and all syntax applicable to template classes applies to it.
+2. In fact, it's a template class:
+   ```CPP
+     template< typename T, int N > class Array { T _array[N] };
+   ```
 
 #### Characteristics
 
