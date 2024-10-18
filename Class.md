@@ -440,14 +440,14 @@ RetType ClassName::funcName( para_list ) { ... };
 ##### Syntax
 
 ```CPP
-class BaseClassName {
+class Base {
    public:
       virtual RetType funcName( para_list ){
          // Virtual method in base class
       };
 };
 
-class DerivedClassName: public BaseClassName {
+class Derived: public Base {
    public:
       RetType funcName( para_list ) override{
          // Override the base class method
@@ -497,7 +497,7 @@ class ClassName {
    public:
       // If no other constructors are defined,
       // this default constructor is provided by the compiler.
-      ClassName(){ };
+      ClassName(){};
 };
 ```
 
@@ -897,11 +897,11 @@ class ClassName {
 ##### Code
 
 ```
-class public BaseClassName{
+class public Base{
    // Members of base class
 };
 
-class DerivedClassName: public BaseClassName {
+class Derived: public Base {
       // Members of derived class
 };
 ```
@@ -920,9 +920,9 @@ class DerivedClassName: public BaseClassName {
 ##### Code
 
 ```CPP
-class DerivedClassName: public BaseClassName {
+class Derived: public Base {
    public:
-      DerivedClassName( para_list1 ): BaseClassName( para_list2 ), ... {}
+      Derived( para_list1 ): Base( para_list2 ), ... {}
 
    private:
       ...;
@@ -961,14 +961,14 @@ class DerivedClassName: public BaseClassName {
 ##### Syntax
 
 ```CPP
-class BaseClassName {
+class Base {
    public:
       virtual RetType funcName() const {
          // Base class implementation
       }
 };
 
-class DerivedClassName: public BaseClassName {
+class Derived: public Base {
    public:
       RetType funcName() const override {   // Override keyword for clarity
                                             // Derived class implementation
@@ -1046,16 +1046,16 @@ class ClassName {
 ##### Syntax
 
 ```CPP
-class BaseClassName {
+class Base {
    public:
-      virtual ~BaseClassName() {
+      virtual ~Base() {
          // Cleanup logic for the base class
       }
 };
 
-class DerivedClassName: public BaseClassName {
+class Derived: public Base {
    public:
-      ~DerivedClassName() {
+      ~Derived() {
          // Cleanup logic for the derived class
       }
 };
@@ -1088,27 +1088,27 @@ class DerivedClassName: public BaseClassName {
 ##### Definition Syntax
 
 ```CPP
-class BaseClassName {
+class Base {
    public:
       int baseValue;
 };
 
-class A: virtual public BaseClassName {};
+class A: virtual public Base {};
 
-class B: virtual public BaseClassName {};
+class B: virtual public Base {};
 
-class DerivedClassName: public A,
+class Derived: public A,
                         public B {};
 ```
 
 ##### Initialization Syntax
 
 ```CPP
-class DerivedClassName: public A,
+class Derived: public A,
                         public B {
    public:
-      DerivedClassName( para_list1 ):
-         BaseClassName( para_list2 ), A( para_list3 ), B( para_list4 ) {}
+      Derived( para_list1 ):
+         Base( para_list2 ), A( para_list3 ), B( para_list4 ) {}
 };
 ```
 
@@ -1214,7 +1214,7 @@ class ClassB {
 ##### Syntax
 
 ```CPP
-class BaseClassName {
+class Base {
    public:
       virtual RetType funcName() final;   // Declaration of a final function
 };
@@ -1235,7 +1235,7 @@ class BaseClassName {
 ```CPP
 class FinalClass final {};
 
-// class DerivedClassName: public FinalClass { };   // Error: Cannot inherit from a final class
+// class Derived: public FinalClass {};   // Error: Cannot inherit from a final class
 ```
 
 ##### Explanation

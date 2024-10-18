@@ -24,14 +24,14 @@
 ##### Syntax
 
 ```CPP
-class BaseClassName {
+class Base {
    public:
       RetType1 funcName( para_list1 ) {
          ...;
       }
 };
 
-class DerivedClassName: public BaseClassName {
+class Derived: public Base {
    public:
       RetType2 funcName( para_list2 ) {
          ...;
@@ -39,8 +39,8 @@ class DerivedClassName: public BaseClassName {
 };
 
 int main() {
-   DerivedClassName obj_name;
-   // Error: BaseClassName::funcName( para_list1 ) is hidden by DerivedClassName::funcName( para_list2 )
+   Derived obj_name;
+   // Error: Base::funcName( para_list1 ) is hidden by Derived::funcName( para_list2 )
    obj_name.show();
 }
 ```
@@ -57,7 +57,7 @@ int main() {
 ##### How to Access Hidden Function
 
 ```CPP
-   obj_name.BaseClassName::funcName( para_list1 );   // Calls Base class funcName( para_list1 )
+   obj_name.Base::funcName( para_list1 );   // Calls Base class funcName( para_list1 )
 ```
 
 #### (2) Overloading
@@ -115,7 +115,7 @@ class ClassName {
 ```CPP
 class Base {
    public:
-      virtual RetType funcName( para_list ) { };
+      virtual RetType funcName( para_list ) {};
 };
 
 class Derived: public Base {
