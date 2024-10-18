@@ -1191,23 +1191,78 @@ class DerivedClassName: public A,
 
 ##### Explanation
 
-##### Characteristics
+1. In C++, the `friend` keyword **grants non-member functions** or **other classes** **access** to
+   the **private** and **protected members** of a class.
+2. The `friend` keyword is commonly used when specific functions or classes require access to a
+   class's internal details but are not part of its public interface
+3. Friendship in C++ is **not inherited**—a **derived** class does **not inherit the friendship
+   relationships** of its base class.
+4. Additionally, friendship is **unidirectional**: the class or function granted access does **not**
+   automatically **reciprocate that privilege**.
 
 #### `friend` Functions
 
 ##### Syntax
 
+```
+class ClassName {
+public:
+    friend RetType funcName(const ClassName& obj);  // Friend function declaration
+};
+```
+
+```
+class ClassName {
+public:
+    friend RetType funcName( );  // Friend function declaration
+};
+```
+
 ##### Explanation
 
-##### Characteristics
-
-##### Syntax
+1. A friend function is **a non-member function** that is allowed **access** to the **private** and
+   **protected** **members** of a class.
+2. If the friend function needs **access to non-static non-public members**, the **class instance**
+   should be **passed** to the **friend function**.
+3. If the friend function **only** accesses **static** members or performs operations **unrelated to
+   a specific object**, the **class instance** does **not** need to **be passed**.
 
 #### `friend` Classes
 
+##### Syntax
+
+```CPP
+class ClassA {
+   public:
+      friend class ClassB;   // Declaring ClassB as a friend
+};
+
+class ClassB {
+   public:
+      RetType funcName( const ClassA& obj ) { ... }
+};
+```
+
+```CPP
+class ClassA {
+   public:
+      friend class ClassB;   // Declaring ClassB as a friend
+};
+
+class ClassB {
+   public:
+      RetType funcName() { ... }
+};
+```
+
 ##### Explanation
 
-##### Characteristics
+1. A friend class is **a non-member class** that is granted access to the **private** and
+   **protected members** of **another** class.
+2. If the member functions of the friend class need to **access non-static non-static members**, the
+   **class instance** should be **passed** to **those functions**.
+3. If the member functions of the friend class **access static members** or perform operations
+   **unrelated to a specific object**, the class instance does **not** need to **be passed**.
 
 ### `final`
 
