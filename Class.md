@@ -1012,6 +1012,134 @@ class DerivedClassName: public BaseClassName {
 
 #### `virtual` Inheritance
 
+### `virtual`
+
+##### Explanation
+
+1. The `virtual` keyword in C++ is integral to **enabling dynamic polymorphism** and ensuring the
+   **correct behavior** of objects in **inheritance** hierarchies.
+
+#### Virtual Functions
+
+##### Syntax
+
+```CPP
+class BaseClassName {
+   public:
+      virtual RetType funcName() const {
+         // Base class implementation
+      }
+};
+
+class DerivedClassName: public BaseClassName {
+   public:
+      RetType funcName() const override {   // Override keyword for clarity
+                                            // Derived class implementation
+      }
+};
+```
+
+##### Explanation
+
+1. A virtual function is **a member function** declared with the `virtual` keyword in a base class,
+   allowing **derived classes** to provide their **own implementation**. When invoked through **a
+   base class pointer or reference**, the function from the most derived class is called, **enabling
+   runtime polymorphism**.
+2. Virtual functions **ensure dynamic dispatch** by resolving function calls at runtime based on the
+   object's actual type.
+3. They **can be overridden** in derived classes using the same function signature.
+4. The **`override`** keyword is **optional** but **recommended**, as it ensures that the derived
+   class correctly overrides a virtual function.
+5. If a derived class does **not override** the virtual function, the **base class's
+   implementation** will be invoked.
+
+##### Dynamic Binding and Static Binding
+
+##### Polymorphism and Problems
+
+1. **Polymorphism**: Virtual functions enable polymorphic behavior, allowing a program to treat
+   objects of different derived classes through a base class pointer or reference. This makes it
+   easier to write flexible and reusable code.
+2. **Performance overhead**: Virtual functions introduce **a performance penalty** due to the
+   dynamic dispatch mechanism. The program must go through the **V table** to look up the correct
+   function to call at runtime, which can be slower than static binding.
+3. **Memory overhead**: Each class that uses virtual functions typically includes **a virtual table
+   (vtable)**, which adds some memory overhead. Each object of such classes contains a pointer to
+   the vtable, increasing the size of the object.
+4. **Debugging Challenges**: Debugging issues related to virtual functions can be more challenging,
+   especially when it comes to understanding the flow of execution and object lifetimes in the
+   presence of polymorphism.
+5. **Potential for Resource Leaks**: If a **base** class has **virtual functions**, its
+   **destructor** should also be **virtual** to ensure proper cleanup of derived class resources.
+   Failing to declare a virtual destructor can lead to resource leaks.
+
+##### Notes
+
+1. In cases where performance is very important, you should avoid using virtual functions as much as
+   possible.
+
+#### Pure Virtual Functions and Abstract Class
+
+##### Syntax
+
+```CPP
+class ClassName {
+   public:
+      virtual RetType funcName const = 0;   // Pure virtual function
+};
+```
+
+##### Explanation
+
+1. A pure virtual function is declared by assigning `= 0` to a virtual function, indicating that it
+   does **not provide any implementation** in the **base** class.
+2. Pure virtual functions enforce a contract that derived classes must fulfill, promoting **design
+   consistency**.
+3. A class containing **at least one pure** virtual function is termed **an abstract class** and
+   **cannot be instantiated**.
+4. **Abstract classes** serve as **interfaces** or **base types** for deriving more specific
+   implementations.
+5. **All derived** classes **must override the pure virtual functions**; **otherwise**, they also
+   become **abstract**.
+6. **Abstract classes** may contain **non-virtual member functions** in addition to pure virtual
+   ones.
+
+#### Virtual Destructors
+
+##### Syntax
+
+```CPP
+class BaseClassName {
+   public:
+      virtual ~BaseClassName() {
+         // Cleanup logic for the base class
+      }
+};
+
+class DerivedClassName: public BaseClassName {
+   public:
+      ~DerivedClassName() {
+         // Cleanup logic for the derived class
+      }
+};
+```
+
+##### Explanation
+
+1. A virtual destructor **ensures** that when an **object** is **deleted** via a **base** class
+   **pointer**, the **destructor of** the **derived** class is **invoked**, **followed** by the
+   **base** class’s **destructor**. This guarantees that **all resources** allocated by the derived
+   class are **correctly released**, thereby **preventing memory leaks** and **ensuring complete
+   destruction** of the object.
+2. Destructors should **be declared virtual in any base class** intended for inheritance to **avoid
+   undefined behavior** during object destruction.
+3. **Without** a virtual destructor, **only** the **base** class **destructor** would **execute**,
+   leaving resources specific to the derived class unreleased.
+4. Although virtual destructors add **a slight performance overhead**, they are critical for safe
+   and correct resource management.
+
+#### Virtual Inheritance
+
 ##### Explanation
 
 1. Virtual inheritance **prevents ambiguity** when a class **indirectly inherits from the same base
@@ -1058,20 +1186,6 @@ class DerivedClassName: public A,
 1. **Derived** class destructor: Invoked first.
 2. **Non-virtual base** class destructors: Called next.
 3. **Virtual base** class destructor: Called last.
-
-### `virtual`
-
-#### Virtual Functions
-
-#### Virtual Destructors
-
-#### Virtual Inheritance
-
-### Abstract Classes
-
-##### Explanation
-
-##### Characteristics
 
 ### `friend`
 
@@ -1122,63 +1236,3 @@ class DerivedClassName: public A,
 #### `virtual`
 
 ##### Characteristics
-
-###### Summary
-
-1. **Dynamic** binding: Virtual functions enable dynamic (or late) binding, meaning the function
-   that gets called is determined at **runtime** based on the type of the object being referenced,
-   not the type of the pointer/reference.
-2. Base class declaration: To declare a function as virtual, you use the virtual keyword in the base
-   class.
-3. Overriding in derived classes: Derived classes can override virtual functions to provide their
-   specific implementations.
-4. **Base class pointers**: You can use a base class pointer to point to derived class objects. When
-   you call a virtual function through the base class pointer, the derived class's version of the
-   function is invoked.
-5. Destructor: If a class contains **virtual functions**, it is a good practice to declare its
-   **destructor as virtual**. This ensures that the derived class's destructor is called when an
-   object is deleted through a base class pointer, preventing resource leaks.
-6. Performance: Virtual functions introduce **a slight performance overhead** due to dynamic
-   dispatch, as the program must look up the correct function to call at runtime. This is generally
-   acceptable in exchange for the flexibility they provide.
-7. Pure virtual functions: You can declare a virtual function as pure virtual by using `= 0`. This
-   makes the **class abstract**, meaning it cannot be instantiated directly.
-
-###### Advantages
-
-1. **Polymorphism**: Virtual functions enable polymorphic behavior, allowing a program to treat
-   objects of different derived classes through a base class pointer or reference. This makes it
-   easier to write flexible and reusable code.
-2. **Dynamic** binding: They provide dynamic (or late) binding, where the method that gets executed
-   is determined at runtime based on the actual object type, rather than the type of
-   reference/pointer. This allows for more dynamic and adaptable code structures.
-3. Extensibility: Virtual functions make it easier to extend code. New derived classes can be added
-   with their implementations of virtual functions without modifying existing code.
-4. Interface Design: They allow the design of interfaces through abstract classes, promoting better
-   software design practices. This encourages the implementation of consistent interfaces across
-   different derived classes.
-5. Improved code organization: By using virtual functions, you can organize your code better,
-   separating interface from implementation and promoting code clarity and maintenance.
-
-###### Disadvantages
-
-1. Performance overhead: Virtual functions introduce **a performance penalty** due to the dynamic
-   dispatch mechanism. The program must go through the **V table** to look up the correct function
-   to call at runtime, which can be slower than static binding.
-2. **Memory overhead**: Each class that uses virtual functions typically includes **a virtual table
-   (vtable)**, which adds some memory overhead. Each object of such classes contains a pointer to
-   the vtable, increasing the size of the object.
-3. Complexity: The use of virtual functions can increase the complexity of code, particularly for
-   developers who are not familiar with object-oriented principles. Understanding how virtual
-   functions work is crucial to avoid pitfalls like object slicing.
-4. **Debugging Challenges**: Debugging issues related to virtual functions can be more challenging,
-   especially when it comes to understanding the flow of execution and object lifetimes in the
-   presence of polymorphism.
-5. Potential for Resource Leaks: If a base class has virtual functions, its destructor should also
-   be virtual to ensure proper cleanup of derived class resources. Failing to declare a virtual
-   destructor can lead to resource leaks.
-
-###### Notes
-
-1. In cases where performance is very important, you should avoid using virtual functions as much as
-   possible.
