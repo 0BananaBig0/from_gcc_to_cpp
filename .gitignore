@@ -1,3 +1,4 @@
 *.cpp
 .cache
 .clang*
+*.exe
