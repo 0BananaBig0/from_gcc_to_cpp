@@ -1,149 +1,149 @@
 <!-- vim-markdown-toc GFM -->
 
-- [`class`](#class)
-  - [Explanation](#explanation)
-  - [Visibility](#visibility)
-  - [Declaration Syntax](#declaration-syntax)
-  - [Definition Syntax](#definition-syntax)
-  - [Common Objects](#common-objects)
-    - [Declaration Syntax](#declaration-syntax-1)
-    - [Initialization Syntax](#initialization-syntax)
-  - [Class Pointers](#class-pointers)
-    - [Declaration Syntax](#declaration-syntax-2)
-    - [Initialization Syntax](#initialization-syntax-1)
-  - [Class Reference](#class-reference)
-  - [A `const` Instance of a `class`](#a-const-instance-of-a-class)
-    - [Syntax](#syntax)
-    - [Explanation](#explanation-1)
-  - [A `constexpr` Instance of a `class`](#a-constexpr-instance-of-a-class)
-    - [Syntax](#syntax-1)
-    - [Explanation](#explanation-2)
-  - [A `static` Instance of a `class`](#a-static-instance-of-a-class)
-    - [Syntax](#syntax-2)
-    - [Explanation](#explanation-3)
-  - [Member Variables](#member-variables)
-    - [Explanation](#explanation-4)
-    - [Syntax](#syntax-3)
-    - [`this`](#this)
-      - [Syntax](#syntax-4)
-      - [Explanation](#explanation-5)
-    - [`const` Member Variables](#const-member-variables)
-    - [`constexpr` Member Variables](#constexpr-member-variables)
-    - [`static` Member Variables](#static-member-variables)
-    - [`mutable` Member Variables](#mutable-member-variables)
-      - [Syntax](#syntax-5)
-      - [Explanation](#explanation-6)
-    - [Pointer Member Variables](#pointer-member-variables)
-      - [Syntax](#syntax-6)
-      - [Explanation](#explanation-7)
-    - [Reference Member Variables](#reference-member-variables)
-      - [Syntax](#syntax-7)
-      - [Explanation](#explanation-8)
-  - [Methods](#methods)
-    - [Syntax](#syntax-8)
-    - [Explanation](#explanation-9)
-    - [`static` Methods](#static-methods)
-    - [`const` Methods](#const-methods)
-    - [`constexpr` Methods](#constexpr-methods)
-    - [`virtual` Methods](#virtual-methods)
-    - [Pure `virtual` Methods](#pure-virtual-methods)
-    - [`override` Methods](#override-methods)
-      - [Syntax](#syntax-9)
-      - [Explanation](#explanation-10)
-      - [Notes](#notes)
-  - [Constructors](#constructors)
-    - [Syntax](#syntax-10)
-    - [Explanation](#explanation-11)
-    - [Characteristics](#characteristics)
-    - [Defalut Constructors and `default` Constructors](#defalut-constructors-and-default-constructors)
-      - [Syntax](#syntax-11)
-      - [Explanation](#explanation-12)
-    - [Parameterized Constructors](#parameterized-constructors)
-      - [Syntax](#syntax-12)
-      - [Explanation](#explanation-13)
-    - [Constructor Initializer Lists](#constructor-initializer-lists)
-      - [Syntax](#syntax-13)
-      - [Explanation](#explanation-14)
-      - [Notes](#notes-1)
-    - [Copy Constructors](#copy-constructors)
-      - [Explanation](#explanation-15)
-      - [Default Copy ( `default` ) ( Avoid ) ( Double Destructions )](#default-copy--default---avoid---double-destructions-)
-        - [Syntax](#syntax-14)
-        - [Explanation](#explanation-16)
-      - [Shallow Copy ( e.g. `memcpy` ) ( Avoid ) ( Double Destructions )](#shallow-copy--eg-memcpy---avoid---double-destructions-)
-        - [Syntax](#syntax-15)
-        - [Explanation](#explanation-17)
-      - [Deep Copy ( Recommend )](#deep-copy--recommend-)
-        - [Syntax](#syntax-16)
-        - [Explanation](#explanation-18)
-    - [Move Constructors](#move-constructors)
-      - [Explanation](#explanation-19)
-      - [Default Move Constructor](#default-move-constructor)
-        - [Syntax](#syntax-17)
-        - [Explanation](#explanation-20)
-      - [Custom Move Constructor](#custom-move-constructor)
-        - [Syntax](#syntax-18)
-        - [Explanation](#explanation-21)
-    - [Conversion Constructors](#conversion-constructors)
-      - [Syntax](#syntax-19)
-      - [Explanation](#explanation-22)
-    - [`virtual` Constructors](#virtual-constructors)
-    - [`explicit` Constructors](#explicit-constructors)
-  - [Destructors](#destructors)
-    - [Syntax](#syntax-20)
-    - [Explanation](#explanation-23)
-    - [Default Destructors](#default-destructors)
-      - [Syntax](#syntax-21)
-      - [Explanation](#explanation-24)
-    - [`virtual` Destructors](#virtual-destructors)
-  - [Operator Overloading](#operator-overloading)
-    - [Copy-assignment Operator](#copy-assignment-operator)
-    - [Conversion Operator](#conversion-operator)
-    - [`explicit` Conversion Operator](#explicit-conversion-operator)
-  - [The Difference Between Construction and Assignement](#the-difference-between-construction-and-assignement)
-  - [Inheritance](#inheritance)
-    - [Explanation](#explanation-25)
-    - [Definition Syntax](#definition-syntax-1)
-    - [Initialization Syntax](#initialization-syntax-2)
-    - [Characteristics](#characteristics-1)
-    - [`virtual` Inheritance](#virtual-inheritance)
-      - [Explanation](#explanation-26)
-      - [Definition Syntax](#definition-syntax-2)
-      - [Initialization Syntax](#initialization-syntax-3)
-      - [Characteristics](#characteristics-2)
-  - [`virtual`](#virtual)
-  - [Abstract Classes](#abstract-classes)
-    - [Explanation](#explanation-27)
-    - [Characteristics](#characteristics-3)
-  - [`friend`](#friend)
-    - [Explanation](#explanation-28)
-    - [Characteristics](#characteristics-4)
-    - [`friend` Functions](#friend-functions)
-      - [Syntax](#syntax-22)
-      - [Explanation](#explanation-29)
-      - [Characteristics](#characteristics-5)
-      - [Syntax](#syntax-23)
-    - [`friend` Classes](#friend-classes)
-      - [Explanation](#explanation-30)
-      - [Characteristics](#characteristics-6)
-  - [`final`](#final)
-    - [Explanation](#explanation-31)
-    - [Characteristics](#characteristics-7)
-    - [`final` Functions](#final-functions)
-      - [Syntax](#syntax-24)
-      - [Explanation](#explanation-32)
-      - [Characteristics](#characteristics-8)
-      - [Syntax](#syntax-25)
-    - [`final` Classes](#final-classes)
-      - [Explanation](#explanation-33)
-      - [Characteristics](#characteristics-9)
-    - [`using`](#using)
-    - [(2) `virtual`](#2-virtual)
-      - [Characteristics](#characteristics-10)
-        - [Summary](#summary)
-        - [Advantages](#advantages)
-        - [Disadvantages](#disadvantages)
-        - [Notes](#notes-2)
+* [`class`](#class)
+  * [Explanation](#explanation)
+  * [Visibility](#visibility)
+  * [Declaration Syntax](#declaration-syntax)
+  * [Definition Syntax](#definition-syntax)
+  * [Common Objects](#common-objects)
+    * [Declaration Syntax](#declaration-syntax-1)
+    * [Initialization Syntax](#initialization-syntax)
+  * [Class Pointers](#class-pointers)
+    * [Declaration Syntax](#declaration-syntax-2)
+    * [Definition or Initialization Syntax](#definition-or-initialization-syntax)
+  * [Class Reference](#class-reference)
+  * [A `const` Instance of a `class`](#a-const-instance-of-a-class)
+  * [A `constexpr` Instance of a `class`](#a-constexpr-instance-of-a-class)
+  * [A `static` Instance of a `class`](#a-static-instance-of-a-class)
+  * [Member Variables](#member-variables)
+    * [Explanation](#explanation-1)
+    * [Syntax](#syntax)
+    * [`this`](#this)
+      * [Syntax](#syntax-1)
+      * [Explanation](#explanation-2)
+    * [`const` Member Variables](#const-member-variables)
+    * [`constexpr` Member Variables](#constexpr-member-variables)
+    * [`static` Member Variables](#static-member-variables)
+    * [`mutable` Member Variables](#mutable-member-variables)
+      * [Syntax](#syntax-2)
+      * [Explanation](#explanation-3)
+    * [Pointer Member Variables](#pointer-member-variables)
+      * [Syntax](#syntax-3)
+      * [Explanation](#explanation-4)
+    * [Reference Member Variables](#reference-member-variables)
+      * [Syntax](#syntax-4)
+      * [Explanation](#explanation-5)
+  * [Methods](#methods)
+    * [Syntax](#syntax-5)
+    * [Explanation](#explanation-6)
+    * [`static` Methods](#static-methods)
+    * [`const` Methods](#const-methods)
+    * [`constexpr` Methods](#constexpr-methods)
+    * [`virtual` Methods](#virtual-methods)
+    * [Pure `virtual` Methods](#pure-virtual-methods)
+    * [`override` Methods](#override-methods)
+      * [Syntax](#syntax-6)
+      * [Explanation](#explanation-7)
+      * [Notes](#notes)
+  * [Constructors](#constructors)
+      * [Syntax](#syntax-7)
+      * [Explanation](#explanation-8)
+      * [Characteristics](#characteristics)
+    * [Defalut Constructors and `default` Constructors](#defalut-constructors-and-default-constructors)
+      * [Syntax](#syntax-8)
+      * [Explanation](#explanation-9)
+    * [Parameterized Constructors](#parameterized-constructors)
+      * [Syntax](#syntax-9)
+      * [Explanation](#explanation-10)
+    * [Constructor Initializer Lists](#constructor-initializer-lists)
+      * [Syntax](#syntax-10)
+      * [Explanation](#explanation-11)
+      * [Notes](#notes-1)
+    * [Copy Constructors](#copy-constructors)
+      * [Explanation](#explanation-12)
+      * [Default Copy ( `default` ) ( Avoid ) ( Double Destructions )](#default-copy--default---avoid---double-destructions-)
+        * [Syntax](#syntax-11)
+        * [Explanation](#explanation-13)
+      * [Shallow Copy ( e.g. `memcpy` ) ( Avoid ) ( Double Destructions )](#shallow-copy--eg-memcpy---avoid---double-destructions-)
+        * [Syntax](#syntax-12)
+        * [Explanation](#explanation-14)
+      * [Deep Copy ( Recommend )](#deep-copy--recommend-)
+        * [Syntax](#syntax-13)
+        * [Explanation](#explanation-15)
+    * [Move Constructors](#move-constructors)
+      * [Explanation](#explanation-16)
+      * [Default Move Constructor](#default-move-constructor)
+        * [Syntax](#syntax-14)
+        * [Explanation](#explanation-17)
+      * [Custom Move Constructor](#custom-move-constructor)
+        * [Syntax](#syntax-15)
+        * [Explanation](#explanation-18)
+    * [Conversion Constructors](#conversion-constructors)
+      * [Syntax](#syntax-16)
+      * [Explanation](#explanation-19)
+    * [`virtual` Constructors](#virtual-constructors)
+    * [`explicit` Constructors](#explicit-constructors)
+  * [Destructors](#destructors)
+    * [Syntax](#syntax-17)
+    * [Explanation](#explanation-20)
+    * [Default Destructors](#default-destructors)
+      * [Syntax](#syntax-18)
+      * [Explanation](#explanation-21)
+    * [`virtual` Destructors](#virtual-destructors)
+  * [Operator Overloading](#operator-overloading)
+    * [Copy-assignment Operator](#copy-assignment-operator)
+    * [Conversion Operator](#conversion-operator)
+    * [`explicit` Conversion Operator](#explicit-conversion-operator)
+  * [How to Determine Which Constructor or Assignment Operator Is Invoked](#how-to-determine-which-constructor-or-assignment-operator-is-invoked)
+  * [Inheritance](#inheritance)
+    * [Explanation](#explanation-22)
+    * [Definition Syntax](#definition-syntax-1)
+      * [Code](#code)
+      * [Categories](#categories)
+    * [Initialization Syntax](#initialization-syntax-1)
+      * [Code](#code-1)
+      * [Explanation](#explanation-23)
+    * [Construction Order](#construction-order)
+    * [Destruction Order](#destruction-order)
+    * [`virtual` Inheritance](#virtual-inheritance)
+  * [`virtual`](#virtual)
+      * [Explanation](#explanation-24)
+    * [Virtual Functions](#virtual-functions)
+      * [Syntax](#syntax-19)
+      * [Explanation](#explanation-25)
+      * [Dynamic Binding and Static Binding](#dynamic-binding-and-static-binding)
+      * [Polymorphism and Problems](#polymorphism-and-problems)
+      * [Notes](#notes-2)
+    * [Pure Virtual Functions and Abstract Class](#pure-virtual-functions-and-abstract-class)
+      * [Syntax](#syntax-20)
+      * [Explanation](#explanation-26)
+    * [Virtual Destructors](#virtual-destructors-1)
+      * [Syntax](#syntax-21)
+      * [Explanation](#explanation-27)
+    * [Virtual Inheritance](#virtual-inheritance-1)
+      * [Explanation](#explanation-28)
+      * [Definition Syntax](#definition-syntax-2)
+      * [Initialization Syntax](#initialization-syntax-2)
+    * [Construction Order](#construction-order-1)
+    * [Destruction Order](#destruction-order-1)
+  * [`friend`](#friend)
+      * [Explanation](#explanation-29)
+    * [`friend` Functions](#friend-functions)
+      * [Syntax](#syntax-22)
+      * [Explanation](#explanation-30)
+    * [`friend` Classes](#friend-classes)
+      * [Syntax](#syntax-23)
+      * [Explanation](#explanation-31)
+  * [`final`](#final)
+      * [Explanation](#explanation-32)
+    * [`final` Functions](#final-functions)
+      * [Syntax](#syntax-24)
+      * [Explanation](#explanation-33)
+    * [`final` Classes](#final-classes)
+      * [Syntax](#syntax-25)
+      * [Explanation](#explanation-34)
+    * [`explicit`](#explicit)
+    * [`using`](#using)
 
 <!-- vim-markdown-toc -->
 
@@ -178,6 +178,7 @@ class ClassName;
 
 ```CPP
 class ClassName {
+   ...
 };
 ```
 
@@ -221,22 +222,16 @@ ClassName obj_name = initializer; // Conversion Construcotr, Implicit Conversion
 ```
 
 ```CPP
-// Without related parameterized and all members are public, Aggregate Initialization
-// With related parameterized, Parameterized Constructor or Uniform Initialization or Brace Initialization
-ClassName obj_name{ parameters };
+// Without related parameterized constructors and all members are public, Aggregate Initialization
+// With related parameterized constructors, Parameterized Constructor or Uniform Initialization or Brace Initialization
+ClassName obj_name{ para_list };
 ```
 
 ```CPP
 // When defining a class, assigning default values to its members.
 class ClassName {
-   public:
-      ...;
-
-   protected:
-      ...;
-
    private:
-      Type _member1 = initializer1;
+      Type _mem1 = initializer1;
       ...;
 };
 ```
@@ -250,15 +245,9 @@ class ClassName {
       // Factory Methods for Initialization
       static ClassName createClassName() {
          return std::move(
-            ClassName( paramters ) );   // Parameterized Constructor
+            ClassName( para_list );   // Parameterized Constructor
       }
 
-      ...;
-
-   protected:
-      ...;
-
-   private:
       ...;
 };
 
@@ -275,7 +264,7 @@ ClassName obj_name = createClassName();
 ClassName* obj_ptr;
 ```
 
-#### Initialization Syntax
+#### Definition or Initialization Syntax
 
 ```CPP
 ClassName* obj_ptr = new ClassName; // Default Constructor
@@ -299,61 +288,9 @@ ClassName& obj_ref = &obj_name;
 
 ### A `const` Instance of a `class`
 
-#### Syntax
-
-```CPP
-const ClassName obj_ptr;
-```
-
-#### Explanation
-
-1. A `const` instance **ensures** that none of its **non-mutable members can be modified** after
-   initialization.
-2. However, if a member is of **pointer** type, **the value or object** the pointer points to does
-   **not belong to the class**. Only the **address** stored in the pointer **belongs to the class**.
-   Therefore, a const instance **cannot ensure** that this **value or object remains unmodified**.
-3. **Only const-qualified member functions can be called** on a `const` instance. These are
-   functions that do not modify the object’s state.
-4. A `const` instance can still **modify `mutable` members**.
-
 ### A `constexpr` Instance of a `class`
 
-#### Syntax
-
-```CPP
-constexpr ClassName obj_ptr;
-```
-
-#### Explanation
-
-1. A `constexpr` instance is **an object** that is **evaluated at compile-time**, if all its
-   dependencies (constructors, functions, and data) are also `constexpr`.
-2. A `constexpr` instance must remain **immutable**, meaning its state cannot change after
-   initialization.
-3. **All data members** must be **initialized** by **the `constexpr` constructor** since further
-   modifications are not allowed.
-4. The class **must have a `constexpr` constructor**.
-5. All **member functions** invoked on a `constexpr` object **must also be `constexpr`**.
-6. Data members used in `constexpr` evaluation must be integral constants or themselves `constexpr`.
-7. A `constexpr` instance **is always `const`** implicitly, but the reverse is not true—`const`
-   instances are not guaranteed to be evaluated at compile time.
-
 ### A `static` Instance of a `class`
-
-#### Syntax
-
-```CPP
-static ClassName obj_ptr;
-```
-
-#### Explanation
-
-1. A static instance of a class refers to **an object of the class** that has static storage
-   duration.
-2. It **persists** for the **entire duration** of the program (until the program terminates).
-3. It is **initialized only once**, **the first time** its definition or block **is executed**.
-4. It can be scoped to a function, class, or namespace, depending on where it is declared.
-5. In fact, it's **a static variable**, a static local variable or a static global variable.
 
 ### Member Variables
 
@@ -369,7 +306,7 @@ static ClassName obj_ptr;
 ```CPP
 class ClassName {
    private:
-      Type _member;   // Declaration or Definition of a member variable
+      Type _mem;   // Declaration or Definition of a member variable
 };
 ```
 
@@ -378,7 +315,7 @@ class ClassName {
 ##### Syntax
 
 ```CPP
-this->_member;
+this->_mem;
 ```
 
 ##### Explanation
@@ -402,7 +339,7 @@ this->_member;
 ```CPP
 class ClassName {
    private:
-      mutable Type _member;   // Declaration or Definition of a member variable
+      mutable Type _mem;   // Declaration or Definition of a member variable
 };
 ```
 
@@ -421,7 +358,7 @@ class ClassName {
 ```CPP
 class ClassName {
    private:
-      Type* _member_ptr;   // Declaration or Definition of a member pointer
+      Type* _mem_ptr;   // Declaration or Definition of a member pointer
 };
 ```
 
@@ -438,12 +375,12 @@ class ClassName {
 class ClassName {
    public:
       // Initialization through constructor
-      explicit ClassName( Type& ref ): _memberRef( ref ) {}
+      explicit ClassName( Type& ref ): _memRef( ref ) {}
 
    private:
-      Type _member;
+      Type _mem;
       // In-Class Initialization
-      Type& _memberRef = _member;
+      Type& _memRef = _mem;
 };
 ```
 
@@ -624,11 +561,11 @@ class ClassName {
 class ClassName {
    public:
       ClassName( Type1 para1, Type2 para2, ... ):
-         _member1( para1 ), _member2( para2 ){};
+         _mem1( para1 ), _mem2( para2 ){};
 
    private:
-      Type1 _member1;
-      Type2 _member2;
+      Type1 _mem1;
+      Type2 _mem2;
 };
 ```
 
@@ -1310,5 +1247,7 @@ class FinalClass final {};
    calls** and **remove virtual dispatch overhead**.
 3. Final classes are often used for **singleton patterns**, **utility classes**, or
    **performance-critical components** to **prevent inheritance overhead**.
+
+#### `explicit`
 
 #### `using`
