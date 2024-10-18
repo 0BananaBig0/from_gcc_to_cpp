@@ -296,7 +296,7 @@
 #### 1. Usage
 
 1. Define a series of `MARCO` for `Main.cpp`.
-
+2. Used to select which parts of the code should be compiled.
 #### 2. Output
 
 1. Main.exe
