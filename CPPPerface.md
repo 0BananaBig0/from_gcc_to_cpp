@@ -75,7 +75,8 @@
    [cplusplus](https://cplusplus.com/) and [tutorialspoint](https://www.tutorialspoint.com/) or a
    command `cppman` in Linux. When reading any tutorial, including this one, **focus on the basic
    concepts**, their definitions, explanations, and key characteristics, paying particular attention
-   to the bold text, as these concepts often appear in other contexts.
+   to the bold text, as these concepts often appear in other contexts. You’d better **take notes**
+   and **create a mind map** to retain everything you consider necessary, like a simple tutorial.
 6. Lastly, it’s important to note that different compilers have slightly different implementations
    of the Standard Template Library (STL). While they provide the same library, there may be minor
    variations in implementation. For instance, in std::vector, if the size exceeds its capacity, it
