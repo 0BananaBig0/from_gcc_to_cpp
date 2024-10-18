@@ -1268,26 +1268,47 @@ class ClassB {
 
 ##### Explanation
 
-##### Characteristics
+1. The final keyword in C++ is used to prevent further inheritance or overriding of classes and
+   virtual functions.
+2. It plays a crucial role in controlling the behavior of classes in the inheritance hierarchy.
 
 #### `final` Functions
 
 ##### Syntax
 
+```CPP
+class BaseClassName {
+   public:
+      virtual RetType funcName() final;   // Declaration of a final function
+};
+```
+
 ##### Explanation
 
-##### Characteristics
-
-##### Syntax
+1. A final function is **a virtual function** that **cannot be overridden** by any derived class.
+   The final specifier ensures that the function's implementation remains fixed in the class that
+   declares it as final.
+2. This feature can **improve performance** by **devirtualizing calls** to the final function, as
+   the compiler can safely inline such calls, knowing that no further overrides exist.
 
 #### `final` Classes
 
+##### Syntax
+
+```CPP
+class FinalClass final {};
+
+// class DerivedClassName: public FinalClass { };   // Error: Cannot inherit from a final class
+```
+
 ##### Explanation
 
-##### Characteristics
+1. A final class is **a class** that **cannot be inherited** from. Declaring a class as final
+   ensures that no further subclassing is allowed, which can prevent misuse of inheritance and
+   unintended extensions of the class’s functionality.
+2. Marking a class as final can **improve runtime performance**, as the compiler can **optimize
+   calls** and **remove virtual dispatch overhead**.
+3. Final classes are often used for **singleton patterns**, **utility classes**, or
+   **performance-critical components** to **prevent inheritance overhead**.
 
 #### `using`
-
-#### `virtual`
-
-##### Characteristics
