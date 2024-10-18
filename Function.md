@@ -35,8 +35,8 @@
     * [(1) Declaration and Definition Syntax](#1-declaration-and-definition-syntax)
     * [(2) Declaration and Assignment Syntax](#2-declaration-and-assignment-syntax)
     * [(2) Syntax for Function Calls Using Function Pointers](#2-syntax-for-function-calls-using-function-pointers)
-    * [(3) Syntax for Function Pinter Declaration Using `typedef`](#3-syntax-for-function-pinter-declaration-using-typedef)
-    * [(4) Syntax for Function Pinter Declaration Using `using`](#4-syntax-for-function-pinter-declaration-using-using)
+    * [(3) Syntax for Function Pinter Declaration Using `using`](#3-syntax-for-function-pinter-declaration-using-using)
+    * [(4) Syntax for Function Pinter Declaration Using `typedef`](#4-syntax-for-function-pinter-declaration-using-typedef)
   * [9) Lambda Functions](#9-lambda-functions)
     * [Why Use Lambda Functions](#why-use-lambda-functions)
     * [Explanation](#explanation-4)
@@ -327,17 +327,17 @@ RetType result = func_ptr_name( arguement_list );
 func_pt_name( arguement_list );
 ```
 
-#### (3) Syntax for Function Pinter Declaration Using `typedef`
-
-```CPP
-typedef RetType ( *FuncPtrName )( parameter_types );
-FuncPtrName func_ptr_name;
-```
-
-#### (4) Syntax for Function Pinter Declaration Using `using`
+#### (3) Syntax for Function Pinter Declaration Using `using`
 
 ```CPP
 using FuncPtrName = RetType ( * )( parameter_types );
+FuncPtrName func_ptr_name;
+```
+
+#### (4) Syntax for Function Pinter Declaration Using `typedef`
+
+```CPP
+typedef RetType ( *FuncPtrName )( parameter_types );
 FuncPtrName func_ptr_name;
 ```
 
