@@ -25,6 +25,6 @@ wrapper around a real raw pointer. When designing our own data structure, useing
    Usage: If we assign a shared pointer to a raw pointer, some issues occur after the shared pointer is freed. Especially, in multiple threads, a raw pointer may be deleted multiple time. But the weak pointer can solve these issues.
     if two objects reference each other, one must be a weak pointer.
    4) pointer operator or arrow operator: ->. In smart pointers, the -> operator has been overloaded.
-   Since the compiler optimizes pointer operator overloading, we can write object_name->_memberName as
-   object_name->->_memberName. Additionally, we can overload the pointer operator to get the memory
+   Since the compiler optimizes pointer operator overloading, we can write object_name->_memName as
+   object_name->->_memName. Additionally, we can overload the pointer operator to get the memory
    offsets of an object's members.
