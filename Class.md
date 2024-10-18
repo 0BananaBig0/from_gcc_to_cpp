@@ -246,7 +246,7 @@ class ClassName {
       static ClassName createClassName() {
          return std::move(
             ClassName( para_list );   // Parameterized Constructor
-      }
+      };
 
       ...;
 };
@@ -375,7 +375,7 @@ class ClassName {
 class ClassName {
    public:
       // Initialization through constructor
-      explicit ClassName( Type& ref ): _memRef( ref ) {}
+      explicit ClassName( Type& ref ): _memRef( ref ) {};
 
    private:
       Type _mem;
@@ -922,7 +922,7 @@ class Derived: public Base {
 ```CPP
 class Derived: public Base {
    public:
-      Derived( para_list1 ): Base( para_list2 ), ... {}
+      Derived( para_list1 ): Base( para_list2 ), ... {};
 
    private:
       ...;
@@ -965,14 +965,14 @@ class Base {
    public:
       virtual RetType funcName() const {
          // Base class implementation
-      }
+      };
 };
 
 class Derived: public Base {
    public:
       RetType funcName() const override {   // Override keyword for clarity
                                             // Derived class implementation
-      }
+      };
 };
 ```
 
@@ -1050,14 +1050,14 @@ class Base {
    public:
       virtual ~Base() {
          // Cleanup logic for the base class
-      }
+      };
 };
 
 class Derived: public Base {
    public:
       ~Derived() {
          // Cleanup logic for the derived class
-      }
+      };
 };
 ```
 
@@ -1108,7 +1108,7 @@ class Derived: public A,
                         public B {
    public:
       Derived( para_list1 ):
-         Base( para_list2 ), A( para_list3 ), B( para_list4 ) {}
+         Base( para_list2 ), A( para_list3 ), B( para_list4 ) {};
 };
 ```
 
@@ -1176,7 +1176,7 @@ class ClassA {
 
 class ClassB {
    public:
-      RetType funcName( const ClassA& obj ) { ... }
+      RetType funcName( const ClassA& obj ) { ... };
 };
 ```
 
@@ -1188,7 +1188,7 @@ class ClassA {
 
 class ClassB {
    public:
-      RetType funcName() { ... }
+      RetType funcName() { ... };
 };
 ```
 

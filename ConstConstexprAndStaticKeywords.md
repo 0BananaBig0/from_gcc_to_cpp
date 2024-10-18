@@ -131,7 +131,7 @@ const Type var_name = value;
 class ClassName {
    private:
       const Type _mem = initializer; // In-Class Initialization
-}
+};
 ```
 
 ###### Explanation
@@ -182,7 +182,7 @@ void funcName( const Type para1, ... );
 ```CPP
 const RetType funcName( para_list ) {
     // Function body
-}
+};
 ```
 
 ###### Explanation
@@ -199,7 +199,7 @@ const RetType funcName( para_list ) {
 ```CPP
 const returnType* funcName() {
     // Function body
-}
+};
 ```
 
 ###### Explanation
@@ -216,7 +216,7 @@ const returnType* funcName() {
 ```CPP
 const returnType& funcName() {
     // Function body
-}
+};
 ```
 
 ###### Explanation
@@ -327,7 +327,7 @@ class ClassName {
 ```CPP
 constexpr RetType funcName( para_list ) {
     // Function body
-}
+};
 
 constexpr RetType var_name = funcName( para_list );
 ```
@@ -417,7 +417,7 @@ constexpr ClassName obj_ptr;
 RetType funcName() {
     static Type count = val; // Initialized only once and retains value between calls.
     ...
-}
+};
 ```
 
 ###### Explanation
@@ -479,7 +479,7 @@ class ClassName {
 public:
     static RetType funcName( para_list ) {
         // Function body
-    }
+    };
 };
 
 RetType var_name = ClassName::funcName( para_list );
@@ -501,7 +501,7 @@ RetType var_name = ClassName::funcName( para_list );
 ```CPP
 static RetType funcName() {
     // Function body
-}
+};
 ```
 
 ##### (6) A `static` Instance of a `class`

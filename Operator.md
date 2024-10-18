@@ -150,7 +150,7 @@ ClassName& operator=( const ClassName& ) = default;
 ClassName& operator=( const ClassName& other ) {
    // Custom copy logic here
    return *this;
-}
+};
 ```
 
 ###### Explanation
@@ -186,7 +186,7 @@ ClassName& operator=( ClassName&& ) = default;
 ClassName& operator=(ClassName&& other) noexcept {
     // Custom move logic here
     return *this;
-}
+};
 ```
 
 ###### Explanation
@@ -205,7 +205,7 @@ ClassName& operator=(ClassName&& other) noexcept {
 ```CPP
 operator TargetType() const {
     // Custom conversion logic here
-}
+};
 ```
 
 ##### Explanation

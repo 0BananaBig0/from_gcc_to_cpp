@@ -28,21 +28,21 @@ class Base {
    public:
       RetType1 funcName( para_list1 ) {
          ...;
-      }
+      };
 };
 
 class Derived: public Base {
    public:
       RetType2 funcName( para_list2 ) {
          ...;
-      }
+      };
 };
 
 int main() {
    Derived obj_name;
    // Error: Base::funcName( para_list1 ) is hidden by Derived::funcName( para_list2 )
    obj_name.show();
-}
+};
 ```
 
 ##### Explanation
@@ -81,23 +81,23 @@ class ClassName {
    public:
       RetType1 funcName( para_list1 ) {
          ...;
-      }
+      };
 
       RetType1 funcName( para_list1 ) const {
          ...;
-      }
+      };
 
       RetType1 funcName( para_list1 ) noexcept {
          ...;
-      }
+      };
 
       RetType2 funcName( para_list2 ) {
          ...;
-      }
+      };
 
       RetType2 funcName( para_list3 ) {
          ...;
-      }
+      };
 };
 ```
 
@@ -121,13 +121,13 @@ class Base {
 class Derived: public Base {
    public:
       virtual RetType funcName( para_list ) override {   // This function overrides Base::funcName()
-      }
+      };
 };
 
 int main() {
    Base* obj = new Derived();
    obj->funcName( arg_list );   // Calls Derived class funcName (runtime polymorphism)
-}
+};
 ```
 
 #### (4) Overwriting (Not a C++ Term)

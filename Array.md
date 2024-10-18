@@ -139,7 +139,7 @@ Type arr_name[size_x][size_y][size_z];
 Type** a2d = new Type*[size_x];
 for( size_t i = 0; i < size_x; i++ ) {
    a2d[i] = new Type[size_y];
-}
+};
 ```
 
 ```CPP
@@ -148,7 +148,7 @@ for( size_t i = 0; i < size_x; i++ ) {
    a3d[i] = new Type*[size_y];
    for( size_t j = 0; j < size_y; j++ )
       a3d[i][j] = new Type[size_z];
-}
+};
 ```
 
 ##### Initialization Syntax
@@ -198,7 +198,7 @@ Type arr_name2[size_x][size_y][size_z] = arr_name1;
 ```CPP
 for( size_t i = 0; i < size_x; i++ ) {
    delete[] a2d[i];
-}
+};
 delete[] a2d;
 ```
 
@@ -207,7 +207,7 @@ for( size_t i = 0; i < size_x; i++ ) {
    for( size_t j = 0; j < size_y; j++ )
       delete[] a3d[i][j];
    delete[] a3d[i];
-}
+};
 delete[] a3d;
 ```
 

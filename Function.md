@@ -142,11 +142,11 @@ RetType var_name = funcName( arg_list );
 ##### Syntax
 
 ```
-inline RetType funcName( para_list ) { // function body }
+inline RetType funcName( para_list ) { // function body };
 
 int main() {
    RetType result = funcName( para_list );   // Function call may be replaced with the function body
-}
+};
 ```
 
 ##### Advantages
@@ -186,9 +186,9 @@ int main() {
 ```CPP
 void safeFunction() noexcept {   // Indicates no exceptions will be thrown
                                  // Function implementation
-}
+};
 
-int main() { safeFunction(); }
+int main() { safeFunction(); };
 ```
 
 #### (6) `asm` or `__asm`
@@ -202,9 +202,9 @@ int main() { safeFunction(); }
 ```CPP
 void asmFunction() {
    asm( "movl $1, %eax" );   // Simple assembly instruction
-}
+};
 
-int main() { asmFunction(); }
+int main() { asmFunction(); };
 ```
 
 ### 8) Function Pointers
