@@ -1,57 +1,65 @@
 <!-- vim-markdown-toc GFM -->
 
-- [Function](#function)
-  - [1) Explanation](#1-explanation)
-  - [2) Advantages and Disadvantages](#2-advantages-and-disadvantages)
-    - [Advantages ( Why Use a Function )](#advantages--why-use-a-function-)
-    - [Disadvantages](#disadvantages)
-  - [3) Definition Syntax](#3-definition-syntax)
-  - [4) Declaration Syntax](#4-declaration-syntax)
-  - [5) Reference Syntax](#5-reference-syntax)
-  - [6) How to Pass an Argument to a Function](#6-how-to-pass-an-argument-to-a-function)
-  - [7) Keywords Related to Functions](#7-keywords-related-to-functions)
-    - [(1) `inline`](#1-inline)
-      - [Purpose](#purpose)
-      - [Example](#example)
-      - [Advantages](#advantages)
-      - [Disadvantages](#disadvantages-1)
-    - [(2) `const`](#2-const)
-      - [Purpose](#purpose-1)
-    - [(3) `static`](#3-static)
-    - [(4) `constexpr`](#4-constexpr)
-    - [(5) `noexcept`](#5-noexcept)
-      - [Purpose](#purpose-2)
-      - [Example](#example-1)
-    - [(6) `asm` or `__asm`](#6-asm-or-__asm)
-      - [Purpose](#purpose-3)
-      - [Example](#example-2)
-  - [8) Function Pointers](#8-function-pointers)
-    - [Explanation and Usage](#explanation-and-usage)
-    - [(1) Declaration and Definition Syntax](#1-declaration-and-definition-syntax)
-    - [(2) Declaration and Assignment Syntax](#2-declaration-and-assignment-syntax)
-    - [(2) Syntax for Function Calls Using Function Pointers](#2-syntax-for-function-calls-using-function-pointers)
-    - [(3) Syntax for Function Pinter Declaration Using `typedef`](#3-syntax-for-function-pinter-declaration-using-typedef)
-    - [(4) Syntax for Function Pinter Declaration Using `using`](#4-syntax-for-function-pinter-declaration-using-using)
-  - [9) Lambda Functions](#9-lambda-functions)
-    - [Why Use Lambda Functions](#why-use-lambda-functions)
-    - [Explanation](#explanation)
-    - [Syntax](#syntax)
-      - [Code for Passing It as a Variable](#code-for-passing-it-as-a-variable)
-      - [Code for Defining It as a Function](#code-for-defining-it-as-a-function)
-    - [Explanation](#explanation-1)
-    - [Capture Clause](#capture-clause)
-      - [Explanation](#explanation-2)
-      - [Example 1: Capture Nothing](#example-1-capture-nothing)
-      - [Example 2: A Default Capture Mode `[=]` - Capture All Variables by Value](#example-2-a-default-capture-mode----capture-all-variables-by-value)
-      - [Example 3: A Default Capture Mode `[&]` - Capture All Variables by Value](#example-3-a-default-capture-mode----capture-all-variables-by-value)
-      - [Example 4: Specify Some Variables Captured by Value](#example-4-specify-some-variables-captured-by-value)
-      - [Example 5: Specify Some Variables Captured by Reference](#example-5-specify-some-variables-captured-by-reference)
-      - [Example 6: Specify Some Variables Captured by Reference and Others by Value](#example-6-specify-some-variables-captured-by-reference-and-others-by-value)
-      - [Example 7: Specify Some Variables Captured by Value and Others by Reference](#example-7-specify-some-variables-captured-by-value-and-others-by-reference)
-      - [Example 8: Specify Some Variables Captured by Reference and Some by Value](#example-8-specify-some-variables-captured-by-reference-and-some-by-value)
-    - [`mutable` Lambda Functions](#mutable-lambda-functions)
-      - [Syntax](#syntax-1)
-      - [Explanation](#explanation-3)
+* [Function](#function)
+  * [1) Explanation](#1-explanation)
+  * [2) Advantages and Disadvantages](#2-advantages-and-disadvantages)
+    * [Advantages ( Why Use a Function )](#advantages--why-use-a-function-)
+    * [Disadvantages](#disadvantages)
+  * [3) Definition Syntax](#3-definition-syntax)
+  * [4) Declaration Syntax](#4-declaration-syntax)
+  * [5) Reference Syntax](#5-reference-syntax)
+  * [6) How to Pass an Argument to a Function](#6-how-to-pass-an-argument-to-a-function)
+  * [7) Keywords Related to Functions](#7-keywords-related-to-functions)
+    * [(1) `inline`](#1-inline)
+      * [Syntax](#syntax)
+      * [Explanation](#explanation)
+      * [Advantages](#advantages)
+      * [Disadvantages](#disadvantages-1)
+      * [Usage](#usage)
+    * [(2) `const`](#2-const)
+      * [Purpose](#purpose)
+    * [(3) `constexpr`](#3-constexpr)
+    * [(4) `static`](#4-static)
+    * [(5) `noexcept`](#5-noexcept)
+      * [Synatx](#synatx)
+      * [Explanation](#explanation-1)
+      * [Usage](#usage-1)
+      * [Conditional noexcept expressions](#conditional-noexcept-expressions)
+        * [Synatx](#synatx-1)
+        * [Explanation](#explanation-2)
+    * [(6) `asm` or `__asm`](#6-asm-or-__asm)
+      * [Syntax](#syntax-1)
+      * [Explanation](#explanation-3)
+  * [8) Function Pointers](#8-function-pointers)
+    * [Explanation and Usage](#explanation-and-usage)
+    * [(1) Declaration and Definition Syntax](#1-declaration-and-definition-syntax)
+    * [(2) Declaration and Assignment Syntax](#2-declaration-and-assignment-syntax)
+    * [(2) Syntax for Function Calls Using Function Pointers](#2-syntax-for-function-calls-using-function-pointers)
+    * [(3) Syntax for Function Pinter Declaration Using `typedef`](#3-syntax-for-function-pinter-declaration-using-typedef)
+    * [(4) Syntax for Function Pinter Declaration Using `using`](#4-syntax-for-function-pinter-declaration-using-using)
+  * [9) Lambda Functions](#9-lambda-functions)
+    * [Why Use Lambda Functions](#why-use-lambda-functions)
+    * [Explanation](#explanation-4)
+    * [Syntax](#syntax-2)
+      * [Code for Passing It as a Variable](#code-for-passing-it-as-a-variable)
+      * [Code for Defining It as a Function](#code-for-defining-it-as-a-function)
+    * [Explanation](#explanation-5)
+    * [Capture Clause](#capture-clause)
+      * [Explanation](#explanation-6)
+      * [Example 1: Capture Nothing](#example-1-capture-nothing)
+      * [Example 2: A Default Capture Mode `[=]` - Capture All Variables by Value](#example-2-a-default-capture-mode----capture-all-variables-by-value)
+      * [Example 3: A Default Capture Mode `[&]` - Capture All Variables by Value](#example-3-a-default-capture-mode----capture-all-variables-by-value)
+      * [Example 4: Specify Some Variables Captured by Value](#example-4-specify-some-variables-captured-by-value)
+      * [Example 5: Specify Some Variables Captured by Reference](#example-5-specify-some-variables-captured-by-reference)
+      * [Example 6: Specify Some Variables Captured by Reference and Others by Value](#example-6-specify-some-variables-captured-by-reference-and-others-by-value)
+      * [Example 7: Specify Some Variables Captured by Value and Others by Reference](#example-7-specify-some-variables-captured-by-value-and-others-by-reference)
+      * [Example 8: Specify Some Variables Captured by Reference and Some by Value](#example-8-specify-some-variables-captured-by-reference-and-some-by-value)
+    * [`mutable` Lambda Functions](#mutable-lambda-functions)
+      * [Syntax](#syntax-3)
+      * [Explanation](#explanation-7)
+    * [`noexcept` Lambda Functions](#noexcept-lambda-functions)
+      * [Syntax](#syntax-4)
+      * [Explanation](#explanation-8)
 
 <!-- vim-markdown-toc -->
 
@@ -132,13 +140,6 @@ RetType var_name = funcName( arg_list );
 
 #### (1) `inline`
 
-##### Explanation
-
-1. Suggests to the compiler to replace the function call with the function body to reduce call
-   overhead. Please note that this is **just a suggestion**. The compiler will decide whether or not
-   to expand the inline function depending on the situation. If you want to force the compiler to
-   unfold the function all the time, you should understand more about the compiler's behavior.
-
 ##### Syntax
 
 ```
@@ -148,6 +149,15 @@ int main() {
    RetType result = funcName( para_list );   // Function call may be replaced with the function body
 };
 ```
+
+##### Explanation
+
+1. Functions defined with the `inline` keyword suggest to the compiler that it should **attempt** to
+   **expand the function's code at each point where the function is called**, rather than performing
+   a traditional call.
+2. Please note that this is **just a suggestion**. The compiler will decide whether or not to expand
+   the inline function depending on the situation. If you want to force the compiler to unfold the
+   function all the time, you should understand more about the compiler's behavior.
 
 ##### Advantages
 
@@ -159,6 +169,12 @@ int main() {
 1. Code bloat.
 2. Increased compilation time.
 3. Debugging difficult.
+
+##### Usage
+
+1. Inline Functions
+2. Inline Methods
+3. Inline Template Functions
 
 #### (2) `const`
 
@@ -176,36 +192,75 @@ int main() {
 
 #### (5) `noexcept`
 
-##### Purpose
-
-1. Indicates that a function does **not throw exceptions**, allowing the compiler to **optimize**
-   calls to the function.
-
-##### Example
+##### Synatx
 
 ```CPP
-void safeFunction() noexcept {   // Indicates no exceptions will be thrown
-                                 // Function implementation
+RetType funcName( para_list ) noexcept {
+   // Indicates no exceptions will be thrown
+   // Function implementation
 };
-
-int main() { safeFunction(); };
 ```
+
+```CPP
+// The compiler will issue a `warning`.
+RetType funcName( para_list ) noexcept {
+   // Indicates no exceptions will be thrown
+   // Function implementation
+   throw std::runtime_error( " ... " );
+};
+```
+
+##### Explanation
+
+1. `noexcept` is a specifier in C++ that **indicates** whether a function is **guaranteed not to
+   throw exceptions**.
+2. It helps optimize code by allowing the compiler to make certain assumptions about exception
+   handling.
+3. If a `noexcept` function **throws an exception**, the compiler will issue a **`warning`**.
+
+##### Usage
+
+1. Function declarations and definitions
+2. Lambda expressions
+3. Constructors and destructors
+4. Move constructors and move assignment operators
+5. Conditional noexcept expressions
+6. Function pointers and type aliases
+7. Overloaded functions
+
+##### Conditional noexcept expressions
+
+###### Synatx
+
+```CPP
+RetType funcName( para_list) noexcept(noexcept(an expression or a function) {
+   // Indicates no exceptions will be thrown
+   // Function implementation
+};
+```
+
+###### Explanation
+
+1. Conditional `noexcept` in C++ allows you to **specify that a function is noexcept** only if
+   **certain conditions** are **met**.
+2. The expression accompanying `noexcept` is **evaluated** as true or false **at compile time**. If
+   the expression is **true**, the function is considered **noexcept**; if **false**, it may **throw
+   exceptions**.
 
 #### (6) `asm` or `__asm`
 
-##### Purpose
-
-1. Allows embedding **assembly code** within a C++ function.
-
-##### Example
+##### Syntax
 
 ```CPP
-void asmFunction() {
-   asm( "movl $1, %eax" );   // Simple assembly instruction
-};
-
-int main() { asmFunction(); };
+asm("assembly_code");
 ```
+
+##### Explanation
+
+1. `asm` and `__asm` are **keywords** used to **embed assembly language instructions within C++
+   code**.
+2. They allow you to write low-level code for performance-critical sections, hardware control, or
+   when specific machine instructions are required.
 
 ### 8) Function Pointers
 
@@ -406,3 +461,21 @@ auto funcName =  [capture]( para_list ) mutable -> RetType { body };
    by value inside the lambda**, but it **does not change the variable's actual value outside the
    lambda**.
 2. In 90% of cases, the `mutable` keyword will be used in a class with the `const` keyword.
+
+#### `noexcept` Lambda Functions
+
+##### Syntax
+
+```CPP
+[capture]( para_list ) noexcept -> RetType { body };
+```
+
+```CPP
+auto funcName =  [capture]( para_list ) noexcept -> RetType { body };
+```
+
+##### Explanation
+
+1. The `noexcept` keyword **indicates** whether a lambda expression is **guaranteed not to not throw
+   exceptions**.
+2. If a `noexcept` lambda function **throws an exception**, the compiler will issue a **`warning`**.
