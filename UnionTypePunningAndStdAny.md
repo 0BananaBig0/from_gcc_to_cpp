@@ -27,7 +27,7 @@ use it to convert a variable to different types of variables.
       union {
          struct {
             float x, y, z;
-         }:
+         };
          struct {
             float r, g, b;
          };
@@ -52,11 +52,11 @@ optional data, such as when reading a file.
     std::cout << *value << std::endl; ...
     // or std::cout << std::get<Type1>(var_name) << std::endl;
     ...
-  }
+  };
   var_name = Type2_value;
   if( auto value = std::get_if<Type2>(data) ) {
     std::cout << *value << std::endl; ...
     // or std::cout << std::get<Type2>(var_name) << std::endl;
     ...
-  }
+  };
   ...
