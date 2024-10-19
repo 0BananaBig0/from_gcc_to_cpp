@@ -41,6 +41,13 @@ not useful, and few programmers use it.
   std::any var_name;
   var_name = Type1_val;
   var_name = Type2_val;
+
+
+```CPP
+  auto& val1_name = std::any_cast<Type1&>(var_name); // better than the next statement, will be optimized.
+  // auto& val1_name = std::any_cast<Type1&>(var_name);
+  auto& val2_name = std::any_cast<Type2&>(var_name);
+```
 (53) multiple types of data in single variable: It is a new feature introduced in C++ that allows us
 to list various types for a variable, as well as assign and reassign it to different types of values.
 It functions similarly to a class or a structure, rather than a union. While a union is more efficient,
