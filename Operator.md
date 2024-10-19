@@ -203,6 +203,7 @@ ClassName& operator=(ClassName&& other) noexcept {
 ##### Syntax
 
 ```CPP
+// `const` function
 operator TargetType() const {
     // Custom conversion logic here
 };
