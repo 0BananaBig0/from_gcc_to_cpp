@@ -1,54 +1,56 @@
 <!-- vim-markdown-toc GFM -->
 
-- [Preface](#preface)
-- [Some Basic Concepts](#some-basic-concepts)
-  - [1) Declaration](#1-declaration)
-    - [General Explanation](#general-explanation)
-    - [Forward Declaration](#forward-declaration)
-  - [2) Definition](#2-definition)
-  - [3) Variable, Instance and Object](#3-variable-instance-and-object)
-    - [Variable](#variable)
-      - [Explanation](#explanation)
-      - [Characteristics](#characteristics)
-    - [Instance](#instance)
-      - [Explanation](#explanation-1)
-      - [Characteristics](#characteristics-1)
-    - [Object](#object)
-      - [Explanation](#explanation-2)
-      - [Characteristics](#characteristics-2)
-    - [Relationships Between the Them](#relationships-between-the-them)
-      - [Variable](#variable-1)
-      - [Instance](#instance-1)
-      - [Object](#object-1)
-  - [4) Pointer and Reference](#4-pointer-and-reference)
-    - [Pointer](#pointer)
-    - [Reference](#reference)
-  - [5) Parameter](#5-parameter)
-  - [6) Argument](#6-argument)
-  - [7) Expression](#7-expression)
-    - [Explanation](#explanation-3)
-    - [Types of Expressions in C++](#types-of-expressions-in-c)
-  - [8) Lvalue and Rvalue: Value Categories in C++](#8-lvalue-and-rvalue-value-categories-in-c)
-    - [Lvalue (Left Value)](#lvalue-left-value)
-    - [Rvalue (Right Value)](#rvalue-right-value)
-    - [Lvalue Reference (`Type&`)](#lvalue-reference-type)
-      - [Explanation](#explanation-4)
-      - [Usage](#usage)
-      - [Notes](#notes)
-    - [How to Identify Whether a Value is an Lvalue or an Rvalue](#how-to-identify-whether-a-value-is-an-lvalue-or-an-rvalue)
-    - [Rvalue Reference (`Type&&`)](#rvalue-reference-type)
-      - [Explanation](#explanation-5)
-      - [Usage](#usage-1)
-    - [Move Semantics](#move-semantics)
-      - [Explanation](#explanation-6)
-      - [Usage](#usage-2)
-    - [`std::move`](#stdmove)
-      - [Explanation](#explanation-7)
-      - [Usage](#usage-3)
-  - [9) Interface](#9-interface)
-  - [10) Keyword](#10-keyword)
-  - [11) Type Specifier](#11-type-specifier)
-- [Some Small Knowledge](#some-small-knowledge)
+* [Preface](#preface)
+* [Some Basic Concepts](#some-basic-concepts)
+  * [1) Declaration](#1-declaration)
+    * [General Explanation](#general-explanation)
+    * [Forward Declaration](#forward-declaration)
+  * [2) Definition](#2-definition)
+  * [3) Variable, Instance and Object](#3-variable-instance-and-object)
+    * [Variable](#variable)
+      * [Explanation](#explanation)
+      * [Characteristics](#characteristics)
+    * [Instance](#instance)
+      * [Explanation](#explanation-1)
+      * [Characteristics](#characteristics-1)
+    * [Object](#object)
+      * [Explanation](#explanation-2)
+      * [Characteristics](#characteristics-2)
+    * [Relationships Between the Them](#relationships-between-the-them)
+      * [Variable](#variable-1)
+      * [Instance](#instance-1)
+      * [Object](#object-1)
+  * [4) Pointer and Reference](#4-pointer-and-reference)
+    * [Pointer](#pointer)
+      * [Explanation](#explanation-3)
+      * [Void Pointer](#void-pointer)
+    * [Reference](#reference)
+  * [5) Parameter](#5-parameter)
+  * [6) Argument](#6-argument)
+  * [7) Expression](#7-expression)
+    * [Explanation](#explanation-4)
+    * [Types of Expressions in C++](#types-of-expressions-in-c)
+  * [8) Lvalue and Rvalue: Value Categories in C++](#8-lvalue-and-rvalue-value-categories-in-c)
+    * [Lvalue (Left Value)](#lvalue-left-value)
+    * [Rvalue (Right Value)](#rvalue-right-value)
+    * [Lvalue Reference (`Type&`)](#lvalue-reference-type)
+      * [Explanation](#explanation-5)
+      * [Usage](#usage)
+      * [Notes](#notes)
+    * [How to Identify Whether a Value is an Lvalue or an Rvalue](#how-to-identify-whether-a-value-is-an-lvalue-or-an-rvalue)
+    * [Rvalue Reference (`Type&&`)](#rvalue-reference-type)
+      * [Explanation](#explanation-6)
+      * [Usage](#usage-1)
+    * [Move Semantics](#move-semantics)
+      * [Explanation](#explanation-7)
+      * [Usage](#usage-2)
+    * [`std::move`](#stdmove)
+      * [Explanation](#explanation-8)
+      * [Usage](#usage-3)
+  * [9) Interface](#9-interface)
+  * [10) Keyword](#10-keyword)
+  * [11) Type Specifier](#11-type-specifier)
+* [Some Small Knowledge](#some-small-knowledge)
 
 <!-- vim-markdown-toc -->
 
@@ -180,11 +182,23 @@
 
 #### Pointer
 
+##### Explanation
+
 1. A pointer is **a variable** that **stores the memory address of another variable or an object**.
 2. Pointers enable **dynamic memory allocation**, efficient array handling, and the ability to pass
    large data structures to functions without copying them.
 3. They **require careful management** of memory (allocation/deallocation).
 4. They can be **null ( nullptr )**.
+
+##### Void Pointer
+
+1. A `void` pointer, also known as **a generic pointer**, is **a type of pointer** that can **point
+   to any data type**. It is declared using the `void` keyword and is often **used for functions**
+   that need to **handle different data types** or for **dynamic memory allocation**.
+2. However, because a `void` pointer does not have a specific type associated with it, you **cannot
+   dereference it directly without first casting it to a specific pointer type**.
+3. Functions like **`malloc`** and **`calloc`** **return `void` pointer** which must be cast to the
+   appropriate type.
 
 #### Reference
 
