@@ -6,46 +6,52 @@
     * [General Explanation](#general-explanation)
     * [Forward Declaration](#forward-declaration)
   * [2) Definition](#2-definition)
-  * [3) Variable, Instance and Object](#3-variable-instance-and-object)
+  * [3) Variable, Instance, Object, Initializer and Value](#3-variable-instance-object-initializer-and-value)
     * [Variable](#variable)
       * [Explanation](#explanation)
       * [Characteristics](#characteristics)
+      * [Temporary Variable](#temporary-variable)
     * [Instance](#instance)
       * [Explanation](#explanation-1)
       * [Characteristics](#characteristics-1)
     * [Object](#object)
       * [Explanation](#explanation-2)
       * [Characteristics](#characteristics-2)
+      * [Temporary Object](#temporary-object)
+    * [Initializer](#initializer)
+      * [Explanation](#explanation-3)
+    * [Value](#value)
+    * [Explanation](#explanation-4)
     * [Relationships Between the Them](#relationships-between-the-them)
       * [Variable](#variable-1)
       * [Instance](#instance-1)
       * [Object](#object-1)
   * [4) Pointer and Reference](#4-pointer-and-reference)
     * [Pointer](#pointer)
-      * [Explanation](#explanation-3)
+      * [Explanation](#explanation-5)
       * [Void Pointer](#void-pointer)
     * [Reference](#reference)
   * [5) Parameter](#5-parameter)
   * [6) Argument](#6-argument)
   * [7) Expression](#7-expression)
-    * [Explanation](#explanation-4)
+    * [Explanation](#explanation-6)
     * [Types of Expressions in C++](#types-of-expressions-in-c)
   * [8) Lvalue and Rvalue: Value Categories in C++](#8-lvalue-and-rvalue-value-categories-in-c)
     * [Lvalue (Left Value)](#lvalue-left-value)
     * [Rvalue (Right Value)](#rvalue-right-value)
     * [Lvalue Reference (`Type&`)](#lvalue-reference-type)
-      * [Explanation](#explanation-5)
+      * [Explanation](#explanation-7)
       * [Usage](#usage)
       * [Notes](#notes)
     * [How to Identify Whether a Value is an Lvalue or an Rvalue](#how-to-identify-whether-a-value-is-an-lvalue-or-an-rvalue)
     * [Rvalue Reference (`Type&&`)](#rvalue-reference-type)
-      * [Explanation](#explanation-6)
+      * [Explanation](#explanation-8)
       * [Usage](#usage-1)
     * [Move Semantics](#move-semantics)
-      * [Explanation](#explanation-7)
+      * [Explanation](#explanation-9)
       * [Usage](#usage-2)
     * [`std::move`](#stdmove)
-      * [Explanation](#explanation-8)
+      * [Explanation](#explanation-10)
       * [Usage](#usage-3)
   * [9) Interface](#9-interface)
   * [10) Keyword](#10-keyword)
@@ -109,14 +115,14 @@
 1.  A definition **provides a body** that implements a function, class, struct or variable. It
     includes **an actual value or implementation** and **allocates storage for variables**.
 
-### 3) Variable, Instance and Object
+### 3) Variable, Instance, Object, Initializer and Value
 
 #### Variable
 
 ##### Explanation
 
-1. A variable is **a named storage location** in memory that **holds a value**. It has a specific
-   type (such as int, float, or a custom class) and is declared in the program to store data that
+1. A variable is **a named storage location** in memory that **holds a value**. It has **a specific
+   type** (such as int, float, or a custom class) and is declared in the program to store data that
    can be accessed and modified.
 
 ##### Characteristics
@@ -124,6 +130,17 @@
 1. **A name** (identifier) is required.
 2. **A type** is specified (determining the kind of value it can hold).
 3. It **occupies memory** in the program.
+
+##### Temporary Variable
+
+1. A temporary variable is **a variable** that is created to **hold a value temporarily** during the
+   execution of a program.
+2. It typically **exists only within a specific scope or block of code**, often used for
+   **intermediate calculations** or to **store results of expressions**.
+3. **Traditionally**, a temporary variable **must have a name**.
+4. However, **in C++**, temporary variables can **also refer to unnamed temporary objects** that
+   arise during operations, such as the result of a function call or type conversion, which exist
+   only for the duration of their use. They help simplify code without requiring permanent storage.
 
 #### Instance
 
@@ -158,13 +175,44 @@
 3. **May or may not** have **a name** (temporary objects don’t have names).
 4. Includes variables, class instances, dynamically allocated memory, and **temporary values**.
 
+##### Temporary Object
+
+1. A temporary object in C++ is **an unnamed object** that is created during the evaluation of an
+   expression or as a result of a function call.
+2. Temporary objects typically **exist for a short duration** and are automatically destroyed at the
+   end of the full expression in which they were created.
+
+#### Initializer
+
+##### Explanation
+
+1. An initializer is **a way** to **assign a value to a variable or an object** at the time of its
+   **creation**.
+2. It can be an object, a function, a variable, a value, an expression, and so on. **All items used
+   to initialize a target** are referred to as initializers.
+
+#### Value
+
+#### Explanation
+
+1. A value represents **data** that can be **stored in variables or objects**. It is a specific
+   instance of data, such as numbers, characters, or more complex data types.
+2. Values can be of various types, including:
+   - Primitive Types:
+   - Composite Types:
+   - Classes: Objects created from class definitions that can hold data and methods (e.g., MyClass
+     obj;)
+
 #### Relationships Between the Them
 
 ##### Variable
 
-1. A variable is **a named object**. Every variable is an object, but not all objects are variables.
-   A variable always refers to an object, but it also provides a name for it, allowing it to be used
-   and modified in the code.
+1. A variable is **a named object**. Every **variable** is **an object**, but **not all objects**
+   are **variables**. A variable always refers to an object, but it also provides a name for it,
+   allowing it to be used and modified in the code.
+2. **Traditionally**, **temprorary variables** are **named objects** while **temporary objects** are
+   **unnamed objects**.
+3. However, **in C++**, **temporary variables** can **also refer to unnamed temporary objects**.
 
 ##### Instance
 
