@@ -292,6 +292,30 @@ ClassName& obj_ref = &obj_name;
 
 ### A `static` Instance of a `class`
 
+### An Anonymous Class
+
+#### Syntax
+
+```CPP
+class {
+  ...
+} obj_name;
+```
+
+```CPP
+// In this case, members should all be public.
+class {
+  ...
+} obj_name{ para_list };
+```
+
+#### Explanation
+
+1. An anonymous class (also known as an **unnamed class**) is **a class** that is **defined inline
+   without a name**.
+2. These classes are typically used for **creating objects on the fly** or **as part of data
+   structures** without the need to define a separate named class
+
 ### Member Variables
 
 #### Explanation
