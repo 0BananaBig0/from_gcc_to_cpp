@@ -27,11 +27,14 @@
     - [Multidimensional `std::array` ( **Not Recommend** )](#multidimensional-stdarray--not-recommend-)
       - [Declaration Syntax](#declaration-syntax-3)
       - [Initialization Syntax](#initialization-syntax-3)
-      - [Member Functions](#member-functions)
-        - [(1) Element Access](#1-element-access)
-        - [(2) Capacity](#2-capacity)
-        - [(3) Modifiers](#3-modifiers)
-        - [(4) Iterators](#4-iterators)
+    - [Member Functions](#member-functions)
+      - [Constructors](#constructors)
+      - [Assignment](#assignment)
+      - [Element Access](#element-access)
+      - [Capacity](#capacity)
+      - [Iterators](#iterators)
+      - [Comparison](#comparison)
+      - [Modifiers](#modifiers)
     - [Notes](#notes)
 
 <!-- vim-markdown-toc -->
@@ -372,42 +375,86 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name1
 std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2 = arr_name1;
 ```
 
-##### Member Functions
+#### Member Functions
 
-###### (1) Element Access
+##### Constructors
 
-1. `at(size_t index)`: Returns **a reference** to the element at `index` **with bounds checking**.
+1. `std::array()`: **Default** constructor.
+1. `std::array(const std::array& other)`: **Copy** constructor.
+1. `std::array(std::array&& other) noexcept`: **Move** constructor.
+1. `template <class... Args> std::array(Args&&... args)`: Constructs an array with **the provided
+   elements**.
+
+##### Assignment
+
+1. `std::array& operator=(const std::array& other)`: **Copy** assignment operator.
+2. `std::array& operator=(std::array&& other) noexcept`: **Move** assignment operator.
+
+##### Element Access
+
+1. `T& operator[](size_t index)`: Access element at index **without bounds checking**.
+2. `const T& operator[](size_t index) const`: Access element at index **without bounds checking**
+   (`const` version).
+3. `T& at(size_t index)`: Access element **with bounds checking**. Throws `std::out_of_range` if the
+   index is out of bounds.
+4. `const T& at(size_t index) const`: Access element **with bounds checking** (`const` version).
    Throws `std::out_of_range` if the index is out of bounds.
-2. `operator[](size_t index)`: Returns **a reference** to the element at `index` **without bounds
-   checking**.
-3. `front()`: Returns **a reference** to the **first element** in the array.
-4. `back()`: Returns **a reference** to the **last element** in the array.
-5. `data()`: Returns **a pointer** to **the underlying C-style array or the raw array**.
+5. `T& front()`: Access the **first element**.
+6. `T& back()`: Access the **last element**.
+7. `const T& front() const`: Access the **first element** (`const` version).
+8. `const T& back() const`: Access the **last element** (`const` version).
+9. `T* data() noexcept`: Returns **a pointer** to **the underlying C-style array or the raw array**.
 
-###### (2) Capacity
+##### Capacity
 
-1. `size()`: Returns **the number** of elements in the array (constant time).
-2. `max_size()`: Returns **the maximum number** of elements the array can hold (**same as `size()`**
-   in practice).
-3. `empty()`: Returns **true** if the array is **empty** (always false for `std::array` since the
-   size is fixed and non-zero).
+1. `size_t size() const noexcept`: Returns **the number** of elements in the array (constant time).
+2. `size_t max_size() const noexcept`: Returns **the maximum number** of elements the array can hold
+   (**same as `size()`** in practice).
+3. `bool empty() const noexcept`: Returns **true** if the array is **empty** (always false for
+   `std::array` since the size is fixed and non-zero).
 
-###### (3) Modifiers
+##### Iterators
 
-1. `fill(const T& value)`: **Assigns** the specified **value** to **all elements** in the array.
-2. `swap(std::array& other)`: **Swaps** the contents of the current array with other. Both arrays
-   must have the same size and type.
+1. `iterator begin() noexcept`: Returns **an iterator** to the **first element** of the array.
+1. `const_iterator begin() const noexcept`: Returns **a `const` iterator** to the **first element**
+   of the array.
+1. `const_iterator cbegin() const noexcept`: Returns **a `const` iterator** to the **first element**
+   of the array.
+1. `iterator end() noexcept`: Returns **an iterator** to one past the **last element** of the array.
+1. `const_iterator end() const noexcept`: Returns **a `const` iterator** to one past the **last
+   element** of the array.
+1. `const_iterator cend() const noexcept`: Returns **a `const` iterator** to one past the **last
+   element** of the array.
+1. `reverse_iterator rbegin() noexcept`: Returns **a reverse iterator** to the **last element**.
+1. `const_reverse_iterator rbegin() const noexcept`: Returns **a const reverse iterator** to the
+   **last element**.
+1. `const_reverse_iterator crbegin() const noexcept`: Returns **a const reverse iterator** to the
+   **last element**.
+1. `reverse_iterator rend() noexcept`: Returns **a reverse iterator** to one before the **first
+   element**.
+1. `const_reverse_iterator rend() const noexcept`: Returns **a const reverse iterator** to one
+   before the **first element**.
+1. `const_reverse_iterator crend() const noexcept`: Returns **a const reverse iterator** to one
+   before the **first element**.
 
-###### (4) Iterators
+##### Comparison
 
-1. `begin()`: Returns **an iterator** to the **first element** of the array.
-2. `end()`: Returns **an iterator** to one past the **last element** of the array.
-3. `cbegin()`: Returns **a const iterator** to the **first element**.
-4. `cend()`: Returns **a const iterator** to one past the **last element**.
-5. `rbegin()`: Returns **a reverse iterator** to the **last element**.
-6. `rend()`: Returns **a reverse iterator** to one before the **first element**.
-7. `crbegin()`: Returns **a const reverse iterator** to the **last element**.
-8. `crend()`: Returns **a const reverse iterator** to one before the **first element**.
+1. `bool operator==(const std`:`:array& other) const`: Checks for equality.
+2. `bool operator!=(const std`:`:array& other) const`: Checks for inequality.
+3. `bool operator<(const std`:`:array& other) const`: Compares two arrays **lexicographically**.
+4. `bool operator<=(const std`:`:array& other) const`: Checks if the calling array is less than or
+   equal to the other array, **lexicographically**.
+5. `bool operator>(const std`:`:array& other) const`: Checks if the calling array is greater than
+   the other array, **lexicographically**.
+6. `bool operator>=(const std`:`:array& other) const`: Checks if the calling array is greater than
+   or equal to the other array, **lexicographically**.
+
+##### Modifiers
+
+1. `void fill(const T& value)`: **Assigns** the specified **value** to **all elements** in the
+   array.
+2. `void swap(std`:`:array& other) noexcept`: **Swaps** the contents of the current array with
+   other. Both arrays must have the same size and type.
 
 #### Notes
 
