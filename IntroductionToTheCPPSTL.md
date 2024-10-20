@@ -93,6 +93,7 @@
 1. Iterators are **objects** that **allow traversal through the elements of a container**. They
    provide a uniform way to access container elements without exposing the underlying
    implementation.
+2. It behaves like a pointer ( stores an address and can be dereferenced ).
 
 #### Types of Iterators
 
