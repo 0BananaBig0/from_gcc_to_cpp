@@ -91,7 +91,7 @@ Type* arr_ptr = arr_name;
 
 ```CPP
 // Aggregate Initialization
-Type arr_name[size] = { val1, val2, ... };
+Type arr_name[size] = { ... };
 ```
 
 ```CPP
@@ -101,17 +101,21 @@ Type arr_name[size] = {};
 
 ```CPP
 // Copy Initialization
-Type arr_name1 = { {...}, {...}, ... };
+Type arr_name1 = { ... };
 Type arr_name2 = arr_name1;
 ```
 
 ```CPP
 // Implicit Size: If the size isn't specified, it is inferred from the initializer list.
-Type arr_name[] = { val1, val2, ... };
+Type arr_name[] = { ... };
 ```
 
 ```CPP
 Type* arr_ptr = new Type[size]{ ... };
+```
+
+```CPP
+Type* arr_ptr = new Type[]{ ... };
 ```
 
 ##### Syntax for Deleting One-dimensional Raw Array Pointers
