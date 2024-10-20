@@ -34,7 +34,7 @@
       - [Capacity](#capacity)
       - [Iterators](#iterators)
       - [Comparison](#comparison)
-      - [Modifiers](#modifiers)
+      - [Other Member Functions](#other-member-functions)
     - [Lexicographical Comparison or Lexicographical Order](#lexicographical-comparison-or-lexicographical-order)
     - [Notes](#notes)
 
@@ -450,7 +450,7 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2
 6. `bool operator>=(const std::array& other) const`: Checks if the calling array is greater than or
    equal to the other array, **lexicographically**.
 
-##### Modifiers
+##### Other Member Functions
 
 1. `void fill(const T& value)`: **Assigns** the specified **value** to **all elements** in the
    array.
