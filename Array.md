@@ -35,6 +35,7 @@
       - [Iterators](#iterators)
       - [Comparison](#comparison)
       - [Modifiers](#modifiers)
+    - [Lexicographical Comparison or Lexicographical Order](#lexicographical-comparison-or-lexicographical-order)
     - [Notes](#notes)
 
 <!-- vim-markdown-toc -->
@@ -455,6 +456,12 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2
    array.
 2. `void swap(std`:`:array& other) noexcept`: **Swaps** the contents of the current array with
    other. Both arrays must have the same size and type.
+
+#### Lexicographical Comparison or Lexicographical Order
+
+1. This means that **the elements of the arrays** are **compared in sequence**, similar to how words
+   are compared in a dictionary. The comparison starts **from the first element** and **proceeds
+   until a difference is found** or **one of the arrays is exhausted**.
 
 #### Notes
 
