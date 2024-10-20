@@ -23,6 +23,6 @@
     - [Dynamic Array or `std::vector`](./DynamicArrayOrStdVector.md)
   - [`union`, Type Punning and `std:any`](./UnionTypePunningAndStdAny.md)
   - [Char and String](./CharAndString.md)
-  - [`sizeof` and `strlen`](./SizeofAndStrlen.md)
+  - [Some C Functions](./SomeCFunctions.md)
   - [Smart Pointer](./SmartPointer.md)
   - [Thread](./Thread.md)
