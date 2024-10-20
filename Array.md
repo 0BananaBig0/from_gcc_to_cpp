@@ -440,22 +440,22 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2
 
 ##### Comparison
 
-1. `bool operator==(const std`:`:array& other) const`: Checks for equality.
-2. `bool operator!=(const std`:`:array& other) const`: Checks for inequality.
-3. `bool operator<(const std`:`:array& other) const`: Compares two arrays **lexicographically**.
-4. `bool operator<=(const std`:`:array& other) const`: Checks if the calling array is less than or
+1. `bool operator==(const std::array& other) const`: Checks for equality.
+2. `bool operator!=(const std::array& other) const`: Checks for inequality.
+3. `bool operator<(const std::array& other) const`: Compares two arrays **lexicographically**.
+4. `bool operator<=(const std::array& other) const`: Checks if the calling array is less than or
    equal to the other array, **lexicographically**.
-5. `bool operator>(const std`:`:array& other) const`: Checks if the calling array is greater than
-   the other array, **lexicographically**.
-6. `bool operator>=(const std`:`:array& other) const`: Checks if the calling array is greater than
-   or equal to the other array, **lexicographically**.
+5. `bool operator>(const std::array& other) const`: Checks if the calling array is greater than the
+   other array, **lexicographically**.
+6. `bool operator>=(const std::array& other) const`: Checks if the calling array is greater than or
+   equal to the other array, **lexicographically**.
 
 ##### Modifiers
 
 1. `void fill(const T& value)`: **Assigns** the specified **value** to **all elements** in the
    array.
-2. `void swap(std`:`:array& other) noexcept`: **Swaps** the contents of the current array with
-   other. Both arrays must have the same size and type.
+2. `void swap(std::array& other) noexcept`: **Swaps** the contents of the current array with other.
+   Both arrays must have the same size and type.
 
 #### Lexicographical Comparison or Lexicographical Order
 
