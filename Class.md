@@ -49,9 +49,9 @@
       - [Explanation](#explanation-8)
       - [Notes](#notes)
   - [Constructors](#constructors)
-      - [Syntax](#syntax-8)
-      - [Explanation](#explanation-9)
-      - [Characteristics](#characteristics)
+    - [Syntax](#syntax-8)
+    - [Explanation](#explanation-9)
+    - [Characteristics](#characteristics)
     - [Defalut Constructors and `default` Constructors](#defalut-constructors-and-default-constructors)
       - [Syntax](#syntax-9)
       - [Explanation](#explanation-10)
@@ -110,7 +110,7 @@
     - [Destruction Order](#destruction-order)
     - [`virtual` Inheritance](#virtual-inheritance)
   - [`virtual`](#virtual)
-      - [Explanation](#explanation-25)
+    - [Explanation](#explanation-25)
     - [Virtual Functions](#virtual-functions)
       - [Syntax](#syntax-20)
       - [Explanation](#explanation-26)
@@ -130,7 +130,7 @@
     - [Construction Order](#construction-order-1)
     - [Destruction Order](#destruction-order-1)
   - [`friend`](#friend)
-      - [Explanation](#explanation-30)
+    - [Explanation](#explanation-30)
     - [`friend` Functions](#friend-functions)
       - [Syntax](#syntax-23)
       - [Explanation](#explanation-31)
@@ -138,7 +138,7 @@
       - [Syntax](#syntax-24)
       - [Explanation](#explanation-32)
   - [`final`](#final)
-      - [Explanation](#explanation-33)
+    - [Explanation](#explanation-33)
     - [`final` Functions](#final-functions)
       - [Syntax](#syntax-25)
       - [Explanation](#explanation-34)
@@ -1101,7 +1101,16 @@ class Derived: public Base {
 3. **Without** a virtual destructor, **only** the **base** class **destructor** would **execute**,
    leaving resources specific to the derived class unreleased.
 4. Although virtual destructors add **a slight performance overhead**, they are critical for safe
-   and correct resource management.
+   and **correct resource management**.
+
+##### Notes
+
+1. It's used to **delete a subclass object** pointed to by a parent class pointer in **a polymorphic
+   context**. A virtual destructor differs from other virtual functions.
+2. The subclass's **virtual destructor does not override** its parent class's virtual destructor;
+   both will be called.
+3. If we allow our **class** to **be derived** into a subclass, we should **declare** its
+   **destructor as virtual** to avoid issues like memory leaks.
 
 #### Virtual Inheritance
 
