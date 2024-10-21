@@ -1,6 +1,7 @@
 - FromGccToCPP
   - [Gcc](./Gcc.md)
   - [`make` and Makefile](./makeAndMakefile.md)
+  - [Git](./Git.md)
   - [CPP Perface](./CPPPerface.md)
   - [Memory Partitions](./MemoryPartitions.md)
   - [`auto` and `decltype`](./AutoAndDecldef.md)
