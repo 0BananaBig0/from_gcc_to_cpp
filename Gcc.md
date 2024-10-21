@@ -1,17 +1,27 @@
 <!-- vim-markdown-toc GFM -->
 
 - [`g++` Compiler and Linker](#g-compiler-and-linker)
-  - [1) Header File / Preprocess Statement](#1-header-file--preprocess-statement)
+  - [1) Header File ( Preprocess Statement )](#1-header-file--preprocess-statement-)
   - [2) CPP File](#2-cpp-file)
-  - [3) OBJ File / Machine Code File](#3-obj-file--machine-code-file)
-  - [4) Implicit Linking](#4-implicit-linking)
-    - [Explanation](#explanation)
-    - [Characteristics](#characteristics)
-    - [How It Works:](#how-it-works)
-  - [5) Explicit Linking](#5-explicit-linking)
-    - [Explanation](#explanation-1)
-    - [Characteristics](#characteristics-1)
-    - [How It Works](#how-it-works-1)
+  - [3) OBJ File ( Machine Code File )](#3-obj-file--machine-code-file-)
+  - [4) Linking ( Static Linking and Dynamic Linking )](#4-linking--static-linking-and-dynamic-linking-)
+    - [Libraries](#libraries)
+    - [Static Linking](#static-linking)
+      - [Explanation](#explanation)
+      - [Characteristics](#characteristics)
+      - [How It Works:](#how-it-works)
+    - [Dynamic Linking ( Implicit Linking and Explicit Linking )](#dynamic-linking--implicit-linking-and-explicit-linking-)
+      - [Explanation](#explanation-1)
+      - [Characteristics](#characteristics-1)
+      - [Implicit Linking ( Load-time Dynamic Linking ) ( Only in Windows )](#implicit-linking--load-time-dynamic-linking---only-in-windows-)
+        - [Explanation](#explanation-2)
+        - [Characteristics](#characteristics-2)
+        - [How It Works:](#how-it-works-1)
+      - [Explicit Linking ( Run-time Dynamic Linking )](#explicit-linking--run-time-dynamic-linking-)
+        - [Explanation](#explanation-3)
+        - [Characteristics](#characteristics-3)
+        - [How It Works in Windows](#how-it-works-in-windows)
+        - [How It Works in Linux](#how-it-works-in-linux)
 - [The difference between `gcc` and `g++`](#the-difference-between-gcc-and-g)
   - [1) Language](#1-language)
     - [1. `gcc`](#1-gcc)
@@ -51,7 +61,7 @@
   - [9) `g++ -On Main.cpp -o Main.exe`](#9-g--on-maincpp--o-mainexe)
     - [1. Usage](#1-usage-8)
     - [2. Output](#2-output-8)
-  - [10) `g++ -DMACRO_NAME1 -DMACRO_NAME2 ... Main.cpp -o Main.exe`](#10-g--dmarco_name1--dmarco_name2--maincpp--o-mainexe)
+  - [10) `g++ -DMACRO_NAME1 -DMACRO_NAME2 ... Main.cpp -o Main.exe`](#10-g--dmacro_name1--dmacro_name2--maincpp--o-mainexe)
     - [1. Usage](#1-usage-9)
     - [2. Output](#2-output-9)
 - [How to compile multiple cpp files](#how-to-compile-multiple-cpp-files)
@@ -99,7 +109,7 @@
 
 ## `g++` Compiler and Linker
 
-### 1) Header File / Preprocess Statement
+### 1) Header File ( Preprocess Statement )
 
 1. The compiler will copy and paste them into the object CPP file.
 
@@ -110,52 +120,132 @@
    multiple CPP files may result in a single OBJ file. During the compilation phase, the compiler
    also optimizes your code.
 
-### 3) OBJ File / Machine Code File
+### 3) OBJ File ( Machine Code File )
 
 1. All OBJ files will be combined into a single file by the linker. The C++ linker can perform
    certain optimizations, although its primary role is focused on linking object files and libraries
    rather than optimizing code.
 
-### 4) Implicit Linking
+### 4) Linking ( Static Linking and Dynamic Linking )
 
-#### Explanation
+#### Libraries
+
+1. Static(`.lib` or `.a`) vs dynamic libraries(`.dll` or `.so`): Linking with static libraries is
+   faster than dynamic libraries because the C++ linker performs optimizations during static
+   linking.
+2. Import libraries (`xxxdll.lib` files): These files contain references to functions and symbols
+   defined in the `xxx.dll` files, allowing linking at **compile time**, ensuring that the correct
+   function signatures and addresses are used and allowing the linker to know where to find them at
+   runtime.
+
+#### Static Linking
+
+##### Explanation
+
+1. Static linking refers to the process of combining all necessary library code into the final
+   executable at compile time. This results in a standalone binary that does not rely on external
+   libraries at runtime.
+
+##### Characteristics
+
+1. Self-contained: The executable includes all the library code it needs.
+2. No runtime dependencies: Once compiled, it doesn't require the presence of shared libraries on
+   the target system.
+3. Larger executable size: The resulting binary is typically larger due to the inclusion of library
+   code.
+4. No versioning issues: The code is fixed at compile time, reducing concerns about library version
+   compatibility.
+
+##### How It Works:
+
+1. Compilation: The developer compiles the source code and links it against static library files
+   (usually `.a` files in linux, `.lib` in windows).
+2. Linking: The linker combines the object files with the static library code, resolving all symbol
+   references.
+3. Executable creation: The final output is a single executable file that includes all necessary
+   code.
+
+#### Dynamic Linking ( Implicit Linking and Explicit Linking )
+
+##### Explanation
+
+1. Dynamic linking allows a program to link to libraries at runtime rather than at compile time.
+   This can improve modularity and reduce executable size.
+
+##### Characteristics
+
+1. Reduced executable size: Only references to shared libraries are included, keeping the executable
+   smaller.
+2. Shared code: Multiple programs can share the same library code in memory, saving resources.
+3. Version flexibility: Libraries can be updated independently of the applications that use them,
+   allowing for easier updates and bug fixes.
+4. Runtime dependencies: The executable requires the appropriate shared libraries to be present at
+   runtime.
+
+##### Implicit Linking ( Load-time Dynamic Linking ) ( Only in Windows )
+
+###### Explanation
 
 1.  Implicit linking, also known as load-time dynamic linking, is when the DLL is linked
     automatically by the operating system when the program starts. This is the most common way of
     linking a DLL.
 
-#### Characteristics
+###### Characteristics
 
-1.  Easier, but increases load time and memory usage upfront.
+1. Automatic resolution: The operating system loads the DLLs specified in the import library when
+   the application starts.
+2. Simplified development: Developers include the DLL's import library (`.lib` file) during
+   compilation, simplifying the linking process.
+3. Single entry point: The operating system resolves function calls from the DLLs automatically,
+   allowing the application to use them seamlessly.
+4. Version dependency: If the required version of a DLL is missing or incompatible, the application
+   may fail to start.
 
-#### How It Works:
+###### How It Works:
 
-1.  You declare and use functions from the DLL in your program as if they are part of your code.
-2.  At compile time, the import library (xxxdll.lib) is linked to the program. This .lib file
-    provides the necessary references to the functions in the DLL.
-3.  When the program starts, the operating system automatically loads the required DLL into memory
-    before the execution begins.
-4.  If the DLL is missing or fails to load, the program will fail to start.
+1. Linking with import library: When compiling the application, the developer links against the
+   DLL’s import library, which contains metadata for the linker.
+2. Loading the DLL: Upon execution, the Windows loader reads the executable's headers to identify
+   the required DLLs and loads them into memory.
+3. Resolving symbols: The loader resolves function calls to the appropriate addresses in the loaded
+   DLLs.
+4. Execution: Control is then passed to the application's entry point, allowing it to call functions
+   from the linked DLLs.
 
-### 5) Explicit Linking
+##### Explicit Linking ( Run-time Dynamic Linking )
 
-#### Explanation
+###### Explanation
 
-1.  Explicit linking, also known as run-time dynamic linking, gives the programmer more control. In
-    this method, the DLL is loaded manually by the program at runtime using functions like
-    LoadLibrary() and GetProcAddress(). This allows you to decide when and if a DLL is loaded.
+1.  Explicit linking, also known as run-time dynamic linking, gives the programmer more control,
+    allowing applications to dynamically load shared libraries and access their functions during
+    execution, rather than linking them at compile time.
 
-#### Characteristics
+###### Characteristics
 
-1.  More complex, but only loads when needed, can optimize performance
+1. Dynamic Control: Developers can load libraries based on runtime conditions, providing
+   flexibility.
+2. Lazy Loading: Libraries can be loaded only when needed, which can improve startup performance.
+3. Error Handling: Applications can handle scenarios where a library fails to load or is not found.
 
-#### How It Works
+###### How It Works in Windows
 
-1.  The program uses the Windows API functions to manually load the DLL and retrieve pointers to its
-    functions.
-2.  The DLL is loaded at any point during program execution (usually when you actually need it).
-3.  If the DLL cannot be loaded, you can handle the error gracefully.
-4.  You do not link the .lib file during compilation because you are loading the DLL dynamically.
+1. Load the DLL: Use `LoadLibrary("library.dll")` to load the desired DLL into the process's address
+   space.
+2. Get Function Pointers: Use `GetProcAddress(handle, "function_name")` to obtain pointers to the
+   functions within the loaded DLL.
+3. Use the Functions: Call the functions using the retrieved pointers.
+4. Unload the DLL: Optionally, use `FreeLibrary(handle)` to unload the DLL when it’s no longer
+   needed.
+
+###### How It Works in Linux
+
+1. Load the Library: Use `dlopen("library.so", RTLD_LAZY)` to load the desired shared library into
+   the process's address space.
+2. Get Function Pointers: Use `dlsym(handle, "function_name")` to obtain pointers to the functions
+   within the loaded library.
+3. Use the Functions: Call the functions using the retrieved pointers.
+4. Unload the Library: Optionally, use `dlclose(handle)` to unload the library when it’s no longer
+   needed.
 
 ## The difference between `gcc` and `g++`
 
@@ -186,7 +276,7 @@
 
 #### 1. `gcc`
 
-1. When used with C, `gcc` processes headers as C-specific (using .h headers for the most part).
+1. When used with C, `gcc` processes headers as C-specific (using `.h` headers for the most part).
 
 #### 2. `g++`
 
@@ -449,7 +539,7 @@ g++ Main.cpp -L. -Wl,-Bstatic -lFun -Wl,-Bdynamic -o Main.exe
 
 #### 2. -Wl,-Bstatic
 
-Instructs the linker (ld) to search for static libraries (.a files).
+Instructs the linker (ld) to search for static libraries (`.a` files).
 
 #### 3. -Wl,-Bdynamic
 
