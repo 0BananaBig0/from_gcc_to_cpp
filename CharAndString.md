@@ -9,8 +9,8 @@
     - [Syntax](#syntax-1)
     - [Explanation](#explanation-1)
   - [A `std::string`](#a-stdstring)
-      - [Declaration Syntax](#declaration-syntax)
-      - [Initialization Syntax](#initialization-syntax)
+    - [Declaration Syntax](#declaration-syntax)
+    - [Initialization Syntax](#initialization-syntax)
     - [Explanation](#explanation-2)
     - [Member Functions](#member-functions)
     - [String Types in STL](#string-types-in-stl)
@@ -23,6 +23,7 @@
   - [`std::literals` Namespace](#stdliterals-namespace)
 
 <!-- vim-markdown-toc -->
+
 ## Char and String
 
 ### Char
@@ -225,5 +226,6 @@ std::string_view var_name{ "a string" };
 2. [`std::string_view` in cppreference](https://en.cppreference.com/w/cpp/string/basic_string_view).
 
 ### `std::literals` Namespace
+
 1. [`std::literals` in cplusplus]().
-1. [`std::literals` in cppreference](https://en.cppreference.com/w/cpp/symbol_index/literals).
+2. [`std::literals` in cppreference](https://en.cppreference.com/w/cpp/symbol_index/literals).
