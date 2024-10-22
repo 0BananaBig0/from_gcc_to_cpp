@@ -10,8 +10,8 @@
   - [Multidimensional `std::vector` ( **Not Recommend** )](#multidimensional-stdvector--not-recommend-)
     - [Declaration Syntax](#declaration-syntax-1)
     - [Initialization Syntax](#initialization-syntax-1)
-    - [Member Functions](#member-functions)
-    - [Notes](#notes)
+  - [Member Functions](#member-functions)
+  - [Notes](#notes)
 
 <!-- vim-markdown-toc -->
 
@@ -183,12 +183,12 @@ std::vector< std::vector< std::vector< Type > > > arr_name1 = {
 std::vector< std::vector< std::vector< Type > > > arr_name2 = arr_name1;
 ```
 
-##### Member Functions
+#### Member Functions
 
 1. [`std::vector` in cplusplus](https://cplusplus.com/reference/vector/vector/).
 2. [`std::vector` in cppreference](https://en.cppreference.com/w/cpp/container/vector).
 
-##### Notes
+#### Notes
 
 1. **Avoid `std::vector` automatic resizing**: We can **use the reserve function to hold memory**
    without creating any objects. The reserve function differs from the resize function: while resize
