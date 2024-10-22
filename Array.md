@@ -272,12 +272,12 @@ std::array< Type, size > arr_name = {};
 
 ```CPP
 // Aggregate Initialization or Uniform Initialization (C++11 and later).
-std::array< Type, size > arr{ val1, val2, val3, ... };
+std::array< Type, size > arr_name{ val1, val2, val3, ... };
 ```
 
 ```CPP
 // Move Constructor.
-std::array< Type, size > arr( { ... } );
+std::array< Type, size > arr_name( { ... } );
 ```
 
 ```CPP
