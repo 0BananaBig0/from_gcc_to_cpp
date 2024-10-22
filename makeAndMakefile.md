@@ -148,6 +148,8 @@ target2: dependency set2
    files because the compiler can automatically track dependencies between source files and header
    files.
 3. command set: It is a set of commands used to compile all dependency files into a target file.
+4. Note: Only files listed as targets or within the dependency set will be checked for existence or
+   modifications.
 
 ### How `make` Processes a Makefile
 
