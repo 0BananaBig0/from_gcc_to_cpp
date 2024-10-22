@@ -67,7 +67,7 @@
 2. The **size** of a raw array is **defined at compile time** and **cannot be changed during
    runtime**. This means that once an array is declared, its size is fixed.
 
-#### One-dimensional Raw Array
+#### One-dimensional Raw Arrays
 
 ##### Declaration Syntax
 
@@ -122,7 +122,7 @@ Type* arr_ptr = new Type[]{ ... };
 delete[] arr_ptr;
 ```
 
-#### Multidimensional Raw Array ( **Not Recommend** )
+#### Multidimensional Raw Arrays ( **Not Recommend** )
 
 ##### Declaration Syntax
 
