@@ -13,15 +13,16 @@
     - [Dynamic Linking ( Implicit Linking and Explicit Linking )](#dynamic-linking--implicit-linking-and-explicit-linking-)
       - [Explanation](#explanation-1)
       - [Characteristics](#characteristics-1)
-      - [Implicit Linking ( Load-time Dynamic Linking ) ( Only in Windows )](#implicit-linking--load-time-dynamic-linking---only-in-windows-)
+      - [Implicit Linking ( Load-time Dynamic Linking ) ( Default Dynamic Linking )](#implicit-linking--load-time-dynamic-linking---default-dynamic-linking-)
         - [Explanation](#explanation-2)
         - [Characteristics](#characteristics-2)
-        - [How It Works:](#how-it-works-1)
+        - [How It Works in **Windows**](#how-it-works-in-windows)
+        - [How It Works in **Linux**](#how-it-works-in-linux)
       - [Explicit Linking ( Run-time Dynamic Linking )](#explicit-linking--run-time-dynamic-linking-)
         - [Explanation](#explanation-3)
         - [Characteristics](#characteristics-3)
-        - [How It Works in Windows](#how-it-works-in-windows)
-        - [How It Works in Linux](#how-it-works-in-linux)
+        - [How It Works in **Windows**](#how-it-works-in-windows-1)
+        - [How It Works in **Linux**](#how-it-works-in-linux-1)
 - [The difference between `gcc` and `g++`](#the-difference-between-gcc-and-g)
   - [1) Language](#1-language)
     - [1. `gcc`](#1-gcc)
@@ -136,7 +137,7 @@
 2. Import libraries (`xxxdll.lib` files): These files contain references to functions and symbols
    defined in the `xxx.dll` files, allowing linking at **compile time**, ensuring that the correct
    function signatures and addresses are used and allowing the linker to know where to find them at
-   runtime.
+   runtime. Only Windows has import libraries, whereas Linux does not.
 
 #### Static Linking
 
@@ -182,13 +183,13 @@
 4. Runtime dependencies: The executable requires the appropriate shared libraries to be present at
    runtime.
 
-##### Implicit Linking ( Load-time Dynamic Linking ) ( Only in Windows )
+##### Implicit Linking ( Load-time Dynamic Linking ) ( Default Dynamic Linking )
 
 ###### Explanation
 
-1.  Implicit linking, also known as load-time dynamic linking, is when the DLL is linked
-    automatically by the operating system when the program starts. This is the most common way of
-    linking a DLL.
+1.  Implicit linking, also known as load-time dynamic linking, is a process where an executable is
+    linked to shared libraries at compile time, allowing the program to use functions and variables
+    defined in those libraries without including their code directly in the executable.
 
 ###### Characteristics
 
@@ -201,16 +202,35 @@
 4. Version dependency: If the required version of a DLL is missing or incompatible, the application
    may fail to start.
 
-###### How It Works:
+###### How It Works in **Windows**
 
-1. Linking with import library: When compiling the application, the developer links against the
-   DLL’s import library, which contains metadata for the linker.
-2. Loading the DLL: Upon execution, the Windows loader reads the executable's headers to identify
+1. Linking with **Import Libraries**: When compiling the application, the developer links against
+   the DLL's import library, which provides necessary metadata for the linker.
+2. Creating the Executable: The resulting executable contains references to the required DLLs but
+   does not embed their code, reducing the executable's size.
+3. Loading the DLLs: Upon execution, the Windows loader reads the executable's headers to identify
    the required DLLs and loads them into memory.
-3. Resolving symbols: The loader resolves function calls to the appropriate addresses in the loaded
-   DLLs.
-4. Execution: Control is then passed to the application's entry point, allowing it to call functions
-   from the linked DLLs.
+4. Resolving Symbols: The loader resolves function calls to the appropriate addresses in the loaded
+   DLLs, ensuring that the application can access the necessary functions and variables.
+5. Execution: Control is then passed to the application's entry point, allowing it to call functions
+   from the linked DLLs, enabling shared access to the library's functionality.
+
+###### How It Works in **Linux**
+
+1. Linking with **Shared Libraries**: When compiling the application, the developer specifies shared
+   libraries using flags (e.g., `-l` for linking) in the compilation command, allowing the linker to
+   record these dependencies in the executable.
+2. Creating the Executable: The resulting executable contains references to the shared libraries but
+   does not include their code. This reduces the executable's size and enables shared access to the
+   libraries.
+3. Loading the Libraries: Upon execution, the dynamic linker/loader (typically ld.so or ld-linux.so)
+   reads the executable's metadata to identify the required shared libraries and loads them into
+   memory.
+4. Resolving Symbols: The linker resolves the function calls and variable references to the
+   appropriate addresses in the loaded shared libraries, allowing the executable to use their
+   functionality.
+5. Execution: Control is passed to the application's entry point, enabling it to call functions and
+   access data from the linked shared libraries.
 
 ##### Explicit Linking ( Run-time Dynamic Linking )
 
@@ -219,6 +239,7 @@
 1.  Explicit linking, also known as run-time dynamic linking, gives the programmer more control,
     allowing applications to dynamically load shared libraries and access their functions during
     execution, rather than linking them at compile time.
+2.  The programmers will use some specific functions to manage the dynamic linking explicitly.
 
 ###### Characteristics
 
@@ -227,7 +248,7 @@
 2. Lazy Loading: Libraries can be loaded only when needed, which can improve startup performance.
 3. Error Handling: Applications can handle scenarios where a library fails to load or is not found.
 
-###### How It Works in Windows
+###### How It Works in **Windows**
 
 1. Load the DLL: Use `LoadLibrary("library.dll")` to load the desired DLL into the process's address
    space.
@@ -237,7 +258,7 @@
 4. Unload the DLL: Optionally, use `FreeLibrary(handle)` to unload the DLL when it’s no longer
    needed.
 
-###### How It Works in Linux
+###### How It Works in **Linux**
 
 1. Load the Library: Use `dlopen("library.so", RTLD_LAZY)` to load the desired shared library into
    the process's address space.
