@@ -21,7 +21,7 @@
   - [Binding](./Binding.md)
   - [`enum`](./Enum.md)
   - [Array](./Array.md)
-    - [Dynamic Array or `std::vector`](./DynamicArrayOrStdVector.md)
+    - [Dynamic Arrays or `std::vector`](./DynamicArraysOrStdVector.md)
   - [`union`, Type Punning and `std:any`](./UnionTypePunningAndStdAny.md)
   - [Char and String](./CharAndString.md)
   - [Some C Functions](./SomeCFunctions.md)

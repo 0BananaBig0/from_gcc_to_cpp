@@ -8,11 +8,11 @@
   - [Raw Arrays](#raw-arrays)
     - [Explanation](#explanation-1)
     - [Characteristics](#characteristics-1)
-    - [One-dimensional Raw Array](#one-dimensional-raw-array)
+    - [One-dimensional Raw Arrays](#one-dimensional-raw-arrays)
       - [Declaration Syntax](#declaration-syntax)
       - [Initialization Syntax](#initialization-syntax)
       - [Syntax for Deleting One-dimensional Raw Array Pointers](#syntax-for-deleting-one-dimensional-raw-array-pointers)
-    - [Multidimensional Raw Array ( **Not Recommend** )](#multidimensional-raw-array--not-recommend-)
+    - [Multidimensional Raw Arrays ( **Not Recommend** )](#multidimensional-raw-arrays--not-recommend-)
       - [Declaration Syntax](#declaration-syntax-1)
       - [Initialization Syntax](#initialization-syntax-1)
       - [Syntax for Deleting Multidimensional Raw Array Pointers](#syntax-for-deleting-multidimensional-raw-array-pointers)
@@ -29,6 +29,7 @@
     - [Member Functions](#member-functions)
     - [Lexicographical Comparison or Lexicographical Order](#lexicographical-comparison-or-lexicographical-order)
     - [Notes](#notes)
+  - [Dynamic Arrays or `std::vector`](#dynamic-arrays-or-stdvector)
 
 <!-- vim-markdown-toc -->
 
@@ -406,3 +407,5 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2
    objects or array indices. It is widely used to ensure **portability across platforms** and
    **avoid overflow issues** when working with memory sizes, since it matches the size of the
    addressable memory range on the system.
+
+### Dynamic Arrays or `std::vector`
