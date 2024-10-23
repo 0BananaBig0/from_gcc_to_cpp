@@ -24,7 +24,10 @@
       - [Conversion Operator Overloading](#conversion-operator-overloading)
       - [Syntax](#syntax-5)
       - [Explanation](#explanation-6)
+      - [Notes](#notes)
     - [`explicit` Conversion Operator](#explicit-conversion-operator)
+  - [`new` and `delete`](#new-and-delete)
+  - [Notes](#notes-1)
 
 <!-- vim-markdown-toc -->
 
@@ -229,3 +232,13 @@ operator TargetType() const {
 4. **Advantange**: make code cleaner.
 
 #### `explicit` Conversion Operator
+
+### `new` and `delete`
+
+### Notes
+
+1. Ternary operators: **Using ternary operators to replace an `if-else` statement** when
+   **initializing an object** can make it **slightly faster**. Using **nested ternary operators**
+   can be confusing, so we should **avoid using them**.
+2. The **compiler** is smart enough so that it can **optimize some arithmic operations** to some
+   bitwise operations, for example, 5 x 16 to 5 << 4.
