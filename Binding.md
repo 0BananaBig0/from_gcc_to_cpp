@@ -52,6 +52,11 @@ auto [var1, var2, ...] = initializer;
 auto& [var1, var2, ...] = initializer;
 ```
 
+```CPP
+// Use it with a range-based for loop
+for ( auto& [var1, var2, ...] : container );
+```
+
 #### Explanation
 
 1. Structured binding allows you to **declare multiple variables** that can simultaneously **hold

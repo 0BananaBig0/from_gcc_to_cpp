@@ -27,6 +27,7 @@
       - [Notes](#notes)
     - [`explicit` Conversion Operator](#explicit-conversion-operator)
   - [`new` and `delete`](#new-and-delete)
+  - [The Usage of the `:` Operator](#the-usage-of-the--operator)
   - [Notes](#notes-1)
 
 <!-- vim-markdown-toc -->
@@ -235,10 +236,33 @@ operator TargetType() const {
 
 ### `new` and `delete`
 
+### The Usage of the `:` Operator
+
+1. Scope resolution operator(`::`)
+   ```CPP
+   ClassName::member;
+   NamespaceName:member;
+   EnumclassName:member;
+   ```
+2. Inheritance
+3. Member initialization list
+4. Conditional Operator (Ternary Operator)
+5. Label in Goto Statements
+   ```CPP
+   labelName: statement;
+   ```
+6. Range-Based For Loop with Structured Bindings
+   ```CPP
+   for ( auto& var : container );
+   for ( auto& [var1, var2, ...] : container );
+   ```
+
 ### Notes
 
-1. Ternary operators: **Using ternary operators to replace an `if-else` statement** when
+1. It is important to ensure that memory is **deallocated** using the **corresponding** operator
+   that was used for **allocation** to **avoid undefined behavior**.
+2. Ternary operators: **Using ternary operators to replace an `if-else` statement** when
    **initializing an object** can make it **slightly faster**. Using **nested ternary operators**
    can be confusing, so we should **avoid using them**.
-2. The **compiler** is smart enough so that it can **optimize some arithmic operations** to some
+3. The **compiler** is smart enough so that it can **optimize some arithmic operations** to some
    bitwise operations, for example, 5 x 16 to 5 << 4.

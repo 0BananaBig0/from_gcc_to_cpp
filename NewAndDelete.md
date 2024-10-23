@@ -138,8 +138,3 @@ ptr = nullptr;   // Good practice to avoid dangling pointers
 ### `realloc`
 
 ### `free`
-
-### Notes
-
-1. It is important to ensure that memory is **deallocated** using the **corresponding** operator
-   that was used for **allocation** to **avoid undefined behavior**.
