@@ -24,6 +24,6 @@
     - [Dynamic Arrays or `std::vector`](./DynamicArraysOrStdVector.md)
   - [`union`, Type Punning and `std:any`](./UnionTypePunningAndStdAny.md)
   - [Char and String](./CharAndString.md)
-  - [Some C Functions](./SomeCFunctions.md)
   - [Smart Pointer](./SmartPointer.md)
   - [Thread](./Thread.md)
+  - [Some C Functions and Operators](./SomeCFunctionsAndOperators.md)
