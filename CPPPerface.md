@@ -256,6 +256,7 @@
 1. **`nullptr`** is a **null pointer** constant introduced in C++11.
 2. It represents a pointer that does **not point to any valid memory location**.
 3. It provides type safety compared to the traditional NULL, which is typically **defined as 0**.
+4. **Access nullptr: segmentation fault(Linux), access violation(Win)**.
 
 ##### Dangling Pointer
 
