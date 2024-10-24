@@ -26,6 +26,7 @@
     - [Explanation](#explanation-5)
     - [Common Utilities](#common-utilities)
     - [Header File](#header-file-5)
+  - [EASTL](#eastl)
 
 <!-- vim-markdown-toc -->
 
@@ -160,3 +161,8 @@
 #### Header File
 
 `<utility>`, `<tuple>`, `<memory>`
+
+### EASTL
+
+1. EASTL is **a open source library**, **optimized for game developers**.
+2. The **performance** of EASTL is **higher than STL**.
