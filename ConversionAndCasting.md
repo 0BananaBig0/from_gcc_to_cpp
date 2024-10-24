@@ -458,6 +458,13 @@ explicit operator TargetType() const {
 #### Syntax
 
 ```CPP
+// Declaration Syntax
+template< typename To, typename From >
+constexpr To std::bit_cast( const From& src );
+```
+
+```CPP
+// Usage Syntax
 std::bit_cast<TargetType>(initializer);
 ```
 
