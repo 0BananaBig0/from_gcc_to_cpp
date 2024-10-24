@@ -30,6 +30,9 @@
     - [Pointer](#pointer)
       - [Explanation](#explanation-5)
       - [Void Pointer](#void-pointer)
+      - [Null Pointers](#null-pointers)
+      - [Dangling Pointer](#dangling-pointer)
+      - [Wild Pointer](#wild-pointer)
     - [Reference](#reference)
   - [5) Parameter](#5-parameter)
   - [6) Argument](#6-argument)
@@ -56,7 +59,6 @@
   - [9) Interface](#9-interface)
   - [10) Keyword](#10-keyword)
   - [11) Type Specifier](#11-type-specifier)
-- [Some Small Knowledge](#some-small-knowledge)
 
 <!-- vim-markdown-toc -->
 
@@ -248,6 +250,26 @@
    dereference it directly without first casting it to a specific pointer type**.
 3. Functions like **`malloc`** and **`calloc`** **return `void` pointer** which must be cast to the
    appropriate type.
+
+##### Null Pointers
+
+1. **`nullptr`** is a **null pointer** constant introduced in C++11.
+2. It represents a pointer that does **not point to any valid memory location**.
+3. It provides type safety compared to the traditional NULL, which is typically **defined as 0**.
+
+##### Dangling Pointer
+
+1. A dangling pointer is a pointer that **points to a memory location** that **has been deallocated
+   or released**.
+2. Accessing or dereferencing a dangling pointer can lead to **undefined behavior**, such as crashes
+   or corrupted data.
+
+##### Wild Pointer
+
+1. A wild pointer, or uninitialized pointer, refers to **a pointer** that has **not been
+   initialized** to point to a specific memory address.
+2. Accessing a wild pointer can lead to unpredictable results since it may point to any arbitrary
+   location in memory.
 
 #### Reference
 
@@ -455,14 +477,3 @@
 1. A type specifier is **used to define the type of a variable, function return value, or object**.
    Type specifiers tell the compiler what kind of data the variable will hold or the function will
    return. They are an essential part of variable declarations and type definitions.
-
-## Some Small Knowledge
-
-1. The **performance** of < is better than <=.
-2. `std::endl` is a little **slower** than `"\n"` in **debug mode**. Otherwise, `std::endl` is
-   **faster**.
-3. Function argument evaluation order: Undefined. Differenct compilers with different flags have
-   different evaluation orders, until C++17, an uncomplete definiton of the function argument
-   evaluation order comes.
-4. **All variables, objects, references, and pointers** should be **initialized explicitly and
-   immediately** after they are declared or created. This can avoid many unpredictable issues
