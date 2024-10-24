@@ -111,6 +111,9 @@
 12. Sizeof Operator
     - Returns the size, in bytes, of a data type or object.
     - `sizeof`
+13. Typeid Operator
+    - Returns the type information of an expression or a type.
+    - `typeid`
 
 ### Operator Overloading
 
