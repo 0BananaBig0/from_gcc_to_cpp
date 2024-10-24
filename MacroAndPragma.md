@@ -43,8 +43,8 @@
 
 ### Explanation
 
-1. Macros in C++ are typically defined using the preprocessor directive `#define`, which allows for
-   **text substitution** **prior** to the actual **compilation** of the code. They are classified as
+1. Macros are typically defined using the preprocessor directive `#define`, which allows for **text
+   substitution** **prior** to the actual **compilation** of the code. They are classified as
    **preprocessor statements**.
 2. Macros may **represent** simple **constants** or **complex expressions**. When the preprocessor
    encounters a macro, it replaces it with the corresponding value or code.
@@ -52,6 +52,7 @@
    configurations**.
 4. The **backslash (`\`)** can be utilized to create **multi-line macros**.
 5. **Excessive use** of macros may adversely **affect** the **readability** of the code.
+6. **Function-like macros** can be **difficult to debug**.
 
 ### Related Keywords
 
