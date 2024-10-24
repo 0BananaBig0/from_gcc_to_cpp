@@ -1,6 +1,6 @@
 <!-- vim-markdown-toc GFM -->
 
-- [Operator](#operator)
+- [Operators](#operators)
   - [Explanation](#explanation)
   - [Categories](#categories)
   - [Operator Overloading](#operator-overloading)
@@ -32,7 +32,7 @@
 
 <!-- vim-markdown-toc -->
 
-## Operator
+## Operators
 
 ### Explanation
 

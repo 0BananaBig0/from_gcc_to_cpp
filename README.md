@@ -13,7 +13,7 @@
   - [Class](./Class.md)
     - [The Difference Between Hiding, Overloading, Overriding, and Overwriting](./HidingOverloadingOverridingAndOverwriting.md)
   - [Struct](./Struct.md)
-  - [Operator](./Operator.md)
+  - [Operators](./Operators.md)
     - [`new` and `delete`](./NewAndDelete.md)
   - [Template](./template.md)
   - [Introduction to C++ STL](./IntroductionToTheCPPSTL.md)
