@@ -12,7 +12,7 @@
     - [Differences Between Hiding, Overloading, Overriding, and Overwriting](./HidingOverloadingOverridingAndOverwriting.md)
   - [Class](./Class.md)
     - [Differences Between Hiding, Overloading, Overriding, and Overwriting](./HidingOverloadingOverridingAndOverwriting.md)
-  - [Struct](./Struct.md)
+  - [Structures](./Structures.md)
   - [Operators](./Operators.md)
     - [`new` and `delete`](./NewAndDelete.md)
   - [Template](./template.md)
