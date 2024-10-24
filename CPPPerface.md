@@ -478,3 +478,8 @@
 1. A type specifier is **used to define the type of a variable, function return value, or object**.
    Type specifiers tell the compiler what kind of data the variable will hold or the function will
    return. They are an essential part of variable declarations and type definitions.
+
+### Notes
+
+1. C++: performance, memory, optimization, safe or not; scope({})( where we can access the
+   function/object/... ) and lifetime; make code clearer.
