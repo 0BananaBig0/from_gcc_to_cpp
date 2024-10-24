@@ -52,8 +52,8 @@ union UnionName {
 ```CPP
 // Usage Syntax
 UnionName obj;
-obj.mem1 = initializer1;   // obj.mem2 will also be set to initializer1.
-obj.mem2 = initializer2;   // obj.mem1 will also be set to initializer2.
+obj.mem1 = val1;   // obj.mem2 will also be set to val1.
+obj.mem2 = val2;   // obj.mem1 will also be set to val2.
 ```
 
 ### Anonymous Unions
@@ -80,8 +80,8 @@ struct StructName {
 ```CPP
 // Usage Syntax
 StructName obj;
-obj._mem1 = initializer1;   // obj._mem2 will also be set to  initializer1.
-obj._mem2 = initializer2;   // obj._mem1 will also be set to  initializer2.
+obj._mem1 = val1;   // obj._mem2 will also be set to  val1.
+obj._mem2 = val2;   // obj._mem1 will also be set to  val2.
 ```
 
 ```CPP
@@ -99,8 +99,8 @@ class ClassName {
 ```CPP
 // Usage Syntax
 ClassName obj;
-obj._mem1 = initializer1;   // obj._mem2 will also be set to  initializer1.
-obj._mem2 = initializer2;   // obj._mem1 will also be set to  initializer2.
+obj._mem1 = val1;   // obj._mem2 will also be set to  val1.
+obj._mem2 = val2;   // obj._mem1 will also be set to  val2.
 ```
 
 ## `std::variant` ( Multiple Types of Data in Single Variable )
@@ -128,7 +128,7 @@ std::variant< TypeList > var_name;
 
 ```CPP
 // Definition syntax
-std::variant< TypeList > var_name = initializer;
+std::variant< TypeList > var_name = val;
 // Assignment syntax
 var_name = val;
 ```
@@ -208,7 +208,7 @@ std::any var_name;
 
 ```CPP
 // Definition syntax
-std::any var_name = initializer;
+std::any var_name = val;
 // Assignment syntax
 var_name = val;
 ```
