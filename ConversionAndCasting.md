@@ -42,7 +42,7 @@
     - [Explanation](#explanation-10)
     - [Usage](#usage-4)
     - [Requirements for Using `std::bit_cast`](#requirements-for-using-stdbit_cast)
-  - [The Difference between `std::bit_cast` and `reinterpret_cast`](#the-difference-between-stdbit_cast-and-reinterpret_cast)
+  - [Differences between `std::bit_cast` and `reinterpret_cast`](#the-difference-between-stdbit_cast-and-reinterpret_cast)
     - [Safety and Type Checking](#safety-and-type-checking)
       - [`std::bit_cast`:](#stdbit_cast)
       - [`reinterpret_cast`:](#reinterpret_cast)
@@ -501,7 +501,7 @@ std::bit_cast<TargetType>(initializer);
 3. **Constexpr support**: It **can** be **used in constant expressions**, making it suitable for
    scenarios that require **compile-time evaluations**.
 
-### The Difference between `std::bit_cast` and `reinterpret_cast`
+### Differences between `std::bit_cast` and `reinterpret_cast`
 
 #### Safety and Type Checking
 

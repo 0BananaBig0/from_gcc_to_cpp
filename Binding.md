@@ -89,7 +89,7 @@ std::tie( var1, var2, ... ) = initializer;
    interface**, such as `std::get`.
 4. `std::tie` should **not** be used to **bind a temporary object** to avoid **undefined behavior**.
 
-### The Difference Between Structured Binding and `std::tie`
+### Differences Between Structured Binding and `std::tie`
 
 1. Their syntax differs.
 2. **Structured binding** can unpack all values from the initializer into new **variables or

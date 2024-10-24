@@ -1,6 +1,6 @@
 <!-- vim-markdown-toc GFM -->
 
-- [The Difference Between Hiding, Overloading, Overriding, and Overwriting](#the-difference-between-hiding-overloading-overriding-and-overwriting)
+- [Differences Between Hiding, Overloading, Overriding, and Overwriting](#the-difference-between-hiding-overloading-overriding-and-overwriting)
   - [(1) Hiding (Name Hiding)](#1-hiding-name-hiding)
     - [Syntax](#syntax)
     - [Explanation](#explanation)
@@ -17,7 +17,7 @@
 
 <!-- vim-markdown-toc -->
 
-### The Difference Between Hiding, Overloading, Overriding, and Overwriting
+### Differences Between Hiding, Overloading, Overriding, and Overwriting
 
 #### (1) Hiding (Name Hiding)
 

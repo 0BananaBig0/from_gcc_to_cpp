@@ -5,7 +5,7 @@
   * [Purpose](#purpose)
   * [Examples of Unscoped Enumeration](#examples-of-unscoped-enumeration)
   * [Examples of Scoped Enumeration ( C++11 )](#examples-of-scoped-enumeration--c11-)
-  * [The Difference Between `enum` ( Unscoped Enumeration ) and `enum class` ( Scoped Enumeration )](#the-difference-between-enum--unscoped-enumeration--and-enum-class--scoped-enumeration-)
+  * [Differences Between `enum` ( Unscoped Enumeration ) and `enum class` ( Scoped Enumeration )](#the-difference-between-enum--unscoped-enumeration--and-enum-class--scoped-enumeration-)
     * [1) Syntax](#1-syntax)
     * [2) Namespace Scoping](#2-namespace-scoping)
     * [3) Type Safety](#3-type-safety)
@@ -52,7 +52,7 @@ enum class Color : char {
 Color myColor = Color::Green;
 ```
 
-### The Difference Between `enum` ( Unscoped Enumeration ) and `enum class` ( Scoped Enumeration )
+### Differences Between `enum` ( Unscoped Enumeration ) and `enum class` ( Scoped Enumeration )
 
 #### 1) Syntax
 

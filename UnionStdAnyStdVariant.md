@@ -250,3 +250,18 @@ var_name.reset();   // clears the stored value
 
 1. [`std::any` in cplusplus]().
 2. [`std::any` in cppreference](https://en.cppreference.com/w/cpp/utility/any).
+
+## `std::optional` ( Optional Data )
+### Explanation
+### Synatx
+### Member Functions
+<!-- (52) optional data: It is a new feature introduced in C++17 that allows us to determine whether the -->
+<!-- data is accessible. This feature makes our code cleaner. An example is using it to determine whether -->
+<!-- we successfully read a file. -->
+<!--   std::optional<Type> var_name = functionName(); -->
+<!--   Type default_value = var_name.value_or(a default value you want); -->
+<!--   if( var_name.has_value() ) { // or if( var_name ) { -->
+<!--     Type& val_name = *var_name; -->
+<!--     // or Type& val_name = var_name.value(); -->
+<!--     ... -->
+<!--     }; // or -->
