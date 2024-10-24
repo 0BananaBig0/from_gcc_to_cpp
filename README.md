@@ -27,4 +27,5 @@
   - [Smart Pointer](./SmartPointer.md)
   - [Thread](./Thread.md)
   - [Some C Functions and Operators](./SomeCFunctionsAndOperators.md)
+  - [Extern](./Extern.md)
   - [Some Programming Techniques](./SomeProgrammingTechniques.md)
