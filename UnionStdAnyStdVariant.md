@@ -224,13 +224,13 @@ try {
    (function template).
 2. `holds_alternative` (C++17): Checks if a variant currently holds a given type (function
    template).
-3. `get(std::variant)` (C++17): Reads the value of the variant given the index or the type (if the
+3. `get( std::variant )` (C++17): Reads the value of the variant given the index or the type (if the
    type is unique), throws on error (function template).
 4. `get_if` (C++17): Obtains a pointer to the value of a pointed-to variant given the index or the
    type (if unique), returns null on error (function template).
 5. `operator==/!=/</<=/>/>=` ( C++ 17 ), `operator<=>` (C++20): Compares variant objects as their
    contained values (function template).
-6. `std::swap(std::variant)` (C++17): Specializes the `std::swap` algorithm (function template).
+6. `std::swap( std::variant )` (C++17): Specializes the `std::swap` algorithm (function template).
 
 #### Helper classes
 
@@ -332,7 +332,7 @@ var_name.reset();   // clears the stored value
 
 #### Non-member Functions
 
-1. `std::swap(std::any)` (C++17): Specializes the `std::swap` algorithm (function).
+1. `std::swap( std::any )` (C++17): Specializes the `std::swap` algorithm (function).
 2. `any_cast` (C++17): Type-safe access to the contained object (function template).
 3. `make_any` (C++17): Creates an any object (function template).
 
