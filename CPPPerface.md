@@ -256,7 +256,7 @@
 1. **`nullptr`** is a **null pointer** constant introduced in C++11.
 2. It represents a pointer that does **not point to any valid memory location**.
 3. It provides type safety compared to the traditional NULL, which is typically **defined as 0**.
-4. **Access nullptr: segmentation fault(Linux), access violation(Win)**.
+4. **Access nullptr: segmentation fault (Linux), access violation (Win)**.
 
 ##### Dangling Pointer
 
@@ -341,7 +341,7 @@
    - A function call acts as an expression, with the result being the return value of the function.
      For example,
      ```CPP
-     int absValue = std::abs(-5); // Evaluates to 5.
+     int absValue = std::abs( -5 ); // Evaluates to 5.
      ```
 7. Conditional (Ternary) Expressions
    - A ternary expression evaluates a condition and returns one of two values based on the result.
@@ -481,5 +481,5 @@
 
 ### Notes
 
-1. C++: performance, memory, optimization, safe or not; scope({})( where we can access the
+1. C++: performance, memory, optimization, safe or not; scope ({})( where we can access the
    function/object/... ) and lifetime; make code clearer.
