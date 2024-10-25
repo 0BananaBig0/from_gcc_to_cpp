@@ -20,10 +20,10 @@
 
 ### Differences Between Structures and Classes
 
-1. Default access level: public(structure), private(class).
-2. Usage preference: For simple data models(structure), For complex abstractions(class).
-3. Inheritance: public by default(structure), Private by default(class).
-4. Encapsulation: Less restrictive by design(structure), Promotes encapsulation(class).
+1. Default access level: public (structure), private (class).
+2. Usage preference: For simple data models (structure), For complex abstractions (class).
+3. Inheritance: public by default (structure), Private by default (class).
+4. Encapsulation: Less restrictive by design (structure), Promotes encapsulation (class).
 
 ### Notes
 
