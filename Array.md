@@ -26,7 +26,13 @@
     - [Multidimensional `std::array` ( **Not Recommend** )](#multidimensional-stdarray--not-recommend-)
       - [Declaration Syntax](#declaration-syntax-3)
       - [Initialization Syntax](#initialization-syntax-3)
-    - [Member Functions](#member-functions)
+    - [Members and Related Stuffs](#members-and-related-stuffs)
+      - [Links](#links)
+      - [Template Parameters](#template-parameters)
+      - [Member Types](#member-types)
+      - [Member Functions](#member-functions)
+      - [Non-member Functions](#non-member-functions)
+      - [Helper Classes](#helper-classes)
     - [Lexicographical Comparison or Lexicographical Order](#lexicographical-comparison-or-lexicographical-order)
     - [Notes](#notes)
   - [Dynamic Arrays or `std::vector`](#dynamic-arrays-or-stdvector)
@@ -381,10 +387,75 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name1
 std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2 = arr_name1;
 ```
 
-#### Member Functions
+#### Members and Related Stuffs
+
+##### Links
 
 1. [`std::array` in cplusplus](https://cplusplus.com/reference/array/array/).
 2. [`std::array` in cppreference](https://en.cppreference.com/w/cpp/container/array).
+
+##### Template Parameters
+
+1. `T`: Element type.
+2. `N`: The number of elements in the array or 0.
+
+##### Member Types
+
+1. `alue_type`: `T`.
+2. `ize_typ`: `std::size_t`.
+3. `ifference_type`: `std::ptrdiff_t`.
+4. `eference`: `value_type&`.
+5. `onst_reference`: `const value_type&`.
+6. `ointer`: `value_type`.
+7. `onst_pointer`: `const value_type`.
+8. `terator`: LegacyRandomAccessIterator and LegacyContiguousIterator to value_type (until C++17),
+   LegacyRandomAccessIterator and LegacyContiguousIterator that is a LiteralType (since C++17) to
+   value_type (until C++20), LegacyRandomAccessIterator, contiguous_iterator, and ConstexprIterator
+   to value_type (since C++20).
+9. `const_iterator`: LegacyRandomAccessIterator and LegacyContiguousIterator to const value_type
+   (until C++17), LegacyRandomAccessIterator and LegacyContiguousIterator that is a LiteralType
+   (since C++17) to const value_type (until C++20), LegacyRandomAccessIterator, contiguous_iterator,
+   and ConstexprIterator to const value_type (since C++20).
+10. `reverse_iterator`: `std::reverse_iterator<iterator>`.
+11. `const_reverse_iterator`: `std::reverse_iterator<const_iterator>`.
+
+##### Member Functions
+
+1. (constructor) (implicitly declared): Initializes the array following the rules of aggregate
+   initialization (note that default initialization may result in indeterminate values for non-class
+   T) (public member function).
+2. (destructor) (implicitly declared): Destroys every element of the array (public member function)
+3. operator= (implicitly declared): overwrites every element of the array with the corresponding
+   element of another array (public member function).
+4. `at`: Access specified element with bounds checking (public member function).
+5. `operator[]`: Access specified element (public member function).
+6. `front`: Access the first element (public member function).
+7. `back`: Access the last element (public member function).
+8. `data`: Direct access to the underlying contiguous storage (public member function).
+9. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+10. `end`, `cend`: Returns an iterator to the end (public member function).
+11. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
+12. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
+13. `empty`: Checks whether the container is empty (public member function).
+14. `size`: Returns the number of elements (public member function).
+15. `max_size`: Returns the maximum possible number of elements (public member function).
+16. `fill`: Fill the container with specified value (public member function)..
+17. `swap`: Swaps the contents (public member function).
+
+##### Non-member Functions
+
+1. `operator==` (C++11), `operator!=/</<=/>/>=` (C++11)(removed in C++20), `operator<=>` (C++20):
+   Lexicographically compares the values of two arrays (function template).
+2. `get( std::array )` (C++11): Accesses an element of an array (function template).
+3. `std::swap( std::array )` (C++11): Specializes the `std::swap` algorithm (function template).
+4. `to_array` (C++20): Creates a `std::array` object from a built-in array (function template).
+
+##### Helper Classes
+
+1. `std::tuple_size<std::array>` (C++11): Obtains the size of an array (class template
+   specialization).
+2. `std::tuple_element<std::array>` (C++11): Obtains the type of the elements of array (class
+   template specialization).
 
 #### Lexicographical Comparison or Lexicographical Order
 
