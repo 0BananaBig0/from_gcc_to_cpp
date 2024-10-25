@@ -206,7 +206,7 @@ std::vector< std::vector< std::vector< Type > > > arr_name2 = arr_name1;
 
 1. The standard library provides a specialization of `std::vector` for the type bool, which may be
    optimized for space efficiency.
-   - `vector<bool>`: Space-efficient dynamic bitset (class template specialization).
+   - `vector< bool >`: Space-efficient dynamic bitset (class template specialization).
 
 ##### Member Types
 
@@ -216,18 +216,18 @@ std::vector< std::vector< std::vector< Type > > > arr_name2 = arr_name1;
 4. `difference_type`: Signed integer type (usually `std::ptrdiff_t`).
 5. `reference`: `value_type&`.
 6. `const_reference`: `const value_type&`.
-7. `pointer`: `Allocator::pointer` (until C++11), `std::allocator_traits<Allocator>::pointer` since
-   C++11).
+7. `pointer`: `Allocator::pointer` (until C++11), `std::allocator_traits< Allocator >::pointer`
+   since C++11).
 8. `const_pointer`: `Allocator::const_pointer` (until C++11),
-   `std::allocator_traits<Allocator>::const_pointer` (since C++11).
+   `std::allocator_traits< Allocator >::const_pointer` (since C++11).
 9. `iterator`: `LegacyRandomAccessIterator` and `LegacyContiguousIterator` to `value_type` (until
    C++20), `LegacyRandomAccessIterator`, `contiguous_iterator`, and `ConstexprIterator` to
    `value_type` (since C++20).
 10. `const_iterator`: `LegacyRandomAccessIterator` and `LegacyContiguousIterator` to
     `const value_type` (until C++20), `LegacyRandomAccessIterator`, `contiguous_iterator`, and
     `ConstexprIterator` to `const value_type` (since C++20).
-11. `reverse_iterator`: `std::reverse_iterator<iterator>`.
-12. `const_reverse_iterator`: `std::reverse_iterator<const_iterator>`.
+11. `reverse_iterator`: `std::reverse_iterator< iterator >`.
+12. `const_reverse_iterator`: `std::reverse_iterator< const_iterator >`.
 
 ##### Member Functions
 

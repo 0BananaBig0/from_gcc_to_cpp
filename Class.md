@@ -1181,7 +1181,7 @@ class Derived: public A,
 ```
 class ClassName {
 public:
-    friend RetType funcName(const ClassName& obj);  // Friend function declaration
+    friend RetType funcName( const ClassName& obj );  // Friend function declaration
 };
 ```
 

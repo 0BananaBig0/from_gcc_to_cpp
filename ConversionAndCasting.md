@@ -199,7 +199,7 @@ int main() {
 ###### Syntax
 
 ```CPP
-static_cast<TargetType>(initializer);
+static_cast< TargetType >(initializer);
 ```
 
 ###### Explanation
@@ -251,7 +251,7 @@ static_cast<TargetType>(initializer);
 ###### Syntax
 
 ```CPP
-dynamic_cast<TargetType>(initializer);
+dynamic_cast< TargetType >(initializer);
 ```
 
 ###### Explanation
@@ -353,7 +353,7 @@ dynamic_cast<TargetType>(initializer);
 ###### Syntax
 
 ```CPP
-const_cast<TargetType>(initializer);
+const_cast< TargetType >(initializer);
 ```
 
 ###### Explanation
@@ -377,7 +377,7 @@ const_cast<TargetType>(initializer);
 ###### Syntax
 
 ```CPP
-reinterpret_cast<TargetType>(initializer);
+reinterpret_cast< TargetType >(initializer);
 ```
 
 ###### Explanation
@@ -465,7 +465,7 @@ constexpr To std::bit_cast( const From& src );
 
 ```CPP
 // Usage Syntax
-std::bit_cast<TargetType>(initializer);
+std::bit_cast< TargetType >(initializer);
 ```
 
 #### Explanation

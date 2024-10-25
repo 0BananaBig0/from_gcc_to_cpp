@@ -233,7 +233,7 @@ RetType funcName( para_list ) noexcept {
 ###### Synatx
 
 ```CPP
-RetType funcName( para_list) noexcept(noexcept(an expression or a function) {
+RetType funcName( para_list ) noexcept(noexcept(an expression or a function) {
    // Indicates no exceptions will be thrown
    // Function implementation
 };

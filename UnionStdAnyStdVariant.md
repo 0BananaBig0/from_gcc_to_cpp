@@ -168,7 +168,7 @@ Type& var_val = std::get< Type >( var_name );
 // Checking type and retrieving value
 if( auto var_val = std::get_if< Type >( var_name ) ) {
    std::cout << *var_val << std::endl;
-   // or std::cout << std::get<Type>(var_name) << std::endl;
+   // or std::cout << std::get< Type >(var_name) << std::endl;
    // Do something
 }
 ```
@@ -238,11 +238,11 @@ try {
    non-default-constructible types (class).
 2. `bad_variant_access` (C++17): Exception thrown on invalid accesses to the value of a variant
    (class).
-3. `variant_size` (C++17), `variant_size_v` (C++17): Obtains the size of the variant's list of alternatives
-   at compile time (class template) (variable template).
+3. `variant_size` (C++17), `variant_size_v` (C++17): Obtains the size of the variant's list of
+   alternatives at compile time (class template) (variable template).
 4. `variant_alternative`, `variant_alternative_t` (C++17): Obtains the type of the alternative
    specified by its index, at compile time (class template) (alias template).
-5. `std::hash<std::variant>` (C++17): Hash support for `std::variant` (class template
+5. `std::hash< std::variant >` (C++17): Hash support for `std::variant` (class template
    specialization).
 
 #### Helper objects
@@ -352,7 +352,7 @@ var_name.reset();   // clears the stored value
 <!-- (52) optional data: It is a new feature introduced in C++17 that allows us to determine whether the -->
 <!-- data is accessible. This feature makes our code cleaner. An example is using it to determine whether -->
 <!-- we successfully read a file. -->
-<!--   std::optional<Type> var_name = functionName(); -->
+<!--   std::optional< Type > var_name = functionName(); -->
 <!--   Type default_value = var_name.value_or(a default value you want); -->
 <!--   if( var_name.has_value() ) { // or if( var_name ) { -->
 <!--     Type& val_name = *var_name; -->

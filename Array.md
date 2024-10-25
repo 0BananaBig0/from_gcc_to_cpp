@@ -416,8 +416,8 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2
    (until C++17), LegacyRandomAccessIterator and LegacyContiguousIterator that is a LiteralType
    (since C++17) to const value_type (until C++20), LegacyRandomAccessIterator, contiguous_iterator,
    and ConstexprIterator to const value_type (since C++20).
-10. `reverse_iterator`: `std::reverse_iterator<iterator>`.
-11. `const_reverse_iterator`: `std::reverse_iterator<const_iterator>`.
+10. `reverse_iterator`: `std::reverse_iterator< iterator >`.
+11. `const_reverse_iterator`: `std::reverse_iterator< const_iterator >`.
 
 ##### Member Functions
 
@@ -452,9 +452,9 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2
 
 ##### Helper Classes
 
-1. `std::tuple_size<std::array>` (C++11): Obtains the size of an array (class template
+1. `std::tuple_size< std::array >` (C++11): Obtains the size of an array (class template
    specialization).
-2. `std::tuple_element<std::array>` (C++11): Obtains the type of the elements of array (class
+2. `std::tuple_element< std::array >` (C++11): Obtains the type of the elements of array (class
    template specialization).
 
 #### Lexicographical Comparison or Lexicographical Order
