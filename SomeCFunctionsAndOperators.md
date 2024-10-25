@@ -38,7 +38,7 @@
 #### Syntax
 
 ```CPP
-sizeof(type)
+sizeof( type )
 ```
 
 ```CPP
@@ -46,7 +46,7 @@ sizeof variable
 ```
 
 ```CPP
-sizeof(expression)
+sizeof( expression )
 ```
 
 #### Explanation
@@ -61,12 +61,12 @@ sizeof(expression)
 
 ```CPP
 // Its declaration syntax
-size_t strlen(const char *str);
+size_t strlen( const char *str );
 ```
 
 ```CPP
 // Its usage syntax
-size_t len = strlen(str);
+size_t len = strlen( str );
 ```
 
 #### Explanation
@@ -86,7 +86,7 @@ void* ptr = malloc( size_t size );
 
 ```CPP
 // Its usage syntax
-Type* ptr = (Type*)malloc( num * sizeof( Type )size );
+Type* ptr = (Type*)malloc( num * sizeof( Type ) );
 ```
 
 #### Explanation
