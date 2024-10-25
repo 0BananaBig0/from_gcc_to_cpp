@@ -238,7 +238,7 @@ try {
    non-default-constructible types (class).
 2. `bad_variant_access` (C++17): Exception thrown on invalid accesses to the value of a variant
    (class).
-3. `variant_size`, `variant_size_v` (C++17): Obtains the size of the variant's list of alternatives
+3. `variant_size` (C++17), `variant_size_v` (C++17): Obtains the size of the variant's list of alternatives
    at compile time (class template) (variable template).
 4. `variant_alternative`, `variant_alternative_t` (C++17): Obtains the type of the alternative
    specified by its index, at compile time (class template) (alias template).
