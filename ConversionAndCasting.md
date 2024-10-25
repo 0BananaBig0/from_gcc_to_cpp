@@ -101,16 +101,16 @@ class B {
 
 class A {
    public:
-      A(): _mem( initializer1 ) {}
+      A(): _mem( initializer1 ) {};
 
       // Constructor for implicit conversion
-      A( const B& b ): _mem( b._mem ) {}
+      A( const B& b ): _mem( b._mem ) {};
 
       // Assignment operator overload
       A& operator=( const B& b ) {
          _mem = b._mem;
          return *this;
-      }
+      };
 
       // Assignment operator overload
       A& operator=( const A& other ) = default;
@@ -123,7 +123,7 @@ int main() {
    B b( initializer2 );   // B initialized with an initializer2
    // Only A's assignment operator are invoked. In fact, it's also a implicit conversion.
    a = b;
-}
+};
 ```
 
 ```CPP
@@ -135,10 +135,10 @@ class B {
 
 class A {
    public:
-      A(): _mem( initializer1 ) {}
+      A(): _mem( initializer1 ) {};
 
       // Constructor for implicit conversion
-      A( const B& b ): _mem( b._mem ) {}
+      A( const B& b ): _mem( b._mem ) {};
 
       // Assignment operator overload
       A& operator=( const A& other ) = default;
@@ -152,7 +152,7 @@ int main() {
    // First, implicit conversion: A's conversion constructor is invoked
    // Second, assignment: A's default assignement operator is invoked
    a = b;
-}
+};
 ```
 
 ### Explicit Conversion ( Type Casting )
@@ -315,7 +315,7 @@ dynamic_cast< TargetType >( initializer );
          Derived& der_ref = dynamic_cast< Derived& >( base );
       } catch( const std::bad_cast& e ) {
          std::cout << "Caught exception: " << e.what() << '\n';
-      }
+      };
    };
    ```
 

@@ -3,7 +3,7 @@
 - [Extern Linkage](#extern-linkage)
   - [Explanation](#explanation)
   - [`extern`](#extern)
-  - [`extern "C" { ... }`](#extern-c---)
+  - [`extern "C" { ... };`](#extern-c---)
   - [Default Extern Linkage](#default-extern-linkage)
 
 <!-- vim-markdown-toc -->
@@ -23,7 +23,7 @@
 2. `extern` can be used to declare global variables or functions in a header file, making them
    accessible across multiple source files.
 
-### `extern "C" { ... }`
+### `extern "C" { ... };`
 
 1. The `extern "C"` construct specifies that **the enclosed declarations should use C linkage**
    rather than C++ linkage. This is essential for **linking C++ code with C libraries** or when
