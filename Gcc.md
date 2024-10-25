@@ -131,7 +131,7 @@
 
 #### Libraries
 
-1. Static(`.lib` or `.a`) vs dynamic libraries(`.dll` or `.so`): Linking with static libraries is
+1. Static (`.lib` or `.a`) vs dynamic libraries (`.dll` or `.so`): Linking with static libraries is
    faster than dynamic libraries because the C++ linker performs optimizations during static
    linking.
 2. Import libraries (`xxxdll.lib` files): These files contain references to functions and symbols
@@ -250,22 +250,22 @@
 
 ###### How It Works in **Windows**
 
-1. Load the DLL: Use `LoadLibrary("library.dll")` to load the desired DLL into the process's address
-   space.
-2. Get Function Pointers: Use `GetProcAddress(handle, "function_name")` to obtain pointers to the
+1. Load the DLL: Use `LoadLibrary( "library.dll" )` to load the desired DLL into the process's
+   address space.
+2. Get Function Pointers: Use `GetProcAddress( handle, "function_name" )` to obtain pointers to the
    functions within the loaded DLL.
 3. Use the Functions: Call the functions using the retrieved pointers.
-4. Unload the DLL: Optionally, use `FreeLibrary(handle)` to unload the DLL when it’s no longer
+4. Unload the DLL: Optionally, use `FreeLibrary( handle )` to unload the DLL when it’s no longer
    needed.
 
 ###### How It Works in **Linux**
 
-1. Load the Library: Use `dlopen("library.so", RTLD_LAZY)` to load the desired shared library into
+1. Load the Library: Use `dlopen( "library.so", RTLD_LAZY )` to load the desired shared library into
    the process's address space.
-2. Get Function Pointers: Use `dlsym(handle, "function_name")` to obtain pointers to the functions
+2. Get Function Pointers: Use `dlsym( handle, "function_name" )` to obtain pointers to the functions
    within the loaded library.
 3. Use the Functions: Call the functions using the retrieved pointers.
-4. Unload the Library: Optionally, use `dlclose(handle)` to unload the library when it’s no longer
+4. Unload the Library: Optionally, use `dlclose( handle )` to unload the library when it’s no longer
    needed.
 
 ## The difference between `gcc` and `g++`
