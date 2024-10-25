@@ -33,7 +33,7 @@
         - [3 Important Notes](#3-important-notes)
         - [4 Some Common Environment Variables in Makefiles](#4-some-common-environment-variables-in-makefiles)
   - [Functions in Makefiles](#functions-in-makefiles)
-    - [Functions for Transforming Text( Usage )](#functions-for-transforming-text-usage-)
+    - [Functions for Transforming Text ( Usage )](#functions-for-transforming-text--usage-)
     - [Function Call Syntax](#function-call-syntax)
     - [More Information](#more-information)
   - [Pattern Rules](#pattern-rules)
@@ -382,7 +382,7 @@ $(ENV_VAR)
 
 ### Functions in Makefiles
 
-#### Functions for Transforming Text( Usage )
+#### Functions for Transforming Text ( Usage )
 
 1. Functions allow you to do text processing in the makefile to compute the files to operate on or
    the commands to use in recipes. You use a function in a function call, where you give the name of
@@ -897,7 +897,7 @@ include $(DEPS)
    code, while library directories contain the pre-built binary files for linking. Header files
    provide declarations, and library files contain definitions that link your code with these
    binaries.
-6. Static(`.lib` or `.a`) vs dynamic libraries(`.dll` or `.so`): Linking with static libraries is
+6. Static (`.lib` or `.a`) vs dynamic libraries (`.dll` or `.so`): Linking with static libraries is
    faster than dynamic libraries because the C++ linker performs optimizations during static
    linking.
 7. Import libraries (`xxxdll.lib` files): These files contain references to functions and symbols
