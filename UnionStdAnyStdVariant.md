@@ -168,7 +168,7 @@ Type& var_val = std::get< Type >( var_name );
 // Checking type and retrieving value
 if( auto var_val = std::get_if< Type >( var_name ) ) {
    std::cout << *var_val << std::endl;
-   // or std::cout << std::get< Type >(var_name) << std::endl;
+   // or std::cout << std::get< Type >( var_name ) << std::endl;
    // Do something
 }
 ```
