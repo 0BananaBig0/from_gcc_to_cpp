@@ -12,7 +12,16 @@
     - [Declaration Syntax](#declaration-syntax)
     - [Initialization Syntax](#initialization-syntax)
     - [Explanation](#explanation-2)
-    - [Member Functions](#member-functions)
+    - [Members and Related Stuffs](#members-and-related-stuffs)
+      - [Links](#links)
+      - [Template Parameters](#template-parameters)
+      - [Member Types](#member-types)
+      - [Member Functions](#member-functions)
+      - [Constants](#constants)
+      - [Non-member Functions](#non-member-functions)
+      - [Numeric Conversions](#numeric-conversions)
+      - [Literals](#literals)
+      - [Helper Classes](#helper-classes)
     - [String Types in STL](#string-types-in-stl)
     - [Small String optimization](#small-string-optimization)
     - [How to Make Strings Faster in C++: C++17](#how-to-make-strings-faster-in-c-c17)
@@ -20,6 +29,15 @@
     - [Syntax](#syntax-2)
     - [Explanation](#explanation-3)
     - [Member Functions](#member-functions-1)
+      - [Links](#links-1)
+      - [Template Parameters](#template-parameters-1)
+      - [Member Types](#member-types-1)
+      - [Member Functions](#member-functions-2)
+      - [Constants](#constants-1)
+      - [Non-member Functions](#non-member-functions-1)
+      - [Literals](#literals-1)
+      - [Helper Classes](#helper-classes-1)
+      - [Helper Templates](#helper-templates)
   - [`std::literals` Namespace](#stdliterals-namespace)
 
 <!-- vim-markdown-toc -->
@@ -156,16 +174,149 @@ var_name += "..."; // Allowed
 3. The `std::string` type is **safer** than the char pointer or the char array, but **slower** than
    the latter.
 
-#### Member Functions
+#### Members and Related Stuffs
+
+##### Links
 
 1. [`std::string` in cplusplus](https://cplusplus.com/reference/string/string/).
 2. [`std::string` in cppreference](https://en.cppreference.com/w/cpp/string/basic_string).
 
+##### Template Parameters
+
+1. `CharT`: Character type
+2. `Traits`: Traits class specifying the operations on the character type.
+3. `Allocator`: Allocator type used to allocate internal storage.
+
+##### Member Types
+
+1. `traits_type`: `Traits`.
+2. `value_type`: `CharT`.
+3. `allocator_type`: `Allocator`.
+4. `size_type`: `Allocator::size_type` (until C++11),
+   `std::allocator_traits< Allocator >::size_type` (since C++11).
+5. `difference_type`: `Allocator::difference_type` (until C++11),
+   `std::allocator_traits< Allocator >::difference_type` (since C++11).
+6. `reference`: `value_type&`.
+7. `const_reference`: `const value_type&`.
+8. `pointer`: `Allocator::pointer` (until C++11), `std::allocator_traits< Allocator >::pointer`
+   (since C++11).
+9. `const_pointer`: `Allocator::const_pointer` (until C++11),
+   `std::allocator_traits< Allocator >::const_pointer` (since C++11).
+10. `iterator`: `LegacyRandomAccessIterator` and `LegacyContiguousIterator` to `value_type` (until
+    C++20), `LegacyRandomAccessIterator`, `contiguous_iterator`, and `ConstexprIterator` to
+    `value_type` (since C++20).
+11. `const_iterator`: `LegacyRandomAccessIterator` and `LegacyContiguousIterator` to
+    `const value_type` (until C++20), `LegacyRandomAccessIterator`, `contiguous_iterator`, and
+    `ConstexprIterator` to `const value_type` (since C++20).
+12. `reverse_iterator`: `std::reverse_iterator< iterator >`.
+13. `const_reverse_iterator`: `std::reverse_iterator< const_iterator >`.
+
+##### Member Functions
+
+1. (constructor): Constructs a basic_string (public member function).
+2. (destructor): Destroys the string, deallocating internal storage if used (public member
+   function).
+3. `operator=`: Assigns values to the string (public member function).
+4. `assign`: Assign characters to a string (public member function).
+5. `assign_range` (C++23): Assign a range of characters to a string (public member function).
+6. `get_allocator`: Returns the associated allocator (public member function).
+7. `at`: Accesses the specified character with bounds checking (public member function).
+8. `operator[]`: Accesses the specified character (public member function).
+9. `front` (DR): Accesses the first character (public member function).
+10. `back` (DR): Accesses the last character (public member function).
+11. `data`: Returns a pointer to the first character of a string (public member function).
+12. `c_str`: Returns a non-modifiable standard C character array version of the string (public
+    member function).
+13. `operator basic_string_view` (C++17): Returns a non-modifiable string_view into the entire
+    string (public member function).
+14. `begin` (C++11), `cbegin` (C++11): Returns an iterator to the beginning (public member
+    function).
+15. `end` (C++11), `cend` (C++11): Returns an iterator to the end (public member function).
+16. `rbegin` (C++11), `crbegin` (C++11): Returns a reverse iterator to the beginning (public member
+    function).
+17. `rend` (C++11), `crend` (C++11): Returns a reverse iterator to the end (public member function).
+18. `empty`: Checks whether the string is empty (public member function).
+19. `size`, `length`: Returns the number of characters (public member function).
+20. `max_size`: Returns the maximum number of characters (public member function).
+21. `reserve`: Reserves storage (public member function).
+22. `capacity`: Returns the number of characters that can be held in currently allocated storage
+    (public member function).
+23. `shrink_to_fit` (DR): Reduces memory usage by freeing unused memory (public member function).
+24. `clear`: Clears the contents (public member function).
+25. `insert`: Inserts characters (public member function).
+26. `insert_range` (C++23): Inserts a range of characters (public member function).
+27. `erase`: Removes characters (public member function).
+28. `push_back`: Appends a character to the end (public member function).
+29. `pop_back` (DR): Removes the last character (public member function).
+30. `append`: Appends characters to the end (public member function).
+31. `append_range` (C++23): Appends a range of characters to the end (public member function).
+32. `operator+=`: Appends characters to the end (public member function).
+33. `replace`: Replaces specified portion of a string (public member function).
+34. `replace_with_range` (C++23): Replaces specified portion of a string with a range of characters
+    (public member function).
+35. `copy`: Copies characters (public member function).
+36. `resize`: Changes the number of characters stored (public member function).
+37. `resize_and_overwrite` (C++23): Changes the number of characters stored and possibly overwrites
+    indeterminate contents via user-provided operation (public member function).
+38. `swap`: Swaps the contents (public member function).
+39. `find`: Finds the first occurrence of the given substring (public member function).
+40. `rfind`: Find the last occurrence of a substring (public member function).
+41. `find_first_of`: Find first occurrence of characters (public member function).
+42. `find_first_not_of`: Find first absence of characters (public member function).
+43. `find_last_of`: Find last occurrence of characters (public member function).
+44. `find_last_not_of`: Find last absence of characters (public member function).
+45. `compare`: Compares two strings (public member function).
+46. `starts_with` (C++20): Checks if the string starts with the given prefix (public member
+    function).
+47. `ends_with` (C++20): Checks if the string ends with the given suffix (public member function).
+48. `contains` (C++23): Checks if the string contains the given substring or character (pub`lic
+    member function).
+49. `substr`: Returns a substring (public member function).
+
+##### Constants
+
+1. npos` [`static`]: Special value. The exact meaning depends on the context (public static member
+   constant).
+
+##### Non-member Functions
+
+1. `operator+`: Concatenates two strings, a string and a char, or a string and string_view (function
+   template).
+2. `operator==/!=/</>/<=/>=` (removed in C++20), `operator<=>` (C++20): Lexicographically compares
+   two strings (function template).
+3. `std::swap( std::basic_string )`: Specializes the std::swap algorithm (function template).
+4. `erase( std::basic_string )`, `erase_if( std::basic_string )` (C++20): Erases all elements
+   satisfying specific criteria (function template).
+5. `operator<<`, `operator>>`: Performs stream input and output on strings (function template).
+6. `getline`: Read data from an I/O stream into a string (function template).
+
+##### Numeric Conversions
+
+1. `stoi` (C++11), `stol` (C++11), `stoll` (C++11): Converts a string to a signed integer
+   (function).
+2. `stoul` (C++11), `stoull` (C++11): Converts a string to an unsigned integer (function).
+3. `stof` (C++11), `stod` (C++11), `stold` (C++11): Converts a string to a floating point value
+   (function).
+4. `to_string` (C++11): Converts an integral or floating-point value to string (function).
+5. `to_wstring` (C++11): Converts an integral or floating-point value to wstring (function).
+
+##### Literals
+
+1. Defined in inline namespace `std::literals::string_literals`.
+
+- `operator""s` (C++14): Converts a character array literal to basic_string (function).
+
+##### Helper Classes
+
+1. `std::hash< std::basic_string >` (C++11): Hash support for strings (class template
+   specialization).
+
 #### String Types in STL
 
 1. `std::string`, `std::wstring`, `std::u32string` and others represent **different string types**
-   in C++. While they all store character sequences, there are notable **differences** in
-   **character encoding**, **size of characters**, and **intended use**.
+   in C++.
+2. While they all store character sequences, there are notable **differences** in **character
+   encoding**, **size of characters**, and **intended use**.
 
 #### Small String optimization
 
@@ -222,8 +373,107 @@ std::string_view var_name{ "a string" };
 
 #### Member Functions
 
+##### Links
+
 1. [`std::string_view` in cplusplus]().
 2. [`std::string_view` in cppreference](https://en.cppreference.com/w/cpp/string/basic_string_view).
+
+##### Template Parameters
+
+1. `CharT`: Character type.
+2. `Traits`: CharTraits class specifying the operations on the character type. Like for
+   `std::basic_string`, `Traits::char_type` must name the same type as `CharT` or the program is
+   ill-formed.
+
+##### Member Types
+
+1. `traits_type: `Traits`.
+2. `value_type`: CharT`.
+3. `pointer`: `CharT*`.
+4. `const_pointer`: `const CharT*`.
+5. `reference`: `CharT&`.
+6. `const_reference`: `const CharT&`.
+7. `const_iterator`: Implementation-defined constant `LegacyRandomAccessIterator`, and
+   `LegacyContiguousIterator` (until C++20), `ConstexprIterator`, and `contiguous_iterator` (since
+   C++20) whose `value_type` is `CharT`.
+8. `iterator`: `const_iterator`.
+9. `const_reverse_iterator`: `std::reverse_iterator< const_iterator >`.
+10. `reverse_iterator`: `const_reverse_iterator`.
+11. `size_type`: `std::size_t`.
+12. `difference_type`: `std::ptrdiff_t`.
+13. Notes:
+
+- `iterator` and `const_iterator` are the same type because string views are views into constant
+  character sequences.
+- All requirements on the `iterator` types of a Container applies to the `iterator` and
+  `const_iterator` types of `basic_string_view` as well.
+
+##### Member Functions
+
+1. (constructor): Constructs a `basic_string_view` (public member function).
+2. `operator=`: Assigns a view (public member function).
+3. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+4. `end`, `cend`: Returns an iterator to the end (public member function).
+5. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
+6. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
+7. `operator[]`: Accesses the specified character (public member function).
+8. `at`: Accesses the specified character with bounds checking (public member function).
+9. `front`: Accesses the first character (public member function).
+10. `back`: Accesses the last character (public member function).
+11. `data`: Returns a pointer to the first character of a view (public member function).
+12. `size`, `length`: Returns the number of characters (public member function).
+13. `max_size`: Returns the maximum number of characters (public member function).
+14. `empty`: Checks whether the view is empty (public member function).
+15. `remove_prefix`: Shrinks the view by moving its start forward (public member function).
+16. `remove_suffix`: Shrinks the view by moving its end backward (public member function).
+17. `swap`: Swaps the contents (public member function).
+18. `copy`: Copies characters (public member function).
+19. `substr`: Returns a substring (public member function).
+20. `compare`: Compares two views (public member function).
+21. `starts_with` (C++20): Checks if the string view starts with the given prefix (public member
+    function).
+22. `ends_with` (C++20): Checks if the string view ends with the given suffix (public member
+    function).
+23. `contains` (C++23): Checks if the string view contains the given substring or character (public
+    member function).
+24. `find`: Find characters in the view (public member function).
+25. `rfind`: Find the last occurrence of a substring (public member function).
+26. `find_first_of`: Find first occurrence of characters (public member function).
+27. `find_last_of`: Find last occurrence of characters (public member function).
+28. `find_first_not_of`: Find first absence of characters (public member function).
+29. `find_last_not_of`: Find last absence of characters (public member function).
+
+##### Constants
+
+1. `npos` [`static`]: Special value. The exact meaning depends on the context (public static member
+   constant).
+
+##### Non-member Functions
+
+1. `operator==` (C++17), `operator!=/</>/<=/>=` (removed in C++20), `operator<=>` (C++20):
+   Lexicographically compares two string views (function template).
+2. `operator<<` (C++17): Performs stream output on string views (function template).
+
+##### Literals
+
+1. Defined in inline namespace `std::literals::string_view_literals`.
+   - `operator""sv` (C++17): Creates a string view of a character array literal (function).
+
+##### Helper Classes
+
+1. `std::hash< std::string_view >` (C++17), `std::hash< std::wstring_view >` (C++17),
+   `std::hash< std::u8string_view >` (C++20), `std::hash< std::u16string_view >` (C++17),
+   `std::hash< std::u32string_view >` (C++17): Hash support for string views (class template
+   specialization).
+
+##### Helper Templates
+
+1. `template< class CharT, class Traits > inline constexpr bool ranges::enable_borrowed_range< std::basic_string_view< CharT, Traits > > = true;`
+   (since C++20): This specialization of ranges::enable_borrowed_range makes basic_string_view
+   satisfy borrowed_range.
+2. `template< class CharT, class Traits > inline constexpr bool ranges::enable_view< std::basic_string_view < CharT, Traits > > = true;`
+   (since C++20): This specialization of `ranges::enable_view` makes `basic_string_view` satisfy
+   view.
 
 ### `std::literals` Namespace
 
