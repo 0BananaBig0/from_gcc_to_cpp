@@ -88,7 +88,7 @@ auto var_name = initializer;
 #### Syntax
 
 ```CPP
-decltype(expression)
+decltype( expression )
 ```
 
 #### Usage
@@ -111,12 +111,12 @@ decltype(expression)
 
 #### Notes
 
-1. **Use `decltype(expression)&`** instead of `decltype(expression)`, `decltype((expression))`, or
-   `decltype((expression))&` if you want to deduce a result as **a reference type**, even if the
+1. **Use `decltype( expression )&`** instead of `decltype( expression )`, `decltype( ( expression ) )`, or
+   `decltype( ( expression ) )&` if you want to deduce a result as **a reference type**, even if the
    expression is already a reference. Although these four expressions yield the same inference
    result, the first option is preferred.
-2. **Add `const`** as a prefix to `decltype(expression)` if you want to **deduce a result as a const
+2. **Add `const`** as a prefix to `decltype( expression )` if you want to **deduce a result as a const
    type**, even if the expression is already a const type.
-3. **Use `decltype(expression)`** instead of `decltype(expression)*`, `decltype((expression))`, or
-   `decltype((expression))*` if the expression is **a pointer**; the latter three do not yield the
+3. **Use `decltype( expression )`** instead of `decltype( expression )*`, `decltype( ( expression ) )`, or
+   `decltype( ( expression ) )*` if the expression is **a pointer**; the latter three do not yield the
    same inference result as the former.
