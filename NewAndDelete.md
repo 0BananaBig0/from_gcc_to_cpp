@@ -13,14 +13,13 @@
   - [`::operator new( size )`](#operator-new-size-)
     - [Syntax](#syntax-3)
     - [Explanation](#explanation-3)
-  - [`operator delete(ptr)`](#operator-deleteptr)
+  - [`operator delete( ptr )`](#operator-delete-ptr-)
     - [Syntax](#syntax-4)
     - [Explanation](#explanation-4)
 - [`malloc`](#malloc)
 - [`calloc`](#calloc)
 - [`realloc`](#realloc)
 - [`free`](#free)
-- [Notes](#notes)
 
 <!-- vim-markdown-toc -->
 
@@ -106,7 +105,7 @@ Type* ptr = static_cast< Type* >( ::operator new( num * sizeof( Type ) ) );
 3. It does **not call constructors** and **only allocates memory**.
 4. **`::operator delete`** should be used to free memory allocated with **`::operator new`**.
 
-#### `operator delete(ptr)`
+#### `operator delete( ptr )`
 
 ##### Syntax
 
