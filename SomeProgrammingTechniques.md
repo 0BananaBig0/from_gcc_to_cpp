@@ -15,7 +15,7 @@
 - [How to Measure How Many Memory Allocations Ocur or Track Memory Allocations](#how-to-measure-how-many-memory-allocations-ocur-or-track-memory-allocations)
 - [Benchmark and How to Visualize Benchmark Results](#benchmark-and-how-to-visualize-benchmark-results)
 - [Singleton](#singleton)
-- [Continuous Integration(CI) in C++](#continuous-integrationci-in-c)
+- [Continuous Integration (CI) in C++](#continuous-integration-ci-in-c)
   - [Explanation](#explanation-1)
   - [Why CI is important for C++](#why-ci-is-important-for-c)
   - [CI Workflow for C++](#ci-workflow-for-c)
@@ -24,7 +24,7 @@
     - [Build Tools](#build-tools)
     - [Code Quality and Static Analysis Tools](#code-quality-and-static-analysis-tools)
     - [Best Practices for C++ CI](#best-practices-for-c-ci)
-    - [What We Can Do in Our Project](#what-we-can-do-in-our-project)
+    - [**What We Can Do in Our Project**](#what-we-can-do-in-our-project)
 
 <!-- vim-markdown-toc -->
 
@@ -189,7 +189,7 @@ struct Vector3 {
 6. It exists until the application is closed.
 7. Using `namespace` instead of a `class` or a structure to implement the singleton is also ok.
 
-## Continuous Integration(CI) in C++
+## Continuous Integration (CI) in C++
 
 ### Explanation
 
