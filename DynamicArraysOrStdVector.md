@@ -136,28 +136,28 @@ std::vector< std::vector< std::vector< Type > > > arr_name;
 ##### Initialization Syntax
 
 ```CPP
-// Aggregate Initialization
+// Aggregate Initialization.
 std::vector< std::vector< Type > > arr_name = { { { ... /* size_y */ }, { ... }, ... /* size_x */ } };
 ```
 
 ```CPP
-// Default Initialization
+// Default Initialization.
 std::vector< std::vector< Type > > arr_name = {};
 ```
 
 ```CPP
-// Uniform Initialization (C++11 and later)
+// Uniform Initialization (C++11 and later).
 std::vector< std::vector< Type > > arr_name{ { { ...  /* size_y */}, { ... }, ... /* size_x */ } };
 ```
 
 ```CPP
-// Copy Initialization
+// Copy Initialization.
 std::vector< std::vector< Type > > arr_name1 = { { { ... /* size_y */ }, { ... }, ... /* size_x */ } };
 std::vector< std::vector< Type > > arr_name2  = arr_name1;
 ```
 
 ```CPP
-// Aggregate Initialization
+// Aggregate Initialization.
 std::vector< std::vector< std::vector< Type > > > arr_name = { {
    { { ... /* size_z */ }, { ... }, ... /* size_y */ },
    { { ... }, { ... }, ... },
@@ -166,12 +166,12 @@ std::vector< std::vector< std::vector< Type > > > arr_name = { {
 ```
 
 ```CPP
-// Default Initialization
+// Default Initialization.
 std::vector< std::vector< std::vector< Type > > > arr_name = {};
 ```
 
 ```CPP
-// Uniform Initialization (C++11 and later)
+// Uniform Initialization (C++11 and later).
 std::vector< std::vector< std::vector< Type > > > arr_name{ {
    { { ... /* size_z */ }, { ... }, ... /* size_y */ },
    { { ... }, { ... }, ...},
@@ -185,7 +185,7 @@ std::vector< std::vector< std::vector< Type > > > arr_name1 = {
    { { ... }, { ... }, ... },
    ... /* size_x */
 };
-// Copy Initialization
+// Copy Initialization.
 std::vector< std::vector< std::vector< Type > > > arr_name2 = arr_name1;
 ```
 

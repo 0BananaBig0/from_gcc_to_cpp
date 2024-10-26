@@ -95,17 +95,17 @@ Type* arr_ptr = arr_name;
 ##### Initialization Syntax
 
 ```CPP
-// Aggregate Initialization
+// Aggregate Initialization.
 Type arr_name[size] = { ... };
 ```
 
 ```CPP
-// Default Initialization
+// Default Initialization.
 Type arr_name[size] = {};
 ```
 
 ```CPP
-// Copy Initialization
+// Copy Initialization.
 Type arr_name1 = { ... };
 Type arr_name2 = arr_name1;
 ```
@@ -163,23 +163,23 @@ for( size_t i = 0; i < size_x; i++ ) {
 ##### Initialization Syntax
 
 ```CPP
-// Aggregate Initialization
+// Aggregate Initialization.
 Type arr_name[size_x][size_y] = { { ... /* size_y */ }, { ... }, ... /* size_x */ };
 ```
 
 ```CPP
-// Default Initialization
+// Default Initialization.
 Type arr_name[size_x][size_y] = {};
 ```
 
 ```CPP
-// Copy Initialization
+// Copy Initialization.
 Type arr_name1[size_x][size_y] = { { ... /* size_y */ }, { ... }, ... /* size_x */ };
 Type arr_name2[size_x][size_y] = arr_name1;
 ```
 
 ```CPP
-// Aggregate Initialization
+// Aggregate Initialization.
 Type arr_name[size_x][size_y][size_z] = {
    { { ... /* size_z */ }, { ... }, ... /* size_y */ },
    { { ... }, { ... }, ...},
@@ -188,12 +188,12 @@ Type arr_name[size_x][size_y][size_z] = {
 ```
 
 ```CPP
-// Default Initialization
+// Default Initialization.
 Type arr_name[size_x][size_y][size_z] = {};
 ```
 
 ```CPP
-// Copy Initialization
+// Copy Initialization.
 Type arr_name1[size_x][size_y][size_z] = {
    { { ... /* size_z */ }, { ... }, ... /* size_y */ },
    { { ... }, { ... }, ...},
@@ -334,28 +334,28 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name;
 ##### Initialization Syntax
 
 ```CPP
-// Aggregate Initialization
+// Aggregate Initialization.
 std::array< std::array< Type, size_y >, size_x > arr_name = { { { ... /* size_y */ }, { ... }, ... /* size_x */ } };
 ```
 
 ```CPP
-// Default Initialization
+// Default Initialization.
 std::array< std::array< Type, size_y >, size_x > arr_name = {};
 ```
 
 ```CPP
-// Uniform Initialization (C++11 and later)
+// Uniform Initialization (C++11 and later).
 std::array< std::array< Type, size_y >, size_x > arr_name{ { { ...  /* size_y */}, { ... }, ... /* size_x */ } };
 ```
 
 ```CPP
-// Copy Initialization
+// Copy Initialization.
 std::array< std::array< Type, size_y >, size_x > arr_name1 = { { { ... /* size_y */ }, { ... }, ... /* size_x */ } };
 std::array< std::array< Type, size_y >, size_x > arr_name2  = arr_name1;
 ```
 
 ```CPP
-// Aggregate Initialization
+// Aggregate Initialization.
 std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name = { {
    { { ... /* size_z */ }, { ... }, ... /* size_y */ },
    { { ... }, { ... }, ... },
@@ -364,12 +364,12 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name 
 ```
 
 ```CPP
-// Default Initialization
+// Default Initialization.
 std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name = {};
 ```
 
 ```CPP
-// Uniform Initialization (C++11 and later)
+// Uniform Initialization (C++11 and later).
 std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name{ {
    { { ... /* size_z */ }, { ... }, ... /* size_y */ },
    { { ... }, { ... }, ...},
@@ -383,7 +383,7 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name1
    { { ... }, { ... }, ... },
    ... /* size_x */
 };
-// Copy Initialization
+// Copy Initialization.
 std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2 = arr_name1;
 ```
 

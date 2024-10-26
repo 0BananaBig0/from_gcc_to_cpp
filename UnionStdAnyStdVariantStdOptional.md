@@ -143,59 +143,59 @@ obj._mem2 = val2;   // obj._mem1 will also be set to  val2.
 ### Synatx
 
 ```CPP
-// Declaration syntax
+// Declaration syntax.
 #include <variant>
 std::variant< TypeList > var_name;
 ```
 
 ```CPP
-// Definition syntax
+// Definition syntax.
 std::variant< TypeList > var_name = val;
-// Assignment syntax
+// Assignment syntax.
 var_name = val;
 ```
 
 ```CPP
-// Checking type
+// Checking type.
 if( std::holds_alternative< Type >( var_name ) ) {
-   // Do something
+   // Do something.
 };
 ```
 
 ```CPP
-// Retrieving value
+// Retrieving value.
 Type var_val = std::get< Type >( var_name );
 ```
 
 ```CPP
-// Retrieving value
+// Retrieving value.
 Type& var_val = std::get< Type >( var_name );
 ```
 
 ```CPP
-// Checking type and retrieving value
+// Checking type and retrieving value.
 if( auto var_val = std::get_if< Type >( var_name ) ) {
    std::cout << *var_val << std::endl;
    // or std::cout << std::get< Type >( var_name ) << std::endl;
-   // Do something
+   // Do something.
 };
 ```
 
 ```CPP
-// Visit the value
+// Visit the value.
 std::visit(
    []( auto&& var_val ) {
       std::cout << var_val << std::endl;
-      // Do something
+      // Do something.
    },
    var_name );
 ```
 
 ```CPP
-// Handling invalid access
+// Handling invalid access.
 try {
    Type var_val = std::get< Type >(
-      var_name );   // This will throw if myVariant does not hold a double
+      var_name );   // This will throw if myVariant does not hold a double.
 } catch( const std::bad_variant_access& e ) {
    std::cerr << "Bad variant access: " << e.what() << std::endl;
 };
@@ -274,49 +274,49 @@ try {
 ### Synatx
 
 ```CPP
-// Declaration syntax
+// Declaration syntax.
 #include <any>
 std::any var_name;
 ```
 
 ```CPP
-// Definition syntax
+// Definition syntax.
 std::any var_name = val;
-// Assignment syntax
+// Assignment syntax.
 var_name = val;
 ```
 
 ```CPP
-// Checking type
+// Checking type.
 if( var_name.type() == typeid( Type ) ) {
-   // Do something
+   // Do something.
 };
 ```
 
 ```CPP
-// Retrieving value
+// Retrieving value.
 Type var_val = std::any_cast< Type >( var_name );
 ```
 
 ```CPP
-// Retrieving value
+// Retrieving value.
 // Better than the above statement, will be optimized.
 Type& var_ref = std::any_cast< Type& >( var_name );
 ```
 
 ```CPP
-// Handling invalid casts
+// Handling invalid casts.
 try {
    Type var_val = std::any_cast< Type >(
-      var_name );   // throws std::bad_any_cast if the type is incorrect
+      var_name );   // throws std::bad_any_cast if the type is incorrect.
 } catch( const std::bad_any_cast& e ) {
-   // Handle error
+   // Handle error.
 };
 ```
 
 ```CPP
-// Resetting the value
-var_name.reset();   // clears the stored value
+// Resetting the value.
+var_name.reset();   // clears the stored value.
 ```
 
 ### Members and Related Stuffs
@@ -365,29 +365,29 @@ var_name.reset();   // clears the stored value
 ### Synatx
 
 ```CPP
-// Declaration Syntax
+// Declaration Syntax.
 #include <optional>
 std::optional< Type > var_name;
 ```
 
 ```CPP
-// Definition Syntax
+// Definition Syntax.
 std::optional< Type > var_name = std::nullopt;   // Empty optional.
 ```
 
 ```CPP
-// Definition Syntax
-std::optional< Type > var_name = val;            // Contains a value.
+// Definition Syntax.
+std::optional< Type > var_name = val;   // Contains a value.
 ```
 
 ```CPP
-// Assignment Syntax
+// Assignment Syntax.
 var_name = std::nullopt;   // Reset to empty state.
 var_name = val;            // Assign a value.
 ```
 
 ```CPP
-// Checking if value exists
+// Checking if value exists.
 if( var_name.has_value() ) {   // or if( var_name ) {
    Type& val_name = *var_name;
    // or Type& val_name = var_name.value();
@@ -396,17 +396,17 @@ if( var_name.has_value() ) {   // or if( var_name ) {
 ```
 
 ```CPP
-// Retrieving value (throws exception if empty)
+// Retrieving value (throws exception if empty).
 Type var_val = var_name.value();
 ```
 
 ```CPP
-// Retrieving value (avoids exception)
+// Retrieving value (avoids exception).
 Type var_val = var_name.value_or( default_value );
 ```
 
 ```CPP
-// Handling exceptions for empty optionals
+// Handling exceptions for empty optionals.
 try {
    Type var_val
       = var_name.value();   // Throws std::bad_optional_access if empty.
@@ -416,7 +416,7 @@ try {
 ```
 
 ```CPP
-// Resetting the optional to empty state
+// Resetting the optional to empty state.
 var_name.reset();   // Clears the value.
 ```
 
