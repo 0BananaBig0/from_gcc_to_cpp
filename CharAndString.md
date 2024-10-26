@@ -2,16 +2,16 @@
 
 - [Char and String](#char-and-string)
   - [Char](#char)
-    - [Syntax](#syntax)
     - [Explanation](#explanation)
+    - [Syntax](#syntax)
     - [Char Types](#char-types)
   - [A Raw String or a Char **Array**](#a-raw-string-or-a-char-array)
-    - [Syntax](#syntax-1)
     - [Explanation](#explanation-1)
+    - [Syntax](#syntax-1)
   - [A `std::string`](#a-stdstring)
+    - [Explanation](#explanation-2)
     - [Declaration Syntax](#declaration-syntax)
     - [Initialization Syntax](#initialization-syntax)
-    - [Explanation](#explanation-2)
     - [Members and Related Stuffs](#members-and-related-stuffs)
       - [Links](#links)
       - [Template Parameters](#template-parameters)
@@ -26,8 +26,8 @@
     - [Small String optimization](#small-string-optimization)
     - [How to Make Strings Faster in C++: C++17](#how-to-make-strings-faster-in-c-c17)
   - [`std::string_view`](#stdstring_view)
-    - [Syntax](#syntax-2)
     - [Explanation](#explanation-3)
+    - [Syntax](#syntax-2)
     - [Member Functions](#member-functions-1)
       - [Links](#links-1)
       - [Template Parameters](#template-parameters-1)
@@ -46,6 +46,14 @@
 
 ### Char
 
+#### Explanation
+
+1. A char is a fundamental data type in C++ that stores a single character. It can represent
+   letters, digits, punctuation, and other symbols.
+2. The value is enclosed in **single quotes (`'`)**. The size of a char is typically **one byte**,
+   allowing for 256 different values (0 to 255), which correspond to the **ASCII character set**.
+3. `'a letter'`: A `char` literal, a `char` type value.
+
 #### Syntax
 
 ```CPP
@@ -57,14 +65,6 @@ char var_name;
 var_name = 'a letter';
 ```
 
-#### Explanation
-
-1. A char is a fundamental data type in C++ that stores a single character. It can represent
-   letters, digits, punctuation, and other symbols.
-2. The value is enclosed in **single quotes (`'`)**. The size of a char is typically **one byte**,
-   allowing for 256 different values (0 to 255), which correspond to the **ASCII character set**.
-3. `'a letter'`: A `char` literal, a `char` type value.
-
 #### Char Types
 
 1. `char`, `wchar_t`, `char16_t`, and others represent **different character types** in C++. While
@@ -72,6 +72,23 @@ var_name = 'a letter';
    use**.
 
 ### A Raw String or a Char **Array**
+
+#### Explanation
+
+1. A raw string or a character array is **a sequence of characters** **terminated by a null
+   character** (`'\0'`).
+2. This means there is **a termination character** called **null**(**zero value**) at the end of a
+   string-type variable by default, which indicates where **the end of the string** is.
+3. The value is enclosed in **double quotes** (`"`) and the **size** of the string is determined by
+   **the number of characters plus one** for the null terminator.
+4. `"a string"`: A string literal, a `const char` array.
+5. A string literal is **stored** in the **read-only section** of memory. However, if it is used to
+   **initialize a non-const char array**, its **contents** will be **copied to the array**, which
+   can then be **modified like any other array**.
+6. When **single quotes** or **memcpy** are used to assign or copy values to a char array or a char
+   pointer, **`'\0'` or `0`** **should be explicitly included** at the end.
+7. A char array is a type of **array**, meaning that **all syntax applicable to arrays** is **also
+   suitable for char arrays**.
 
 #### Syntax
 
@@ -107,32 +124,30 @@ const char* var_ptr =  "a string";
 char var_name =  var_ptr[index];
 ```
 
-#### Explanation
-
-1. A raw string or a character array is **a sequence of characters** **terminated by a null
-   character** (`'\0'`).
-2. This means there is **a termination character** called **null**(**zero value**) at the end of a
-   string-type variable by default, which indicates where **the end of the string** is.
-3. The value is enclosed in **double quotes** (`"`) and the **size** of the string is determined by
-   **the number of characters plus one** for the null terminator.
-4. `"a string"`: A string literal, a `const char` array.
-5. A string literal is **stored** in the **read-only section** of memory. However, if it is used to
-   **initialize a non-const char array**, its **contents** will be **copied to the array**, which
-   can then be **modified like any other array**.
-6. When **single quotes** or **memcpy** are used to assign or copy values to a char array or a char
-   pointer, **`'\0'` or `0`** **should be explicitly included** at the end.
-7. A char array is a type of **array**, meaning that **all syntax applicable to arrays** is **also
-   suitable for char arrays**.
-
 ### A `std::string`
 
-##### Declaration Syntax
+#### Explanation
+
+1. std::string is **a class** in the C++ STL that represents **a sequence of characters**.
+2. It has several features, including the following:
+   - **Dynamic Sizing**: std::string can grow and shrink in size automatically, allowing for easy
+     modifications without the need for manual memory management.
+   - **Memory Management**: It handles memory allocation and deallocation internally, reducing the
+     risk of memory leaks and buffer overflows.
+   - **Null-Termination**: Unlike C-style strings, which require a null terminator to indicate the
+     end of the string, std::string **manages this internally**.
+   - **Compatibility**: It can easily be converted to and from C-style strings using the `c_str()`
+     member function.
+3. The `std::string` type is **safer** than the char pointer or the char array, but **slower** than
+   the latter.
+
+#### Declaration Syntax
 
 ```CPP
 std::string var_name;
 ```
 
-##### Initialization Syntax
+#### Initialization Syntax
 
 ```CPP
 // Direct initialization
@@ -158,21 +173,6 @@ var_name += "..."; // Allowed
 // Error: a string literal is a `const char` array. Two arrays cannot be concatenated without overloading the `+` operator.
 // std::string var_name = "a string" + "another string"; // Not allowed
 ```
-
-#### Explanation
-
-1. std::string is **a class** in the C++ STL that represents **a sequence of characters**.
-2. It has several features, including the following:
-   - **Dynamic Sizing**: std::string can grow and shrink in size automatically, allowing for easy
-     modifications without the need for manual memory management.
-   - **Memory Management**: It handles memory allocation and deallocation internally, reducing the
-     risk of memory leaks and buffer overflows.
-   - **Null-Termination**: Unlike C-style strings, which require a null terminator to indicate the
-     end of the string, std::string **manages this internally**.
-   - **Compatibility**: It can easily be converted to and from C-style strings using the `c_str()`
-     member function.
-3. The `std::string` type is **safer** than the char pointer or the char array, but **slower** than
-   the latter.
 
 #### Members and Related Stuffs
 
@@ -343,24 +343,6 @@ var_name += "..."; // Allowed
 
 ### `std::string_view`
 
-#### Syntax
-
-```CPP
-// Direct initialization
-std::string_view var_name = "a string";
-```
-
-```CPP
-// Constructor initialization
-std::string_view var_name( "a string" );
-```
-
-```CPP
-// Without related parameterized constructors and all members are public, Aggregate Initialization
-// With related parameterized constructors, Parameterized Constructor or Uniform Initialization or Brace Initialization
-std::string_view var_name{ "a string" };
-```
-
 #### Explanation
 
 1. `std::string_view` is a lightweight, **non-owning reference** to a sequence of characters in C++.
@@ -370,6 +352,24 @@ std::string_view var_name{ "a string" };
    data remains valid** for the duration of the `string_view`.
 4. **This class** allows for **read-only access** to character sequences, **improving performance**
    in scenarios where **string immutability** is required.
+
+#### Syntax
+
+```CPP
+// Direct initialization.
+std::string_view var_name = "a string";
+```
+
+```CPP
+// Constructor initialization.
+std::string_view var_name( "a string" );
+```
+
+```CPP
+// Without related parameterized constructors and all members are public, Aggregate Initialization.
+// With related parameterized constructors, Parameterized Constructor or Uniform Initialization or Brace Initialization.
+std::string_view var_name{ "a string" };
+```
 
 #### Member Functions
 
