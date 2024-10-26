@@ -3,13 +3,13 @@
 - [`g++` Compiler and Linker](#g-compiler-and-linker)
   - [1) Header File ( Preprocess Statement )](#1-header-file--preprocess-statement-)
   - [2) CPP File](#2-cpp-file)
-  - [3) OBJ File ( Machine Code File )](#3-obj-file--machine-code-file-)
+  - [3) OBJ File ( Machine Code File, `.obj` in Windows, `.o` in Linux )](#3-obj-file--machine-code-file-obj-in-windows-o-in-linux-)
   - [4) Linking ( Static Linking and Dynamic Linking )](#4-linking--static-linking-and-dynamic-linking-)
     - [Libraries](#libraries)
     - [Static Linking](#static-linking)
       - [Explanation](#explanation)
       - [Characteristics](#characteristics)
-      - [How It Works:](#how-it-works)
+      - [How It Works](#how-it-works)
     - [Dynamic Linking ( Implicit Linking and Explicit Linking )](#dynamic-linking--implicit-linking-and-explicit-linking-)
       - [Explanation](#explanation-1)
       - [Characteristics](#characteristics-1)
@@ -121,7 +121,7 @@
    multiple CPP files may result in a single OBJ file. During the compilation phase, the compiler
    also optimizes your code.
 
-### 3) OBJ File ( Machine Code File )
+### 3) OBJ File ( Machine Code File, `.obj` in Windows, `.o` in Linux )
 
 1. All OBJ files will be combined into a single file by the linker. The C++ linker can perform
    certain optimizations, although its primary role is focused on linking object files and libraries
@@ -157,10 +157,10 @@
 4. No versioning issues: The code is fixed at compile time, reducing concerns about library version
    compatibility.
 
-##### How It Works:
+##### How It Works
 
 1. Compilation: The developer compiles the source code and links it against static library files
-   (usually `.a` files in linux, `.lib` in windows).
+   (usually `.lib` in windows, `.a` files in linux).
 2. Linking: The linker combines the object files with the static library code, resolving all symbol
    references.
 3. Executable creation: The final output is a single executable file that includes all necessary
@@ -204,29 +204,29 @@
 
 ###### How It Works in **Windows**
 
-1. Linking with **Import Libraries**: When compiling the application, the developer links against
+1. Linking with **import libraries**: When compiling the application, the developer links against
    the DLL's import library, which provides necessary metadata for the linker.
-2. Creating the Executable: The resulting executable contains references to the required DLLs but
+2. Creating the executable: The resulting executable contains references to the required DLLs but
    does not embed their code, reducing the executable's size.
 3. Loading the DLLs: Upon execution, the Windows loader reads the executable's headers to identify
    the required DLLs and loads them into memory.
-4. Resolving Symbols: The loader resolves function calls to the appropriate addresses in the loaded
+4. Resolving symbols: The loader resolves function calls to the appropriate addresses in the loaded
    DLLs, ensuring that the application can access the necessary functions and variables.
 5. Execution: Control is then passed to the application's entry point, allowing it to call functions
    from the linked DLLs, enabling shared access to the library's functionality.
 
 ###### How It Works in **Linux**
 
-1. Linking with **Shared Libraries**: When compiling the application, the developer specifies shared
+1. Linking with **shared libraries**: When compiling the application, the developer specifies shared
    libraries using flags (e.g., `-l` for linking) in the compilation command, allowing the linker to
    record these dependencies in the executable.
-2. Creating the Executable: The resulting executable contains references to the shared libraries but
+2. Creating the executable: The resulting executable contains references to the shared libraries but
    does not include their code. This reduces the executable's size and enables shared access to the
    libraries.
-3. Loading the Libraries: Upon execution, the dynamic linker/loader (typically ld.so or ld-linux.so)
+3. Loading the libraries: Upon execution, the dynamic linker/loader (typically ld.so or ld-linux.so)
    reads the executable's metadata to identify the required shared libraries and loads them into
    memory.
-4. Resolving Symbols: The linker resolves the function calls and variable references to the
+4. Resolving symbols: The linker resolves the function calls and variable references to the
    appropriate addresses in the loaded shared libraries, allowing the executable to use their
    functionality.
 5. Execution: Control is passed to the application's entry point, enabling it to call functions and
@@ -243,29 +243,29 @@
 
 ###### Characteristics
 
-1. Dynamic Control: Developers can load libraries based on runtime conditions, providing
+1. Dynamic control: Developers can load libraries based on runtime conditions, providing
    flexibility.
-2. Lazy Loading: Libraries can be loaded only when needed, which can improve startup performance.
-3. Error Handling: Applications can handle scenarios where a library fails to load or is not found.
+2. Lazy loading: Libraries can be loaded only when needed, which can improve startup performance.
+3. Error handling: Applications can handle scenarios where a library fails to load or is not found.
 
 ###### How It Works in **Windows**
 
 1. Load the DLL: Use `LoadLibrary( "library.dll" )` to load the desired DLL into the process's
    address space.
-2. Get Function Pointers: Use `GetProcAddress( handle, "function_name" )` to obtain pointers to the
+2. Get function pointers: Use `GetProcAddress( handle, "function_name" )` to obtain pointers to the
    functions within the loaded DLL.
-3. Use the Functions: Call the functions using the retrieved pointers.
+3. Use the functions: Call the functions using the retrieved pointers.
 4. Unload the DLL: Optionally, use `FreeLibrary( handle )` to unload the DLL when it’s no longer
    needed.
 
 ###### How It Works in **Linux**
 
-1. Load the Library: Use `dlopen( "library.so", RTLD_LAZY )` to load the desired shared library into
+1. Load the library: Use `dlopen( "library.so", RTLD_LAZY )` to load the desired shared library into
    the process's address space.
-2. Get Function Pointers: Use `dlsym( handle, "function_name" )` to obtain pointers to the functions
+2. Get function pointers: Use `dlsym( handle, "function_name" )` to obtain pointers to the functions
    within the loaded library.
-3. Use the Functions: Call the functions using the retrieved pointers.
-4. Unload the Library: Optionally, use `dlclose( handle )` to unload the library when it’s no longer
+3. Use the functions: Call the functions using the retrieved pointers.
+4. Unload the library: Optionally, use `dlclose( handle )` to unload the library when it’s no longer
    needed.
 
 ## The difference between `gcc` and `g++`
