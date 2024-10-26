@@ -16,82 +16,82 @@
   - [A `constexpr` Instance of a `class`](#a-constexpr-instance-of-a-class)
   - [A `static` Instance of a `class`](#a-static-instance-of-a-class)
   - [An Anonymous Class](#an-anonymous-class)
-    - [Syntax](#syntax)
     - [Explanation](#explanation-1)
+    - [Syntax](#syntax)
   - [Member Variables](#member-variables)
     - [Explanation](#explanation-2)
     - [Syntax](#syntax-1)
     - [`this`](#this)
-      - [Syntax](#syntax-2)
       - [Explanation](#explanation-3)
+      - [Syntax](#syntax-2)
     - [`const` Member Variables](#const-member-variables)
     - [`constexpr` Member Variables](#constexpr-member-variables)
     - [`static` Member Variables](#static-member-variables)
     - [`mutable` Member Variables](#mutable-member-variables)
-      - [Syntax](#syntax-3)
       - [Explanation](#explanation-4)
+      - [Syntax](#syntax-3)
     - [Pointer Member Variables](#pointer-member-variables)
-      - [Syntax](#syntax-4)
       - [Explanation](#explanation-5)
+      - [Syntax](#syntax-4)
     - [Reference Member Variables](#reference-member-variables)
-      - [Syntax](#syntax-5)
       - [Explanation](#explanation-6)
+      - [Syntax](#syntax-5)
   - [Methods](#methods)
-    - [Syntax](#syntax-6)
     - [Explanation](#explanation-7)
+    - [Syntax](#syntax-6)
     - [`static` Methods](#static-methods)
     - [`const` Methods](#const-methods)
     - [`constexpr` Methods](#constexpr-methods)
     - [`virtual` Methods](#virtual-methods)
     - [Pure `virtual` Methods](#pure-virtual-methods)
     - [`override` Methods](#override-methods)
-      - [Syntax](#syntax-7)
       - [Explanation](#explanation-8)
+      - [Syntax](#syntax-7)
       - [Notes](#notes)
   - [Constructors](#constructors)
-    - [Syntax](#syntax-8)
     - [Explanation](#explanation-9)
+    - [Syntax](#syntax-8)
     - [Characteristics](#characteristics)
     - [Defalut Constructors and `default` Constructors](#defalut-constructors-and-default-constructors)
-      - [Syntax](#syntax-9)
       - [Explanation](#explanation-10)
+      - [Syntax](#syntax-9)
     - [Parameterized Constructors](#parameterized-constructors)
-      - [Syntax](#syntax-10)
       - [Explanation](#explanation-11)
+      - [Syntax](#syntax-10)
     - [Constructor Initializer Lists](#constructor-initializer-lists)
-      - [Syntax](#syntax-11)
       - [Explanation](#explanation-12)
+      - [Syntax](#syntax-11)
       - [Notes](#notes-1)
     - [Copy Constructors](#copy-constructors)
       - [Explanation](#explanation-13)
       - [Default Copy ( `default` ) ( Avoid ) ( Double Destructions )](#default-copy--default---avoid---double-destructions-)
-        - [Syntax](#syntax-12)
         - [Explanation](#explanation-14)
+        - [Syntax](#syntax-12)
       - [Shallow Copy ( e.g. `memcpy` ) ( Avoid ) ( Double Destructions )](#shallow-copy--eg-memcpy---avoid---double-destructions-)
-        - [Syntax](#syntax-13)
         - [Explanation](#explanation-15)
+        - [Syntax](#syntax-13)
       - [Deep Copy ( Recommend )](#deep-copy--recommend-)
-        - [Syntax](#syntax-14)
         - [Explanation](#explanation-16)
+        - [Syntax](#syntax-14)
     - [Move Constructors](#move-constructors)
       - [Explanation](#explanation-17)
       - [Default Move Constructor](#default-move-constructor)
-        - [Syntax](#syntax-15)
         - [Explanation](#explanation-18)
+        - [Syntax](#syntax-15)
       - [Custom Move Constructor](#custom-move-constructor)
-        - [Syntax](#syntax-16)
         - [Explanation](#explanation-19)
+        - [Syntax](#syntax-16)
     - [Conversion Constructors](#conversion-constructors)
-      - [Syntax](#syntax-17)
       - [Explanation](#explanation-20)
+      - [Syntax](#syntax-17)
     - [`virtual` Constructors](#virtual-constructors)
     - [`explicit` Constructors](#explicit-constructors)
   - [Destructors](#destructors)
-    - [Syntax](#syntax-18)
     - [Explanation](#explanation-21)
+    - [Syntax](#syntax-18)
     - [Default Destructors](#default-destructors)
-      - [Syntax](#syntax-19)
       - [Explanation](#explanation-22)
+      - [Syntax](#syntax-19)
     - [`virtual` Destructors](#virtual-destructors)
   - [Operator Overloading](#operator-overloading)
     - [Copy-assignment Operator](#copy-assignment-operator)
@@ -112,17 +112,18 @@
   - [`virtual`](#virtual)
     - [Explanation](#explanation-25)
     - [Virtual Functions](#virtual-functions)
-      - [Syntax](#syntax-20)
       - [Explanation](#explanation-26)
+      - [Syntax](#syntax-20)
       - [Static Binding and Dynamic Binding](#static-binding-and-dynamic-binding)
       - [Polymorphism and Problems](#polymorphism-and-problems)
       - [Notes](#notes-2)
     - [Pure Virtual Functions and Abstract Class](#pure-virtual-functions-and-abstract-class)
-      - [Syntax](#syntax-21)
       - [Explanation](#explanation-27)
+      - [Syntax](#syntax-21)
     - [Virtual Destructors](#virtual-destructors-1)
-      - [Syntax](#syntax-22)
       - [Explanation](#explanation-28)
+      - [Syntax](#syntax-22)
+      - [Notes](#notes-3)
     - [Virtual Inheritance](#virtual-inheritance-1)
       - [Explanation](#explanation-29)
       - [Definition Syntax](#definition-syntax-2)
@@ -132,19 +133,19 @@
   - [`friend`](#friend)
     - [Explanation](#explanation-30)
     - [`friend` Functions](#friend-functions)
-      - [Syntax](#syntax-23)
       - [Explanation](#explanation-31)
+      - [Syntax](#syntax-23)
     - [`friend` Classes](#friend-classes)
-      - [Syntax](#syntax-24)
       - [Explanation](#explanation-32)
+      - [Syntax](#syntax-24)
   - [`final`](#final)
     - [Explanation](#explanation-33)
     - [`final` Functions](#final-functions)
-      - [Syntax](#syntax-25)
       - [Explanation](#explanation-34)
+      - [Syntax](#syntax-25)
     - [`final` Classes](#final-classes)
-      - [Syntax](#syntax-26)
       - [Explanation](#explanation-35)
+      - [Syntax](#syntax-26)
   - [`explicit`](#explicit)
   - [`using`](#using)
   - [Keywords Related to Functions](#keywords-related-to-functions)
@@ -298,6 +299,13 @@ ClassName& obj_ref = &obj_name;
 
 ### An Anonymous Class
 
+#### Explanation
+
+1. An anonymous class (also known as an **unnamed class**) is **a class** that is **defined inline
+   without a name**.
+2. These classes are typically used for **creating objects on the fly** or **as part of data
+   structures** without the need to define a separate named class
+
 #### Syntax
 
 ```CPP
@@ -312,13 +320,6 @@ class {
   ...
 } obj_name{ para_list };
 ```
-
-#### Explanation
-
-1. An anonymous class (also known as an **unnamed class**) is **a class** that is **defined inline
-   without a name**.
-2. These classes are typically used for **creating objects on the fly** or **as part of data
-   structures** without the need to define a separate named class
 
 ### Member Variables
 
@@ -340,12 +341,6 @@ class ClassName {
 
 #### `this`
 
-##### Syntax
-
-```CPP
-this->_mem;
-```
-
 ##### Explanation
 
 1. `this` is **a pointer available** within a class's member function that points to the object that
@@ -354,6 +349,12 @@ this->_mem;
 3. It can be useful for **disambiguation** when member variables and parameters have the same name.
 4. It is **not available in static member functions** as there is no associated object.
 
+##### Syntax
+
+```CPP
+this->_mem;
+```
+
 #### `const` Member Variables
 
 #### `constexpr` Member Variables
@@ -361,6 +362,14 @@ this->_mem;
 #### `static` Member Variables
 
 #### `mutable` Member Variables
+
+##### Explanation
+
+1. `mutable` member variables **can be modified** even in **const member functions**. This allows
+   certain aspects of an object to change while keeping its overall state constant.
+2. Generally, they are used **for caching or lazy evaluation purposes**.
+3. They **break the const-correctness** for that particular member variable.
+4. In 90% of cases, the `mutable` keyword will be used in a class with the `const` keyword.
 
 ##### Syntax
 
@@ -371,15 +380,12 @@ class ClassName {
 };
 ```
 
+#### Pointer Member Variables
+
 ##### Explanation
 
-1. `mutable` member variables **can be modified** even in **const member functions**. This allows
-   certain aspects of an object to change while keeping its overall state constant.
-2. Generally, they are used **for caching or lazy evaluation purposes**.
-3. They **break the const-correctness** for that particular member variable.
-4. In 90% of cases, the `mutable` keyword will be used in a class with the `const` keyword.
-
-#### Pointer Member Variables
+1. Pointer member variables **hold memory addresses** of instances or other data types. They allow
+   **dynamic memory management and manipulation** of resources.
 
 ##### Syntax
 
@@ -390,12 +396,16 @@ class ClassName {
 };
 ```
 
+#### Reference Member Variables
+
 ##### Explanation
 
-1. Pointer member variables **hold memory addresses** of instances or other data types. They allow
-   **dynamic memory management and manipulation** of resources.
-
-#### Reference Member Variables
+1. Reference member variables are **alternatives to pointers** that **refer to existing objects**.
+   They **cannot be reassigned** once established.
+2. Theyt must be **initialized when defined** and **cannot be null**.
+3. There are only two way to initialize a const reference:
+   - **In-Class Initialization**: It can be **overridden** by the constructor.
+   - **Constructor Initialization**.
 
 ##### Syntax
 
@@ -412,16 +422,16 @@ class ClassName {
 };
 ```
 
-##### Explanation
-
-1. Reference member variables are **alternatives to pointers** that **refer to existing objects**.
-   They **cannot be reassigned** once established.
-2. Theyt must be **initialized when defined** and **cannot be null**.
-3. There are only two way to initialize a const reference:
-   - **In-Class Initialization**: It can be **overridden** by the constructor.
-   - **Constructor Initialization**.
-
 ### Methods
+
+#### Explanation
+
+1. A method in C++ is **a function** that belongs to a class or struct. It is used to perform
+   operations or manipulate the data members (attributes) of that class. Methods encapsulate
+   behavior specific to an object of the class.
+2. Methods **can be overloaded** by defining multiple versions with different parameter types.
+3. Methods **defined inside** the class are **automatically considered inline**, improving
+   performance by reducing function call overhead.
 
 #### Syntax
 
@@ -444,15 +454,6 @@ class ClassName {
 RetType ClassName::funcName( para_list ) { ... };
 ```
 
-#### Explanation
-
-1. A method in C++ is **a function** that belongs to a class or struct. It is used to perform
-   operations or manipulate the data members (attributes) of that class. Methods encapsulate
-   behavior specific to an object of the class.
-2. Methods **can be overloaded** by defining multiple versions with different parameter types.
-3. Methods **defined inside** the class are **automatically considered inline**, improving
-   performance by reducing function call overhead.
-
 #### `static` Methods
 
 #### `const` Methods
@@ -464,6 +465,14 @@ RetType ClassName::funcName( para_list ) { ... };
 #### Pure `virtual` Methods
 
 #### `override` Methods
+
+##### Explanation
+
+1. `override` is **a keyword** used to **explicitly** indicate that a method in a derived class is
+   meant to **override a virtual method** in the base class.
+2. It **ensures** that the **method signature** in the derived class **matches** a virtual method in
+   the base class. If the method signature does **not match**, the compiler will generate an
+   **error**, which helps **prevent subtle bugs** caused by accidental method hiding.
 
 ##### Syntax
 
@@ -483,20 +492,18 @@ class Derived: public Base {
 };
 ```
 
-##### Explanation
-
-1. `override` is **a keyword** used to **explicitly** indicate that a method in a derived class is
-   meant to **override a virtual method** in the base class.
-2. It **ensures** that the **method signature** in the derived class **matches** a virtual method in
-   the base class. If the method signature does **not match**, the compiler will generate an
-   **error**, which helps **prevent subtle bugs** caused by accidental method hiding.
-
 ##### Notes
 
 1. You should **always use the override keyword when overriding functions** in a derived class, as
    it helps prevent errors.
 
 ### Constructors
+
+##### Explanation
+
+1. Constructors are **special member functions** of a class that are **automatically called when an
+   object** of that class is **created**.
+2. They are used to **initialize** the object's properties and **set up** any necessary resources.
 
 ##### Syntax
 
@@ -508,15 +515,19 @@ class ClassName {
 };
 ```
 
-##### Explanation
-
-1. Constructors are **special member functions** of a class that are **automatically called when an
-   object** of that class is **created**. They are used to **initialize** the object's properties
-   and **set up** any necessary resources.
-
 ##### Characteristics
 
 #### Defalut Constructors and `default` Constructors
+
+##### Explanation
+
+1. A default constructor is **a constructor** with **no parameters** or with **all parameters having
+   default values**.
+2. It is **called** when an object is **instantiated without any arguments**. It initializes data
+   members to their default values (**primitive types remain uninitialized**).
+3. If **no other constructors** are defined, the **compiler provides** a default constructor.
+4. The `= default` syntax **explicitly requests** the compiler to generate **the default
+   constructor**.
 
 ##### Syntax
 
@@ -549,17 +560,16 @@ class ClassName {
 };
 ```
 
+#### Parameterized Constructors
+
 ##### Explanation
 
-1. A default constructor is **a constructor** with **no parameters** or with **all parameters having
-   default values**.
-2. It is **called** when an object is **instantiated without any arguments**. It initializes data
-   members to their default values (**primitive types remain uninitialized**).
-3. If **no other constructors** are defined, the **compiler provides** a default constructor.
-4. The `= default` syntax **explicitly requests** the compiler to generate **the default
-   constructor**.
-
-#### Parameterized Constructors
+1. A parameterized constructor is a type of **constructor** in a class that allows you to
+   **initialize an object with specific values** upon creation.
+2. Unlike a default constructor (which takes no arguments), a parameterized constructor **accepts
+   one or more arguments** that enable you to set the initial state of an object with specific
+   values.
+3. It is **called** when an object is **instantiated with specific arguments**.
 
 ##### Syntax
 
@@ -572,30 +582,7 @@ class ClassName {
 };
 ```
 
-##### Explanation
-
-1. A parameterized constructor is a type of **constructor** in a class that allows you to
-   **initialize an object with specific values** upon creation.
-2. Unlike a default constructor (which takes no arguments), a parameterized constructor **accepts
-   one or more arguments** that enable you to set the initial state of an object with specific
-   values.
-3. It is **called** when an object is **instantiated with specific arguments**.
-
 #### Constructor Initializer Lists
-
-##### Syntax
-
-```CPP
-class ClassName {
-   public:
-      ClassName( Type1 para1, Type2 para2, ... ):
-         _mem1( para1 ), _mem2( para2 ){};
-
-   private:
-      Type1 _mem1;
-      Type2 _mem2;
-};
-```
 
 ##### Explanation
 
@@ -610,6 +597,20 @@ class ClassName {
 5. If members are initialized in the constructor's **body**, those members are first
    default-initialized before being assigned, which can lead to **additional overhead** compared to
    direct initialization in the initializer list.
+
+##### Syntax
+
+```CPP
+class ClassName {
+   public:
+      ClassName( Type1 para1, Type2 para2, ... ):
+         _mem1( para1 ), _mem2( para2 ){};
+
+   private:
+      Type1 _mem1;
+      Type2 _mem2;
+};
+```
 
 ##### Notes
 
@@ -629,23 +630,6 @@ class ClassName {
 
 ##### Default Copy ( `default` ) ( Avoid ) ( Double Destructions )
 
-###### Syntax
-
-```CPP
-class ClassName {
-   public:
-      // Compiler-generated default copy constructor
-};
-```
-
-```CPP
-class ClassName {
-   public:
-      // Default Copy Constructor
-      ClassName( const ClassName& ) = default;
-};
-```
-
 ###### Explanation
 
 1. A default copy constructor is **automatically generated** by the compiler if **no user-defined
@@ -664,7 +648,37 @@ class ClassName {
 6. The `= default` syntax **explicitly requests** the compiler to generate the **default copy
    constructor**.
 
+###### Syntax
+
+```CPP
+class ClassName {
+   public:
+      // Compiler-generated default copy constructor
+};
+```
+
+```CPP
+class ClassName {
+   public:
+      // Default Copy Constructor
+      ClassName( const ClassName& ) = default;
+};
+```
+
 ##### Shallow Copy ( e.g. `memcpy` ) ( Avoid ) ( Double Destructions )
+
+###### Explanation
+
+1. A shallow copy occurs when the copy constructor **simply copies the pointer values** instead of
+   the data they point to. This can lead to **multiple instances** trying to **manage the same
+   resource**.
+2. This can lead to issues such as:
+   - **Double destructions**: When **both objects** are **destroyed**, they attempt to **free the
+     same memory location**, resulting in **undefined behavior**.
+   - **Dangling pointers**: When **one object** is **deleted**, the other **retains a pointer to the
+     deallocated memory**, leading to **program crashes if accessed**.
+3. The copy is **performed quickly** since it merely copies the pointer (for pointer types) rather
+   than the pointed-to values.
 
 ###### Syntax
 
@@ -688,20 +702,18 @@ class ClassName {
 };
 ```
 
+##### Deep Copy ( Recommend )
+
 ###### Explanation
 
-1. A shallow copy occurs when the copy constructor **simply copies the pointer values** instead of
-   the data they point to. This can lead to **multiple instances** trying to **manage the same
-   resource**.
-2. This can lead to issues such as:
-   - **Double destructions**: When **both objects** are **destroyed**, they attempt to **free the
-     same memory location**, resulting in **undefined behavior**.
-   - **Dangling pointers**: When **one object** is **deleted**, the other **retains a pointer to the
-     deallocated memory**, leading to **program crashes if accessed**.
-3. The copy is **performed quickly** since it merely copies the pointer (for pointer types) rather
-   than the pointed-to values.
-
-##### Deep Copy ( Recommend )
+1. A deep copy **ensures** that the copy constructor **creates a new instance** of any dynamically
+   allocated memory, so that two objects do **not reference the same location**.
+2. This **prevents** **double deletion** and **dangling pointer** issues, as each object manages its
+   own memory independently.
+3. Although **slower than shallow copying** due to memory allocation, deep copying is generally much
+   **safer**, particularly for complex data structures.
+4. When implementing a copy constructor, it is also **recommended** to **implement a corresponding
+   copy assignment operator** to maintain consistent behavior and proper resource management.
 
 ###### Syntax
 
@@ -725,17 +737,6 @@ class ClassName {
 
 ```
 
-###### Explanation
-
-1. A deep copy **ensures** that the copy constructor **creates a new instance** of any dynamically
-   allocated memory, so that two objects do **not reference the same location**.
-2. This **prevents** **double deletion** and **dangling pointer** issues, as each object manages its
-   own memory independently.
-3. Although **slower than shallow copying** due to memory allocation, deep copying is generally much
-   **safer**, particularly for complex data structures.
-4. When implementing a copy constructor, it is also **recommended** to **implement a corresponding
-   copy assignment operator** to maintain consistent behavior and proper resource management.
-
 #### Move Constructors
 
 ##### Explanation
@@ -749,16 +750,6 @@ class ClassName {
    containers and to optimize **performance**.
 
 ##### Default Move Constructor
-
-###### Syntax
-
-```CPP
-class ClassName {
-   public:
-      // Default Move Constructor
-      ClassName( ClassName&& ) = default;
-};
-```
 
 ###### Explanation
 
@@ -779,7 +770,27 @@ class ClassName {
 5. The `= default` syntax **explicitly requests** the compiler to generate the **default move
    constructor**.
 
+###### Syntax
+
+```CPP
+class ClassName {
+   public:
+      // Default Move Constructor
+      ClassName( ClassName&& ) = default;
+};
+```
+
 ##### Custom Move Constructor
+
+###### Explanation
+
+1. A custom move constructor is **defined** when:
+   - A class manages resources that **require special handling** (e.g., dynamic memory, file
+     handles).
+   - You need to **reset the original object to a valid state** (e.g., **nullptr**) after
+     transferring ownership.
+2. Move constructors **should be marked noexcept** to ensure **compatibility** with standard
+   containers and to optimize **performance**. containers like `std::vector`.
 
 ###### Syntax
 
@@ -804,27 +815,7 @@ class ClassName {
 };
 ```
 
-###### Explanation
-
-1. A custom move constructor is **defined** when:
-   - A class manages resources that **require special handling** (e.g., dynamic memory, file
-     handles).
-   - You need to **reset the original object to a valid state** (e.g., **nullptr**) after
-     transferring ownership.
-2. Move constructors **should be marked noexcept** to ensure **compatibility** with standard
-   containers and to optimize **performance**. containers like `std::vector`.
-
 #### Conversion Constructors
-
-##### Syntax
-
-```CPP
-class ClassName {
-   public:
-      // Conversion constructor
-      ClassName( Type parameter );
-};
-```
 
 ##### Explanation
 
@@ -837,11 +828,29 @@ class ClassName {
 4. When the target class holds additional information, conversion constructors ensure that
    initialization aligns with the class's intended use.
 
+##### Syntax
+
+```CPP
+class ClassName {
+   public:
+      // Conversion constructor
+      ClassName( Type parameter );
+};
+```
+
 #### `virtual` Constructors
 
 #### `explicit` Constructors
 
 ### Destructors
+
+#### Explanation
+
+1. A destructor is **a special member function** that is **automatically called** when an object
+   **goes out of scope** or is **explicitly deleted**. Its primary purpose is to **release
+   resources** (such as dynamically allocated memory or file handles) associated with the object.
+2. If a class has **base classes** or member objects, their destructors are **called in reverse
+   order of construction**.
 
 #### Syntax
 
@@ -853,24 +862,7 @@ class ClassName {
 };
 ```
 
-#### Explanation
-
-1. A destructor is **a special member function** that is **automatically called** when an object
-   **goes out of scope** or is **explicitly deleted**. Its primary purpose is to **release
-   resources** (such as dynamically allocated memory or file handles) associated with the object.
-2. If a class has **base classes** or member objects, their destructors are **called in reverse
-   order of construction**.
-
 #### Default Destructors
-
-##### Syntax
-
-```CPP
-class ClassName {
-   public:
-      ~ClassName() = default;   // Default destructor
-};
-```
 
 ##### Explanation
 
@@ -883,6 +875,15 @@ class ClassName {
    compatibility with standard containers, such as `std::vector`.
 4. The `= default` syntax **explicitly requests** the compiler to generate the **default
    destructor**.
+
+##### Syntax
+
+```CPP
+class ClassName {
+   public:
+      ~ClassName() = default;   // Default destructor
+};
+```
 
 #### `virtual` Destructors
 
@@ -960,8 +961,9 @@ class Derived: public Base {
 ##### Explanation
 
 1. When creating a derived class object, constructor delegation allows initializing the base class
-   part of the object. The **initialization** of **the base class members** must be done via an
-   **initializer list** in the derived class constructor.
+   part of the object.
+2. The **initialization** of **the base class members** must be done via an **initializer list** in
+   the derived class constructor.
 
 #### Construction Order
 
@@ -986,6 +988,20 @@ class Derived: public Base {
 
 #### Virtual Functions
 
+##### Explanation
+
+1. A virtual function is **a member function** declared with the `virtual` keyword in a base class,
+   allowing **derived classes** to provide their **own implementation**. When invoked through **a
+   base class pointer or reference**, the function from the most derived class is called, **enabling
+   runtime polymorphism**.
+2. Virtual functions **ensure dynamic dispatch** by resolving function calls at runtime based on the
+   object's actual type.
+3. They **can be overridden** in derived classes using the same function signature.
+4. The **`override`** keyword is **optional** but **recommended**, as it ensures that the derived
+   class correctly overrides a virtual function.
+5. If a derived class does **not override** the virtual function, the **base class's
+   implementation** will be invoked.
+
 ##### Syntax
 
 ```CPP
@@ -1003,20 +1019,6 @@ class Derived: public Base {
       };
 };
 ```
-
-##### Explanation
-
-1. A virtual function is **a member function** declared with the `virtual` keyword in a base class,
-   allowing **derived classes** to provide their **own implementation**. When invoked through **a
-   base class pointer or reference**, the function from the most derived class is called, **enabling
-   runtime polymorphism**.
-2. Virtual functions **ensure dynamic dispatch** by resolving function calls at runtime based on the
-   object's actual type.
-3. They **can be overridden** in derived classes using the same function signature.
-4. The **`override`** keyword is **optional** but **recommended**, as it ensures that the derived
-   class correctly overrides a virtual function.
-5. If a derived class does **not override** the virtual function, the **base class's
-   implementation** will be invoked.
 
 ##### Static Binding and Dynamic Binding
 
@@ -1045,15 +1047,6 @@ class Derived: public Base {
 
 #### Pure Virtual Functions and Abstract Class
 
-##### Syntax
-
-```CPP
-class ClassName {
-   public:
-      virtual RetType funcName const = 0;   // Pure virtual function
-};
-```
-
 ##### Explanation
 
 1. A pure virtual function is declared by assigning `= 0` to a virtual function, indicating that it
@@ -1069,7 +1062,30 @@ class ClassName {
 6. **Abstract classes** may contain **non-virtual member functions** in addition to pure virtual
    ones.
 
+##### Syntax
+
+```CPP
+class ClassName {
+   public:
+      virtual RetType funcName const = 0;   // Pure virtual function
+};
+```
+
 #### Virtual Destructors
+
+##### Explanation
+
+1. A virtual destructor **ensures** that when an **object** is **deleted** via a **base** class
+   **pointer**, the **destructor of** the **derived** class is **invoked**, **followed** by the
+   **base** class’s **destructor**. This guarantees that **all resources** allocated by the derived
+   class are **correctly released**, thereby **preventing memory leaks** and **ensuring complete
+   destruction** of the object.
+2. Destructors should **be declared virtual in any base class** intended for inheritance to **avoid
+   undefined behavior** during object destruction.
+3. **Without** a virtual destructor, **only** the **base** class **destructor** would **execute**,
+   leaving resources specific to the derived class unreleased.
+4. Although virtual destructors add **a slight performance overhead**, they are critical for safe
+   and **correct resource management**.
 
 ##### Syntax
 
@@ -1088,20 +1104,6 @@ class Derived: public Base {
       };
 };
 ```
-
-##### Explanation
-
-1. A virtual destructor **ensures** that when an **object** is **deleted** via a **base** class
-   **pointer**, the **destructor of** the **derived** class is **invoked**, **followed** by the
-   **base** class’s **destructor**. This guarantees that **all resources** allocated by the derived
-   class are **correctly released**, thereby **preventing memory leaks** and **ensuring complete
-   destruction** of the object.
-2. Destructors should **be declared virtual in any base class** intended for inheritance to **avoid
-   undefined behavior** during object destruction.
-3. **Without** a virtual destructor, **only** the **base** class **destructor** would **execute**,
-   leaving resources specific to the derived class unreleased.
-4. Although virtual destructors add **a slight performance overhead**, they are critical for safe
-   and **correct resource management**.
 
 ##### Notes
 
@@ -1176,6 +1178,15 @@ class Derived: public A,
 
 #### `friend` Functions
 
+##### Explanation
+
+1. A friend function is **a non-member function** that is allowed **access** to the **private** and
+   **protected** **members** of a class.
+2. If the friend function needs **access to non-static non-public members**, the **class instance**
+   should be **passed** to the **friend function**.
+3. If the friend function **only** accesses **static** members or performs operations **unrelated to
+   a specific object**, the **class instance** does **not** need to **be passed**.
+
 ##### Syntax
 
 ```
@@ -1192,16 +1203,16 @@ public:
 };
 ```
 
+#### `friend` Classes
+
 ##### Explanation
 
-1. A friend function is **a non-member function** that is allowed **access** to the **private** and
-   **protected** **members** of a class.
-2. If the friend function needs **access to non-static non-public members**, the **class instance**
-   should be **passed** to the **friend function**.
-3. If the friend function **only** accesses **static** members or performs operations **unrelated to
-   a specific object**, the **class instance** does **not** need to **be passed**.
-
-#### `friend` Classes
+1. A friend class is **a non-member class** that is granted access to the **private** and
+   **protected members** of **another** class.
+2. If the member functions of the friend class need to **access non-static non-static members**, the
+   **class instance** should be **passed** to **those functions**.
+3. If the member functions of the friend class **access static members** or perform operations
+   **unrelated to a specific object**, the class instance does **not** need to **be passed**.
 
 ##### Syntax
 
@@ -1229,15 +1240,6 @@ class ClassB {
 };
 ```
 
-##### Explanation
-
-1. A friend class is **a non-member class** that is granted access to the **private** and
-   **protected members** of **another** class.
-2. If the member functions of the friend class need to **access non-static non-static members**, the
-   **class instance** should be **passed** to **those functions**.
-3. If the member functions of the friend class **access static members** or perform operations
-   **unrelated to a specific object**, the class instance does **not** need to **be passed**.
-
 ### `final`
 
 ##### Explanation
@@ -1248,6 +1250,14 @@ class ClassB {
 
 #### `final` Functions
 
+##### Explanation
+
+1. A final function is **a virtual function** that **cannot be overridden** by any derived class.
+   The final specifier ensures that the function's implementation remains fixed in the class that
+   declares it as final.
+2. This feature can **improve performance** by **devirtualizing calls** to the final function, as
+   the compiler can safely inline such calls, knowing that no further overrides exist.
+
 ##### Syntax
 
 ```CPP
@@ -1257,23 +1267,7 @@ class Base {
 };
 ```
 
-##### Explanation
-
-1. A final function is **a virtual function** that **cannot be overridden** by any derived class.
-   The final specifier ensures that the function's implementation remains fixed in the class that
-   declares it as final.
-2. This feature can **improve performance** by **devirtualizing calls** to the final function, as
-   the compiler can safely inline such calls, knowing that no further overrides exist.
-
 #### `final` Classes
-
-##### Syntax
-
-```CPP
-class FinalClass final {};
-
-// class Derived: public FinalClass {};   // Error: Cannot inherit from a final class
-```
 
 ##### Explanation
 
@@ -1284,6 +1278,14 @@ class FinalClass final {};
    calls** and **remove virtual dispatch overhead**.
 3. Final classes are often used for **singleton patterns**, **utility classes**, or
    **performance-critical components** to **prevent inheritance overhead**.
+
+##### Syntax
+
+```CPP
+class FinalClass final {};
+
+// class Derived: public FinalClass {};   // Error: Cannot inherit from a final class
+```
 
 ### `explicit`
 
