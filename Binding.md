@@ -1,3 +1,21 @@
+<!-- vim-markdown-toc GFM -->
+
+- [Function Bindings](#function-bindings)
+  - [Explanation](#explanation)
+  - [Static Binding](#static-binding)
+  - [Dynamic Binding](#dynamic-binding)
+- [C++17 Bindings](#c17-bindings)
+  - [Explanation](#explanation-1)
+  - [Structured Binding](#structured-binding)
+    - [Syntax](#syntax)
+    - [Explanation](#explanation-2)
+  - [`std::tie`](#stdtie)
+    - [Syntax](#syntax-1)
+    - [Explanation](#explanation-3)
+  - [Differences Between Structured Binding and `std::tie`](#differences-between-structured-binding-and-stdtie)
+
+<!-- vim-markdown-toc -->
+
 ## Function Bindings
 
 ### Explanation
@@ -42,6 +60,15 @@
 
 ### Structured Binding
 
+#### Explanation
+
+1. Structured binding allows you to **declare multiple variables** that can simultaneously **hold
+   the values** extracted from **tuple-like structures** (such as `std::tuple`, `std::pair`, arrays,
+   or user-defined types).
+2. It simplifies the syntax for unpacking values and allows for more expressive code.
+3. **The number of variables** in `[var1, var2, ...]` is equal to **the number of values** provided
+   by the `initializer`.
+
 #### Syntax
 
 ```CPP
@@ -57,25 +84,7 @@ auto& [var1, var2, ...] = initializer;
 for ( auto& [var1, var2, ...] : container );
 ```
 
-#### Explanation
-
-1. Structured binding allows you to **declare multiple variables** that can simultaneously **hold
-   the values** extracted from **tuple-like structures** (such as `std::tuple`, `std::pair`, arrays,
-   or user-defined types).
-2. It simplifies the syntax for unpacking values and allows for more expressive code.
-3. **The number of variables** in `[var1, var2, ...]` is equal to **the number of values** provided
-   by the `initializer`.
-
 ### `std::tie`
-
-#### Syntax
-
-```CPP
-Type1 var1;
-Type2 var2;
-...
-std::tie( var1, var2, ... ) = initializer;
-```
 
 #### Explanation
 
@@ -88,6 +97,15 @@ std::tie( var1, var2, ... ) = initializer;
    `std::tuple` or `std::pair`. It will **not work** with types that **lack a tuple-like
    interface**, such as `std::get`.
 4. `std::tie` should **not** be used to **bind a temporary object** to avoid **undefined behavior**.
+
+#### Syntax
+
+```CPP
+Type1 var1;
+Type2 var2;
+...
+std::tie( var1, var2, ... ) = initializer;
+```
 
 ### Differences Between Structured Binding and `std::tie`
 
