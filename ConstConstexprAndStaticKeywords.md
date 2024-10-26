@@ -1,80 +1,80 @@
 <!-- vim-markdown-toc GFM -->
 
-* [`const`, `constexpr` and `static`](#const-constexpr-and-static)
-  * [1) `const`](#1-const)
-    * [Explanation](#explanation)
-    * [Usage](#usage)
-      * [(1) `const` Variables](#1-const-variables)
-        * [Syntax](#syntax)
-        * [Explanation](#explanation-1)
-      * [(2) `const` Pointers](#2-const-pointers)
-        * [Syntax](#syntax-1)
-        * [Explanation](#explanation-2)
-      * [(3) `const` Member Variables](#3-const-member-variables)
-        * [Syntax](#syntax-2)
-        * [Explanation](#explanation-3)
-      * [(4) `const` Methods or `const` Member Functions](#4-const-methods-or-const-member-functions)
-        * [Syntax](#syntax-3)
-        * [Explanation](#explanation-4)
-      * [(5) `const` Function Parameters](#5-const-function-parameters)
-        * [Syntax](#syntax-4)
-        * [Explanation](#explanation-5)
-      * [(6) `const` Return Values](#6-const-return-values)
-        * [Syntax](#syntax-5)
-        * [Explanation](#explanation-6)
-      * [(7) `const` Return Pointers](#7-const-return-pointers)
-        * [Syntax](#syntax-6)
-        * [Explanation](#explanation-7)
-      * [(8) `const` Return References](#8-const-return-references)
-        * [Syntax](#syntax-7)
-        * [Explanation](#explanation-8)
-      * [(9) A `const` Instance of a `class`](#9-a-const-instance-of-a-class)
-    * [Syntax](#syntax-8)
-    * [Explanation](#explanation-9)
-  * [2) `constexpr`](#2-constexpr)
-    * [Explanation](#explanation-10)
-    * [Allowed Elements or Valid Elements](#allowed-elements-or-valid-elements)
-    * [Disallowed Elements](#disallowed-elements)
-    * [Usage](#usage-1)
-      * [(1) `constexpr` Variables](#1-constexpr-variables)
-        * [Syntax](#syntax-9)
-        * [Explanation](#explanation-11)
-      * [(2) `constexpr` Pointers](#2-constexpr-pointers)
-        * [Syntax](#syntax-10)
-        * [Explanation](#explanation-12)
-      * [(3) `constexpr` Member Variables](#3-constexpr-member-variables)
-        * [Syntax](#syntax-11)
-        * [Explanation](#explanation-13)
-      * [(4) `constexpr` Functions or `constexpr` Return Values](#4-constexpr-functions-or-constexpr-return-values)
-        * [Syntax](#syntax-12)
-        * [Explanation](#explanation-14)
-      * [(5) `constexpr` Constructors (C++11 and later):](#5-constexpr-constructors-c11-and-later)
-        * [Syntax](#syntax-13)
-        * [Explanation](#explanation-15)
-      * [(6) A `constexpr` Instance of a `class`](#6-a-constexpr-instance-of-a-class)
-    * [Syntax](#syntax-14)
-    * [Explanation](#explanation-16)
-  * [3) `static`](#3-static)
-    * [Explanation](#explanation-17)
-    * [Usage](#usage-2)
-      * [(1) `static` Local Variables](#1-static-local-variables)
-        * [Syntax](#syntax-15)
-        * [Explanation](#explanation-18)
-      * [(2) `static` Global Variables](#2-static-global-variables)
-        * [Syntax](#syntax-16)
-        * [Explanation](#explanation-19)
-      * [(3) `static` Member Variables](#3-static-member-variables)
-        * [Syntax](#syntax-17)
-        * [Explanation](#explanation-20)
-      * [(4) `static` Methods or `static` Member Function](#4-static-methods-or-static-member-function)
-        * [Syntax](#syntax-18)
-        * [Explanation](#explanation-21)
-      * [(5) `static` Global Functions](#5-static-global-functions)
-        * [Syntax](#syntax-19)
-      * [(6) A `static` Instance of a `class`](#6-a-static-instance-of-a-class)
-    * [Syntax](#syntax-20)
-    * [Explanation](#explanation-22)
-        * [Explanation](#explanation-23)
+- [`const`, `constexpr` and `static`](#const-constexpr-and-static)
+  - [1) `const`](#1-const)
+    - [Explanation](#explanation)
+    - [Usage](#usage)
+      - [(1) `const` Variables](#1-const-variables)
+        - [Explanation](#explanation-1)
+        - [Syntax](#syntax)
+      - [(2) `const` Pointers](#2-const-pointers)
+        - [Explanation](#explanation-2)
+        - [Syntax](#syntax-1)
+      - [(3) `const` Member Variables](#3-const-member-variables)
+        - [Explanation](#explanation-3)
+        - [Syntax](#syntax-2)
+      - [(4) `const` Methods or `const` Member Functions](#4-const-methods-or-const-member-functions)
+        - [Explanation](#explanation-4)
+        - [Syntax](#syntax-3)
+      - [(5) `const` Function Parameters](#5-const-function-parameters)
+        - [Explanation](#explanation-5)
+        - [Syntax](#syntax-4)
+      - [(6) `const` Return Values](#6-const-return-values)
+        - [Explanation](#explanation-6)
+        - [Syntax](#syntax-5)
+      - [(7) `const` Return Pointers](#7-const-return-pointers)
+        - [Explanation](#explanation-7)
+        - [Syntax](#syntax-6)
+      - [(8) `const` Return References](#8-const-return-references)
+        - [Explanation](#explanation-8)
+        - [Syntax](#syntax-7)
+      - [(9) A `const` Instance of a `class`](#9-a-const-instance-of-a-class)
+        - [Explanation](#explanation-9)
+        - [Syntax](#syntax-8)
+  - [2) `constexpr`](#2-constexpr)
+    - [Explanation](#explanation-10)
+    - [Allowed Elements or Valid Elements](#allowed-elements-or-valid-elements)
+    - [Disallowed Elements](#disallowed-elements)
+    - [Usage](#usage-1)
+      - [(1) `constexpr` Variables](#1-constexpr-variables)
+        - [Explanation](#explanation-11)
+        - [Syntax](#syntax-9)
+      - [(2) `constexpr` Pointers](#2-constexpr-pointers)
+        - [Explanation](#explanation-12)
+        - [Syntax](#syntax-10)
+      - [(3) `constexpr` Member Variables](#3-constexpr-member-variables)
+        - [Explanation](#explanation-13)
+        - [Syntax](#syntax-11)
+      - [(4) `constexpr` Functions or `constexpr` Return Values](#4-constexpr-functions-or-constexpr-return-values)
+        - [Explanation](#explanation-14)
+        - [Syntax](#syntax-12)
+      - [(5) `constexpr` Constructors (C++11 and later):](#5-constexpr-constructors-c11-and-later)
+        - [Explanation](#explanation-15)
+        - [Syntax](#syntax-13)
+      - [(6) A `constexpr` Instance of a `class`](#6-a-constexpr-instance-of-a-class)
+        - [Explanation](#explanation-16)
+        - [Syntax](#syntax-14)
+  - [3) `static`](#3-static)
+    - [Explanation](#explanation-17)
+    - [Usage](#usage-2)
+      - [(1) `static` Local Variables](#1-static-local-variables)
+        - [Explanation](#explanation-18)
+        - [Syntax](#syntax-15)
+      - [(2) `static` Global Variables](#2-static-global-variables)
+        - [Explanation](#explanation-19)
+        - [Syntax](#syntax-16)
+      - [(3) `static` Member Variables](#3-static-member-variables)
+        - [Explanation](#explanation-20)
+        - [Syntax](#syntax-17)
+      - [(4) `static` Methods or `static` Member Function](#4-static-methods-or-static-member-function)
+        - [Explanation](#explanation-21)
+        - [Syntax](#syntax-18)
+      - [(5) `static` Global Functions](#5-static-global-functions)
+        - [Explanation](#explanation-22)
+        - [Syntax](#syntax-19)
+      - [(6) A `static` Instance of a `class`](#6-a-static-instance-of-a-class)
+        - [Explanation](#explanation-23)
+        - [Syntax](#syntax-20)
 
 <!-- vim-markdown-toc -->
 
@@ -94,12 +94,6 @@
 
 ##### (1) `const` Variables
 
-###### Syntax
-
-```CPP
-const Type var_name = value;
-```
-
 ###### Explanation
 
 1. A `const` variable is **a variable** whose value **cannot be changed** after it has been
@@ -109,12 +103,13 @@ const Type var_name = value;
 3. A const variable can be **evaluated at compile time** if it is **initialized with a constant
    expression**.
 
-##### (2) `const` Pointers
-
 ###### Syntax
 
-1. Pointer to constant value: `const Type* ptr_name;`
-2. Constant pointer: `Type* const ptr_name;`
+```CPP
+const Type var_name = value;
+```
+
+##### (2) `const` Pointers
 
 ###### Explanation
 
@@ -123,16 +118,12 @@ const Type var_name = value;
 2. `Type* const pointer_name;` means **the pointer address itself** cannot be changed after it is
    initialized.
 
-##### (3) `const` Member Variables
-
 ###### Syntax
 
-```CPP
-class ClassName {
-   private:
-      const Type _mem = initializer; // In-Class Initialization
-};
-```
+1. Pointer to constant value: `const Type* ptr_name;`
+2. Constant pointer: `Type* const ptr_name;`
+
+##### (3) `const` Member Variables
 
 ###### Explanation
 
@@ -144,13 +135,16 @@ class ClassName {
      **initializer lists**. It can be **overridden** by the constructor.
    - **Constructor initializer lists**.
 
-##### (4) `const` Methods or `const` Member Functions
-
 ###### Syntax
 
 ```CPP
-RetType funcName( para_list ) const;
+class ClassName {
+   private:
+      const Type _mem = initializer; // In-Class Initialization
+};
 ```
+
+##### (4) `const` Methods or `const` Member Functions
 
 ###### Explanation
 
@@ -165,7 +159,18 @@ RetType funcName( para_list ) const;
    **not belong to the class**. Only the **address** stored in the pointer **belongs to the class**.
    Therefore, a const function can **still modify the pointed-to value or object**.
 
+###### Syntax
+
+```CPP
+RetType funcName( para_list ) const;
+```
+
 ##### (5) `const` Function Parameters
+
+###### Explanation
+
+1. A const parameter is **a parameter** that receives an argument and **ensures** that the function
+   **does not change the argument**.
 
 ###### Syntax
 
@@ -173,12 +178,14 @@ RetType funcName( para_list ) const;
 void funcName( const Type para1, ... );
 ```
 
+##### (6) `const` Return Values
+
 ###### Explanation
 
-1. A const parameter is **a parameter** that receives an argument and **ensures** that the function
-   **does not change the argument**.
-
-##### (6) `const` Return Values
+1. **Returning a `const` value** from a function indicates that the returned value **cannot be
+   modified** by the caller.
+2. However, if we **assign** a `const` return value **to a non-const variable**, we **can modify**
+   the variable **after** the **assignment** is complete.
 
 ###### Syntax
 
@@ -188,14 +195,14 @@ const RetType funcName( para_list ) {
 };
 ```
 
+##### (7) `const` Return Pointers
+
 ###### Explanation
 
-1. **Returning a `const` value** from a function indicates that the returned value **cannot be
-   modified** by the caller.
-2. However, if we **assign** a `const` return value **to a non-const variable**, we **can modify**
-   the variable **after** the **assignment** is complete.
-
-##### (7) `const` Return Pointers
+1. A function can return **a pointer to a constant value**, ensuring that **the value** being
+   pointed to **cannot be modified** through the pointer.
+2. If we want to assign a `const` return pointer to a variable, that **variable** must also be **a
+   pointer to `const`**.
 
 ###### Syntax
 
@@ -205,14 +212,14 @@ const returnType* funcName() {
 };
 ```
 
+##### (8) `const` Return References
+
 ###### Explanation
 
-1. A function can return **a pointer to a constant value**, ensuring that **the value** being
-   pointed to **cannot be modified** through the pointer.
-2. If we want to assign a `const` return pointer to a variable, that **variable** must also be **a
-   pointer to `const`**.
-
-##### (8) `const` Return References
+1. A function can return **a reference to a constant object**, allowing **efficient access** to the
+   object while ensuring it **cannot be modified**.
+2. If we want to assign a `const` return reference to a variable, that **variable** must also be **a
+   `const` reference**.
 
 ###### Syntax
 
@@ -222,22 +229,9 @@ const returnType& funcName() {
 };
 ```
 
-###### Explanation
-
-1. A function can return **a reference to a constant object**, allowing **efficient access** to the
-   object while ensuring it **cannot be modified**.
-2. If we want to assign a `const` return reference to a variable, that **variable** must also be **a
-   `const` reference**.
-
 ##### (9) A `const` Instance of a `class`
 
-#### Syntax
-
-```CPP
-const ClassName obj_ptr;
-```
-
-#### Explanation
+###### Explanation
 
 1. A `const` instance **ensures** that none of its **non-mutable members can be modified** after
    initialization.
@@ -247,6 +241,12 @@ const ClassName obj_ptr;
 3. **Only const-qualified member functions can be called** on a `const` instance. These are
    functions that do not modify the object’s state.
 4. A `const` instance can still **modify `mutable` members**.
+
+###### Syntax
+
+```CPP
+const ClassName obj_ptr;
+```
 
 ### 2) `constexpr`
 
@@ -278,19 +278,25 @@ const ClassName obj_ptr;
 
 ##### (1) `constexpr` Variables
 
-###### Syntax
-
-```CPP
-constexpr Type var_name = initializer;
-```
-
 ###### Explanation
 
 1. A constexpr variable is **a variable** that **must be initialized with an initializer** that can
    be fully **resolved at compile-time**.
 2. The **initializer must** be **evaluated at compile time**.
 
+###### Syntax
+
+```CPP
+constexpr Type var_name = initializer;
+```
+
 ##### (2) `constexpr` Pointers
+
+###### Explanation
+
+1. `constexpr` applies to the **pointer itself**, meaning **the address** stored in the pointer must
+   **be a constant expression**.
+2. The **address** stored in a `constexpr` pointer must **be known at compile-time**.
 
 ###### Syntax
 
@@ -299,13 +305,14 @@ Type var_name = initializer;
 constexpr Type var_name = initializer;
 ```
 
+##### (3) `constexpr` Member Variables
+
 ###### Explanation
 
-1. `constexpr` applies to the **pointer itself**, meaning **the address** stored in the pointer must
-   **be a constant expression**.
-2. The **address** stored in a `constexpr` pointer must **be known at compile-time**.
-
-##### (3) `constexpr` Member Variables
+1. A `constexpr` member variable is **a variable** defined within a class that can be **initialized
+   with constant expressions**.
+2. This allows them to be **evaluated at compile time**, which can lead to performance improvements
+   and enable more complex compile-time computations.
 
 ###### Syntax
 
@@ -316,24 +323,7 @@ class ClassName {
 };
 ```
 
-###### Explanation
-
-1. A `constexpr` member variable is **a variable** defined within a class that can be **initialized
-   with constant expressions**.
-2. This allows them to be **evaluated at compile time**, which can lead to performance improvements
-   and enable more complex compile-time computations.
-
 ##### (4) `constexpr` Functions or `constexpr` Return Values
-
-###### Syntax
-
-```CPP
-constexpr RetType funcName( para_list ) {
-    // Function body
-};
-
-constexpr RetType var_name = funcName( para_list );
-```
 
 ###### Explanation
 
@@ -347,7 +337,26 @@ constexpr RetType var_name = funcName( para_list );
 4. **`RetType`** must be **a literal type**, which includes integral types, floating-point types,
    pointers, and certain user-defined types.
 
+###### Syntax
+
+```CPP
+constexpr RetType funcName( para_list ) {
+    // Function body
+};
+
+constexpr RetType var_name = funcName( para_list );
+```
+
 ##### (5) `constexpr` Constructors (C++11 and later):
+
+###### Explanation
+
+1. A `constexpr` constructor is **a construcotr** that can be used to **create instances** of the
+   class with **constant expressions**.
+2. When a `constexpr` constructor is used to construct an object, the best choice is to keep the
+   **object as a `constexpr` type**, and **its initializer** should be **evaluated at compile
+   time**. Only when all related elements can be evaluated at compile time can the constructor also
+   be evaluated at compile time.
 
 ###### Syntax
 
@@ -364,24 +373,9 @@ class ClassName {
 constexpr ClassName obj_name( para_list );
 ```
 
-###### Explanation
-
-1. A `constexpr` constructor is **a construcotr** that can be used to **create instances** of the
-   class with **constant expressions**.
-2. When a `constexpr` constructor is used to construct an object, the best choice is to keep the
-   **object as a `constexpr` type**, and **its initializer** should be **evaluated at compile
-   time**. Only when all related elements can be evaluated at compile time can the constructor also
-   be evaluated at compile time.
-
 ##### (6) A `constexpr` Instance of a `class`
 
-#### Syntax
-
-```CPP
-constexpr ClassName obj_ptr;
-```
-
-#### Explanation
+###### Explanation
 
 1. A `constexpr` instance is **an object** that is **evaluated at compile-time**, if all its
    dependencies (constructors, functions, and data) are also `constexpr`.
@@ -394,6 +388,12 @@ constexpr ClassName obj_ptr;
 6. Data members used in `constexpr` evaluation must be integral constants or themselves `constexpr`.
 7. A `constexpr` instance **is always `const`** implicitly, but the reverse is not true—`const`
    instances are not guaranteed to be evaluated at compile time.
+
+###### Syntax
+
+```CPP
+constexpr ClassName obj_ptr;
+```
 
 ### 3) `static`
 
@@ -414,6 +414,14 @@ constexpr ClassName obj_ptr;
 
 ##### (1) `static` Local Variables
 
+###### Explanation
+
+1. A static local variable is **a static variable** declared within a function that **maintains its
+   state between function calls**.
+2. It has **local scope**, meaning it is **only accessible within the function where it is
+   declared**.
+3. The variable is **automatically initialized to zero** if **not explicitly initialized**.
+
 ###### Syntax
 
 ```CPP
@@ -423,21 +431,7 @@ RetType funcName() {
 };
 ```
 
-###### Explanation
-
-1. A static local variable is **a static variable** declared within a function that **maintains its
-   state between function calls**.
-2. It has **local scope**, meaning it is **only accessible within the function where it is
-   declared**.
-3. The variable is **automatically initialized to zero** if **not explicitly initialized**.
-
 ##### (2) `static` Global Variables
-
-###### Syntax
-
-```CPP
-static Type var_name;
-```
 
 ###### Explanation
 
@@ -445,7 +439,23 @@ static Type var_name;
    file** in which it is declared, **preventing name conflicts in other files**.
 2. The variable is **automatically initialized to zero** if **not explicitly initialized**.
 
+###### Syntax
+
+```CPP
+static Type var_name;
+```
+
 ##### (3) `static` Member Variables
+
+###### Explanation
+
+1. `static` members of a class belong to the class itself rather than any object instance and **can
+   be accessed without an instance**. **`static` members** are **shared among all instances of that
+   class**.
+2. They are accessed **using the class name** instead of the object name.
+3. `static` keyword **only changes their lifetime**; it does **not affect their visibility**.
+4. We should **define or initialize it outside the class**.
+5. In fact, static members are **static variables defined within a namespace**.
 
 ###### Syntax
 
@@ -463,17 +473,16 @@ Type1 ClassName::_staticMember1 = 0;
 Type2 ClassName::_staticMember2 = 0;
 ```
 
+##### (4) `static` Methods or `static` Member Function
+
 ###### Explanation
 
-1. `static` members of a class belong to the class itself rather than any object instance and **can
-   be accessed without an instance**. **`static` members** are **shared among all instances of that
-   class**.
-2. They are accessed **using the class name** instead of the object name.
-3. `static` keyword **only changes their lifetime**; it does **not affect their visibility**.
-4. We should **define or initialize it outside the class**.
-5. In fact, static members are **static variables defined within a namespace**.
-
-##### (4) `static` Methods or `static` Member Function
+1. A static member function is **a function** defined within a class that can **be called without
+   creating an instance** of the class.
+2. It **cannot access instance variables or instance methods** directly, since it **does not have a
+   `this`** pointer. This means it can **only access static data members** or other **static member
+   functions** within the class.
+3. It can be **called using the class name**.
 
 ###### Syntax
 
@@ -488,16 +497,12 @@ public:
 RetType var_name = ClassName::funcName( para_list );
 ```
 
+##### (5) `static` Global Functions
+
 ###### Explanation
 
-1. A static member function is **a function** defined within a class that can **be called without
-   creating an instance** of the class.
-2. It **cannot access instance variables or instance methods** directly, since it **does not have a
-   `this`** pointer. This means it can **only access static data members** or other **static member
-   functions** within the class.
-3. It can be **called using the class name**.
-
-##### (5) `static` Global Functions
+1. A static global function is a function **limited in visibility to the file** where it is defined,
+   which helps to **avoid name conflicts across different files**.
 
 ###### Syntax
 
@@ -509,13 +514,7 @@ static RetType funcName() {
 
 ##### (6) A `static` Instance of a `class`
 
-#### Syntax
-
-```CPP
-static ClassName obj_ptr;
-```
-
-#### Explanation
+###### Explanation
 
 1. A static instance of a class refers to **an object of the class** that has static storage
    duration.
@@ -524,7 +523,8 @@ static ClassName obj_ptr;
 4. It can be scoped to a function, class, or namespace, depending on where it is declared.
 5. In fact, it's **a static variable**, a static local variable or a static global variable.
 
-###### Explanation
+###### Syntax
 
-1. A static global function is a function **limited in visibility to the file** where it is defined,
-   which helps to **avoid name conflicts across different files**.
+```CPP
+static ClassName obj_ptr;
+```
