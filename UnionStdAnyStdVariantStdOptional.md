@@ -28,6 +28,14 @@
   - [Explanation](#explanation-4)
   - [Synatx](#synatx-3)
   - [Members and Related Stuffs](#members-and-related-stuffs-2)
+    - [Links](#links-2)
+    - [Template parameters](#template-parameters-1)
+    - [Member Types](#member-types)
+    - [Member Functions](#member-functions-2)
+    - [Non-member functions](#non-member-functions-2)
+    - [Helper classes](#helper-classes-2)
+    - [Helpers](#helpers)
+    - [Helper specializations](#helper-specializations)
 
 <!-- vim-markdown-toc -->
 
@@ -151,7 +159,7 @@ var_name = val;
 // Checking type
 if( std::holds_alternative< Type >( var_name ) ) {
    // Do something
-}
+};
 ```
 
 ```CPP
@@ -170,7 +178,7 @@ if( auto var_val = std::get_if< Type >( var_name ) ) {
    std::cout << *var_val << std::endl;
    // or std::cout << std::get< Type >( var_name ) << std::endl;
    // Do something
-}
+};
 ```
 
 ```CPP
@@ -190,7 +198,7 @@ try {
       var_name );   // This will throw if myVariant does not hold a double
 } catch( const std::bad_variant_access& e ) {
    std::cerr << "Bad variant access: " << e.what() << std::endl;
-}
+};
 ```
 
 ### Members and Related Stuffs
@@ -253,7 +261,7 @@ try {
 
 ### Explanation
 
-1. `std::any` is **a type-safe container** for **single values** of **any type**.
+1. `std::any` is **a type-safe container (a class)** for **single values** of **any type**.
 2. It can hold **an instance of any type**, enabling you to store heterogeneous values **without
    knowing their types at compile time**.
 3. This feature makes `std::any` particularly useful in scenarios like **dynamic type storage and
@@ -282,7 +290,7 @@ var_name = val;
 // Checking type
 if( var_name.type() == typeid( Type ) ) {
    // Do something
-}
+};
 ```
 
 ```CPP
@@ -303,7 +311,7 @@ try {
       var_name );   // throws std::bad_any_cast if the type is incorrect
 } catch( const std::bad_any_cast& e ) {
    // Handle error
-}
+};
 ```
 
 ```CPP
@@ -345,17 +353,142 @@ var_name.reset();   // clears the stored value
 
 ### Explanation
 
+1. `std::optional` is **a wrapper type (a template class)** used to **represent an object** that
+   **may or may not contain a value**.
+2. It encapsulates an optional value, offering **a safer alternative** to **return values** from
+   functions (e.g., when searching for elements), **`nullptr`** or **sentinel values** (e.g., `-1`
+   as an invalid index).
+3. By explicitly managing cases where a value might be absent, it **enhances code clarity** and
+   **reduces the risks of runtime errors** (like accessing uninitialized variables).
+4. An example is using it to **determine whether a file is successfully read**.
+
 ### Synatx
+
+```CPP
+// Declaration Syntax
+#include <optional>
+std::optional< Type > var_name;
+```
+
+```CPP
+// Definition Syntax
+std::optional< Type > var_name = std::nullopt;   // Empty optional.
+```
+
+```CPP
+// Definition Syntax
+std::optional< Type > var_name = val;            // Contains a value.
+```
+
+```CPP
+// Assignment Syntax
+var_name = std::nullopt;   // Reset to empty state.
+var_name = val;            // Assign a value.
+```
+
+```CPP
+// Checking if value exists
+if( var_name.has_value() ) {   // or if( var_name ) {
+   Type& val_name = *var_name;
+   // or Type& val_name = var_name.value();
+   // Do something with the value.
+};
+```
+
+```CPP
+// Retrieving value (throws exception if empty)
+Type var_val = var_name.value();
+```
+
+```CPP
+// Retrieving value (avoids exception)
+Type var_val = var_name.value_or( default_value );
+```
+
+```CPP
+// Handling exceptions for empty optionals
+try {
+   Type var_val
+      = var_name.value();   // Throws std::bad_optional_access if empty.
+} catch( const std::bad_optional_access& e ) {
+   // Handle the error.
+};
+```
+
+```CPP
+// Resetting the optional to empty state
+var_name.reset();   // Clears the value.
+```
 
 ### Members and Related Stuffs
 
-<!-- (52) optional data: It is a new feature introduced in C++17 that allows us to determine whether the -->
-<!-- data is accessible. This feature makes our code cleaner. An example is using it to determine whether -->
-<!-- we successfully read a file. -->
-<!--   std::optional< Type > var_name = functionName(); -->
-<!--   Type default_value = var_name.value_or(a default value you want); -->
-<!--   if( var_name.has_value() ) { // or if( var_name ) { -->
-<!--     Type& val_name = *var_name; -->
-<!--     // or Type& val_name = var_name.value(); -->
-<!--     ... -->
-<!--     }; // or -->
+#### Links
+
+1. [`std::optional` in cplusplus]().
+2. [`std::optional` in cppreference](https://en.cppreference.com/w/cpp/utility/optional).
+
+#### Template parameters
+
+1. `T`: The type of the value to manage initialization state for.
+
+#### Member Types
+
+1. `value_type`: `T`
+2. `iterator` (since C++26): Implementation-defined `LegacyRandomAccessIterator`,
+   `ConstexprIterator`, and `contiguous_iterator` whose `value_type` and `reference` are
+   `std::remove_cv_t< T >` and `T&`, respectively.
+3. `const_iterator` (since C++26): Implementation-defined `LegacyRandomAccessIterator`,
+   `ConstexprIterator`, and `contiguous_iterator` whose `value_type` and reference are
+   `std::remove_cv_t< T >` and `const T&`, respectively.
+
+#### Member Functions
+
+1. (constructor): Constructs the optional object (public member function).
+2. (destructor): Destroys the contained value, if there is one (public member function).
+3. `operator=`: Assigns contents (public member function).
+4. `begin` (C++26): Returns an iterator to the beginning (public member function).
+5. `end` (C++26): Returns an iterator to the end (public member function).
+6. `operator->`, `operator*`: Accesses the contained value (public member function).
+7. `operator bool`, `has_value`: Checks whether the object contains a value (public member
+   function).
+8. `value`: Returns the contained value (public member function).
+9. `value_or`: Returns the contained value if available, another value otherwise (public member
+   function).
+10. `and_then` (C++23): Returns the result of the given function on the contained value if it
+    exists, or an empty optional otherwise (public member function).
+11. `transform` (C++23): Returns an optional containing the transformed contained value if it
+    exists, or an empty optional otherwise (public member function).
+12. `or_else` (C++23): Returns the optional itself if it contains a value, or the result of the
+    given function otherwise (public member function).
+13. `swap`: Exchanges the contents (public member function).
+14. `reset`: Destroys any contained value (public member function).
+15. `emplace`: Constructs the contained value in-place (public member function).
+
+#### Non-member functions
+
+1. `operator==/!=/</<=/>/>=` (C++17), `operator<=>` (C++20): Compares optional objects (function
+   template).
+2. `make_optional` (C++17): Creates an optional object (function template).
+3. `std::swap( std::optional )` (C++17): Specializes the `std::swap` algorithm (function template).
+
+#### Helper classes
+
+1. `std::hash< std::optional >` (C++17): Hash support for `std::optional` (class template
+   specialization).
+2. `nullopt_t` (C++17): indicator of an `std::optional` that does not contain a value (class).
+3. `bad_optional_access` (C++17): Exception indicating checked access to an optional that doesn't
+   contain a value (class).
+
+#### Helpers
+
+1. `nullopt` (C++17): An object of type `nullopt_t` (constant).
+2. `in_place` (C++17), `in_place_type` (C++17), `in_place_index` (C++17), `in_place_t` (C++17),
+   `in_place_type_t` (C++17), `in_place_index_t` (C++17): `in-place` construction tag (tag).
+
+#### Helper specializations
+
+1. `template< class T > constexpr bool ranges::enable_view< std::optional< T > > = true;` (since
+   C++26): This specialization of `ranges::enable_view` makes optional satisfy view.
+2. `template< class T > constexpr auto format_kind< std::optional< T > > = range_format::disabled;`
+   (since C++26): This specialization of `format_kind` disables the range formatting support of
+   optional.

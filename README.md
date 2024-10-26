@@ -22,7 +22,7 @@
   - [`enum`](./Enum.md)
   - [Array](./Array.md)
     - [Dynamic Arrays or `std::vector`](./DynamicArraysOrStdVector.md)
-  - [`union`, `std:any` and `std::variabt`](./UnionStdAnyStdVariant.md)
+  - [`union`, `std:any` `std::variant` and `std::optional`](./UnionStdAnyStdVariantStdOptional.md)
   - [Char and String](./CharAndString.md)
   - [Smart Pointer](./SmartPointer.md)
   - [Thread](./Thread.md)
