@@ -4,27 +4,27 @@
   - [Explanation](#explanation)
   - [Categories](#categories)
   - [Operator Overloading](#operator-overloading)
-    - [Syntax](#syntax)
     - [Explanation](#explanation-1)
+    - [Syntax](#syntax)
     - [Copy-assignment Operator](#copy-assignment-operator)
       - [Default Copy-assignment Operator](#default-copy-assignment-operator)
-        - [Syntax](#syntax-1)
         - [Explanation](#explanation-2)
+        - [Syntax](#syntax-1)
       - [Copy-assignment Operator Overloading](#copy-assignment-operator-overloading)
-        - [Syntax](#syntax-2)
         - [Explanation](#explanation-3)
+        - [Syntax](#syntax-2)
     - [Move-assignment Operator](#move-assignment-operator)
       - [Default Move-assignment Operator](#default-move-assignment-operator)
-        - [Syntax](#syntax-3)
         - [Explanation](#explanation-4)
+        - [Syntax](#syntax-3)
       - [Move-assignment Operator Overloading](#move-assignment-operator-overloading)
-        - [Syntax](#syntax-4)
         - [Explanation](#explanation-5)
+        - [Syntax](#syntax-4)
     - [Conversion Operator](#conversion-operator)
-      - [Conversion Operator Overloading](#conversion-operator-overloading)
-      - [Syntax](#syntax-5)
       - [Explanation](#explanation-6)
-      - [Notes](#notes)
+      - [Conversion Operator Overloading](#conversion-operator-overloading)
+        - [Syntax](#syntax-5)
+        - [Notes](#notes)
     - [`explicit` Conversion Operator](#explicit-conversion-operator)
   - [`new` and `delete`](#new-and-delete)
   - [The Usage of the `:` Operator](#the-usage-of-the--operator)
@@ -117,12 +117,6 @@
 
 ### Operator Overloading
 
-#### Syntax
-
-```CPP
-RetType operatorSymbol( para_list );
-```
-
 #### Explanation
 
 1. Operator overloading allows you to **define custom behavior for operators** (e.g`.`, `+`, `-`,
@@ -130,15 +124,15 @@ RetType operatorSymbol( para_list );
 1. The `RetType` depends on **the output of the operator** which you want to overload. The
    `para_list` depends on **the inputs to the operator and the object** you want to operate on.
 
+#### Syntax
+
+```CPP
+RetType operatorSymbol( para_list );
+```
+
 #### Copy-assignment Operator
 
 ##### Default Copy-assignment Operator
-
-###### Syntax
-
-```CPP
-ClassName& operator=( const ClassName& ) = default;
-```
 
 ###### Explanation
 
@@ -149,7 +143,18 @@ ClassName& operator=( const ClassName& ) = default;
 3. The `= default` syntax **explicitly requests** the compiler to generate the **default
    copy-assignment operator**.
 
+###### Syntax
+
+```CPP
+ClassName& operator=( const ClassName& ) = default;
+```
+
 ##### Copy-assignment Operator Overloading
+
+###### Explanation
+
+1. The copy-assignment operator can be overloaded to handle **deep copies**, manage resources
+   appropriately, and perform self-assignment checks.
 
 ###### Syntax
 
@@ -160,20 +165,9 @@ ClassName& operator=( const ClassName& other ) {
 };
 ```
 
-###### Explanation
-
-1. The copy-assignment operator can be overloaded to handle **deep copies**, manage resources
-   appropriately, and perform self-assignment checks.
-
 #### Move-assignment Operator
 
 ##### Default Move-assignment Operator
-
-###### Syntax
-
-```CPP
-ClassName& operator=( ClassName&& ) = default;
-```
 
 ###### Explanation
 
@@ -185,7 +179,20 @@ ClassName& operator=( ClassName&& ) = default;
 4. The `= default` syntax **explicitly requests** the compiler to generate the **default
    move-assignment operator**.
 
+###### Syntax
+
+```CPP
+ClassName& operator=( ClassName&& ) = default;
+```
+
 ##### Move-assignment Operator Overloading
+
+###### Explanation
+
+1. The move-assignment operator can be overloaded to control how resources are transferred between
+   objects.
+2. It handles **deep moves**, which deals with issues like **double deletion** if pointers are
+   involved.
 
 ###### Syntax
 
@@ -196,25 +203,7 @@ ClassName& operator=(ClassName&& other) noexcept {
 };
 ```
 
-###### Explanation
-
-1. The move-assignment operator can be overloaded to control how resources are transferred between
-   objects.
-2. It handles **deep moves**, which deals with issues like **double deletion** if pointers are
-   involved.
-
 #### Conversion Operator
-
-##### Conversion Operator Overloading
-
-##### Syntax
-
-```CPP
-// `const` function
-operator TargetType() const {
-    // Custom conversion logic here
-};
-```
 
 ##### Explanation
 
@@ -225,7 +214,18 @@ operator TargetType() const {
 3. **Explicit Conversion**: If marked with `explicit`, the conversion will only occur when
    explicitly requested, thus preventing unintended conversions.
 
-##### Notes
+##### Conversion Operator Overloading
+
+###### Syntax
+
+```CPP
+// `const` function
+operator TargetType() const {
+    // Custom conversion logic here
+};
+```
+
+###### Notes
 
 1. If we **implement a smart pointer** by ourselves, pass it as a reference into a function and want
    to judge it if it is a null pointer, **bool conversion operator is needed**.

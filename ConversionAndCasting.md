@@ -8,41 +8,41 @@
   - [Explicit Conversion ( Type Casting )](#explicit-conversion--type-casting-)
     - [Explanation](#explanation-2)
     - [C-style Casting ( Recommend for Performance )](#c-style-casting--recommend-for-performance-)
-      - [Syntax](#syntax)
       - [Explanation](#explanation-3)
+      - [Syntax](#syntax)
     - [C++-style Casting ( Recommend for Safety )](#c-style-casting--recommend-for-safety-)
       - [Explanation](#explanation-4)
       - [`static_cast` ( Recommend for Safety and Performance )](#static_cast--recommend-for-safety-and-performance-)
-        - [Syntax](#syntax-1)
         - [Explanation](#explanation-5)
+        - [Syntax](#syntax-1)
         - [Usage](#usage)
         - [Limitations](#limitations)
         - [Requirements for Using `static_cast`](#requirements-for-using-static_cast)
       - [`dynamic_cast` ( Recommend for Safety but Not Recommend for Performance )](#dynamic_cast--recommend-for-safety-but-not-recommend-for-performance-)
-        - [Syntax](#syntax-2)
         - [Explanation](#explanation-6)
+        - [Syntax](#syntax-2)
         - [Usage](#usage-1)
         - [Limitations](#limitations-1)
         - [Requirements for Using `dynamic_cast`](#requirements-for-using-dynamic_cast)
       - [`const_cast` ( Recommend for Safety but Not Recommend for Performance )](#const_cast--recommend-for-safety-but-not-recommend-for-performance-)
-        - [Syntax](#syntax-3)
         - [Explanation](#explanation-7)
+        - [Syntax](#syntax-3)
         - [Usage](#usage-2)
       - [`reinterpret_cast` ( Recommend for Performance but Not Recommend for Safety )](#reinterpret_cast--recommend-for-performance-but-not-recommend-for-safety-)
-        - [Syntax](#syntax-4)
         - [Explanation](#explanation-8)
+        - [Syntax](#syntax-4)
         - [Usage](#usage-3)
         - [Requirements for Using `reinterpret_cast`](#requirements-for-using-reinterpret_cast)
       - [Notes](#notes)
     - [The `explicit` Keyword](#the-explicit-keyword)
-      - [Syntax](#syntax-5)
       - [Explanation](#explanation-9)
+      - [Syntax](#syntax-5)
   - [`std::bit_cast` (Recommended for Safety, Performance and Type Integrity)](#stdbit_cast-recommended-for-safety-performance-and-type-integrity)
-    - [Syntax](#syntax-6)
     - [Explanation](#explanation-10)
+    - [Syntax](#syntax-6)
     - [Usage](#usage-4)
     - [Requirements for Using `std::bit_cast`](#requirements-for-using-stdbit_cast)
-  - [Differences between `std::bit_cast` and `reinterpret_cast`](#the-difference-between-stdbit_cast-and-reinterpret_cast)
+  - [Differences between `std::bit_cast` and `reinterpret_cast`](#differences-between-stdbit_cast-and-reinterpret_cast)
     - [Safety and Type Checking](#safety-and-type-checking)
       - [`std::bit_cast`:](#stdbit_cast)
       - [`reinterpret_cast`:](#reinterpret_cast)
@@ -168,12 +168,6 @@ int main() {
 
 #### C-style Casting ( Recommend for Performance )
 
-##### Syntax
-
-```CPP
-(TargetType)initializer;
-```
-
 ##### Explanation
 
 1. C-style casting uses the syntax `(Type)initializer` to convert a variable or a value to the
@@ -184,6 +178,12 @@ int main() {
 3. In addition, the compiler may **not optimize C-style casts as effectively** since they **lack
    explicit intent**, making it harder for the compiler to understand what type conversions are
    valid.
+
+##### Syntax
+
+```CPP
+(TargetType)initializer;
+```
 
 #### C++-style Casting ( Recommend for Safety )
 
@@ -196,12 +196,6 @@ int main() {
 
 ##### `static_cast` ( Recommend for Safety and Performance )
 
-###### Syntax
-
-```CPP
-static_cast< TargetType >( initializer );
-```
-
 ###### Explanation
 
 1. `static_cast` is used for **safe, compile-time type conversion**. It can be used for well-defined
@@ -211,6 +205,12 @@ static_cast< TargetType >( initializer );
    **downcasting**.
 3. This cast involves **compile-time checks** and is generally **efficient**, as it **can be
    optimized** by the compiler.
+
+###### Syntax
+
+```CPP
+static_cast< TargetType >( initializer );
+```
 
 ###### Usage
 
@@ -248,12 +248,6 @@ static_cast< TargetType >( initializer );
 
 ##### `dynamic_cast` ( Recommend for Safety but Not Recommend for Performance )
 
-###### Syntax
-
-```CPP
-dynamic_cast< TargetType >( initializer );
-```
-
 ###### Explanation
 
 1. `dynamic_cast` is designed for **safe, runtime-checked downcasting** in **polymorphic
@@ -271,6 +265,12 @@ dynamic_cast< TargetType >( initializer );
    mode or release mode**.
 7. Last, we should **check if RTTI is enabled** in our compiler. ( GCC/G++ enables it by default,
    while MSVC does not. )
+
+###### Syntax
+
+```CPP
+dynamic_cast< TargetType >( initializer );
+```
 
 ###### Usage
 
@@ -350,12 +350,6 @@ dynamic_cast< TargetType >( initializer );
 
 ##### `const_cast` ( Recommend for Safety but Not Recommend for Performance )
 
-###### Syntax
-
-```CPP
-const_cast< TargetType >( initializer );
-```
-
 ###### Explanation
 
 1. `const_cast` is used for **adding or removing `const` or `volatile` qualifiers** from **a pointer
@@ -367,18 +361,18 @@ const_cast< TargetType >( initializer );
 4. `const_cast` **only adds or removes the `const` or `volatile` qualifiers**; it **doesn’t convert
    between unrelated types**.
 
+###### Syntax
+
+```CPP
+const_cast< TargetType >( initializer );
+```
+
 ###### Usage
 
 1. Removing `const` to modify a non-const object.
 2. Adding or removing `volatile`.
 
 ##### `reinterpret_cast` ( Recommend for Performance but Not Recommend for Safety )
-
-###### Syntax
-
-```CPP
-reinterpret_cast< TargetType >( initializer );
-```
 
 ###### Explanation
 
@@ -394,6 +388,12 @@ reinterpret_cast< TargetType >( initializer );
    type checks and simply reinterprets the bits.
 6. **Bit patterns** refer to **interpreting data as binary values** and considering **how many
    bytes** it occupies.
+
+###### Syntax
+
+```CPP
+reinterpret_cast< TargetType >( initializer );
+```
 
 ###### Usage
 
@@ -430,6 +430,15 @@ reinterpret_cast< TargetType >( initializer );
 
 #### The `explicit` Keyword
 
+##### Explanation
+
+1. The `explicit` keyword in C++ is used to **prevent implicit conversions** when defining
+   **constructors** or **conversion operators**.
+2. By marking a constructor as explicit, you ensure that it can only be called with a direct
+   initialization, thus **avoiding unintended conversions** that might lead to errors.
+3. This feature **enhances type safety** and **code readability** by making the programmer's
+   intentions clear.
+
 ##### Syntax
 
 ```CPP
@@ -444,29 +453,7 @@ explicit operator TargetType() const {
 };
 ```
 
-##### Explanation
-
-1. The `explicit` keyword in C++ is used to **prevent implicit conversions** when defining
-   **constructors** or **conversion operators**.
-2. By marking a constructor as explicit, you ensure that it can only be called with a direct
-   initialization, thus **avoiding unintended conversions** that might lead to errors.
-3. This feature **enhances type safety** and **code readability** by making the programmer's
-   intentions clear.
-
 ### `std::bit_cast` (Recommended for Safety, Performance and Type Integrity)
-
-#### Syntax
-
-```CPP
-// Declaration Syntax
-template< typename To, typename From >
-constexpr To std::bit_cast( const From& src );
-```
-
-```CPP
-// Usage Syntax
-std::bit_cast< TargetType >( initializer );
-```
 
 #### Explanation
 
@@ -482,6 +469,19 @@ std::bit_cast< TargetType >( initializer );
    from type checking, but it provides stronger guarantees about correctness.
 6. Bit patterns refer to **interpreting data as binary values** and **considering how many bytes it
    occupies**, with `std::bit_cast` ensuring the integrity of those bits.
+
+#### Syntax
+
+```CPP
+// Declaration Syntax
+template< typename To, typename From >
+constexpr To std::bit_cast( const From& src );
+```
+
+```CPP
+// Usage Syntax
+std::bit_cast< TargetType >( initializer );
+```
 
 #### Usage
 

@@ -129,8 +129,8 @@ obj._mem2 = val2;   // obj._mem1 will also be set to  val2.
 
 ### Explanation
 
-1. `std::variant` is is **a type-safe union** introduced that allows us to **list various types**
-   for a variable, as well as assign and reassign it to different types of values.
+1. `std::variant` is **a type-safe union** introduced that allows us to **list various types** for a
+   variable, as well as assign and reassign it to different types of values.
 2. It functions similarly to **a template class** or **a template structure**, rather than a union.
    While **a union** is **more efficient**, **it** is **type safer**.
 3. In some cases, using `std::variant` helps us obtain more information rather than just optional

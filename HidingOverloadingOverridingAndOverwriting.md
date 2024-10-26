@@ -1,25 +1,34 @@
 <!-- vim-markdown-toc GFM -->
 
-- [Differences Between Hiding, Overloading, Overriding, and Overwriting](#the-difference-between-hiding-overloading-overriding-and-overwriting)
+- [Differences Between Hiding, Overloading, Overriding, and Overwriting](#differences-between-hiding-overloading-overriding-and-overwriting)
   - [(1) Hiding (Name Hiding)](#1-hiding-name-hiding)
-    - [Syntax](#syntax)
     - [Explanation](#explanation)
+    - [Syntax](#syntax)
     - [How to Access Hidden Function](#how-to-access-hidden-function)
   - [(2) Overloading](#2-overloading)
     - [Explanation](#explanation-1)
     - [Syntax](#syntax-1)
   - [(3) Overriding](#3-overriding)
     - [Explanation](#explanation-2)
-    - [Example](#example)
+    - [Syntax](#syntax-2)
   - [(4) Overwriting (Not a C++ Term)](#4-overwriting-not-a-c-term)
     - [Explanation](#explanation-3)
-    - [Example](#example-1)
+    - [Syntax](#syntax-3)
 
 <!-- vim-markdown-toc -->
 
 ### Differences Between Hiding, Overloading, Overriding, and Overwriting
 
 #### (1) Hiding (Name Hiding)
+
+##### Explanation
+
+1. Hiding occurs when **a derived class** declares a function (or variable) with **the same name**
+   as a function (or variable) in **the base class**, regardless of the parameters.
+2. The **base class function** is **hidden** in the derived class scope, **even** if the
+   **signatures (parameter types) differ**.
+3. This can lead to confusion or errors because the **base class function** is **no longer
+   accessible directly** from the derived class.
 
 ##### Syntax
 
@@ -44,15 +53,6 @@ int main() {
    obj_name.show();
 };
 ```
-
-##### Explanation
-
-1. Hiding occurs when **a derived class** declares a function (or variable) with **the same name**
-   as a function (or variable) in **the base class**, regardless of the parameters.
-2. The **base class function** is **hidden** in the derived class scope, **even** if the
-   **signatures (parameter types) differ**.
-3. This can lead to confusion or errors because the **base class function** is **no longer
-   accessible directly** from the derived class.
 
 ##### How to Access Hidden Function
 

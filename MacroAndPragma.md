@@ -1,27 +1,40 @@
 <!-- vim-markdown-toc GFM -->
 
 - [Macro and Related Keywords ( Including `pragma` )](#macro-and-related-keywords--including-pragma-)
-  - [Syntax](#syntax)
   - [Explanation](#explanation)
+  - [Syntax](#syntax)
   - [Related Keywords](#related-keywords)
     - [`#ifdef`, `#ifndef`, `#else`, `#endif`](#ifdef-ifndef-else-endif)
-      - [Syntax](#syntax-1)
       - [Explanation](#explanation-1)
+      - [Syntax](#syntax-1)
     - [`#undef`](#undef)
-      - [Syntax](#syntax-2)
       - [Explanation](#explanation-2)
+      - [Syntax](#syntax-2)
     - [`#include`](#include)
-      - [Syntax](#syntax-3)
       - [Explanation](#explanation-3)
+      - [Syntax](#syntax-3)
     - [`#pragma`](#pragma)
-      - [Syntax](#syntax-4)
       - [Explanation](#explanation-4)
+      - [Syntax](#syntax-4)
     - [`const` and `constexpr`](#const-and-constexpr)
     - [`inline`](#inline)
 
 <!-- vim-markdown-toc -->
 
 ## Macro and Related Keywords ( Including `pragma` )
+
+### Explanation
+
+1. Macros are typically defined using the preprocessor directive `#define`, which allows for **text
+   substitution** **prior** to the actual **compilation** of the code. They are classified as
+   **preprocessor statements**.
+2. Macros may **represent** simple **constants** or **complex expressions**. When the preprocessor
+   encounters a macro, it replaces it with the corresponding value or code.
+3. They enable the **compilation of identical code** to produce varied outcomes **based on distinct
+   configurations**.
+4. The **backslash (`\`)** can be utilized to create **multi-line macros**.
+5. **Excessive use** of macros may adversely **affect** the **readability** of the code.
+6. **Function-like macros** can be **difficult to debug**.
 
 ### Syntax
 
@@ -41,22 +54,14 @@
                    ...
 ```
 
-### Explanation
-
-1. Macros are typically defined using the preprocessor directive `#define`, which allows for **text
-   substitution** **prior** to the actual **compilation** of the code. They are classified as
-   **preprocessor statements**.
-2. Macros may **represent** simple **constants** or **complex expressions**. When the preprocessor
-   encounters a macro, it replaces it with the corresponding value or code.
-3. They enable the **compilation of identical code** to produce varied outcomes **based on distinct
-   configurations**.
-4. The **backslash (`\`)** can be utilized to create **multi-line macros**.
-5. **Excessive use** of macros may adversely **affect** the **readability** of the code.
-6. **Function-like macros** can be **difficult to debug**.
-
 ### Related Keywords
 
 #### `#ifdef`, `#ifndef`, `#else`, `#endif`
+
+##### Explanation
+
+1. These directives are used for **conditional compilation**, allowing code to be **included or
+   excluded** based on whether a macro is defined or not.
 
 ##### Syntax
 
@@ -92,12 +97,12 @@
 #endif
 ```
 
+#### `#undef`
+
 ##### Explanation
 
-1. These directives are used for **conditional compilation**, allowing code to be **included or
-   excluded** based on whether a macro is defined or not.
-
-#### `#undef`
+1. This directive is used to **undefine a macro**, making it unavailable after that point in the
+   code.
 
 ##### Syntax
 
@@ -106,22 +111,7 @@
 #undef MACRO_NAME
 ```
 
-##### Explanation
-
-1. This directive is used to **undefine a macro**, making it unavailable after that point in the
-   code.
-
 #### `#include`
-
-##### Syntax
-
-```CPP
-#include <HeaderFile>
-```
-
-```CPP
-#include "path/to/HeaderFile"
-```
 
 ##### Explanation
 
@@ -134,18 +124,28 @@
    header file in the specific path first**. If it is **not found** there, it then **searches the
    standard include directories**.
 
+##### Syntax
+
+```CPP
+#include <HeaderFile>
+```
+
+```CPP
+#include "path/to/HeaderFile"
+```
+
 #### `#pragma`
+
+##### Explanation
+
+1. This directive provides additional information to the compiler, often used for **controlling
+   compiler-specific behaviors** but can also be relevant in the context of macros.
 
 ##### Syntax
 
 ```CPP
 #pragma once  // Ensures the file is included only once
 ```
-
-##### Explanation
-
-1. This directive provides additional information to the compiler, often used for **controlling
-   compiler-specific behaviors** but can also be relevant in the context of macros.
 
 #### `const` and `constexpr`
 

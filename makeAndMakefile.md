@@ -1,8 +1,8 @@
 <!-- vim-markdown-toc GFM -->
 
 - [`make` and Makefile](#make-and-makefile)
-  - [1) `make`](#1-make)
-  - [2) Makefile](#2-makefile)
+    - [1) `make`](#1-make)
+    - [2) Makefile](#2-makefile)
   - [Basic Syntax of Makefile](#basic-syntax-of-makefile)
     - [Code](#code)
     - [Explanation](#explanation)
@@ -10,9 +10,9 @@
     - [1) Prerequisite](#1-prerequisite)
     - [2) Steps](#2-steps)
   - [`.PHONY`, a Pseudo Target](#phony-a-pseudo-target)
-    - [1) Syntax:](#1-syntax)
-    - [2) Explanation and Usage:](#2-explanation-and-usage)
-    - [3) Example:](#3-example)
+    - [1) Syntax](#1-syntax)
+    - [2) Explanation and Usage](#2-explanation-and-usage)
+    - [3) Example](#3-example)
   - [Implicit Rule](#implicit-rule)
     - [1) Explanation](#1-explanation)
     - [2) Common Implicit Rules](#2-common-implicit-rules)
@@ -191,13 +191,13 @@ target2: dependency set2
 
 ### `.PHONY`, a Pseudo Target
 
-#### 1) Syntax:
+#### 1) Syntax
 
 ```Makefile
 .PHONY: a_pseudo_target1, a_pseudo_target2, ...
 ```
 
-#### 2) Explanation and Usage:
+#### 2) Explanation and Usage
 
 1. A pseudo-target (also called a phony target) in a Makefile is a target that does not represent a
    real file.
@@ -206,7 +206,7 @@ target2: dependency set2
 3. Since these targets do not correspond to actual files, they are marked as "phony" to avoid
    conflicts with files of the same name that might exist in the directory.
 
-#### 3) Example:
+#### 3) Example
 
 ```Makefile
 .PHONY: clean
