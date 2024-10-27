@@ -408,14 +408,15 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2
 5. `onst_reference`: `const value_type&`.
 6. `ointer`: `value_type`.
 7. `onst_pointer`: `const value_type`.
-8. `terator`: LegacyRandomAccessIterator and LegacyContiguousIterator to value_type (until C++17),
-   LegacyRandomAccessIterator and LegacyContiguousIterator that is a LiteralType (since C++17) to
-   value_type (until C++20), LegacyRandomAccessIterator, contiguous_iterator, and ConstexprIterator
-   to value_type (since C++20).
-9. `const_iterator`: LegacyRandomAccessIterator and LegacyContiguousIterator to const value_type
-   (until C++17), LegacyRandomAccessIterator and LegacyContiguousIterator that is a LiteralType
-   (since C++17) to const value_type (until C++20), LegacyRandomAccessIterator, contiguous_iterator,
-   and ConstexprIterator to const value_type (since C++20).
+8. `terator`: `LegacyRandomAccessIterator` and `LegacyContiguousIterator` to `value_type` (until
+   C++17), `LegacyRandomAccessIterator` and `LegacyContiguousIterator` that is a `LiteralType`
+   (since C++17) to `value_type` (until C++20), `LegacyRandomAccessIterator`, `contiguous_iterator`,
+   and `ConstexprIterator` to `value_type` (since C++20).
+9. `const_iterator`: `LegacyRandomAccessIterator` and `LegacyContiguousIterator` to
+   `const value_type` (until C++17), `LegacyRandomAccessIterator` and `LegacyContiguousIterator`
+   that is a `LiteralType` (since C++17) to `const value_type` (until C++20),
+   `LegacyRandomAccessIterator`, `contiguous_iterator`, and `ConstexprIterator` to
+   `const value_type` (since C++20).
 10. `reverse_iterator`: `std::reverse_iterator< iterator >`.
 11. `const_reverse_iterator`: `std::reverse_iterator< const_iterator >`.
 
