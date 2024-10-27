@@ -53,6 +53,7 @@
         - [State](#state)
         - [`std::shared_future`](#stdshared_future)
         - [Differences Between std::future and std::shared_future](#differences-between-stdfuture-and-stdshared_future)
+  - [Notes](#notes-1)
 
 <!-- vim-markdown-toc -->
 
@@ -476,3 +477,9 @@ template<> class future< void >;          //  (since C++11)
      to be accessed multiple times.
 6. Conversion:
    - `std::future` can be converted to `std::shared_future` using the `share()` function.
+
+### Notes
+
+1.  A game typically loads different objects asynchronously and in parallel using multiple threads.
+    This is why, at times, players can control their characters while some objects remain
+    unresponsive.
