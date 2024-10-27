@@ -20,7 +20,7 @@
   - [Conversion And Casting](./ConversionAndCasting.md)
   - [Binding](./Binding.md)
   - [`enum`](./Enum.md)
-  - [Array](./Array.md)
+  - [Arrays](./Arrays.md)
     - [Dynamic Arrays or `std::vector`](./DynamicArraysOrStdVector.md)
   - [`union`, `std:any` `std::variant` and `std::optional`](./UnionStdAnyStdVariantStdOptional.md)
   - [Char and String](./CharAndString.md)
