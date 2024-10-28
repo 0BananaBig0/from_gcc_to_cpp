@@ -63,7 +63,7 @@
   - [10) Function Parameter Packs](#10-function-parameter-packs)
     - [Explanation](#explanation-10)
     - [Common Syntax](#common-syntax)
-    - [Link](#link)
+    - [Links](#links)
 
 <!-- vim-markdown-toc -->
 
@@ -514,7 +514,7 @@ template< typename... Ts > RetType funcName( Ts... args ) {
 }
 ```
 
-#### Link
+#### Links
 
 1. [`parameter packs` in cplusplus]().
 2. [`parameter packs` in cppreference](https://en.cppreference.com/w/cpp/language/parameter_pack).
