@@ -1,9 +1,9 @@
 <!-- vim-markdown-toc GFM -->
 
-- [Function](#function)
+- [Functions](#functions)
   - [1) Explanation](#1-explanation)
   - [2) Advantages and Disadvantages](#2-advantages-and-disadvantages)
-    - [Advantages ( Why Use a Function )](#advantages--why-use-a-function-)
+    - [Advantages ( Why Use Functions )](#advantages--why-use-functions-)
     - [Disadvantages](#disadvantages)
   - [3) Definition Syntax](#3-definition-syntax)
   - [4) Declaration Syntax](#4-declaration-syntax)
@@ -67,16 +67,16 @@
 
 <!-- vim-markdown-toc -->
 
-## Function
+## Functions
 
 ### 1) Explanation
 
-1. A function is **a self-contained block of code** that **performs a specific task**. It can take
-   input values, called parameters, process them, and optionally return a result.
+1. Functions are **self-contained blocks of code** that **perform specific tasks**. They can accept
+   input values, known as parameters, process them, and optionally return a result.
 
 ### 2) Advantages and Disadvantages
 
-#### Advantages ( Why Use a Function )
+#### Advantages ( Why Use Functions )
 
 1. **Code Reusability**: Functions allow you to write a piece of code once and reuse it multiple
    times throughout your program. This reduces redundancy and makes the code more maintainable.

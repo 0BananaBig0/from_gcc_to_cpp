@@ -8,7 +8,7 @@
   - [`using` and `typedef`](./UsingAndTypedef.md)
   - [`const`, `constexpr` and `static`](./ConstConstexprAndStaticKeywords.md)
   - [Macro and Related Keywords ( Including `pragma` )](./MacroAndPragma.md)
-  - [Function](./Function.md)
+  - [Functions](./Functions.md)
     - [Differences Between Hiding, Overloading, Overriding, and Overwriting](./HidingOverloadingOverridingAndOverwriting.md)
   - [Class](./Class.md)
     - [Differences Between Hiding, Overloading, Overriding, and Overwriting](./HidingOverloadingOverridingAndOverwriting.md)
