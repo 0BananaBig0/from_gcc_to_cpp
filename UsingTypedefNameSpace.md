@@ -1,22 +1,22 @@
 <!-- vim-markdown-toc GFM -->
 
-* [`using` and `typedef`](#using-and-typedef)
-  * [`using`](#using)
-    * [Explanation](#explanation)
-    * [Syntax](#syntax)
-    * [Usage](#usage)
-  * [`typedef`](#typedef)
-    * [Explanation](#explanation-1)
-    * [Syntax](#syntax-1)
-    * [Usage](#usage-1)
-* [`namespace`](#namespace)
-  * [Explanation](#explanation-2)
-  * [Declaration Syntax](#declaration-syntax)
-  * [Definition Syntax or How to Add a Member into a Defined or Declared `namespace`](#definition-syntax-or-how-to-add-a-member-into-a-defined-or-declared-namespace)
-  * [How to Reference a Member from a `namespace`](#how-to-reference-a-member-from-a-namespace)
-  * [`using namespace SpaceName`](#using-namespace-spacename)
-    * [Disadvantages](#disadvantages)
-  * [Notes](#notes)
+- [`using` and `typedef`](#using-and-typedef)
+  - [`using`](#using)
+    - [Explanation](#explanation)
+    - [Syntax](#syntax)
+    - [Usage](#usage)
+  - [`typedef`](#typedef)
+    - [Explanation](#explanation-1)
+    - [Syntax](#syntax-1)
+    - [Usage](#usage-1)
+- [`namespace`](#namespace)
+  - [Explanation](#explanation-2)
+  - [Declaration Syntax](#declaration-syntax)
+  - [Definition Syntax or How to Add a Member into a Defined or Declared `namespace`](#definition-syntax-or-how-to-add-a-member-into-a-defined-or-declared-namespace)
+  - [How to Reference a Member from a `namespace`](#how-to-reference-a-member-from-a-namespace)
+  - [`using namespace SpaceName`](#using-namespace-spacename)
+    - [Disadvantages](#disadvantages)
+  - [Notes](#notes)
 
 <!-- vim-markdown-toc -->
 
@@ -35,7 +35,7 @@
 #### Syntax
 
 ```CPP
-using YourTypeName = Type;
+using AliasName = Type;
 ```
 
 #### Usage
@@ -44,15 +44,15 @@ using YourTypeName = Type;
 2. Template aliases.
    ```CPP
    // ClassName is a template class that has been implmented.
-   template< typename T, ... > using YourTypeName = ClassName< T, ...  >;
+   template< typename T, ... > using AliasName = ClassName< T, ...  >;
    ```
    ```CPP
    // StructName is a template structure that has been implmented.
-   template< typename T, ... > using YourTypeName = StructName< T, ...  >;
+   template< typename T, ... > using AliasName = StructName< T, ...  >;
    ```
    ```CPP
    // funcName is a template function that has been implmented.
-   template< typename T, ... > using YourFunctionName = funcName< T, ...  >;
+   template< typename T, ... > using aliasName = funcName< T, ...  >;
    ```
 3. Function pointer declaration.
    ```CPP
@@ -64,8 +64,8 @@ using YourTypeName = Type;
    class ClassB {
       public:
          // Using alias
-         using YourTypeName = Type;
-         YourTypeName _mem;
+         using AliasName = Type;
+         AliasName _mem;
    };
    ```
 
@@ -81,7 +81,7 @@ using YourTypeName = Type;
 #### Syntax
 
 ```CPP
-typedef Type YourTypeName;
+typedef Type AliasName;
 ```
 
 #### Usage
@@ -97,8 +97,8 @@ typedef Type YourTypeName;
    class ClassB {
       public:
          // Using typedef
-         typedef Type YourTypeName;
-         YourTypeName _mem;
+         typedef Type AliasName;
+         AliasName _mem;
    };
    ```
 
