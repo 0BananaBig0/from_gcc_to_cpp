@@ -15,7 +15,7 @@
   - [Structures](./Structures.md)
   - [Operators](./Operators.md)
     - [`new` and `delete`](./NewAndDelete.md)
-  - [Template](./template.md)
+  - [Templates](./templates.md)
   - [Introduction to C++ STL](./IntroductionToTheCPPSTL.md)
   - [Conversion And Casting](./ConversionAndCasting.md)
   - [Binding](./Binding.md)
