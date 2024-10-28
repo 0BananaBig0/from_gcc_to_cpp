@@ -109,7 +109,13 @@
 ### 3) Definition Syntax
 
 ```CPP
-RetType funcName( parameter_list ) {
+RetType funcName( para_list ) {
+   // function body
+};
+```
+
+```CPP
+auto funcName( para_list ) -> RetType {
    // function body
 };
 ```
@@ -117,7 +123,7 @@ RetType funcName( parameter_list ) {
 ### 4) Declaration Syntax
 
 ```CPP
-RetType funcName( parameter_list );
+RetType funcName( para_list );
 ```
 
 ### 5) Reference Syntax

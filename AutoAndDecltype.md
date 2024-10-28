@@ -1,20 +1,21 @@
 <!-- vim-markdown-toc GFM -->
 
-* [`auto` and `decltype`](#auto-and-decltype)
-  * [`auto`](#auto)
-    * [Explanation](#explanation)
-    * [Syntax](#syntax)
-    * [Usage](#usage)
-    * [Characteristics](#characteristics)
-    * [Notes](#notes)
-  * [`decltype`](#decltype)
-    * [Explanation](#explanation-1)
-    * [Syntax](#syntax-1)
-    * [Usage](#usage-1)
-    * [Characteristics](#characteristics-1)
-    * [Notes](#notes-1)
+- [`auto` and `decltype`](#auto-and-decltype)
+  - [`auto`](#auto)
+    - [Explanation](#explanation)
+    - [Syntax](#syntax)
+    - [Usage](#usage)
+    - [Characteristics](#characteristics)
+    - [Notes](#notes)
+  - [`decltype`](#decltype)
+    - [Explanation](#explanation-1)
+    - [Syntax](#syntax-1)
+    - [Usage](#usage-1)
+    - [Characteristics](#characteristics-1)
+    - [Notes](#notes-1)
 
 <!-- vim-markdown-toc -->
+
 ## `auto` and `decltype`
 
 ### `auto`
@@ -38,7 +39,16 @@ auto var_name = initializer;
 2. Simplifying complex types.
 3. Range-Based for Loops. For example, `for( auto var_name : object_name )`.
 4. Lambda expressions.
-5. Using `auto` with structured bindings. For example `for( auto [x, y] : object_pair_name )`.
+5. Deduce a return type of a function.
+   ```CPP
+   auto funcName( para_list ) {
+   };
+   ```
+   ```CPP
+   auto funcName( para_list ) -> RetType {
+   };
+   ```
+6. Using `auto` with structured bindings. For example `for( auto [x, y] : object_pair_name )`.
    - **Structured bindings**, introduced in C++17, provide a way to unpack tuple-like objects (such
      as `std::pair`, `std::tuple`, and user-defined types with `std::get`) into individual named
      variables.
@@ -82,8 +92,9 @@ auto var_name = initializer;
 #### Explanation
 
 1. **A keyword** allows you to **query the type of an expression** at **compile time** **without
-   evaluating it**. This is particularly useful in **template programming** and situations where
-   **types are complex or unknown**.
+   evaluating it**.
+2. This is particularly useful in **template programming** and situations where **types are complex
+   or unknown**.
 
 #### Syntax
 
@@ -96,8 +107,12 @@ decltype( expression )
 1. Type deductions: Determine the type of a variable based on another variable.
 2. Type deduction in templates.
 3. Defining function pointers.
-4. Use `decltype` to deduce return types of functions.
+4. Use `decltype` to deduce return types of functions:
 5. Using with `auto`.
+   ```CPP
+   decltype( auto ) funcName( ... ) {
+   };
+   ```
 
 #### Characteristics
 
@@ -111,12 +126,12 @@ decltype( expression )
 
 #### Notes
 
-1. **Use `decltype( expression )&`** instead of `decltype( expression )`, `decltype( ( expression ) )`, or
-   `decltype( ( expression ) )&` if you want to deduce a result as **a reference type**, even if the
-   expression is already a reference. Although these four expressions yield the same inference
-   result, the first option is preferred.
-2. **Add `const`** as a prefix to `decltype( expression )` if you want to **deduce a result as a const
-   type**, even if the expression is already a const type.
-3. **Use `decltype( expression )`** instead of `decltype( expression )*`, `decltype( ( expression ) )`, or
-   `decltype( ( expression ) )*` if the expression is **a pointer**; the latter three do not yield the
-   same inference result as the former.
+1. **Use `decltype( expression )&`** instead of `decltype( expression )`,
+   `decltype( ( expression ) )`, or `decltype( ( expression ) )&` if you want to deduce a result as
+   **a reference type**, even if the expression is already a reference. Although these four
+   expressions yield the same inference result, the first option is preferred.
+2. **Add `const`** as a prefix to `decltype( expression )` if you want to **deduce a result as a
+   const type**, even if the expression is already a const type.
+3. **Use `decltype( expression )`** instead of `decltype( expression )*`,
+   `decltype( ( expression ) )`, or `decltype( ( expression ) )*` if the expression is **a
+   pointer**; the latter three do not yield the same inference result as the former.
