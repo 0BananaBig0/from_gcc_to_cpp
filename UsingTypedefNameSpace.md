@@ -58,7 +58,7 @@ using YourTypeName = Type;
    class ClassB {
       public:
          // Using alias
-         using YourTypeName = ClassB;
+         using YourTypeName = Type;
          YourTypeName _mem;
    };
    ```
@@ -91,7 +91,7 @@ typedef Type YourTypeName;
    class ClassB {
       public:
          // Using typedef
-         typedef ClassB YourTypeName;
+         typedef Type YourTypeName;
          YourTypeName _mem;
    };
    ```
