@@ -60,6 +60,10 @@
     - [`noexcept` Lambda Functions](#noexcept-lambda-functions)
       - [Explanation](#explanation-9)
       - [Syntax](#syntax-4)
+  - [10) Function Parameter Packs](#10-function-parameter-packs)
+    - [Explanation](#explanation-10)
+    - [Common Syntax](#common-syntax)
+    - [Link](#link)
 
 <!-- vim-markdown-toc -->
 
@@ -485,3 +489,32 @@ auto funcName =  [capture]( para_list ) mutable -> RetType { body };
 ```CPP
 auto funcName =  [capture]( para_list ) noexcept -> RetType { body };
 ```
+
+### 10) Function Parameter Packs
+
+#### Explanation
+
+1. Function parameter packs are function parameters that accept zero or more function arguments.
+
+#### Common Syntax
+
+```CPP
+// Be mindful of the Ellipsis.
+template< typename... Ts > RetType funcName( Ts... args ) {
+   // Method to print all arguments in order without adding any extra characters.
+   ( std::cout << ... << args ) << std::endl;
+   // Method to print all arguments'addresses in order without adding any extra characters.
+   ( std::cout << ... << &args ) << std::endl;
+   // Method to print all ++arguments in order without adding any extra characters.
+   ( std::cout << ... << ++args ) << std::endl;
+   std::tuple< Args... > _var;        // Store arguments in a tuple
+   std::tuple< Args*... > _var_ptr;   // Store arguments in a tuple
+                                      // Method to return an element by index
+   return std::get< Index >( _var );
+}
+```
+
+#### Link
+
+1. [`parameter packs` in cplusplus]().
+2. [`parameter packs` in cppreference](https://en.cppreference.com/w/cpp/language/parameter_pack).
