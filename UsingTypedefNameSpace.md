@@ -43,10 +43,16 @@ using YourTypeName = Type;
 1. Syntax simplicity.
 2. Template aliases.
    ```CPP
-   template< typename T > using YourTypeName = ClassName< T >;
+   // ClassName is a template class that has been implmented.
+   template< typename T, ... > using YourTypeName = ClassName< T, ...  >;
    ```
    ```CPP
-   template< typename T > using YourFunctionName = funcName< T >;
+   // StructName is a template structure that has been implmented.
+   template< typename T, ... > using YourTypeName = StructName< T, ...  >;
+   ```
+   ```CPP
+   // funcName is a template function that has been implmented.
+   template< typename T, ... > using YourFunctionName = funcName< T, ...  >;
    ```
 3. Function pointer declaration.
    ```CPP
