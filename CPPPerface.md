@@ -82,7 +82,7 @@
    the information.
 5. You can also refer to C++ tutorial books or websites, such as `<<The C++ Programming Language>>`
    and `<<C++ Primer Plus>>`, [cplusplus](https://cplusplus.com/),
-   [cppreference](https://en.cppreference.com/) and
+   [cppreference](https://en.cppreference.com/), [learncpp](https://www.learncpp.com/) and
    [tutorialspoint](https://www.tutorialspoint.com/) or a command `cppman` in Linux. When reading
    any tutorial, including this one, **focus on the basic concepts**, their definitions,
    explanations, and key characteristics, paying particular attention to the bold text, as these
