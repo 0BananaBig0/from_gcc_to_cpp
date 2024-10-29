@@ -107,7 +107,7 @@ std::chrono::duration< Type, std::ratio< num1, num2 >(Optional) > dur = end - st
 ##### Non-member Functions
 
 1. `operators`: Duration operators (function template).
-2. `duration_cast` (C++11): Converts a duration to another, with a different tick interval (function
+2. `duration_cast`: Converts a duration to another, with a different tick interval (function
    template).
 3. `floor( std::chrono::duration )` (C++17): Converts a duration to another, rounding down (function
    template).
@@ -122,12 +122,12 @@ std::chrono::duration< Type, std::ratio< num1, num2 >(Optional) > dur = end - st
 
 ##### Helper Classes
 
-1. `std::common_type< std::chrono::duration >` (C++11): Specializes the `std::common_type` trait
-   (class template specialization).
-2. `treat_as_floating_point` (C++11): Indicates that a duration is convertible to duration with
-   different tick period (class template).
-3. `duration_values` (C++11): Constructs zero, min, and max values of a tick count of given type
-   (class template).
+1. `std::common_type< std::chrono::duration >`: Specializes the `std::common_type` trait (class
+   template specialization).
+2. `treat_as_floating_point`: Indicates that a duration is convertible to duration with different
+   tick period (class template).
+3. `duration_values`: Constructs zero, min, and max values of a tick count of given type (class
+   template).
 4. `std::formatter< std::chrono::duration >` (C++20): Formatting support for duration (class
    template specialization).
 5. `std::hash< std::chrono::duration >` (C++26): Hash support for `std::chrono::duration` (class
@@ -202,7 +202,7 @@ auto start = Clock::now();
 ##### Non-member Functions
 
 1. `operators`: Operators for `std::chrono::time_point` (function template).
-2. `time_point_cast` (C++11): Converts a time point to another time point on the same clock, with a
+2. `time_point_cast`: Converts a time point to another time point on the same clock, with a
    different duration (function template).
 3. `floor( std::chrono::time_point )` (C++17): Converts a `std::chrono::time_point` to another,
    rounding down (function template).
@@ -213,8 +213,8 @@ auto start = Clock::now();
 
 ##### Helper Classes
 
-1. `std::common_type< std::chrono::time_point >` (C++11): Specializes the `std::common_type` trait
-   (class template specialization).
+1. `std::common_type< std::chrono::time_point >`: Specializes the `std::common_type` trait (class
+   template specialization).
 2. `std::hash< std::chrono::time_point >` (C++26): Hash support for `std::chrono::time_point` (class
    template specialization).
 

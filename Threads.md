@@ -152,7 +152,7 @@ std::thread thread_name2 = std::move( thread_name1 );
 
 ###### Non-member functions
 
-1. `std::swap( std::thread )` (C++11): Specializes the `std::swap` algorithm (function).
+1. `std::swap( std::thread )`: Specializes the `std::swap` algorithm (function).
 
 ###### See also
 

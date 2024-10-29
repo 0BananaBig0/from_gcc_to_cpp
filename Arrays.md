@@ -445,18 +445,17 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2
 
 ##### Non-member Functions
 
-1. `operator==` (C++11), `operator!=/</<=/>/>=` (C++11)(removed in C++20), `operator<=>` (C++20):
-   Lexicographically compares the values of two arrays (function template).
-2. `get( std::array )` (C++11): Accesses an element of an array (function template).
-3. `std::swap( std::array )` (C++11): Specializes the `std::swap` algorithm (function template).
+1. `operator==`, `operator!=/</<=/>/>=`(removed in C++20), `operator<=>` (C++20): Lexicographically
+   compares the values of two arrays (function template).
+2. `get( std::array )`: Accesses an element of an array (function template).
+3. `std::swap( std::array )`: Specializes the `std::swap` algorithm (function template).
 4. `to_array` (C++20): Creates a `std::array` object from a built-in array (function template).
 
 ##### Helper Classes
 
-1. `std::tuple_size< std::array >` (C++11): Obtains the size of an array (class template
+1. `std::tuple_size< std::array >`: Obtains the size of an array (class template specialization).
+2. `std::tuple_element< std::array >`: Obtains the type of the elements of array (class template
    specialization).
-2. `std::tuple_element< std::array >` (C++11): Obtains the type of the elements of array (class
-   template specialization).
 
 #### Lexicographical Comparison or Lexicographical Order
 

@@ -229,12 +229,10 @@ var_name += "..."; // Allowed
     member function).
 13. `operator basic_string_view` (C++17): Returns a non-modifiable string_view into the entire
     string (public member function).
-14. `begin` (C++11), `cbegin` (C++11): Returns an iterator to the beginning (public member
-    function).
-15. `end` (C++11), `cend` (C++11): Returns an iterator to the end (public member function).
-16. `rbegin` (C++11), `crbegin` (C++11): Returns a reverse iterator to the beginning (public member
-    function).
-17. `rend` (C++11), `crend` (C++11): Returns a reverse iterator to the end (public member function).
+14. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+15. `end`, `cend`: Returns an iterator to the end (public member function).
+16. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
+17. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
 18. `empty`: Checks whether the string is empty (public member function).
 19. `size`, `length`: Returns the number of characters (public member function).
 20. `max_size`: Returns the maximum number of characters (public member function).
@@ -292,13 +290,11 @@ var_name += "..."; // Allowed
 
 ##### Numeric Conversions
 
-1. `stoi` (C++11), `stol` (C++11), `stoll` (C++11): Converts a string to a signed integer
-   (function).
-2. `stoul` (C++11), `stoull` (C++11): Converts a string to an unsigned integer (function).
-3. `stof` (C++11), `stod` (C++11), `stold` (C++11): Converts a string to a floating point value
-   (function).
-4. `to_string` (C++11): Converts an integral or floating-point value to string (function).
-5. `to_wstring` (C++11): Converts an integral or floating-point value to wstring (function).
+1. `stoi`, `stol`, `stoll`: Converts a string to a signed integer (function).
+2. `stoul`, `stoull`: Converts a string to an unsigned integer (function).
+3. `stof`, `stod`, `stold`: Converts a string to a floating point value (function).
+4. `to_string`: Converts an integral or floating-point value to string (function).
+5. `to_wstring`: Converts an integral or floating-point value to wstring (function).
 
 ##### Literals
 
@@ -308,8 +304,7 @@ var_name += "..."; // Allowed
 
 ##### Helper Classes
 
-1. `std::hash< std::basic_string >` (C++11): Hash support for strings (class template
-   specialization).
+1. `std::hash< std::basic_string >`: Hash support for strings (class template specialization).
 
 #### String Types in STL
 

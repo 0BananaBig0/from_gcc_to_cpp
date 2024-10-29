@@ -242,11 +242,10 @@ std::vector< std::vector< std::vector< Type > > > arr_name2 = arr_name1;
 9. `front`: Access the first element (public member function).
 10. `back`: Access the last element (public member function).
 11. `data`: Direct access to the underlying contiguous storage (public member function).
-12. `begin`, `cbegin` (C++11): Returns an iterator to the beginning (public member function).
-13. `end`, `cend` (C++11): Returns an iterator to the end (public member function).
-14. `rbegin`, `crbegin` (C++11): Returns a reverse iterator to the beginning (public member
-    function).
-15. `rend`, `crend` (C++11): Returns a reverse iterator to the end (public member function).
+12. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+13. `end`, `cend`: Returns an iterator to the end (public member function).
+14. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
+15. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
 16. `empty`: Checks whether the container is empty (public member function).
 17. `size`: Returns the number of elements (public member function).
 18. `max_size`: Returns the maximum possible number of elements (public member function).
@@ -257,10 +256,10 @@ std::vector< std::vector< std::vector< Type > > > arr_name2 = arr_name1;
 22. `clear`: Clears the contents (public member function).
 23. `insert`: Inserts elements (public member function).
 24. `insert_range` (C++23): Inserts a range of elements (public member function).
-25. `emplace` (C++11): Constructs element in-place (public member function).
+25. `emplace`: Constructs element in-place (public member function).
 26. `erase`: Erases elements (public member function).
 27. `push_back`: Adds an element to the end (public member function).
-28. `emplace_back` (C++11): Constructs an element in-place at the end (public member function).
+28. `emplace_back`: Constructs an element in-place at the end (public member function).
 29. `append_range` (C++23): Adds a range of elements to the end(public member function).
 30. `pop_back`: Removes the last element (public member function).
 31. `resize`: Changes the number of elements stored (public member function).
