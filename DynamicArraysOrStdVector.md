@@ -72,7 +72,7 @@ std::vector< Type > arr_name( size );
 ```
 
 ```CPP
-// No initialization, contain garbage values and behave unpredictably.
+// Initialization with the specific value.
 std::vector< Type > arr_name( size, value );
 ```
 
@@ -80,7 +80,7 @@ std::vector< Type > arr_name( size, value );
 // Aggregate Initialization.
 std::vector< Type > arr_name1 = { ... };
 // Copy constructor.
-std::vector< Type > arr_name2(arr_name1);
+std::vector< Type > arr_name2( arr_name1 );
 ```
 
 ```CPP

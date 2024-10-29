@@ -238,7 +238,7 @@ RetType funcName( para_list ) noexcept {
 6. Function pointers and type aliases
 7. Overloaded functions
 
-##### Conditional noexcept expressions
+##### Conditional `noexcept` Expressions
 
 ###### Explanation
 
@@ -251,7 +251,7 @@ RetType funcName( para_list ) noexcept {
 ###### Synatx
 
 ```CPP
-RetType funcName( para_list ) noexcept(noexcept(an expression or a function) {
+RetType funcName( para_list ) noexcept( noexcept ( an expression or a function ) {
    // Indicates no exceptions will be thrown
    // Function implementation
 };
