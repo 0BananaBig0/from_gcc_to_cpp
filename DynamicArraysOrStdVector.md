@@ -10,7 +10,7 @@
   - [Multidimensional `std::vector` ( **Not Recommend** )](#multidimensional-stdvector--not-recommend-)
     - [Declaration Syntax](#declaration-syntax-1)
     - [Initialization Syntax](#initialization-syntax-1)
-  - [Member Functions and Related Stuffs](#member-functions-and-related-stuffs)
+  - [Members and Related Stuffs](#members-and-related-stuffs)
     - [Links](#links)
     - [Template Parameters](#template-parameters)
     - [Specializations](#specializations)
@@ -189,7 +189,7 @@ std::vector< std::vector< std::vector< Type > > > arr_name1 = {
 std::vector< std::vector< std::vector< Type > > > arr_name2 = arr_name1;
 ```
 
-#### Member Functions and Related Stuffs
+#### Members and Related Stuffs
 
 ##### Links
 
