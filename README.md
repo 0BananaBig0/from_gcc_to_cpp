@@ -16,6 +16,7 @@
   - [Operators](./Operators.md)
     - [`new` and `delete`](./NewAndDelete.md)
   - [Templates](./templates.md)
+  - [`static_assert`](./StaticAssert.md)
   - [Introduction to C++ STL](./IntroductionToTheCPPSTL.md)
   - [Conversion And Casting](./ConversionAndCasting.md)
   - [Binding](./Binding.md)
