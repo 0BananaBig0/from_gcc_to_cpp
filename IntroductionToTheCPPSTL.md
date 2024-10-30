@@ -98,11 +98,11 @@
 
 #### Types of Iterators
 
-1. Input Iterators: Read elements from a container.
-2. Output Iterators: Write elements to a container.
-3. Forward Iterators: Move forward in a container and allow reading and writing.
-4. Bidirectional Iterators: Move in both directions (forward and backward).
-5. Random Access Iterators: Provide direct access to elements using offsets.
+1. Input iterators: Read elements from a container.
+2. Output iterators: Write elements to a container.
+3. Forward iterators: Move forward in a container and allow reading and writing.
+4. Bidirectional iterators: Move in both directions (forward and backward).
+5. Random Access iterators: Provide direct access to elements using offsets.
 
 #### Header File
 
