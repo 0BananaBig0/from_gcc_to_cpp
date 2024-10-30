@@ -57,12 +57,12 @@ std::vector< Type >* arr_ptr = &arr_name;
 ##### Initialization Syntax
 
 ```CPP
-// Aggregate Initialization or Uniform Initialization (C++11 and later).
+// Initializer list constructor.
 std::vector< Type > arr_name = { ... };
 ```
 
 ```CPP
-// Aggregate Initialization or Uniform Initialization (C++11 and later).
+// Initializer list constructor.
 std::vector< Type > arr_name{ ... };
 ```
 
@@ -77,14 +77,14 @@ std::vector< Type > arr_name( size, value );
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Initializer list constructor.
 std::vector< Type > arr_name1 = { ... };
 // Copy constructor.
 std::vector< Type > arr_name2( arr_name1 );
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Initializer list constructor.
 std::vector< Type > arr_name1 = { ... };
 // Copy constructor.
 std::vector< Type > arr_name2 = arr_name1;
@@ -104,7 +104,7 @@ std::vector< Type >* arr_ptr = new std::vector< Type >( size, value );
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Initializer list constructor.
 std::vector< Type > arr_name = { ... };
 std::vector< Type >* arr_ptr = new std::vector< Type >( arr_name );
 ```
@@ -136,7 +136,7 @@ std::vector< std::vector< std::vector< Type > > > arr_name;
 ##### Initialization Syntax
 
 ```CPP
-// Aggregate Initialization.
+// Initializer list constructor.
 std::vector< std::vector< Type > > arr_name = { { { ... /* size_y */ }, { ... }, ... /* size_x */ } };
 ```
 
@@ -157,7 +157,7 @@ std::vector< std::vector< Type > > arr_name2  = arr_name1;
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Initializer list constructor.
 std::vector< std::vector< std::vector< Type > > > arr_name = { {
    { { ... /* size_z */ }, { ... }, ... /* size_y */ },
    { { ... }, { ... }, ... },
