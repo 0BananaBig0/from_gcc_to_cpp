@@ -8,7 +8,9 @@
   - [3) Definition Syntax](#3-definition-syntax)
   - [4) Declaration Syntax](#4-declaration-syntax)
   - [5) Reference Syntax](#5-reference-syntax)
-  - [6) How to Pass an Argument to a Function](#6-how-to-pass-an-argument-to-a-function)
+  - [6)Function Arguments](#6function-arguments)
+    - [How to Pass Arguments to a Function](#how-to-pass-arguments-to-a-function)
+    - [Limitations of Function Default Arguments](#limitations-of-function-default-arguments)
   - [7) Keywords Related to Functions](#7-keywords-related-to-functions)
     - [(1) `inline`](#1-inline)
       - [Explanation](#explanation)
@@ -24,7 +26,7 @@
       - [Explanation](#explanation-1)
       - [Synatx](#synatx)
       - [Usage](#usage-1)
-      - [Conditional noexcept expressions](#conditional-noexcept-expressions)
+      - [Conditional `noexcept` Expressions](#conditional-noexcept-expressions)
         - [Explanation](#explanation-2)
         - [Synatx](#synatx-1)
     - [(6) `asm` or `__asm`](#6-asm-or-__asm)
@@ -140,11 +142,27 @@ funcName( arg_list );
 RetType var_name = funcName( arg_list );
 ```
 
-### 6) How to Pass an Argument to a Function
+### 6)Function Arguments
+
+#### How to Pass Arguments to a Function
 
 1. **Primitive**-type arguments: Pass their **values** to the function.
 2. **Class**-type, **struct**-type, and other **complex arguments**: Pass their **references or
    pointers** to the function.
+
+#### Limitations of Function Default Arguments
+
+1. **Order of Parameters**: **Once a default argument is specified for a parameter, all subsequent
+   parameters must also have default arguments. It is not permissible to omit a parameter that has a
+   default value if one intends to provide values for later parameters**.
+2. **Ambiguity in Overloading**: The use of default arguments can lead to ambiguity in function
+   overloading. If multiple overloaded functions can match the same call due to the presence of
+   default arguments, it may result in confusion for the compiler.
+3. **Inheritance**: When overriding a virtual function **in a derived class**, **the default
+   arguments** of the base class method **cannot be altered**. The default arguments of the base
+   class will remain applicable, which may lead to confusion.
+4. **Function Pointers**: In the context of function pointers, **default arguments are not
+   considered**. The function pointer type must match the function signature precisely.
 
 ### 7) Keywords Related to Functions
 
