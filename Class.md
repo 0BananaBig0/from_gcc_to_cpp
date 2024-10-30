@@ -8,6 +8,7 @@
   - [Common Objects](#common-objects)
     - [Declaration Syntax](#declaration-syntax-1)
     - [Initialization Syntax](#initialization-syntax)
+    - [Limitations of Aggregate Initialization](#limitations-of-aggregate-initialization)
   - [Class Pointers](#class-pointers)
     - [Declaration Syntax](#declaration-syntax-2)
     - [Definition or Initialization Syntax](#definition-or-initialization-syntax)
@@ -49,9 +50,9 @@
       - [Syntax](#syntax-7)
       - [Notes](#notes)
   - [Constructors](#constructors)
-    - [Explanation](#explanation-9)
-    - [Syntax](#syntax-8)
-    - [Characteristics](#characteristics)
+      - [Explanation](#explanation-9)
+      - [Syntax](#syntax-8)
+      - [Characteristics](#characteristics)
     - [Defalut Constructors and `default` Constructors](#defalut-constructors-and-default-constructors)
       - [Explanation](#explanation-10)
       - [Syntax](#syntax-9)
@@ -110,7 +111,7 @@
     - [Destruction Order](#destruction-order)
     - [`virtual` Inheritance](#virtual-inheritance)
   - [`virtual`](#virtual)
-    - [Explanation](#explanation-25)
+      - [Explanation](#explanation-25)
     - [Virtual Functions](#virtual-functions)
       - [Explanation](#explanation-26)
       - [Syntax](#syntax-20)
@@ -131,7 +132,7 @@
     - [Construction Order](#construction-order-1)
     - [Destruction Order](#destruction-order-1)
   - [`friend`](#friend)
-    - [Explanation](#explanation-30)
+      - [Explanation](#explanation-30)
     - [`friend` Functions](#friend-functions)
       - [Explanation](#explanation-31)
       - [Syntax](#syntax-23)
@@ -139,7 +140,7 @@
       - [Explanation](#explanation-32)
       - [Syntax](#syntax-24)
   - [`final`](#final)
-    - [Explanation](#explanation-33)
+      - [Explanation](#explanation-33)
     - [`final` Functions](#final-functions)
       - [Explanation](#explanation-34)
       - [Syntax](#syntax-25)
@@ -260,6 +261,26 @@ class ClassName {
 // Second, create `obj_name` with the move constructor.
 ClassName obj_name = createClassName();
 ```
+
+#### Limitations of Aggregate Initialization
+
+1. **No User-Defined Constructors**: Aggregate initialization is only applicable to aggregate types
+   that lack user-defined constructors. If a class has any constructor defined, aggregate
+   initialization cannot be used.
+2. **Public Members Only**: Only public members can be initialized via aggregate initialization.
+   Private or protected members cannot be accessed.
+3. **No Default Member Initializers**: Default member initializers in aggregates are ignored during
+   aggregate initialization, meaning you must explicitly specify values for all members.
+4. **Order of Initialization**: Members are initialized in the order they are declared. This can
+   lead to issues if one member relies on another being initialized first.
+5. **No Designated Initializers**: C++ does not support designated initializers (as in C99),
+   preventing the ability to initialize specific members without initializing all preceding members.
+6. **Type Matching**: The types in the initializer list must match the types of the aggregate's
+   members exactly. A mismatch results in a compilation error.
+7. **No Implicit Conversions**: Aggregate initialization does not allow implicit type conversions,
+   which can limit flexibility.
+8. **No Inheritance**: Aggregate initialization is not applicable for derived classes, limiting its
+   use in inheritance scenarios.
 
 ### Class Pointers
 
