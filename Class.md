@@ -50,9 +50,9 @@
       - [Syntax](#syntax-7)
       - [Notes](#notes)
   - [Constructors](#constructors)
-      - [Explanation](#explanation-9)
-      - [Syntax](#syntax-8)
-      - [Characteristics](#characteristics)
+    - [Explanation](#explanation-9)
+    - [Syntax](#syntax-8)
+    - [Characteristics](#characteristics)
     - [Defalut Constructors and `default` Constructors](#defalut-constructors-and-default-constructors)
       - [Explanation](#explanation-10)
       - [Syntax](#syntax-9)
@@ -111,7 +111,7 @@
     - [Destruction Order](#destruction-order)
     - [`virtual` Inheritance](#virtual-inheritance)
   - [`virtual`](#virtual)
-      - [Explanation](#explanation-25)
+    - [Explanation](#explanation-25)
     - [Virtual Functions](#virtual-functions)
       - [Explanation](#explanation-26)
       - [Syntax](#syntax-20)
@@ -132,7 +132,7 @@
     - [Construction Order](#construction-order-1)
     - [Destruction Order](#destruction-order-1)
   - [`friend`](#friend)
-      - [Explanation](#explanation-30)
+    - [Explanation](#explanation-30)
     - [`friend` Functions](#friend-functions)
       - [Explanation](#explanation-31)
       - [Syntax](#syntax-23)
@@ -140,7 +140,7 @@
       - [Explanation](#explanation-32)
       - [Syntax](#syntax-24)
   - [`final`](#final)
-      - [Explanation](#explanation-33)
+    - [Explanation](#explanation-33)
     - [`final` Functions](#final-functions)
       - [Explanation](#explanation-34)
       - [Syntax](#syntax-25)
@@ -231,6 +231,11 @@ ClassName obj_name = initializer; // Conversion Construcotr, Implicit Conversion
 // Without related parameterized constructors and all members are public, Aggregate Initialization
 // With related parameterized constructors, Parameterized Constructor or Uniform Initialization or Brace Initialization
 ClassName obj_name{ para_list };
+```
+
+```CPP
+// Aggregate Initialization
+ClassName obj_name = { para_list };
 ```
 
 ```CPP
