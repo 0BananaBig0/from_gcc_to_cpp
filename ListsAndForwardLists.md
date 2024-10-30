@@ -55,12 +55,12 @@ std::list< Type >* list_ptr;
 ### Initialization Syntax
 
 ```CPP
-// Aggregate Initialization or Uniform Initialization (C++11 and later).
+// Initializer list constructor.
 std::list< Type > list_name = { ... };
 ```
 
 ```CPP
-// Aggregate Initialization or Uniform Initialization (C++11 and later).
+// Initializer list constructor.
 std::list< Type > list_name{ ... };
 ```
 
@@ -80,14 +80,14 @@ std::list< Type > list_name( size, value );
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Initializer list constructor.
 std::list< Type > list_name1 = { ... };
 // Copy constructor.
 std::list< Type > list_name2( list_name1 );
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Initializer list constructor.
 std::list< Type > list_name1 = { ... };
 // Copy constructor.
 std::list< Type > list_name2 = list_name1;
@@ -107,7 +107,7 @@ std::list< Type >* list_ptr = new std::list< Type >( size, value );
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Initializer list constructor.
 std::list< Type > list_name = { ... };
 std::list< Type >* list_ptr = new std::list< Type >( list_name );
 ```
@@ -227,12 +227,12 @@ std::forward_list< Type >* list_ptr;
 ### Initialization Syntax
 
 ```CPP
-// Aggregate Initialization or Uniform Initialization (C++11 and later).
+// Initializer list constructor.
 std::forward_list< Type > list_name = { ... };
 ```
 
 ```CPP
-// Aggregate Initialization or Uniform Initialization (C++11 and later).
+// Initializer list constructor.
 std::forward_list< Type > list_name{ ... };
 ```
 
@@ -252,14 +252,14 @@ std::forward_list< Type > list_name( size, value );
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Initializer list constructor.
 std::forward_list< Type > list_name1 = { ... };
 // Copy constructor.
 std::forward_list< Type > list_name2( list_name1 );
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Initializer list constructor.
 std::forward_list< Type > list_name1 = { ... };
 // Copy constructor.
 std::forward_list< Type > list_name2 = list_name1;
@@ -279,7 +279,7 @@ std::forward_list< Type >* list_ptr = new std::forward_list< Type >( size, value
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Initializer list constructor.
 std::forward_list< Type > list_name = { ... };
 std::forward_list< Type >* list_ptr = new std::forward_list< Type >( list_name );
 ```

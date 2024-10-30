@@ -160,8 +160,7 @@ std::string var_name( "a string" );
 ```
 
 ```CPP
-// Without related parameterized constructors and all members are public, Aggregate Initialization
-// With related parameterized constructors, Parameterized Constructor or Uniform Initialization or Brace Initialization
+// Initializer list constructor.
 std::string var_name{ "a string" };
 ```
 
@@ -361,8 +360,7 @@ std::string_view var_name( "a string" );
 ```
 
 ```CPP
-// Without related parameterized constructors and all members are public, Aggregate Initialization.
-// With related parameterized constructors, Parameterized Constructor or Uniform Initialization or Brace Initialization.
+// Initializer list constructor.
 std::string_view var_name{ "a string" };
 ```
 
