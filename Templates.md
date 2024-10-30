@@ -3,6 +3,7 @@
 - [Templates](#templates)
   - [Explanation](#explanation)
   - [Order of Parameters in the Parameter List](#order-of-parameters-in-the-parameter-list)
+  - [Limitations of Template Default Types and Values](#limitations-of-template-default-types-and-values)
   - [Explicit Instantiation](#explicit-instantiation)
   - [Implicit Instantiation (**Common Instantiation**)](#implicit-instantiation-common-instantiation)
   - [Function Templates](#function-templates)
@@ -72,6 +73,23 @@
      parameters with default types, non-type parameters with default values, and parameter packs**.
    - Non-type parameters without default values, type parameters without default types, non-type
      parameters with default values, type parameters with default types, and parameter packs.
+
+### Limitations of Template Default Types and Values
+
+1. **Order of Parameters**: **It is not permissible to omit a parameter with a default value if one
+   intends to provide values for later parameters**.
+2. **Dependent Names**: Default template parameters **cannot depend on other template parameters**.
+   A template parameter cannot be utilized to define the default value of another template
+   parameter.
+3. **Ambiguity in Overloading**: The use of default template parameters in function overloading may
+   lead to ambiguity. If multiple templates can potentially match a call due to the presence of
+   default arguments, the compiler may encounter difficulty in determining which template to invoke.
+4. **Inheritance and Template Defaults**: **In derived template classes**, **the default arguments**
+   inherited from the base class **cannot be modified**. It is necessary to explicitly specify the
+   types in the derived class.
+5. **Specialization Limitations**: Template specializations are **unable to alter default template
+   parameters**. If a specialization employs a different type or value, it must explicitly define
+   those parameters.
 
 ### Explicit Instantiation
 
