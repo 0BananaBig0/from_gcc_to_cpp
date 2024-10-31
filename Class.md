@@ -224,6 +224,11 @@ ClassName obj_name2( std::move( obj_name1 ) ); // Move Constructor
 ```
 
 ```CPP
+ClassName obj_name1( para_list ); // Parameterized Constructor
+ClassName obj_name2 = std::move( obj_name1 ); // Move Constructor.
+```
+
+```CPP
 ClassName obj_name = initializer; // Conversion Construcotr, Implicit Conversion
 ```
 
