@@ -73,3 +73,41 @@
 2. [`std::unordered_multiset` in cppreference](https://en.cppreference.com/w/cpp/container/list).
 
 #### Template Parameters
+
+## Flat Sets
+
+### Explanation
+
+### Declaration Syntax
+
+### Initialization Syntax
+
+### Syntax for Deleting `std::flat_set` Pointers
+
+### Members and Related Stuffs
+
+#### Links
+
+1. [`std::flat_set` in cplusplus](https://cplusplus.com/reference/list/list/).
+2. [`std::flat_set` in cppreference](https://en.cppreference.com/w/cpp/container/list).
+
+#### Template Parameters
+
+## Flat Multisets
+
+### Explanation
+
+### Declaration Syntax
+
+### Initialization Syntax
+
+### Syntax for Deleting `std::flat__multiset` Pointers
+
+### Members and Related Stuffs
+
+#### Links
+
+1. [`std::flat_multiset` in cplusplus](https://cplusplus.com/reference/list/list/).
+2. [`std::flat_multiset` in cppreference](https://en.cppreference.com/w/cpp/container/list).
+
+#### Template Parameters
