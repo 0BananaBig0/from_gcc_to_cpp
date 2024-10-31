@@ -221,8 +221,8 @@ var_name += "..."; // Allowed
 6. `get_allocator`: Returns the associated allocator (public member function).
 7. `at`: Accesses the specified character with bounds checking (public member function).
 8. `operator[]`: Accesses the specified character (public member function).
-9. `front` (DR): Accesses the first character (public member function).
-10. `back` (DR): Accesses the last character (public member function).
+9. `front` (`DR*`): Accesses the first character (public member function).
+10. `back` (`DR*`): Accesses the last character (public member function).
 11. `data`: Returns a pointer to the first character of a string (public member function).
 12. `c_str`: Returns a non-modifiable standard C character array version of the string (public
     member function).
@@ -238,13 +238,13 @@ var_name += "..."; // Allowed
 21. `reserve`: Reserves storage (public member function).
 22. `capacity`: Returns the number of characters that can be held in currently allocated storage
     (public member function).
-23. `shrink_to_fit` (DR): Reduces memory usage by freeing unused memory (public member function).
+23. `shrink_to_fit` (`DR*`): Reduces memory usage by freeing unused memory (public member function).
 24. `clear`: Clears the contents (public member function).
 25. `insert`: Inserts characters (public member function).
 26. `insert_range` (C++23): Inserts a range of characters (public member function).
 27. `erase`: Removes characters (public member function).
 28. `push_back`: Appends a character to the end (public member function).
-29. `pop_back` (DR): Removes the last character (public member function).
+29. `pop_back` (`DR*`): Removes the last character (public member function).
 30. `append`: Appends characters to the end (public member function).
 31. `append_range` (C++23): Appends a range of characters to the end (public member function).
 32. `operator+=`: Appends characters to the end (public member function).

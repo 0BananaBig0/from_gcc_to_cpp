@@ -252,7 +252,7 @@ std::vector< std::vector< std::vector< Type > > > arr_name2 = arr_name1;
 19. `reserve`: Reserves storage (public member function).
 20. `capacity`: Returns the number of elements that can be held in currently allocated storage
     (public member function).
-21. `shrink_to_fit` (DR): Reduces memory usage by freeing unused memory (public member function).
+21. `shrink_to_fit` (`DR*`): Reduces memory usage by freeing unused memory (public member function).
 22. `clear`: Clears the contents (public member function).
 23. `insert`: Inserts elements (public member function).
 24. `insert_range` (C++23): Inserts a range of elements (public member function).
