@@ -383,6 +383,22 @@ std::priority_queue< Type, Container< Type > > pri_queue_name;
 
 ```CPP
 // Not common, not recommend
+class Compare {
+      bool _reverse;
+
+   public:
+      explicit Compare( const bool& rev_param = false ) {
+         _reverse = rev_param;
+      };
+
+      bool operator()( const Type& lhs, const Type& rhs ) const {
+         if( _reverse ) {
+            ...
+         } else {
+            ...
+         };
+      };
+};
 std::priority_queue< Type, Container< Type >, Compare > pri_queue_name;
 ```
 
@@ -402,22 +418,6 @@ std::priority_queue< Type > pri_queue_name;
 ```
 
 ```CPP
-class Compare {
-      bool _reverse;
-
-   public:
-      explicit Compare( const bool& rev_param = false ) {
-         _reverse = rev_param;
-      };
-
-      bool operator()( const Type& lhs, const Type& rhs ) const {
-         if( _reverse ) {
-            ...
-         } else {
-            ...
-         };
-      };
-};
 // Default constructor. Value-initializes the comparator and the underlying container.
 std::priority_queue< Type, Container< Type >, Compare > pri_queue_name;
 // Copy-constructs the temporary `Compare` class object. Value-initializes the underlying container.
