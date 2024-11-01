@@ -95,6 +95,10 @@
    provide a uniform way to access container elements without exposing the underlying
    implementation.
 2. It behaves like a pointer ( stores an address and can be dereferenced ).
+3. When a container **resizes its capacity or rehashes**, its **iterators** may become **invalid**.
+   **Using invalid iterators causes undefined behaviors**. More information on **iterator validity**
+   after modification operations is provided below.
+   - [iterator invalidation](https://en.cppreference.com/w/cpp/container#Iterator_invalidation).
 
 #### Types of Iterators
 
