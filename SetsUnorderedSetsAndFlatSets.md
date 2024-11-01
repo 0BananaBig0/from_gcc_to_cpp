@@ -300,7 +300,7 @@ delete set_ptr;
 5. Multiset containers are generally **slower than`unordered_multiset`** containers to **access
    individual elements** by their key, but they **allow the direct iteration** on subsets based on
    their order.
-6. Multisets are typically **implemented as binary search trees**.
+6. Multisets are typically **implemented as red–black trees**.
 7. Their header files is `<set>`.
 
 ### Declaration Syntax
