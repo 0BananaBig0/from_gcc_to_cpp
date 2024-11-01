@@ -501,11 +501,9 @@ delete pri_queue_ptr;
    - `pop_back()`, e.g., `std::vector::pop_back()`.
 3. The standard containers `std::vector` (including `std::vector< bool >`) and `std::deque` satisfy
    these requirements.
-4. `Compare`: A `Compare` type providing a strict weak ordering.
-5. Note that the `Compare` parameter is defined such that it returns true if its first argument
-   comes before its second argument in a weak ordering. But because the priority queue outputs
-   largest elements first, the elements that "come before" are actually output last. That is, the
-   front of the queue contains the "last" element according to the weak ordering imposed by Compare.
+4. `Compare`: A `Compare` type providing a strict weak ordering. By default, the first key (largest
+   key) is at the top of the queue because its underlying structure is a max-heap, which uses
+   `std::less< T >` to maintain that structure, ensuring the largest element is accessible first.
 
 #### Member Types
 
