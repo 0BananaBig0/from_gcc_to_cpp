@@ -89,9 +89,9 @@ std::stack< Type > stack_name;
 ```
 
 ```CPP
-Container< Type > cont_name = { ... };
-// Copy the content of the `cont_name`.
-std::stack< Type, Container< Type > > stack_name( cont_name );
+Container< Type > cont = { ... };
+// Copy the content of the `cont`.
+std::stack< Type, Container< Type > > stack_name( cont );
 ```
 
 ```CPP
@@ -118,6 +118,13 @@ std::stack< Type > stack_name2 = stack_name1;
 std::stack< Type > stack_name1( { ... } );
 // Move constructor.
 std::stack< Type > stack_name2( std::move( stack_name1 ) );
+```
+
+```CPP
+// Move the content of the underlying container.
+std::stack< Type, Container< Type > > stack_name1( Container< Type >{ ... } );
+// Constructs the underlying container with the contents of the range `[first, last)`.
+std::stack< Type, Container< Type > > stack_name2( stack_name1.begin(), stack_name2.end() );
 ```
 
 ```CPP
@@ -240,9 +247,9 @@ std::queue< Type > queue_name;
 ```
 
 ```CPP
-Container< Type > cont_name = { ... };
-// Copy the content of the `cont_name`.
-std::queue< Type, Container< Type > > queue_name( cont_name );
+Container< Type > cont = { ... };
+// Copy the content of the `cont`.
+std::queue< Type, Container< Type > > queue_name( cont );
 ```
 
 ```CPP
@@ -269,6 +276,13 @@ std::queue< Type > queue_name2 = queue_name1;
 std::queue< Type > queue_name1( { ... } );
 // Move constructor.
 std::queue< Type > queue_name1( std::move( queue_name1 ) );
+```
+
+```CPP
+// Move the content of the underlying container.
+std::queue< Type, Container< Type > > queue_name1( Container< Type >{ ... } );
+// Constructs the underlying container with the contents of the range `[first, last)`.
+std::queue< Type, Container< Type > > queue_name2( queue_name1.begin(), queue_name2.end() );
 ```
 
 ```CPP
@@ -432,9 +446,9 @@ std::priority_queue< Type, Container< Type >, Compare  > pri_queue_name( comp );
 
 ```CPP
 Compare comp;
-Container< Type > cont_name = { ... };
-// Copy the content of the `comp` and the `cont_name`.
-std::priority_queue< Type, Container< Type >, Compare  > pri_queue_name( cont_name, comp );
+Container< Type > cont = { ... };
+// Copy the content of the `comp` and the `cont`.
+std::priority_queue< Type, Container< Type >, Compare  > pri_queue_name( cont, comp );
 ```
 
 ```CPP
@@ -463,6 +477,15 @@ std::priority_queue< Type > pri_queue_name2 = pri_queue_name1;
 std::priority_queue< Type > pri_queue_name1;
 // Move constructor.
 std::priority_queue< Type > pri_queue_name2( std::move( pri_queue_name1 ) );
+```
+
+```CPP
+// Copy-constructs the comparison functor `comp` with the contents of compare. Value-initializes the underlying container.
+Compare comp;
+Container< Type > cont = { ... };
+std::priority_queue< Type, Container< Type >, Compare  > pri_queue_name1( comp, cont );
+// Constructs the underlying container with the contents of the range `[first, last)`.
+std::priority_queue< Type, Container< Type >, Compare  > pri_queue_name2( pri_queue_name1.begin(), pri_queue_name1.end(), comp /*optional*/, cont /*optional*/ );
 ```
 
 ```CPP
@@ -615,6 +638,13 @@ std::deque< Type > deque_name2 = deque_name1;
 ```CPP
 // Move constructor.
 std::deque< Type > deque_name( { ... } );
+```
+
+```CPP
+// Move the content of the underlying container.
+std::deque< Type, Container< Type > > deque_name1( Container< Type >{ ... } );
+// Constructs the underlying container with the contents of the range `[first, last)`.
+std::deque< Type, Container< Type > > deque_name2( deque_name1.begin(), deque_name2.end() );
 ```
 
 ```CPP
