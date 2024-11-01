@@ -1029,11 +1029,7 @@ std::flat_set< Type, Compare > fset_name;
 
 ```CPP
 // Not common, not recommend
-std::flat_set< Type, KeyContainer< Type >, Compare > fset_name;
-```
-
-```CPP
-std::flat_set< Type, std::vector< Type >, Compare > fset_name;
+std::flat_set< Type, Compare, KeyContainer< Type > > fset_name;
 ```
 
 ```CPP
@@ -1073,7 +1069,6 @@ std::flat_set< Type, Compare, KeyContainer< Type > > fset_name( cont, comp );
 // Construct a default `comp` to sort all elements.
 std::sorted_unique_t s;
 KeyContainer< Type > cont = { ... };
-Compare comp;
 std::flat_set< Type, Compare, KeyContainer< Type > > fset_name( s, cont );
 ```
 
@@ -1283,11 +1278,7 @@ std::flat_multiset< Type, Compare > fmset_name;
 
 ```CPP
 // Not common, not recommend
-std::flat_multiset< Type, KeyContainer< Type >, Compare > fmset_name;
-```
-
-```CPP
-std::flat_multiset< Type, std::vector< Type >, Compare > fmset_name;
+std::flat_multiset< Type, Compare, KeyContainer< Type > > fmset_name;
 ```
 
 ```CPP
@@ -1327,7 +1318,6 @@ std::flat_multiset< Type, Compare, KeyContainer< Type > > fmset_name( cont, comp
 // Construct a default `comp` to sort all elements.
 std::sorted_equivalent_t s;
 KeyContainer< Type > cont = { ... };
-Compare comp;
 std::flat_multiset< Type, Compare, KeyContainer< Type > > fmset_name( s, cont );
 ```
 
