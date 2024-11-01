@@ -1039,6 +1039,16 @@ std::flat_set< Type >* fset_ptr;
 ### Initialization Syntax
 
 ```CPP
+// Initializer list constructor.
+std::flat_set< Type > fset_name = { ... };
+```
+
+```CPP
+// Initializer list constructor.
+std::flat_set< Type > fset_name{ ... };
+```
+
+```CPP
 // Default constructor. Constructs an empty container adaptor.
 std::flat_set< Type > fset_name;
 ```
@@ -1286,6 +1296,16 @@ std::flat_multiset< Type >* fmset_ptr;
 ```
 
 ### Initialization Syntax
+
+```CPP
+// Initializer list constructor.
+std::flat_multiset< Type > fmset_name = { ... };
+```
+
+```CPP
+// Initializer list constructor.
+std::flat_multiset< Type > fmset_name{ ... };
+```
 
 ```CPP
 // Default constructor. Constructs an empty container adaptor.
