@@ -155,7 +155,7 @@ std::map< KType, VType, Compare > map_name;
 // Default constructor. Constructs an empty container.
 std::map< KType, VType, Compare > map_name;
 // Copy-constructs the temporary `Compare` class object. Constructs an empty container.
-std::map< KType, VType, Compare > re_map_name( Compare( true ) );
+std::map< KType, VType, Compare > rmap_name( Compare( true ) );
 ```
 
 ```CPP
@@ -385,7 +385,7 @@ std::multimap< KType, VType, Compare > mmap_name;
 // Default constructor. Constructs an empty container.
 std::multimap< KType, VType, Compare > mmap_name;
 // Copy-constructs the temporary `Compare` class object. Constructs an empty container.
-std::multimap< KType, VType, Compare > re_mmap_name( Compare( true ) );
+std::multimap< KType, VType, Compare > rmmap_name( Compare( true ) );
 ```
 
 ```CPP

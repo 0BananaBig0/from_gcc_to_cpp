@@ -147,7 +147,7 @@ std::set< Type, Compare > set_name;
 // Default constructor. Constructs an empty container.
 std::set< Type, Compare > set_name;
 // Copy-constructs the temporary `Compare` class object. Constructs an empty container.
-std::set< Type, Compare > re_set_name( Compare( true ) );
+std::set< Type, Compare > rset_name( Compare( true ) );
 ```
 
 ```CPP
@@ -366,7 +366,7 @@ std::multiset< Type, Compare > mset_name;
 // Default constructor. Constructs an empty container.
 std::multiset< Type, Compare > mset_name;
 // Copy-constructs the temporary `Compare` class object. Constructs an empty container.
-std::multiset< Type, Compare > re_mset_name( Compare( true ) );
+std::multiset< Type, Compare > rmset_name( Compare( true ) );
 ```
 
 ```CPP

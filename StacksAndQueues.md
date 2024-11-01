@@ -435,7 +435,7 @@ std::priority_queue< Type > pqueue_name;
 // Default constructor. Value-initializes the comparator and the underlying container.
 std::priority_queue< Type, Container< Type >, Compare > pqueue_name;
 // Copy-constructs the temporary `Compare` class object. Value-initializes the underlying container.
-std::priority_queue< Type, Container< Type >, Compare > re_pqueue_name( Compare( true ) );
+std::priority_queue< Type, Container< Type >, Compare > rpqueue_name( Compare( true ) );
 ```
 
 ```CPP
