@@ -179,6 +179,13 @@ std::map< KType, VType > map_name2 = map_name1;
 ```
 
 ```CPP
+// Copy-constructs the comparison functor `comp` with the contents of compare. Constructs an empty container.
+Compare comp;
+std::map< KType, VType, Compare  > map_name1( comp );
+std::map< KType, VType, Compare  > map_name2( map_name1.begin(), map_name1.end(), comp /*optional*/ );
+```
+
+```CPP
 // Default constructor. Constructs an empty container.
 std::map< KType, VType > map_name1;
 // Move constructor.
@@ -409,6 +416,13 @@ std::multimap< KType, VType > mmap_name2( std::move( mmap_name1 ) );
 ```
 
 ```CPP
+// Copy-constructs the comparison functor `comp` with the contents of compare. Constructs an empty container.
+Compare comp;
+std::multimap< KType, VType, Compare  > mmap_name1( comp );
+std::multimap< KType, VType, Compare  > mmap_name2( mmap_name1.begin(), mmap_name1.end(), comp /*optional*/ );
+```
+
+```CPP
 std::multimap< KType, VType >* mmap_ptr = new std::multimap< KType, VType >;
 ```
 
@@ -583,11 +597,14 @@ std::unordered_map< KType, VType, Hash, KeyEqual > umap_name;
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
 std::unordered_map< KType, VType, Hash, KeyEqual > umap_name( hash );
 ```
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
+KeyEqual key_equal;
 std::unordered_map< KType, VType, Hash, KeyEqual > umap_name( hash, key_equal );
 ```
 
@@ -603,11 +620,14 @@ std::unordered_map< KType, VType, Hash, KeyEqual > umap_name( size );
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
 std::unordered_map< KType, VType, Hash, KeyEqual > umap_name( size, hash );
 ```
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
+KeyEqual key_equal;
 std::unordered_map< KType, VType, Hash, KeyEqual > umap_name( size, hash, key_equal );
 ```
 
@@ -630,6 +650,15 @@ std::unordered_map< KType, VType > umap_name2 = umap_name1;
 std::unordered_map< KType, VType > umap_name1;
 // Move constructor.
 std::unordered_map< KType, VType > umap_name2( std::move( umap_name1 ) );
+```
+
+```CPP
+// Initializer list constructor.
+std::unordered_map< KType, VType, Hash, KeyEqual > umap_name1{ ... };
+// Constructs the container with the contents of the range `[first, last)`.
+Hash hash;
+KeyEqual key_equal;
+std::unordered_map< KType, VType, Hash, KeyEqual > umap_name2( umap_name1.begin(), umap_name1.end(), size /*optional*/, hash /*optional*/, key_equal /*optional*/ );
 ```
 
 ```CPP
@@ -839,11 +868,14 @@ std::unordered_multimap< KType, VType, Hash, KeyEqual > ummap_name;
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
 std::unordered_multimap< KType, VType, Hash, KeyEqual > ummap_name( hash );
 ```
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
+KeyEqual key_equal;
 std::unordered_multimap< KType, VType, Hash, KeyEqual > ummap_name( hash, key_equal );
 ```
 
@@ -859,11 +891,14 @@ std::unordered_multimap< KType, VType, Hash, KeyEqual > ummap_name( size );
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
 std::unordered_multimap< KType, VType, Hash, KeyEqual > ummap_name( size, hash );
 ```
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
+KeyEqual key_equal;
 std::unordered_multimap< KType, VType, Hash, KeyEqual > ummap_name( size, hash, key_equal );
 ```
 
@@ -886,6 +921,15 @@ std::unordered_multimap< KType, VType > ummap_name2 = ummap_name1;
 std::unordered_multimap< KType, VType > ummap_name1;
 // Move constructor.
 std::unordered_multimap< KType, VType > ummap_name2( std::move( ummap_name1 ) );
+```
+
+```CPP
+// Initializer list constructor.
+std::unordered_multimap< KType, VType, Hash, KeyEqual > ummap_name1{ ... };
+// Constructs the container with the contents of the range `[first, last)`.
+Hash hash;
+KeyEqual key_equal;
+std::unordered_multimap< KType, VType, Hash, KeyEqual > ummap_name2( ummap_name1.begin(), ummap_name1.end(), size /*optional*/, hash /*optional*/, key_equal /*optional*/ );
 ```
 
 ```CPP
@@ -1178,6 +1222,19 @@ std::flat_map< KType, VType > fmap_name2( std::move( fmap_name1 ) );
 ```
 
 ```CPP
+// Specify that all elements are unique. Just a tag.
+// Constructs the two underlying containers by copying the contents of the container `kcont` and `vcont` separately.
+// Copy the `comp` to sort all elements.
+std::sorted_unique_t s:
+KeyContainer< KType > kcont = { ... };
+MappedContainer< VType > vcont = { ... };
+Compare comp;
+std::flat_map< KType, VType, Compare, KeyContainer< KType >, MappedContainer< VType > > fmap_name1( s, kcont, vcont, comp );
+// Constructs the container with the contents of the range `[first, last)`.
+std::flat_map< KType, VType, Compare, KeyContainer< KType >, MappedContainer< VType >  > fmap_name2( s /*optional*/, fmap_name1.begin(), fmap_name1.end(), comp /*optional*/ );
+```
+
+```CPP
 std::flat_map< KType, VType >* fmap_ptr = new std::flat_map< KType, VType >;
 ```
 
@@ -1454,6 +1511,19 @@ std::flat_multimap< KType, VType > fmmap_name2 = fmmap_name1;
 std::flat_multimap< KType, VType > fmmap_name1;
 // Move constructor.
 std::flat_multimap< KType, VType > fmmap_name2( std::move( fmmap_name1 ) );
+```
+
+```CPP
+// Allow different elements with the same value. Just a tag.
+// Constructs the two underlying containers by copying the contents of the container `kcont` and `vcont` separately.
+// Copy the `comp` to sort all elements.
+std::sorted_equivalent_t s;
+KeyContainer< KType > kcont = { ... };
+MappedContainer< VType > vcont = { ... };
+Compare comp;
+std::flat_multimap< KType, VType, Compare, KeyContainer< KType >, MappedContainer< VType > > fmmap_name1( s, kcont, vcont, comp );
+// Constructs the container with the contents of the range `[first, last)`.
+std::flat_multimap< KType, VType, Compare, KeyContainer< KType >, MappedContainer< VType >  > fmmap_name2( s /*optional*/, fmmap_name1.begin(), fmmap_name1.end(), comp /*optional*/ );
 ```
 
 ```CPP
