@@ -178,6 +178,14 @@ std::set< Type > set_name2( std::move( set_name1 ) );
 ```
 
 ```CPP
+// Initializer list constructor.
+std::set< Type > set_name1{ ... };
+// Constructs the container with the contents of the range `[first, last)`.
+Compare comp;
+std::set< Type > set_name2( set_name1.begin(), set_name1.end(), comp /*optional*/ );
+```
+
+```CPP
 std::set< Type >* set_ptr = new std::set< Type >;
 ```
 
@@ -389,6 +397,14 @@ std::multiset< Type > mset_name2( std::move( mset_name1 ) );
 ```
 
 ```CPP
+// Initializer list constructor.
+std::set< Type, Compare > mset_name1{ ... };
+// Constructs the container with the contents of the range `[first, last)`.
+Compare comp;
+std::set< Type, Compare > mset_name2( mset_name1.begin(), mset_name1.end(), comp /*optional*/ );
+```
+
+```CPP
 std::multiset< Type >* mset_ptr = new std::multiset< Type >;
 ```
 
@@ -557,11 +573,14 @@ std::unordered_set< Type, Hash, KeyEqual > uset_name;
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
 std::unordered_set< Type, Hash, KeyEqual > uset_name( hash );
 ```
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
+KeyEqual key_equal;
 std::unordered_set< Type, Hash, KeyEqual > uset_name( hash, key_equal );
 ```
 
@@ -577,11 +596,14 @@ std::unordered_set< Type, Hash, KeyEqual > uset_name( size );
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
 std::unordered_set< Type, Hash, KeyEqual > uset_name( size, hash );
 ```
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
+KeyEqual key_equal;
 std::unordered_set< Type, Hash, KeyEqual > uset_name( size, hash, key_equal );
 ```
 
@@ -604,6 +626,15 @@ std::unordered_set< Type > uset_name2 = uset_name1;
 std::unordered_set< Type > uset_name1;
 // Move constructor.
 std::unordered_set< Type > uset_name2( std::move( uset_name1 ) );
+```
+
+```CPP
+// Initializer list constructor.
+std::set< Type, Hash, KeyEqual > uset_name1{ ... };
+// Constructs the container with the contents of the range `[first, last)`.
+Hash hash;
+KeyEqual key_equal;
+std::set< Type, Hash, KeyEqual > uset_name2( uset_name1.begin(), uset_name1.end(), size /*optional*/, hash /*optional*/, key_equal /*optional*/ );
 ```
 
 ```CPP
@@ -810,11 +841,14 @@ std::unordered_multiset< Type, Hash, KeyEqual > umset_name;
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
 std::unordered_multiset< Type, Hash, KeyEqual > umset_name( hash );
 ```
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
+KeyEqual key_equal;
 std::unordered_multiset< Type, Hash, KeyEqual > umset_name( hash, key_equal );
 ```
 
@@ -830,11 +864,14 @@ std::unordered_multiset< Type, Hash, KeyEqual > umset_name( size );
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
 std::unordered_multiset< Type, Hash, KeyEqual > umset_name( size, hash );
 ```
 
 ```CPP
 // Constructs an empty container.
+Hash hash;
+KeyEqual key_equal;
 std::unordered_multiset< Type, Hash, KeyEqual > umset_name( size, hash, key_equal );
 ```
 
@@ -857,6 +894,15 @@ std::unordered_multiset< Type > umset_name2 = umset_name1;
 std::unordered_multiset< Type > umset_name1;
 // Move constructor.
 std::unordered_multiset< Type > umset_name2( std::move( umset_name1 ) );
+```
+
+```CPP
+// Initializer list constructor.
+std::set< Type, Hash, KeyEqual > umset_name1{ ... };
+// Constructs the container with the contents of the range `[first, last)`.
+Hash hash;
+KeyEqual key_equal;
+std::set< Type, Hash, KeyEqual > umset_name2( umset_name1.begin(), umset_name1.end(), size /*optional*/, hash /*optional*/, key_equal /*optional*/ );
 ```
 
 ```CPP
@@ -1129,6 +1175,18 @@ std::flat_set< Type > fset_name2( std::move( fset_name1 ) );
 ```
 
 ```CPP
+// Specify that all elements are unique. Just a tag.
+// Constructs the underlying container by `std::move( cont )`.
+// Copy the `comp` to sort all elements.
+std::sorted_unique_t s:
+KeyContainer< Type > cont = { ... };
+Compare comp;
+std::flat_set< Type, Compare, KeyContainer< Type > > fset_name1( s, cont, comp );
+// Constructs the container with the contents of the range `[first, last)`.
+std::flat_set< Type, Compare, KeyContainer< Type > > fset_name2( s /*optional*/, fset_name1.begin(), fset_name1.end(), comp /*optional*/ );
+```
+
+```CPP
 std::flat_set< Type >* fset_ptr = new std::flat_set< Type >;
 ```
 
@@ -1385,6 +1443,18 @@ std::flat_multiset< Type > fmset_name2 = fmset_name1;
 std::flat_multiset< Type > fmset_name1;
 // Move constructor.
 std::flat_multiset< Type > fmset_name2( std::move( fmset_name1 ) );
+```
+
+```CPP
+// Allow different elements with the same value. Just a tag.
+// Constructs the underlying container by `std::move( cont )`.
+// Copy the `comp` to sort all elements.
+std::sorted_equivalent_t s;
+KeyContainer< Type > cont = { ... };
+Compare comp;
+std::flat_set< Type, Compare, KeyContainer< Type > > fmset_name1( s, cont, comp );
+// Constructs the container with the contents of the range `[first, last)`.
+std::flat_set< Type, Compare, KeyContainer< Type > > fmset_name2( s /*optional*/, fmset_name1.begin(), fmset_name1.end(), comp /*optional*/ );
 ```
 
 ```CPP

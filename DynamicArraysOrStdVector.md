@@ -96,6 +96,12 @@ std::vector< Type > arr_name( { ... } );
 ```
 
 ```CPP
+// Constructs the container with the contents of the range `[first, last)`.
+std::vector< Type > arr_name1( { ... } );
+std::vector< Type > arr_name2( arr_name1.begin(), arr_name1.end() );
+```
+
+```CPP
 std::vector< Type >* arr_ptr = new std::vector< Type >( size );
 ```
 

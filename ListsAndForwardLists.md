@@ -99,6 +99,12 @@ std::list< Type > list_name( { ... } );
 ```
 
 ```CPP
+// Constructs the container with the contents of the range `[first, last)`.
+std::list< Type > list_name1( { ... } );
+std::list< Type > list_name2( list_name1.begin(), list_name1.end() );
+```
+
+```CPP
 std::list< Type >* list_ptr = new std::list< Type >( size );
 ```
 
@@ -268,6 +274,12 @@ std::forward_list< Type > list_name2 = list_name1;
 ```CPP
 // Move constructor.
 std::forward_list< Type > list_name( { ... } );
+```
+
+```CPP
+// Constructs the container with the contents of the range `[first, last)`.
+std::forward_list< Type > list_name1( { ... } );
+std::forward_list< Type > list_name2( list_name1.begin(), list_name1.end() );
 ```
 
 ```CPP
