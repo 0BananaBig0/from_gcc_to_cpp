@@ -92,6 +92,10 @@
    of the Standard Template Library (STL). While they provide the same library, there may be minor
    variations in implementation. For instance, in std::vector, if the size exceeds its capacity, it
    grows by 50% in Clang, whereas it grows by 100% in GCC.
+7. **Ask ChatGPT the following question** to learn more:
+   - There are many different STL implementations in C++; some are more efficient than the default
+     STL, such as EASTL. Why hasn't the default STL been replaced with these more efficient
+     alternatives?
 
 ## Some Basic Concepts
 
