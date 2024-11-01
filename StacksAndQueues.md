@@ -387,12 +387,12 @@ delete queue_ptr;
 ### Declaration Syntax
 
 ```CPP
-std::priority_queue< Type > pri_queue_name;
+std::priority_queue< Type > pqueue_name;
 ```
 
 ```CPP
 // Not common, not recommend
-std::priority_queue< Type, Container< Type > > pri_queue_name;
+std::priority_queue< Type, Container< Type > > pqueue_name;
 ```
 
 ```CPP
@@ -413,11 +413,11 @@ class Compare {
          };
       };
 };
-std::priority_queue< Type, Container< Type >, Compare > pri_queue_name;
+std::priority_queue< Type, Container< Type >, Compare > pqueue_name;
 ```
 
 ```CPP
-std::priority_queue< Type, std::vector< Type >, Compare > pri_queue_name;
+std::priority_queue< Type, std::vector< Type >, Compare > pqueue_name;
 ```
 
 ```CPP
@@ -428,64 +428,64 @@ std::priority_queue< Type >* pri_queue_ptr;
 
 ```CPP
 // Default constructor. Value-initializes the comparator and the underlying container.
-std::priority_queue< Type > pri_queue_name;
+std::priority_queue< Type > pqueue_name;
 ```
 
 ```CPP
 // Default constructor. Value-initializes the comparator and the underlying container.
-std::priority_queue< Type, Container< Type >, Compare > pri_queue_name;
+std::priority_queue< Type, Container< Type >, Compare > pqueue_name;
 // Copy-constructs the temporary `Compare` class object. Value-initializes the underlying container.
-std::priority_queue< Type, Container< Type >, Compare > re_pri_queue_name( Compare( true ) );
+std::priority_queue< Type, Container< Type >, Compare > re_pqueue_name( Compare( true ) );
 ```
 
 ```CPP
 // Copy-constructs the comparison functor `comp` with the contents of compare. Value-initializes the underlying container.
 Compare comp;
-std::priority_queue< Type, Container< Type >, Compare  > pri_queue_name( comp );
+std::priority_queue< Type, Container< Type >, Compare  > pqueue_name( comp );
 ```
 
 ```CPP
 Compare comp;
 Container< Type > cont = { ... };
 // Copy the content of the `comp` and the `cont`.
-std::priority_queue< Type, Container< Type >, Compare  > pri_queue_name( cont, comp );
+std::priority_queue< Type, Container< Type >, Compare  > pqueue_name( cont, comp );
 ```
 
 ```CPP
 Compare comp;
 // Move the content of the underlying container.
 // Copy the content of the `comp`.
-std::priority_queue< Type, Container< Type >, Compare  > pri_queue_name( Container< Type >{ ... }, comp );
+std::priority_queue< Type, Container< Type >, Compare  > pqueue_name( Container< Type >{ ... }, comp );
 ```
 
 ```CPP
 // Default constructor. Value-initializes the comparator and the underlying container.
-std::priority_queue< Type > pri_queue_name1;
+std::priority_queue< Type > pqueue_name1;
 // Copy constructor.
-std::priority_queue< Type > pri_queue_name2( pri_queue_name1 );
+std::priority_queue< Type > pqueue_name2( pqueue_name1 );
 ```
 
 ```CPP
 // Default constructor. Value-initializes the comparator and the underlying container.
-std::priority_queue< Type > pri_queue_name1;
+std::priority_queue< Type > pqueue_name1;
 // Copy constructor.
-std::priority_queue< Type > pri_queue_name2 = pri_queue_name1;
+std::priority_queue< Type > pqueue_name2 = pqueue_name1;
 ```
 
 ```CPP
 // Default constructor. Value-initializes the comparator and the underlying container.
-std::priority_queue< Type > pri_queue_name1;
+std::priority_queue< Type > pqueue_name1;
 // Move constructor.
-std::priority_queue< Type > pri_queue_name2( std::move( pri_queue_name1 ) );
+std::priority_queue< Type > pqueue_name2( std::move( pqueue_name1 ) );
 ```
 
 ```CPP
 // Copy-constructs the comparison functor `comp` with the contents of compare. Value-initializes the underlying container.
 Compare comp;
 Container< Type > cont = { ... };
-std::priority_queue< Type, Container< Type >, Compare  > pri_queue_name1( comp, cont );
+std::priority_queue< Type, Container< Type >, Compare  > pqueue_name1( comp, cont );
 // Constructs the underlying container with the contents of the range `[first, last)`.
-std::priority_queue< Type, Container< Type >, Compare  > pri_queue_name2( pri_queue_name1.begin(), pri_queue_name1.end(), comp /*optional*/, cont /*optional*/ );
+std::priority_queue< Type, Container< Type >, Compare  > pqueue_name2( pqueue_name1.begin(), pqueue_name1.end(), comp /*optional*/, cont /*optional*/ );
 ```
 
 ```CPP
@@ -494,8 +494,8 @@ std::priority_queue< Type >* pri_queue_ptr = new std::priority_queue< Type >;
 
 ```CPP
 // Default constructor. Value-initializes the comparator and the underlying container.
-std::priority_queue< Type > pri_queue_name;
-std::priority_queue< Type >* pri_queue_ptr = new std::priority_queue< Type >( pri_queue_name );
+std::priority_queue< Type > pqueue_name;
+std::priority_queue< Type >* pri_queue_ptr = new std::priority_queue< Type >( pqueue_name );
 ```
 
 ### Syntax for Deleting `std::priority_queue` Pointers
