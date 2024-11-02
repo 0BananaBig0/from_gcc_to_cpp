@@ -182,7 +182,7 @@ std::set< Type > set_name2( std::move( set_name1 ) );
 std::set< Type > set_name1{ ... };
 // Constructs the container with the contents of the range `[first, last)`.
 Compare comp;
-std::set< Type > set_name2( set_name1.begin(), set_name1.end(), comp /*optional*/ );
+std::set< Type > set_name2( set_name1.begin(), set_name1.end(), comp /* optional */ );
 ```
 
 ```CPP
@@ -241,7 +241,7 @@ delete set_ptr;
     specialization of
     ```CPP
     template< class Iter, class NodeType >
-    struct /*unspecified*/
+    struct /* unspecified */
     {
           Iter position;
           bool inserted;
@@ -401,7 +401,7 @@ std::multiset< Type > mset_name2( std::move( mset_name1 ) );
 std::set< Type, Compare > mset_name1{ ... };
 // Constructs the container with the contents of the range `[first, last)`.
 Compare comp;
-std::set< Type, Compare > mset_name2( mset_name1.begin(), mset_name1.end(), comp /*optional*/ );
+std::set< Type, Compare > mset_name2( mset_name1.begin(), mset_name1.end(), comp /* optional */ );
 ```
 
 ```CPP
@@ -634,7 +634,7 @@ std::set< Type, Hash, KeyEqual > uset_name1{ ... };
 // Constructs the container with the contents of the range `[first, last)`.
 Hash hash;
 KeyEqual key_equal;
-std::set< Type, Hash, KeyEqual > uset_name2( uset_name1.begin(), uset_name1.end(), size /*optional*/, hash /*optional*/, key_equal /*optional*/ );
+std::set< Type, Hash, KeyEqual > uset_name2( uset_name1.begin(), uset_name1.end(), size /* optional */, hash /* optional */, key_equal /* optional */ );
 ```
 
 ```CPP
@@ -708,7 +708,7 @@ delete uset_ptr;
     specialization of
     ```CPP
     template< class Iter, class NodeType >
-    struct /*unspecified*/
+    struct /* unspecified */
     {
           Iter position;
           bool inserted;
@@ -902,7 +902,7 @@ std::set< Type, Hash, KeyEqual > umset_name1{ ... };
 // Constructs the container with the contents of the range `[first, last)`.
 Hash hash;
 KeyEqual key_equal;
-std::set< Type, Hash, KeyEqual > umset_name2( umset_name1.begin(), umset_name1.end(), size /*optional*/, hash /*optional*/, key_equal /*optional*/ );
+std::set< Type, Hash, KeyEqual > umset_name2( umset_name1.begin(), umset_name1.end(), size /* optional */, hash /* optional */, key_equal /* optional */ );
 ```
 
 ```CPP
@@ -1183,7 +1183,7 @@ KeyContainer< Type > cont = { ... };
 Compare comp;
 std::flat_set< Type, Compare, KeyContainer< Type > > fset_name1( s, cont, comp );
 // Constructs the container with the contents of the range `[first, last)`.
-std::flat_set< Type, Compare, KeyContainer< Type > > fset_name2( s /*optional*/, fset_name1.begin(), fset_name1.end(), comp /*optional*/ );
+std::flat_set< Type, Compare, KeyContainer< Type > > fset_name2( s /* optional */, fset_name1.begin(), fset_name1.end(), comp /* optional */ );
 ```
 
 ```CPP
@@ -1454,7 +1454,7 @@ KeyContainer< Type > cont = { ... };
 Compare comp;
 std::flat_set< Type, Compare, KeyContainer< Type > > fmset_name1( s, cont, comp );
 // Constructs the container with the contents of the range `[first, last)`.
-std::flat_set< Type, Compare, KeyContainer< Type > > fmset_name2( s /*optional*/, fmset_name1.begin(), fmset_name1.end(), comp /*optional*/ );
+std::flat_set< Type, Compare, KeyContainer< Type > > fmset_name2( s /* optional */, fmset_name1.begin(), fmset_name1.end(), comp /* optional */ );
 ```
 
 ```CPP

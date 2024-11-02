@@ -485,7 +485,7 @@ Compare comp;
 Container< Type > cont = { ... };
 std::priority_queue< Type, Container< Type >, Compare  > pqueue_name1( comp, cont );
 // Constructs the underlying container with the contents of the range `[first, last)`.
-std::priority_queue< Type, Container< Type >, Compare  > pqueue_name2( pqueue_name1.begin(), pqueue_name1.end(), comp /*optional*/, cont /*optional*/ );
+std::priority_queue< Type, Container< Type >, Compare  > pqueue_name2( pqueue_name1.begin(), pqueue_name1.end(), comp /* optional */, cont /* optional */ );
 ```
 
 ```CPP

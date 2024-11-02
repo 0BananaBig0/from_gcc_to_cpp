@@ -182,7 +182,7 @@ std::map< KType, VType > map_name2 = map_name1;
 // Copy-constructs the comparison functor `comp` with the contents of compare. Constructs an empty container.
 Compare comp;
 std::map< KType, VType, Compare  > map_name1( comp );
-std::map< KType, VType, Compare  > map_name2( map_name1.begin(), map_name1.end(), comp /*optional*/ );
+std::map< KType, VType, Compare  > map_name2( map_name1.begin(), map_name1.end(), comp /* optional */ );
 ```
 
 ```CPP
@@ -249,7 +249,7 @@ delete map_ptr;
     specialization of
     ```CPP
     template< class Iter, class NodeType >
-    struct /*unspecified*/
+    struct /* unspecified */
     {
           Iter position;
           bool inserted;
@@ -419,7 +419,7 @@ std::multimap< KType, VType > mmap_name2( std::move( mmap_name1 ) );
 // Copy-constructs the comparison functor `comp` with the contents of compare. Constructs an empty container.
 Compare comp;
 std::multimap< KType, VType, Compare  > mmap_name1( comp );
-std::multimap< KType, VType, Compare  > mmap_name2( mmap_name1.begin(), mmap_name1.end(), comp /*optional*/ );
+std::multimap< KType, VType, Compare  > mmap_name2( mmap_name1.begin(), mmap_name1.end(), comp /* optional */ );
 ```
 
 ```CPP
@@ -658,7 +658,7 @@ std::unordered_map< KType, VType, Hash, KeyEqual > umap_name1{ ... };
 // Constructs the container with the contents of the range `[first, last)`.
 Hash hash;
 KeyEqual key_equal;
-std::unordered_map< KType, VType, Hash, KeyEqual > umap_name2( umap_name1.begin(), umap_name1.end(), size /*optional*/, hash /*optional*/, key_equal /*optional*/ );
+std::unordered_map< KType, VType, Hash, KeyEqual > umap_name2( umap_name1.begin(), umap_name1.end(), size /* optional */, hash /* optional */, key_equal /* optional */ );
 ```
 
 ```CPP
@@ -733,7 +733,7 @@ delete umap_ptr;
     specialization of
     ```CPP
     template< class Iter, class NodeType >
-    struct /*unspecified*/
+    struct /* unspecified */
     {
           Iter position;
           bool inserted;
@@ -929,7 +929,7 @@ std::unordered_multimap< KType, VType, Hash, KeyEqual > ummap_name1{ ... };
 // Constructs the container with the contents of the range `[first, last)`.
 Hash hash;
 KeyEqual key_equal;
-std::unordered_multimap< KType, VType, Hash, KeyEqual > ummap_name2( ummap_name1.begin(), ummap_name1.end(), size /*optional*/, hash /*optional*/, key_equal /*optional*/ );
+std::unordered_multimap< KType, VType, Hash, KeyEqual > ummap_name2( ummap_name1.begin(), ummap_name1.end(), size /* optional */, hash /* optional */, key_equal /* optional */ );
 ```
 
 ```CPP
@@ -1004,7 +1004,7 @@ delete ummap_ptr;
     specialization of
     ```CPP
     template< class Iter, class NodeType >
-    struct /*unspecified*/
+    struct /* unspecified */
     {
           Iter position;
           bool inserted;
@@ -1231,7 +1231,7 @@ MappedContainer< VType > vcont = { ... };
 Compare comp;
 std::flat_map< KType, VType, Compare, KeyContainer< KType >, MappedContainer< VType > > fmap_name1( s, kcont, vcont, comp );
 // Constructs the container with the contents of the range `[first, last)`.
-std::flat_map< KType, VType, Compare, KeyContainer< KType >, MappedContainer< VType >  > fmap_name2( s /*optional*/, fmap_name1.begin(), fmap_name1.end(), comp /*optional*/ );
+std::flat_map< KType, VType, Compare, KeyContainer< KType >, MappedContainer< VType >  > fmap_name2( s /* optional */, fmap_name1.begin(), fmap_name1.end(), comp /* optional */ );
 ```
 
 ```CPP
@@ -1523,7 +1523,7 @@ MappedContainer< VType > vcont = { ... };
 Compare comp;
 std::flat_multimap< KType, VType, Compare, KeyContainer< KType >, MappedContainer< VType > > fmmap_name1( s, kcont, vcont, comp );
 // Constructs the container with the contents of the range `[first, last)`.
-std::flat_multimap< KType, VType, Compare, KeyContainer< KType >, MappedContainer< VType >  > fmmap_name2( s /*optional*/, fmmap_name1.begin(), fmmap_name1.end(), comp /*optional*/ );
+std::flat_multimap< KType, VType, Compare, KeyContainer< KType >, MappedContainer< VType >  > fmmap_name2( s /* optional */, fmmap_name1.begin(), fmmap_name1.end(), comp /* optional */ );
 ```
 
 ```CPP
