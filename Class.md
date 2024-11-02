@@ -384,6 +384,7 @@ class ClassName {
 
 ```CPP
 this->_mem;
+// (*this)._mem;
 ```
 
 #### `const` Member Variables
