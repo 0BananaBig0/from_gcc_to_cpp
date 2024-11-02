@@ -1,6 +1,6 @@
 <!-- vim-markdown-toc GFM -->
 
-- [Dynamic Arrays and `std::vector`](#dynamic-arrays-and-stdvector)
+- [Dynamic Arrays ( `std::vector` )](#dynamic-arrays--stdvector-)
   - [Explanation](#explanation)
   - [Characteristics](#characteristics)
   - [One-dimensional `std::vector`](#one-dimensional-stdvector)
@@ -21,7 +21,7 @@
 
 <!-- vim-markdown-toc -->
 
-### Dynamic Arrays and `std::vector`
+### Dynamic Arrays (`std::vector`)
 
 #### Explanation
 

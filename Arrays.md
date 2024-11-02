@@ -2,12 +2,8 @@
 
 - [Arrays](#arrays)
   - [Explanation](#explanation)
-  - [Characteristics](#characteristics)
-    - [1) Homogeneous Data Types](#1-homogeneous-data-types)
-    - [2) Contiguous Memory Allocation](#2-contiguous-memory-allocation)
-  - [Raw Arrays](#raw-arrays)
+  - [Static Arrays (Raw Arrays)](#static-arrays-raw-arrays)
     - [Explanation](#explanation-1)
-    - [Characteristics](#characteristics-1)
     - [One-dimensional Raw Arrays](#one-dimensional-raw-arrays)
       - [Declaration Syntax](#declaration-syntax)
       - [Initialization Syntax](#initialization-syntax)
@@ -16,9 +12,8 @@
       - [Declaration Syntax](#declaration-syntax-1)
       - [Initialization Syntax](#initialization-syntax-1)
       - [Syntax for Deleting Multidimensional Raw Array Pointers](#syntax-for-deleting-multidimensional-raw-array-pointers)
-  - [`std::array`](#stdarray)
+  - [Static Arrays (`std::array`)](#static-arrays-stdarray)
     - [Explanation](#explanation-2)
-    - [Characteristics](#characteristics-2)
     - [One-dimensional `std::array`](#one-dimensional-stdarray)
       - [Declaration Syntax](#declaration-syntax-2)
       - [Initialization Syntax](#initialization-syntax-2)
@@ -35,7 +30,7 @@
       - [Helper Classes](#helper-classes)
     - [Lexicographical Comparison or Lexicographical Order](#lexicographical-comparison-or-lexicographical-order)
     - [Notes](#notes)
-  - [Dynamic Arrays or `std::vector`](#dynamic-arrays-or-stdvector)
+  - [Dynamic Arrays (`std::vector`)](#dynamic-arrays-stdvector)
 
 <!-- vim-markdown-toc -->
 
@@ -44,34 +39,19 @@
 ### Explanation
 
 1. Arrays are **a collection of elements**, all of **the same type**, that are stored in
-   **contiguous memory** locations.
+   **contiguous memory** locations. The Contiguous memory **improves cache performance**.
 2. They are used to store **multiple values** in **a single variable**, making it easier to manage
-   and manipulate data efficiently.
+   and **manipulate data efficiently**.
 
-### Characteristics
-
-#### 1) Homogeneous Data Types
-
-1. All elements in an array must be of **the same data type** (e.g., all integers, all floats).
-
-#### 2) Contiguous Memory Allocation
-
-1. The elements of an array are stored in **consecutive memory** locations, which allows for
-   **efficient access** using an index. The Contiguous memory **improves cache performance**.
-
-### Raw Arrays
+### Static Arrays (Raw Arrays)
 
 #### Explanation
 
-1. Raw arrays in C++ refer to **traditional C-style arrays** that are built into the language.
+1. Raw arrays refer to **traditional C-style arrays** that are built into the language.
 2. They are **a fixed-size sequence** of elements of **the same type** and provides very minimal
    functionality compared to containers like `std::array` or `std::vector`.
-3. They are static arrays.
-
-#### Characteristics
-
-1. Raw arrays are the **fastest** structure but are **not safe** enough..
-2. The **size** of a raw array is **defined at compile time** and **cannot be changed during
+3. They are the **fastest** structure but are **not safe** enough..
+4. The **size** of a raw array is **defined at compile time** and **cannot be changed during
    runtime**. This means that once an array is declared, its size is fixed.
 
 #### One-dimensional Raw Arrays
@@ -105,13 +85,13 @@ Type arr_name[size] = {};
 ```
 
 ```CPP
-// Copy Initialization.
 Type arr_name1 = { ... };
+// Copy Initialization.
 Type arr_name2 = arr_name1;
 ```
 
 ```CPP
-// Implicit Size: If the size isn't specified, it is inferred from the initializer list.
+// Implicit size: If the size isn't specified, it is inferred from the initializer list.
 Type arr_name[] = { ... };
 ```
 
@@ -163,23 +143,23 @@ for( size_t i = 0; i < size_x; i++ ) {
 ##### Initialization Syntax
 
 ```CPP
-// Aggregate Initialization.
+// Aggregate initialization.
 Type arr_name[size_x][size_y] = { { ... /* size_y */ }, { ... }, ... /* size_x */ };
 ```
 
 ```CPP
-// Default Initialization.
+// Default initialization.
 Type arr_name[size_x][size_y] = {};
 ```
 
 ```CPP
-// Copy Initialization.
 Type arr_name1[size_x][size_y] = { { ... /* size_y */ }, { ... }, ... /* size_x */ };
+// Copy Initialization.
 Type arr_name2[size_x][size_y] = arr_name1;
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Aggregate initialization.
 Type arr_name[size_x][size_y][size_z] = {
    { { ... /* size_z */ }, { ... }, ... /* size_y */ },
    { { ... }, { ... }, ...},
@@ -188,17 +168,17 @@ Type arr_name[size_x][size_y][size_z] = {
 ```
 
 ```CPP
-// Default Initialization.
+// Default initialization.
 Type arr_name[size_x][size_y][size_z] = {};
 ```
 
 ```CPP
-// Copy Initialization.
 Type arr_name1[size_x][size_y][size_z] = {
    { { ... /* size_z */ }, { ... }, ... /* size_y */ },
    { { ... }, { ... }, ...},
    ... /* size_x */
 };
+// Copy initialization.
 Type arr_name2[size_x][size_y][size_z] = arr_name1;
 ```
 
@@ -220,32 +200,28 @@ for( size_t i = 0; i < size_x; i++ ) {
 delete[] a3d;
 ```
 
-### `std::array`
+### Static Arrays (`std::array`)
 
 #### Explanation
 
-1. `std::array` is **a container** from the C++ Standard Library that provides **a fixed-size
-   array**.
+1. `std::array` is **a container** from the C++ STL that provides **a fixed-size array**.
 2. It is **a template class**, and all syntax applicable to template classes applies to it.
-3. It's a static array.
-4. Its simple implementation:
+3. Its simple implementation:
    ```CPP
    template< typename T, size_t size > class Array {
          T _array[size]
    };
    ```
-
-#### Characteristics
-
-1.  `std::array` is **slower** than the raw array, but `std::array` is **safer** than a raw array.
-2.  `std::array` is used like a raw array but **provides member functions** and allows us to use
-    many standard C++ functions to manage it.
-3.  In debug mode, `std::array` can **help us debug** like bounds checking, thanks to its debug
-    macros and code.
-4.  `std::array` is **a template**. We can use its functions to get its size, but it **doesn't store
-    the size as a value**.
-5.  The **size** of a `std::array` is **defined at compile time** and **cannot be changed during
-    runtime**. This means that once an array is declared, its size is fixed.
+4. Its header file is `<array>`.
+5. `std::array` is **slower** than the raw array, but `std::array` is **safer** than a raw array.
+6. `std::array` is used like a raw array but **provides member functions** and allows us to use many
+   standard C++ functions to manage it.
+7. In debug mode, `std::array` can **help us debug** like bounds checking, thanks to its debug
+   macros and code.
+8. `std::array` is **a template**. Its size can be gotten by its functions, but it **doesn't store
+   the size as a value**.
+9. **The size** of a `std::array` is **defined at compile time** and **cannot be changed during
+   runtime**. This means that once an array is declared, its size is fixed.
 
 #### One-dimensional `std::array`
 
@@ -268,42 +244,42 @@ std::array< Type, size >* arr_ptr = &arr_name;
 ##### Initialization Syntax
 
 ```CPP
-// Aggregate Initialization or Uniform Initialization (C++11 and later).
+// Aggregate initialization or uniform initialization (C++11 and later).
 std::array< Type, size > arr_name = { val1, val2, val3, ... };
 ```
 
 ```CPP
-// Default Initialization.
+// Default initialization.
 std::array< Type, size > arr_name = {};
 ```
 
 ```CPP
-// Aggregate Initialization or Uniform Initialization (C++11 and later).
+// Aggregate initialization or uniform initialization (C++11 and later).
 std::array< Type, size > arr_name{ val1, val2, val3, ... };
 ```
 
 ```CPP
-// Move Constructor.
+// Move constructor.
 std::array< Type, size > arr_name( { ... } );
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Aggregate initialization.
 std::array< Type, size > arr_name1 = { ... };
 // Copy constructor.
 std::array< Type, size > arr_name2(arr_name1);
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Aggregate initialization.
 std::array< Type, size > arr_name1 = { ... };
 // Copy constructor.
 std::array< Type, size > arr_name2 = arr_name1;
 ```
 
 ```CPP
-// Copy Initialization.
 std::array< Type, size > arr_name1 = { val1, val2, val3, ... };
+// Copy initialization.
 std::array< Type, size > arr_name2 = arr_name1;
 ```
 
@@ -339,23 +315,23 @@ std::array< std::array< Type, size_y >, size_x > arr_name = { { { ... /* size_y 
 ```
 
 ```CPP
-// Default Initialization.
+// Default initialization.
 std::array< std::array< Type, size_y >, size_x > arr_name = {};
 ```
 
 ```CPP
-// Uniform Initialization (C++11 and later).
+// Uniform initialization (C++11 and later).
 std::array< std::array< Type, size_y >, size_x > arr_name{ { { ...  /* size_y */}, { ... }, ... /* size_x */ } };
 ```
 
 ```CPP
-// Copy Initialization.
 std::array< std::array< Type, size_y >, size_x > arr_name1 = { { { ... /* size_y */ }, { ... }, ... /* size_x */ } };
+// Copy initialization.
 std::array< std::array< Type, size_y >, size_x > arr_name2  = arr_name1;
 ```
 
 ```CPP
-// Aggregate Initialization.
+// Aggregate initialization.
 std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name = { {
    { { ... /* size_z */ }, { ... }, ... /* size_y */ },
    { { ... }, { ... }, ... },
@@ -364,12 +340,12 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name 
 ```
 
 ```CPP
-// Default Initialization.
+// Default initialization.
 std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name = {};
 ```
 
 ```CPP
-// Uniform Initialization (C++11 and later).
+// Uniform initialization (C++11 and later).
 std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name{ {
    { { ... /* size_z */ }, { ... }, ... /* size_y */ },
    { { ... }, { ... }, ...},
@@ -383,7 +359,7 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name1
    { { ... }, { ... }, ... },
    ... /* size_x */
 };
-// Copy Initialization.
+// Copy initialization.
 std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2 = arr_name1;
 ```
 
@@ -459,8 +435,8 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2
 
 #### Lexicographical Comparison or Lexicographical Order
 
-1. This means that **the elements of the arrays** are **compared in sequence**, similar to how words
-   are compared in a dictionary.
+1. Lexicographical comparison means that **the elements of the arrays** are **compared in
+   sequence**, similar to how words are compared in a dictionary.
 2. The comparison starts **from the first element** and **proceeds until a difference is found** or
    **one of the arrays is exhausted**.
 
@@ -479,4 +455,6 @@ std::array< std::array< std::array< Type, size_z >, size_y >, size_x > arr_name2
    **avoid overflow issues** when working with memory sizes, since it matches the size of the
    addressable memory range on the system.
 
-### Dynamic Arrays or `std::vector`
+### Dynamic Arrays (`std::vector`)
+
+1. [Dynamic Arrays (`std::vector`)](./DynamicArraysOrStdVector.md)
