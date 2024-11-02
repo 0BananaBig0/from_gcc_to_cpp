@@ -416,9 +416,13 @@
 ##### Explanation
 
 1. An rvalue reference is **a reference to a temporary object (an rvalue)** that is about to expire.
-   It can **bind only to rvalues**, such as the result of expressions or moved objects (e.g., via
-   `std::move`). This makes rvalue references ideal for **move semantics**, allowing efficient
-   transfer of resources.
+2. It can **bind only to rvalues**, such as the result of expressions or moved objects (e.g., via
+   `std::move`).
+3. This makes rvalue references ideal for **move semantics**, allowing efficient transfer of
+   resources.
+4. However, **for primitive types**, using `std::move` does not provide any meaningful advantage, as
+   it **behaves much like a copy**. This is primarily because primitive types do not have complex
+   resource management like objects that own dynamic memory.
 
 ##### Usage
 
