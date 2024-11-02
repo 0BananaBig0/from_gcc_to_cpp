@@ -1348,7 +1348,7 @@ delete fmap_ptr;
 
 #### Non-member Functions
 
-1. `operator==`, `operator<=>`: Lexicographically compares the values of two flat sets (function
+1. `operator==`, `operator<=>`: Lexicographically compares the values of two flat maps (function
    template).
 2. `std::swap( std::flat_map )`: Specializes the `std::swap` algorithm (function template).
 3. `erase_if( std::flat_map )`: Erases all elements satisfying specific criteria (function
@@ -1636,8 +1636,8 @@ delete fmmap_ptr;
 
 #### Non-member Functions
 
-1. `operator==`, `operator<=>`: Lexicographically compares the values of two flat sets (function
-   template).
+1. `operator==`, `operator<=>`: Lexicographically compares the values of two flat multimaps
+   (function template).
 2. `std::swap( std::flat_multimap )`: Specializes the `std::swap` algorithm (function template).
 3. `erase_if( std::flat_multimap )`: Erases all elements satisfying specific criteria (function
    template).

@@ -1019,7 +1019,7 @@ delete umset_ptr;
 #### Non-member Functions
 
 1. `operator==`, `operator!=` (removed in C++20): Lexicographically compares the values of two
-   unordered sets (function template).
+   unordered multisets (function template).
 2. `std::swap( std::unordered_multiset )`: Specializes the `std::swap` algorithm (function
    template).
 3. `erase_if( std::unordered_multiset )` (C++20): Erases all elements satisfying specific criteria
