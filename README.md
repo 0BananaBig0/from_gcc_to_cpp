@@ -29,6 +29,7 @@
   - [`enum`](./Enum.md)
   - [`union`, `std:any` `std::variant` and `std::optional`](./UnionStdAnyStdVariantStdOptional.md)
   - [Char and String](./CharAndString.md)
+  - [Pairs and Tuples](./PairsAndTuples.md.md)
   - [Smart Pointers](./SmartPointers.md)
   - [Timers](./Timers.md)
   - [Threads](./Threads.md)
