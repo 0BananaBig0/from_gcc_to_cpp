@@ -5,13 +5,11 @@
     - [Explanation](#explanation)
     - [Syntax](#syntax)
     - [Usage](#usage)
-    - [Characteristics](#characteristics)
     - [Notes](#notes)
   - [`decltype`](#decltype)
     - [Explanation](#explanation-1)
     - [Syntax](#syntax-1)
     - [Usage](#usage-1)
-    - [Characteristics](#characteristics-1)
     - [Notes](#notes-1)
 
 <!-- vim-markdown-toc -->
@@ -23,9 +21,15 @@
 #### Explanation
 
 1. `auto` is **a type specifier** that allows the compiler to **automatically deduce the type** of
-   **a variable from its initializer**.
+   **a variable from its initializer** **at compile time**.
 2. This feature, introduced in C++11, is especially useful for **simplifying complex type
    declarations, avoiding redundancy, and making code more readable**.
+3. `auto` creates **a copy of the original type** unless specified otherwise (e.g., `auto&` for
+   lvalue references).
+4. If the variable is initialized with **a const value**, `auto` **deduces a non-const type**.
+5. When the variable is initialized with **an initializer list**, `auto` deduces the type to be the
+   corresponding container type (e.g., `std::initializer_list`).
+6. `auto` **maintains type safety** by ensuring that the deduced type matches the initializer.
 
 #### Syntax
 
@@ -37,7 +41,7 @@ auto var_name = initializer;
 
 1. Variable declarations: Declare variables without specifying their type.
 2. Simplifying complex types.
-3. Range-Based for Loops. For example, `for( auto var_name : object_name )`.
+3. Range-based for loops. For example, `for( auto var_name : object_name )`.
 4. Lambda expressions.
 5. Deduce a return type of a function.
    ```CPP
@@ -49,21 +53,10 @@ auto var_name = initializer;
    };
    ```
 6. Using `auto` with structured bindings. For example `for( auto [x, y] : object_pair_name )`.
-   - **Structured bindings**, introduced in C++17, provide a way to unpack tuple-like objects (such
-     as `std::pair`, `std::tuple`, and user-defined types with `std::get`) into individual named
-     variables.
-
-#### Characteristics
-
-1. Type deduction: The type is **determined at compile time**a.
-2. Copy behavior: auto creates **a copy of the original type** unless specified otherwise (e.g.,
-   auto& for lvalue references).
-3. `const` qualifiers: If initialized with **a const value**, auto **deduces a non-const type**.
-4. Initializer lists: When initialized with an initializer list, auto deduces the type to be the
-   corresponding container type (e.g., `std::initializer_list`).
-5. Type safety: auto maintains type safety by ensuring that the deduced type matches the
-   initializer.
-6. Simplicity: Reduces verbosity, especially for complex types like iterators or function objects.
+   - **Structured bindings**, introduced in C++17, provide **a way to unpack tuple-like objects**
+     (such as `std::pair`, `std::tuple`, and user-defined types with `std::get`) into individual
+     named variables.
+   - [Structured Binding](./Binding.md#structured-binding)
 
 #### Notes
 
@@ -91,10 +84,15 @@ auto var_name = initializer;
 
 #### Explanation
 
-1. **A keyword** allows you to **query the type of an expression** at **compile time** **without
-   evaluating it**.
+1. `decltype` is **a keyword** allows you to **query the type of an expression** at **compile time**
+   **without evaluating it**.
 2. This is particularly useful in **template programming** and situations where **types are complex
    or unknown**.
+3. **The inference result** is **a reference type** if the expression is **an lvalue enclosed in
+   parentheses**.
+4. **Otherwise**, the inference result is **the the actual type** of the expression.
+5. `decltype` does **not evaluate the expression**; it merely inspects it to determine the type.
+6. It ensures that the deduced type is consistent with the expression, aiding in **type-safe code**.
 
 #### Syntax
 
@@ -114,22 +112,12 @@ decltype( expression )
    };
    ```
 
-#### Characteristics
-
-1. The inference result is a **reference type** if the expression is an lvalue enclosed in
-   parentheses.
-2. Otherwise, the inference result is **the the actual type** of the expression.
-3. No evaluation: `decltype` does **not evaluate the expression**; it merely inspects it to
-   determine the type.
-4. Type safety: Ensures that the deduced type is consistent with the expression, aiding in type-safe
-   code.
-
 #### Notes
 
-1. **Use `decltype( expression )&`** instead of `decltype( expression )`,
-   `decltype( ( expression ) )`, or `decltype( ( expression ) )&` if you want to deduce a result as
-   **a reference type**, even if the expression is already a reference. Although these four
-   expressions yield the same inference result, the first option is preferred.
+1. **Use `decltype( expression )&`** instead of `decltype( ( lvalue ) )`, or
+   `decltype( ( expression ) )&` if you want to deduce a result as **a reference type**, even if the
+   expression is already a reference. Although these four expressions yield the same inference
+   result, the first option is preferred.
 2. **Add `const`** as a prefix to `decltype( expression )` if you want to **deduce a result as a
    const type**, even if the expression is already a const type.
 3. **Use `decltype( expression )`** instead of `decltype( expression )*`,
