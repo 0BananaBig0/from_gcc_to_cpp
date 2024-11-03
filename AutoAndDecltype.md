@@ -56,7 +56,7 @@ auto var_name = initializer;
    - **Structured bindings**, introduced in C++17, provide **a way to unpack tuple-like objects**
      (such as `std::pair`, `std::tuple`, and user-defined types with `std::get`) into individual
      named variables.
-   - [Structured Binding](./Binding.md#structured-binding)
+   - [Structured Binding](./Bindings.md#structured-binding)
 
 #### Notes
 

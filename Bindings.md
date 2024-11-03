@@ -1,31 +1,40 @@
 <!-- vim-markdown-toc GFM -->
 
-- [Function Bindings](#function-bindings)
+- [Function Binding](#function-binding)
   - [Explanation](#explanation)
-  - [Static Binding](#static-binding)
-  - [Dynamic Binding](#dynamic-binding)
+  - [Static Binding (Early Binding)](#static-binding-early-binding)
+  - [Dynamic Binding (Late Binding)](#dynamic-binding-late-binding)
 - [C++17 Bindings](#c17-bindings)
   - [Explanation](#explanation-1)
   - [Structured Binding](#structured-binding)
-    - [Syntax](#syntax)
     - [Explanation](#explanation-2)
+    - [Syntax](#syntax)
   - [`std::tie`](#stdtie)
-    - [Syntax](#syntax-1)
     - [Explanation](#explanation-3)
+    - [Syntax](#syntax-1)
   - [Differences Between Structured Binding and `std::tie`](#differences-between-structured-binding-and-stdtie)
+  - [Pairs and Tuples](#pairs-and-tuples)
+- [Other Bindings](#other-bindings)
+  - [Variable Binding](#variable-binding)
+  - [Name Binding](#name-binding)
+  - [Object Binding](#object-binding)
+  - [Template Binding](#template-binding)
+  - [Scope Binding](#scope-binding)
+  - [Reference Binding](#reference-binding)
+  - [Constant Binding](#constant-binding)
 
 <!-- vim-markdown-toc -->
 
-## Function Bindings
+## Function Binding
 
 ### Explanation
 
-1. Function binding in C++ refers to **the association** between **a function call** and **the
-   actual function definition that gets executed**.
+1. Function binding refers to **the association** between **a function call** and **the actual
+   function definition that gets executed**.
 2. This process can **occur at different times**, leading to **two main types** of binding:
    **static** binding and **dynamic** binding.
 
-### Static Binding
+### Static Binding (Early Binding)
 
 1. Static binding, also known as **early binding**, occurs **at compile time**.
 2. The compiler determines **which function** to **call** **based on the type of the reference or
@@ -37,7 +46,7 @@
 5. This binding method is generally more **efficient** due to compile-time resolution, making it a
    preferred choice when polymorphism is not needed.
 
-### Dynamic Binding
+### Dynamic Binding (Late Binding)
 
 1. Dynamic binding, or **late binding**, occurs **at runtime**.
 2. The actual **function** to **call** is **determined** by **the type of the object being pointed**
@@ -62,7 +71,7 @@
 
 #### Explanation
 
-1. Structured binding allows you to **declare multiple variables** that can simultaneously **hold
+1. Structured binding allows you to **declare multiple variables** that can **simultaneously hold
    the values** extracted from **tuple-like structures** (such as `std::tuple`, `std::pair`, arrays,
    or user-defined types).
 2. It simplifies the syntax for unpacking values and allows for more expressive code.
@@ -80,7 +89,7 @@ auto& [var1, var2, ...] = initializer;
 ```
 
 ```CPP
-// Use it with a range-based for loop
+// Use it with a range-based for loop.
 for ( auto& [var1, var2, ...] : container );
 ```
 
@@ -116,3 +125,63 @@ std::tie( var1, var2, ... ) = initializer;
    values from any tuple-like structure, **including arrays and user-defined types** that implement
    the necessary interface, while **`std::tie`** is **limited** to binding **only** to **existing
    variables** and specifically works with **tuples or pairs**.
+
+### Pairs and Tuples
+
+1. [Pairs and Tuples](./PairsAndTuples.md)
+
+## Other Bindings
+
+### Variable Binding
+
+1. Variable binding involves associating **a variable** with **a specific memory location** where
+   its value is stored.
+2. The binding defines the variable's **lifetime and scope** within the program.
+3. Once a variable is declared, it remains bound to its memory location until it goes out of scope
+   or is explicitly deallocated.
+
+### Name Binding
+
+1. Name binding refers to the process of associating **an identifier** (such as a variable,
+   function, or class name) with **its corresponding entity** during the compilation phase.
+2. This binding is crucial for resolving names and ensuring that the correct entity is referenced
+   throughout the program.
+
+### Object Binding
+
+1. Object binding involves associating **an object instance** with **its class definition**.
+2. This binding allows the object to **access the class's member functions and variables**.
+3. The object is bound to **the class's interface**, providing the necessary context for member
+   function calls.
+
+### Template Binding
+
+1. Template binding occurs when **template parameters** are associated with **specific types or
+   values** during the instantiation of templates.
+2. This process allows C++ to **create type-safe generic functions and classes**, enabling **code
+   reuse** without sacrificing type safety.
+3. The binding is determined by the types provided at the point of instantiation.
+
+### Scope Binding
+
+1. Scope binding defines **the region** within which **a name is valid**.
+2. Names can be bound to **different scopes**, including **local, global, and class scopes**.
+3. This binding determines **the visibility and lifetime** of the name, influencing **how and where
+   it can be accessed** in the code.
+
+### Reference Binding
+
+1. Reference binding occurs when **a reference variable** is associated with **an existing
+   variable**.
+2. The reference serves as **an alias** for **the original variable**, allowing modifications made
+   through the reference to affect the original.
+3. This binding provides a way to create direct connections to existing variables without copying
+   their values.
+
+### Constant Binding
+
+1. Constant binding refers to the association of **a variable** with **a constant value** that
+   cannot be changed after its initialization.
+2. This binding is important for enforcing immutability, ensuring that certain values remain fixed
+   throughout the program's execution.
+3. Constant binding helps maintain program integrity and prevents unintended modifications.
