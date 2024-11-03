@@ -12,7 +12,7 @@
   - [Class Pointers](#class-pointers)
     - [Declaration Syntax](#declaration-syntax-2)
     - [Definition or Initialization Syntax](#definition-or-initialization-syntax)
-  - [Class Reference](#class-reference)
+  - [Class References](#class-references)
   - [`const` Instance of Classes](#const-instance-of-classes)
   - [`constexpr` Instances of Classes](#constexpr-instances-of-classes)
   - [`static` Instances of Classes](#static-instances-of-classes)
@@ -95,6 +95,7 @@
     - [`virtual` Destructors](#virtual-destructors)
   - [Operator Overloading](#operator-overloading)
     - [Copy-assignment Operator](#copy-assignment-operator)
+    - [Move-assignment Operator](#move-assignment-operator)
     - [Conversion Operator](#conversion-operator)
     - [`explicit` Conversion Operator](#explicit-conversion-operator)
   - [How to Determine Which Constructor or Assignment Operator Is Invoked](#how-to-determine-which-constructor-or-assignment-operator-is-invoked)
@@ -148,7 +149,6 @@
       - [Syntax](#syntax-26)
   - [`explicit`](#explicit)
   - [`using`](#using)
-  - [Keywords Related to Functions](#keywords-related-to-functions)
 
 <!-- vim-markdown-toc -->
 
@@ -327,7 +327,7 @@ ClassName obj_name;
 ClassName* obj_ptr = &obj_name;
 ```
 
-### Class Reference
+### Class References
 
 ```CPP
 // Default constructor.
@@ -925,9 +925,10 @@ class ClassName {
 #### Explanation
 
 1. A destructor is **a special member function** that is **automatically called** when an object
-   **goes out of scope** or is **explicitly deleted**. Its primary purpose is to **release
-   resources** (such as dynamically allocated memory or file handles) associated with the object.
-2. If a class has **base classes** or member objects, their destructors are **called in reverse
+   **goes out of scope** or is **explicitly deleted**.
+2. Its primary purpose is to **release resources** (such as dynamically allocated memory or file
+   handles) associated with the object.
+3. If a class has **base classes** or member objects, their destructors are **called in reverse
    order of construction**.
 
 #### Syntax
@@ -936,7 +937,7 @@ class ClassName {
 class ClassName {
    public:
       ~ClassName() {
-      };   // Destructor
+      };   // Destructor.
 };
 ```
 
@@ -945,13 +946,14 @@ class ClassName {
 ##### Explanation
 
 1. A default destructor is **automatically generated** by the compiler if the class does **not
-   explicitly define one**. It handles destruction according to the rules of the language, ensuring
-   that all member variables and base classes are properly destroyed.
-2. If the class **directly manages resources** (e.g., raw pointers), **a custom destructor** is
+   explicitly define one**.
+2. It handles destruction according to the rules of the language, ensuring that all member variables
+   and base classes are properly destroyed.
+3. If the class **directly manages resources** (e.g., raw pointers), **a custom destructor** is
    **necessary** to **avoid resource leaks**.
-3. The default destructor is **typically marked as noexcept**, improving performance by ensuring
+4. The default destructor is **typically marked as noexcept**, improving performance by ensuring
    compatibility with standard containers, such as `std::vector`.
-4. The `= default` syntax **explicitly requests** the compiler to generate the **default
+5. The `= default` syntax **explicitly requests** the compiler to generate the **default
    destructor**.
 
 ##### Syntax
@@ -959,32 +961,47 @@ class ClassName {
 ```CPP
 class ClassName {
    public:
-      ~ClassName() = default;   // Default destructor
+      // Default destructor.
+      ~ClassName() = default;
 };
 ```
 
 #### `virtual` Destructors
 
+1. [`virtual` Destructors](#virtual-destructors-1)
+
 ### Operator Overloading
+
+1. [Operator Overloading](./Operators.md#operator-overloading)
 
 #### Copy-assignment Operator
 
+1. [Copy-assignment Operator](./Operators.md#copy-assignment-operator)
+
+#### Move-assignment Operator
+
+1. [Move-assignment Operator](./Operators.md#move-assignment-operator)
+
 #### Conversion Operator
 
+1. [Conversion Operator](./Operators.md#conversion-operator)
+
 #### `explicit` Conversion Operator
+
+1. [`explicit` Conversion Operator](./Operators.md#explicit-conversion-operator)
 
 ### How to Determine Which Constructor or Assignment Operator Is Invoked
 
 1. If an object is **being defined**, the appropriate **constructor** will be called:
-   - **No argument**: **default** constructor
-   - **Single** argument of a different type: **conversion** constructor
-   - **Single** argument of the same type (**lvalue reference**): **copy** constructor
-   - **Single** argument of the same type (**rvalue reference**): **move** constructor
-   - **Multiple** arguments: parameterized constructor
+   - **No argument**: **default** constructor.
+   - **Single** argument of a different type: **conversion** constructor.
+   - **Single** argument of the same type (**lvalue reference**): **copy** constructor.
+   - **Single** argument of the same type (**rvalue reference**): **move** constructor.
+   - **Multiple** arguments: parameterized constructor.
 2. If an object **already exists** and is assigned a new object, the **assignment operator** will be
    called:
-   - Same type (**lvalue reference**): **copy**-assignment operator
-   - Same type (**rvalue reference**): **move**-assignment operator
+   - Same type (**lvalue reference**): **copy**-assignment operator.
+   - Same type (**rvalue reference**): **move**-assignment operator.
 
 ### Inheritance
 
@@ -1003,13 +1020,13 @@ class ClassName {
 
 ##### Code
 
-```
+```CPP
 class public Base{
-   // Members of base class
+   // Members of base class.
 };
 
 class Derived: public Base {
-      // Members of derived class
+      // Members of derived class.
 };
 ```
 
@@ -1056,6 +1073,8 @@ class Derived: public Base {
 2. **Base** class destructor: Called last to release resources inherited from the base class.
 
 #### `virtual` Inheritance
+
+1. [`virtual` Inheritance](#virtual-inheritance-1)
 
 ### `virtual`
 
@@ -1121,15 +1140,15 @@ class Derived: public Base {
 
 ##### Notes
 
-1. In cases where performance is very important, you should avoid using `virtual` functions as much
-   as possible.
+1. In cases where **performance** is very important, you should **avoid using `virtual` functions**
+   as much as possible.
 
 #### Pure `virtual` Functions and Abstract Class
 
 ##### Explanation
 
-1. A pure `virtual` function is declared by assigning `= 0` to a `virtual` function, indicating that
-   it does **not provide any implementation** in the **base** class.
+1. A pure `virtual` function is declared by **assigning `= 0` to a `virtual` function**, indicating
+   that it does **not provide any implementation** in the **base** class.
 2. Pure `virtual` functions enforce a contract that derived classes must fulfill, promoting **design
    consistency**.
 3. A class containing **at least one pure** `virtual` function is termed **an abstract class** and
@@ -1146,7 +1165,8 @@ class Derived: public Base {
 ```CPP
 class ClassName {
    public:
-      virtual RetType funcName const = 0;   // Pure `virtual` function.
+      // Pure `virtual` function.
+      virtual RetType funcName const = 0;
 };
 ```
 
@@ -1156,15 +1176,15 @@ class ClassName {
 
 1. A `virtual` destructor **ensures** that when an **object** is **deleted** via a **base** class
    **pointer**, the **destructor of** the **derived** class is **invoked**, **followed** by the
-   **base** class’s **destructor**. This guarantees that **all resources** allocated by the derived
-   class are **correctly released**, thereby **preventing memory leaks** and **ensuring complete
-   destruction** of the object.
-2. Destructors should **be declared `virtual` in any base class** intended for inheritance to
+   **base** class’s **destructor**.
+2. This guarantees that **all resources** allocated by the derived class are **correctly released**,
+   thereby **preventing memory leaks** and **ensuring complete destruction** of the object.
+3. Destructors should **be declared `virtual` in any base class** intended for inheritance to
    **avoid undefined behavior** during object destruction.
-3. **Without** a `virtual` destructor, **only** the **base** class **destructor** would **execute**,
-   leaving resources specific to the derived class unreleased.
-4. Although `virtual` destructors add **a slight performance overhead**, they are critical for safe
-   and **correct resource management**.
+4. **Without** a `virtual` destructor, **only** the **base** class **destructor** would **execute**,
+   **leaving resources** specific to the derived class **unreleased**.
+5. Although `virtual` destructors add **a slight performance overhead**, they are critical for
+   **safe** and **correct resource management**.
 
 ##### Syntax
 
@@ -1207,26 +1227,22 @@ class Derived: public Base {
 
 ```CPP
 class Base {
-   public:
-      int baseValue;
+      ...;
 };
-
 class A: virtual public Base {};
-
 class B: virtual public Base {};
-
 class Derived: public A,
-                        public B {};
+               public B {};
 ```
 
 ##### Initialization Syntax
 
 ```CPP
 class Derived: public A,
-                        public B {
+               public B {
    public:
       Derived( para_list1 ):
-         Base( para_list2 ), A( para_list3 ), B( para_list4 ) {};
+         Base( para_list2 ), A( para_list3 ), B( para_list4 ){};
 };
 ```
 
@@ -1246,8 +1262,8 @@ class Derived: public A,
 
 ##### Explanation
 
-1. In C++, the `friend` keyword **grants non-member functions** or **other classes** **access** to
-   the **private** and **protected members** of a class.
+1. The `friend` keyword **grants non-member functions** or **other classes** **access** to the
+   **private** and **protected members** of a class.
 2. The `friend` keyword is commonly used when specific functions or classes require access to a
    class's internal details but are not part of its public interface
 3. Friendship in C++ is **not inherited**—a **derived** class does **not inherit the friendship
@@ -1268,17 +1284,19 @@ class Derived: public A,
 
 ##### Syntax
 
-```
+```CPP
 class ClassName {
-public:
-    friend RetType funcName( const ClassName& obj );  // Friend function declaration
+   public:
+      // Friend function declaration.
+      friend RetType funcName( const ClassName& obj );
 };
 ```
 
-```
+```CPP
 class ClassName {
-public:
-    friend RetType funcName( );  // Friend function declaration
+   public:
+      // Friend function declaration.
+      friend RetType funcName();
 };
 ```
 
@@ -1368,6 +1386,8 @@ class FinalClass final {};
 
 ### `explicit`
 
+1. [The `explicit` Keyword](./ConversionAndCasting.md#the-explicit-keyword)
+
 ### `using`
 
-### Keywords Related to Functions
+1. [`using`](./UsingTypedefNameSpaces.md#using)
