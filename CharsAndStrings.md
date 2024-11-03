@@ -1,14 +1,14 @@
 <!-- vim-markdown-toc GFM -->
 
-- [Char and String](#char-and-string)
-  - [Char](#char)
+- [Chars and Strings](#chars-and-strings)
+  - [Chars (`char`)](#chars-char)
     - [Explanation](#explanation)
     - [Syntax](#syntax)
     - [Char Types](#char-types)
-  - [A Raw String or a Char **Array**](#a-raw-string-or-a-char-array)
+  - [Raw Strings (Char **Arrays**)](#raw-strings-char-arrays)
     - [Explanation](#explanation-1)
     - [Syntax](#syntax-1)
-  - [A `std::string`](#a-stdstring)
+  - [`std::string`](#stdstring)
     - [Explanation](#explanation-2)
     - [Declaration Syntax](#declaration-syntax)
     - [Initialization Syntax](#initialization-syntax)
@@ -24,7 +24,7 @@
       - [Helper Classes](#helper-classes)
     - [String Types in STL](#string-types-in-stl)
     - [Small String optimization](#small-string-optimization)
-    - [How to Make Strings Faster in C++: C++17](#how-to-make-strings-faster-in-c-c17)
+    - [How to Make Strings Faster in C++ (C++17)](#how-to-make-strings-faster-in-c-c17)
   - [`std::string_view`](#stdstring_view)
     - [Explanation](#explanation-3)
     - [Syntax](#syntax-2)
@@ -42,13 +42,13 @@
 
 <!-- vim-markdown-toc -->
 
-## Char and String
+## Chars and Strings
 
-### Char
+### Chars (`char`)
 
 #### Explanation
 
-1. A char is a fundamental data type in C++ that stores a single character. It can represent
+1. A `char` is a fundamental data type in C++ that stores a single character. It can represent
    letters, digits, punctuation, and other symbols.
 2. The value is enclosed in **single quotes (`'`)**. The size of a char is typically **one byte**,
    allowing for 256 different values (0 to 255), which correspond to the **ASCII character set**.
@@ -71,7 +71,7 @@ var_name = 'a letter';
    they all store character data, there are notable **differences** in **their size** and **intended
    use**.
 
-### A Raw String or a Char **Array**
+### Raw Strings (Char **Arrays**)
 
 #### Explanation
 
@@ -85,16 +85,15 @@ var_name = 'a letter';
 5. A string literal is **stored** in the **read-only section** of memory. However, if it is used to
    **initialize a non-const char array**, its **contents** will be **copied to the array**, which
    can then be **modified like any other array**.
-6. When **single quotes** or **memcpy** are used to assign or copy values to a char array or a char
-   pointer, **`'\0'` or `0`** **should be explicitly included** at the end.
-7. A char array is a type of **array**, meaning that **all syntax applicable to arrays** is **also
-   suitable for char arrays**.
+6. When **single quotes** or `memcpy` are used to assign or copy values to a `char` array or a
+   `char` pointer, **`'\0'` or `0`** **should be explicitly included** at the end.
+7. A `char` array is a type of **array**, meaning that **all syntax applicable to arrays** is **also
+   suitable for `char` arrays**.
 
 #### Syntax
 
 ```CPP
-// Implicit conversion occurs,
-// "a string" is a const chary array.
+// Implicit conversion occurs, "a string" is a `const char` array.
 char var_name[] = "a string";
 ```
 
@@ -114,7 +113,8 @@ char var_name[letter_count + 1] = { 'a letter', 'a letter', ..., '\0' };
 
 ```CPP
 char var_name[] = "a string";
-char* var_ptr = var_name; // Allowed, a non-const `char` pointer points to a non-const `char` array..
+// Allowed, a non-const `char` pointer points to a non-const `char` array.
+char* var_ptr = var_name;
 ```
 
 ```CPP
@@ -124,22 +124,22 @@ const char* var_ptr =  "a string";
 char var_name =  var_ptr[index];
 ```
 
-### A `std::string`
+### `std::string`
 
 #### Explanation
 
-1. std::string is **a class** in the C++ STL that represents **a sequence of characters**.
+1. `std::string` is **a class** in the C++ STL that represents **a sequence of characters**.
 2. It has several features, including the following:
-   - **Dynamic Sizing**: std::string can grow and shrink in size automatically, allowing for easy
+   - **Dynamic Sizing**: `std::string` can grow and shrink in size automatically, allowing for easy
      modifications without the need for manual memory management.
    - **Memory Management**: It handles memory allocation and deallocation internally, reducing the
      risk of memory leaks and buffer overflows.
    - **Null-Termination**: Unlike C-style strings, which require a null terminator to indicate the
-     end of the string, std::string **manages this internally**.
+     end of the string, `std::string` **manages this internally**.
    - **Compatibility**: It can easily be converted to and from C-style strings using the `c_str()`
      member function.
-3. The `std::string` type is **safer** than the char pointer or the char array, but **slower** than
-   the latter.
+3. The `std::string` type is **safer** than the `char` pointer or the `char` array, but **slower**
+   than the latter.
 
 #### Declaration Syntax
 
@@ -150,12 +150,12 @@ std::string var_name;
 #### Initialization Syntax
 
 ```CPP
-// Direct initialization
+// Direct initialization.
 std::string var_name = "a string";
 ```
 
 ```CPP
-// Constructor initialization
+// Constructor initialization.
 std::string var_name( "a string" );
 ```
 
@@ -165,12 +165,45 @@ std::string var_name{ "a string" };
 ```
 
 ```CPP
-// Concatenation
+// Concatenation.
 std::string var_name = std::string( "a string" ) + "another string";
-// += has been overloaded in std::string type
-var_name += "..."; // Allowed
+// += has been overloaded in std::string type.
+var_name += "..."; // Allowed.
 // Error: a string literal is a `const char` array. Two arrays cannot be concatenated without overloading the `+` operator.
-// std::string var_name = "a string" + "another string"; // Not allowed
+// std::string var_name = "a string" + "another string"; // Not allowed.
+```
+
+```CPP
+// Initializer list constructor.
+std::string var_name1{ "a string" };
+// Copy constructor.
+std::string var_name2( var_name1 );
+```
+
+```CPP
+// Initializer list constructor.
+std::string var_name1{ "a string" };
+// Move constructor.
+std::string var_name2( std::move( var_name1 ) );
+```
+
+```CPP
+// Initializer list constructor.
+std::string var_name1{ "a string" };
+// Constructs the string with the contents of the range `[first, last)`.
+std::string var_name2( var_name1.begin(), var_name1.end() );
+```
+
+```CPP
+char ch = 'a letter';
+// Constructs the string with `count` copies of character `ch`.
+std::string var_name( count, ch );
+```
+
+```CPP
+char* ch_ptr = "a string";
+// Constructs the string with the first `count` characters of character string pointed to by `ch`.
+std::string var_name( count, ch_ptr );
 ```
 
 #### Members and Related Stuffs
@@ -182,7 +215,7 @@ var_name += "..."; // Allowed
 
 ##### Template Parameters
 
-1. `CharT`: Character type
+1. `CharT`: Character type.
 2. `Traits`: Traits class specifying the operations on the character type.
 3. `Allocator`: Allocator type used to allocate internal storage.
 
@@ -212,7 +245,7 @@ var_name += "..."; // Allowed
 
 ##### Member Functions
 
-1. (constructor): Constructs a basic_string (public member function).
+1. (constructor): Constructs a `basic_string` (public member function).
 2. (destructor): Destroys the string, deallocating internal storage if used (public member
    function).
 3. `operator=`: Assigns values to the string (public member function).
@@ -226,7 +259,7 @@ var_name += "..."; // Allowed
 11. `data`: Returns a pointer to the first character of a string (public member function).
 12. `c_str`: Returns a non-modifiable standard C character array version of the string (public
     member function).
-13. `operator basic_string_view` (C++17): Returns a non-modifiable string_view into the entire
+13. `operator basic_string_view` (C++17): Returns a non-modifiable `string_view` into the entire
     string (public member function).
 14. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
 15. `end`, `cend`: Returns an iterator to the end (public member function).
@@ -266,22 +299,22 @@ var_name += "..."; // Allowed
 46. `starts_with` (C++20): Checks if the string starts with the given prefix (public member
     function).
 47. `ends_with` (C++20): Checks if the string ends with the given suffix (public member function).
-48. `contains` (C++23): Checks if the string contains the given substring or character (pub`lic
+48. `contains` (C++23): Checks if the string contains the given substring or character (public
     member function).
 49. `substr`: Returns a substring (public member function).
 
 ##### Constants
 
-1. npos` [`static`]: Special value. The exact meaning depends on the context (public static member
+1. `npos` [`static`]: Special value. The exact meaning depends on the context (public static member
    constant).
 
 ##### Non-member Functions
 
-1. `operator+`: Concatenates two strings, a string and a char, or a string and string_view (function
-   template).
+1. `operator+`: Concatenates two strings, a string and a `char`, or a string and `string_view`
+   (function template).
 2. `operator==/!=/</>/<=/>=` (removed in C++20), `operator<=>` (C++20): Lexicographically compares
    two strings (function template).
-3. `std::swap( std::basic_string )`: Specializes the std::swap algorithm (function template).
+3. `std::swap( std::basic_string )`: Specializes the `std::swap` algorithm (function template).
 4. `erase( std::basic_string )`, `erase_if( std::basic_string )` (C++20): Erases all elements
    satisfying specific criteria (function template).
 5. `operator<<`, `operator>>`: Performs stream input and output on strings (function template).
@@ -299,7 +332,7 @@ var_name += "..."; // Allowed
 
 1. Defined in inline namespace `std::literals::string_literals`.
 
-- `operator""s` (C++14): Converts a character array literal to basic_string (function).
+- `operator""s` (C++14): Converts a character array literal to `basic_string` (function).
 
 ##### Helper Classes
 
@@ -321,7 +354,7 @@ var_name += "..."; // Allowed
    of const char pointer type. However, if the code compiled in **debug mode**, even the string is
    **small enough**, it **still** causes **a head allocation**.
 
-#### How to Make Strings Faster in C++: C++17
+#### How to Make Strings Faster in C++ (C++17)
 
 1. Use **`std::string_view`** to **get a substring** of a `std::string`, instead of
    `std::string::substr()`.
@@ -364,6 +397,19 @@ std::string_view var_name( "a string" );
 std::string_view var_name{ "a string" };
 ```
 
+```CPP
+// Initializer list constructor.
+std::string str = { "a string" };
+// Constructs a `std::string_view` over the range `[first, last)`.
+std::string_view var_name( str.begin(), str.end() );
+```
+
+```CPP
+char* ch_ptr = "a string";
+// Constructs the `std::string_view` with the first `count` characters of character string pointed to by `ch`.
+std::string_view var_name( count, ch_ptr );
+```
+
 #### Member Functions
 
 ##### Links
@@ -380,8 +426,8 @@ std::string_view var_name{ "a string" };
 
 ##### Member Types
 
-1. `traits_type: `Traits`.
-2. `value_type`: CharT`.
+1. `traits_type`: `Traits`.
+2. `value_type`: `CharT`.
 3. `pointer`: `CharT*`.
 4. `const_pointer`: `const CharT*`.
 5. `reference`: `CharT&`.
@@ -395,15 +441,14 @@ std::string_view var_name{ "a string" };
 11. `size_type`: `std::size_t`.
 12. `difference_type`: `std::ptrdiff_t`.
 13. Notes:
-
-- `iterator` and `const_iterator` are the same type because string views are views into constant
-  character sequences.
-- All requirements on the `iterator` types of a Container applies to the `iterator` and
-  `const_iterator` types of `basic_string_view` as well.
+    - `iterator` and `const_iterator` are the same type because string views are views into constant
+      character sequences.
+    - All requirements on the `iterator` types of a Container applies to the `iterator` and
+      `const_iterator` types of `basic_string_view` as well.
 
 ##### Member Functions
 
-1. (constructor): Constructs a `basic_string_view` (public member function).
+1. (constructor): Constructs a `std::string_view` (public member function).
 2. `operator=`: Assigns a view (public member function).
 3. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
 4. `end`, `cend`: Returns an iterator to the end (public member function).
@@ -462,8 +507,8 @@ std::string_view var_name{ "a string" };
 ##### Helper Templates
 
 1. `template< class CharT, class Traits > inline constexpr bool ranges::enable_borrowed_range< std::basic_string_view< CharT, Traits > > = true;`
-   (since C++20): This specialization of ranges::enable_borrowed_range makes basic_string_view
-   satisfy borrowed_range.
+   (since C++20): This specialization of `ranges::enable_borrowed_range` makes `basic_string_view`
+   satisfy `borrowed_range`.
 2. `template< class CharT, class Traits > inline constexpr bool ranges::enable_view< std::basic_string_view < CharT, Traits > > = true;`
    (since C++20): This specialization of `ranges::enable_view` makes `basic_string_view` satisfy
    view.
