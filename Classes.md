@@ -918,7 +918,7 @@ class ClassName {
 
 #### `explicit` Constructors
 
-1. [The `explicit` Keyword](./ConversionAndCasting.md#the-explicit-keyword)
+1. [`explicit`](./ConversionAndCasting.md#explicit)
 
 ### Destructors
 
@@ -1386,7 +1386,7 @@ class FinalClass final {};
 
 ### `explicit`
 
-1. [The `explicit` Keyword](./ConversionAndCasting.md#the-explicit-keyword)
+1. [`explicit`](./ConversionAndCasting.md#explicit)
 
 ### `using`
 

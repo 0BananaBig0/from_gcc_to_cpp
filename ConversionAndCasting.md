@@ -34,7 +34,7 @@
         - [Usage](#usage-3)
         - [Requirements for Using `reinterpret_cast`](#requirements-for-using-reinterpret_cast)
       - [Notes](#notes)
-    - [The `explicit` Keyword](#the-explicit-keyword)
+    - [`explicit`](#explicit)
       - [Explanation](#explanation-9)
       - [Syntax](#syntax-5)
   - [`std::bit_cast` (Recommended for Safety, Performance and Type Integrity)](#stdbit_cast-recommended-for-safety-performance-and-type-integrity)
@@ -428,7 +428,7 @@ reinterpret_cast< TargetType >( initializer );
    identification during code searches** ( Search for their names to identify where explicit
    conversions occur. ).
 
-#### The `explicit` Keyword
+#### `explicit`
 
 ##### Explanation
 
