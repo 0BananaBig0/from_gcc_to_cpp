@@ -13,7 +13,7 @@
       - [`const` Member Variables](#const-member-variables)
         - [Explanation](#explanation-3)
         - [Syntax](#syntax-2)
-      - [`const` Methods or `const` Member Functions](#const-methods-or-const-member-functions)
+      - [`const` Methods (`const` Member Functions)](#const-methods-const-member-functions)
         - [Explanation](#explanation-4)
         - [Syntax](#syntax-3)
       - [`const` Function Parameters](#const-function-parameters)
@@ -33,7 +33,7 @@
         - [Syntax](#syntax-8)
   - [`constexpr`](#constexpr)
     - [Explanation](#explanation-10)
-    - [Allowed Elements or Valid Elements](#allowed-elements-or-valid-elements)
+    - [Allowed Elements (Valid Elements)](#allowed-elements-valid-elements)
     - [Disallowed Elements](#disallowed-elements)
     - [Usage](#usage-1)
       - [`constexpr` Variables](#constexpr-variables)
@@ -45,7 +45,7 @@
       - [`constexpr` Member Variables](#constexpr-member-variables)
         - [Explanation](#explanation-13)
         - [Syntax](#syntax-11)
-      - [`constexpr` Functions or `constexpr` Return Values](#constexpr-functions-or-constexpr-return-values)
+      - [`constexpr` Functions (`constexpr` Return Values)](#constexpr-functions-constexpr-return-values)
         - [Explanation](#explanation-14)
         - [Syntax](#syntax-12)
       - [`constexpr` Constructors (C++11 and later):](#constexpr-constructors-c11-and-later)
@@ -66,7 +66,7 @@
       - [`static` Member Variables](#static-member-variables)
         - [Explanation](#explanation-20)
         - [Syntax](#syntax-17)
-      - [`static` Methods or `static` Member Function](#static-methods-or-static-member-function)
+      - [`static` Methods (`static` Member Functions)](#static-methods-static-member-functions)
         - [Explanation](#explanation-21)
         - [Syntax](#syntax-18)
       - [`static` Global Functions](#static-global-functions)
@@ -144,7 +144,7 @@ class ClassName {
 };
 ```
 
-##### `const` Methods or `const` Member Functions
+##### `const` Methods (`const` Member Functions)
 
 ###### Explanation
 
@@ -262,7 +262,7 @@ const ClassName obj_ptr;
    leading to significant performance improvements.
 4. It enhances the code readabilit.
 
-#### Allowed Elements or Valid Elements
+#### Allowed Elements (Valid Elements)
 
 1. Constant expressions (e.g., literals, `constexpr` variables).
 2. Simple arithmetic operations.
@@ -323,7 +323,7 @@ class ClassName {
 };
 ```
 
-##### `constexpr` Functions or `constexpr` Return Values
+##### `constexpr` Functions (`constexpr` Return Values)
 
 ###### Explanation
 
@@ -473,7 +473,7 @@ Type1 ClassName::_staticMember1 = 0;
 Type2 ClassName::_staticMember2 = 0;
 ```
 
-##### `static` Methods or `static` Member Function
+##### `static` Methods (`static` Member Functions)
 
 ###### Explanation
 
