@@ -1,78 +1,78 @@
 <!-- vim-markdown-toc GFM -->
 
 - [`const`, `constexpr` and `static`](#const-constexpr-and-static)
-  - [1) `const`](#1-const)
+  - [`const`](#const)
     - [Explanation](#explanation)
     - [Usage](#usage)
-      - [(1) `const` Variables](#1-const-variables)
+      - [`const` Variables](#const-variables)
         - [Explanation](#explanation-1)
         - [Syntax](#syntax)
-      - [(2) `const` Pointers](#2-const-pointers)
+      - [`const` Pointers](#const-pointers)
         - [Explanation](#explanation-2)
         - [Syntax](#syntax-1)
-      - [(3) `const` Member Variables](#3-const-member-variables)
+      - [`const` Member Variables](#const-member-variables)
         - [Explanation](#explanation-3)
         - [Syntax](#syntax-2)
-      - [(4) `const` Methods or `const` Member Functions](#4-const-methods-or-const-member-functions)
+      - [`const` Methods or `const` Member Functions](#const-methods-or-const-member-functions)
         - [Explanation](#explanation-4)
         - [Syntax](#syntax-3)
-      - [(5) `const` Function Parameters](#5-const-function-parameters)
+      - [`const` Function Parameters](#const-function-parameters)
         - [Explanation](#explanation-5)
         - [Syntax](#syntax-4)
-      - [(6) `const` Return Values](#6-const-return-values)
+      - [`const` Return Values](#const-return-values)
         - [Explanation](#explanation-6)
         - [Syntax](#syntax-5)
-      - [(7) `const` Return Pointers](#7-const-return-pointers)
+      - [`const` Return Pointers](#const-return-pointers)
         - [Explanation](#explanation-7)
         - [Syntax](#syntax-6)
-      - [(8) `const` Return References](#8-const-return-references)
+      - [`const` Return References](#const-return-references)
         - [Explanation](#explanation-8)
         - [Syntax](#syntax-7)
-      - [(9) A `const` Instance of a `class`](#9-a-const-instance-of-a-class)
+      - [`const` Instances of Classes](#const-instances-of-classes)
         - [Explanation](#explanation-9)
         - [Syntax](#syntax-8)
-  - [2) `constexpr`](#2-constexpr)
+  - [`constexpr`](#constexpr)
     - [Explanation](#explanation-10)
     - [Allowed Elements or Valid Elements](#allowed-elements-or-valid-elements)
     - [Disallowed Elements](#disallowed-elements)
     - [Usage](#usage-1)
-      - [(1) `constexpr` Variables](#1-constexpr-variables)
+      - [`constexpr` Variables](#constexpr-variables)
         - [Explanation](#explanation-11)
         - [Syntax](#syntax-9)
-      - [(2) `constexpr` Pointers](#2-constexpr-pointers)
+      - [`constexpr` Pointers](#constexpr-pointers)
         - [Explanation](#explanation-12)
         - [Syntax](#syntax-10)
-      - [(3) `constexpr` Member Variables](#3-constexpr-member-variables)
+      - [`constexpr` Member Variables](#constexpr-member-variables)
         - [Explanation](#explanation-13)
         - [Syntax](#syntax-11)
-      - [(4) `constexpr` Functions or `constexpr` Return Values](#4-constexpr-functions-or-constexpr-return-values)
+      - [`constexpr` Functions or `constexpr` Return Values](#constexpr-functions-or-constexpr-return-values)
         - [Explanation](#explanation-14)
         - [Syntax](#syntax-12)
-      - [(5) `constexpr` Constructors (C++11 and later):](#5-constexpr-constructors-c11-and-later)
+      - [`constexpr` Constructors (C++11 and later):](#constexpr-constructors-c11-and-later)
         - [Explanation](#explanation-15)
         - [Syntax](#syntax-13)
-      - [(6) A `constexpr` Instance of a `class`](#6-a-constexpr-instance-of-a-class)
+      - [`constexpr` Instances of Classes](#constexpr-instances-of-classes)
         - [Explanation](#explanation-16)
         - [Syntax](#syntax-14)
-  - [3) `static`](#3-static)
+  - [`static`](#static)
     - [Explanation](#explanation-17)
     - [Usage](#usage-2)
-      - [(1) `static` Local Variables](#1-static-local-variables)
+      - [`static` Local Variables](#static-local-variables)
         - [Explanation](#explanation-18)
         - [Syntax](#syntax-15)
-      - [(2) `static` Global Variables](#2-static-global-variables)
+      - [`static` Global Variables](#static-global-variables)
         - [Explanation](#explanation-19)
         - [Syntax](#syntax-16)
-      - [(3) `static` Member Variables](#3-static-member-variables)
+      - [`static` Member Variables](#static-member-variables)
         - [Explanation](#explanation-20)
         - [Syntax](#syntax-17)
-      - [(4) `static` Methods or `static` Member Function](#4-static-methods-or-static-member-function)
+      - [`static` Methods or `static` Member Function](#static-methods-or-static-member-function)
         - [Explanation](#explanation-21)
         - [Syntax](#syntax-18)
-      - [(5) `static` Global Functions](#5-static-global-functions)
+      - [`static` Global Functions](#static-global-functions)
         - [Explanation](#explanation-22)
         - [Syntax](#syntax-19)
-      - [(6) A `static` Instance of a `class`](#6-a-static-instance-of-a-class)
+      - [`static` Instances of Classes](#static-instances-of-classes)
         - [Explanation](#explanation-23)
         - [Syntax](#syntax-20)
 
@@ -80,7 +80,7 @@
 
 ## `const`, `constexpr` and `static`
 
-### 1) `const`
+### `const`
 
 #### Explanation
 
@@ -92,7 +92,7 @@
 
 #### Usage
 
-##### (1) `const` Variables
+##### `const` Variables
 
 ###### Explanation
 
@@ -109,7 +109,7 @@
 const Type var_name = value;
 ```
 
-##### (2) `const` Pointers
+##### `const` Pointers
 
 ###### Explanation
 
@@ -123,7 +123,7 @@ const Type var_name = value;
 1. Pointer to constant value: `const Type* ptr_name;`
 2. Constant pointer: `Type* const ptr_name;`
 
-##### (3) `const` Member Variables
+##### `const` Member Variables
 
 ###### Explanation
 
@@ -144,7 +144,7 @@ class ClassName {
 };
 ```
 
-##### (4) `const` Methods or `const` Member Functions
+##### `const` Methods or `const` Member Functions
 
 ###### Explanation
 
@@ -165,7 +165,7 @@ class ClassName {
 RetType funcName( para_list ) const;
 ```
 
-##### (5) `const` Function Parameters
+##### `const` Function Parameters
 
 ###### Explanation
 
@@ -178,7 +178,7 @@ RetType funcName( para_list ) const;
 void funcName( const Type para1, ... );
 ```
 
-##### (6) `const` Return Values
+##### `const` Return Values
 
 ###### Explanation
 
@@ -195,7 +195,7 @@ const RetType funcName( para_list ) {
 };
 ```
 
-##### (7) `const` Return Pointers
+##### `const` Return Pointers
 
 ###### Explanation
 
@@ -212,7 +212,7 @@ const returnType* funcName() {
 };
 ```
 
-##### (8) `const` Return References
+##### `const` Return References
 
 ###### Explanation
 
@@ -229,7 +229,7 @@ const returnType& funcName() {
 };
 ```
 
-##### (9) A `const` Instance of a `class`
+##### `const` Instances of Classes
 
 ###### Explanation
 
@@ -248,7 +248,7 @@ const returnType& funcName() {
 const ClassName obj_ptr;
 ```
 
-### 2) `constexpr`
+### `constexpr`
 
 #### Explanation
 
@@ -276,7 +276,7 @@ const ClassName obj_ptr;
 
 #### Usage
 
-##### (1) `constexpr` Variables
+##### `constexpr` Variables
 
 ###### Explanation
 
@@ -290,7 +290,7 @@ const ClassName obj_ptr;
 constexpr Type var_name = initializer;
 ```
 
-##### (2) `constexpr` Pointers
+##### `constexpr` Pointers
 
 ###### Explanation
 
@@ -305,7 +305,7 @@ Type var_name = initializer;
 constexpr Type var_name = initializer;
 ```
 
-##### (3) `constexpr` Member Variables
+##### `constexpr` Member Variables
 
 ###### Explanation
 
@@ -323,7 +323,7 @@ class ClassName {
 };
 ```
 
-##### (4) `constexpr` Functions or `constexpr` Return Values
+##### `constexpr` Functions or `constexpr` Return Values
 
 ###### Explanation
 
@@ -347,7 +347,7 @@ constexpr RetType funcName( para_list ) {
 constexpr RetType var_name = funcName( para_list );
 ```
 
-##### (5) `constexpr` Constructors (C++11 and later):
+##### `constexpr` Constructors (C++11 and later):
 
 ###### Explanation
 
@@ -373,7 +373,7 @@ class ClassName {
 constexpr ClassName obj_name( para_list );
 ```
 
-##### (6) A `constexpr` Instance of a `class`
+##### `constexpr` Instances of Classes
 
 ###### Explanation
 
@@ -395,7 +395,7 @@ constexpr ClassName obj_name( para_list );
 constexpr ClassName obj_ptr;
 ```
 
-### 3) `static`
+### `static`
 
 #### Explanation
 
@@ -412,7 +412,7 @@ constexpr ClassName obj_ptr;
 
 #### Usage
 
-##### (1) `static` Local Variables
+##### `static` Local Variables
 
 ###### Explanation
 
@@ -431,7 +431,7 @@ RetType funcName() {
 };
 ```
 
-##### (2) `static` Global Variables
+##### `static` Global Variables
 
 ###### Explanation
 
@@ -445,7 +445,7 @@ RetType funcName() {
 static Type var_name;
 ```
 
-##### (3) `static` Member Variables
+##### `static` Member Variables
 
 ###### Explanation
 
@@ -473,7 +473,7 @@ Type1 ClassName::_staticMember1 = 0;
 Type2 ClassName::_staticMember2 = 0;
 ```
 
-##### (4) `static` Methods or `static` Member Function
+##### `static` Methods or `static` Member Function
 
 ###### Explanation
 
@@ -497,7 +497,7 @@ public:
 RetType var_name = ClassName::funcName( para_list );
 ```
 
-##### (5) `static` Global Functions
+##### `static` Global Functions
 
 ###### Explanation
 
@@ -512,7 +512,7 @@ static RetType funcName() {
 };
 ```
 
-##### (6) A `static` Instance of a `class`
+##### `static` Instances of Classes
 
 ###### Explanation
 
