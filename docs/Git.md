@@ -35,8 +35,8 @@
 
 ### Perface
 
-1. This file lists only common Git commands. For a deeper understanding of Git, you should learn
-   from a comprehensive Git tutorial.
+1. This file lists only common Git commands.
+2. For a deeper understanding of Git, you should learn from a comprehensive Git tutorial.
 
 ### Create and Initialize a Repository
 
@@ -69,25 +69,34 @@ flowchart LR
 
 ##### Explanation
 
-1. Working Directory: This is the directory where you work on your project. Typically, it serves as
-   the root directory and often contains a `.git` directory, which primarily includes the config
-   file, the staging area, branches, and the head. You can use the `exa` command to explore its tree
-   structure.
-2. Stage: After executing the `git add TargetList` command, all changes to the files in `TargetList`
-   are submitted to the staging area.
-3. Current Branch: This refers to the branch you are currently working on in your project.
-4. HEAD: It is a pointer that refers to the current commit in your local repository. It indicates
-   where you are in the commit history. When you make new commits, HEAD moves forward to point to
-   the latest commit.
-5. master: It is typically the name of the main branch in your local repository. It represents the
-   latest commit on that branch. When you switch to the master branch, HEAD points to master.
-6. origin/master: It is a remote-tracking branch that represents the state of the master branch on
-   the remote repository (usually named origin). It reflects the last known state of the master
-   branch on the remote when you last fetched or pulled changes. It doesn't change unless you
-   explicitly fetch or pull.
-7. origin/HEAD: It is a symbolic reference that points to the default branch of the origin remote
-   repository, often pointing to origin/master. It helps Git determine which branch to track for new
-   clones of the repository.
+1. Working directory:
+   - This is the directory where you work on your project.
+   - Typically, it serves as the root directory and often contains a `.git` directory, which
+     primarily includes the config file, the staging area, branches, and the head.
+   - You can use the `exa` command to explore its tree structure.
+2. Stage:
+   - After executing the `git add TargetList` command, all changes to the files in `TargetList` are
+     submitted to the staging area.
+3. Current branch:
+   - This refers to the branch you are currently working on in your project.
+4. HEAD:
+   - It is a pointer that refers to the current commit in your local repository.
+   - It indicates where you are in the commit history.
+   - When you make new commits, HEAD moves forward to point to the latest commit.
+5. master:
+   - It is typically the name of the main branch in your local repository.
+   - It represents the latest commit on that branch. When you switch to the master branch, HEAD
+     points to master.
+6. origin/master:
+   - It is a remote-tracking branch that represents the state of the master branch on the remote
+     repository (usually named origin).
+   - It reflects the last known state of the master branch on the remote when you last fetched or
+     pulled changes.
+   - It doesn't change unless you explicitly fetch or pull.
+7. origin/HEAD:
+   - It is a symbolic reference that points to the default branch of the origin remote repository,
+     often pointing to origin/master.
+   - It helps Git determine which branch to track for new clones of the repository.
 
 ### Add Files to a Branch
 
