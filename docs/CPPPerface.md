@@ -2,52 +2,52 @@
 
 - [Preface](#preface)
 - [Some Basic Concepts](#some-basic-concepts)
-  - [1) Declaration](#1-declaration)
-    - [General Explanation](#general-explanation)
-    - [Forward Declaration](#forward-declaration)
-  - [2) Definition](#2-definition)
-  - [3) Variable, Instance, Object, Initializer and Value](#3-variable-instance-object-initializer-and-value)
-    - [Variable](#variable)
+  - [Declarations](#declarations)
+    - [General Explanations](#general-explanations)
+    - [Forward Declarations](#forward-declarations)
+  - [Definitions](#definitions)
+  - [Variables, Instances, Objects, Initializers and Values](#variables-instances-objects-initializers-and-values)
+    - [Variables](#variables)
       - [Explanation](#explanation)
       - [Characteristics](#characteristics)
-      - [Temporary Variable](#temporary-variable)
-    - [Instance](#instance)
+      - [Temporary Variables](#temporary-variables)
+    - [Instances](#instances)
       - [Explanation](#explanation-1)
       - [Characteristics](#characteristics-1)
-    - [Object](#object)
+    - [Objects](#objects)
       - [Explanation](#explanation-2)
       - [Characteristics](#characteristics-2)
-      - [Temporary Object](#temporary-object)
-    - [Initializer](#initializer)
+      - [Temporary Objects](#temporary-objects)
+    - [Initializers](#initializers)
       - [Explanation](#explanation-3)
-    - [Value](#value)
+    - [Values](#values)
     - [Explanation](#explanation-4)
-    - [Relationships Between the Them](#relationships-between-the-them)
-      - [Variable](#variable-1)
-      - [Instance](#instance-1)
-      - [Object](#object-1)
-  - [4) Pointer and Reference](#4-pointer-and-reference)
-    - [Pointer](#pointer)
+    - [Relationships Between Them](#relationships-between-them)
+      - [Variables](#variables-1)
+      - [Instances](#instances-1)
+      - [Objects](#objects-1)
+  - [Pointers and References](#pointers-and-references)
+    - [Pointers](#pointers)
       - [Explanation](#explanation-5)
-      - [Void Pointer](#void-pointer)
+      - [Void Pointers](#void-pointers)
       - [Null Pointers](#null-pointers)
-      - [Dangling Pointer](#dangling-pointer)
-      - [Wild Pointer](#wild-pointer)
-    - [Reference](#reference)
-  - [5) Parameter](#5-parameter)
-  - [6) Argument](#6-argument)
-  - [7) Expression](#7-expression)
+      - [Dangling Pointers](#dangling-pointers)
+      - [Wild Pointers](#wild-pointers)
+    - [References](#references)
+  - [Parameters](#parameters)
+  - [Arguments](#arguments)
+  - [Expressions](#expressions)
     - [Explanation](#explanation-6)
     - [Types of Expressions in C++](#types-of-expressions-in-c)
-  - [8) Lvalue and Rvalue: Value Categories in C++](#8-lvalue-and-rvalue-value-categories-in-c)
-    - [Lvalue (Left Value)](#lvalue-left-value)
-    - [Rvalue (Right Value)](#rvalue-right-value)
-    - [Lvalue Reference (`Type&`)](#lvalue-reference-type)
+  - [Lvalues and Rvalues: Value Categories in C++](#lvalues-and-rvalues-value-categories-in-c)
+    - [Lvalues (Left Values)](#lvalues-left-values)
+    - [Rvalues (Right Values)](#rvalues-right-values)
+    - [Lvalue References (`Type&`)](#lvalue-references-type)
       - [Explanation](#explanation-7)
       - [Usage](#usage)
       - [Notes](#notes)
     - [How to Identify Whether a Value is an Lvalue or an Rvalue](#how-to-identify-whether-a-value-is-an-lvalue-or-an-rvalue)
-    - [Rvalue Reference (`Type&&`)](#rvalue-reference-type)
+    - [Rvalue References (`Type&&`)](#rvalue-references-type)
       - [Explanation](#explanation-8)
       - [Usage](#usage-1)
     - [Move Semantics](#move-semantics)
@@ -56,9 +56,10 @@
     - [`std::move`](#stdmove)
       - [Explanation](#explanation-10)
       - [Usage](#usage-3)
-  - [9) Interface](#9-interface)
-  - [10) Keyword](#10-keyword)
-  - [11) Type Specifier](#11-type-specifier)
+  - [Interface](#interface)
+  - [Keyword](#keyword)
+  - [Type Specifier](#type-specifier)
+  - [Notes](#notes-1)
 
 <!-- vim-markdown-toc -->
 
@@ -99,16 +100,16 @@
 
 ## Some Basic Concepts
 
-### 1) Declaration
+### Declarations
 
-#### General Explanation
+#### General Explanations
 
 1. The term declaration refers to the introduction of **a variable, function, class, or other entity
    to the program, specifying its name and type without allocating storage or providing an
    implementation**. It **merely states** that a function, class, struct or variable **exists**
    without concerning itself with a definition.
 
-#### Forward Declaration
+#### Forward Declarations
 
 1.  It is **a declaration** of a class, function, or variable that **informs the compiler of its
     existence without providing the full definition** at that point. It allows the compiler to
@@ -117,20 +118,20 @@
 2.  This is typically used to **improve compilation times**, **resolve circular dependencies**, or
     when the full details of the entity are not yet required.
 
-### 2) Definition
+### Definitions
 
 1.  A definition **provides a body** that implements a function, class, struct or variable. It
     includes **an actual value or implementation** and **allocates storage for variables**.
 
-### 3) Variable, Instance, Object, Initializer and Value
+### Variables, Instances, Objects, Initializers and Values
 
-#### Variable
+#### Variables
 
 ##### Explanation
 
-1. A variable is **a named storage location** in memory that **holds a value**. It has **a specific
-   type** (such as int, float, or a custom class) and is declared in the program to store data that
-   can be accessed and modified.
+1. A variable is **a named storage location** in memory that **holds a value**.
+2. It has **a specific type** (such as `int`, `float`, or a custom class) and is declared in the
+   program to store data that can be accessed and modified.
 
 ##### Characteristics
 
@@ -138,7 +139,7 @@
 2. **A type** is specified (determining the kind of value it can hold).
 3. It **occupies memory** in the program.
 
-##### Temporary Variable
+##### Temporary Variables
 
 1. A temporary variable is **a variable** that is created to **hold a value temporarily** during the
    execution of a program.
@@ -149,7 +150,7 @@
    arise during operations, such as the result of a function call or type conversion, which exist
    only for the duration of their use. They help simplify code without requiring permanent storage.
 
-#### Instance
+#### Instances
 
 ##### Explanation
 
@@ -162,18 +163,19 @@
 1. Refers to **a specific occurrence** of **a class or struct**.
 2. Instances of a class are often **called objects**.
 
-#### Object
+#### Objects
 
 ##### Explanation
 
 1. An object is **a region of memory** that **has a type, value**, and, **in most cases, a name
-   (optional)**. Every variable is an object, and every instance of a class is also an object. The
-   term object is **more general** and refers to any instance of a type that occupies memory,
-   whether it’s built-in (like int, double) or user-defined (like a class).
-2. An object is **generally** defined as **an instance** of a data type that **occupies memory** and
+   (optional)**.
+2. Every variable is an object, and every instance of a class is also an object.
+3. The term object is **more general** and refers to any instance of a type that occupies memory,
+   whether it’s built-in (like `int`, `double`) or user-defined (like a `class`).
+4. An object is **generally** defined as **an instance** of a data type that **occupies memory** and
    **has attributes (data members) and behaviors (methods)** when it comes to **user-defined types
    (classes)**.
-3. For **built-in types** (like int, char, etc.), the term "object" can **also apply**.
+5. For **built-in types** (like `int`, `char`, etc.), the term "object" can **also apply**.
 
 ##### Characteristics
 
@@ -182,60 +184,63 @@
 3. **May or may not** have **a name** (temporary objects don’t have names).
 4. Includes variables, class instances, dynamically allocated memory, and **temporary values**.
 
-##### Temporary Object
+##### Temporary Objects
 
 1. A temporary object in C++ is **an unnamed object** that is created during the evaluation of an
    expression or as a result of a function call.
 2. Temporary objects typically **exist for a short duration** and are automatically destroyed at the
    end of the full expression in which they were created.
 
-#### Initializer
+#### Initializers
 
 ##### Explanation
 
 1. An initializer is **a way** to **assign a value to a variable or an object** at the time of its
    **creation**.
-2. It can be an object, a function, a variable, a value, an expression, and so on. **All items used
-   to initialize a target** are referred to as initializers.
+2. It can be an object, a function, a variable, a value, an expression, and so on.
+3. **All items used to initialize a target** are referred to as initializers.
 
-#### Value
+#### Values
 
 #### Explanation
 
-1. A value represents **data** that can be **stored in variables or objects**. It is a specific
-   instance of data, such as numbers, characters, or more complex data types.
-2. Values can be of various types, including:
-   - Primitive Types:
-   - Composite Types:
-   - Classes: Objects created from class definitions that can hold data and methods (e.g., MyClass
-     obj;)
+1. A value represents **data** that can be **stored in variables or objects**.
+2. It is a specific instance of data, such as numbers, characters, or more complex data types.
+3. Values can be of various types, including:
+   - Primitive types.
+   - Composite types.
+   - Classes: Objects created from `class` definitions that can hold data and methods (e.g.,
+     `ClassName obj_name;`).
 
-#### Relationships Between the Them
+#### Relationships Between Them
 
-##### Variable
+##### Variables
 
-1. A variable is **a named object**. Every **variable** is **an object**, but **not all objects**
-   are **variables**. A variable always refers to an object, but it also provides a name for it,
-   allowing it to be used and modified in the code.
-2. **Traditionally**, **temprorary variables** are **named objects** while **temporary objects** are
+1. A variable is **a named object**.
+2. Every **variable** is **an object**, but **not all objects** are **variables**.
+3. A variable always refers to an object, but it also provides a name for it, allowing it to be used
+   and modified in the code.
+4. **Traditionally**, **temprorary variables** are **named objects** while **temporary objects** are
    **unnamed objects**.
-3. However, **in C++**, **temporary variables** can **also refer to unnamed temporary objects**.
+5. However, **in C++**, **temporary variables** can **also refer to unnamed temporary objects**.
 
-##### Instance
+##### Instances
 
-1. An instance is **a specific object** of **a class or user-defined type**. It represents a
-   concrete realization of that class, holding data and having behaviors defined by the class. When
-   you create an instance of a class, you are creating an object of that class.
+1. An instance is **a specific object** of **a class or user-defined type**.
+2. It represents a concrete realization of that class, holding data and having behaviors defined by
+   the class.
+3. When you create an instance of a class, you are creating an object of that class.
 
-##### Object
+##### Objects
 
-1. An object is **the most general term**. It refers to **any entity** that **occupies memory** and
-   **has a type**. Objects can be variables, instances of classes, temporary objects, or even
-   dynamically allocated memory that doesn't have a name (like objects created with new).
+1. An object is **the most general term**.
+2. It refers to **any entity** that **occupies memory** and **has a type**.
+3. Objects can be variables, instances of classes, temporary objects, or even dynamically allocated
+   memory that doesn't have a name (like objects created with `new`).
 
-### 4) Pointer and Reference
+### Pointers and References
 
-#### Pointer
+#### Pointers
 
 ##### Explanation
 
@@ -245,14 +250,15 @@
 3. They **require careful management** of memory (allocation/deallocation).
 4. They can be **null ( nullptr )**.
 
-##### Void Pointer
+##### Void Pointers
 
 1. A `void` pointer, also known as **a generic pointer**, is **a type of pointer** that can **point
-   to any data type**. It is declared using the `void` keyword and is often **used for functions**
-   that need to **handle different data types** or for **dynamic memory allocation**.
-2. However, because a `void` pointer does not have a specific type associated with it, you **cannot
+   to any data type**.
+2. It is declared using the `void` keyword and is often **used for functions** that need to **handle
+   different data types** or for **dynamic memory allocation**.
+3. However, because a `void` pointer does not have a specific type associated with it, you **cannot
    dereference it directly without first casting it to a specific pointer type**.
-3. Functions like **`malloc`** and **`calloc`** **return `void` pointer** which must be cast to the
+4. Functions like **`malloc`** and **`calloc`** **return `void` pointer** which must be cast to the
    appropriate type.
 
 ##### Null Pointers
@@ -262,138 +268,146 @@
 3. It provides type safety compared to the traditional NULL, which is typically **defined as 0**.
 4. **Access nullptr: segmentation fault (Linux), access violation (Win)**.
 
-##### Dangling Pointer
+##### Dangling Pointers
 
 1. A dangling pointer is a pointer that **points to a memory location** that **has been deallocated
    or released**.
 2. Accessing or dereferencing a dangling pointer can lead to **undefined behavior**, such as crashes
    or corrupted data.
 
-##### Wild Pointer
+##### Wild Pointers
 
 1. A wild pointer, or uninitialized pointer, refers to **a pointer** that has **not been
    initialized** to point to a specific memory address.
 2. Accessing a wild pointer can lead to unpredictable results since it may point to any arbitrary
    location in memory.
 
-#### Reference
+#### References
 
-1. A reference is **an alias for an existing variable**. It allows you to create **another name for
-   a variable** without making a copy of it. References are declared using an ampersand (`&`) in the
-   declaration.
-2. A reference **must be initialized** when it is declared and cannot be changed to refer to another
+1. A reference is **an alias for an existing variable**.
+2. It allows you to create **another name for a variable** without making a copy of it.
+3. References are declared using an ampersand (`&`) in the declaration.
+4. A reference **must be initialized** when it is declared and cannot be changed to refer to another
    variable later.
-3. Unlike pointers, references **cannot be null**. They must always refer to a valid object.
-4. A reference is defined as a type. However, I believe it is **merely an alias**, not a distinct
+5. Unlike pointers, references **cannot be null**. They must always refer to a valid object.
+6. A reference is defined as a type. However, I believe it is **merely an alias**, not a distinct
    type, because `auto` cannot deduce a type as a reference without using `&`.
-5. A reference is **neither a variable nor an object**.
+7. A reference is **neither a variable nor an object**.
 
-### 5) Parameter
+### Parameters
 
-1.  A parameter is **a variable declared in a function definition**. It serves as a placeholder for
-    the values that will be passed to the function when it is called.
-2.  Parameters are used to **receive input values** within the function and specify the type of data
+1.  A parameter is **a variable declared in a function definition**.
+2.  It **serves as a placeholder** for the values that will be passed to the function when it is
+    called.
+3.  Parameters are used to **receive input values** within the function and specify the type of data
     the function expects.
 
-### 6) Argument
+### Arguments
 
 1.  An argument is **an actual value, variable, object or reference passed to the function** when it
-    is called. Arguments are the specific data supplied to the function's parameters.
+    is called.
+2.  Arguments are the specific data supplied to the function's parameters.
 
-### 7) Expression
+### Expressions
 
 #### Explanation
 
 1. An expression is **any valid combination of variables, literals, operators, or function calls**
-   that **evaluates to a value**. Expressions are the building blocks of C++ programs and can range
-   from simple values like `42` to complex operations involving multiple variables and function
-   calls. They are **evaluated at runtime** to produce a result, which may or may not be used
-   further in the program.
+   that **evaluates to a value**.
+2. Expressions are the building blocks of C++ programs and can range from simple values like `42` to
+   complex operations involving multiple variables and function calls.
+3. They are **evaluated at runtime** to produce a result, which may or may not be used further in
+   the program.
 
 #### Types of Expressions in C++
 
-1. Literal Expressions
-   - A literal (such as `42`, `a`, or `3.14`) is the simplest form of an expression. It evaluates to
-     its own value.
-2. Variable Expressions
-   - A variable by itself is also an expression, and it evaluates to the value it stores. For
-     example,
+1. Literal expressions
+   - A literal (such as `42`, `a`, or `3.14`) is the simplest form of an expression.
+   - It evaluates to its own value.
+2. Variable expressions
+   - A variable by itself is also an expression, and it evaluates to the value it stores.
+   - For example,
      ```CPP
      int x = 10;
      x; // Evaluates to 10.
      ```
-3. Arithmetic Expressions
-   - These use arithmetic operators (`+`, `-`, `*`, `/`, `%`) to produce numeric results. For
-     example,
+3. Arithmetic expressions
+   - These use arithmetic operators (`+`, `-`, `*`, `/`, `%`) to produce numeric results.
+   - For example,
      ```CPP
      int y = 5 + 3 * 2; // Evaluates to 11.
      ```
-4. Logical and Relational Expressions
+4. Logical and relational expressions
    - Logical expressions (`&&`, `||`, `!`) produce a boolean result.
    - Relational expressions (`==`, `!=`, `<`, `>`, `<=`, `>=`) compare values and return true or
-     false. For example,
+     false.
+   - For example,
      ```CPP
-     bool result = (x > 0) && (y < 10); // Evaluates to true.
+     bool result = (x > && (y < 10); // Evaluates to true.
      ```
-5. Assignment Expressions
-   - An assignment operation is also an expression that returns the assigned value. For example,
+5. Assignment expressions
+   - An assignment operation is also an expression that returns the assigned value.
+   - For example,
      ```CPP
      int z;
      z = 20; // Evaluates to 20.
      ```
-6. Function Call Expressions
+6. Function call expressions
    - A function call acts as an expression, with the result being the return value of the function.
-     For example,
+   - For example,
      ```CPP
      int absValue = std::abs( -5 ); // Evaluates to 5.
      ```
-7. Conditional (Ternary) Expressions
+7. Conditional (ternary) expressions
    - A ternary expression evaluates a condition and returns one of two values based on the result.
-     For example,
+   - For example,
      ```CPP
      int max = (x > y) ? x : y; // Returns x if x > y, otherwise y.
      ```
-8. Member Access Expressions
-   - Accessing a member of an object or a struct is also an expression. For example,
+8. Member access expressions
+   - Accessing a member of an object or a struct is also an expression.
+   - For example,
      ```CPP
      struct Point { int x, y; };
      Point p = {3, 4};
      p.x; // Evaluates to 3.
      ```
-9. Pointer Expressions
+9. Pointer expressions
    - Dereferencing a pointer or using the & operator to take the address of a variable forms an
-     expression. For example,
+     expression.
+   - For example,
      ```CPP
      int* ptr = &x; // Evaluates to the address of x.
      *ptr; // Evaluates to the value of x (10).
      ```
 
-### 8) Lvalue and Rvalue: Value Categories in C++
+### Lvalues and Rvalues: Value Categories in C++
 
-#### Lvalue (Left Value)
+#### Lvalues (Left Values)
 
-1. Refers to **an object or memory location** that **persists** beyond a single expression and
-   occupies some **identifiable location** in memory (i.e., it has an address).
-2. **Can** appear on the **left side** or the **right side** of an assignment
-3. **Typically** refers to **variables**, **array elements**, or **dereferenced pointers**.
-4. **Can take the address** of an lvalue using the address-of operator (`&`).
+1. A lvalue refers to **an object or memory location** that **persists** beyond a single expression
+   and occupies some **identifiable location** in memory (i.e., it has an address).
+2. It **can** appear on the **left side** or the **right side** of an assignment
+3. **Typically**, it refers to **variables**, **array elements**, or **dereferenced pointers**.
+4. It **can take the address** of an lvalue using the address-of operator (`&`).
 
-#### Rvalue (Right Value)
+#### Rvalues (Right Values)
 
-1. Refers to **temporary objects or values** that do **not persist** beyond the expression in which
-   they are used and **does not have a specific location in memory** (it cannot be assigned a memory
-   address).
-2. **Cannot** appear on the **left-hand side** of an assignment.
-3. **Examples** include **literals**, **temporary results** of expressions, and **return values** of
-   functions without `&`.
+1. An rvalue refers to **temporary objects or values** that **do not persist** beyond the expression
+   in which they are used.
+2. An rvalue **does not have a specific memory address**, meaning it cannot be assigned a memory
+   location.
+3. It **cannot** appear on the **left-hand side** of an assignment.
+4. Its **examples** include **literals**, **temporary results** of expressions, and **return
+   values** of functions without `&`.
 
-#### Lvalue Reference (`Type&`)
+#### Lvalue References (`Type&`)
 
 ##### Explanation
 
 1. An lvalue reference is **a reference to a persistent object** (i.e., an object with a
-   well-defined memory address, such as variables or class members). It binds only to lvalues —
-   objects that can appear on the left side of an assignment.
+   well-defined memory address, such as variables or class members).
+2. It binds only to lvalues — objects that can appear on the left side of an assignment.
 
 ##### Usage
 
@@ -402,16 +416,16 @@
 
 ##### Notes
 
-1. A **normal** reference **can't** store an **rvalue** **but** a **const reference can**. A
-   **normal reference parameter** of a function **can't** accept **an rvalue** **but** a **const
+1. A **normal** reference **can't** store an **rvalue** **but** a **const reference can**.
+2. A **normal reference parameter** of a function **can't** accept **an rvalue** **but** a **const
    reference parameter can**.
 
 #### How to Identify Whether a Value is an Lvalue or an Rvalue
 
-1.  Define a normal reference for a value, if it can be store by a referenc, it is an lvalur.
+1.  Define a normal reference for a value, if it can be store by a reference, it is an lvalur.
     Otherwise, it is an rvalue.
 
-#### Rvalue Reference (`Type&&`)
+#### Rvalue References (`Type&&`)
 
 ##### Explanation
 
@@ -421,8 +435,9 @@
 3. This makes rvalue references ideal for **move semantics**, allowing efficient transfer of
    resources.
 4. However, **for primitive types**, using `std::move` does not provide any meaningful advantage, as
-   it **behaves much like a copy**. This is primarily because primitive types do not have complex
-   resource management like objects that own dynamic memory.
+   it **behaves much like a copy**.
+5. This is primarily because primitive types do not have complex resource management like objects
+   that own dynamic memory.
 
 ##### Usage
 
@@ -435,12 +450,13 @@
 ##### Explanation
 
 1. Move semantics, introduced in C++11, **optimizes** program **performance** by transferring
-   resources from one object to another instead of copying them. It uses **rvalue references**
-   (`Type&&`) to **efficiently** move resources, such as dynamically allocated memory, from
-   **temporary** or **"expired" objects** without incurring **the overhead of deep copies**.
-2. Essentially, move semantics functions like **assigning one pointer to another**. Rather than
-   copying data, **ownership** of the resources is transferred between objects, **reducing
-   unnecessary copying** and **enhancing performance**.
+   resources from one object to another instead of copying them.
+2. It uses **rvalue references** (`Type&&`) to **efficiently** move resources, such as dynamically
+   allocated memory, from **temporary** or **"expired" objects** without incurring **the overhead of
+   deep copies**.
+3. Essentially, move semantics functions like **assigning one pointer to another**.
+4. Rather than copying data, **ownership** of the resources is transferred between objects,
+   **reducing unnecessary copying** and **enhancing performance**.
 
 ##### Usage
 
@@ -467,25 +483,27 @@
 2. To deal with **double deletion**, **the original pointer** should point a **nullptr** after
    **`std::move`** moved its data to another pointer.
 
-### 9) Interface
+### Interface
 
 1. In C++, the term "interface" does **not have a formal definition** like it does in some other
-   programming languages (like Java). However, in C++, an interface is generally understood to be
-   **a class** that **defines a set of pure virtual functions**, which means that it declares
-   functions that **must be implemented by derived classes** but does **not provide any
-   implementation of its own**.
+   programming languages (like Java).
+2. However, in C++, an interface is generally understood to be **a class** that **defines a set of
+   pure virtual functions**, which means that it declares functions that **must be implemented by
+   derived classes** but does **not provide any implementation of its own**.
 
-### 10) Keyword
+### Keyword
 
 1. A keyword is **a reserved word** that has a predefined meaning in the language and **cannot be
-   used as an identifier** (such as a variable name, function name, etc.). Keywords are part of the
-   C++ syntax and represent fundamental constructs or operations in the language.
+   used as an identifier** (such as a variable name, function name, etc.).
+2. Keywords are part of the C++ syntax and represent fundamental constructs or operations in the
+   language.
 
-### 11) Type Specifier
+### Type Specifier
 
 1. A type specifier is **used to define the type of a variable, function return value, or object**.
-   Type specifiers tell the compiler what kind of data the variable will hold or the function will
-   return. They are an essential part of variable declarations and type definitions.
+2. Type specifiers tell the compiler what kind of data the variable will hold or the function will
+   return.
+3. They are an essential part of variable declarations and type definitions.
 
 ### Notes
 
