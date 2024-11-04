@@ -1,55 +1,56 @@
 <!-- vim-markdown-toc GFM -->
 
-* [Memory Partitions](#memory-partitions)
-  * [**Stack**](#stack)
-    * [Purpose](#purpose)
-    * [Allocation/Deallocation](#allocationdeallocation)
-    * [Lifetime](#lifetime)
-    * [Scope](#scope)
-    * [Size](#size)
-    * [Structure](#structure)
-    * [Performance](#performance)
-    * [Other Characteristics](#other-characteristics)
-  * [**Heap (Dynamic Memory)**](#heap-dynamic-memory)
-    * [Purpose](#purpose-1)
-    * [Allocation/Deallocation](#allocationdeallocation-1)
-    * [Lifetime](#lifetime-1)
-    * [Scope](#scope-1)
-    * [Size](#size-1)
-    * [Structure](#structure-1)
-    * [Performance](#performance-1)
-    * [Other Characteristics](#other-characteristics-1)
-  * [Global/Static Memory or Data Segment](#globalstatic-memory-or-data-segment)
-    * [Purpose](#purpose-2)
-    * [Allocation/Deallocation](#allocationdeallocation-2)
-    * [Lifetime](#lifetime-2)
-    * [Scope](#scope-2)
-    * [Size](#size-2)
-    * [Structure](#structure-2)
-    * [Performance](#performance-2)
-    * [Other Characteristics](#other-characteristics-2)
-  * [Code Segment](#code-segment)
-    * [Purpose](#purpose-3)
-    * [Allocation/Deallocation](#allocationdeallocation-3)
-    * [Lifetime](#lifetime-3)
-    * [Scope](#scope-3)
-    * [Size](#size-3)
-    * [Structure](#structure-3)
-    * [Performance](#performance-3)
-    * [Other Characteristics](#other-characteristics-3)
-  * [Memory Mapping Segment](#memory-mapping-segment)
-    * [Purpose](#purpose-4)
-    * [Allocation/Deallocation](#allocationdeallocation-4)
-    * [Lifetime](#lifetime-4)
-    * [Scope](#scope-4)
-    * [Size](#size-4)
-    * [Structure](#structure-4)
-    * [Performance](#performance-4)
-    * [Other Characteristics](#other-characteristics-4)
-  * [Memory Partitioning in C++ Program Execution](#memory-partitioning-in-c-program-execution)
-  * [Notes](#notes)
+- [Memory Partitions](#memory-partitions)
+  - [**Stack**](#stack)
+    - [Purpose](#purpose)
+    - [Allocation/Deallocation](#allocationdeallocation)
+    - [Lifetime](#lifetime)
+    - [Scope](#scope)
+    - [Size](#size)
+    - [Structure](#structure)
+    - [Performance](#performance)
+    - [Other Characteristics](#other-characteristics)
+  - [**Heap (Dynamic Memory)**](#heap-dynamic-memory)
+    - [Purpose](#purpose-1)
+    - [Allocation/Deallocation](#allocationdeallocation-1)
+    - [Lifetime](#lifetime-1)
+    - [Scope](#scope-1)
+    - [Size](#size-1)
+    - [Structure](#structure-1)
+    - [Performance](#performance-1)
+    - [Other Characteristics](#other-characteristics-1)
+  - [Global/Static Memory or Data Segment](#globalstatic-memory-or-data-segment)
+    - [Purpose](#purpose-2)
+    - [Allocation/Deallocation](#allocationdeallocation-2)
+    - [Lifetime](#lifetime-2)
+    - [Scope](#scope-2)
+    - [Size](#size-2)
+    - [Structure](#structure-2)
+    - [Performance](#performance-2)
+    - [Other Characteristics](#other-characteristics-2)
+  - [Code Segment](#code-segment)
+    - [Purpose](#purpose-3)
+    - [Allocation/Deallocation](#allocationdeallocation-3)
+    - [Lifetime](#lifetime-3)
+    - [Scope](#scope-3)
+    - [Size](#size-3)
+    - [Structure](#structure-3)
+    - [Performance](#performance-3)
+    - [Other Characteristics](#other-characteristics-3)
+  - [Memory Mapping Segment](#memory-mapping-segment)
+    - [Purpose](#purpose-4)
+    - [Allocation/Deallocation](#allocationdeallocation-4)
+    - [Lifetime](#lifetime-4)
+    - [Scope](#scope-4)
+    - [Size](#size-4)
+    - [Structure](#structure-4)
+    - [Performance](#performance-4)
+    - [Other Characteristics](#other-characteristics-4)
+  - [Memory Partitioning in C++ Program Execution](#memory-partitioning-in-c-program-execution)
+  - [Notes](#notes)
 
 <!-- vim-markdown-toc -->
+
 ## Memory Partitions
 
 ### **Stack**
@@ -174,13 +175,10 @@
 #### Structure
 
 1. Includes:
-
    - **Initialized Data Segment**: Stores variables with **explicit initial** values.
    - **BSS (Uninitialized Data Segment, Block Started by Symbol)**: Stores variables with **no
      initial** values, which are initialized to **zero by default**.
-
    - **Character Constant Area**: Stores **string literals** and **constants**.
-
 2. Organized as **a continuous memory block** for static, global and const variables/values.
 
 #### Performance
