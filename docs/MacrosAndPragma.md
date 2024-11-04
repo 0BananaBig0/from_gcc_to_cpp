@@ -26,15 +26,15 @@
 ### Explanation
 
 1. Macros are typically defined using the preprocessor directive `#define`, which allows for **text
-   substitution** **prior** to the actual **compilation** of the code. They are classified as
-   **preprocessor statements**.
-2. Macros may **represent** simple **constants** or **complex expressions**. When the preprocessor
-   encounters a macro, it replaces it with the corresponding value or code.
-3. They enable the **compilation of identical code** to produce varied outcomes **based on distinct
+   substitution** **prior** to the actual **compilation** of the code.
+2. They are classified as **preprocessor statements**.
+3. Macros may **represent** simple **constants** or **complex expressions**.
+4. When the preprocessor encounters a macro, it replaces it with the corresponding value or code.
+5. They enable the **compilation of identical code** to produce varied outcomes **based on distinct
    configurations**.
-4. The **backslash (`\`)** can be utilized to create **multi-line macros**.
-5. **Excessive use** of macros may adversely **affect** the **readability** of the code.
-6. **Function-like macros** can be **difficult to debug**.
+6. The **backslash (`\`)** can be utilized to create **multi-line macros**.
+7. **Excessive use** of macros may adversely **affect** the **readability** of the code.
+8. **Function-like macros** can be **difficult to debug**.
 
 ### Syntax
 
@@ -51,7 +51,7 @@
 // Multi-line Macros
 #define MACRO_NAME replacement_text1 \
                    replacement_text2 \
-                   ...
+                   ...;
 ```
 
 ### Related Keywords
@@ -117,12 +117,14 @@
 
 1. This directive is **not a macro** but is often **used with macros** to **include header files**
    where macros may be defined.
-2. `#include <HeaderFile>`: This syntax instructs the preprocessor to **search for the specified
-   header file** exclusively **in the standard include directories**. It is typically used for
-   **system or library headers**.
-3. `#include "path/to/HeaderFile"`: This syntax tells the preprocessor to **look for the specified
-   header file in the specific path first**. If it is **not found** there, it then **searches the
-   standard include directories**.
+2. `#include <HeaderFile>`:
+   - This syntax instructs the preprocessor to **search for the specified header file** exclusively
+     **in the standard include directories**.
+   - It is typically used for **system or library headers**.
+3. `#include "path/to/HeaderFile"`:
+   - This syntax tells the preprocessor to **look for the specified header file in the specific path
+     first**.
+   - If it is **not found** there, it then **searches the standard include directories**.
 
 ##### Syntax
 
