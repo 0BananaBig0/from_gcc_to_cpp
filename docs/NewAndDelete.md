@@ -35,11 +35,11 @@
 ##### Syntax
 
 ```CPP
-Type* ptr = new Type;   // For a single object
+Type* ptr = new Type;   // For a single object.
 ```
 
 ```CPP
-Type* arr_ptr = new Type[size];   // For an array of objects
+Type* arr_ptr = new Type[size];   // For an array objects.
 ```
 
 #### `new( address )`
@@ -54,11 +54,11 @@ Type* arr_ptr = new Type[size];   // For an array of objects
 ##### Syntax
 
 ```CPP
-Type* ptr = new( address ) Type;   // For a single object
+Type* ptr = new( address ) Type;   // For a single object.
 ```
 
 ```CPP
-Type* arr_ptr = new( address ) Type[size];   // For an array of objects
+Type* arr_ptr = new( address ) Type[size];   // For an array objects.
 ```
 
 #### `delete`
@@ -73,13 +73,13 @@ Type* arr_ptr = new( address ) Type[size];   // For an array of objects
 ##### Syntax
 
 ```CPP
-delete ptr;   // For a single object
-ptr = nullptr;   // Good practice to avoid dangling pointers
+delete ptr;   // For a single object.
+ptr = nullptr;   // Good practice to avoid dangling pointers.
 ```
 
 ```CPP
-delete[] arr_ptr;   // For an array of objects
-arr_ptr = nullptr;   // Good practice to avoid dangling pointers
+delete[] arr_ptr;   // For an array objects.
+arr_ptr = nullptr;   // Good practice to avoid dangling pointers.
 ```
 
 #### `::operator new( size )`
@@ -96,12 +96,12 @@ arr_ptr = nullptr;   // Good practice to avoid dangling pointers
 ##### Syntax
 
 ```CPP
-// Its declaration syntax
+// Its declaration syntax.
 void* ptr = ::operator new( size_t size );
 ```
 
 ```CPP
-// Its usage syntax
+// Its usage syntax.
 Type* ptr = static_cast< Type* >( ::operator new( num * sizeof( Type ) ) );
 ```
 
@@ -120,20 +120,28 @@ Type* ptr = static_cast< Type* >( ::operator new( num * sizeof( Type ) ) );
 ##### Syntax
 
 ```CPP
-// Its declaration syntax
+// Its declaration syntax.
 void operator delete( void* ptr ) noexcept;
 ```
 
 ```CPP
-// Its usage syntax
+// Its usage syntax.
 ::operator delete( ptr );
-ptr = nullptr;   // Good practice to avoid dangling pointers
+ptr = nullptr;   // Good practice to avoid dangling pointers.
 ```
 
 ### `malloc`
 
+1. [`malloc`](./SomeCFunctionsAndOperators.md#malloc)
+
 ### `calloc`
+
+1. [`calloc`](./SomeCFunctionsAndOperators.md#calloc)
 
 ### `realloc`
 
+1. [`realloc`](./SomeCFunctionsAndOperators.md#realloc)
+
 ### `free`
+
+1. [`free`](./SomeCFunctionsAndOperators.md#free)
