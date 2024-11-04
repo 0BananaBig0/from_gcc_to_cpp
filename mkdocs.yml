@@ -2,3 +2,43 @@ site_name: from_gcc_to_cpp
 nav:
   - Home: FromGccToCPP.md
   - Gcc: Gcc.md
+  - make and Makefiles: makeAndMakefiles.md
+  - Git: Git.md
+  - CPP:
+    - CPP Perface: CPPPerface.md
+    - Memory Partitions: MemoryPartitions.md
+    - auto and decltype: AutoAndDecltype.md
+    - using, typedef and Namespaces: UsingTypedefNameSpaces.md
+    - const, constexpr and static: ConstConstexprAndStatic.md
+    - Macros and Related Keywords ( Including pragma : MacrosAndPragma.md
+  - Functions, Classes, Operators And Templates:
+    - Functions: Functions.md
+    - Classes: Classes.md
+    - Differences Between Hiding, Overloading, Overriding, and Overwriting: HidingOverloadingOverridingAndOverwriting.md
+    - Structures: Structures.md
+    - Operators: Operators.md
+    - new and delete: NewAndDelete.md
+    - Templates: Templates.md
+  - Data Structures and Algorithms:
+    - Introduction to C++ STL: IntroductionToTheCPPSTL.md
+    - Conversion And Casting: ConversionAndCasting.md
+    - Bindings: Bindings.md
+    - Arrays: Arrays.md
+    - Dynamic Arrays (std::vector: DynamicArraysOrStdVector.md
+    - Lists and Forward Lists: ListsAndForwardLists.md
+    - Sets Unordered Sets and Flat Sets: SetsUnorderedSetsAndFlatSets.md
+    - Maps Unordered Maps and Flat Maps: MapsUnorderedMapsAndFlatMaps.md
+    - Stacks and Queues: StacksAndQueues.md
+    - enum: Enums.md
+    - union, std:any std::variant and std::optional: UnionStdAnyStdVariantStdOptional.md
+    - Chars and Strings: CharsAndStrings.md
+    - Pairs and Tuples: PairsAndTuples.md
+    - Smart Pointers: SmartPointers.md
+    - Algorithms: Algorithms.md
+  - Others:
+    - Timers: Timers.md
+    - Threads: Threads.md
+    - static_assert: StaticAssert.md
+    - Extern: Extern.md
+    - Some C Functions and Operators: SomeCFunctionsAndOperators.md
+    - Some Programming Techniques: SomeProgrammingTechniques.md
