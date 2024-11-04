@@ -666,19 +666,10 @@ delete uset_ptr;
 2. `Hash`: A unary function object type that takes an object of the same type as the elements as
    argument and returns a unique value of type `size_t` based on it. This can either be a class
    implementing a function call operator or a pointer to a function (see constructor for an
-   example). This defaults to `std::hash<Key>`, which returns a hash value with a probability of
-   collision approaching `1.0/std::numeric_limits<size_t>::max()`. The `unordered_set` object uses
-   the hash values returned by this function to organize its elements internally, speeding up the
-   process of locating individual elements. Aliased as member type `unordered_set::hasher`.
+   example). This defaults to `std::hash< Key >`.
 3. `KeyEqual`: A binary predicate that takes two arguments of the same type as the elements and
    returns a bool. The expression `KeyEqual( a,b )`, where `KeyEqual` is an object of this type and
-   `a` and `b` are key values, shall return true if `a` is to be considered equivalent to `b`. This
-   can either be a class implementing a function call operator or a pointer to a function (see
-   constructor for an example). This defaults to `std::equal_to< Key >`, which returns the same as
-   applying the `equal-to operator ( a==b )`. The `unordered_set` object uses this expression to
-   determine whether two element keys are equivalent. No two elements in an `unordered_set`
-   container can have keys that yield true using this predicate. Aliased as member type
-   `unordered_set::key_equal`.
+   `a` and `b` are key values, shall return true if `a` is to be considered equivalent to `b`.
 4. `Allocator`: An allocator that is used to acquire/release memory and to construct/destroy the
    elements in that memory.
 
@@ -934,19 +925,10 @@ delete umset_ptr;
 2. `Hash`: A unary function object type that takes an object of the same type as the elements as
    argument and returns a unique value of type `size_t` based on it. This can either be a class
    implementing a function call operator or a pointer to a function (see constructor for an
-   example). This defaults to `std::hash<Key>`, which returns a hash value with a probability of
-   collision approaching `1.0/std::numeric_limits<size_t>::max()`. The `unordered_multiset` object
-   uses the hash values returned by this function to organize its elements internally, speeding up
-   the process of locating individual elements. Aliased as member type `unordered_multiset::hasher`.
+   example). This defaults to `std::hash< Key >`.
 3. `KeyEqual`: A binary predicate that takes two arguments of the same type as the elements and
    returns a bool. The expression `KeyEqual( a,b )`, where `KeyEqual` is an object of this type and
-   `a` and `b` are key values, shall return true if `a` is to be considered equivalent to `b`. This
-   can either be a class implementing a function call operator or a pointer to a function (see
-   constructor for an example). This defaults to `std::equal_to< Key >`, which returns the same as
-   applying the `equal-to operator ( a==b )`. The `unordered_multiset` object uses this expression
-   to determine whether two element keys are equivalent. No two elements in an `unordered_multiset`
-   container can have keys that yield true using this predicate. Aliased as member type
-   `unordered_multiset::key_equal`.
+   `a` and `b` are key values, shall return true if `a` is to be considered equivalent to `b`.
 4. `Allocator`: An allocator that is used to acquire/release memory and to construct/destroy the
    elements in that memory.
 
