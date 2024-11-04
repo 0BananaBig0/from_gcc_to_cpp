@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Timers - from_gcc_to_cpp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">from_gcc_to_cpp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../FromGccToCPP/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Gcc/" class="nav-link">Gcc</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#stdchrono-namespace" class="nav-link">std::chrono Namespace</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#stdchrono-namespace"><code>std::chrono</code> Namespace</a></li>
+<li><a href="#explanation">Explanation</a></li>
+<li><a href="#links">Links</a></li>
+<li><a href="#durations">Durations</a><ul>
+<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#realted-stuffs">Realted Stuffs</a></li>
+<li><a href="#template-instantiations">Template Instantiations</a></li>
+<li><a href="#member-types">Member Types</a></li>
+<li><a href="#member-functions">Member Functions</a></li>
+<li><a href="#non-member-functions">Non-member Functions</a></li>
+<li><a href="#helper-classes">Helper Classes</a></li>
+<li><a href="#helper-specializations">Helper Specializations</a></li>
+</ul>
+</li>
+<li><a href="#time-points">Time Points</a><ul>
+<li><a href="#explanation-2">Explanation</a></li>
+<li><a href="#syntax-1">Syntax</a></li>
+<li><a href="#realted-stuffs-1">Realted Stuffs</a></li>
+<li><a href="#template-parameters">Template Parameters</a></li>
+<li><a href="#member-types-1">Member Types</a></li>
+<li><a href="#member-functions-1">Member Functions</a></li>
+<li><a href="#non-member-functions-1">Non-member Functions</a></li>
+<li><a href="#helper-classes-1">Helper Classes</a></li>
+</ul>
+</li>
+<li><a href="#clocks">Clocks</a><ul>
+<li><a href="#explanation-3">Explanation</a></li>
+<li><a href="#syntax-2">Syntax</a></li>
+<li><a href="#related-stuffs-of-three-clock-classes">Related Stuffs of Three Clock Classes</a></li>
+<li><a href="#member-types-of-three-clock-classes">Member Types of Three Clock Classes</a></li>
+<li><a href="#member-constants-of-three-clock-classes">Member Constants of Three Clock Classes</a></li>
+<li><a href="#member-functions-of-three-clock-classes">Member Functions of Three Clock Classes</a></li>
+<li><a href="#member-functions-of-stdchronosystem_clock">Member Functions of <code>std::chrono::system_clock</code></a></li>
+</ul>
+</li>
+<li><a href="#common-usage-syntax">Common Usage Syntax</a></li>
+<li><a href="#notes">Notes</a></li>
+</ul>
+<!-- vim-markdown-toc -->
+
+<h2 id="stdchrono-namespace"><code>std::chrono</code> Namespace</h2>
+<h3 id="explanation">Explanation</h3>
+<ol>
+<li><code>chrono</code> is <strong>the name of a header</strong>, but <strong>also of a sub-namespace</strong>: All the elements in this
+   header (except for the <code>common_type</code> specializations) are not defined directly under the <code>std</code>
+   namespace (like most of the standard library) but under the <code>std::chrono</code> namespace.</li>
+<li>The elements in this header deal with time. This is done mainly by means of three concepts:</li>
+</ol>
+<h3 id="links">Links</h3>
+<ol>
+<li><a href="https://cplusplus.com/reference/chrono/"><code>std::chrono</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/chrono"><code>std::chrono</code> in cppreference</a>.</li>
+</ol>
+<h3 id="durations">Durations</h3>
+<h4 id="explanation_1">Explanation</h4>
+<ol>
+<li>Durations are <strong>template classes</strong> that <strong>measure time spans</strong> by means of a count and a period.,
+   like: one minute, two hours, or ten milliseconds.</li>
+<li>For the <code>std::chrono::duration</code> class, <strong>only <code>std::ratio&lt; num1, num2 &gt;</code> can be used</strong>.</li>
+<li>The <strong>corresponding named</strong> types of <code>std::ratio&lt; num1, num2 &gt;</code> (e.g., <code>std::chrono::seconds</code>)
+   <strong>cannot be used directly</strong> in <code>std::chrono::duration</code>; instead, <code>use std::ratio&lt; 1, 1 &gt;</code>.</li>
+<li>However, <code>std::chrono::time_point</code>, <code>std::chrono::time_point_cast</code>, and
+   <code>std::chrono::duration_cast</code> support these named types.</li>
+</ol>
+<h4 id="syntax">Syntax</h4>
+<pre><code class="language-CPP">// Declaration Syntax
+template&lt; class Rep, class Period = ratio&lt; 1 &gt; &gt; class duration;
+</code></pre>
+<pre><code class="language-CPP">// Usage Syntax
+std::chrono::duration&lt; Type, std::ratio&lt; num1, num2 &gt;(Optional) &gt; dur = end - start;
+</code></pre>
+<h4 id="realted-stuffs">Realted Stuffs</h4>
+<h5 id="template-instantiations">Template Instantiations</h5>
+<ol>
+<li><code>std::chrono::hours</code>: Signed integral type of at least 23 bits, period <code>std::ratio&lt; 3600, 1 &gt;</code>.</li>
+<li><code>std::chrono::minutes</code>: Signed integral type of at least 29 bits, period <code>std::ratio&lt; 60, 1 &gt;</code>.</li>
+<li><code>std::chrono::seconds</code>: Signed integral type of at least 35 bits, period <code>std::ratio&lt; 1, 1 &gt;</code>.
+   Default Period.</li>
+<li><code>std::chrono::milliseconds</code>: Signed integral type of at least 45 bits, period
+   <code>std::ratio&lt; 1, 1000 &gt;</code>.</li>
+<li><code>std::chrono::microseconds</code>: Signed integral type of at least 55 bits, period
+   <code>std::ratio&lt; 1, 1000000 &gt;</code>.</li>
+<li><code>std::chrono::nanoseconds</code>: Signed integral type of at least 64 bits, period
+   <code>std::ratio&lt; 1, 1000000000 &gt;</code>.</li>
+</ol>
+<h5 id="member-types">Member Types</h5>
+<ol>
+<li><code>rep</code>: <code>Rep</code>, an arithmetic type, or a class emulating an arithmetic type, representing the
+   number of ticks.</li>
+<li><code>period</code>: <code>Period</code> (until C++17) <code>typename Period::type(since C++17)</code>, a <code>std::ratio</code>
+   representing the tick period (i.e. the number of second's fractions per tick).</li>
+</ol>
+<h5 id="member-functions">Member Functions</h5>
+<ol>
+<li><code>(constructor)</code>: Constructs new duration (public member function).</li>
+<li><code>(destructor)</code>: Destroy duration (public member function).</li>
+<li><code>count</code>: Returns the count of ticks (public member function).</li>
+<li><code>zero</code> [<code>static</code>]: Returns the special duration value zero (public static member function).</li>
+<li><code>min</code> [<code>static</code>]: Returns the special duration value min (public static member function).</li>
+<li><code>max</code> [<code>static</code>]: Returns the special duration value max (public static member function).</li>
+</ol>
+<h5 id="non-member-functions">Non-member Functions</h5>
+<ol>
+<li><code>operators</code>: Duration operators (function template).</li>
+<li><code>duration_cast</code>: Converts a duration to another, with a different tick interval (function
+   template).</li>
+<li><code>floor( std::chrono::duration )</code> (C++17): Converts a duration to another, rounding down (function
+   template).</li>
+<li><code>ceil( std::chrono::duration )</code> (C++17): Converts a duration to another, rounding up (function
+   template).</li>
+<li><code>round( std::chrono::duration )</code> (C++17): Converts a duration to another, rounding to nearest,
+   ties to even (function template).</li>
+<li><code>abs( std::chrono::duration )</code> (C++17): Obtains the absolute value of the duration (function
+   template).</li>
+<li><code>from_stream</code> (C++20): Parses a duration from a stream according to the provided format (function
+   template).</li>
+</ol>
+<h5 id="helper-classes">Helper Classes</h5>
+<ol>
+<li><code>std::common_type&lt; std::chrono::duration &gt;</code>: Specializes the <code>std::common_type</code> trait (class
+   template specialization).</li>
+<li><code>treat_as_floating_point</code>: Indicates that a duration is convertible to duration with different
+   tick period (class template).</li>
+<li><code>duration_values</code>: Constructs zero, min, and max values of a tick count of given type (class
+   template).</li>
+<li><code>std::formatter&lt; std::chrono::duration &gt;</code> (C++20): Formatting support for duration (class
+   template specialization).</li>
+<li><code>std::hash&lt; std::chrono::duration &gt;</code> (C++26): Hash support for <code>std::chrono::duration</code> (class
+   template specialization).</li>
+</ol>
+<h5 id="helper-specializations">Helper Specializations</h5>
+<ol>
+<li><code>template&lt; class Rep, class Period &gt; constexpr bool enable_nonlocking_formatter_optimization&lt; chrono::duration&lt; Rep, Period &gt; &gt; = enable_nonlocking_formatter_optimization&lt; Rep &gt;;</code>
+   (since C++23): This specialization of <code>std::enable_nonlocking_formatter_optimization</code> enables
+   efficient implementation of <code>std::print</code> and <code>std::println</code> for printing a
+   <code>std::chrono::duration</code> object when the template parameter Rep enables it.</li>
+</ol>
+<h3 id="time-points">Time Points</h3>
+<h4 id="explanation_2">Explanation</h4>
+<ol>
+<li>Time points are <strong>template classes</strong> that <strong>express a point in time</strong> relative to a clock's
+   epoch.</li>
+<li>Internally, their instance objects store an object of a <code>std::chrono::duration</code> type, and uses
+   the <code>Clock</code> type as a reference for its epoch.</li>
+</ol>
+<h4 id="syntax_1">Syntax</h4>
+<pre><code class="language-CPP">// Declaration Syntax
+template&lt; class Clock, class Duration = typename Clock::duration &gt;
+class time_point;
+</code></pre>
+<pre><code class="language-CPP">// Usage Syntax
+std::chrono::time_point&lt; Clock &gt; start, end;
+</code></pre>
+<pre><code class="language-CPP">// Usage Syntax
+auto start = Clock::now();
+auto start = Clock::now();
+// `Clock::now()`: The `now()` function defined inside the `Clock` class.
+</code></pre>
+<h4 id="realted-stuffs_1">Realted Stuffs</h4>
+<h5 id="template-parameters">Template Parameters</h5>
+<ol>
+<li><code>Clock</code>: A clock class, such as <code>std::chrono::system_clock</code>, <code>std::chrono::steady_clock</code>,
+   <code>std::chrono::high_resolution_clock</code> or a custom <code>clock</code> class.</li>
+<li><code>Duration</code>: A <code>std::chrono::duration</code> type. Programmers do <strong>not need to specify it manually</strong>.
+   It is <strong>automatically set to a <code>std::chrono::duration</code> type corresponding to the <code>Clock</code></strong>.</li>
+<li><code>Clock::duration</code>: The <code>std::chrono::duration</code> type defined inside the <code>Clock</code> class. Each
+   <code>Clock</code> class has <strong>its own default <code>std::chrono::duration</code> type</strong>.</li>
+</ol>
+<h5 id="member-types_1">Member Types</h5>
+<ol>
+<li><code>clock</code>: <code>Clock</code>, the clock on which this time point is measured.</li>
+<li><code>duration</code>: <code>Duration</code>, a <code>std::chrono::duration</code> type used to measure the time since epoch.</li>
+<li><code>rep</code>: <code>Rep</code>, an arithmetic type representing the number of ticks of the duration.</li>
+<li><code>period</code>: <code>Period</code>, a <code>std::ratio</code> type representing the tick period of the duration.</li>
+</ol>
+<h5 id="member-functions_1">Member Functions</h5>
+<ol>
+<li>(constructor): Constructs a new time point (public member function).</li>
+<li><code>time_since_epoch</code>: Returns the time point as duration since the start of its clock (public
+   member function).</li>
+<li><code>operators</code>: Operators for <code>std::chrono::time_point</code> (function template).</li>
+<li><code>time_since_epoch</code>: Time since epoch (public member function).</li>
+<li><code>min</code> [<code>static</code>]: Returns the time point corresponding to the smallest duration (public static
+   member function).</li>
+<li><code>max</code> [<code>static</code>]: Returns the time point corresponding to the largest duration (public static
+   member function).</li>
+</ol>
+<h5 id="non-member-functions_1">Non-member Functions</h5>
+<ol>
+<li><code>operators</code>: Operators for <code>std::chrono::time_point</code> (function template).</li>
+<li><code>time_point_cast</code>: Converts a time point to another time point on the same clock, with a
+   different duration (function template).</li>
+<li><code>floor( std::chrono::time_point )</code> (C++17): Converts a <code>std::chrono::time_point</code> to another,
+   rounding down (function template).</li>
+<li><code>ceil( std::chrono::time_point )</code> (C++17): Converts a <code>std::chrono::time_point</code> to another,
+   rounding up (function template).</li>
+<li><code>round( std::chrono::time_point )</code> (C++17): Converts a <code>std::chrono::time_point</code> to another,
+   rounding to nearest, ties to even (function template).</li>
+</ol>
+<h5 id="helper-classes_1">Helper Classes</h5>
+<ol>
+<li><code>std::common_type&lt; std::chrono::time_point &gt;</code>: Specializes the <code>std::common_type</code> trait (class
+   template specialization).</li>
+<li><code>std::hash&lt; std::chrono::time_point &gt;</code> (C++26): Hash support for <code>std::chrono::time_point</code> (class
+   template specialization).</li>
+</ol>
+<h3 id="clocks">Clocks</h3>
+<h4 id="explanation_3">Explanation</h4>
+<ol>
+<li>Clocks are <strong>a framework</strong> that <strong>relates a time point</strong> to real physical time.</li>
+<li>The library provides at least <strong>three clocks</strong> that <strong>provide means to express the current time</strong>
+   <strong>as a <code>std::chrono::time_point</code></strong>: <code>std::chrono::system_clock</code>, <code>std::chrono::steady_clock</code> and
+   <code>std::chrono::high_resolution_clock</code>. All of them are <strong>classes</strong>.</li>
+<li>Usage:</li>
+<li><code>std::chrono::system_clock</code>: Timestamps, timers.</li>
+<li><code>std::chrono::steady_clock</code>: Performance measurement, timeouts and delays.</li>
+<li><code>std::chrono::high_resolution_clock</code>: High-precision timing, profiling.</li>
+</ol>
+<h4 id="syntax_2">Syntax</h4>
+<pre><code class="language-CPP">// Usage Syntax
+std::chrono::time_point&lt; Clock &gt; start, end;
+</code></pre>
+<pre><code class="language-CPP">// Usage Syntax
+auto start = Clock::now();
+auto start = Clock::now();
+// `Clock::now()`: The `now()` function defined inside the `Clock` class.
+</code></pre>
+<h4 id="related-stuffs-of-three-clock-classes">Related Stuffs of Three Clock Classes</h4>
+<h5 id="member-types-of-three-clock-classes">Member Types of Three Clock Classes</h5>
+<ol>
+<li><code>rep</code>: An arithmetic type representing the number of ticks in the clock's duration. <strong>For system
+   clocks</strong>, it's a <strong>signed</strong> arithmetic type.</li>
+<li><code>period</code>: A <code>std::ratio</code> type representing the tick period of the clock, <strong>in seconds</strong>.</li>
+<li><code>duration</code>: <code>std::chrono::duration&lt; rep, period &gt;</code>. <strong>For system clocks</strong>, capable of
+   representing negative durations.</li>
+<li><code>time_point</code>: <code>std::chrono::time_point&lt; Clock &gt;</code>.</li>
+</ol>
+<h5 id="member-constants-of-three-clock-classes">Member Constants of Three Clock Classes</h5>
+<ol>
+<li><code>constexpr bool is_steady</code> [<code>static</code>]: True if the time between ticks is always constant, i.e.
+   calls to <code>now()</code> return values that increase monotonically even in case of some external clock
+   adjustment, otherwise false. However, <strong>for steady clock flag, always true</strong> (public static
+   member constant).</li>
+</ol>
+<h5 id="member-functions-of-three-clock-classes">Member Functions of Three Clock Classes</h5>
+<ol>
+<li><code>now</code> [<code>static</code>]: Returns a <code>std::chrono::time_point</code> representing the current point in time.
+   (public static member function).</li>
+</ol>
+<h5 id="member-functions-of-stdchronosystem_clock">Member Functions of <code>std::chrono::system_clock</code></h5>
+<ol>
+<li><code>to_time_t</code> [<code>static</code>]: Converts a system clock time point to <code>std::time_t</code> (public static member
+   function).</li>
+<li><code>from_time_t</code> [<code>static</code>]: Converts <code>std::time_t</code> to a system clock time point (public static
+   member function).</li>
+</ol>
+<h3 id="common-usage-syntax">Common Usage Syntax</h3>
+<pre><code class="language-CPP">// Measure performance.
+std::chrono::time_point&lt; Clock &gt; start, end;
+start = Clock::now();
+// Do something.
+end = Clock::now();
+std::chrono::duration&lt; float, std::ratio&lt; num1, num2 &gt; &gt; dur
+   = std::chrono::duration_cast&lt; TemplateInstantiations &gt; ( end - start );
+std::cout &lt;&lt; &quot;Elapsed time: &quot; &lt;&lt; dur.count() &lt;&lt; &quot; time unit\n&quot;;
+</code></pre>
+<pre><code class="language-CPP">// Measure performance.
+auto start = Clock::now();
+// Do something.
+auto end = Clock::now();
+auto dur = std::chrono::duration_cast&lt; TemplateInstantiations &gt; ( end - start );
+std::cout &lt;&lt; &quot;Elapsed time: &quot; &lt;&lt; dur.count() &lt;&lt; &quot; time unit\n&quot;;
+</code></pre>
+<pre><code class="language-CPP">// Timestamps.
+auto now = std::chrono::system_clock::now();
+std::time_t now_time_t = std::chrono::system_clock::to_time_t( now );
+std::cout &lt;&lt; &quot;Current time: &quot; &lt;&lt; std::ctime( &amp;now_time_t );
+</code></pre>
+<h3 id="notes">Notes</h3>
+<ol>
+<li>Utilize a constructor, a destructor, and the object's lifetime to <strong>implement a timer object</strong>.</li>
+<li>In Linux, the precision of all clocks is <code>std::chrono::nanoseconds</code>.</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

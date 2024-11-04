@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>MemoryPartitions - from_gcc_to_cpp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">from_gcc_to_cpp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../FromGccToCPP/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Gcc/" class="nav-link">Gcc</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#memory-partitions" class="nav-link">Memory Partitions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#memory-partitions">Memory Partitions</a></li>
+<li><a href="#stack"><strong>Stack</strong></a><ul>
+<li><a href="#purpose">Purpose</a></li>
+<li><a href="#allocationdeallocation">Allocation/Deallocation</a></li>
+<li><a href="#lifetime">Lifetime</a></li>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#size">Size</a></li>
+<li><a href="#structure">Structure</a></li>
+<li><a href="#performance">Performance</a></li>
+<li><a href="#other-characteristics">Other Characteristics</a></li>
+</ul>
+</li>
+<li><a href="#heap-dynamic-memory"><strong>Heap (Dynamic Memory)</strong></a><ul>
+<li><a href="#purpose-1">Purpose</a></li>
+<li><a href="#allocationdeallocation-1">Allocation/Deallocation</a></li>
+<li><a href="#lifetime-1">Lifetime</a></li>
+<li><a href="#scope-1">Scope</a></li>
+<li><a href="#size-1">Size</a></li>
+<li><a href="#structure-1">Structure</a></li>
+<li><a href="#performance-1">Performance</a></li>
+<li><a href="#other-characteristics-1">Other Characteristics</a></li>
+</ul>
+</li>
+<li><a href="#globalstatic-memory-or-data-segment">Global/Static Memory or Data Segment</a><ul>
+<li><a href="#purpose-2">Purpose</a></li>
+<li><a href="#allocationdeallocation-2">Allocation/Deallocation</a></li>
+<li><a href="#lifetime-2">Lifetime</a></li>
+<li><a href="#scope-2">Scope</a></li>
+<li><a href="#size-2">Size</a></li>
+<li><a href="#structure-2">Structure</a></li>
+<li><a href="#performance-2">Performance</a></li>
+<li><a href="#other-characteristics-2">Other Characteristics</a></li>
+</ul>
+</li>
+<li><a href="#code-segment">Code Segment</a><ul>
+<li><a href="#purpose-3">Purpose</a></li>
+<li><a href="#allocationdeallocation-3">Allocation/Deallocation</a></li>
+<li><a href="#lifetime-3">Lifetime</a></li>
+<li><a href="#scope-3">Scope</a></li>
+<li><a href="#size-3">Size</a></li>
+<li><a href="#structure-3">Structure</a></li>
+<li><a href="#performance-3">Performance</a></li>
+<li><a href="#other-characteristics-3">Other Characteristics</a></li>
+</ul>
+</li>
+<li><a href="#memory-mapping-segment">Memory Mapping Segment</a><ul>
+<li><a href="#purpose-4">Purpose</a></li>
+<li><a href="#allocationdeallocation-4">Allocation/Deallocation</a></li>
+<li><a href="#lifetime-4">Lifetime</a></li>
+<li><a href="#scope-4">Scope</a></li>
+<li><a href="#size-4">Size</a></li>
+<li><a href="#structure-4">Structure</a></li>
+<li><a href="#performance-4">Performance</a></li>
+<li><a href="#other-characteristics-4">Other Characteristics</a></li>
+</ul>
+</li>
+<li><a href="#memory-partitioning-in-c-program-execution">Memory Partitioning in C++ Program Execution</a></li>
+<li><a href="#notes">Notes</a></li>
+</ul>
+<!-- vim-markdown-toc -->
+<h2 id="memory-partitions">Memory Partitions</h2>
+<h3 id="stack"><strong>Stack</strong></h3>
+<h4 id="purpose">Purpose</h4>
+<ol>
+<li>Stores <strong>local variables</strong> and <strong>function call information</strong> (such as return addresses and
+   parameters).</li>
+<li>Data is <strong>lost</strong> when it goes <strong>out of scope</strong>.</li>
+</ol>
+<h4 id="allocationdeallocation">Allocation/Deallocation</h4>
+<ol>
+<li><strong>Automatically handled</strong> by the compiler.</li>
+<li>Memory for local variables is <strong>allocated when a function is called</strong> and <strong>deallocated when the
+   function exits</strong>.</li>
+<li>Allocating memory requires <strong>only one CPU instruction</strong>.</li>
+</ol>
+<h4 id="lifetime">Lifetime</h4>
+<ol>
+<li>Local variables exist only for <strong>the duration of the function call</strong>.</li>
+</ol>
+<h4 id="scope">Scope</h4>
+<ol>
+<li>Limited to <strong>the function</strong> where <strong>the variables</strong> are <strong>declared</strong>.</li>
+</ol>
+<h4 id="size">Size</h4>
+<ol>
+<li><strong>Limited size</strong> (typically between <strong>1 MB to 8 MB</strong>, determined by the OS).</li>
+<li>Prone to <strong>stack overflow</strong> for deep recursion or large allocations.</li>
+<li>The size <strong>cannot grow dynamically</strong>.</li>
+</ol>
+<h4 id="structure">Structure</h4>
+<ol>
+<li>Follows a <strong>LIFO (Last In, First Out)</strong> structure.</li>
+<li>Memory is deallocated in reverse order of allocation.</li>
+<li>Stores data like a physical stack, pushing new data and updating the <strong>stack pointer</strong>.</li>
+</ol>
+<h4 id="performance">Performance</h4>
+<ol>
+<li><strong>Fast access</strong> due to contiguous memory layout and minimal overhead.</li>
+<li>Allocation and deallocation are <strong>faster</strong> than heap operations.</li>
+</ol>
+<h4 id="other-characteristics">Other Characteristics</h4>
+<ol>
+<li>Data is <strong>close together</strong> in memory, <strong>reducing cache misses</strong>.</li>
+<li>Fits well into <strong>one CPU cache line</strong> due to the locality of reference.</li>
+</ol>
+<h3 id="heap-dynamic-memory"><strong>Heap (Dynamic Memory)</strong></h3>
+<h4 id="purpose_1">Purpose</h4>
+<ol>
+<li>Stores <strong>dynamically allocated objects</strong> created during runtime.</li>
+<li>Used when the amount of memory needed is not known in advance.</li>
+</ol>
+<h4 id="allocationdeallocation_1">Allocation/Deallocation</h4>
+<ol>
+<li><strong>Manual allocation</strong> using <code>new/delete</code> or <code>malloc/free</code>.</li>
+<li>Memory needs to be <strong>explicitly deallocated</strong> to avoid <strong>leaks</strong>.</li>
+</ol>
+<h4 id="lifetime_1">Lifetime</h4>
+<ol>
+<li>Exists until <strong>explicitly deallocated</strong> by the programmer.</li>
+<li>Remains available even after the function that allocated it exits, as long as the pointer is
+   preserved.</li>
+<li>If the programmer forgets to release these variables, the system will delete them and reclaim the
+   memory they occupied after the program exits.</li>
+</ol>
+<h4 id="scope_1">Scope</h4>
+<ol>
+<li><strong>Global scope</strong> if the pointer to allocated memory is retained.</li>
+<li>Accessible from <strong>anywhere</strong> in the program through the pointer.</li>
+</ol>
+<h4 id="size_1">Size</h4>
+<ol>
+<li><strong>Predefined</strong> to a default value according to the system but <strong>can grow and shrink</strong> as the
+   application progresses.</li>
+<li>Limited by <strong>system memory</strong> and subject to <strong>fragmentation</strong>.</li>
+<li>Large allocations are possible, unlike the stack.</li>
+</ol>
+<h4 id="structure_1">Structure</h4>
+<ol>
+<li><strong>Unstructured</strong> memory, allocated and freed in any order.</li>
+<li>Can lead to <strong>fragmentation</strong> if memory is not carefully managed.</li>
+</ol>
+<h4 id="performance_1">Performance</h4>
+<ol>
+<li><strong>Slower</strong> than stack due to non-contiguous memory and overhead of managing free space.</li>
+<li>Fragmentation can impact performance over time.</li>
+</ol>
+<h4 id="other-characteristics_1">Other Characteristics</h4>
+<ol>
+<li>Maintains <strong>a free list</strong> to check if there is free memory available for the application to use.</li>
+<li>If there is <strong>not enough heap memory</strong>, it will ask the system to <strong>allocate more memory</strong>. The
+   <strong>performance cost</strong> of this allocation is <strong>high</strong>.</li>
+<li><strong>More cache misses</strong>.</li>
+</ol>
+<h3 id="globalstatic-memory-or-data-segment">Global/Static Memory or Data Segment</h3>
+<h4 id="purpose_2">Purpose</h4>
+<ol>
+<li>Stores <strong>global, static, and constant variables</strong>.</li>
+<li>Retains values throughout the <strong>entire program lifecycle</strong>.</li>
+</ol>
+<h4 id="allocationdeallocation_2">Allocation/Deallocation</h4>
+<ol>
+<li><strong>Allocated at program startup</strong> and <strong>deallocated at program termination</strong>.</li>
+</ol>
+<h4 id="lifetime_2">Lifetime</h4>
+<ol>
+<li>Exists for the <strong>entire duration</strong> of the program.</li>
+<li>Retains values across function calls.</li>
+</ol>
+<h4 id="scope_2">Scope</h4>
+<ol>
+<li><strong>Global scope</strong>: Accessible from any part of the program.</li>
+</ol>
+<h4 id="size_2">Size</h4>
+<ol>
+<li>Depends on the <strong>size and number</strong> of variables.</li>
+<li>Limited by the <strong>linker and system memory</strong>.</li>
+</ol>
+<h4 id="structure_2">Structure</h4>
+<ol>
+<li>
+<p>Includes:</p>
+</li>
+<li>
+<p><strong>Initialized Data Segment</strong>: Stores variables with <strong>explicit initial</strong> values.</p>
+</li>
+<li>
+<p><strong>BSS (Uninitialized Data Segment, Block Started by Symbol)</strong>: Stores variables with <strong>no
+     initial</strong> values, which are initialized to <strong>zero by default</strong>.</p>
+</li>
+<li>
+<p><strong>Character Constant Area</strong>: Stores <strong>string literals</strong> and <strong>constants</strong>.</p>
+</li>
+<li>
+<p>Organized as <strong>a continuous memory block</strong> for static, global and const variables/values.</p>
+</li>
+</ol>
+<h4 id="performance_2">Performance</h4>
+<ol>
+<li><strong>Fast access</strong> due to fixed memory locations.</li>
+<li>Avoids runtime allocation overhead.</li>
+</ol>
+<h4 id="other-characteristics_2">Other Characteristics</h4>
+<ol>
+<li><strong>Persistent values</strong> can introduce side effects if not managed properly.</li>
+<li>Typically <strong>read-only</strong> for constants to prevent accidental modification.</li>
+</ol>
+<h3 id="code-segment">Code Segment</h3>
+<h4 id="purpose_3">Purpose</h4>
+<ol>
+<li>Stores <strong>compiled instructions</strong> (machine code) of the program.</li>
+</ol>
+<h4 id="allocationdeallocation_3">Allocation/Deallocation</h4>
+<ol>
+<li><strong>Allocated at program startup</strong> and remains until the program ends.</li>
+<li>Managed by the <strong>OS and loader</strong>.</li>
+</ol>
+<h4 id="lifetime_3">Lifetime</h4>
+<ol>
+<li>Exists for the <strong>entire runtime</strong> of the program.</li>
+</ol>
+<h4 id="scope_3">Scope</h4>
+<ol>
+<li>Not applicable; <strong>read-only</strong> segment.</li>
+</ol>
+<h4 id="size_3">Size</h4>
+<ol>
+<li>Depends on the <strong>size of the compiled code</strong>.</li>
+<li>Limited by <strong>system memory</strong> and linker constraints.</li>
+</ol>
+<h4 id="structure_3">Structure</h4>
+<ol>
+<li>A <strong>contiguous block</strong> of machine instructions.</li>
+<li>Organized for <strong>sequential execution</strong> by the CPU.</li>
+</ol>
+<h4 id="performance_3">Performance</h4>
+<ol>
+<li><strong>Fast execution</strong> due to CPU caching and sequential access.</li>
+<li>Code segment is often <strong>optimized</strong> for cache utilization.</li>
+</ol>
+<h4 id="other-characteristics_3">Other Characteristics</h4>
+<ol>
+<li><strong>Read-only</strong> to prevent accidental or malicious modification.</li>
+<li>Supports <strong>function-level optimizations</strong> during compilation.</li>
+</ol>
+<h3 id="memory-mapping-segment">Memory Mapping Segment</h3>
+<h4 id="purpose_4">Purpose</h4>
+<ol>
+<li>Used for <strong>mapping files or shared libraries</strong> into memory.</li>
+<li>Enables efficient access to large files without loading them entirely into RAM.</li>
+</ol>
+<h4 id="allocationdeallocation_4">Allocation/Deallocation</h4>
+<ol>
+<li>Managed by the <strong>OS</strong> using functions like <code>mmap</code>.</li>
+<li>Deallocated when the <strong>file is closed</strong> or the mapping is removed.</li>
+</ol>
+<h4 id="lifetime_4">Lifetime</h4>
+<ol>
+<li>Varies based on <strong>file or library usage</strong>.</li>
+</ol>
+<h4 id="scope_4">Scope</h4>
+<ol>
+<li>Accessible globally from <strong>any part</strong> of the program.</li>
+</ol>
+<h4 id="size_4">Size</h4>
+<ol>
+<li>Depends on the <strong>size of the mapped file or library</strong>.</li>
+</ol>
+<h4 id="structure_4">Structure</h4>
+<ol>
+<li>Divided into <strong>read-only</strong> and <strong>read-write</strong> segments.</li>
+<li>Supports <strong>lazy loading</strong>, where only accessed portions are loaded.</li>
+</ol>
+<h4 id="performance_4">Performance</h4>
+<ol>
+<li><strong>Efficient</strong> for large files as only necessary parts are loaded.</li>
+<li>Reduces memory usage compared to loading the entire file.</li>
+</ol>
+<h4 id="other-characteristics_4">Other Characteristics</h4>
+<ol>
+<li>Enables <strong>shared access</strong> across processes for libraries or files.</li>
+<li>Requires <strong>OS-level support</strong> for memory mapping.</li>
+</ol>
+<h3 id="memory-partitioning-in-c-program-execution">Memory Partitioning in C++ Program Execution</h3>
+<ol>
+<li>Stack vs. Heap: The stack is <strong>fast</strong> and <strong>automatically managed</strong>, but <strong>limited in size</strong>. The
+   heap allows for more flexible memory usage at the cost of <strong>manual management</strong>.</li>
+<li>Global/Static vs. Local: Global and static variables have global lifetimes, while local variables
+   (on the stack) have a shorter scope, limited to the block they are declared in.</li>
+</ol>
+<h3 id="notes">Notes</h3>
+<ol>
+<li>store data on stack &gt; store data on heap &gt; store pointers on stack &gt; store pointers on heap.</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

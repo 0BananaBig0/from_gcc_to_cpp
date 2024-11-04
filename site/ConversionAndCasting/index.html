@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>ConversionAndCasting - from_gcc_to_cpp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">from_gcc_to_cpp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../FromGccToCPP/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Gcc/" class="nav-link">Gcc</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#conversion-and-casting" class="nav-link">Conversion and Casting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#conversion-and-casting">Conversion and Casting</a></li>
+<li><a href="#explanation">Explanation</a></li>
+<li><a href="#implicit-conversion">Implicit Conversion</a><ul>
+<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#examples">Examples</a></li>
+</ul>
+</li>
+<li><a href="#explicit-conversion--type-casting-">Explicit Conversion ( Type Casting )</a><ul>
+<li><a href="#explanation-2">Explanation</a></li>
+<li><a href="#c-style-casting--recommend-for-performance-">C-style Casting ( Recommend for Performance )</a></li>
+<li><a href="#explanation-3">Explanation</a></li>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#c-style-casting--recommend-for-safety-">C++-style Casting ( Recommend for Safety )</a></li>
+<li><a href="#explanation-4">Explanation</a></li>
+<li><a href="#static_cast--recommend-for-safety-and-performance-"><code>static_cast</code> ( Recommend for Safety and Performance )</a><ul>
+<li><a href="#explanation-5">Explanation</a></li>
+<li><a href="#syntax-1">Syntax</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#limitations">Limitations</a></li>
+<li><a href="#requirements-for-using-static_cast">Requirements for Using <code>static_cast</code></a></li>
+</ul>
+</li>
+<li><a href="#dynamic_cast--recommend-for-safety-but-not-recommend-for-performance-"><code>dynamic_cast</code> ( Recommend for Safety but Not Recommend for Performance )</a><ul>
+<li><a href="#explanation-6">Explanation</a></li>
+<li><a href="#syntax-2">Syntax</a></li>
+<li><a href="#usage-1">Usage</a></li>
+<li><a href="#limitations-1">Limitations</a></li>
+<li><a href="#requirements-for-using-dynamic_cast">Requirements for Using <code>dynamic_cast</code></a></li>
+</ul>
+</li>
+<li><a href="#const_cast--recommend-for-safety-but-not-recommend-for-performance-"><code>const_cast</code> ( Recommend for Safety but Not Recommend for Performance )</a><ul>
+<li><a href="#explanation-7">Explanation</a></li>
+<li><a href="#syntax-3">Syntax</a></li>
+<li><a href="#usage-2">Usage</a></li>
+</ul>
+</li>
+<li><a href="#reinterpret_cast--recommend-for-performance-but-not-recommend-for-safety-"><code>reinterpret_cast</code> ( Recommend for Performance but Not Recommend for Safety )</a><ul>
+<li><a href="#explanation-8">Explanation</a></li>
+<li><a href="#syntax-4">Syntax</a></li>
+<li><a href="#usage-3">Usage</a></li>
+<li><a href="#requirements-for-using-reinterpret_cast">Requirements for Using <code>reinterpret_cast</code></a></li>
+</ul>
+</li>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#explicit"><code>explicit</code></a></li>
+<li><a href="#explanation-9">Explanation</a></li>
+<li><a href="#syntax-5">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#stdbit_cast-recommended-for-safety-performance-and-type-integrity"><code>std::bit_cast</code> (Recommended for Safety, Performance and Type Integrity)</a><ul>
+<li><a href="#explanation-10">Explanation</a></li>
+<li><a href="#syntax-6">Syntax</a></li>
+<li><a href="#usage-4">Usage</a></li>
+<li><a href="#requirements-for-using-stdbit_cast">Requirements for Using <code>std::bit_cast</code></a></li>
+</ul>
+</li>
+<li><a href="#differences-between-stdbit_cast-and-reinterpret_cast">Differences between <code>std::bit_cast</code> and <code>reinterpret_cast</code></a><ul>
+<li><a href="#safety-and-type-checking">Safety and Type Checking</a></li>
+<li><a href="#stdbit_cast"><code>std::bit_cast</code>:</a></li>
+<li><a href="#reinterpret_cast"><code>reinterpret_cast</code>:</a></li>
+<li><a href="#intent-and-purpose">Intent and Purpose</a></li>
+<li><a href="#stdbit_cast-1"><code>std::bit_cast</code>:</a></li>
+<li><a href="#reinterpret_cast-1"><code>reinterpret_cast</code>:</a></li>
+<li><a href="#performance">Performance</a></li>
+<li><a href="#stdbit_cast-2"><code>std::bit_cast</code>:</a></li>
+<li><a href="#reinterpret_cast-2"><code>reinterpret_cast</code>:</a></li>
+<li><a href="#requirements-for-usage">Requirements for Usage</a></li>
+<li><a href="#stdbit_cast-3"><code>std::bit_cast</code>:</a></li>
+<li><a href="#reinterpret_cast-3"><code>reinterpret_cast</code>:</a></li>
+</ul>
+</li>
+<li><a href="#upcasting-and-downcasting">Upcasting and Downcasting</a><ul>
+<li><a href="#explanation-11">Explanation</a></li>
+<li><a href="#upcasting">Upcasting</a></li>
+<li><a href="#downcasting">Downcasting</a></li>
+</ul>
+</li>
+<li><a href="#notes-1">Notes</a></li>
+</ul>
+<!-- vim-markdown-toc -->
+
+<h2 id="conversion-and-casting">Conversion and Casting</h2>
+<h3 id="explanation">Explanation</h3>
+<ol>
+<li>In C++, conversion and casting refer to the mechanisms used to <strong>convert a value from one data
+   type to another</strong>.</li>
+<li>Conversion can occur <strong>implicitly</strong> or <strong>explicitly</strong>.</li>
+<li><strong>Implicit conversion</strong>, also known as <strong>type coercion</strong>, happens <strong>automatically</strong> when the
+   compiler converts one data type to another <strong>without requiring explicit instructions</strong> from the
+   programmer.</li>
+<li>In contrast, <strong>explicit conversion</strong> <strong>requires</strong> the programmer to define the <strong>conversion
+   process</strong>, which can be accomplished through various casting methods.</li>
+</ol>
+<h3 id="implicit-conversion">Implicit Conversion</h3>
+<h4 id="explanation_1">Explanation</h4>
+<ol>
+<li>Implicit conversion occurs when the compiler <strong>automatically converts a value from one type to
+    another</strong>, usually in situations involving mixed-type expressions.</li>
+<li>It is <strong>only</strong> allowed to <strong>happen once</strong> and happens <strong>automatically</strong>.</li>
+<li>The <strong>compiler ensures</strong> that the conversion is <strong>valid</strong> and <strong>safe</strong>.</li>
+<li>However, implicit conversions can sometimes <strong>lead to unexpected behavior</strong>, especially if
+    there’s <strong>data loss</strong> (e.g., converting a double to an int might lose the fractional part).</li>
+<li>When an <strong>object</strong> is <strong>copied</strong> using the <strong>assignment operator</strong>, if the source object is of
+    <strong>a different type</strong>, <strong>implicit conversion</strong> may occur, invoking the <strong>assignment operator
+    overload</strong> and potentially a <strong>constructor</strong>.</li>
+</ol>
+<h4 id="examples">Examples</h4>
+<pre><code class="language-CPP">class B {
+   public:
+      explicit B( Type mem ): _mem( mem ){};
+      Type _mem;
+};
+
+class A {
+   public:
+      A(): _mem( initializer1 ) {};
+
+      // Constructor for implicit conversion.
+      A( const B&amp; b ): _mem( b._mem ) {};
+
+      // Assignment operator overload.
+      A&amp; operator=( const B&amp; b ) {
+         _mem = b._mem;
+         return *this;
+      };
+
+      // Assignment operator overload.
+      A&amp; operator=( const A&amp; other ) = default;
+
+      Type _mem;
+};
+
+int main() {
+   A a;                   // Default A.
+   B b( initializer2 );   // B initialized with an initializer2.
+   // Only A's assignment operator are invoked. In fact, it's also a implicit conversion.
+   a = b;
+};
+</code></pre>
+<pre><code class="language-CPP">class B {
+   public:
+      explicit B( Type mem ): _mem( mem ){};
+      Type _mem;
+};
+
+class A {
+   public:
+      A(): _mem( initializer1 ) {};
+
+      // Constructor for implicit conversion.
+      A( const B&amp; b ): _mem( b._mem ) {};
+
+      // Assignment operator overload.
+      A&amp; operator=( const A&amp; other ) = default;
+
+      Type _mem;
+};
+
+int main() {
+   A a;                   // Default A.
+   B b( initializer2 );   // B initialized with an initializer2.
+   // First, implicit conversion: A's conversion constructor is invoked.
+   // Second, assignment: A's default assignement operator is invoked.
+   a = b;
+};
+</code></pre>
+<h3 id="explicit-conversion-type-casting">Explicit Conversion ( Type Casting )</h3>
+<h4 id="explanation_2">Explanation</h4>
+<ol>
+<li><strong>Explicit conversion</strong>, or <strong>type casting</strong>, allows <strong>programmers</strong> to <strong>define how a value
+   should be converted from one type to another</strong>.</li>
+<li>This is crucial in scenarios where implicit conversion may lead to data loss or unintended
+   behavior.</li>
+<li>However, there’s <strong>no guarantee</strong> that the <strong>conversion is safe</strong>, and <strong>programmers</strong> must
+   <strong>ensure</strong> the <strong>correctness</strong>.</li>
+</ol>
+<h4 id="c-style-casting-recommend-for-performance">C-style Casting ( Recommend for Performance )</h4>
+<h5 id="explanation_3">Explanation</h5>
+<ol>
+<li>C-style casting uses the syntax <code>(Type)initializer</code> to convert a variable or a value to the
+   desired type.</li>
+<li>While this method is <strong>straightforward</strong>, it can be <strong>ambiguous</strong> and may lead to <strong>unexpected
+   results</strong> since it can <strong>invoke multiple conversion methods</strong>, including <code>static_cast</code>,
+   <code>dynamic_cast</code>, <code>const_cast</code>, and <code>reinterpret_cast</code>, depending on the context.</li>
+<li>In addition, the compiler may <strong>not optimize C-style casts as effectively</strong> since they <strong>lack
+   explicit intent</strong>, making it harder for the compiler to understand what type conversions are
+   valid.</li>
+</ol>
+<h5 id="syntax">Syntax</h5>
+<pre><code class="language-CPP">( TargetType )initializer;
+</code></pre>
+<h4 id="c-style-casting-recommend-for-safety">C++-style Casting ( Recommend for Safety )</h4>
+<h5 id="explanation_4">Explanation</h5>
+<ol>
+<li>C++ introduced several <strong>specific casting operators</strong> to provide <strong>more clarity and safety</strong> in
+   type conversion. These are <code>static_cast</code>, <code>dynamic_cast</code>, <code>const_cast</code>, and <code>reinterpret_cast</code>.</li>
+<li>These four casts do <strong>not introduce any new functionality</strong> to C++. All of them <strong>can be
+   implemented using C-style casting</strong>.</li>
+<li>They <strong>merely clarify the intent</strong> behind the cast.</li>
+</ol>
+<h5 id="static_cast-recommend-for-safety-and-performance"><code>static_cast</code> ( Recommend for Safety and Performance )</h5>
+<h6 id="explanation_5">Explanation</h6>
+<ol>
+<li><code>static_cast</code> is used for <strong>safe, compile-time type conversion</strong>.</li>
+<li>It can be used for well-defined conversions between <strong>related types</strong>, such as upcasting and
+   downcasting in <strong>inheritance hierarchies</strong>, <strong>without runtime checks</strong>.</li>
+<li>It is <strong>safer than C-style casting</strong> but still <strong>requires caution</strong>, <strong>especially</strong> during
+   <strong>downcasting</strong>.</li>
+<li>This cast involves <strong>compile-time checks</strong> and is generally <strong>efficient</strong>, as it <strong>can be
+   optimized</strong> by the compiler.</li>
+</ol>
+<h6 id="syntax_1">Syntax</h6>
+<pre><code class="language-CPP">static_cast&lt; TargetType &gt;( initializer );
+</code></pre>
+<h6 id="usage">Usage</h6>
+<ol>
+<li>Primitive type conversion.</li>
+<li>Pointer type conversion within inheritance.</li>
+<li>Converting <code>void</code> pointer to another pointer type.</li>
+</ol>
+<h6 id="limitations">Limitations</h6>
+<ol>
+<li><strong>Cannot</strong> cast between <strong>incompatible types</strong>:</li>
+<li>It only works with related types. For example, you cannot use <code>static_cast</code> to convert an
+     <strong>unrelated class</strong> to another.</li>
+<li><strong>No runtime type safety</strong>:</li>
+<li>If <code>static_cast</code> is used to <strong>downcast in an inheritance hierarchy</strong>, it <strong>won't check the
+     actual type at runtime</strong>.</li>
+<li>This can lead to <strong>undefined behavior</strong> if the object isn't of the expected type.</li>
+<li><strong>Not</strong> for casting <strong>between pointers and non-pointers</strong>:</li>
+<li>You cannot cast between <strong>objects and pointers</strong> (e.g., from an integer to a pointer) with
+     <code>static_cast</code>. For such conversions, <code>reinterpret_cast</code> is required.</li>
+<li><strong>No removal</strong> of <strong><code>const</code> or <code>volatile</code></strong> qualifiers:</li>
+<li><code>static_cast</code> <strong>cannot add or remove <code>const</code> or <code>volatile</code> qualifiers</strong>. Use <code>const_cast</code> for
+     this purpose.</li>
+</ol>
+<h6 id="requirements-for-using-static_cast">Requirements for Using <code>static_cast</code></h6>
+<ol>
+<li><strong>Types</strong> must be <strong>compatible</strong>:</li>
+<li>The conversion must make sense in the context of the C++ type system (e.g., converting between
+     base and derived classes, or between numeric types).</li>
+<li><strong>Inheritance hierarchy</strong>:</li>
+<li>You can only cast pointers or references within the same class hierarchy (i.e., between base
+     and derived classes).</li>
+<li><strong>Known at compile time</strong>:</li>
+<li>The conversion must be determined at compile time, as <code>static_cast</code> does not involve any
+     runtime checks.</li>
+</ol>
+<h5 id="dynamic_cast-recommend-for-safety-but-not-recommend-for-performance"><code>dynamic_cast</code> ( Recommend for Safety but Not Recommend for Performance )</h5>
+<h6 id="explanation_6">Explanation</h6>
+<ol>
+<li><code>dynamic_cast</code> is designed for <strong>safe, runtime-checked downcasting</strong> in <strong>polymorphic
+   hierarchies</strong>.</li>
+<li>It ensures that the <strong>cast</strong> is <strong>valid at runtime</strong>, making it the safest option for casting
+   within class hierarchies.</li>
+<li>If the cast is <strong>unsuccessful</strong>, it <strong>returns nullptr (for pointers)</strong> or <strong>throws an exception
+   (for references, <code>std::bad_cast</code>)</strong>, thus enhancing type safety.</li>
+<li>However, this added safety can result in <strong>slower performance</strong> compared to <code>static_cast</code>.</li>
+<li>The <strong>runtime check</strong> in <code>dynamic_cast</code> is <strong>implemented</strong> <strong>using</strong> the <strong>Run-Time Type
+   Information (RTTI)</strong> mechanism in C++, which <strong>includes type information</strong> and <strong>the virtual
+   table (vtable)</strong>.</li>
+<li>Its <strong>downcasting workflow</strong> involves <strong>RTTI lookup</strong>, <strong>hierarchy traversal</strong>, and <strong>pointer
+   adjustment</strong>.</li>
+<li><code>dynamic_cast</code> requires <strong>at least one virtual function</strong>.</li>
+<li>Because it slows down performance, we can <strong>use a macro to determine whether to use it in debug
+   mode or release mode</strong>.</li>
+<li>Last, we should <strong>check if RTTI is enabled</strong> in our compiler. ( GCC/G++ enables it by default,
+   while MSVC does not. )</li>
+</ol>
+<h6 id="syntax_2">Syntax</h6>
+<pre><code class="language-CPP">dynamic_cast&lt; TargetType &gt;( initializer );
+</code></pre>
+<h6 id="usage_1">Usage</h6>
+<ol>
+<li>Safe Downcasting with Pointers:</li>
+</ol>
+<p>```CPP
+   class Base {
+      public:
+         virtual Type funcName(){ ... };
+         virtual ~Base()= default;
+   };</p>
+<p>class Derived: public Base { ... };</p>
+<p>int main() {
+      Base<em> base_ptr = new Derived();
+      Derived</em> der_ptr = dynamic_cast&lt; Derived* &gt;( base_ptr );
+      if( !der_ptr ) {
+         std::cout &lt;&lt; "Failed to cast to Derived." &lt;&lt; std::endl;
+         return 0;
+      };
+   };
+   ```</p>
+<ol>
+<li>Downcasting with References:</li>
+</ol>
+<p>```CPP
+   class Base {
+      public:
+         virtual Type funcName(){ ... };
+         virtual ~Base() = default;
+   };</p>
+<p>class Derived: public Base { ... };</p>
+<p>int main() {
+      Base base;   // Not a Derived instance.
+      try {
+         // This will throw <code>std::bad_cast</code> because base is not of type Derived.
+         Derived&amp; der_ref = dynamic_cast&lt; Derived&amp; &gt;( base );
+      } catch( const std::bad_cast&amp; e ) {
+         std::cout &lt;&lt; "Caught exception: " &lt;&lt; e.what() &lt;&lt; '\n';
+      };
+   };
+   ```</p>
+<h6 id="limitations_1">Limitations</h6>
+<ol>
+<li><strong>Polymorphic</strong> base class required:</li>
+<li><code>dynamic_cast</code> <strong>only works</strong> if the base class has <strong>at least one virtual function</strong>
+     (typically a virtual destructor).</li>
+<li>Slight <strong>performance overhead</strong>:</li>
+<li>Since <code>dynamic_cast</code> performs runtime type checking, it is slower than <code>static_cast</code>,
+     especially in complex class hierarchies.</li>
+<li><strong>Works only on pointers and references</strong>:</li>
+<li>You cannot use <code>dynamic_cast</code> on regular objects. It only works on pointers or references.</li>
+<li>Downcast safety depends on runtime type:</li>
+<li>If the object <strong>isn't</strong> of the expected type, the cast will either <strong>return nullptr (for
+     pointers)</strong> or <strong>throw a <code>std::bad_cast</code> exception (for references)</strong>.</li>
+<li><strong>Requires RTTI (Run-Time Type Information)</strong>:</li>
+<li>RTTI must be enabled in the compiler (it’s usually enabled by default). If RTTI is disabled,
+     <code>dynamic_cast</code> will not work.</li>
+</ol>
+<h6 id="requirements-for-using-dynamic_cast">Requirements for Using <code>dynamic_cast</code></h6>
+<ol>
+<li><strong>Polymorphic</strong> base class:</li>
+<li>The base class involved in the cast must contain <strong>at least one virtual function</strong>, typically a
+     virtual destructor.</li>
+<li><strong>Pointer or reference</strong> types:</li>
+<li><code>dynamic_cast</code> can <strong>only</strong> be used to <strong>cast pointers or references</strong>—it won't work for normal
+     values.</li>
+<li><strong>Valid object type at runtime</strong>:</li>
+<li>For downcasting, the object at runtime must match the derived type you're casting to;
+     otherwise, the cast fails.</li>
+</ol>
+<h5 id="const_cast-recommend-for-safety-but-not-recommend-for-performance"><code>const_cast</code> ( Recommend for Safety but Not Recommend for Performance )</h5>
+<h6 id="explanation_7">Explanation</h6>
+<ol>
+<li><code>const_cast</code> is used for <strong>adding or removing <code>const</code> or <code>volatile</code> qualifiers</strong> from <strong>a pointer
+   or reference</strong>.</li>
+<li>It should be <strong>used sparingly</strong> and only when <strong>necessary</strong>, as <strong>misuse</strong> can easily lead to
+   <strong>undefined behavior</strong>.</li>
+<li>This cast involves <strong>compile-time checks</strong> and typically incurs <strong>minimal performance overhead</strong>
+   since it only modifies type qualifiers without altering the underlying object.</li>
+<li><code>const_cast</code> <strong>only adds or removes the <code>const</code> or <code>volatile</code> qualifiers</strong>; it <strong>doesn’t convert
+   between unrelated types</strong>.</li>
+</ol>
+<h6 id="syntax_3">Syntax</h6>
+<pre><code class="language-CPP">const_cast&lt; TargetType &gt;( initializer );
+</code></pre>
+<h6 id="usage_2">Usage</h6>
+<ol>
+<li>Removing <code>const</code> to modify a non-const object.</li>
+<li>Adding or removing <code>volatile</code>.</li>
+</ol>
+<h5 id="reinterpret_cast-recommend-for-performance-but-not-recommend-for-safety"><code>reinterpret_cast</code> ( Recommend for Performance but Not Recommend for Safety )</h5>
+<h6 id="explanation_8">Explanation</h6>
+<ol>
+<li><code>reinterpret_cast</code> is intended for <strong>low-level reinterpretation</strong> of an object’s bit pattern,
+   which allows <strong>conversion between incompatible types</strong>.</li>
+<li>It is the <strong>most powerful and dangerous cast</strong>, used in situations where other casts are
+   insufficient.</li>
+<li>This cast does <strong>not check type compatibility</strong> and can lead to <strong>undefined behavior</strong> if
+   <strong>misused</strong>, so it should be used with caution.</li>
+<li>While it can achieve results <strong>similar to type punning</strong>, it comes with significant <strong>caveats
+   regarding safety and portability</strong>.</li>
+<li>Its <strong>performance</strong> is generally <strong>comparable to C-style casting</strong>, as it does not perform any
+   type checks and simply reinterprets the bits.</li>
+<li><strong>Bit patterns</strong> refer to <strong>interpreting data as binary values</strong> and considering <strong>how many
+   bytes</strong> it occupies.</li>
+</ol>
+<h6 id="syntax_4">Syntax</h6>
+<pre><code class="language-CPP">reinterpret_cast&lt; TargetType &gt;( initializer );
+</code></pre>
+<h6 id="usage_3">Usage</h6>
+<ol>
+<li><strong>Pointer Type</strong> Conversions:</li>
+<li>It is commonly used to convert one pointer type to another, even between unrelated types.</li>
+<li><strong>Reference Type</strong> Conversions:</li>
+<li>Similar to pointers, <code>reinterpret_cast</code> can convert one reference type to another. This allows
+     for casting references of different types, but care must be taken to ensure the underlying
+     object types are compatible.</li>
+<li>Casting <strong>Between Pointer and Integer Types</strong>:</li>
+<li>It can be used to cast pointers to integral types (e.g., <code>uintptr_t</code>) and vice versa.</li>
+<li><strong>Interfacing with Hardware or System-Level Code</strong>:</li>
+<li>Useful in systems programming or when dealing with low-level constructs, such as when
+     interfacing with hardware or legacy C libraries.</li>
+</ol>
+<h6 id="requirements-for-using-reinterpret_cast">Requirements for Using <code>reinterpret_cast</code></h6>
+<ol>
+<li><strong>Pointer or Reference</strong> Types:</li>
+<li>The expression being cast must be a pointer or reference type.</li>
+<li><strong>Correctness</strong> of the Cast:</li>
+<li>Ensure that the object being accessed through the cast pointer is <strong>compatible with the
+     target</strong> type. <strong>Avoid</strong> using <code>reinterpret_cast</code> on pointers of <strong>unrelated types</strong> unless you
+     are sure of what you are doing.</li>
+</ol>
+<h5 id="notes">Notes</h5>
+<ol>
+<li>We recommend <strong>adopting C++-style casting</strong> for <strong>new projects</strong>, <strong>smaller codebases</strong>, or if
+   you are <strong>new to C++</strong>, as it offers a safer alternative.</li>
+<li>It is essential to <strong>understand</strong> <strong>whether</strong> a particular cast <strong>involves runtime or
+   compile-time checks</strong>.</li>
+<li>The distinct naming of these casts <strong>enhances code readability</strong> and <strong>facilitates easy
+   identification during code searches</strong> ( Search for their names to identify where explicit
+   conversions occur. ).</li>
+</ol>
+<h4 id="explicit"><code>explicit</code></h4>
+<h5 id="explanation_9">Explanation</h5>
+<ol>
+<li>The <code>explicit</code> keyword in C++ is used to <strong>prevent implicit conversions</strong> when defining
+   <strong>constructors</strong> or <strong>conversion operators</strong>.</li>
+<li>By marking a constructor <code>as explicit</code>, you ensure that it can only be called with a direct
+   initialization, thus <strong>avoiding unintended conversions</strong> that might lead to errors.</li>
+<li>This feature <strong>enhances type safety</strong> and <strong>code readability</strong> by making the programmer's
+   intentions clear.</li>
+</ol>
+<h5 id="syntax_5">Syntax</h5>
+<pre><code class="language-CPP">explicit ConstructorName( para_list );
+</code></pre>
+<pre><code class="language-CPP">// Conversion operator.
+// `const` function.
+explicit operator TargetType() const {
+    // Custom conversion logic here.
+};
+</code></pre>
+<h3 id="stdbit_cast-recommended-for-safety-performance-and-type-integrity"><code>std::bit_cast</code> (Recommended for Safety, Performance and Type Integrity)</h3>
+<h4 id="explanation_10">Explanation</h4>
+<ol>
+<li><code>std::bit_cast</code> is designed for <strong>safe reinterpretation</strong> of <strong>an object’s bit pattern</strong>,
+   allowing conversion <strong>between types</strong> of <strong>the same size</strong>.</li>
+<li>It provides a type-safe mechanism for casting, ensuring that <strong>the sizes of the source and target
+   types</strong> are <strong>equal</strong> <strong>at compile time</strong>.</li>
+<li>This function is <strong>less risky</strong> than <code>reinterpret_cast</code>, as it <strong>prevents undefined behavior</strong>
+   that can arise from size mismatches or type incompatibility.</li>
+<li><code>std::bit_cast</code> is ideal <strong>for type punning</strong> while maintaining safety and portability, making it
+   a preferable choice for most use cases.</li>
+<li>The <strong>performance</strong> is comparable to <code>reinterpret_cast</code>, as it also does <strong>not incur overhead</strong>
+   from type checking, but it provides stronger guarantees about correctness.</li>
+<li>Bit patterns refer to <strong>interpreting data as binary values</strong> and <strong>considering how many bytes it
+   occupies</strong>, with <code>std::bit_cast</code> ensuring the integrity of those bits.</li>
+</ol>
+<h4 id="syntax_6">Syntax</h4>
+<pre><code class="language-CPP">// Declaration syntax.
+template&lt; typename To, typename From &gt;
+constexpr To std::bit_cast( const From&amp; src );
+</code></pre>
+<pre><code class="language-CPP">// Usage syntax.
+std::bit_cast&lt; TargetType &gt;( initializer );
+</code></pre>
+<h4 id="usage_4">Usage</h4>
+<ol>
+<li><strong>Reinterpreting fundamental types</strong>:</li>
+<li>Commonly used to reinterpret bit patterns between types <strong>like integers and floating-point
+     numbers</strong>.</li>
+<li><strong>Casting structs or classes</strong>:</li>
+<li>Can be used to <strong>cast complex types</strong> like structs or classes <strong>to and from</strong> <strong>byte arrays or
+     other types</strong>, ensuring the bit representation is preserved.</li>
+<li><strong>Safe type punning</strong>:</li>
+<li>Useful in scenarios where you need to access the underlying bit representation of an object
+     without risking undefined behavior.</li>
+</ol>
+<h4 id="requirements-for-using-stdbit_cast">Requirements for Using <code>std::bit_cast</code></h4>
+<ol>
+<li>Sametsize types:</li>
+<li><strong>The source and target</strong> types must be of <strong>the same size</strong>; <strong>otherwise</strong>, <strong>a compile-time
+     error will occur</strong>.</li>
+<li>Type compatibility:</li>
+<li>While <code>std::bit_cast</code> does <strong>not require types to be related</strong>, it is crucial to ensure the
+     types make sense for the intended interpretation of the data.</li>
+<li><strong>Constexpr support</strong>:</li>
+<li>It <strong>can</strong> be <strong>used in constant expressions</strong>, making it suitable for scenarios that require
+     <strong>compile-time evaluations</strong>.</li>
+</ol>
+<h3 id="differences-between-stdbit_cast-and-reinterpret_cast">Differences between <code>std::bit_cast</code> and <code>reinterpret_cast</code></h3>
+<h4 id="safety-and-type-checking">Safety and Type Checking</h4>
+<h5 id="stdbit_cast"><code>std::bit_cast</code>:</h5>
+<ol>
+<li>Type safety:</li>
+<li><code>std::bit_cast</code> ensures that the <strong>source and destination</strong> types are <strong>the same size</strong> <strong>at
+     compile time</strong>.</li>
+<li>If they are <strong>not</strong>, it will result in <strong>a compilation error</strong>.</li>
+<li>Undefined behavior:</li>
+<li>It <strong>avoids undefined behavior</strong> by enforcing size constraints and ensuring that both types can
+     be safely represented with the same number of bits.</li>
+</ol>
+<h5 id="reinterpret_cast"><code>reinterpret_cast</code>:</h5>
+<ol>
+<li>Type safety:</li>
+<li><code>reinterpret_cast</code> does <strong>not perform any compile-time checks</strong> on size or type compatibility.</li>
+<li>It allows for <strong>casting between unrelated types</strong>, which can <strong>lead to undefined behavior</strong> if
+     <strong>misused</strong>.</li>
+<li>Undefined behavior:</li>
+<li>If you attempt to <strong>access the bits</strong> of the reinterpreted type and <strong>the sizes</strong> are <strong>not
+     compatible</strong>, it can <strong>result in undefined behavior</strong>.</li>
+</ol>
+<h4 id="intent-and-purpose">Intent and Purpose</h4>
+<h5 id="stdbit_cast_1"><code>std::bit_cast</code>:</h5>
+<ol>
+<li>Intent:</li>
+<li>The primary intent of <code>std::bit_cast</code> is to <strong>safely reinterpret the bit representation</strong> of an
+     object <strong>without modifying its underlying data</strong>.</li>
+<li>It is used when you want to <strong>change the type of the object</strong> while preserving its bit pattern.</li>
+<li>Use cases:</li>
+<li>It is suitable for scenarios like <strong>converting between integer types and floating-point types</strong>
+     or <strong>safely casting structs to byte arrays</strong>.</li>
+</ol>
+<h5 id="reinterpret_cast_1"><code>reinterpret_cast</code>:</h5>
+<ol>
+<li>Intent:</li>
+<li><code>reinterpret_cast</code> is used for <strong>low-level, potentially unsafe type conversions</strong>.</li>
+<li>It conveys a need for flexibility in <strong>converting between pointer types, reference types, or
+     even between pointers and integers</strong>.</li>
+<li>Use cases:</li>
+<li>Commonly used in <strong>systems programming</strong>, <strong>interfacing with hardware</strong>, or when <strong>interacting
+     with legacy C libraries</strong> where type safety is not a priority.</li>
+</ol>
+<h4 id="performance">Performance</h4>
+<h5 id="stdbit_cast_2"><code>std::bit_cast</code>:</h5>
+<ol>
+<li>Performance:</li>
+<li>It has performance characteristics <strong>similar to <code>reinterpret_cast</code></strong>, as it does not incur the
+     overhead of type checks at runtime.</li>
+<li>However, it provides stronger guarantees regarding type safety.</li>
+</ol>
+<h5 id="reinterpret_cast_2"><code>reinterpret_cast</code>:</h5>
+<ol>
+<li>Performance:</li>
+<li>Its performance is generally <strong>comparable to C-style casting</strong>, as it performs no safety checks
+     and directly reinterprets the bits.</li>
+</ol>
+<h4 id="requirements-for-usage">Requirements for Usage</h4>
+<h5 id="stdbit_cast_3"><code>std::bit_cast</code>:</h5>
+<ol>
+<li><strong>Same size</strong>:</li>
+<li>The source and target types must be of the same size.</li>
+<li><code>constexpr</code> support:</li>
+<li><strong>Can be used in constant expressions</strong>.</li>
+</ol>
+<h5 id="reinterpret_cast_3"><code>reinterpret_cast</code>:</h5>
+<ol>
+<li>Pointer or reference types:</li>
+<li>The expression being cast <strong>must be a pointer or reference type</strong>.</li>
+<li><strong>Correctness of the cast</strong>:</li>
+<li><strong>Users must ensure</strong> that the object being accessed through the cast pointer is compatible
+     with the target type.</li>
+</ol>
+<h3 id="upcasting-and-downcasting">Upcasting and Downcasting</h3>
+<h4 id="explanation_11">Explanation</h4>
+<ol>
+<li>Upcasting and downcasting are <strong>terms</strong> used to describe <strong>type conversions within an inheritance
+   hierarchy</strong> (i.e., between a base class and its derived classes).</li>
+<li>These casts typically involve <strong>pointer or reference conversions</strong>.</li>
+</ol>
+<h4 id="upcasting">Upcasting</h4>
+<ol>
+<li>Upcasting refers to <strong>casting a derived class object to a base class type</strong>.</li>
+<li>This conversion is <strong>safe</strong> and <strong>performed implicitly</strong> or <strong>explicitly using <code>static_cast</code></strong>.</li>
+<li>Since the derived class contains all the members of the base class, the cast will always succeed.</li>
+<li><strong>Base class members</strong> will be <strong>accessible</strong>, but <strong>derived class-specific members</strong> will be
+   <strong>hidden</strong> <strong>unless</strong> the base class method is marked as <strong>virtual</strong> (allowing for polymorphism).</li>
+</ol>
+<h4 id="downcasting">Downcasting</h4>
+<ol>
+<li>Downcasting refers to <strong>casting a base class object to a derived class type</strong>.</li>
+<li>This is potentially <strong>unsafe</strong>, as the base class might not actually be an instance of the
+   derived class.</li>
+<li>Therefore, <strong><code>dynamic_cast</code> should be used</strong> when performing downcasting to ensure runtime type
+   safety.</li>
+<li><strong><code>dynamic_cast</code> should be used</strong> for downcasting when you are <strong>unsure</strong> if the <strong>base pointer
+   refers to an instance</strong> of the derived class.</li>
+</ol>
+<h3 id="notes_1">Notes</h3>
+<ol>
+<li>Learning this topic through practice rather than theory.</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

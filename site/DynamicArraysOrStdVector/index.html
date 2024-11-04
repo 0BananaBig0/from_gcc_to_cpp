@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>DynamicArraysOrStdVector - from_gcc_to_cpp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">from_gcc_to_cpp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../FromGccToCPP/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Gcc/" class="nav-link">Gcc</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#dynamic-arrays--stdvector-">Dynamic Arrays ( <code>std::vector</code> )</a></li>
+<li><a href="#explanation">Explanation</a></li>
+<li><a href="#characteristics">Characteristics</a></li>
+<li><a href="#one-dimensional-stdvector">One-dimensional <code>std::vector</code></a><ul>
+<li><a href="#declaration-syntax">Declaration Syntax</a></li>
+<li><a href="#initialization-syntax">Initialization Syntax</a></li>
+<li><a href="#syntax-for-deleting-one-dimensional-stdvector-pointers">Syntax for Deleting One-dimensional <code>std::vector</code> Pointers</a></li>
+</ul>
+</li>
+<li><a href="#multidimensional-stdvector--not-recommend-">Multidimensional <code>std::vector</code> ( <strong>Not Recommend</strong> )</a><ul>
+<li><a href="#declaration-syntax-1">Declaration Syntax</a></li>
+<li><a href="#initialization-syntax-1">Initialization Syntax</a></li>
+</ul>
+</li>
+<li><a href="#members-and-related-stuffs">Members and Related Stuffs</a><ul>
+<li><a href="#links">Links</a></li>
+<li><a href="#template-parameters">Template Parameters</a></li>
+<li><a href="#specializations">Specializations</a></li>
+<li><a href="#member-types">Member Types</a></li>
+<li><a href="#member-functions">Member Functions</a></li>
+<li><a href="#non-member-functions">Non-member Functions</a></li>
+</ul>
+</li>
+<li><a href="#notes">Notes</a></li>
+</ul>
+<!-- vim-markdown-toc -->
+
+<h3 id="dynamic-arrays-stdvector">Dynamic Arrays (<code>std::vector</code>)</h3>
+<h4 id="explanation">Explanation</h4>
+<ol>
+<li>Dynamic arrays are <strong>arrays</strong> that can <strong>change size during runtime</strong></li>
+<li><code>std::vector</code> is a dynamic array that can grow or shrink as needed.</li>
+<li>It <strong>automatically handles memory allocation and deallocation</strong>, making it easier to work with
+   than raw pointers.</li>
+</ol>
+<h4 id="characteristics">Characteristics</h4>
+<ol>
+<li>Dynamic arrays are typically <strong>slower</strong> than static arrays.</li>
+<li>They <strong>automatically manage memory</strong>, so programmers do not need to manually allocate or
+   deallocate it.</li>
+</ol>
+<h4 id="one-dimensional-stdvector">One-dimensional <code>std::vector</code></h4>
+<h5 id="declaration-syntax">Declaration Syntax</h5>
+<pre><code class="language-CPP">// No initialization, contain garbage values and behave unpredictably.
+std::vector&lt; Type &gt; arr_name;
+</code></pre>
+<pre><code class="language-CPP">std::vector&lt; Type &gt;* arr_ptr = new std::vector&lt; Type &gt;;
+</code></pre>
+<pre><code class="language-CPP">std::vector&lt; Type &gt; arr_name;
+std::vector&lt; Type &gt;* arr_ptr = &amp;arr_name;
+</code></pre>
+<h5 id="initialization-syntax">Initialization Syntax</h5>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::vector&lt; Type &gt; arr_name = { ... };
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::vector&lt; Type &gt; arr_name{ ... };
+</code></pre>
+<pre><code class="language-CPP">// No initialization, contain garbage values and behave unpredictably.
+std::vector&lt; Type &gt; arr_name( size );
+</code></pre>
+<pre><code class="language-CPP">// Initialization with the specific value.
+std::vector&lt; Type &gt; arr_name( size, value );
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::vector&lt; Type &gt; arr_name1 = { ... };
+// Copy constructor.
+std::vector&lt; Type &gt; arr_name2( arr_name1 );
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::vector&lt; Type &gt; arr_name1 = { ... };
+// Copy constructor.
+std::vector&lt; Type &gt; arr_name2 = arr_name1;
+</code></pre>
+<pre><code class="language-CPP">// Move constructor.
+std::vector&lt; Type &gt; arr_name( { ... } );
+</code></pre>
+<pre><code class="language-CPP">// Constructs the container with the contents of the range `[first, last)`.
+std::vector&lt; Type &gt; arr_name1( { ... } );
+std::vector&lt; Type &gt; arr_name2( arr_name1.begin(), arr_name1.end() );
+</code></pre>
+<pre><code class="language-CPP">std::vector&lt; Type &gt;* arr_ptr = new std::vector&lt; Type &gt;( size );
+</code></pre>
+<pre><code class="language-CPP">std::vector&lt; Type &gt;* arr_ptr = new std::vector&lt; Type &gt;( size, value );
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::vector&lt; Type &gt; arr_name = { ... };
+std::vector&lt; Type &gt;* arr_ptr = new std::vector&lt; Type &gt;( arr_name );
+</code></pre>
+<pre><code class="language-CPP">std::vector&lt; Type &gt;* arr_ptr = new std::vector&lt; Type &gt;{ ... };
+</code></pre>
+<h5 id="syntax-for-deleting-one-dimensional-stdvector-pointers">Syntax for Deleting One-dimensional <code>std::vector</code> Pointers</h5>
+<pre><code class="language-CPP">delete arr_ptr;
+</code></pre>
+<h4 id="multidimensional-stdvector-not-recommend">Multidimensional <code>std::vector</code> ( <strong>Not Recommend</strong> )</h4>
+<h5 id="declaration-syntax_1">Declaration Syntax</h5>
+<pre><code class="language-CPP">// No initialization, contain garbage values and behave unpredictably.
+std::vector&lt; std::vector&lt; Type &gt; &gt; arr_name;
+</code></pre>
+<pre><code class="language-CPP">// No initialization, contain garbage values and behave unpredictably.
+std::vector&lt; std::vector&lt; std::vector&lt; Type &gt; &gt; &gt; arr_name;
+</code></pre>
+<h5 id="initialization-syntax_1">Initialization Syntax</h5>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::vector&lt; std::vector&lt; Type &gt; &gt; arr_name = { { { ... /* size_y */ }, { ... }, ... /* size_x */ } };
+</code></pre>
+<pre><code class="language-CPP">// Default Initialization.
+std::vector&lt; std::vector&lt; Type &gt; &gt; arr_name = {};
+</code></pre>
+<pre><code class="language-CPP">// Uniform Initialization (C++11 and later).
+std::vector&lt; std::vector&lt; Type &gt; &gt; arr_name{ { { ...  /* size_y */}, { ... }, ... /* size_x */ } };
+</code></pre>
+<pre><code class="language-CPP">// Copy Initialization.
+std::vector&lt; std::vector&lt; Type &gt; &gt; arr_name1 = { { { ... /* size_y */ }, { ... }, ... /* size_x */ } };
+std::vector&lt; std::vector&lt; Type &gt; &gt; arr_name2  = arr_name1;
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::vector&lt; std::vector&lt; std::vector&lt; Type &gt; &gt; &gt; arr_name = { {
+   { { ... /* size_z */ }, { ... }, ... /* size_y */ },
+   { { ... }, { ... }, ... },
+   ... /* size_x */
+} };
+</code></pre>
+<pre><code class="language-CPP">// Default Initialization.
+std::vector&lt; std::vector&lt; std::vector&lt; Type &gt; &gt; &gt; arr_name = {};
+</code></pre>
+<pre><code class="language-CPP">// Uniform Initialization (C++11 and later).
+std::vector&lt; std::vector&lt; std::vector&lt; Type &gt; &gt; &gt; arr_name{ {
+   { { ... /* size_z */ }, { ... }, ... /* size_y */ },
+   { { ... }, { ... }, ...},
+   ... /* size_x */
+} };
+</code></pre>
+<pre><code class="language-CPP">std::vector&lt; std::vector&lt; std::vector&lt; Type &gt; &gt; &gt; arr_name1 = {
+   { { ... /* size_z */ }, { ... }, ... /* size_y */ },
+   { { ... }, { ... }, ... },
+   ... /* size_x */
+};
+// Copy Initialization.
+std::vector&lt; std::vector&lt; std::vector&lt; Type &gt; &gt; &gt; arr_name2 = arr_name1;
+</code></pre>
+<h4 id="members-and-related-stuffs">Members and Related Stuffs</h4>
+<h5 id="links">Links</h5>
+<ol>
+<li><a href="https://cplusplus.com/reference/vector/vector/"><code>std::vector</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/container/vector"><code>std::vector</code> in cppreference</a>.</li>
+</ol>
+<h5 id="template-parameters">Template Parameters</h5>
+<ol>
+<li><code>T</code>: The type of the elements.</li>
+<li><code>Allocator</code>: An allocator that is used to acquire/release memory and to construct/destroy the
+   elements in that memory.</li>
+</ol>
+<h5 id="specializations">Specializations</h5>
+<ol>
+<li>The standard library provides a specialization of <code>std::vector</code> for the type bool, which may be
+   optimized for space efficiency.</li>
+<li><code>vector&lt; bool &gt;</code>: Space-efficient dynamic bitset (class template specialization).</li>
+</ol>
+<h5 id="member-types">Member Types</h5>
+<ol>
+<li><code>value_type</code>: <code>T</code>.</li>
+<li><code>allocator_type</code>: <code>Allocator</code>.</li>
+<li><code>size_type</code>: Unsigned integer type (usually <code>std::size_t</code>).</li>
+<li><code>difference_type</code>: Signed integer type (usually <code>std::ptrdiff_t</code>).</li>
+<li><code>reference</code>: <code>value_type&amp;</code>.</li>
+<li><code>const_reference</code>: <code>const value_type&amp;</code>.</li>
+<li><code>pointer</code>: <code>Allocator::pointer</code> (until C++11), <code>std::allocator_traits&lt; Allocator &gt;::pointer</code>
+   since C++11).</li>
+<li><code>const_pointer</code>: <code>Allocator::const_pointer</code> (until C++11),
+   <code>std::allocator_traits&lt; Allocator &gt;::const_pointer</code> (since C++11).</li>
+<li><code>iterator</code>: <code>LegacyRandomAccessIterator</code> and <code>LegacyContiguousIterator</code> to <code>value_type</code> (until
+   C++20), <code>LegacyRandomAccessIterator</code>, <code>contiguous_iterator</code>, and <code>ConstexprIterator</code> to
+   <code>value_type</code> (since C++20).</li>
+<li><code>const_iterator</code>: <code>LegacyRandomAccessIterator</code> and <code>LegacyContiguousIterator</code> to
+    <code>const value_type</code> (until C++20), <code>LegacyRandomAccessIterator</code>, <code>contiguous_iterator</code>, and
+    <code>ConstexprIterator</code> to <code>const value_type</code> (since C++20).</li>
+<li><code>reverse_iterator</code>: <code>std::reverse_iterator&lt; iterator &gt;</code>.</li>
+<li><code>const_reverse_iterator</code>: <code>std::reverse_iterator&lt; const_iterator &gt;</code>.</li>
+</ol>
+<h5 id="member-functions">Member Functions</h5>
+<ol>
+<li>(constructor): Constructs the vector (public member function).</li>
+<li>(destructor): Destructs the vector (public member function).</li>
+<li><code>operator=</code>: Assigns values to the container (public member function).</li>
+<li><code>assign</code>: Assigns values to the container (public member function).</li>
+<li><code>assign_range</code> (C++23): Assigns a range of values to the container (public member function).</li>
+<li><code>get_allocator</code>: Returns the associated allocator (public member function).</li>
+<li><code>at</code>: Access specified element with bounds checking (public member function).</li>
+<li><code>operator[]</code>: Access specified element (public member function).</li>
+<li><code>front</code>: Access the first element (public member function).</li>
+<li><code>back</code>: Access the last element (public member function).</li>
+<li><code>data</code>: Direct access to the underlying contiguous storage (public member function).</li>
+<li><code>begin</code>, <code>cbegin</code>: Returns an iterator to the beginning (public member function).</li>
+<li><code>end</code>, <code>cend</code>: Returns an iterator to the end (public member function).</li>
+<li><code>rbegin</code>, <code>crbegin</code>: Returns a reverse iterator to the beginning (public member function).</li>
+<li><code>rend</code>, <code>crend</code>: Returns a reverse iterator to the end (public member function).</li>
+<li><code>empty</code>: Checks whether the container is empty (public member function).</li>
+<li><code>size</code>: Returns the number of elements (public member function).</li>
+<li><code>max_size</code>: Returns the maximum possible number of elements (public member function).</li>
+<li><code>reserve</code>: Reserves storage (public member function).</li>
+<li><code>capacity</code>: Returns the number of elements that can be held in currently allocated storage
+    (public member function).</li>
+<li><code>shrink_to_fit</code> (<code>DR*</code>): Reduces memory usage by freeing unused memory (public member function).</li>
+<li><code>clear</code>: Clears the contents (public member function).</li>
+<li><code>insert</code>: Inserts elements (public member function).</li>
+<li><code>insert_range</code> (C++23): Inserts a range of elements (public member function).</li>
+<li><code>emplace</code>: Constructs element in-place (public member function).</li>
+<li><code>erase</code>: Erases elements (public member function).</li>
+<li><code>push_back</code>: Adds an element to the end (public member function).</li>
+<li><code>emplace_back</code>: Constructs an element in-place at the end (public member function).</li>
+<li><code>append_range</code> (C++23): Adds a range of elements to the end(public member function).</li>
+<li><code>pop_back</code>: Removes the last element (public member function).</li>
+<li><code>resize</code>: Changes the number of elements stored (public member function).</li>
+<li><code>swap</code>: Swaps the contents (public member function).</li>
+</ol>
+<h5 id="non-member-functions">Non-member Functions</h5>
+<ol>
+<li><code>operator==</code>, <code>operator!=/&lt;!--&lt;=/--&gt;/&gt;=</code> (removed in C++20), <code>operator&lt;=&gt;</code> (C++20): Lexicographically
+   compares the values of two vectors (function template).</li>
+<li><code>std::swap( std::vector )</code>: Specializes the <code>std::swap</code> algorithm (function template).</li>
+<li><code>erase( std::vector )</code> (C++20), <code>erase_if( std::vector )</code> (C++20): Erases all elements satisfying
+   specific criteria (function template).</li>
+</ol>
+<h4 id="notes">Notes</h4>
+<ol>
+<li><strong>Avoid <code>std::vector</code> automatic resizing</strong>: We can <strong>use the reserve function to hold memory</strong>
+   without creating any objects. The reserve function differs from the resize function: while resize
+   creates objects to occupy memory, reserve only holds memory without creating objects. This
+   function <strong>changes the capacity</strong> of the vector but <strong>does not affect its size</strong>.</li>
+<li><strong>Avoid calling copy constructors</strong>: We can <strong>use the <code>emplace_back</code> function</strong> instead of
+   <code>push_back</code> to prevent unnecessary copying of objects.</li>
+<li>Conclusion: To optimize our code, it is essential to understand the system environment and how
+   the code works, including functions, objects, operators, etc.</li>
+<li><code>std::vector::push_back</code>: Copy or move all data to a new location, if need; Otherwise, just move
+   new data into the current location.</li>
+<li><code>std::vector:emplace_back</code>: Copy or move old data to a new location and then construct new data
+   in the new location, if need; Otherwise, just construct new data into the current location.</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

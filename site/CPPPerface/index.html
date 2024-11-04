@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>CPPPerface - from_gcc_to_cpp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">from_gcc_to_cpp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../FromGccToCPP/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Gcc/" class="nav-link">Gcc</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#preface" class="nav-link">Preface</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#some-basic-concepts" class="nav-link">Some Basic Concepts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#preface">Preface</a></li>
+<li><a href="#some-basic-concepts">Some Basic Concepts</a></li>
+<li><a href="#1-declaration">1) Declaration</a><ul>
+<li><a href="#general-explanation">General Explanation</a></li>
+<li><a href="#forward-declaration">Forward Declaration</a></li>
+</ul>
+</li>
+<li><a href="#2-definition">2) Definition</a></li>
+<li><a href="#3-variable-instance-object-initializer-and-value">3) Variable, Instance, Object, Initializer and Value</a><ul>
+<li><a href="#variable">Variable</a></li>
+<li><a href="#explanation">Explanation</a></li>
+<li><a href="#characteristics">Characteristics</a></li>
+<li><a href="#temporary-variable">Temporary Variable</a></li>
+<li><a href="#instance">Instance</a></li>
+<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#characteristics-1">Characteristics</a></li>
+<li><a href="#object">Object</a></li>
+<li><a href="#explanation-2">Explanation</a></li>
+<li><a href="#characteristics-2">Characteristics</a></li>
+<li><a href="#temporary-object">Temporary Object</a></li>
+<li><a href="#initializer">Initializer</a></li>
+<li><a href="#explanation-3">Explanation</a></li>
+<li><a href="#value">Value</a></li>
+<li><a href="#explanation-4">Explanation</a></li>
+<li><a href="#relationships-between-the-them">Relationships Between the Them</a></li>
+<li><a href="#variable-1">Variable</a></li>
+<li><a href="#instance-1">Instance</a></li>
+<li><a href="#object-1">Object</a></li>
+</ul>
+</li>
+<li><a href="#4-pointer-and-reference">4) Pointer and Reference</a><ul>
+<li><a href="#pointer">Pointer</a></li>
+<li><a href="#explanation-5">Explanation</a></li>
+<li><a href="#void-pointer">Void Pointer</a></li>
+<li><a href="#null-pointers">Null Pointers</a></li>
+<li><a href="#dangling-pointer">Dangling Pointer</a></li>
+<li><a href="#wild-pointer">Wild Pointer</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+<li><a href="#5-parameter">5) Parameter</a></li>
+<li><a href="#6-argument">6) Argument</a></li>
+<li><a href="#7-expression">7) Expression</a><ul>
+<li><a href="#explanation-6">Explanation</a></li>
+<li><a href="#types-of-expressions-in-c">Types of Expressions in C++</a></li>
+</ul>
+</li>
+<li><a href="#8-lvalue-and-rvalue-value-categories-in-c">8) Lvalue and Rvalue: Value Categories in C++</a><ul>
+<li><a href="#lvalue-left-value">Lvalue (Left Value)</a></li>
+<li><a href="#rvalue-right-value">Rvalue (Right Value)</a></li>
+<li><a href="#lvalue-reference-type">Lvalue Reference (<code>Type&amp;</code>)</a></li>
+<li><a href="#explanation-7">Explanation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#how-to-identify-whether-a-value-is-an-lvalue-or-an-rvalue">How to Identify Whether a Value is an Lvalue or an Rvalue</a></li>
+<li><a href="#rvalue-reference-type">Rvalue Reference (<code>Type&amp;&amp;</code>)</a></li>
+<li><a href="#explanation-8">Explanation</a></li>
+<li><a href="#usage-1">Usage</a></li>
+<li><a href="#move-semantics">Move Semantics</a></li>
+<li><a href="#explanation-9">Explanation</a></li>
+<li><a href="#usage-2">Usage</a></li>
+<li><a href="#stdmove"><code>std::move</code></a></li>
+<li><a href="#explanation-10">Explanation</a></li>
+<li><a href="#usage-3">Usage</a></li>
+</ul>
+</li>
+<li><a href="#9-interface">9) Interface</a></li>
+<li><a href="#10-keyword">10) Keyword</a></li>
+<li><a href="#11-type-specifier">11) Type Specifier</a></li>
+</ul>
+<!-- vim-markdown-toc -->
+
+<h2 id="preface">Preface</h2>
+<ol>
+<li>If you have sufficient experience with C++ projects, you can proceed with reading this additional
+   summary. It may also be beneficial to revisit C++ tutorial videos and relearn the language from
+   scratch.</li>
+<li>Personally, I follow an influencer named Cherno, a game and game engine developer. He uploads
+   numerous C++ tutorial series, from which I can learn various C++ techniques.</li>
+<li>Additionally, if you have time, you can try implementing some standard libraries on your own. You
+   don’t need to implement all their functions, just their core functionality. If you’re unsure how
+   to implement them, you can search for online tutorials or examine the source code. Although the
+   source code may be difficult to understand, studying it can still be beneficial.</li>
+<li>Moreover, if you want to explore certain features or functions provided by C++, you can consult
+   ChatGPT on topics like how to effectively use specific libraries or discover lesser-known
+   functions. ChatGPT is a helpful tool for learning a wide range of topics. However, you shouldn't
+   rely on it too heavily, as that might hinder your ability to study independently. Each time
+   ChatGPT provides an answer, you should verify it and consider whether it is accurate, as ChatGPT
+   does not guarantee 100% correctness. You should also read and internalize the results to retain
+   the information.</li>
+<li>You can also refer to C++ tutorial books or websites, such as <code>&lt;&lt;The C++ Programming Language&gt;&gt;</code>
+   and <code>&lt;&lt;C++ Primer Plus&gt;&gt;</code>, <a href="https://cplusplus.com/">cplusplus</a>,
+   <a href="https://en.cppreference.com/">cppreference</a>, <a href="https://www.learncpp.com/">learncpp</a> and
+   <a href="https://www.tutorialspoint.com/">tutorialspoint</a> or a command <code>cppman</code> in Linux. When reading
+   any tutorial, including this one, <strong>focus on the basic concepts</strong>, their definitions,
+   explanations, and key characteristics, paying particular attention to the bold text, as these
+   concepts often appear in other contexts. You’d better <strong>take notes</strong> and <strong>create a mind map</strong> to
+   retain everything you consider necessary, like a simple tutorial.</li>
+<li>Lastly, it’s important to note that different compilers have slightly different implementations
+   of the Standard Template Library (STL). While they provide the same library, there may be minor
+   variations in implementation. For instance, in std::vector, if the size exceeds its capacity, it
+   grows by 50% in Clang, whereas it grows by 100% in GCC.</li>
+<li><strong>Ask ChatGPT the following question</strong> to learn more:</li>
+<li>There are many different STL implementations in C++; some are more efficient than the default
+     STL, such as EASTL. Why hasn't the default STL been replaced with these more efficient
+     alternatives?</li>
+</ol>
+<h2 id="some-basic-concepts">Some Basic Concepts</h2>
+<h3 id="1-declaration">1) Declaration</h3>
+<h4 id="general-explanation">General Explanation</h4>
+<ol>
+<li>The term declaration refers to the introduction of <strong>a variable, function, class, or other entity
+   to the program, specifying its name and type without allocating storage or providing an
+   implementation</strong>. It <strong>merely states</strong> that a function, class, struct or variable <strong>exists</strong>
+   without concerning itself with a definition.</li>
+</ol>
+<h4 id="forward-declaration">Forward Declaration</h4>
+<ol>
+<li>It is <strong>a declaration</strong> of a class, function, or variable that <strong>informs the compiler of its
+    existence without providing the full definition</strong> at that point. It allows the compiler to
+    handle references to an entity (e.g., a class or a function) without needing to know all the
+    details at that time. The complete definition is provided later in the code.</li>
+<li>This is typically used to <strong>improve compilation times</strong>, <strong>resolve circular dependencies</strong>, or
+    when the full details of the entity are not yet required.</li>
+</ol>
+<h3 id="2-definition">2) Definition</h3>
+<ol>
+<li>A definition <strong>provides a body</strong> that implements a function, class, struct or variable. It
+    includes <strong>an actual value or implementation</strong> and <strong>allocates storage for variables</strong>.</li>
+</ol>
+<h3 id="3-variable-instance-object-initializer-and-value">3) Variable, Instance, Object, Initializer and Value</h3>
+<h4 id="variable">Variable</h4>
+<h5 id="explanation">Explanation</h5>
+<ol>
+<li>A variable is <strong>a named storage location</strong> in memory that <strong>holds a value</strong>. It has <strong>a specific
+   type</strong> (such as int, float, or a custom class) and is declared in the program to store data that
+   can be accessed and modified.</li>
+</ol>
+<h5 id="characteristics">Characteristics</h5>
+<ol>
+<li><strong>A name</strong> (identifier) is required.</li>
+<li><strong>A type</strong> is specified (determining the kind of value it can hold).</li>
+<li>It <strong>occupies memory</strong> in the program.</li>
+</ol>
+<h5 id="temporary-variable">Temporary Variable</h5>
+<ol>
+<li>A temporary variable is <strong>a variable</strong> that is created to <strong>hold a value temporarily</strong> during the
+   execution of a program.</li>
+<li>It typically <strong>exists only within a specific scope or block of code</strong>, often used for
+   <strong>intermediate calculations</strong> or to <strong>store results of expressions</strong>.</li>
+<li><strong>Traditionally</strong>, a temporary variable <strong>must have a name</strong>.</li>
+<li>However, <strong>in C++</strong>, temporary variables can <strong>also refer to unnamed temporary objects</strong> that
+   arise during operations, such as the result of a function call or type conversion, which exist
+   only for the duration of their use. They help simplify code without requiring permanent storage.</li>
+</ol>
+<h4 id="instance">Instance</h4>
+<h5 id="explanation_1">Explanation</h5>
+<ol>
+<li>An instance is <strong>a concrete occurrence</strong> of <strong>a particular data type</strong>. This term is most
+   commonly used in the context of user-defined types like <strong>classes or structs</strong>. When you create
+   an instance of a class, you're creating an object of that class type.</li>
+</ol>
+<h5 id="characteristics_1">Characteristics</h5>
+<ol>
+<li>Refers to <strong>a specific occurrence</strong> of <strong>a class or struct</strong>.</li>
+<li>Instances of a class are often <strong>called objects</strong>.</li>
+</ol>
+<h4 id="object">Object</h4>
+<h5 id="explanation_2">Explanation</h5>
+<ol>
+<li>An object is <strong>a region of memory</strong> that <strong>has a type, value</strong>, and, <strong>in most cases, a name
+   (optional)</strong>. Every variable is an object, and every instance of a class is also an object. The
+   term object is <strong>more general</strong> and refers to any instance of a type that occupies memory,
+   whether it’s built-in (like int, double) or user-defined (like a class).</li>
+<li>An object is <strong>generally</strong> defined as <strong>an instance</strong> of a data type that <strong>occupies memory</strong> and
+   <strong>has attributes (data members) and behaviors (methods)</strong> when it comes to <strong>user-defined types
+   (classes)</strong>.</li>
+<li>For <strong>built-in types</strong> (like int, char, etc.), the term "object" can <strong>also apply</strong>.</li>
+</ol>
+<h5 id="characteristics_2">Characteristics</h5>
+<ol>
+<li><strong>An instance of any type</strong> (built-in or user-defined).</li>
+<li><strong>Occupies memory</strong> and <strong>has a type</strong>.</li>
+<li><strong>May or may not</strong> have <strong>a name</strong> (temporary objects don’t have names).</li>
+<li>Includes variables, class instances, dynamically allocated memory, and <strong>temporary values</strong>.</li>
+</ol>
+<h5 id="temporary-object">Temporary Object</h5>
+<ol>
+<li>A temporary object in C++ is <strong>an unnamed object</strong> that is created during the evaluation of an
+   expression or as a result of a function call.</li>
+<li>Temporary objects typically <strong>exist for a short duration</strong> and are automatically destroyed at the
+   end of the full expression in which they were created.</li>
+</ol>
+<h4 id="initializer">Initializer</h4>
+<h5 id="explanation_3">Explanation</h5>
+<ol>
+<li>An initializer is <strong>a way</strong> to <strong>assign a value to a variable or an object</strong> at the time of its
+   <strong>creation</strong>.</li>
+<li>It can be an object, a function, a variable, a value, an expression, and so on. <strong>All items used
+   to initialize a target</strong> are referred to as initializers.</li>
+</ol>
+<h4 id="value">Value</h4>
+<h4 id="explanation_4">Explanation</h4>
+<ol>
+<li>A value represents <strong>data</strong> that can be <strong>stored in variables or objects</strong>. It is a specific
+   instance of data, such as numbers, characters, or more complex data types.</li>
+<li>Values can be of various types, including:</li>
+<li>Primitive Types:</li>
+<li>Composite Types:</li>
+<li>Classes: Objects created from class definitions that can hold data and methods (e.g., MyClass
+     obj;)</li>
+</ol>
+<h4 id="relationships-between-the-them">Relationships Between the Them</h4>
+<h5 id="variable_1">Variable</h5>
+<ol>
+<li>A variable is <strong>a named object</strong>. Every <strong>variable</strong> is <strong>an object</strong>, but <strong>not all objects</strong>
+   are <strong>variables</strong>. A variable always refers to an object, but it also provides a name for it,
+   allowing it to be used and modified in the code.</li>
+<li><strong>Traditionally</strong>, <strong>temprorary variables</strong> are <strong>named objects</strong> while <strong>temporary objects</strong> are
+   <strong>unnamed objects</strong>.</li>
+<li>However, <strong>in C++</strong>, <strong>temporary variables</strong> can <strong>also refer to unnamed temporary objects</strong>.</li>
+</ol>
+<h5 id="instance_1">Instance</h5>
+<ol>
+<li>An instance is <strong>a specific object</strong> of <strong>a class or user-defined type</strong>. It represents a
+   concrete realization of that class, holding data and having behaviors defined by the class. When
+   you create an instance of a class, you are creating an object of that class.</li>
+</ol>
+<h5 id="object_1">Object</h5>
+<ol>
+<li>An object is <strong>the most general term</strong>. It refers to <strong>any entity</strong> that <strong>occupies memory</strong> and
+   <strong>has a type</strong>. Objects can be variables, instances of classes, temporary objects, or even
+   dynamically allocated memory that doesn't have a name (like objects created with new).</li>
+</ol>
+<h3 id="4-pointer-and-reference">4) Pointer and Reference</h3>
+<h4 id="pointer">Pointer</h4>
+<h5 id="explanation_5">Explanation</h5>
+<ol>
+<li>A pointer is <strong>a variable</strong> that <strong>stores the memory address of another variable or an object</strong>.</li>
+<li>Pointers enable <strong>dynamic memory allocation</strong>, efficient array handling, and the ability to pass
+   large data structures to functions without copying them.</li>
+<li>They <strong>require careful management</strong> of memory (allocation/deallocation).</li>
+<li>They can be <strong>null ( nullptr )</strong>.</li>
+</ol>
+<h5 id="void-pointer">Void Pointer</h5>
+<ol>
+<li>A <code>void</code> pointer, also known as <strong>a generic pointer</strong>, is <strong>a type of pointer</strong> that can <strong>point
+   to any data type</strong>. It is declared using the <code>void</code> keyword and is often <strong>used for functions</strong>
+   that need to <strong>handle different data types</strong> or for <strong>dynamic memory allocation</strong>.</li>
+<li>However, because a <code>void</code> pointer does not have a specific type associated with it, you <strong>cannot
+   dereference it directly without first casting it to a specific pointer type</strong>.</li>
+<li>Functions like <strong><code>malloc</code></strong> and <strong><code>calloc</code></strong> <strong>return <code>void</code> pointer</strong> which must be cast to the
+   appropriate type.</li>
+</ol>
+<h5 id="null-pointers">Null Pointers</h5>
+<ol>
+<li><strong><code>nullptr</code></strong> is a <strong>null pointer</strong> constant introduced in C++11.</li>
+<li>It represents a pointer that does <strong>not point to any valid memory location</strong>.</li>
+<li>It provides type safety compared to the traditional NULL, which is typically <strong>defined as 0</strong>.</li>
+<li><strong>Access nullptr: segmentation fault (Linux), access violation (Win)</strong>.</li>
+</ol>
+<h5 id="dangling-pointer">Dangling Pointer</h5>
+<ol>
+<li>A dangling pointer is a pointer that <strong>points to a memory location</strong> that <strong>has been deallocated
+   or released</strong>.</li>
+<li>Accessing or dereferencing a dangling pointer can lead to <strong>undefined behavior</strong>, such as crashes
+   or corrupted data.</li>
+</ol>
+<h5 id="wild-pointer">Wild Pointer</h5>
+<ol>
+<li>A wild pointer, or uninitialized pointer, refers to <strong>a pointer</strong> that has <strong>not been
+   initialized</strong> to point to a specific memory address.</li>
+<li>Accessing a wild pointer can lead to unpredictable results since it may point to any arbitrary
+   location in memory.</li>
+</ol>
+<h4 id="reference">Reference</h4>
+<ol>
+<li>A reference is <strong>an alias for an existing variable</strong>. It allows you to create <strong>another name for
+   a variable</strong> without making a copy of it. References are declared using an ampersand (<code>&amp;</code>) in the
+   declaration.</li>
+<li>A reference <strong>must be initialized</strong> when it is declared and cannot be changed to refer to another
+   variable later.</li>
+<li>Unlike pointers, references <strong>cannot be null</strong>. They must always refer to a valid object.</li>
+<li>A reference is defined as a type. However, I believe it is <strong>merely an alias</strong>, not a distinct
+   type, because <code>auto</code> cannot deduce a type as a reference without using <code>&amp;</code>.</li>
+<li>A reference is <strong>neither a variable nor an object</strong>.</li>
+</ol>
+<h3 id="5-parameter">5) Parameter</h3>
+<ol>
+<li>A parameter is <strong>a variable declared in a function definition</strong>. It serves as a placeholder for
+    the values that will be passed to the function when it is called.</li>
+<li>Parameters are used to <strong>receive input values</strong> within the function and specify the type of data
+    the function expects.</li>
+</ol>
+<h3 id="6-argument">6) Argument</h3>
+<ol>
+<li>An argument is <strong>an actual value, variable, object or reference passed to the function</strong> when it
+    is called. Arguments are the specific data supplied to the function's parameters.</li>
+</ol>
+<h3 id="7-expression">7) Expression</h3>
+<h4 id="explanation_6">Explanation</h4>
+<ol>
+<li>An expression is <strong>any valid combination of variables, literals, operators, or function calls</strong>
+   that <strong>evaluates to a value</strong>. Expressions are the building blocks of C++ programs and can range
+   from simple values like <code>42</code> to complex operations involving multiple variables and function
+   calls. They are <strong>evaluated at runtime</strong> to produce a result, which may or may not be used
+   further in the program.</li>
+</ol>
+<h4 id="types-of-expressions-in-c">Types of Expressions in C++</h4>
+<ol>
+<li>Literal Expressions</li>
+<li>A literal (such as <code>42</code>, <code>a</code>, or <code>3.14</code>) is the simplest form of an expression. It evaluates to
+     its own value.</li>
+<li>Variable Expressions</li>
+<li>A variable by itself is also an expression, and it evaluates to the value it stores. For
+     example,
+     <code>CPP
+     int x = 10;
+     x; // Evaluates to 10.</code></li>
+<li>Arithmetic Expressions</li>
+<li>These use arithmetic operators (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>) to produce numeric results. For
+     example,
+     <code>CPP
+     int y = 5 + 3 * 2; // Evaluates to 11.</code></li>
+<li>Logical and Relational Expressions</li>
+<li>Logical expressions (<code>&amp;&amp;</code>, <code>||</code>, <code>!</code>) produce a boolean result.</li>
+<li>Relational expressions (<code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>) compare values and return true or
+     false. For example,
+     <code>CPP
+     bool result = (x &gt; 0) &amp;&amp; (y &lt; 10); // Evaluates to true.</code></li>
+<li>Assignment Expressions</li>
+<li>An assignment operation is also an expression that returns the assigned value. For example,
+     <code>CPP
+     int z;
+     z = 20; // Evaluates to 20.</code></li>
+<li>Function Call Expressions</li>
+<li>A function call acts as an expression, with the result being the return value of the function.
+     For example,
+     <code>CPP
+     int absValue = std::abs( -5 ); // Evaluates to 5.</code></li>
+<li>Conditional (Ternary) Expressions</li>
+<li>A ternary expression evaluates a condition and returns one of two values based on the result.
+     For example,
+     <code>CPP
+     int max = (x &gt; y) ? x : y; // Returns x if x &gt; y, otherwise y.</code></li>
+<li>Member Access Expressions</li>
+<li>Accessing a member of an object or a struct is also an expression. For example,
+     <code>CPP
+     struct Point { int x, y; };
+     Point p = {3, 4};
+     p.x; // Evaluates to 3.</code></li>
+<li>Pointer Expressions</li>
+<li>Dereferencing a pointer or using the &amp; operator to take the address of a variable forms an
+     expression. For example,
+     <code>CPP
+     int* ptr = &amp;x; // Evaluates to the address of x.
+     *ptr; // Evaluates to the value of x (10).</code></li>
+</ol>
+<h3 id="8-lvalue-and-rvalue-value-categories-in-c">8) Lvalue and Rvalue: Value Categories in C++</h3>
+<h4 id="lvalue-left-value">Lvalue (Left Value)</h4>
+<ol>
+<li>Refers to <strong>an object or memory location</strong> that <strong>persists</strong> beyond a single expression and
+   occupies some <strong>identifiable location</strong> in memory (i.e., it has an address).</li>
+<li><strong>Can</strong> appear on the <strong>left side</strong> or the <strong>right side</strong> of an assignment</li>
+<li><strong>Typically</strong> refers to <strong>variables</strong>, <strong>array elements</strong>, or <strong>dereferenced pointers</strong>.</li>
+<li><strong>Can take the address</strong> of an lvalue using the address-of operator (<code>&amp;</code>).</li>
+</ol>
+<h4 id="rvalue-right-value">Rvalue (Right Value)</h4>
+<ol>
+<li>Refers to <strong>temporary objects or values</strong> that do <strong>not persist</strong> beyond the expression in which
+   they are used and <strong>does not have a specific location in memory</strong> (it cannot be assigned a memory
+   address).</li>
+<li><strong>Cannot</strong> appear on the <strong>left-hand side</strong> of an assignment.</li>
+<li><strong>Examples</strong> include <strong>literals</strong>, <strong>temporary results</strong> of expressions, and <strong>return values</strong> of
+   functions without <code>&amp;</code>.</li>
+</ol>
+<h4 id="lvalue-reference-type">Lvalue Reference (<code>Type&amp;</code>)</h4>
+<h5 id="explanation_7">Explanation</h5>
+<ol>
+<li>An lvalue reference is <strong>a reference to a persistent object</strong> (i.e., an object with a
+   well-defined memory address, such as variables or class members). It binds only to lvalues —
+   objects that can appear on the left side of an assignment.</li>
+</ol>
+<h5 id="usage">Usage</h5>
+<ol>
+<li><strong>Modify the value</strong> of an existing object.</li>
+<li><strong>Pass objects</strong> by reference to functions, <strong>avoiding unnecessary copying</strong>.</li>
+</ol>
+<h5 id="notes">Notes</h5>
+<ol>
+<li>A <strong>normal</strong> reference <strong>can't</strong> store an <strong>rvalue</strong> <strong>but</strong> a <strong>const reference can</strong>. A
+   <strong>normal reference parameter</strong> of a function <strong>can't</strong> accept <strong>an rvalue</strong> <strong>but</strong> a <strong>const
+   reference parameter can</strong>.</li>
+</ol>
+<h4 id="how-to-identify-whether-a-value-is-an-lvalue-or-an-rvalue">How to Identify Whether a Value is an Lvalue or an Rvalue</h4>
+<ol>
+<li>Define a normal reference for a value, if it can be store by a referenc, it is an lvalur.
+    Otherwise, it is an rvalue.</li>
+</ol>
+<h4 id="rvalue-reference-type">Rvalue Reference (<code>Type&amp;&amp;</code>)</h4>
+<h5 id="explanation_8">Explanation</h5>
+<ol>
+<li>An rvalue reference is <strong>a reference to a temporary object (an rvalue)</strong> that is about to expire.</li>
+<li>It can <strong>bind only to rvalues</strong>, such as the result of expressions or moved objects (e.g., via
+   <code>std::move</code>).</li>
+<li>This makes rvalue references ideal for <strong>move semantics</strong>, allowing efficient transfer of
+   resources.</li>
+<li>However, <strong>for primitive types</strong>, using <code>std::move</code> does not provide any meaningful advantage, as
+   it <strong>behaves much like a copy</strong>. This is primarily because primitive types do not have complex
+   resource management like objects that own dynamic memory.</li>
+</ol>
+<h5 id="usage_1">Usage</h5>
+<ol>
+<li>Implement <strong>move constructors</strong> and <strong>move assignment operators</strong> to <strong>avoid unnecessary
+   copying</strong>.</li>
+<li><strong>Optimize performance</strong> by transferring resources from one object to another.</li>
+</ol>
+<h4 id="move-semantics">Move Semantics</h4>
+<h5 id="explanation_9">Explanation</h5>
+<ol>
+<li>Move semantics, introduced in C++11, <strong>optimizes</strong> program <strong>performance</strong> by transferring
+   resources from one object to another instead of copying them. It uses <strong>rvalue references</strong>
+   (<code>Type&amp;&amp;</code>) to <strong>efficiently</strong> move resources, such as dynamically allocated memory, from
+   <strong>temporary</strong> or <strong>"expired" objects</strong> without incurring <strong>the overhead of deep copies</strong>.</li>
+<li>Essentially, move semantics functions like <strong>assigning one pointer to another</strong>. Rather than
+   copying data, <strong>ownership</strong> of the resources is transferred between objects, <strong>reducing
+   unnecessary copying</strong> and <strong>enhancing performance</strong>.</li>
+</ol>
+<h5 id="usage_2">Usage</h5>
+<ol>
+<li><strong>Rvalue references</strong> (<code>Type&amp;&amp;</code>) bind to <strong>temporary</strong> or <strong>"soon-to-expire" objects</strong>.</li>
+<li>These references allow you to <strong>move resources</strong>, <strong>leaving the original object</strong> in a valid but
+   empty state.</li>
+<li>The compiler may <strong>optimize your code</strong> when you use move semantics in <strong>move constructors</strong>,
+   <strong>move assignment operators</strong>, and when <strong>returning objects by value</strong>.</li>
+</ol>
+<h4 id="stdmove"><code>std::move</code></h4>
+<h5 id="explanation_10">Explanation</h5>
+<ol>
+<li>A utility function that <strong>casts an object to an rvalue reference</strong>, <strong>enabling move semantics</strong>.</li>
+<li>It does <strong>not perform any movement</strong> itself <strong>but indicates</strong> that the object can be moved.</li>
+<li>For <strong>all primitive-type</strong> variables including poiners and references, it does nothing, <strong>only
+   copys</strong> them directly.</li>
+<li>It <strong>only</strong> tells the compiler to <strong>treat an object as an rvalue reference</strong>.</li>
+</ol>
+<h5 id="usage_3">Usage</h5>
+<ol>
+<li>Everytime, if you want to assign <strong>an object</strong> that you want to <strong>remove</strong> after assigning to a
+   variable, you can use <code>std::move</code>.</li>
+<li>To deal with <strong>double deletion</strong>, <strong>the original pointer</strong> should point a <strong>nullptr</strong> after
+   <strong><code>std::move</code></strong> moved its data to another pointer.</li>
+</ol>
+<h3 id="9-interface">9) Interface</h3>
+<ol>
+<li>In C++, the term "interface" does <strong>not have a formal definition</strong> like it does in some other
+   programming languages (like Java). However, in C++, an interface is generally understood to be
+   <strong>a class</strong> that <strong>defines a set of pure virtual functions</strong>, which means that it declares
+   functions that <strong>must be implemented by derived classes</strong> but does <strong>not provide any
+   implementation of its own</strong>.</li>
+</ol>
+<h3 id="10-keyword">10) Keyword</h3>
+<ol>
+<li>A keyword is <strong>a reserved word</strong> that has a predefined meaning in the language and <strong>cannot be
+   used as an identifier</strong> (such as a variable name, function name, etc.). Keywords are part of the
+   C++ syntax and represent fundamental constructs or operations in the language.</li>
+</ol>
+<h3 id="11-type-specifier">11) Type Specifier</h3>
+<ol>
+<li>A type specifier is <strong>used to define the type of a variable, function return value, or object</strong>.
+   Type specifiers tell the compiler what kind of data the variable will hold or the function will
+   return. They are an essential part of variable declarations and type definitions.</li>
+</ol>
+<h3 id="notes_1">Notes</h3>
+<ol>
+<li>C++: performance, memory, optimization, safe or not; scope ({})( where we can access the
+   function/object/... ) and lifetime; make code clearer.</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

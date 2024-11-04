@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Bindings - from_gcc_to_cpp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">from_gcc_to_cpp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../FromGccToCPP/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Gcc/" class="nav-link">Gcc</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#function-binding" class="nav-link">Function Binding</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#c17-bindings" class="nav-link">C++17 Bindings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#other-bindings" class="nav-link">Other Bindings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#function-binding">Function Binding</a></li>
+<li><a href="#explanation">Explanation</a></li>
+<li><a href="#static-binding-early-binding">Static Binding (Early Binding)</a></li>
+<li><a href="#dynamic-binding-late-binding">Dynamic Binding (Late Binding)</a></li>
+<li><a href="#c17-bindings">C++17 Bindings</a></li>
+<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#structured-binding">Structured Binding</a><ul>
+<li><a href="#explanation-2">Explanation</a></li>
+<li><a href="#syntax">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#stdtie"><code>std::tie</code></a><ul>
+<li><a href="#explanation-3">Explanation</a></li>
+<li><a href="#syntax-1">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#differences-between-structured-binding-and-stdtie">Differences Between Structured Binding and <code>std::tie</code></a></li>
+<li><a href="#pairs-and-tuples">Pairs and Tuples</a></li>
+<li><a href="#other-bindings">Other Bindings</a></li>
+<li><a href="#variable-binding">Variable Binding</a></li>
+<li><a href="#name-binding">Name Binding</a></li>
+<li><a href="#object-binding">Object Binding</a></li>
+<li><a href="#template-binding">Template Binding</a></li>
+<li><a href="#scope-binding">Scope Binding</a></li>
+<li><a href="#reference-binding">Reference Binding</a></li>
+<li><a href="#constant-binding">Constant Binding</a></li>
+</ul>
+<!-- vim-markdown-toc -->
+
+<h2 id="function-binding">Function Binding</h2>
+<h3 id="explanation">Explanation</h3>
+<ol>
+<li>Function binding refers to <strong>the association</strong> between <strong>a function call</strong> and <strong>the actual
+   function definition that gets executed</strong>.</li>
+<li>This process can <strong>occur at different times</strong>, leading to <strong>two main types</strong> of binding:
+   <strong>static</strong> binding and <strong>dynamic</strong> binding.</li>
+</ol>
+<h3 id="static-binding-early-binding">Static Binding (Early Binding)</h3>
+<ol>
+<li>Static binding, also known as <strong>early binding</strong>, occurs <strong>at compile time</strong>.</li>
+<li>The compiler determines <strong>which function</strong> to <strong>call</strong> <strong>based on the type of the reference or
+   pointer</strong>, not the actual object.</li>
+<li>This means that the <strong>function call</strong> is <strong>resolved before</strong> the program <strong>runs</strong>, leading to
+   <strong>faster execution</strong> since no additional checks are needed at runtime.</li>
+<li>Static binding is used for <strong>non-virtual functions</strong>, <strong>function overloading</strong>, and <strong>static
+   method calls</strong>.</li>
+<li>This binding method is generally more <strong>efficient</strong> due to compile-time resolution, making it a
+   preferred choice when polymorphism is not needed.</li>
+</ol>
+<h3 id="dynamic-binding-late-binding">Dynamic Binding (Late Binding)</h3>
+<ol>
+<li>Dynamic binding, or <strong>late binding</strong>, occurs <strong>at runtime</strong>.</li>
+<li>The actual <strong>function</strong> to <strong>call</strong> is <strong>determined</strong> by <strong>the type of the object being pointed</strong>
+   to rather than the type of the reference or pointer.</li>
+<li>This allows for <strong>polymorphic behavior</strong>, where the program can decide <strong>which function to invoke
+   based on the actual object at runtime</strong>.</li>
+<li>Dynamic binding is primarily used with <strong>virtual functions</strong> in class hierarchies, enabling
+   <strong>polymorphism</strong>.</li>
+<li>This approach provides greater <strong>flexibility</strong> but incurs <strong>a slight performance overhead</strong> due
+   to the need for <strong>runtime type checks</strong>, typically using a virtual table (vtable) to resolve
+   function calls.</li>
+</ol>
+<h2 id="c17-bindings">C++17 Bindings</h2>
+<h3 id="explanation_1">Explanation</h3>
+<ol>
+<li>C++17 bindings provide a way to <strong>unpack elements</strong> from tuple-like objects, making it easier to
+   work with <strong>multiple return values</strong> from functions or complex data structures.</li>
+<li>This improves <strong>code clarity</strong> and <strong>reduces boilerplate code</strong>.</li>
+</ol>
+<h3 id="structured-binding">Structured Binding</h3>
+<h4 id="explanation_2">Explanation</h4>
+<ol>
+<li>Structured binding allows you to <strong>declare multiple variables</strong> that can <strong>simultaneously hold
+   the values</strong> extracted from <strong>tuple-like structures</strong> (such as <code>std::tuple</code>, <code>std::pair</code>, arrays,
+   or user-defined types).</li>
+<li>It simplifies the syntax for unpacking values and allows for more expressive code.</li>
+<li><strong>The number of variables</strong> in <code>[var1, var2, ...]</code> is equal to <strong>the number of values</strong> provided
+   by the <code>initializer</code>.</li>
+</ol>
+<h4 id="syntax">Syntax</h4>
+<pre><code class="language-CPP">auto [var1, var2, ...] = initializer;
+</code></pre>
+<pre><code class="language-CPP">auto&amp; [var1, var2, ...] = initializer;
+</code></pre>
+<pre><code class="language-CPP">// Use it with a range-based for loop.
+for ( auto&amp; [var1, var2, ...] : container );
+</code></pre>
+<h3 id="stdtie"><code>std::tie</code></h3>
+<h4 id="explanation_3">Explanation</h4>
+<ol>
+<li><code>std::tie</code> <strong>creates a tuple of non-const references</strong>, allowing you to <strong>unpack values</strong> from
+   <strong>a tuple-like structure</strong> (such as <code>std::tuple</code>, <code>std::pair</code>, or similar) <strong>without copying</strong>
+   them.</li>
+<li>This is particularly useful when working with functions that return <strong>multiple values</strong> in
+   <strong>tuple format</strong>.</li>
+<li>The <strong><code>initializer</code></strong> passed to <code>std::tie</code> must evaluate to <strong>a tuple-like structure</strong>, such as
+   <code>std::tuple</code> or <code>std::pair</code>. It will <strong>not work</strong> with types that <strong>lack a tuple-like
+   interface</strong>, such as <code>std::get</code>.</li>
+<li><code>std::tie</code> should <strong>not</strong> be used to <strong>bind a temporary object</strong> to avoid <strong>undefined behavior</strong>.</li>
+</ol>
+<h4 id="syntax_1">Syntax</h4>
+<pre><code class="language-CPP">Type1 var1;
+Type2 var2;
+...
+std::tie( var1, var2, ... ) = initializer;
+</code></pre>
+<h3 id="differences-between-structured-binding-and-stdtie">Differences Between Structured Binding and <code>std::tie</code></h3>
+<ol>
+<li>Their syntax differs.</li>
+<li><strong>Structured binding</strong> can unpack all values from the initializer into new <strong>variables or
+   references</strong>, while <strong><code>std::tie</code></strong> only binds these values to <strong>references</strong>.</li>
+<li><strong>Structured binding</strong> can bind <strong>a wider variety of types</strong> than <code>std::tie</code>, as it can unpack
+   values from any tuple-like structure, <strong>including arrays and user-defined types</strong> that implement
+   the necessary interface, while <strong><code>std::tie</code></strong> is <strong>limited</strong> to binding <strong>only</strong> to <strong>existing
+   variables</strong> and specifically works with <strong>tuples or pairs</strong>.</li>
+</ol>
+<h3 id="pairs-and-tuples">Pairs and Tuples</h3>
+<ol>
+<li><a href="../PairsAndTuples/">Pairs and Tuples</a></li>
+</ol>
+<h2 id="other-bindings">Other Bindings</h2>
+<h3 id="variable-binding">Variable Binding</h3>
+<ol>
+<li>Variable binding involves associating <strong>a variable</strong> with <strong>a specific memory location</strong> where
+   its value is stored.</li>
+<li>The binding defines the variable's <strong>lifetime and scope</strong> within the program.</li>
+<li>Once a variable is declared, it remains bound to its memory location until it goes out of scope
+   or is explicitly deallocated.</li>
+</ol>
+<h3 id="name-binding">Name Binding</h3>
+<ol>
+<li>Name binding refers to the process of associating <strong>an identifier</strong> (such as a variable,
+   function, or class name) with <strong>its corresponding entity</strong> during the compilation phase.</li>
+<li>This binding is crucial for resolving names and ensuring that the correct entity is referenced
+   throughout the program.</li>
+</ol>
+<h3 id="object-binding">Object Binding</h3>
+<ol>
+<li>Object binding involves associating <strong>an object instance</strong> with <strong>its class definition</strong>.</li>
+<li>This binding allows the object to <strong>access the class's member functions and variables</strong>.</li>
+<li>The object is bound to <strong>the class's interface</strong>, providing the necessary context for member
+   function calls.</li>
+</ol>
+<h3 id="template-binding">Template Binding</h3>
+<ol>
+<li>Template binding occurs when <strong>template parameters</strong> are associated with <strong>specific types or
+   values</strong> during the instantiation of templates.</li>
+<li>This process allows C++ to <strong>create type-safe generic functions and classes</strong>, enabling <strong>code
+   reuse</strong> without sacrificing type safety.</li>
+<li>The binding is determined by the types provided at the point of instantiation.</li>
+</ol>
+<h3 id="scope-binding">Scope Binding</h3>
+<ol>
+<li>Scope binding defines <strong>the region</strong> within which <strong>a name is valid</strong>.</li>
+<li>Names can be bound to <strong>different scopes</strong>, including <strong>local, global, and class scopes</strong>.</li>
+<li>This binding determines <strong>the visibility and lifetime</strong> of the name, influencing <strong>how and where
+   it can be accessed</strong> in the code.</li>
+</ol>
+<h3 id="reference-binding">Reference Binding</h3>
+<ol>
+<li>Reference binding occurs when <strong>a reference variable</strong> is associated with <strong>an existing
+   variable</strong>.</li>
+<li>The reference serves as <strong>an alias</strong> for <strong>the original variable</strong>, allowing modifications made
+   through the reference to affect the original.</li>
+<li>This binding provides a way to create direct connections to existing variables without copying
+   their values.</li>
+</ol>
+<h3 id="constant-binding">Constant Binding</h3>
+<ol>
+<li>Constant binding refers to the association of <strong>a variable</strong> with <strong>a constant value</strong> that
+   cannot be changed after its initialization.</li>
+<li>This binding is important for enforcing immutability, ensuring that certain values remain fixed
+   throughout the program's execution.</li>
+<li>Constant binding helps maintain program integrity and prevents unintended modifications.</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>ListsAndForwardLists - from_gcc_to_cpp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">from_gcc_to_cpp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../FromGccToCPP/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Gcc/" class="nav-link">Gcc</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#lists-doubly-linked-lists" class="nav-link">Lists (Doubly-linked Lists)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#forward-lists-singly-linked-lists" class="nav-link">Forward Lists (Singly-linked Lists)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#lists-doubly-linked-lists">Lists (Doubly-linked Lists)</a></li>
+<li><a href="#explanation">Explanation</a></li>
+<li><a href="#declaration-syntax">Declaration Syntax</a></li>
+<li><a href="#initialization-syntax">Initialization Syntax</a></li>
+<li><a href="#syntax-for-deleting-stdlist-pointers">Syntax for Deleting <code>std::list</code> Pointers</a></li>
+<li><a href="#members-and-related-stuffs">Members and Related Stuffs</a><ul>
+<li><a href="#links">Links</a></li>
+<li><a href="#template-parameters">Template Parameters</a></li>
+<li><a href="#member-types">Member Types</a></li>
+<li><a href="#member-functions">Member Functions</a></li>
+<li><a href="#non-member-functions">Non-member Functions</a></li>
+</ul>
+</li>
+<li><a href="#forward-lists-singly-linked-lists">Forward Lists (Singly-linked Lists)</a></li>
+<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#declaration-syntax-1">Declaration Syntax</a></li>
+<li><a href="#initialization-syntax-1">Initialization Syntax</a></li>
+<li><a href="#syntax-for-deleting-stdforward_list-pointers">Syntax for Deleting <code>std::forward_list</code> Pointers</a></li>
+<li><a href="#members-and-related-stuffs-1">Members and Related Stuffs</a><ul>
+<li><a href="#links-1">Links</a></li>
+<li><a href="#template-parameters-1">Template Parameters</a></li>
+<li><a href="#member-types-1">Member Types</a></li>
+<li><a href="#member-functions-1">Member Functions</a></li>
+<li><a href="#non-member-functions-1">Non-member Functions</a></li>
+</ul>
+</li>
+</ul>
+<!-- vim-markdown-toc -->
+
+<h2 id="lists-doubly-linked-lists">Lists (Doubly-linked Lists)</h2>
+<h3 id="explanation">Explanation</h3>
+<ol>
+<li>Lists are <strong>sequence containers</strong> that allow <strong>constant-time insertion and deletion operations
+   anywhere</strong> within the sequence, as well as iteration <strong>in both directions</strong>.</li>
+<li>List containers are implemented as <strong>doubly linked lists</strong>. These lists can store their elements
+   in different and unrelated storage locations.</li>
+<li>They can be implemented using <strong>two pointers in a class or structure</strong>, allowing them to
+   <strong>dynamically grow in size</strong>.</li>
+<li><strong>Adding and removing elements</strong> at the beginning or end of <strong>a list</strong> costs <strong>only constant
+   time</strong>, while <strong>vectors</strong> are generally <strong>optimized</strong> for <strong>additions and removals</strong> <strong>at the
+   end</strong>.</li>
+<li>Unlike vectors, lists do <strong>not support random access</strong>, meaning they cannot be directly accessed
+   at a specific index or have elements retrieved by their index numbers.</li>
+<li>Their header file is <code>&lt;list&gt;</code>.</li>
+</ol>
+<h3 id="declaration-syntax">Declaration Syntax</h3>
+<pre><code class="language-CPP">std::list&lt; Type &gt; list_name;
+</code></pre>
+<pre><code class="language-CPP">std::list&lt; Type &gt;* list_ptr;
+</code></pre>
+<h3 id="initialization-syntax">Initialization Syntax</h3>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::list&lt; Type &gt; list_name = { ... };
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::list&lt; Type &gt; list_name{ ... };
+</code></pre>
+<pre><code class="language-CPP">// No initialization, contain garbage values and behave unpredictably.
+std::list&lt; Type &gt; list_name;
+</code></pre>
+<pre><code class="language-CPP">// No initialization, contain garbage values and behave unpredictably.
+std::list&lt; Type &gt; list_name( size );
+</code></pre>
+<pre><code class="language-CPP">// Initialization with the specific value.
+std::list&lt; Type &gt; list_name( size, value );
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::list&lt; Type &gt; list_name1 = { ... };
+// Copy constructor.
+std::list&lt; Type &gt; list_name2( list_name1 );
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::list&lt; Type &gt; list_name1 = { ... };
+// Copy constructor.
+std::list&lt; Type &gt; list_name2 = list_name1;
+</code></pre>
+<pre><code class="language-CPP">// Move constructor.
+std::list&lt; Type &gt; list_name( { ... } );
+</code></pre>
+<pre><code class="language-CPP">// Constructs the container with the contents of the range `[first, last)`.
+std::list&lt; Type &gt; list_name1( { ... } );
+std::list&lt; Type &gt; list_name2( list_name1.begin(), list_name1.end() );
+</code></pre>
+<pre><code class="language-CPP">std::list&lt; Type &gt;* list_ptr = new std::list&lt; Type &gt;( size );
+</code></pre>
+<pre><code class="language-CPP">std::list&lt; Type &gt;* list_ptr = new std::list&lt; Type &gt;( size, value );
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::list&lt; Type &gt; list_name = { ... };
+std::list&lt; Type &gt;* list_ptr = new std::list&lt; Type &gt;( list_name );
+</code></pre>
+<pre><code class="language-CPP">std::list&lt; Type &gt;* list_ptr = new std::list&lt; Type &gt;{ ... };
+</code></pre>
+<h3 id="syntax-for-deleting-stdlist-pointers">Syntax for Deleting <code>std::list</code> Pointers</h3>
+<pre><code class="language-CPP">delete list_ptr;
+</code></pre>
+<h3 id="members-and-related-stuffs">Members and Related Stuffs</h3>
+<h4 id="links">Links</h4>
+<ol>
+<li><a href="https://cplusplus.com/reference/list/list/"><code>std::list</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/container/list"><code>std::list</code> in cppreference</a>.</li>
+</ol>
+<h4 id="template-parameters">Template Parameters</h4>
+<ol>
+<li><code>T</code>: The type of the elements.</li>
+<li><code>Allocator</code>: An allocator that is used to acquire/release memory and to construct/destroy the
+   elements in that memory.</li>
+</ol>
+<h4 id="member-types">Member Types</h4>
+<ol>
+<li><code>value_type</code>: <code>T</code>.</li>
+<li><code>allocator_type</code>: <code>Allocator</code>.</li>
+<li><code>size_type</code>: Unsigned integer type (usually <code>std::size_t</code>).</li>
+<li><code>difference_type</code>: Signed integer type (usually <code>std::ptrdiff_t</code>).</li>
+<li><code>reference</code>: <code>value_type&amp;</code>.</li>
+<li><code>const_reference</code>: <code>const value_type&amp;</code>.</li>
+<li><code>pointer</code>: <code>Allocator::pointer</code> (until C++11), <code>std::allocator_traits&lt; Allocator &gt;::pointer</code>
+   (since C++11).</li>
+<li><code>const_pointer</code>: <code>Allocator::const_pointer</code> (until C++11),
+   <code>std::allocator_traits&lt; Allocator &gt;::const_pointer</code> (since C++11).</li>
+<li><code>iterator</code>: <code>LegacyBidirectionalIterator</code> to <code>value_type</code>.</li>
+<li><code>const_iterator</code>: <code>LegacyBidirectionalIterator</code> to <code>const value_type</code>.</li>
+<li><code>reverse_iterator</code>: <code>std::reverse_iterator&lt; iterator &gt;</code>.</li>
+<li><code>const_reverse_iterator</code>: <code>std::reverse_iterator&lt; const_iterator &gt;</code>.</li>
+</ol>
+<h4 id="member-functions">Member Functions</h4>
+<ol>
+<li>(constructor): Constructs the list (public member function).</li>
+<li>(destructor): Destructs the list (public member function).</li>
+<li><code>operator=</code>: Assigns values to the container (public member function).</li>
+<li><code>assign</code>: Assigns values to the container (public member function).</li>
+<li><code>assign_range</code> (C++23): Assigns a range of values to the container (public member function).</li>
+<li><code>get_allocator</code>: Returns the associated allocator (public member function).</li>
+<li><code>front</code>: Access the first element (public member function).</li>
+<li><code>back</code>: Access the last element (public member function).</li>
+<li><code>begin</code>, <code>cbegin</code>: Returns an iterator to the beginning (public member function).</li>
+<li><code>end</code>, <code>cend</code>: Returns an iterator to the end (public member function).</li>
+<li><code>rbegin</code>, <code>crbegin</code>: Returns a reverse iterator to the beginning (public member function).</li>
+<li><code>rend</code>, <code>crend</code>: Returns a reverse iterator to the end (public member function).</li>
+<li><code>empty</code>: Checks whether the container is empty (public member function).</li>
+<li><code>size</code>: Returns the number of elements (public member function).</li>
+<li><code>max_size</code>: Returns the maximum possible number of elements (public member function).</li>
+<li><code>clear</code>: Clears the contents (public member function).</li>
+<li><code>insert</code>: Inserts elements (public member function).</li>
+<li><code>insert_range</code> (C++23): Inserts a range of elements (public member function).</li>
+<li><code>emplace</code>: Constructs elements in-place (public member function).</li>
+<li><code>erase</code>: Erases elements (public member function).</li>
+<li><code>push_back</code>: Adds an element to the end (public member function).</li>
+<li><code>emplace_back</code>: Constructs an element in-place at the end (public member function).</li>
+<li><code>append_range</code> (C++23): Adds a range of elements to the end (public member function).</li>
+<li><code>pop_back</code>: Removes the last element (public member function).</li>
+<li><code>push_front</code>: Inserts an element to the beginning (public member function).</li>
+<li><code>emplace_front</code>: Constructs an element in-place at the beginning (public member function).</li>
+<li><code>prepend_range</code> (C++23): Adds a range of elements to the beginning (public member function).</li>
+<li><code>pop_front</code>: Removes the first element (public member function).</li>
+<li><code>resize</code>: Changes the number of elements stored (public member function).</li>
+<li><code>swap</code>: Swaps the contents (public member function).</li>
+<li><code>merge</code>: Merges two sorted lists (public member function).</li>
+<li><code>splice</code>: Moves elements from another list (public member function).</li>
+<li><code>remove</code>, <code>remove_if</code>: Removes elements satisfying specific criteria (public member function).</li>
+<li><code>reverse</code>: Reverses the order of the elements (public member function).</li>
+<li><code>unique</code>: Removes consecutive duplicate elements (public member function).</li>
+<li><code>sort</code>: Sorts the elements (public member function).</li>
+</ol>
+<h4 id="non-member-functions">Non-member Functions</h4>
+<ol>
+<li><code>operator==</code>, <code>operator!=/&lt;!--&lt;=/--&gt;/&gt;=</code> (removed in C++20), <code>operator&lt;=&gt;</code> (C++20): Lexicographically
+   compares the values of two lists (function template).</li>
+<li><code>std::swap( std::list )</code>: Specializes the <code>std::swap</code> algorithm (function template).</li>
+<li><code>erase( std::list )</code> (C++20), <code>erase_if( std::list )</code> (C++20): Erases all elements satisfying
+   specific criteria (function template).</li>
+</ol>
+<h2 id="forward-lists-singly-linked-lists">Forward Lists (Singly-linked Lists)</h2>
+<h3 id="explanation_1">Explanation</h3>
+<ol>
+<li>Forward lists are <strong>sequence containers</strong> that allow <strong>constant-time insertion and deletion
+   operations at any point</strong> within the sequence.</li>
+<li>Forward lists are implemented as <strong>singly linked lists</strong>. These lists can store their elements in
+   different, unrelated storage locations, with order maintained through a link from each element to
+   the next in the sequence.</li>
+<li>They can be implemented using <strong>a single pointer within a class or structure</strong>, enabling them to
+   <strong>grow dynamically in size</strong>.</li>
+<li>Unlike vectors, forward lists do <strong>not support random access</strong>, meaning elements cannot be
+   accessed directly at specific indices or retrieved by index numbers.</li>
+<li>Their header file is <code>&lt;forward_list&gt;</code>.</li>
+</ol>
+<h3 id="declaration-syntax_1">Declaration Syntax</h3>
+<pre><code class="language-CPP">std::forward_list&lt; Type &gt; list_name;
+</code></pre>
+<pre><code class="language-CPP">std::forward_list&lt; Type &gt;* list_ptr;
+</code></pre>
+<h3 id="initialization-syntax_1">Initialization Syntax</h3>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::forward_list&lt; Type &gt; list_name = { ... };
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::forward_list&lt; Type &gt; list_name{ ... };
+</code></pre>
+<pre><code class="language-CPP">// No initialization, contain garbage values and behave unpredictably.
+std::forward_list&lt; Type &gt; list_name;
+</code></pre>
+<pre><code class="language-CPP">// No initialization, contain garbage values and behave unpredictably.
+std::forward_list&lt; Type &gt; list_name( size );
+</code></pre>
+<pre><code class="language-CPP">// Initialization with the specific value.
+std::forward_list&lt; Type &gt; list_name( size, value );
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::forward_list&lt; Type &gt; list_name1 = { ... };
+// Copy constructor.
+std::forward_list&lt; Type &gt; list_name2( list_name1 );
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::forward_list&lt; Type &gt; list_name1 = { ... };
+// Copy constructor.
+std::forward_list&lt; Type &gt; list_name2 = list_name1;
+</code></pre>
+<pre><code class="language-CPP">// Move constructor.
+std::forward_list&lt; Type &gt; list_name( { ... } );
+</code></pre>
+<pre><code class="language-CPP">// Constructs the container with the contents of the range `[first, last)`.
+std::forward_list&lt; Type &gt; list_name1( { ... } );
+std::forward_list&lt; Type &gt; list_name2( list_name1.begin(), list_name1.end() );
+</code></pre>
+<pre><code class="language-CPP">std::forward_list&lt; Type &gt;* list_ptr = new std::forward_list&lt; Type &gt;( size );
+</code></pre>
+<pre><code class="language-CPP">std::forward_list&lt; Type &gt;* list_ptr = new std::forward_list&lt; Type &gt;( size, value );
+</code></pre>
+<pre><code class="language-CPP">// Initializer list constructor.
+std::forward_list&lt; Type &gt; list_name = { ... };
+std::forward_list&lt; Type &gt;* list_ptr = new std::forward_list&lt; Type &gt;( list_name );
+</code></pre>
+<pre><code class="language-CPP">std::forward_list&lt; Type &gt;* list_ptr = new std::forward_list&lt; Type &gt;{ ... };
+</code></pre>
+<h3 id="syntax-for-deleting-stdforward_list-pointers">Syntax for Deleting <code>std::forward_list</code> Pointers</h3>
+<pre><code class="language-CPP">delete list_ptr;
+</code></pre>
+<h3 id="members-and-related-stuffs_1">Members and Related Stuffs</h3>
+<h4 id="links_1">Links</h4>
+<ol>
+<li><a href="https://cplusplus.com/reference/forward_list/forward_list/"><code>std::forward_list</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/container/forward_list"><code>std::forward_list</code> in cppreference</a>.</li>
+</ol>
+<h4 id="template-parameters_1">Template Parameters</h4>
+<ol>
+<li><code>T</code>: The type of the elements.</li>
+<li><code>Allocator</code>: An allocator that is used to acquire/release memory and to construct/destroy the
+   elements in that memory.</li>
+</ol>
+<h4 id="member-types_1">Member Types</h4>
+<ol>
+<li><code>value_type</code>: <code>T</code>.</li>
+<li><code>allocator_type</code>: <code>Allocator</code>.</li>
+<li><code>size_type</code>: Unsigned integer type (usually <code>std::size_t</code>).</li>
+<li><code>difference_type</code>: Signed integer type (usually <code>std::ptrdiff_t</code>).</li>
+<li><code>reference</code>: <code>value_type&amp;</code>.</li>
+<li><code>const_reference</code>: <code>const value_type&amp;</code>.</li>
+<li><code>pointer</code>: <code>std::allocator_traits&lt; Allocator &gt;::pointer</code>.</li>
+<li><code>const_pointer</code>: <code>std::allocator_traits&lt; Allocator &gt;::const_pointer</code>.</li>
+<li><code>iterator</code>: <code>LegacyForwardIterator</code> to <code>value_type</code>.</li>
+<li><code>const_iterator</code>: <code>LegacyForwardIterator</code> to <code>const value_type</code>.</li>
+</ol>
+<h4 id="member-functions_1">Member Functions</h4>
+<ol>
+<li>(constructor): Constructs the <code>forward_list</code> (public member function).</li>
+<li>(destructor): Destructs the <code>forward_list</code> (public member function).</li>
+<li><code>operator=</code>: Assigns values to the container (public member function).</li>
+<li><code>assign</code>: Assigns values to the container (public member function).</li>
+<li><code>assign_range</code> (C++23): Assigns a range of values to the container (public member function).</li>
+<li><code>get_allocator</code>: Returns the associated allocator (public member function).</li>
+<li><code>front</code>: Access the first element (public member function).</li>
+<li><code>before_begin</code>, <code>cbefore_begin</code>: Returns an iterator to the element before beginning (public
+   member function).</li>
+<li><code>begin</code>, <code>cbegin</code>: Returns an iterator to the beginning (public member function).</li>
+<li><code>end</code>, <code>cend</code>: Returns an iterator to the end (public member function).</li>
+<li><code>empty</code>: Checks whether the container is empty (public member function).</li>
+<li><code>max_size</code>: Returns the maximum possible number of elements (public member function).</li>
+<li><code>clear</code>: Clears the contents (public member function).</li>
+<li><code>insert_after</code>: Inserts elements after an element (public member function).</li>
+<li><code>emplace_after</code>: Constructs elements in-place after an element (public member function).</li>
+<li><code>insert_range_after</code> (C++23): Inserts a range of elements after an element (public member
+    function).</li>
+<li><code>erase_after</code>: Erases elements after an element (public member function).</li>
+<li><code>push_front</code>: Inserts an element to the beginning (public member function).</li>
+<li><code>emplace_front</code>: Constructs an element in-place at the beginning (public member function).</li>
+<li><code>prepend_range</code> (C++23): Adds a range of elements to the beginning (public member function).</li>
+<li><code>pop_front</code>: Removes the first element (public member function).</li>
+<li><code>resize</code>: Changes the number of elements stored (public member function).</li>
+<li><code>swap</code>: Swaps the contents (public member function).</li>
+<li><code>merge</code>: Merges two sorted lists (public member function).</li>
+<li><code>splice_after</code>: Moves elements from another <code>forward_list</code> (public member function).</li>
+<li><code>remove</code>, <code>remove_if</code>: Removes elements satisfying specific criteria (public member function).</li>
+<li><code>reverse</code>: Reverses the order of the elements (public member function).</li>
+<li><code>unique</code>: Removes consecutive duplicate elements (public member function).</li>
+<li><code>sort</code>: Sorts the elements (public member function).</li>
+</ol>
+<h4 id="non-member-functions_1">Non-member Functions</h4>
+<ol>
+<li><code>operator==</code>, <code>operator!=/&lt;!--&lt;=/--&gt;/&gt;=</code> (removed in C++20), <code>operator&lt;=&gt;</code> (C++20): Lexicographically
+   compares the values of two <code>forward_lists</code> (function template).</li>
+<li><code>std::swap( std::forward_list )</code>: Specializes the <code>std::swap</code> algorithm (function template).</li>
+<li><code>erase( std::forward_list )</code> (C++20), <code>erase_if( std::list )</code> (C++20): Erases all elements
+   satisfying specific criteria (function template).</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

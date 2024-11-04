@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Threads - from_gcc_to_cpp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">from_gcc_to_cpp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../FromGccToCPP/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Gcc/" class="nav-link">Gcc</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#threads" class="nav-link">Threads</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#threads">Threads</a></li>
+<li><a href="#explanation">Explanation</a><ul>
+<li><a href="#stdthread"><code>std::thread</code></a></li>
+<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#declaration-syntax">Declaration Syntax</a></li>
+<li><a href="#initialization-syntax">Initialization Syntax</a></li>
+<li><a href="#members-and-related-stuffs">Members and Related Stuffs</a><ul>
+<li><a href="#links">Links</a></li>
+<li><a href="#member-types">Member Types</a></li>
+<li><a href="#member-functions">Member functions</a></li>
+<li><a href="#non-member-functions">Non-member functions</a></li>
+<li><a href="#see-also">See also</a></li>
+</ul>
+</li>
+<li><a href="#stdjthread"><code>std::jthread</code></a></li>
+<li><a href="#explanation-2">Explanation</a></li>
+<li><a href="#declaration-syntax-1">Declaration Syntax</a></li>
+<li><a href="#initialization-syntax-1">Initialization Syntax</a></li>
+<li><a href="#members-and-related-stuffs-1">Members and Related Stuffs</a><ul>
+<li><a href="#links-1">Links</a></li>
+<li><a href="#member-types-1">Member Types</a></li>
+<li><a href="#member-functions-1">Member functions</a></li>
+<li><a href="#non-member-functions-1">Non-member functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#stdthis_thread"><code>std::this_thread</code></a><ul>
+<li><a href="#explanation-3">Explanation</a></li>
+<li><a href="#links-2">Links</a></li>
+<li><a href="#stdthreadget_id"><code>std::thread::get_id</code></a></li>
+<li><a href="#explanation-4">Explanation</a></li>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#stdthreadsleep_for"><code>std::thread::sleep_for</code></a></li>
+<li><a href="#explanation-5">Explanation</a></li>
+<li><a href="#syntax-1">Syntax</a></li>
+<li><a href="#stdthreadsleep_until"><code>std::thread::sleep_until</code></a></li>
+<li><a href="#explanation-6">Explanation</a></li>
+<li><a href="#syntax-2">Syntax</a></li>
+<li><a href="#stdthreadyield"><code>std::thread::yield</code></a></li>
+<li><a href="#explanation-7">Explanation</a></li>
+<li><a href="#syntax-3">Syntax</a></li>
+<li><a href="#stdasync"><code>std::async</code></a></li>
+<li><a href="#explanation-8">Explanation</a></li>
+<li><a href="#syntax-4">Syntax</a></li>
+<li><a href="#related-stuffs">Related Stuffs</a><ul>
+<li><a href="#links-3">Links</a></li>
+<li><a href="#launching-policies">Launching Policies</a></li>
+</ul>
+</li>
+<li><a href="#notes">Notes</a></li>
+</ul>
+</li>
+<li><a href="#stdfuture"><code>std::future</code></a><ul>
+<li><a href="#explanation-9">Explanation</a></li>
+<li><a href="#syntax-5">Syntax</a></li>
+<li><a href="#related-stuffs-1">Related Stuffs</a><ul>
+<li><a href="#links-4">Links</a></li>
+<li><a href="#member-functions-2">Member functions</a></li>
+<li><a href="#getting-the-result">Getting the result</a></li>
+<li><a href="#state">State</a></li>
+<li><a href="#stdshared_future"><code>std::shared_future</code></a></li>
+<li><a href="#differences-between-stdfuture-and-stdshared_future">Differences Between std::future and std::shared_future</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#notes-1">Notes</a></li>
+</ul>
+<!-- vim-markdown-toc -->
+
+<h2 id="threads">Threads</h2>
+<h3 id="explanation">Explanation</h3>
+<ol>
+<li>C++ provides native support for <strong>multithreading</strong> through <strong>the <code>&lt;thread&gt;</code> library</strong>, allowing
+   programs to execute tasks concurrently on multiple cores.</li>
+<li>A thread is the smallest sequence of programmed instructions that can be managed independently by
+   the scheduler. C++ uses the <code>std::thread</code> class to create and manage threads.</li>
+</ol>
+<h4 id="stdthread"><code>std::thread</code></h4>
+<h5 id="explanation_1">Explanation</h5>
+<ol>
+<li><code>std::thread</code> is <strong>a class</strong> that represents <strong>an individual thread of execution</strong>.</li>
+<li>A thread of execution is <strong>a sequence of instructions</strong> that can be executed <strong>concurrently</strong>
+   with other such sequences in multithreading environments, while <strong>sharing a same address space</strong>.</li>
+<li>An initialized thread object represents an active thread of execution; Such a thread object is
+   <code>joinable</code>, and has a unique <code>thread id</code>.</li>
+<li>A default-constructed (non-initialized) thread object is not <code>joinable</code>, and its <code>thread id</code> is
+   common for all non-<code>joinable</code> threads.</li>
+<li>A <code>joinable</code> thread becomes not <code>joinable</code> if moved from, or if either <code>join</code> or <code>detach</code> are
+   called on them.</li>
+</ol>
+<h5 id="declaration-syntax">Declaration Syntax</h5>
+<pre><code class="language-CPP">std::thread thread_name;
+</code></pre>
+<h5 id="initialization-syntax">Initialization Syntax</h5>
+<pre><code class="language-CPP">// Default constructor.
+std::thread thread_name;
+</code></pre>
+<pre><code class="language-CPP">// Initialization constructor.
+std::thread thread_name( funName, arg_list_of_funName );
+</code></pre>
+<pre><code class="language-CPP">// Initialization constructor.
+std::thread thread_name( fun_ptr, arg_list_of_fun_ptr );
+</code></pre>
+<pre><code class="language-CPP">// Initialization constructor.
+std::thread thread_name( a_lambad_func, arg_list_of_the_lambad_func );
+</code></pre>
+<pre><code class="language-CPP">// Move constructor.
+std::thread thread_name1( ... );
+std::thread thread_name2( std::move( thread_name1 ) );
+</code></pre>
+<pre><code class="language-CPP">// Move constructor.
+std::thread thread_name1( ... );
+std::thread thread_name2 = std::move( thread_name1 );
+</code></pre>
+<h5 id="members-and-related-stuffs">Members and Related Stuffs</h5>
+<h6 id="links">Links</h6>
+<ol>
+<li><a href="https://cplusplus.com/reference/thread/thread/"><code>std::thread</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/thread"><code>std::thread</code> in cppreference</a>.</li>
+</ol>
+<h6 id="member-types">Member Types</h6>
+<ol>
+<li><code>native_handle_type</code> (optional): Implementation-defined.</li>
+<li><code>id</code>: Represents the <code>id</code> of a thread (public member class).</li>
+</ol>
+<h6 id="member-functions">Member functions</h6>
+<ol>
+<li>(constructor): Constructs new thread object (public member function).</li>
+<li>(destructor): Destructs the thread object, underlying thread must be joined or detached (public
+   member function).</li>
+<li><code>operator=</code>: Moves the thread object (public member function).</li>
+<li><code>joinable</code>: Checks whether the thread is joinable, i.e. potentially running in parallel context
+   (public member function).</li>
+<li><code>get_id</code>: Returns the <code>id</code> of the thread (public member function).</li>
+<li><code>native_handle</code>: Returns the underlying implementation-defined thread handle (public member
+   function).</li>
+<li><code>hardware_concurrency</code> [<code>static</code>]: Returns the number of concurrent threads supported by the
+   implementation (public static member function).</li>
+<li><code>join</code>: Waits for the thread to finish its execution (public member function).</li>
+<li><code>detach</code>: Permits the thread to execute independently from the thread handle (public member
+   function).</li>
+<li><code>swap</code>: Swaps two thread objects (public member function).</li>
+</ol>
+<h6 id="non-member-functions">Non-member functions</h6>
+<ol>
+<li><code>std::swap( std::thread )</code>: Specializes the <code>std::swap</code> algorithm (function).</li>
+</ol>
+<h6 id="see-also">See also</h6>
+<ol>
+<li><code>std::jthread</code> (C++20): <code>std::thread</code> with support for auto-joining and cancellation (class).</li>
+</ol>
+<h4 id="stdjthread"><code>std::jthread</code></h4>
+<h5 id="explanation_2">Explanation</h5>
+<h5 id="declaration-syntax_1">Declaration Syntax</h5>
+<pre><code class="language-CPP">std::jthread thread_name;
+</code></pre>
+<h5 id="initialization-syntax_1">Initialization Syntax</h5>
+<pre><code class="language-CPP">// Default constructor.
+std::jthread thread_name;
+</code></pre>
+<pre><code class="language-CPP">// Initialization constructor.
+std::jthread thread_name( funName, arg_list_of_funName );
+</code></pre>
+<pre><code class="language-CPP">// Initialization constructor.
+std::jthread thread_name( fun_ptr, arg_list_of_fun_ptr );
+</code></pre>
+<pre><code class="language-CPP">// Initialization constructor.
+std::jthread thread_name( a_lambad_func, arg_list_of_the_lambad_func );
+</code></pre>
+<pre><code class="language-CPP">// Move constructor.
+std::jthread thread_name1( ... );
+std::jthread thread_name2( std::move( thread_name1 ) );
+</code></pre>
+<pre><code class="language-CPP">// Move constructor.
+std::jthread thread_name1( ... );
+std::jthread thread_name2 = std::move( thread_name1 );
+</code></pre>
+<h5 id="members-and-related-stuffs_1">Members and Related Stuffs</h5>
+<h6 id="links_1">Links</h6>
+<ol>
+<li><a href=""><code>std::jthread</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/jthread"><code>std::jthread</code> in cppreference</a>.</li>
+</ol>
+<h6 id="member-types_1">Member Types</h6>
+<ol>
+<li><code>native_handle_type</code> (optional): Implementation-defined.</li>
+<li><code>id</code>: Represents the <code>id</code> of a thread (public member class).</li>
+</ol>
+<h6 id="member-functions_1">Member functions</h6>
+<ol>
+<li>(constructor): Constructs new thread object (public member function).</li>
+<li>(destructor): If the thread is joinable, then a stop is requested and the thread joins (public
+   member function).</li>
+<li><code>operator=</code>: Moves the jthread object (public member function).</li>
+<li><code>joinable</code>: Checks whether the thread is joinable, i.e. potentially running in parallel context
+   (public member function).</li>
+<li><code>get_id</code>: Returns the <code>id</code> of the thread (public member function).</li>
+<li><code>native_handle</code>: Returns the underlying implementation-defined thread handle (public member
+   function).</li>
+<li><code>hardware_concurrency</code> [<code>static</code>]: Returns the number of concurrent threads supported by the
+   implementation (public static member function).</li>
+<li><code>join</code>: Waits for the thread to finish its execution (public member function).</li>
+<li><code>detach</code>: Permits the thread to execute independently from the thread handle (public member
+   function).</li>
+<li><code>swap</code>: Swaps two thread objects (public member function).</li>
+<li><code>get_stop_source</code>: Returns a <code>stop_source</code> object associated with the shared stop state of the
+    thread (public member function)</li>
+<li><code>get_stop_token</code>: Returns a <code>stop_token</code> associated with the shared stop state of the thread
+    (public member function)</li>
+<li><code>request_stop</code>: Requests execution stop via the shared stop state of the thread (public member
+    function)</li>
+</ol>
+<h6 id="non-member-functions_1">Non-member functions</h6>
+<ol>
+<li><code>std::swap( std::jthread )</code> (C++20): Specializes the <code>std::swap</code> algorithm (function).</li>
+</ol>
+<h3 id="stdthis_thread"><code>std::this_thread</code></h3>
+<h4 id="explanation_3">Explanation</h4>
+<ol>
+<li>The <code>std::this_thread</code> <strong>namespace</strong> provides utilities for <strong>interacting with the current thread
+   of execution</strong>.</li>
+<li>It contains functions to <strong>retrieve the thread’s ID, pause execution, or yield to other
+   threads</strong>.</li>
+</ol>
+<h4 id="links_2">Links</h4>
+<ol>
+<li><a href="https://cplusplus.com/reference/thread/this_thread/"><code>std::this_thread</code> in cplusplus</a>.</li>
+<li><a href="https://cplusplus.com/reference/thread/this_thread/"><code>std::this_thread</code> in cppreference</a>.</li>
+</ol>
+<h4 id="stdthreadget_id"><code>std::thread::get_id</code></h4>
+<h5 id="explanation_4">Explanation</h5>
+<ol>
+<li><strong>Retrieves the ID</strong> of the current thread, which is helpful for <strong>debugging or logging</strong>
+   purposes.</li>
+</ol>
+<h5 id="syntax">Syntax</h5>
+<pre><code class="language-CPP">// Its declaration syntax.
+// Might be larger than time due to its overhead.
+std::thread::id get_id() noexcept;
+</code></pre>
+<h4 id="stdthreadsleep_for"><code>std::thread::sleep_for</code></h4>
+<h5 id="explanation_5">Explanation</h5>
+<ol>
+<li><strong>Blocks the execution</strong> of the current thread for <strong>at least the specified <code>sleep_duration</code></strong>.</li>
+</ol>
+<h5 id="syntax_1">Syntax</h5>
+<pre><code class="language-CPP">// Its declaration syntax.
+template&lt; class Rep, class Period &gt;
+void sleep_for( const std::chrono::duration&lt; Rep, Period &gt;&amp; sleep_duration );
+</code></pre>
+<h4 id="stdthreadsleep_until"><code>std::thread::sleep_until</code></h4>
+<h5 id="explanation_6">Explanation</h5>
+<ol>
+<li><strong>Blocks the execution</strong> of the current thread <strong>until specified <code>sleep_time</code></strong> has been
+   <strong>reached</strong>.</li>
+</ol>
+<h5 id="syntax_2">Syntax</h5>
+<pre><code class="language-CPP">// Its declaration syntax.
+template&lt; class Clock, class Duration &gt;
+void sleep_until(
+   const std::chrono::time_point&lt; Clock, Duration &gt;&amp; sleep_time );
+</code></pre>
+<h4 id="stdthreadyield"><code>std::thread::yield</code></h4>
+<h4 id="explanation_7">Explanation</h4>
+<ol>
+<li><strong>Provides a hint</strong> to the implementation to <strong>reschedule the execution of threads</strong>, allowing
+   other threads to run.</li>
+</ol>
+<h5 id="syntax_3">Syntax</h5>
+<pre><code class="language-CPP">// Its declaration syntax.
+void yield() noexcept;
+</code></pre>
+<h4 id="stdasync"><code>std::async</code></h4>
+<h5 id="explanation_8">Explanation</h5>
+<ol>
+<li><code>std::async</code> is <strong>a template function</strong> that calls <code>F</code> (with <code>Args</code> as arguments) at some point,
+   returning without waiting for the execution of <code>F</code> to complete.</li>
+<li>The <strong>value returned</strong> by <code>F</code> can be <strong>accessed through the <code>future</code> object</strong> returned (by
+   <strong>calling its member <code>future::get</code></strong>).</li>
+<li><strong>The second version</strong> (2) lets the caller <strong>select a specific launching policy</strong>, while <strong>the
+   first version</strong> (1) uses <strong>automatic selection</strong>, as if calling (2) with
+   <code>launch::async</code>|<code>launch::deferred</code> as policy.</li>
+</ol>
+<h5 id="syntax_4">Syntax</h5>
+<pre><code class="language-CPP">// Declaration syntax
+// The first version
+template&lt; class F, class... Args &gt;
+std::future&lt; /* see below */ &gt; async( F&amp;&amp; f,
+                                      Args&amp;&amp;... args );   // (since C++11)
+</code></pre>
+<pre><code class="language-CPP">// Declaration syntax
+// The second version
+template&lt; class F, class... Args &gt;
+std::future&lt; /* see below */ &gt; async( std::launch policy,
+                                      F&amp;&amp; f,
+                                      Args&amp;&amp;... args );   // (since C++11)
+</code></pre>
+<pre><code class="language-CPP">// Usage syntax
+std::future&lt; RetType &gt; obj_name = std::async( ... );
+</code></pre>
+<h5 id="related-stuffs">Related Stuffs</h5>
+<h6 id="links_3">Links</h6>
+<ol>
+<li><a href="https://cplusplus.com/reference/future/async/"><code>std::async</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/async"><code>std::async</code> in cppreference</a>.</li>
+</ol>
+<h6 id="launching-policies">Launching Policies</h6>
+<ol>
+<li><strong>Asynchronous</strong> (<code>launch::async</code>): Launches a new thread to call <code>F</code> (as if a <code>thread</code> object is
+   constructed with <code>F</code> and <code>Args</code> as arguments, and accessing the shared state of the returned
+   <code>future</code> joins it).</li>
+<li><strong>Deferred</strong> (<code>launch::deferred</code>): The call to <code>F</code> is deferred until the shared state of the
+   returned <code>future</code> is accessed (with <code>wait</code> or <code>get</code>). At that point, <code>F</code> is called and the
+   function is no longer considered deferred. When this call returns, the shared state of the
+   returned <code>future</code> is made ready.</li>
+<li><strong>Automatic</strong> (<code>launch::async</code>|<code>launch::deferred</code>): The function chooses the policy automatically
+   (at some point). This <strong>depends on the system and library implementation</strong>, which generally
+   optimizes for the current availability of concurrency in the system.</li>
+<li>Particular library implementations may support additional launching policies, with the proper
+   label defined in type launch. Combining multiple values is possible, in which case, the function
+   automatically chooses one among them.</li>
+</ol>
+<h5 id="notes">Notes</h5>
+<ol>
+<li>Pay attention to the lifetimes of variables or objects passed to a function executed
+   asynchronously. Instead of passing them as references, it may be <strong>better to copy them into the
+   function</strong>.</li>
+<li><strong>Passing variables or objects as references</strong> can <strong>lead to issues</strong>. Instead, <strong>passing them as
+   pointers</strong> might be <strong>a better option</strong>.</li>
+</ol>
+<h3 id="stdfuture"><code>std::future</code></h3>
+<h4 id="explanation_9">Explanation</h4>
+<ol>
+<li><code>std::future</code> is <strong>a template class</strong> used to <strong>represent the result of an asynchronous
+   operation</strong>.</li>
+<li>It provides a mechanism to access the result of a function that runs concurrently, typically on a
+   separate thread.</li>
+<li>This allows a thread to <strong>retrieve results at some point</strong> in the future, <strong>once the asynchronous
+   task has completed</strong>.</li>
+<li><code>std::future</code> is generally used in <strong>combination with <code>std::async</code>, <code>std::promise</code>, or
+   thread-based libraries</strong>. It <strong>acts as a placeholder</strong> for the result that will eventually become
+   available.</li>
+<li>A <code>std::future</code> object <strong>cannot be copied</strong>, but it can be moved.</li>
+</ol>
+<h4 id="syntax_5">Syntax</h4>
+<pre><code class="language-CPP">// Declaration syntax
+template&lt; class T &gt; class future;         //  (since C++11)
+</code></pre>
+<pre><code class="language-CPP">// Declaration syntax
+template&lt; class T &gt; class future&lt; T&amp; &gt;;   //  (since C++11)
+</code></pre>
+<pre><code class="language-CPP">// Declaration syntax
+template&lt;&gt; class future&lt; void &gt;;          //  (since C++11)
+</code></pre>
+<h5 id="related-stuffs_1">Related Stuffs</h5>
+<h6 id="links_4">Links</h6>
+<ol>
+<li><a href="https://cplusplus.com/reference/future/future/"><code>std::future</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/future"><code>std::future</code> in cppreference</a>.</li>
+</ol>
+<h6 id="member-functions_2">Member functions</h6>
+<ol>
+<li>(constructor): Constructs the <code>future</code> object ( Only default and move ) (public member function).</li>
+<li>(destructor): Destructs the <code>future</code> object (public member function).</li>
+<li><code>operator=</code>: Moves the <code>future</code> object ( Only Move ) (public member function).</li>
+<li><code>share</code>: Transfers the shared state from <code>*this</code> to a <code>shared_future</code> and returns it (public.
+   member function)</li>
+</ol>
+<h6 id="getting-the-result">Getting the result</h6>
+<ol>
+<li><code>get</code>: Returns <strong>the result</strong> if the result is <strong>available</strong>. <strong>Otherwise</strong>, <strong>blocks the calling
+   thread</strong>. And <strong>only</strong> allows to <strong>call once</strong>.(public member function).</li>
+</ol>
+<h6 id="state">State</h6>
+<ol>
+<li><code>valid</code>: Checks if the <code>future</code> has a shared state (public member function).</li>
+<li><code>wait: waits</code>: For the result to become available (public member function).</li>
+<li><code>wait_for</code>: Waits for the result, returns if it is not available for the specified timeout
+   duration (public member function).</li>
+<li><code>wait_until</code>: Waits for the result, returns if it is not available until specified time point has
+   been reached (public member function).</li>
+</ol>
+<h6 id="stdshared_future"><code>std::shared_future</code></h6>
+<ol>
+<li><strong>The class template</strong> <code>std::shared_future</code> provides a mechanism to access the result of
+   asynchronous operations, similar to <code>std::future</code>, except that <strong>multiple threads are allowed to
+   wait for the same shared state</strong>. Unlike <code>std::future</code>, which is only moveable (so only one
+   instance can refer to any particular asynchronous result), <code>std::shared_future</code> is <strong>copyable</strong>
+   and <strong>multiple shared future objects</strong> may <strong>refer to the same shared state</strong>.</li>
+<li><strong>Access to the same shared state from multiple threads</strong> is safe if each thread does it through
+   its own copy of a <code>shared_future</code> object.</li>
+<li><a href="https://cplusplus.com/reference/future/shared_future/"><code>std::shared_future</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/shared_future"><code>std::shared_future</code> in cppreference</a>.</li>
+</ol>
+<h6 id="differences-between-stdfuture-and-stdshared_future">Differences Between std::future and std::shared_future</h6>
+<ol>
+<li>Ownership:</li>
+<li><code>std::future</code>: Sole ownership of the result.</li>
+<li><code>std::shared_future</code>: Shared ownership; multiple instances can access the same result.</li>
+<li>Result retrieval:</li>
+<li><code>std::future</code>: The result can only be retrieved once using <code>get()</code>.</li>
+<li><code>std::shared_future</code>: The result can be retrieved multiple times by different instances.</li>
+<li>Copyability:</li>
+<li><code>std::future</code>: Non-copyable but movable.</li>
+<li><code>std::shared_future</code>: Copyable and movable; can be shared across multiple threads.</li>
+<li>Exception handling:</li>
+<li>Both: If the asynchronous task throws an exception, it is propagated on the first call to
+     <code>get()</code>.</li>
+<li><code>std::shared_future</code>: The same exception can be propagated multiple times across all calls to
+     <code>get()</code>.</li>
+<li>Use case:</li>
+<li><code>std::future</code>: When only one thread needs the result, and the result is used only once.</li>
+<li><code>std::shared_future</code>: When multiple threads need access to the same result, or the result needs
+     to be accessed multiple times.</li>
+<li>Conversion:</li>
+<li><code>std::future</code> can be converted to <code>std::shared_future</code> using the <code>share()</code> function.</li>
+</ol>
+<h3 id="notes_1">Notes</h3>
+<ol>
+<li>A game typically loads different objects asynchronously and in parallel using multiple threads.
+    This is why, at times, players can control their characters while some objects remain
+    unresponsive.</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

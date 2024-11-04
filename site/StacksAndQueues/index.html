@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>StacksAndQueues - from_gcc_to_cpp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">from_gcc_to_cpp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../FromGccToCPP/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Gcc/" class="nav-link">Gcc</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#stacks" class="nav-link">Stacks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#queues" class="nav-link">Queues</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#priority-queues" class="nav-link">Priority Queues</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#deques-double-ended-queue-deck" class="nav-link">Deques ( Double-ended Queue ) ( Deck )</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#stacks">Stacks</a></li>
+<li><a href="#explanation">Explanation</a></li>
+<li><a href="#declaration-syntax">Declaration Syntax</a></li>
+<li><a href="#initialization-syntax">Initialization Syntax</a></li>
+<li><a href="#syntax-for-deleting-stdstack-pointers">Syntax for Deleting <code>std::stack</code> Pointers</a></li>
+<li><a href="#members-and-related-stuffs">Members and Related Stuffs</a><ul>
+<li><a href="#links">Links</a></li>
+<li><a href="#template-parameters">Template Parameters</a></li>
+<li><a href="#member-types">Member Types</a></li>
+<li><a href="#member-objects">Member Objects</a></li>
+<li><a href="#member-functions">Member Functions</a></li>
+<li><a href="#non-member-functions">Non-member Functions</a></li>
+</ul>
+</li>
+<li><a href="#helper-classes">Helper Classes</a></li>
+<li><a href="#queues">Queues</a></li>
+<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#declaration-syntax-1">Declaration Syntax</a></li>
+<li><a href="#initialization-syntax-1">Initialization Syntax</a></li>
+<li><a href="#syntax-for-deleting-stdqueue-pointers">Syntax for Deleting <code>std::queue</code> Pointers</a></li>
+<li><a href="#members-and-related-stuffs-1">Members and Related Stuffs</a><ul>
+<li><a href="#links-1">Links</a></li>
+<li><a href="#template-parameters-1">Template Parameters</a></li>
+<li><a href="#member-types-1">Member Types</a></li>
+<li><a href="#member-objects-1">Member Objects</a></li>
+<li><a href="#member-functions-1">Member Functions</a></li>
+<li><a href="#non-member-functions-1">Non-member Functions</a></li>
+<li><a href="#helper-classes-1">Helper Classes</a></li>
+</ul>
+</li>
+<li><a href="#priority-queues">Priority Queues</a></li>
+<li><a href="#explanation-2">Explanation</a></li>
+<li><a href="#declaration-syntax-2">Declaration Syntax</a></li>
+<li><a href="#initialization-syntax-2">Initialization Syntax</a></li>
+<li><a href="#syntax-for-deleting-stdpriority_queue-pointers">Syntax for Deleting <code>std::priority_queue</code> Pointers</a></li>
+<li><a href="#members-and-related-stuffs-2">Members and Related Stuffs</a><ul>
+<li><a href="#links-2">Links</a></li>
+<li><a href="#template-parameters-2">Template Parameters</a></li>
+<li><a href="#member-types-2">Member Types</a></li>
+<li><a href="#member-objects-2">Member Objects</a></li>
+<li><a href="#member-functions-2">Member Functions</a></li>
+<li><a href="#non-member-functions-2">Non-member Functions</a></li>
+<li><a href="#helper-classes-2">Helper Classes</a></li>
+</ul>
+</li>
+<li><a href="#deques--double-ended-queue---deck-">Deques ( Double-ended Queue ) ( Deck )</a></li>
+<li><a href="#explanation-3">Explanation</a></li>
+<li><a href="#declaration-syntax-3">Declaration Syntax</a></li>
+<li><a href="#initialization-syntax-3">Initialization Syntax</a></li>
+<li><a href="#syntax-for-deleting-stddeque-pointers">Syntax for Deleting <code>std::deque</code> Pointers</a></li>
+<li><a href="#members-and-related-stuffs-3">Members and Related Stuffs</a><ul>
+<li><a href="#links-3">Links</a></li>
+<li><a href="#template-parameters-3">Template Parameters</a></li>
+<li><a href="#member-types-3">Member Types</a></li>
+<li><a href="#member-functions-3">Member Functions</a></li>
+<li><a href="#non-member-functions-3">Non-member Functions</a></li>
+</ul>
+</li>
+</ul>
+<!-- vim-markdown-toc -->
+
+<h2 id="stacks">Stacks</h2>
+<h3 id="explanation">Explanation</h3>
+<ol>
+<li>Stacks are a type of <strong>container adaptor</strong>, specifically designed to operate in <strong>a LIFO context
+   (last-in first-out)</strong>, where elements are inserted and extracted only from one end of the
+   container.</li>
+<li>The stack <strong>class template</strong> acts as <strong>a wrapper to the underlying container</strong> - <strong>only a
+   specific set of functions is provided</strong>.</li>
+<li>The stack pushes and pops the element from the back of the underlying container, known as the top
+   of the stack.</li>
+<li>Their header file is <code>&lt;stack&gt;</code>.</li>
+</ol>
+<h3 id="declaration-syntax">Declaration Syntax</h3>
+<pre><code class="language-CPP">std::stack&lt; Type &gt; stack_name;
+</code></pre>
+<pre><code class="language-CPP">// Not common, not recommend
+std::stack&lt; Type, Container&lt; Type &gt; &gt; stack_name;
+</code></pre>
+<pre><code class="language-CPP">std::stack&lt; Type &gt;* stack_ptr;
+</code></pre>
+<h3 id="initialization-syntax">Initialization Syntax</h3>
+<pre><code class="language-CPP">// Default constructor. Value-initializes the underlying container.
+std::stack&lt; Type &gt; stack_name;
+</code></pre>
+<pre><code class="language-CPP">Container&lt; Type &gt; cont = { ... };
+// Copy the content of the `cont`.
+std::stack&lt; Type, Container&lt; Type &gt; &gt; stack_name( cont );
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::stack&lt; Type, Container&lt; Type &gt; &gt; stack_name( Container&lt; Type &gt;{ ... } );
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::stack&lt; Type &gt; stack_name1( { ... } );
+// Copy constructor.
+std::stack&lt; Type &gt; stack_name2( stack_name1 );
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::stack&lt; Type &gt; stack_name1( { ... } );
+// Copy constructor.
+std::stack&lt; Type &gt; stack_name2 = stack_name1;
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::stack&lt; Type &gt; stack_name1( { ... } );
+// Move constructor.
+std::stack&lt; Type &gt; stack_name2( std::move( stack_name1 ) );
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::stack&lt; Type, Container&lt; Type &gt; &gt; stack_name1( Container&lt; Type &gt;{ ... } );
+// Constructs the underlying container with the contents of the range `[first, last)`.
+std::stack&lt; Type, Container&lt; Type &gt; &gt; stack_name2( stack_name1.begin(), stack_name2.end() );
+</code></pre>
+<pre><code class="language-CPP">std::stack&lt; Type &gt;* stack_ptr = new std::stack&lt; Type &gt;;
+</code></pre>
+<pre><code class="language-CPP">std::stack&lt; Type, Container&lt; Type &gt; &gt;* stack_ptr = new std::stack&lt; Type &gt;( Container&lt; Type &gt;{ ... } );
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::stack&lt; Type &gt; stack_name( { ... } );
+std::stack&lt; Type &gt;* stack_ptr = new std::stack&lt; Type &gt;( stack_name );
+</code></pre>
+<pre><code class="language-CPP">std::stack&lt; Type &gt;* stack_ptr = new std::stack&lt; Type &gt;( { ... } );
+</code></pre>
+<h3 id="syntax-for-deleting-stdstack-pointers">Syntax for Deleting <code>std::stack</code> Pointers</h3>
+<pre><code class="language-CPP">delete stack_ptr;
+</code></pre>
+<h3 id="members-and-related-stuffs">Members and Related Stuffs</h3>
+<h4 id="links">Links</h4>
+<ol>
+<li><a href="https://cplusplus.com/reference/stack/stack/"><code>std::stack</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/container/stack"><code>std::stack</code> in cppreference</a>.</li>
+</ol>
+<h4 id="template-parameters">Template Parameters</h4>
+<ol>
+<li><code>T</code>: The type of the stored elements. The program is ill-formed if <code>T</code> is not the same type as
+   <code>Container::value_type</code>.</li>
+<li><code>Container</code>: The type of the underlying container to use to store the elements. The container
+   must satisfy the requirements of <code>SequenceContainer</code>. Additionally, it must provide the following
+   functions with the usual semantics:</li>
+<li><code>back()</code>, e.g., <code>std::vector::back()</code>,</li>
+<li><code>push_back()</code>, e.g., <code>std::deque::push_back()</code>,</li>
+<li><code>pop_back()</code>, e.g., <code>std::list::pop_back()</code>.</li>
+<li>The standard containers <code>std::vector</code> (including <code>std::vector&lt; bool &gt;</code>), <code>std::deque</code> and
+   <code>std::list</code> satisfy these requirements. <strong>By default</strong>, if no container class is specified for a
+   particular stack class instantiation, <strong>the standard container <code>std::deque</code></strong> is used.</li>
+</ol>
+<h4 id="member-types">Member Types</h4>
+<ol>
+<li><code>container_type</code>: <code>Container</code>.</li>
+<li><code>value_type</code>: <code>Container::value_type</code>.</li>
+<li><code>size_type</code>: <code>Container::size_type</code>.</li>
+<li><code>reference</code>: <code>Container::reference</code>.</li>
+<li><code>const_reference</code>: <code>Container::const_reference</code>.</li>
+</ol>
+<h4 id="member-objects">Member Objects</h4>
+<ol>
+<li><code>Container c</code>: The underlying container (protected member object).</li>
+</ol>
+<h4 id="member-functions">Member Functions</h4>
+<ol>
+<li>(constructor): Constructs the stack (public member function).</li>
+<li>(destructor): Destructs the stack (public member function).</li>
+<li><code>operator=</code>: Assigns values to the container adaptor (public member function).</li>
+<li><code>top</code>: Accesses the top element (public member function).</li>
+<li><code>empty</code>: Checks whether the container adaptor is empty (public member function).</li>
+<li><code>size</code>: Returns the number of elements (public member function).</li>
+<li><code>push</code>: Inserts element at the top (public member function).</li>
+<li><code>push_range</code> (C++23): Inserts a range of elements at the top (public member function).</li>
+<li><code>emplace</code>: Constructs element in-place at the top (public member function).</li>
+<li><code>pop</code>: Removes the top element (public member function).</li>
+<li><code>swap</code>: Swaps the contents (public member function).</li>
+</ol>
+<h4 id="non-member-functions">Non-member Functions</h4>
+<ol>
+<li><code>operator==</code>, <code>operator!=/&lt;!--&lt;=/--&gt;/&gt;=</code> (removed in C++20), <code>operator&lt;=&gt;</code> (C++20): Lexicographically
+   compares the values of two stacks (function template).</li>
+<li><code>std::swap( std::stack )</code>: Specializes the <code>std::swap</code> algorithm (function template).</li>
+</ol>
+<h3 id="helper-classes">Helper Classes</h3>
+<ol>
+<li><code>std::uses_allocator&lt; std::stack &gt;</code>: Specializes the <code>std::uses_allocator</code> type trait (class
+   template specialization).</li>
+<li><code>std::formatter&lt; std::stack &gt;</code> (C++23): Formatting support for <code>std::stack</code> (class template
+   specialization).</li>
+</ol>
+<h2 id="queues">Queues</h2>
+<h3 id="explanation_1">Explanation</h3>
+<ol>
+<li>Queues are a type of <strong>container adaptor</strong>, specifically designed to operate in <strong>a FIFO context
+   (first-in first-out)</strong>, where elements are inserted into one end of the container and extracted
+   from the other.</li>
+<li>The queue <strong>class template</strong> acts as <strong>a wrapper to the underlying container - only a specific
+   set of functions is provided</strong>.</li>
+<li>The queue pushes the elements on the back of the underlying container and pops them from the
+   front.</li>
+<li>Their header file is <code>&lt;queue&gt;</code>.</li>
+</ol>
+<h3 id="declaration-syntax_1">Declaration Syntax</h3>
+<pre><code class="language-CPP">std::queue&lt; Type &gt; queue_name;
+</code></pre>
+<pre><code class="language-CPP">// Not common, not recommend
+std::queue&lt; Type, Container&lt; Type &gt; &gt; queue_name;
+</code></pre>
+<pre><code class="language-CPP">std::queue&lt; Type &gt;* queue_ptr;
+</code></pre>
+<h3 id="initialization-syntax_1">Initialization Syntax</h3>
+<pre><code class="language-CPP">// Default constructor. Value-initializes the underlying container.
+std::queue&lt; Type &gt; queue_name;
+</code></pre>
+<pre><code class="language-CPP">Container&lt; Type &gt; cont = { ... };
+// Copy the content of the `cont`.
+std::queue&lt; Type, Container&lt; Type &gt; &gt; queue_name( cont );
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::queue&lt; Type, Container&lt; Type &gt; &gt; queue_name( Container&lt; Type &gt;{ ... } );
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::queue&lt; Type &gt; queue_name1( { ... } );
+// Copy constructor.
+std::queue&lt; Type &gt; queue_name2( queue_name1 );
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::queue&lt; Type &gt; queue_name1( { ... } );
+// Copy constructor.
+std::queue&lt; Type &gt; queue_name2 = queue_name1;
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::queue&lt; Type &gt; queue_name1( { ... } );
+// Move constructor.
+std::queue&lt; Type &gt; queue_name1( std::move( queue_name1 ) );
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::queue&lt; Type, Container&lt; Type &gt; &gt; queue_name1( Container&lt; Type &gt;{ ... } );
+// Constructs the underlying container with the contents of the range `[first, last)`.
+std::queue&lt; Type, Container&lt; Type &gt; &gt; queue_name2( queue_name1.begin(), queue_name2.end() );
+</code></pre>
+<pre><code class="language-CPP">std::queue&lt; Type &gt;* queue_ptr = new std::queue&lt; Type &gt;;
+</code></pre>
+<pre><code class="language-CPP">std::queue&lt; Type, Container&lt; Type &gt; &gt;* queue_ptr = new std::queue&lt; Type &gt;( Container&lt; Type &gt;{ ... } );
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::queue&lt; Type &gt; queue_name( { ... } );
+std::queue&lt; Type &gt;* queue_ptr = new std::queue&lt; Type &gt;( queue_name );
+</code></pre>
+<pre><code class="language-CPP">std::queue&lt; Type &gt;* queue_ptr = new std::queue&lt; Type &gt;( { ... } );
+</code></pre>
+<h3 id="syntax-for-deleting-stdqueue-pointers">Syntax for Deleting <code>std::queue</code> Pointers</h3>
+<pre><code class="language-CPP">delete queue_ptr;
+</code></pre>
+<h3 id="members-and-related-stuffs_1">Members and Related Stuffs</h3>
+<h4 id="links_1">Links</h4>
+<ol>
+<li><a href="https://cplusplus.com/reference/queue/queue/"><code>std::queue</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/container/queue"><code>std::queue</code> in cppreference</a>.</li>
+</ol>
+<h4 id="template-parameters_1">Template Parameters</h4>
+<ol>
+<li><code>T</code>: The type of the stored elements. The program is ill-formed if <code>T</code> is not the same type as
+   <code>Container::value_type</code>.</li>
+<li><code>Container</code>: The type of the underlying container to use to store the elements. The container
+   must satisfy the requirements of <code>SequenceContainer</code>. Additionally, it must provide the following
+   functions with the usual semantics:</li>
+<li><code>back()</code>, e.g., <code>std::deque::back()</code>,</li>
+<li><code>front()</code>, e.g. <code>std::list::front()</code>,</li>
+<li><code>push_back()</code>, e.g., <code>std::deque::push_back()</code>,</li>
+<li><code>pop_front()</code>, e.g., <code>std::list::pop_front()</code>.</li>
+<li>The standard containers <code>std::deque</code> and <code>std::list</code> satisfy these requirements.</li>
+</ol>
+<h4 id="member-types_1">Member Types</h4>
+<ol>
+<li><code>container_type</code>: <code>Container</code>.</li>
+<li><code>value_type</code>: <code>Container::value_type</code>.</li>
+<li><code>size_type</code>: <code>Container::size_type</code>.</li>
+<li><code>reference</code>: <code>Container::reference</code>.</li>
+<li><code>const_reference</code>: <code>Container::const_reference</code>.</li>
+</ol>
+<h4 id="member-objects_1">Member Objects</h4>
+<ol>
+<li><code>Container c</code>: The underlying container (protected member object).</li>
+</ol>
+<h4 id="member-functions_1">Member Functions</h4>
+<ol>
+<li>(constructor): Constructs the queue (public member function).</li>
+<li>(destructor): Destructs the queue (public member function).</li>
+<li><code>operator=</code>: Assigns values to the container adaptor (public member function).</li>
+<li><code>front</code>: Access the first element (public member function).</li>
+<li><code>back</code>: Access the last element (public member function).</li>
+<li><code>empty</code>: Checks whether the container adaptor is empty (public member function).</li>
+<li><code>size</code>: Returns the number of elements (public member function).</li>
+<li><code>push</code>: Inserts element at the end (public member function).</li>
+<li><code>push_range</code> (C++23): Inserts a range of elements at the end (public member function).</li>
+<li><code>emplace</code>: Constructs element in-place at the end (public member function).</li>
+<li><code>pop</code>: Removes the first element (public member function).</li>
+<li><code>swap</code>: Swaps the contents (public member function).</li>
+</ol>
+<h4 id="non-member-functions_1">Non-member Functions</h4>
+<ol>
+<li><code>operator==</code>, <code>operator!=/&lt;!--&lt;=/--&gt;/&gt;=</code> (removed in C++20), <code>operator&lt;=&gt;</code> (C++20): Lexicographically
+   compares the values of two queues (function template).</li>
+<li><code>std::swap( std::queue )</code>: Specializes the <code>std::swap</code> algorithm (function template).</li>
+</ol>
+<h4 id="helper-classes_1">Helper Classes</h4>
+<ol>
+<li><code>std::uses_allocator&lt; std::queue &gt;</code>: Specializes the <code>std::uses_allocator</code> type trait (class
+   template specialization).</li>
+<li><code>std::formatter&lt; std::queue &gt;</code> (C++23): Formatting support for <code>std::queue</code> (class template
+   specialization).</li>
+</ol>
+<h2 id="priority-queues">Priority Queues</h2>
+<h3 id="explanation_2">Explanation</h3>
+<ol>
+<li>Priority queues are a type of <strong>container adaptors</strong>, specifically designed such that its <strong>first
+   element is always the largest of the elements it contains</strong>, according to <strong>some strict weak
+   ordering criterion</strong>.</li>
+<li><strong>A user-provided <code>Compare</code></strong> can be supplied to <strong>change the ordering</strong>, e.g. using
+   <code>std::greater&lt; T &gt;</code> would cause the smallest element to appear as the <code>top()</code>.</li>
+<li>This context is <strong>similar to a heap</strong>, where elements can be <strong>inserted at any moment</strong>, and
+   <strong>only the max heap element can be retrieved</strong> (the one at the top in the priority queue).</li>
+<li>The priority queue <strong>class template</strong> acts as <strong>a wrapper to the underlying container</strong> - <strong>only
+   a specific set of functions is provided</strong>.</li>
+<li>Their header file is <code>&lt;queue&gt;</code>.</li>
+</ol>
+<h3 id="declaration-syntax_2">Declaration Syntax</h3>
+<pre><code class="language-CPP">std::priority_queue&lt; Type &gt; pqueue_name;
+</code></pre>
+<pre><code class="language-CPP">// Not common, not recommend
+std::priority_queue&lt; Type, Container&lt; Type &gt; &gt; pqueue_name;
+</code></pre>
+<pre><code class="language-CPP">// Not common, not recommend
+class Compare {
+      bool _reverse;
+
+   public:
+      explicit Compare( const bool&amp; rev_param = false ) {
+         _reverse = rev_param;
+      };
+
+      bool operator()( const Type&amp; lhs, const Type&amp; rhs ) const {
+         if( _reverse ) {
+            ...
+         } else {
+            ...
+         };
+      };
+};
+std::priority_queue&lt; Type, Container&lt; Type &gt;, Compare &gt; pqueue_name;
+</code></pre>
+<pre><code class="language-CPP">std::priority_queue&lt; Type, std::vector&lt; Type &gt;, Compare &gt; pqueue_name;
+</code></pre>
+<pre><code class="language-CPP">std::priority_queue&lt; Type &gt;* pri_queue_ptr;
+</code></pre>
+<h3 id="initialization-syntax_2">Initialization Syntax</h3>
+<pre><code class="language-CPP">// Default constructor. Value-initializes the comparator and the underlying container.
+std::priority_queue&lt; Type &gt; pqueue_name;
+</code></pre>
+<pre><code class="language-CPP">// Default constructor. Value-initializes the comparator and the underlying container.
+std::priority_queue&lt; Type, Container&lt; Type &gt;, Compare &gt; pqueue_name;
+// Copy-constructs the temporary `Compare` class object. Value-initializes the underlying container.
+std::priority_queue&lt; Type, Container&lt; Type &gt;, Compare &gt; rpqueue_name( Compare( true ) );
+</code></pre>
+<pre><code class="language-CPP">// Copy-constructs the comparison functor `comp` with the contents of compare. Value-initializes the underlying container.
+Compare comp;
+std::priority_queue&lt; Type, Container&lt; Type &gt;, Compare  &gt; pqueue_name( comp );
+</code></pre>
+<pre><code class="language-CPP">Compare comp;
+Container&lt; Type &gt; cont = { ... };
+// Copy the content of the `comp` and the `cont`.
+std::priority_queue&lt; Type, Container&lt; Type &gt;, Compare  &gt; pqueue_name( cont, comp );
+</code></pre>
+<pre><code class="language-CPP">Compare comp;
+// Move the content of the underlying container.
+// Copy the content of the `comp`.
+std::priority_queue&lt; Type, Container&lt; Type &gt;, Compare  &gt; pqueue_name( Container&lt; Type &gt;{ ... }, comp );
+</code></pre>
+<pre><code class="language-CPP">// Default constructor. Value-initializes the comparator and the underlying container.
+std::priority_queue&lt; Type &gt; pqueue_name1;
+// Copy constructor.
+std::priority_queue&lt; Type &gt; pqueue_name2( pqueue_name1 );
+</code></pre>
+<pre><code class="language-CPP">// Default constructor. Value-initializes the comparator and the underlying container.
+std::priority_queue&lt; Type &gt; pqueue_name1;
+// Copy constructor.
+std::priority_queue&lt; Type &gt; pqueue_name2 = pqueue_name1;
+</code></pre>
+<pre><code class="language-CPP">// Default constructor. Value-initializes the comparator and the underlying container.
+std::priority_queue&lt; Type &gt; pqueue_name1;
+// Move constructor.
+std::priority_queue&lt; Type &gt; pqueue_name2( std::move( pqueue_name1 ) );
+</code></pre>
+<pre><code class="language-CPP">// Copy-constructs the comparison functor `comp` with the contents of compare. Value-initializes the underlying container.
+Compare comp;
+Container&lt; Type &gt; cont = { ... };
+std::priority_queue&lt; Type, Container&lt; Type &gt;, Compare  &gt; pqueue_name1( comp, cont );
+// Constructs the underlying container with the contents of the range `[first, last)`.
+std::priority_queue&lt; Type, Container&lt; Type &gt;, Compare  &gt; pqueue_name2( pqueue_name1.begin(), pqueue_name1.end(), comp /* optional */, cont /* optional */ );
+</code></pre>
+<pre><code class="language-CPP">std::priority_queue&lt; Type &gt;* pri_queue_ptr = new std::priority_queue&lt; Type &gt;;
+</code></pre>
+<pre><code class="language-CPP">// Default constructor. Value-initializes the comparator and the underlying container.
+std::priority_queue&lt; Type &gt; pqueue_name;
+std::priority_queue&lt; Type &gt;* pri_queue_ptr = new std::priority_queue&lt; Type &gt;( pqueue_name );
+</code></pre>
+<h3 id="syntax-for-deleting-stdpriority_queue-pointers">Syntax for Deleting <code>std::priority_queue</code> Pointers</h3>
+<pre><code class="language-CPP">delete pri_queue_ptr;
+</code></pre>
+<h3 id="members-and-related-stuffs_2">Members and Related Stuffs</h3>
+<h4 id="links_2">Links</h4>
+<ol>
+<li><a href="https://cplusplus.com/reference/queue/priority_queue/"><code>std::priority_queue</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/container/priority_queue"><code>std::priority_queue</code> in cppreference</a>.</li>
+</ol>
+<h4 id="template-parameters_2">Template Parameters</h4>
+<ol>
+<li><code>T</code>: The type of the stored elements. The program is ill-formed if <code>T</code> is not the same type as
+   <code>Container::value_type</code>.</li>
+<li><code>Container</code>: The type of the underlying container to use to store the elements. The container
+   must satisfy the requirements of <code>SequenceContainer</code>, and its iterators must satisfy the
+   requirements of <code>LegacyRandomAccessIterator</code>. Additionally, it must provide the following
+   functions with the usual semantics:</li>
+<li><code>front()</code>, e.g., <code>std::vector::front()</code>,</li>
+<li><code>push_back()</code>, e.g., <code>std::deque::push_back()</code>,</li>
+<li><code>pop_back()</code>, e.g., <code>std::vector::pop_back()</code>.</li>
+<li>The standard containers <code>std::vector</code> (including <code>std::vector&lt; bool &gt;</code>) and <code>std::deque</code> satisfy
+   these requirements.</li>
+<li><code>Compare</code>: A <code>Compare</code> type providing a strict weak ordering. By default, the first key (largest
+   key) is at the top of the queue because its underlying structure is a max-heap, which uses
+   <code>std::less&lt; T &gt;</code> to maintain that structure, ensuring the largest element is accessible first.</li>
+</ol>
+<h4 id="member-types_2">Member Types</h4>
+<ol>
+<li><code>container_type</code>: <code>Container</code>.</li>
+<li><code>value_compare</code>: <code>Compare</code>.</li>
+<li><code>value_type</code>: <code>Container::value_type</code>.</li>
+<li><code>size_type</code>: <code>Container::size_type</code>.</li>
+<li><code>reference</code>: <code>Container::reference</code>.</li>
+<li><code>const_reference</code>: <code>Container::const_reference</code>.</li>
+</ol>
+<h4 id="member-objects_2">Member Objects</h4>
+<ol>
+<li><code>Container c</code>: The underlying container (protected member object).</li>
+<li><code>Compare comp</code>: The comparison function object (protected member object).</li>
+</ol>
+<h4 id="member-functions_2">Member Functions</h4>
+<ol>
+<li>(constructor): Constructs the priority_queue (public member function).</li>
+<li>(destructor): Destructs the priority_queue (public member function).</li>
+<li><code>operator=</code>: Assigns values to the container adaptor (public member function).</li>
+<li><code>top</code>: Accesses the top element (public member function).</li>
+<li><code>empty</code>: Checks whether the container adaptor is empty (public member function).</li>
+<li><code>size</code>: Returns the number of elements (public member function).</li>
+<li><code>push</code>: Inserts element and sorts the underlying container (public member function).</li>
+<li><code>push_range</code> (C++23): Inserts a range of elements and sorts the underlying container (public
+   member function).</li>
+<li><code>emplace</code>: Constructs element in-place and sorts the underlying container (public member
+   function).</li>
+<li><code>pop</code>: Removes the top element (public member function).</li>
+<li><code>swap</code>: Swaps the contents (public member function).</li>
+</ol>
+<h4 id="non-member-functions_2">Non-member Functions</h4>
+<ol>
+<li><code>std::swap( std::priority_queue )</code>: Specializes the <code>std::swap</code> algorithm (function template).</li>
+</ol>
+<h4 id="helper-classes_2">Helper Classes</h4>
+<ol>
+<li><code>std::uses_allocator&lt; std::priority_queue &gt;</code>: Specializes the <code>std::uses_allocator</code> type trait
+   (class template specialization).</li>
+<li><code>std::formatter&lt; std::priority_queue &gt;</code> (C++23): Formatting support for <code>std::priority_queue</code>
+   (class template specialization).</li>
+</ol>
+<h2 id="deques-double-ended-queue-deck">Deques ( Double-ended Queue ) ( Deck )</h2>
+<h3 id="explanation_3">Explanation</h3>
+<ol>
+<li>Dques are <strong>sequence containers ( template classes )</strong> with dynamic sizes that can be expanded or
+   contracted on both ends (either its front or its back).</li>
+<li>They allow for the individual elements to be accessed directly through <strong>random access
+   iterators</strong>, with storage handled automatically by expanding and contracting the container as
+   needed.</li>
+<li>They provide a functionality <strong>similar to vectors</strong>, <strong>but with efficient insertion and
+   deletion</strong> of elements also <strong>at the beginning</strong> of the sequence, and not only <strong>at its end</strong>.
+   But, unlike vectors, deques are <strong>not</strong> guaranteed to <strong>store all its elements in contiguous
+   storage locations</strong>: accessing elements in a deque by offsetting a pointer to another element
+   causes undefined behavior.</li>
+</ol>
+<h3 id="declaration-syntax_3">Declaration Syntax</h3>
+<pre><code class="language-CPP">std::deque&lt; Type &gt; deque_name;
+</code></pre>
+<pre><code class="language-CPP">std::deque&lt; Type &gt;* deque_ptr;
+</code></pre>
+<h3 id="initialization-syntax_3">Initialization Syntax</h3>
+<pre><code class="language-CPP">// Initializer deque constructor.
+std::deque&lt; Type &gt; deque_name = { ... };
+</code></pre>
+<pre><code class="language-CPP">// Initializer deque constructor.
+std::deque&lt; Type &gt; deque_name{ ... };
+</code></pre>
+<pre><code class="language-CPP">// No initialization, contain garbage values and behave unpredictably.
+std::deque&lt; Type &gt; deque_name;
+</code></pre>
+<pre><code class="language-CPP">// No initialization, contain garbage values and behave unpredictably.
+std::deque&lt; Type &gt; deque_name( size );
+</code></pre>
+<pre><code class="language-CPP">// Initialization with the specific value.
+std::deque&lt; Type &gt; deque_name( size, value );
+</code></pre>
+<pre><code class="language-CPP">// Initializer deque constructor.
+std::deque&lt; Type &gt; deque_name1 = { ... };
+// Copy constructor.
+std::deque&lt; Type &gt; deque_name2( deque_name1 );
+</code></pre>
+<pre><code class="language-CPP">// Initializer deque constructor.
+std::deque&lt; Type &gt; deque_name1 = { ... };
+// Copy constructor.
+std::deque&lt; Type &gt; deque_name2 = deque_name1;
+</code></pre>
+<pre><code class="language-CPP">// Move constructor.
+std::deque&lt; Type &gt; deque_name( { ... } );
+</code></pre>
+<pre><code class="language-CPP">// Move the content of the underlying container.
+std::deque&lt; Type, Container&lt; Type &gt; &gt; deque_name1( Container&lt; Type &gt;{ ... } );
+// Constructs the underlying container with the contents of the range `[first, last)`.
+std::deque&lt; Type, Container&lt; Type &gt; &gt; deque_name2( deque_name1.begin(), deque_name2.end() );
+</code></pre>
+<pre><code class="language-CPP">std::deque&lt; Type &gt;* deque_ptr = new std::deque&lt; Type &gt;( size );
+</code></pre>
+<pre><code class="language-CPP">std::deque&lt; Type &gt;* deque_ptr = new std::deque&lt; Type &gt;( size, value );
+</code></pre>
+<pre><code class="language-CPP">// Initializer deque constructor.
+std::deque&lt; Type &gt; deque_name = { ... };
+std::deque&lt; Type &gt;* deque_ptr = new std::deque&lt; Type &gt;( deque_name );
+</code></pre>
+<pre><code class="language-CPP">std::deque&lt; Type &gt;* deque_ptr = new std::deque&lt; Type &gt;{ ... };
+</code></pre>
+<h3 id="syntax-for-deleting-stddeque-pointers">Syntax for Deleting <code>std::deque</code> Pointers</h3>
+<pre><code class="language-CPP">delete deque_ptr;
+</code></pre>
+<h3 id="members-and-related-stuffs_3">Members and Related Stuffs</h3>
+<h4 id="links_3">Links</h4>
+<ol>
+<li><a href="https://cplusplus.com/reference/deque/deque/"><code>std::deque</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/container/deque"><code>std::deque</code> in cppreference</a>.</li>
+</ol>
+<h4 id="template-parameters_3">Template Parameters</h4>
+<ol>
+<li><code>T</code>: The type of the elements.</li>
+<li><code>Allocator</code>: An allocator that is used to acquire/release memory and to construct/destroy the
+   elements in that memory.</li>
+</ol>
+<h4 id="member-types_3">Member Types</h4>
+<ol>
+<li><code>value_type</code>: <code>T</code>.</li>
+<li><code>allocator_type</code>: <code>Allocator</code>.</li>
+<li><code>size_type</code>: Unsigned integer type (usually <code>std::size_t</code>).</li>
+<li><code>difference_type</code>: Signed integer type (usually <code>std::ptrdiff_t</code>).</li>
+<li><code>reference</code>: <code>value_type&amp;</code>.</li>
+<li><code>const_reference</code>: <code>const value_type&amp;</code>.</li>
+<li><code>pointer</code>: <code>Allocator::pointer</code> (until C++11), <code>std::allocator_traits&lt; Allocator &gt;::pointer</code>
+   (since C++11).</li>
+<li><code>const_pointer</code>: <code>Allocator::const_pointer</code> (until C++11),
+   <code>std::allocator_traits&lt; Allocator &gt;::const_pointer</code> (since C++11).</li>
+<li><code>iterator</code>: <code>LegacyBidirectionalIterator</code> to <code>value_type</code>.</li>
+<li><code>const_iterator</code>: <code>LegacyBidirectionalIterator</code> to <code>const value_type</code>.</li>
+<li><code>reverse_iterator</code>: <code>std::reverse_iterator&lt; iterator &gt;</code>.</li>
+<li><code>const_reverse_iterator</code>: <code>std::reverse_iterator&lt; const_iterator &gt;</code>.</li>
+</ol>
+<h4 id="member-functions_3">Member Functions</h4>
+<ol>
+<li>(constructor): Constructs the deque (public member function).</li>
+<li>(destructor): Destructs the deque (public member function).</li>
+<li><code>operator=</code>: Assigns values to the container (public member function).</li>
+<li><code>assign</code>: Assigns values to the container (public member function).</li>
+<li><code>assign_range</code> (C++23): Assigns a range of values to the container (public member function).</li>
+<li><code>get_allocator</code>: Returns the associated allocator (public member function).</li>
+<li><code>at</code>: Access specified element with bounds checking (public member function).</li>
+<li><code>operator[]</code>: Access specified element (public member function).</li>
+<li><code>front</code>: Access the first element (public member function).</li>
+<li><code>back</code>: Access the last element (public member function).</li>
+<li><code>begin</code>, <code>cbegin</code>: Returns an iterator to the beginning (public member function).</li>
+<li><code>end</code>, <code>cend</code>: Returns an iterator to the end (public member function).</li>
+<li><code>rbegin</code>, <code>crbegin</code>: Returns a reverse iterator to the beginning (public member function).</li>
+<li><code>rend</code>, <code>crend</code>: Returns a reverse iterator to the end (public member function).</li>
+<li><code>empty</code>: Checks whether the container is empty (public member function).</li>
+<li><code>size</code>: Returns the number of elements (public member function).</li>
+<li><code>max_size</code>: Returns the maximum possible number of elements (public member function).</li>
+<li><code>shrink_to_fit</code> (<code>DR*</code>): Reduces memory usage by freeing unused memory (public member function).</li>
+<li><code>clear</code>: Clears the contents (public member function).</li>
+<li><code>insert</code>: Inserts elements (public member function).</li>
+<li><code>insert_range</code> (C++23): Inserts a range of elements (public member function).</li>
+<li><code>emplace</code>: Constructs elements in-place (public member function).</li>
+<li><code>erase</code>: Erases elements (public member function).</li>
+<li><code>push_back</code>: Adds an element to the end (public member function).</li>
+<li><code>emplace_back</code>: Constructs an element in-place at the end (public member function).</li>
+<li><code>append_range</code> (C++23): Adds a range of elements to the end (public member function).</li>
+<li><code>pop_back</code>: Removes the last element (public member function).</li>
+<li><code>push_front</code>: Inserts an element to the beginning (public member function).</li>
+<li><code>emplace_front</code>: Constructs an element in-place at the beginning (public member function).</li>
+<li><code>prepend_range</code> (C++23): Adds a range of elements to the beginning (public member function).</li>
+<li><code>pop_front</code>: Removes the first element (public member function).</li>
+<li><code>resize</code>: Changes the number of elements stored (public member function).</li>
+<li><code>swap</code>: Swaps the contents (public member function).</li>
+</ol>
+<h4 id="non-member-functions_3">Non-member Functions</h4>
+<ol>
+<li><code>operator==</code>, <code>operator!=/&lt;!--&lt;=/--&gt;/&gt;=</code> (removed in C++20), <code>operator&lt;=&gt;</code> (C++20): Lexicographically
+   compares the values of two deques (function template).</li>
+<li><code>std::swap( std::deque )</code>: Specializes the <code>std::swap</code> algorithm (function template).</li>
+<li><code>erase( std::deque )</code> (C++20), <code>erase_if( std::deque )</code> (C++20): Erases all elements satisfying
+   specific criteria (function template).</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

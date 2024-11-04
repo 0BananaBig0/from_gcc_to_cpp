@@ -1,0 +1,4 @@
+site_name: from_gcc_to_cpp
+nav:
+  - Home: FromGccToCPP.md
+  - Gcc: Gcc.md

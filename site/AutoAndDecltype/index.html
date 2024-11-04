@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>AutoAndDecltype - from_gcc_to_cpp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">from_gcc_to_cpp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../FromGccToCPP/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Gcc/" class="nav-link">Gcc</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#auto-and-decltype" class="nav-link">auto and decltype</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#auto-and-decltype"><code>auto</code> and <code>decltype</code></a></li>
+<li><a href="#auto"><code>auto</code></a><ul>
+<li><a href="#explanation">Explanation</a></li>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#notes">Notes</a></li>
+</ul>
+</li>
+<li><a href="#decltype"><code>decltype</code></a><ul>
+<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#syntax-1">Syntax</a></li>
+<li><a href="#usage-1">Usage</a></li>
+<li><a href="#notes-1">Notes</a></li>
+</ul>
+</li>
+</ul>
+<!-- vim-markdown-toc -->
+
+<h2 id="auto-and-decltype"><code>auto</code> and <code>decltype</code></h2>
+<h3 id="auto"><code>auto</code></h3>
+<h4 id="explanation">Explanation</h4>
+<ol>
+<li><code>auto</code> is <strong>a type specifier</strong> that allows the compiler to <strong>automatically deduce the type</strong> of
+   <strong>a variable from its initializer</strong> <strong>at compile time</strong>.</li>
+<li>This feature, introduced in C++11, is especially useful for <strong>simplifying complex type
+   declarations, avoiding redundancy, and making code more readable</strong>.</li>
+<li><code>auto</code> creates <strong>a copy of the original type</strong> unless specified otherwise (e.g., <code>auto&amp;</code> for
+   lvalue references).</li>
+<li>If the variable is initialized with <strong>a const value</strong>, <code>auto</code> <strong>deduces a non-const type</strong>.</li>
+<li>When the variable is initialized with <strong>an initializer list</strong>, <code>auto</code> deduces the type to be the
+   corresponding container type (e.g., <code>std::initializer_list</code>).</li>
+<li><code>auto</code> <strong>maintains type safety</strong> by ensuring that the deduced type matches the initializer.</li>
+</ol>
+<h4 id="syntax">Syntax</h4>
+<pre><code class="language-CPP">auto var_name = initializer;
+</code></pre>
+<h4 id="usage">Usage</h4>
+<ol>
+<li>Variable declarations: Declare variables without specifying their type.</li>
+<li>Simplifying complex types.</li>
+<li>Range-based for loops. For example, <code>for( auto var_name : object_name )</code>.</li>
+<li>Lambda expressions.</li>
+<li>Deduce a return type of a function.
+   <code>CPP
+   auto funcName( para_list ) {
+   };</code>
+   <code>CPP
+   auto funcName( para_list ) -&gt; RetType {
+   };</code></li>
+<li>Using <code>auto</code> with structured bindings. For example <code>for( auto [x, y] : object_pair_name )</code>.</li>
+<li><strong>Structured bindings</strong>, introduced in C++17, provide <strong>a way to unpack tuple-like objects</strong>
+     (such as <code>std::pair</code>, <code>std::tuple</code>, and user-defined types with <code>std::get</code>) into individual
+     named variables.</li>
+<li><a href="../Bindings/#structured-binding">Structured Binding</a></li>
+</ol>
+<h4 id="notes">Notes</h4>
+<ol>
+<li><code>auto</code> can deduce whether a reference is <code>const</code> based on the initializer variable. However, for
+   non-reference types, <code>auto</code> only deduces the type without adding <code>const</code>. Therefore, if you want
+   variables <strong>deduced with <code>auto</code> to be <code>const</code></strong>, you'd better <strong>explicitly specify <code>const</code></strong>.</li>
+<li><code>auto</code> can deduce whether a type is a pointer based on the initializer.
+   <code>auto var_name = ptr_name;</code> <code>&lt;=&gt;</code> <code>auto* var_name = ptr_name; \\ **Better**</code> However, if you use
+   <code>auto</code> to <strong>deduce a type with a pointer</strong> as the initializer, you'd better <strong>specify it
+   explicitly with a star ( <code>*</code> )</strong>.</li>
+<li><code>auto</code> <strong>cannot deduce</strong> whether a type is <strong>a reference</strong> based on the initializer. Therefore,
+   If you want the type to be deduced as a reference, <strong>specify it explicitly with <code>&amp;</code></strong>.
+   <code>auto &amp; var_name = ini_name;</code></li>
+<li>Specifically, if the initializer is <strong>a const char pointer</strong> or <strong>a const char array</strong> (such as a
+   string literal, "xxx"), auto deduces the variable to be <strong>a const char pointer</strong>.</li>
+<li>If you <strong>change the return types of your functions or APIs</strong>, <code>auto</code> can help us reduce the
+   amount of code that needs to be modified. However, the code will become less readable, and some
+   bugs may occur because the compiler will not tell us where changes are needed to adapt to these
+   new functions. Therefore, you should <strong>avoid using <code>auto</code> in this case</strong>.</li>
+<li><strong>Use <code>auto</code></strong> when working with <strong>an iterator</strong>, as it can make the code more readable.</li>
+<li>When calling a function whose <strong>return type has a long name</strong>, you can <strong>use <code>auto</code></strong> to make the
+   code more readable.</li>
+</ol>
+<h3 id="decltype"><code>decltype</code></h3>
+<h4 id="explanation_1">Explanation</h4>
+<ol>
+<li><code>decltype</code> is <strong>a keyword</strong> allows you to <strong>query the type of an expression</strong> at <strong>compile time</strong>
+   <strong>without evaluating it</strong>.</li>
+<li>This is particularly useful in <strong>template programming</strong> and situations where <strong>types are complex
+   or unknown</strong>.</li>
+<li><strong>The inference result</strong> is <strong>a reference type</strong> if the expression is <strong>an lvalue enclosed in
+   parentheses</strong>.</li>
+<li><strong>Otherwise</strong>, the inference result is <strong>the the actual type</strong> of the expression.</li>
+<li><code>decltype</code> does <strong>not evaluate the expression</strong>; it merely inspects it to determine the type.</li>
+<li>It ensures that the deduced type is consistent with the expression, aiding in <strong>type-safe code</strong>.</li>
+</ol>
+<h4 id="syntax_1">Syntax</h4>
+<pre><code class="language-CPP">decltype( expression )
+</code></pre>
+<h4 id="usage_1">Usage</h4>
+<ol>
+<li>Type deductions: Determine the type of a variable based on another variable.</li>
+<li>Type deduction in templates.</li>
+<li>Defining function pointers.</li>
+<li>Use <code>decltype</code> to deduce return types of functions:</li>
+<li>Using with <code>auto</code>.
+   <code>CPP
+   decltype( auto ) funcName( ... ) {
+   };</code></li>
+</ol>
+<h4 id="notes_1">Notes</h4>
+<ol>
+<li><strong>Use <code>decltype( expression )&amp;</code></strong> instead of <code>decltype( ( lvalue ) )</code>, or
+   <code>decltype( ( expression ) )&amp;</code> if you want to deduce a result as <strong>a reference type</strong>, even if the
+   expression is already a reference. Although these four expressions yield the same inference
+   result, the first option is preferred.</li>
+<li><strong>Add <code>const</code></strong> as a prefix to <code>decltype( expression )</code> if you want to <strong>deduce a result as a
+   const type</strong>, even if the expression is already a const type.</li>
+<li><strong>Use <code>decltype( expression )</code></strong> instead of <code>decltype( expression )*</code>,
+   <code>decltype( ( expression ) )</code>, or <code>decltype( ( expression ) )*</code> if the expression is <strong>a
+   pointer</strong>; the latter three do not yield the same inference result as the former.</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

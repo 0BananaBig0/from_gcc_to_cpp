@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>HidingOverloadingOverridingAndOverwriting - from_gcc_to_cpp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">from_gcc_to_cpp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../FromGccToCPP/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Gcc/" class="nav-link">Gcc</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#differences-between-hiding-overloading-overriding-and-overwriting">Differences Between Hiding, Overloading, Overriding, and Overwriting</a></li>
+<li><a href="#1-hiding-name-hiding">(1) Hiding (Name Hiding)</a><ul>
+<li><a href="#explanation">Explanation</a></li>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#how-to-access-hidden-function">How to Access Hidden Function</a></li>
+</ul>
+</li>
+<li><a href="#2-overloading">(2) Overloading</a><ul>
+<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#syntax-1">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#3-overriding">(3) Overriding</a><ul>
+<li><a href="#explanation-2">Explanation</a></li>
+<li><a href="#syntax-2">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#4-overwriting-not-a-c-term">(4) Overwriting (Not a C++ Term)</a><ul>
+<li><a href="#explanation-3">Explanation</a></li>
+<li><a href="#syntax-3">Syntax</a></li>
+</ul>
+</li>
+</ul>
+<!-- vim-markdown-toc -->
+
+<h3 id="differences-between-hiding-overloading-overriding-and-overwriting">Differences Between Hiding, Overloading, Overriding, and Overwriting</h3>
+<h4 id="1-hiding-name-hiding">(1) Hiding (Name Hiding)</h4>
+<h5 id="explanation">Explanation</h5>
+<ol>
+<li>Hiding occurs when <strong>a derived class</strong> declares a function (or variable) with <strong>the same name</strong>
+   as a function (or variable) in <strong>the base class</strong>, regardless of the parameters.</li>
+<li>The <strong>base class function</strong> is <strong>hidden</strong> in the derived class scope, <strong>even</strong> if the
+   <strong>signatures (parameter types) differ</strong>.</li>
+<li>This can lead to confusion or errors because the <strong>base class function</strong> is <strong>no longer
+   accessible directly</strong> from the derived class.</li>
+</ol>
+<h5 id="syntax">Syntax</h5>
+<pre><code class="language-CPP">class Base {
+   public:
+      RetType1 funcName( para_list1 ) {
+         ...;
+      };
+};
+
+class Derived: public Base {
+   public:
+      RetType2 funcName( para_list2 ) {
+         ...;
+      };
+};
+
+int main() {
+   Derived obj_name;
+   // Error: Base::funcName( para_list1 ) is hidden by Derived::funcName( para_list2 )
+   obj_name.show();
+};
+</code></pre>
+<h5 id="how-to-access-hidden-function">How to Access Hidden Function</h5>
+<pre><code class="language-CPP">   obj_name.Base::funcName( para_list1 );   // Calls Base class funcName( para_list1 )
+</code></pre>
+<h4 id="2-overloading">(2) Overloading</h4>
+<h5 id="explanation_1">Explanation</h5>
+<ol>
+<li>Overloading occurs when <strong>two or more functions</strong> in <strong>the same scope</strong> have <strong>the same name</strong>
+   but <strong>different parameter types or numbers of parameters</strong>.</li>
+<li>Additionally, if <strong>a keyword</strong> appears <strong>between</strong> the function <strong>parameters</strong> and the <strong>function
+   body</strong>, it can be used to create <strong>overloaded</strong> functions because their <strong>signatures</strong> are
+   <strong>different</strong>. For example, <strong>const functions and noexcept functions</strong>.</li>
+<li>However, <strong>the return type does not</strong> play a role in distinguishing overloaded functions.
+   Functions cannot be overloaded solely based on different return types. Overloading is resolved at
+   compile time (static polymorphism). C++ allows overloading based on the number of arguments,
+   their types, or both.</li>
+</ol>
+<h5 id="syntax_1">Syntax</h5>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      RetType1 funcName( para_list1 ) {
+         ...;
+      };
+
+      RetType1 funcName( para_list1 ) const {
+         ...;
+      };
+
+      RetType1 funcName( para_list1 ) noexcept {
+         ...;
+      };
+
+      RetType2 funcName( para_list2 ) {
+         ...;
+      };
+
+      RetType2 funcName( para_list3 ) {
+         ...;
+      };
+};
+</code></pre>
+<h4 id="3-overriding">(3) Overriding</h4>
+<h5 id="explanation_2">Explanation</h5>
+<ol>
+<li>Overriding occurs when <strong>a derived class</strong> provides <strong>its own implementation</strong> of <strong>a virtual
+   function ( or a pure virtual function )</strong> that is <strong>already defined</strong> in the base class.</li>
+<li>The function in the derived class must have <strong>the same signature</strong> as the base class's virtual
+   function. Overriding is resolved at runtime (<strong>dynamic polymorphism</strong>).</li>
+</ol>
+<h5 id="syntax_2">Syntax</h5>
+<pre><code class="language-CPP">class Base {
+   public:
+      virtual RetType funcName( para_list ) {};
+};
+
+class Derived: public Base {
+   public:
+      virtual RetType funcName( para_list ) override {   // This function overrides Base::funcName()
+      };
+};
+
+int main() {
+   Base* obj = new Derived();
+   obj-&gt;funcName( arg_list );   // Calls Derived class funcName (runtime polymorphism)
+};
+</code></pre>
+<h4 id="4-overwriting-not-a-c-term">(4) Overwriting (Not a C++ Term)</h4>
+<h5 id="explanation_3">Explanation</h5>
+<ol>
+<li>Overwriting is <strong>not a formal term in C++</strong>. However, it is sometimes colloquially used to
+   describe a situation where <strong>a function or variable in a derived class replaces or redefines a
+   function or variable from a base class</strong>. This serves as a general description rather than a
+   specific C++ concept. Additionally, the term "overwriting" typically refers to the process of
+   <strong>replacing an existing value in memory</strong>, which includes assigning a new value to an existing
+   variable to replace the old value and writing data to unintended memory locations, often
+   resulting in undefined behavior or memory corruption. This can occur in various contexts, such as
+   variables, function definitions, or data structures.</li>
+</ol>
+<h5 id="syntax_3">Syntax</h5>
+<pre><code class="language-CPP">class Base {
+   public:
+      Type _mem = initializer1;
+};
+
+class Derived: public Base {
+   public:
+      Type _mem = initializer2;   // Overwrites Base::_mem
+};
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

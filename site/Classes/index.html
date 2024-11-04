@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Classes - from_gcc_to_cpp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">from_gcc_to_cpp</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../FromGccToCPP/" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Gcc/" class="nav-link">Gcc</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#classes-class" class="nav-link">Classes (class)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<!-- vim-markdown-toc GFM -->
+
+<ul>
+<li><a href="#classes-class">Classes (<code>class</code>)</a></li>
+<li><a href="#explanation">Explanation</a></li>
+<li><a href="#visibility">Visibility</a></li>
+<li><a href="#declaration-syntax">Declaration Syntax</a></li>
+<li><a href="#definition-syntax">Definition Syntax</a></li>
+<li><a href="#common-objects">Common Objects</a><ul>
+<li><a href="#declaration-syntax-1">Declaration Syntax</a></li>
+<li><a href="#initialization-syntax">Initialization Syntax</a></li>
+<li><a href="#limitations-of-aggregate-initialization">Limitations of Aggregate Initialization</a></li>
+</ul>
+</li>
+<li><a href="#class-pointers">Class Pointers</a><ul>
+<li><a href="#declaration-syntax-2">Declaration Syntax</a></li>
+<li><a href="#definition-or-initialization-syntax">Definition or Initialization Syntax</a></li>
+</ul>
+</li>
+<li><a href="#class-references">Class References</a></li>
+<li><a href="#const-instance-of-classes"><code>const</code> Instance of Classes</a></li>
+<li><a href="#constexpr-instances-of-classes"><code>constexpr</code> Instances of Classes</a></li>
+<li><a href="#static-instances-of-classes"><code>static</code> Instances of Classes</a></li>
+<li><a href="#anonymous-classes">Anonymous Classes</a><ul>
+<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#syntax">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#member-variables">Member Variables</a><ul>
+<li><a href="#explanation-2">Explanation</a></li>
+<li><a href="#syntax-1">Syntax</a></li>
+<li><a href="#this"><code>this</code></a></li>
+<li><a href="#explanation-3">Explanation</a></li>
+<li><a href="#syntax-2">Syntax</a></li>
+<li><a href="#const-member-variables"><code>const</code> Member Variables</a></li>
+<li><a href="#constexpr-member-variables"><code>constexpr</code> Member Variables</a></li>
+<li><a href="#static-member-variables"><code>static</code> Member Variables</a></li>
+<li><a href="#mutable-member-variables"><code>mutable</code> Member Variables</a></li>
+<li><a href="#explanation-4">Explanation</a></li>
+<li><a href="#syntax-3">Syntax</a></li>
+<li><a href="#pointer-member-variables">Pointer Member Variables</a></li>
+<li><a href="#explanation-5">Explanation</a></li>
+<li><a href="#syntax-4">Syntax</a></li>
+<li><a href="#reference-member-variables">Reference Member Variables</a></li>
+<li><a href="#explanation-6">Explanation</a></li>
+<li><a href="#syntax-5">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#methods">Methods</a><ul>
+<li><a href="#explanation-7">Explanation</a></li>
+<li><a href="#syntax-6">Syntax</a></li>
+<li><a href="#const-methods-const-member-functions"><code>const</code> Methods (<code>const</code> Member Functions)</a></li>
+<li><a href="#constexpr-methods-constexprt-member-functions"><code>constexpr</code> Methods (<code>constexprt</code> Member Functions)</a></li>
+<li><a href="#static-methods-static-member-functions"><code>static</code> Methods (<code>static</code> Member Functions)</a></li>
+<li><a href="#virtual-methods-virtual-functions-virtual-memeber-functions"><code>virtual</code> Methods (<code>virtual</code> Functions) (<code>virtual</code> Memeber Functions)</a></li>
+<li><a href="#pure-virtual-functions-and-abstract-class">Pure <code>virtual</code> Functions and Abstract Class</a></li>
+<li><a href="#override-methods"><code>override</code> Methods</a></li>
+<li><a href="#explanation-8">Explanation</a></li>
+<li><a href="#syntax-7">Syntax</a></li>
+<li><a href="#notes">Notes</a></li>
+</ul>
+</li>
+<li><a href="#constructors">Constructors</a><ul>
+<li><a href="#explanation-9">Explanation</a></li>
+<li><a href="#syntax-8">Syntax</a></li>
+<li><a href="#defalut-constructors-and-default-constructors">Defalut Constructors and <code>default</code> Constructors</a></li>
+<li><a href="#explanation-10">Explanation</a></li>
+<li><a href="#syntax-9">Syntax</a></li>
+<li><a href="#parameterized-constructors">Parameterized Constructors</a></li>
+<li><a href="#explanation-11">Explanation</a></li>
+<li><a href="#syntax-10">Syntax</a></li>
+<li><a href="#constructor-initializer-lists">Constructor Initializer Lists</a></li>
+<li><a href="#explanation-12">Explanation</a></li>
+<li><a href="#syntax-11">Syntax</a></li>
+<li><a href="#notes-1">Notes</a></li>
+<li><a href="#copy-constructors">Copy Constructors</a></li>
+<li><a href="#explanation-13">Explanation</a></li>
+<li><a href="#default-copy--default---avoid---double-destructions-">Default Copy ( <code>default</code> ) ( Avoid ) ( Double Destructions )</a><ul>
+<li><a href="#explanation-14">Explanation</a></li>
+<li><a href="#syntax-12">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#shallow-copy--eg-memcpy---avoid---double-destructions-">Shallow Copy ( e.g. <code>memcpy</code> ) ( Avoid ) ( Double Destructions )</a><ul>
+<li><a href="#explanation-15">Explanation</a></li>
+<li><a href="#syntax-13">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#deep-copy--recommend-">Deep Copy ( Recommend )</a><ul>
+<li><a href="#explanation-16">Explanation</a></li>
+<li><a href="#syntax-14">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#move-constructors">Move Constructors</a></li>
+<li><a href="#explanation-17">Explanation</a></li>
+<li><a href="#default-move-constructors">Default Move Constructors</a><ul>
+<li><a href="#explanation-18">Explanation</a></li>
+<li><a href="#syntax-15">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#custom-move-constructor">Custom Move Constructor</a><ul>
+<li><a href="#explanation-19">Explanation</a></li>
+<li><a href="#syntax-16">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#conversion-constructors">Conversion Constructors</a></li>
+<li><a href="#explanation-20">Explanation</a></li>
+<li><a href="#syntax-17">Syntax</a></li>
+<li><a href="#virtual-constructors"><code>virtual</code> Constructors</a></li>
+<li><a href="#explicit-constructors"><code>explicit</code> Constructors</a></li>
+</ul>
+</li>
+<li><a href="#destructors">Destructors</a><ul>
+<li><a href="#explanation-21">Explanation</a></li>
+<li><a href="#syntax-18">Syntax</a></li>
+<li><a href="#default-destructors">Default Destructors</a></li>
+<li><a href="#explanation-22">Explanation</a></li>
+<li><a href="#syntax-19">Syntax</a></li>
+<li><a href="#virtual-destructors"><code>virtual</code> Destructors</a></li>
+</ul>
+</li>
+<li><a href="#operator-overloading">Operator Overloading</a><ul>
+<li><a href="#copy-assignment-operator">Copy-assignment Operator</a></li>
+<li><a href="#move-assignment-operator">Move-assignment Operator</a></li>
+<li><a href="#conversion-operator">Conversion Operator</a></li>
+<li><a href="#explicit-conversion-operator"><code>explicit</code> Conversion Operator</a></li>
+</ul>
+</li>
+<li><a href="#how-to-determine-which-constructor-or-assignment-operator-is-invoked">How to Determine Which Constructor or Assignment Operator Is Invoked</a></li>
+<li><a href="#inheritance">Inheritance</a><ul>
+<li><a href="#explanation-23">Explanation</a></li>
+<li><a href="#definition-syntax-1">Definition Syntax</a></li>
+<li><a href="#code">Code</a></li>
+<li><a href="#categories">Categories</a></li>
+<li><a href="#initialization-syntax-1">Initialization Syntax</a></li>
+<li><a href="#code-1">Code</a></li>
+<li><a href="#explanation-24">Explanation</a></li>
+<li><a href="#construction-order">Construction Order</a></li>
+<li><a href="#destruction-order">Destruction Order</a></li>
+<li><a href="#virtual-inheritance"><code>virtual</code> Inheritance</a></li>
+</ul>
+</li>
+<li><a href="#virtual"><code>virtual</code></a><ul>
+<li><a href="#explanation-25">Explanation</a></li>
+<li><a href="#virtual-methods-virtual-functions-virtual-memeber-functions-1"><code>virtual</code> Methods (<code>virtual</code> Functions) (<code>virtual</code> Memeber Functions)</a></li>
+<li><a href="#explanation-26">Explanation</a></li>
+<li><a href="#syntax-20">Syntax</a></li>
+<li><a href="#static-binding-and-dynamic-binding">Static Binding and Dynamic Binding</a></li>
+<li><a href="#polymorphism-and-problems">Polymorphism and Problems</a></li>
+<li><a href="#notes-2">Notes</a></li>
+<li><a href="#pure-virtual-functions-and-abstract-class-1">Pure <code>virtual</code> Functions and Abstract Class</a></li>
+<li><a href="#explanation-27">Explanation</a></li>
+<li><a href="#syntax-21">Syntax</a></li>
+<li><a href="#virtual-destructors-1"><code>virtual</code> Destructors</a></li>
+<li><a href="#explanation-28">Explanation</a></li>
+<li><a href="#syntax-22">Syntax</a></li>
+<li><a href="#notes-3">Notes</a></li>
+<li><a href="#virtual-inheritance-1"><code>virtual</code> Inheritance</a></li>
+<li><a href="#explanation-29">Explanation</a></li>
+<li><a href="#definition-syntax-2">Definition Syntax</a></li>
+<li><a href="#initialization-syntax-2">Initialization Syntax</a></li>
+<li><a href="#construction-order-1">Construction Order</a></li>
+<li><a href="#destruction-order-1">Destruction Order</a></li>
+</ul>
+</li>
+<li><a href="#friend"><code>friend</code></a><ul>
+<li><a href="#explanation-30">Explanation</a></li>
+<li><a href="#friend-functions"><code>friend</code> Functions</a></li>
+<li><a href="#explanation-31">Explanation</a></li>
+<li><a href="#syntax-23">Syntax</a></li>
+<li><a href="#friend-classes"><code>friend</code> Classes</a></li>
+<li><a href="#explanation-32">Explanation</a></li>
+<li><a href="#syntax-24">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#final"><code>final</code></a><ul>
+<li><a href="#explanation-33">Explanation</a></li>
+<li><a href="#final-functions"><code>final</code> Functions</a></li>
+<li><a href="#explanation-34">Explanation</a></li>
+<li><a href="#syntax-25">Syntax</a></li>
+<li><a href="#final-classes"><code>final</code> Classes</a></li>
+<li><a href="#explanation-35">Explanation</a></li>
+<li><a href="#syntax-26">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#explicit"><code>explicit</code></a></li>
+<li><a href="#using"><code>using</code></a></li>
+</ul>
+<!-- vim-markdown-toc -->
+
+<h2 id="classes-class">Classes (<code>class</code>)</h2>
+<h3 id="explanation">Explanation</h3>
+<ol>
+<li>A class is <strong>a user-defined type</strong> that serves as a blueprint for creating objects.</li>
+<li>It <strong>encapsulates data members (variables) and member functions (methods)</strong> that operate on these
+   data.</li>
+<li>A class provides a way to group related behaviors and attributes into a cohesive unit, promoting
+   data abstraction and encapsulation.</li>
+<li>A class helps enforce encapsulation by limiting access to internal details and exposing only the
+   necessary functionalities, <strong>making code more modular, reusable</strong>, and <strong>easier to maintain</strong>.</li>
+<li>An <strong>empty object</strong> occupy <strong>at least one byte</strong> memory. Creating an object on the stack is
+   faster than on the heap.</li>
+<li><strong>Structures( Stored as the class ) + Functions( Stored outside of the class ) = Classes</strong>.</li>
+</ol>
+<h3 id="visibility">Visibility</h3>
+<ol>
+<li>The visibility makes code more readable, <strong>not affect the performance</strong>.</li>
+<li><code>private</code>( <strong>default visibility</strong> ): The owner class, friend class.</li>
+<li><code>protected</code>: The owner class, friend class, sub-class.</li>
+<li><code>public</code>: All.</li>
+</ol>
+<h3 id="declaration-syntax">Declaration Syntax</h3>
+<pre><code class="language-CPP">class ClassName;
+</code></pre>
+<h3 id="definition-syntax">Definition Syntax</h3>
+<pre><code class="language-CPP">class ClassName {
+   ...
+};
+</code></pre>
+<h3 id="common-objects">Common Objects</h3>
+<h4 id="declaration-syntax_1">Declaration Syntax</h4>
+<pre><code class="language-CPP">ClassName obj_name;
+</code></pre>
+<h4 id="initialization-syntax">Initialization Syntax</h4>
+<pre><code class="language-CPP">// Default constructor.
+ClassName obj_name;
+</code></pre>
+<pre><code class="language-CPP">// Parameterized constructor.
+ClassName obj_name( para_list );
+</code></pre>
+<pre><code class="language-CPP">// Parameterized constructor.
+ClassName obj_name1( para_list );
+// Copy constructor.
+ClassName obj_name2( obj_name1 );
+</code></pre>
+<pre><code class="language-CPP">// Not Recommend, although the compiler may optimize it so that only one constructor is called.
+// First, Parameterized constructor.
+// Second, Copy constructor.
+ClassName obj_name = ClassName( para_list );
+</code></pre>
+<pre><code class="language-CPP">// Parameterized constructor.
+ClassName obj_name1( para_list );
+// Move constructor.
+ClassName obj_name2( std::move( obj_name1 ) );
+</code></pre>
+<pre><code class="language-CPP">// Parameterized constructor.
+ClassName obj_name1( para_list );
+// Move constructor.
+ClassName obj_name2 = std::move( obj_name1 );
+</code></pre>
+<pre><code class="language-CPP">// Conversion construcotr, implicit conversion.
+ClassName obj_name = initializer;
+</code></pre>
+<pre><code class="language-CPP">// Without related parameterized constructors and all members are public, aggregate initialization.
+// With related parameterized constructors, Parameterized constructor or uniform initialization or brace initialization.
+ClassName obj_name{ para_list };
+</code></pre>
+<pre><code class="language-CPP">// Aggregate initialization.
+ClassName obj_name = { para_list };
+</code></pre>
+<pre><code class="language-CPP">// When defining a class, assigning default values to its members.
+class ClassName {
+   private:
+      Type _mem1 = initializer1;
+      ...;
+};
+</code></pre>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Move constructor definition.
+      ...;
+
+      // Factory methods for initialization.
+      static ClassName createClassName() {
+         return std::move(
+            ClassName( para_list );   // Parameterized constructor.
+      };
+
+      ...;
+};
+
+// First, create a temporary object with the parameterized constructor in the createClassName.
+// Second, create `obj_name` with the move constructor.
+ClassName obj_name = ClassName::createClassName();
+</code></pre>
+<h4 id="limitations-of-aggregate-initialization">Limitations of Aggregate Initialization</h4>
+<ol>
+<li><strong>No user-defined constructors</strong>: Aggregate initialization is only applicable to aggregate types
+   that lack user-defined constructors. If a class has any constructor defined, aggregate
+   initialization cannot be used.</li>
+<li><strong>Public members only</strong>: Only public members can be initialized via aggregate initialization.
+   Private or protected members cannot be accessed.</li>
+<li><strong>No default member initializers</strong>: Default member initializers in aggregates are ignored during
+   aggregate initialization, meaning you must explicitly specify values for all members.</li>
+<li><strong>Order of initialization</strong>: Members are initialized in the order they are declared. This can
+   lead to issues if one member relies on another being initialized first.</li>
+<li><strong>No designated initializers</strong>: C++ does not support designated initializers (as in C99),
+   preventing the ability to initialize specific members without initializing all preceding members.</li>
+<li><strong>Type matching</strong>: The types in the initializer list must match the types of the aggregate's
+   members exactly. A mismatch results in a compilation error.</li>
+<li><strong>No implicit conversions</strong>: Aggregate initialization does not allow implicit type conversions,
+   which can limit flexibility.</li>
+<li><strong>No inheritance</strong>: Aggregate initialization is not applicable for derived classes, limiting its
+   use in inheritance scenarios.</li>
+</ol>
+<h3 id="class-pointers">Class Pointers</h3>
+<h4 id="declaration-syntax_2">Declaration Syntax</h4>
+<pre><code class="language-CPP">ClassName* obj_ptr;
+</code></pre>
+<h4 id="definition-or-initialization-syntax">Definition or Initialization Syntax</h4>
+<pre><code class="language-CPP">// Default constructor.
+ClassName* obj_ptr = new ClassName;
+</code></pre>
+<pre><code class="language-CPP">// Parameterized constructor.
+ClassName* obj_ptr = new ClassName( para_list );
+</code></pre>
+<pre><code class="language-CPP">// Default constructor.
+ClassName obj_name;
+ClassName* obj_ptr = &amp;obj_name;
+</code></pre>
+<h3 id="class-references">Class References</h3>
+<pre><code class="language-CPP">// Default constructor.
+ClassName obj_name;
+ClassName&amp; obj_ref = &amp;obj_name;
+</code></pre>
+<h3 id="const-instance-of-classes"><code>const</code> Instance of Classes</h3>
+<ol>
+<li><a href="../ConstConstexprAndStatic/#const-instances-of-classes"><code>const</code> Instance of Classes</a></li>
+</ol>
+<h3 id="constexpr-instances-of-classes"><code>constexpr</code> Instances of Classes</h3>
+<ol>
+<li><a href="../ConstConstexprAndStatic/#constexpr-instances-of-classes"><code>constexpr</code> Instances of Classes</a></li>
+</ol>
+<h3 id="static-instances-of-classes"><code>static</code> Instances of Classes</h3>
+<ol>
+<li><a href="../ConstConstexprAndStatic/#static-instances-of-classes"><code>static</code> Instances of Classes</a></li>
+</ol>
+<h3 id="anonymous-classes">Anonymous Classes</h3>
+<h4 id="explanation_1">Explanation</h4>
+<ol>
+<li>An anonymous class (also known as an <strong>unnamed class</strong>) is <strong>a class</strong> that is <strong>defined inline
+   without a name</strong>.</li>
+<li>These classes are typically used for <strong>creating objects on the fly</strong> or <strong>as part of data
+   structures</strong> without the need to define a separate named class</li>
+</ol>
+<h4 id="syntax">Syntax</h4>
+<pre><code class="language-CPP">class {
+  ...
+} obj_name;
+</code></pre>
+<pre><code class="language-CPP">// In this case, members should all be public.
+class {
+  ...
+} obj_name{ para_list };
+</code></pre>
+<h3 id="member-variables">Member Variables</h3>
+<h4 id="explanation_2">Explanation</h4>
+<ol>
+<li>Member variables, also known as <strong>instance variables or fields</strong>, are <strong>attributes of a class</strong>
+   that hold data specific to the instances (objects) of that class. They define the state of an
+   object.</li>
+<li>Member variables <strong>can be assigned default values</strong> <strong>when</strong> they are <strong>defined</strong>.</li>
+</ol>
+<h4 id="syntax_1">Syntax</h4>
+<pre><code class="language-CPP">class ClassName {
+   private:
+      Type _mem;   // Declaration or definition of a member variable.
+};
+</code></pre>
+<h4 id="this"><code>this</code></h4>
+<h5 id="explanation_3">Explanation</h5>
+<ol>
+<li><code>this</code> is <strong>a pointer available</strong> within a class's member function that points to the object that
+   invoked the member function. It allows access to the calling object's members.</li>
+<li><code>this</code> is <strong>implicitly passed</strong> to all <strong>non-static</strong> member <strong>functions</strong>.</li>
+<li>It can be useful for <strong>disambiguation</strong> when member variables and parameters have the same name.</li>
+<li>It is <strong>not available in static member functions</strong> as there is no associated object.</li>
+</ol>
+<h5 id="syntax_2">Syntax</h5>
+<pre><code class="language-CPP">this-&gt;_mem;
+// (*this)._mem;
+</code></pre>
+<h4 id="const-member-variables"><code>const</code> Member Variables</h4>
+<ol>
+<li><a href="../ConstConstexprAndStatic/#const-member-variables"><code>const</code> Member Variables</a></li>
+</ol>
+<h4 id="constexpr-member-variables"><code>constexpr</code> Member Variables</h4>
+<ol>
+<li><a href="../ConstConstexprAndStatic/#constexpr-member-variables"><code>constexpr</code> Member Variables</a></li>
+</ol>
+<h4 id="static-member-variables"><code>static</code> Member Variables</h4>
+<ol>
+<li><a href="../ConstConstexprAndStatic/#static-member-variables"><code>static</code> Member Variables</a></li>
+</ol>
+<h4 id="mutable-member-variables"><code>mutable</code> Member Variables</h4>
+<h5 id="explanation_4">Explanation</h5>
+<ol>
+<li><code>mutable</code> member variables <strong>can be modified</strong> even in <strong>const member functions</strong>.</li>
+<li>This allows certain aspects of an object to change while keeping its overall state constant.</li>
+<li>Generally, they are used <strong>for caching or lazy evaluation purposes</strong>.</li>
+<li>They <strong>break the const-correctness</strong> for that particular member variable.</li>
+<li>In 90% of cases, the <code>mutable</code> keyword will be used in a class with the <code>const</code> keyword.</li>
+</ol>
+<h5 id="syntax_3">Syntax</h5>
+<pre><code class="language-CPP">class ClassName {
+   private:
+      mutable Type _mem;   // Declaration or definition of a member variable.
+};
+</code></pre>
+<h4 id="pointer-member-variables">Pointer Member Variables</h4>
+<h5 id="explanation_5">Explanation</h5>
+<ol>
+<li>Pointer member variables <strong>hold memory addresses</strong> of instances or other data types.</li>
+<li>They allow <strong>dynamic memory management and manipulation</strong> of resources.</li>
+</ol>
+<h5 id="syntax_4">Syntax</h5>
+<pre><code class="language-CPP">class ClassName {
+   private:
+      Type* _mem_ptr;   // Declaration or definition of a member pointer.
+};
+</code></pre>
+<h4 id="reference-member-variables">Reference Member Variables</h4>
+<h5 id="explanation_6">Explanation</h5>
+<ol>
+<li>Reference member variables are <strong>alternatives to pointers</strong> that <strong>refer to existing objects</strong>.
+   They <strong>cannot be reassigned</strong> once established.</li>
+<li>Theyt must be <strong>initialized when defined</strong> and <strong>cannot be null</strong>.</li>
+<li>There are <strong>only two way to initialize</strong> a const reference:</li>
+<li><strong>In-Class Initialization</strong>: It can be <strong>overridden</strong> by the constructor.</li>
+<li><strong>Constructor Initialization</strong>.</li>
+</ol>
+<h5 id="syntax_5">Syntax</h5>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Initialization through constructor
+      explicit ClassName( Type&amp; ref ): _memRef( ref ) {};
+
+   private:
+      Type _mem;
+      // In-Class Initialization
+      Type&amp; _memRef = _mem;
+};
+</code></pre>
+<h3 id="methods">Methods</h3>
+<h4 id="explanation_7">Explanation</h4>
+<ol>
+<li>A method in C++ is <strong>a function</strong> that belongs to a class or struct.</li>
+<li>It is used to perform operations or manipulate the data members (attributes) of that class.</li>
+<li>Methods encapsulate behavior specific to an object of the class.</li>
+<li>Methods <strong>can be overloaded</strong> by defining multiple versions with different parameter types.</li>
+<li>Methods <strong>defined inside</strong> the class are <strong>automatically considered inline</strong>, improving
+   performance by reducing function call overhead.</li>
+</ol>
+<h4 id="syntax_6">Syntax</h4>
+<pre><code class="language-CPP">// Declared and defined inside the class.
+class ClassName {
+   public:
+      RetType funcName( para_list ) { ... };
+};
+</code></pre>
+<pre><code class="language-CPP">// Declared inside the class.
+class ClassName {
+   public:
+      RetType funcName( para_list ) { ... };
+};
+
+// Defined outside the class.
+RetType ClassName::funcName( para_list ) { ... };
+</code></pre>
+<h4 id="const-methods-const-member-functions"><code>const</code> Methods (<code>const</code> Member Functions)</h4>
+<ol>
+<li><a href="../ConstConstexprAndStatic/#const-methods-const-member-functions"><code>const</code> Methods (<code>const</code> Member Functions)</a></li>
+</ol>
+<h4 id="constexpr-methods-constexprt-member-functions"><code>constexpr</code> Methods (<code>constexprt</code> Member Functions)</h4>
+<ol>
+<li><a href="../ConstConstexprAndStatic/#constexpr-functions-constexpr-return-values"><code>constexpr</code> Functions (<code>constexpr</code> Return Values)</a></li>
+</ol>
+<h4 id="static-methods-static-member-functions"><code>static</code> Methods (<code>static</code> Member Functions)</h4>
+<ol>
+<li><a href="../ConstConstexprAndStatic/#static-methods-static-member-functions"><code>static</code> Methods (<code>static</code> Member Functions)</a></li>
+</ol>
+<h4 id="virtual-methods-virtual-functions-virtual-memeber-functions"><code>virtual</code> Methods (<code>virtual</code> Functions) (<code>virtual</code> Memeber Functions)</h4>
+<ol>
+<li><a href="#virtual-methods-virtual-functions-virtual-memeber-functions-1"><code>virtual</code> Methods (<code>virtual</code> Functions) (<code>virtual</code> Memeber Functions)</a></li>
+</ol>
+<h4 id="pure-virtual-functions-and-abstract-class">Pure <code>virtual</code> Functions and Abstract Class</h4>
+<ol>
+<li><a href="#pure-virtual-functions-and-abstract-class-1">Pure <code>virtual</code> Functions and Abstract Class</a></li>
+</ol>
+<h4 id="override-methods"><code>override</code> Methods</h4>
+<h5 id="explanation_8">Explanation</h5>
+<ol>
+<li><code>override</code> is <strong>a keyword</strong> used to <strong>explicitly</strong> indicate that <strong>a method in a derived class</strong>
+   is meant to <strong>override</strong> <strong>a <code>virtual</code> method in the base class</strong>.</li>
+<li>It <strong>ensures</strong> that the <strong>method signature</strong> in the derived class <strong>matches</strong> a <code>virtual</code> method
+   in the base class. If the method signature does <strong>not match</strong>, the compiler will generate an
+   <strong>error</strong>, which helps <strong>prevent subtle bugs</strong> caused by accidental method hiding.</li>
+</ol>
+<h5 id="syntax_7">Syntax</h5>
+<pre><code class="language-CPP">class Base {
+   public:
+      virtual RetType funcName( para_list ){
+         // `virtual` method in base class
+      };
+};
+
+class Derived: public Base {
+   public:
+      RetType funcName( para_list ) override{
+         // Override the base class method
+      };
+};
+</code></pre>
+<h5 id="notes">Notes</h5>
+<ol>
+<li>You should <strong>always use the override keyword when overriding functions</strong> in a derived class, as
+   it helps prevent errors.</li>
+</ol>
+<h3 id="constructors">Constructors</h3>
+<h5 id="explanation_9">Explanation</h5>
+<ol>
+<li>Constructors are <strong>special member functions</strong> of a class that are <strong>automatically called when an
+   object</strong> of that class is <strong>created</strong>.</li>
+<li>They are used to <strong>initialize</strong> the object's properties and <strong>set up</strong> any necessary resources.</li>
+</ol>
+<h5 id="syntax_8">Syntax</h5>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      ClassName( para_list ){
+      };
+};
+</code></pre>
+<h4 id="defalut-constructors-and-default-constructors">Defalut Constructors and <code>default</code> Constructors</h4>
+<h5 id="explanation_10">Explanation</h5>
+<ol>
+<li>A default constructor is <strong>a constructor</strong> with <strong>no parameters</strong> or with <strong>all parameters having
+   default values</strong>.</li>
+<li>It is <strong>called</strong> when an object is <strong>instantiated without any arguments</strong>. It initializes data
+   members to their default values (<strong>primitive types remain uninitialized</strong>).</li>
+<li>If <strong>no other constructors</strong> are defined, the <strong>compiler provides</strong> a default constructor.</li>
+<li>The <code>= default</code> syntax <strong>explicitly requests</strong> the compiler to generate <strong>the default
+   constructor</strong>.</li>
+</ol>
+<h5 id="syntax_9">Syntax</h5>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // If no other constructors are defined,
+      // this default constructor is provided by the compiler.
+      ClassName(){};
+};
+</code></pre>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Default constructor.
+      ClassName(){ ... };
+};
+</code></pre>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Default constructor.
+      ClassName() = default;
+      // Default constructor.
+      // Parameterized constructor.
+      ClassName( parameters with default values ){
+      };
+};
+</code></pre>
+<h4 id="parameterized-constructors">Parameterized Constructors</h4>
+<h5 id="explanation_11">Explanation</h5>
+<ol>
+<li>A parameterized constructor is a type of <strong>constructor</strong> in a class that allows you to
+   <strong>initialize an object with specific values</strong> upon creation.</li>
+<li>Unlike a default constructor (which takes no arguments), a parameterized constructor <strong>accepts
+   one or more arguments</strong> that enable you to set the initial state of an object with specific
+   values.</li>
+<li>It is <strong>called</strong> when an object is <strong>instantiated with specific arguments</strong>.</li>
+</ol>
+<h5 id="syntax_10">Syntax</h5>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Parameterized constructor.
+      ClassName( para_list ){
+      };
+};
+</code></pre>
+<h4 id="constructor-initializer-lists">Constructor Initializer Lists</h4>
+<h5 id="explanation_12">Explanation</h5>
+<ol>
+<li>Constructor initializer lists are used to <strong>initialize member variables</strong> of a class in the
+   constructor's initialization phase before the body of the constructor executes.</li>
+<li>Member variables are <strong>initialized in the order they are declared</strong> in the class, <strong>not the order
+   they appear in the initializer list</strong>.</li>
+<li>Using initializer lists can be more <strong>efficient</strong>, as it allows <strong>direct initialization</strong> of the
+   member variables, <strong>avoiding unnecessary default construction</strong> followed by assignment.</li>
+<li>An initializer list is <strong>required</strong> to <strong>initialize <code>const</code> and reference members</strong>, as they
+   cannot be assigned after construction.</li>
+<li>If members are <strong>initialized in</strong> the constructor's <strong>body</strong>, those members are first
+   default-initialized before being assigned, which can lead to <strong>additional overhead</strong> compared to
+   direct initialization in the initializer list.</li>
+</ol>
+<h5 id="syntax_11">Syntax</h5>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      ClassName( Type1 para1, Type2 para2, ... ):
+         _mem1( para1 ), _mem2( para2 ), ...{};
+
+   private:
+      Type1 _mem1;
+      Type2 _mem2;
+      ...;
+};
+</code></pre>
+<h5 id="notes_1">Notes</h5>
+<ol>
+<li>In the constructor initializer list, you'd better initialize the members in the order in which
+   they are defined in the class.</li>
+<li>If a class has <strong>a class or struct member</strong>, we should <strong>use the constructor initializer</strong> to
+   initialize the class or struct member; <strong>otherwise</strong>, the <strong>initialization</strong> will call the
+   object's constructors <strong>twice</strong>: first the default constructor, and then the other constructor.</li>
+</ol>
+<h4 id="copy-constructors">Copy Constructors</h4>
+<h5 id="explanation_13">Explanation</h5>
+<ol>
+<li>A copy constructor is <strong>a special constructor</strong> that <strong>initializes a new object as a copy of an
+   existing object</strong>.</li>
+<li>This is essential for managing resource ownership and ensuring that objects behave properly when
+   passed, returned, or assigned.</li>
+</ol>
+<h5 id="default-copy-default-avoid-double-destructions">Default Copy ( <code>default</code> ) ( Avoid ) ( Double Destructions )</h5>
+<h6 id="explanation_14">Explanation</h6>
+<ol>
+<li>A default copy constructor is <strong>automatically generated</strong> by the compiler if <strong>no user-defined
+   copy constructor</strong> is present.</li>
+<li>It performs <strong>a shallow copy</strong> of the object's members.</li>
+<li>For primitive types, this is a straightforward copy, but <strong>for pointer members</strong>, both the
+   original and copied objects will <strong>reference the same memory</strong>.</li>
+<li>This can lead to issues such as:</li>
+<li><strong>Double destructions</strong>: When <strong>both objects</strong> are <strong>destroyed</strong>, they attempt to <strong>free the
+     same memory location</strong>, resulting in <strong>undefined behavior</strong>.</li>
+<li><strong>Dangling pointers</strong>: When <strong>one object</strong> is <strong>deleted</strong>, the other <strong>retains a pointer to the
+     deallocated memory</strong>, leading to <strong>program crashes if accessed</strong>.</li>
+<li>The copy is <strong>performed quickly</strong> since it merely copies the pointer (for pointer types) rather
+   than the pointed-to values.</li>
+<li>The default copy constructor is <strong>typically marked as noexcept</strong>, improving performance by
+   ensuring compatibility with standard containers, such as <code>std::vector</code>.</li>
+<li>The <code>= default</code> syntax <strong>explicitly requests</strong> the compiler to generate the <strong>default copy
+   constructor</strong>.</li>
+</ol>
+<h6 id="syntax_12">Syntax</h6>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Compiler-generated default copy constructor.
+};
+</code></pre>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Default copy constructor.
+      ClassName( const ClassName&amp; ) = default;
+};
+</code></pre>
+<h5 id="shallow-copy-eg-memcpy-avoid-double-destructions">Shallow Copy ( e.g. <code>memcpy</code> ) ( Avoid ) ( Double Destructions )</h5>
+<h6 id="explanation_15">Explanation</h6>
+<ol>
+<li>A shallow copy occurs when the copy constructor <strong>simply copies the pointer values</strong> instead of
+   the data they point to.</li>
+<li>This can lead to <strong>multiple instances</strong> trying to <strong>manage the same resource</strong>.</li>
+<li>This can lead to issues such as:</li>
+<li><strong>Double destructions</strong>: When <strong>both objects</strong> are <strong>destroyed</strong>, they attempt to <strong>free the
+     same memory location</strong>, resulting in <strong>undefined behavior</strong>.</li>
+<li><strong>Dangling pointers</strong>: When <strong>one object</strong> is <strong>deleted</strong>, the other <strong>retains a pointer to the
+     deallocated memory</strong>, leading to <strong>program crashes if accessed</strong>.</li>
+<li>The copy is <strong>performed quickly</strong> since it merely copies the pointer (for pointer types) rather
+   than the pointed-to values.</li>
+</ol>
+<h6 id="syntax_13">Syntax</h6>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      Type* _mem_ptr;
+
+      // Shallow copy constructor.
+      ClassName( const ClassName&amp; other ) {
+         _mem_ptr = other._mem_ptr;
+         ...;
+      };
+
+      // Destructor.
+      ~ClassName() {
+         // Free allocated memory: Error, double destruction.
+         delete _mem_ptr;
+         ...;
+      };
+};
+</code></pre>
+<h5 id="deep-copy-recommend">Deep Copy ( Recommend )</h5>
+<h6 id="explanation_16">Explanation</h6>
+<ol>
+<li>A deep copy <strong>ensures</strong> that the copy constructor <strong>creates a new instance</strong> of any dynamically
+   allocated memory, so that two objects do <strong>not reference the same location</strong>.</li>
+<li>This <strong>prevents</strong> <strong>double deletion</strong> and <strong>dangling pointer</strong> issues, as each object manages its
+   own memory independently.</li>
+<li>Although <strong>slower than shallow copying</strong> due to memory allocation, deep copying is generally much
+   <strong>safer</strong>, particularly for complex data structures.</li>
+<li>When implementing a copy constructor, it is also <strong>recommended</strong> to <strong>implement a corresponding
+   copy assignment operator</strong> to maintain consistent behavior and proper resource management.</li>
+</ol>
+<h6 id="syntax_14">Syntax</h6>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      Type* _mem_ptr;
+
+      // Deep copy constructor.
+      ClassName( const ClassName&amp; other ) {
+         _mem_ptr = new Type( *other._mem_ptr );
+         ...;
+      };
+
+      // Destructor
+      ~ClassName() {
+         // Free allocated memory.
+         delete _mem_ptr;
+         ...;
+      };
+</code></pre>
+<h4 id="move-constructors">Move Constructors</h4>
+<h5 id="explanation_17">Explanation</h5>
+<ol>
+<li>A move constructor is <strong>a constructor</strong> that <strong>transfers resources from one object to another</strong>,
+   rather than performing a deep copy.</li>
+<li>This enables <strong>efficient</strong> handling of temporary objects and <strong>avoids unnecessary data copying</strong>.</li>
+<li>It is <strong>ideal for rvalue references</strong>, which represent temporary objects that do not need to
+   retain their original state.</li>
+<li>Move constructors <strong>should be marked noexcept</strong> to ensure <strong>compatibility</strong> with standard
+   containers and to optimize <strong>performance</strong>.</li>
+</ol>
+<h5 id="default-move-constructors">Default Move Constructors</h5>
+<h6 id="explanation_18">Explanation</h6>
+<ol>
+<li>The compiler <strong>generates a default move constructor</strong> only if:</li>
+<li>The class does <strong>not explicitly define a copy constructor, copy assignment operator, move
+     constructor, or move assignment operator</strong>.</li>
+<li><strong>All</strong> data members and base classes <strong>are movable</strong> (i.e., they also support move semantics).</li>
+<li>The default move constructor <strong>performs a shallow move</strong>, transferring (not copying) each member
+   from the source object to the destination.</li>
+<li>However, it treats all members as if they were primitive types, <strong>performing a shallow transfer
+   without resetting any pointer members of the original object to <code>nullptr</code></strong>.</li>
+<li>This can cause issues such as <strong>double deletions</strong> and <strong>dangling pointers</strong>.</li>
+<li>While terms like "shallow move" and "deep move" are <strong>not part of standard C++ terminology</strong>,
+   "unsafe copy" and "safe copy" better convey the risks and benefits of different copying
+   strategies.</li>
+<li>The default move constructor is <strong>typically marked as noexcept</strong>, improving performance by
+   ensuring compatibility with standard containers, such as <code>std::vector</code>.</li>
+<li>The <code>= default</code> syntax <strong>explicitly requests</strong> the compiler to generate the <strong>default move
+   constructor</strong>.</li>
+</ol>
+<h6 id="syntax_15">Syntax</h6>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Compiler-generated default move constructor.
+};
+</code></pre>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Default move constructor.
+      ClassName( ClassName&amp;&amp; ) = default;
+};
+</code></pre>
+<h5 id="custom-move-constructor">Custom Move Constructor</h5>
+<h6 id="explanation_19">Explanation</h6>
+<ol>
+<li>A custom move constructor is <strong>defined</strong> under the following circumstances:</li>
+<li>When a class manages resources that <strong>necessitate specialized management</strong>, such as dynamic
+     memory allocation or file handles.</li>
+<li>When there is a need to <strong>reset the original object to a valid state</strong> (e.g., to <code>nullptr</code>)
+     following the transfer of ownership.</li>
+<li>Move constructors <strong>should be marked <code>noexcept</code></strong> to ensure <strong>compatibility</strong> with standard
+   containers and to optimize <strong>performance</strong>. containers like <code>std::vector</code>.</li>
+</ol>
+<h6 id="syntax_16">Syntax</h6>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      Type* _mem_ptr;
+
+      // Custom move constructor.
+      ClassName( ClassName&amp;&amp; other ) noexcept: _mem_ptr( std::move( other._mem_ptr ) {
+         // Deep move. Safe move.
+         other._mem_ptr = nullptr;
+         ...;
+      };
+
+      // Destructor.
+      ~ClassName() {
+         // Free allocated memory.
+         delete _mem_ptr;   // Leave 'other' in a valid state
+         ...;
+      };
+};
+</code></pre>
+<h4 id="conversion-constructors">Conversion Constructors</h4>
+<h5 id="explanation_20">Explanation</h5>
+<ol>
+<li>A conversion constructor allows <strong>implicit (should avoid it with the <code>explicit</code> keyword)</strong> or
+   <strong>explicit conversion</strong> from a given type to the class type.</li>
+<li>It takes <strong>a single parameter</strong> of a different type and <strong>initializes an object</strong> of the class
+   with it.</li>
+<li>These constructors <strong>facilitate the integration of custom classes</strong> with existing code by
+   allowing automatic type conversion where appropriate.</li>
+<li>When the target class holds additional information, conversion constructors ensure that
+   initialization aligns with the class's intended use.</li>
+</ol>
+<h5 id="syntax_17">Syntax</h5>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Conversion constructor.
+      ClassName( Type para_name );
+};
+</code></pre>
+<h4 id="virtual-constructors"><code>virtual</code> Constructors</h4>
+<ol>
+<li>The concept of a "<code>virtual</code> constructor" does not exist.</li>
+</ol>
+<h4 id="explicit-constructors"><code>explicit</code> Constructors</h4>
+<ol>
+<li><a href="../ConversionAndCasting/#explicit"><code>explicit</code></a></li>
+</ol>
+<h3 id="destructors">Destructors</h3>
+<h4 id="explanation_21">Explanation</h4>
+<ol>
+<li>A destructor is <strong>a special member function</strong> that is <strong>automatically called</strong> when an object
+   <strong>goes out of scope</strong> or is <strong>explicitly deleted</strong>.</li>
+<li>Its primary purpose is to <strong>release resources</strong> (such as dynamically allocated memory or file
+   handles) associated with the object.</li>
+<li>If a class has <strong>base classes</strong> or member objects, their destructors are <strong>called in reverse
+   order of construction</strong>.</li>
+</ol>
+<h4 id="syntax_18">Syntax</h4>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      ~ClassName() {
+      };   // Destructor.
+};
+</code></pre>
+<h4 id="default-destructors">Default Destructors</h4>
+<h5 id="explanation_22">Explanation</h5>
+<ol>
+<li>A default destructor is <strong>automatically generated</strong> by the compiler if the class does <strong>not
+   explicitly define one</strong>.</li>
+<li>It handles destruction according to the rules of the language, ensuring that all member variables
+   and base classes are properly destroyed.</li>
+<li>If the class <strong>directly manages resources</strong> (e.g., raw pointers), <strong>a custom destructor</strong> is
+   <strong>necessary</strong> to <strong>avoid resource leaks</strong>.</li>
+<li>The default destructor is <strong>typically marked as noexcept</strong>, improving performance by ensuring
+   compatibility with standard containers, such as <code>std::vector</code>.</li>
+<li>The <code>= default</code> syntax <strong>explicitly requests</strong> the compiler to generate the <strong>default
+   destructor</strong>.</li>
+</ol>
+<h5 id="syntax_19">Syntax</h5>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Default destructor.
+      ~ClassName() = default;
+};
+</code></pre>
+<h4 id="virtual-destructors"><code>virtual</code> Destructors</h4>
+<ol>
+<li><a href="#virtual-destructors-1"><code>virtual</code> Destructors</a></li>
+</ol>
+<h3 id="operator-overloading">Operator Overloading</h3>
+<ol>
+<li><a href="../Operators/#operator-overloading">Operator Overloading</a></li>
+</ol>
+<h4 id="copy-assignment-operator">Copy-assignment Operator</h4>
+<ol>
+<li><a href="../Operators/#copy-assignment-operator">Copy-assignment Operator</a></li>
+</ol>
+<h4 id="move-assignment-operator">Move-assignment Operator</h4>
+<ol>
+<li><a href="../Operators/#move-assignment-operator">Move-assignment Operator</a></li>
+</ol>
+<h4 id="conversion-operator">Conversion Operator</h4>
+<ol>
+<li><a href="../Operators/#conversion-operator">Conversion Operator</a></li>
+</ol>
+<h4 id="explicit-conversion-operator"><code>explicit</code> Conversion Operator</h4>
+<ol>
+<li><a href="../Operators/#explicit-conversion-operator"><code>explicit</code> Conversion Operator</a></li>
+</ol>
+<h3 id="how-to-determine-which-constructor-or-assignment-operator-is-invoked">How to Determine Which Constructor or Assignment Operator Is Invoked</h3>
+<ol>
+<li>If an object is <strong>being defined</strong>, the appropriate <strong>constructor</strong> will be called:</li>
+<li><strong>No argument</strong>: <strong>default</strong> constructor.</li>
+<li><strong>Single</strong> argument of a different type: <strong>conversion</strong> constructor.</li>
+<li><strong>Single</strong> argument of the same type (<strong>lvalue reference</strong>): <strong>copy</strong> constructor.</li>
+<li><strong>Single</strong> argument of the same type (<strong>rvalue reference</strong>): <strong>move</strong> constructor.</li>
+<li><strong>Multiple</strong> arguments: parameterized constructor.</li>
+<li>If an object <strong>already exists</strong> and is assigned a new object, the <strong>assignment operator</strong> will be
+   called:</li>
+<li>Same type (<strong>lvalue reference</strong>): <strong>copy</strong>-assignment operator.</li>
+<li>Same type (<strong>rvalue reference</strong>): <strong>move</strong>-assignment operator.</li>
+</ol>
+<h3 id="inheritance">Inheritance</h3>
+<h4 id="explanation_23">Explanation</h4>
+<ol>
+<li>Inheritance allows <strong>a class</strong> to <strong>acquire the properties</strong> and <strong>behaviors</strong> of <strong>another</strong>
+   class.</li>
+<li>It promotes <strong>code reuse</strong> and establishes a hierarchical relationship between a base class and
+   one or more derived classes.</li>
+<li>C++ supports <strong>multiple inheritance</strong> and <strong><code>virtual</code> inheritance</strong> to address complexities
+   arising from overlapping base classes.</li>
+<li>Inheritance also facilitates <strong>polymorphism</strong>, enabling derived classes to <strong>override <code>virtual</code>
+   functions</strong>.</li>
+</ol>
+<h4 id="definition-syntax_1">Definition Syntax</h4>
+<h5 id="code">Code</h5>
+<pre><code class="language-CPP">class public Base{
+   // Members of base class.
+};
+
+class Derived: public Base {
+      // Members of derived class.
+};
+</code></pre>
+<h5 id="categories">Categories</h5>
+<ol>
+<li><code>public</code> inheritance: The <strong>visibility</strong> of base class members remains <strong>unchanged</strong> in the
+   derived class.</li>
+<li><code>protected</code> inheritance: <strong>Public members</strong> of the base class <strong>become protected</strong> in the derived
+   class.</li>
+<li><code>private</code> inheritance: <strong>All</strong> base class members (public and protected) <strong>become private</strong> in
+   the derived class.</li>
+</ol>
+<h4 id="initialization-syntax_1">Initialization Syntax</h4>
+<h5 id="code_1">Code</h5>
+<pre><code class="language-CPP">class Derived: public Base {
+   public:
+      Derived( para_list1 ): Base( para_list2 ), ... {};
+
+   private:
+      ...;
+};
+</code></pre>
+<h5 id="explanation_24">Explanation</h5>
+<ol>
+<li>When creating a derived class object, constructor delegation allows initializing the base class
+   part of the object.</li>
+<li>The <strong>initialization</strong> of <strong>the base class members</strong> must be done via an <strong>initializer list</strong> in
+   the derived class constructor.</li>
+</ol>
+<h4 id="construction-order">Construction Order</h4>
+<ol>
+<li><strong>Base</strong> class constructor: Called first, initializing the base portion of the object.</li>
+<li><strong>Derived</strong> class constructor: Called after the base class constructor.</li>
+<li>Member initializations: Member variables of the <strong>derived</strong> class are <strong>initialized after</strong> the
+   <strong>base</strong> class part.</li>
+</ol>
+<h4 id="destruction-order">Destruction Order</h4>
+<ol>
+<li><strong>Derived</strong> class destructor: Called first to release resources specific to the derived class.</li>
+<li><strong>Base</strong> class destructor: Called last to release resources inherited from the base class.</li>
+</ol>
+<h4 id="virtual-inheritance"><code>virtual</code> Inheritance</h4>
+<ol>
+<li><a href="#virtual-inheritance-1"><code>virtual</code> Inheritance</a></li>
+</ol>
+<h3 id="virtual"><code>virtual</code></h3>
+<h5 id="explanation_25">Explanation</h5>
+<ol>
+<li>The <code>virtual</code> keyword in C++ is integral to <strong>enabling dynamic polymorphism</strong> and ensuring the
+   <strong>correct behavior</strong> of objects in <strong>inheritance</strong> hierarchies.</li>
+</ol>
+<h4 id="virtual-methods-virtual-functions-virtual-memeber-functions_1"><code>virtual</code> Methods (<code>virtual</code> Functions) (<code>virtual</code> Memeber Functions)</h4>
+<h5 id="explanation_26">Explanation</h5>
+<ol>
+<li>A <code>virtual</code> method is <strong>a member function</strong> declared with <strong>the <code>virtual</code> keyword in a base
+   class</strong>, allowing <strong>derived classes</strong> to provide their <strong>own implementation</strong>.</li>
+<li>When invoked through <strong>a base class pointer or reference</strong>, the function from the most derived
+   class is called, <strong>enabling runtime polymorphism</strong>.</li>
+<li><code>virtual</code> methods <strong>ensure dynamic dispatch</strong> by resolving function calls <strong>at runtime</strong> based on
+   the object's actual type.</li>
+<li>They <strong>can be overridden</strong> in derived classes using the same function signature.</li>
+<li>The <strong><code>override</code></strong> keyword is <strong>optional</strong> but <strong>recommended</strong>, as it ensures that the derived
+   class correctly overrides a <code>virtual</code> function.</li>
+<li>If a derived class does <strong>not override</strong> the <code>virtual</code> function, the <strong>base class's
+   implementation</strong> will be invoked.</li>
+</ol>
+<h5 id="syntax_20">Syntax</h5>
+<pre><code class="language-CPP">class Base {
+   public:
+      virtual RetType funcName() const {
+         // Base class implementation.
+      };
+};
+
+class Derived: public Base {
+   public:
+      // Override keyword for clarity.
+      RetType funcName() const override{
+         // Derived class implementation.
+      };
+};
+</code></pre>
+<h5 id="static-binding-and-dynamic-binding">Static Binding and Dynamic Binding</h5>
+<h5 id="polymorphism-and-problems">Polymorphism and Problems</h5>
+<ol>
+<li><strong>Polymorphism</strong>: <code>virtual</code> functions enable polymorphic behavior, allowing a program to treat
+   objects of different derived classes through a base class pointer or reference. This makes it
+   easier to write flexible and reusable code.</li>
+<li><strong>Performance overhead</strong>: <code>virtual</code> functions introduce <strong>a performance penalty</strong> due to the
+   dynamic dispatch mechanism. The program must go through the <strong>V table</strong> to look up the correct
+   function to call at runtime, which can be slower than static binding.</li>
+<li><strong>Memory overhead</strong>: Each class that uses <code>virtual</code> functions typically includes <strong>a <code>virtual</code>
+   table (vtable)</strong>, which adds some memory overhead. Each object of such classes contains a pointer
+   to the vtable, increasing the size of the object.</li>
+<li><strong>Debugging Challenges</strong>: Debugging issues related to <code>virtual</code> functions can be more
+   challenging, especially when it comes to understanding the flow of execution and object lifetimes
+   in the presence of polymorphism.</li>
+<li><strong>Potential for Resource Leaks</strong>: If a <strong>base</strong> class has <strong><code>virtual</code> functions</strong>, its
+   <strong>destructor</strong> should also be <strong><code>virtual</code></strong> to ensure proper cleanup of derived class resources.
+   Failing to declare a <code>virtual</code> destructor can lead to resource leaks.</li>
+</ol>
+<h5 id="notes_2">Notes</h5>
+<ol>
+<li>In cases where <strong>performance</strong> is very important, you should <strong>avoid using <code>virtual</code> functions</strong>
+   as much as possible.</li>
+</ol>
+<h4 id="pure-virtual-functions-and-abstract-class_1">Pure <code>virtual</code> Functions and Abstract Class</h4>
+<h5 id="explanation_27">Explanation</h5>
+<ol>
+<li>A pure <code>virtual</code> function is declared by <strong>assigning <code>= 0</code> to a <code>virtual</code> function</strong>, indicating
+   that it does <strong>not provide any implementation</strong> in the <strong>base</strong> class.</li>
+<li>Pure <code>virtual</code> functions enforce a contract that derived classes must fulfill, promoting <strong>design
+   consistency</strong>.</li>
+<li>A class containing <strong>at least one pure</strong> <code>virtual</code> function is termed <strong>an abstract class</strong> and
+   <strong>cannot be instantiated</strong>.</li>
+<li><strong>Abstract classes</strong> serve as <strong>interfaces</strong> or <strong>base types</strong> for deriving more specific
+   implementations.</li>
+<li><strong>All derived</strong> classes <strong>must override the pure <code>virtual</code> functions</strong>; <strong>otherwise</strong>, they also
+   become <strong>abstract</strong>.</li>
+<li><strong>Abstract classes</strong> may contain <strong>non-virtual member functions</strong> in addition to pure <code>virtual</code>
+   ones.</li>
+</ol>
+<h5 id="syntax_21">Syntax</h5>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Pure `virtual` function.
+      virtual RetType funcName const = 0;
+};
+</code></pre>
+<h4 id="virtual-destructors_1"><code>virtual</code> Destructors</h4>
+<h5 id="explanation_28">Explanation</h5>
+<ol>
+<li>A <code>virtual</code> destructor <strong>ensures</strong> that when an <strong>object</strong> is <strong>deleted</strong> via a <strong>base</strong> class
+   <strong>pointer</strong>, the <strong>destructor of</strong> the <strong>derived</strong> class is <strong>invoked</strong>, <strong>followed</strong> by the
+   <strong>base</strong> class’s <strong>destructor</strong>.</li>
+<li>This guarantees that <strong>all resources</strong> allocated by the derived class are <strong>correctly released</strong>,
+   thereby <strong>preventing memory leaks</strong> and <strong>ensuring complete destruction</strong> of the object.</li>
+<li>Destructors should <strong>be declared <code>virtual</code> in any base class</strong> intended for inheritance to
+   <strong>avoid undefined behavior</strong> during object destruction.</li>
+<li><strong>Without</strong> a <code>virtual</code> destructor, <strong>only</strong> the <strong>base</strong> class <strong>destructor</strong> would <strong>execute</strong>,
+   <strong>leaving resources</strong> specific to the derived class <strong>unreleased</strong>.</li>
+<li>Although <code>virtual</code> destructors add <strong>a slight performance overhead</strong>, they are critical for
+   <strong>safe</strong> and <strong>correct resource management</strong>.</li>
+</ol>
+<h5 id="syntax_22">Syntax</h5>
+<pre><code class="language-CPP">class Base {
+   public:
+      virtual ~Base() {
+         // Cleanup logic for the base class.
+      };
+};
+
+class Derived: public Base {
+   public:
+      ~Derived() {
+         // Cleanup logic for the derived class.
+      };
+};
+</code></pre>
+<h5 id="notes_3">Notes</h5>
+<ol>
+<li>It's used to <strong>delete a subclass object</strong> pointed to by a parent class pointer in <strong>a polymorphic
+   context</strong>. A <code>virtual</code> destructor differs from other <code>virtual</code> functions.</li>
+<li>The subclass's <strong><code>virtual</code> destructor does not override</strong> its parent class's <code>virtual</code>
+   destructor; both will be called.</li>
+<li>If we allow our <strong>class</strong> to <strong>be derived</strong> into a subclass, we should <strong>declare</strong> its
+   <strong>destructor as <code>virtual</code></strong> to avoid issues like memory leaks.</li>
+</ol>
+<h4 id="virtual-inheritance_1"><code>virtual</code> Inheritance</h4>
+<h5 id="explanation_29">Explanation</h5>
+<ol>
+<li><code>virtual</code> inheritance <strong>prevents ambiguity</strong> when a class <strong>indirectly inherits from the same
+   base class</strong> <strong>multiple times</strong>.</li>
+<li>It <strong>ensures</strong> that <strong>only one instance of the base class</strong> exists in the final derived class.</li>
+<li>It <strong>resolves the diamond inheritance problem</strong>, where two base classes share a common ancestor.</li>
+<li>The <strong>base class constructor must be invoked</strong> from the <strong>most-derived class</strong>.</li>
+</ol>
+<h5 id="definition-syntax_2">Definition Syntax</h5>
+<pre><code class="language-CPP">class Base {
+      ...;
+};
+class A: virtual public Base {};
+class B: virtual public Base {};
+class Derived: public A,
+               public B {};
+</code></pre>
+<h5 id="initialization-syntax_2">Initialization Syntax</h5>
+<pre><code class="language-CPP">class Derived: public A,
+               public B {
+   public:
+      Derived( para_list1 ):
+         Base( para_list2 ), A( para_list3 ), B( para_list4 ){};
+};
+</code></pre>
+<h4 id="construction-order_1">Construction Order</h4>
+<ol>
+<li><strong><code>virtual</code> base</strong> class constructor: Called first, even if it's inherited indirectly.</li>
+<li><strong>Other base</strong> class constructors: Called next.</li>
+<li><strong>Derived</strong> class constructor: Called last.</li>
+</ol>
+<h4 id="destruction-order_1">Destruction Order</h4>
+<ol>
+<li><strong>Derived</strong> class destructor: Invoked first.</li>
+<li><strong>Non-virtual base</strong> class destructors: Called next.</li>
+<li><strong><code>virtual</code> base</strong> class destructor: Called last.</li>
+</ol>
+<h3 id="friend"><code>friend</code></h3>
+<h5 id="explanation_30">Explanation</h5>
+<ol>
+<li>The <code>friend</code> keyword <strong>grants non-member functions</strong> or <strong>other classes</strong> <strong>access</strong> to the
+   <strong>private</strong> and <strong>protected members</strong> of a class.</li>
+<li>The <code>friend</code> keyword is commonly used when specific functions or classes require access to a
+   class's internal details but are not part of its public interface</li>
+<li>Friendship in C++ is <strong>not inherited</strong>—a <strong>derived</strong> class does <strong>not inherit the friendship
+   relationships</strong> of its base class.</li>
+<li>Additionally, friendship is <strong>unidirectional</strong>: the class or function granted access does <strong>not</strong>
+   automatically <strong>reciprocate that privilege</strong>.</li>
+</ol>
+<h4 id="friend-functions"><code>friend</code> Functions</h4>
+<h5 id="explanation_31">Explanation</h5>
+<ol>
+<li>A friend function is <strong>a non-member function</strong> that is allowed <strong>access</strong> to the <strong>private</strong> and
+   <strong>protected</strong> <strong>members</strong> of a class.</li>
+<li>If the friend function needs <strong>access to non-static non-public members</strong>, the <strong>class instance</strong>
+   should be <strong>passed</strong> to the <strong>friend function</strong>.</li>
+<li>If the friend function <strong>only</strong> accesses <strong>static</strong> members or performs operations <strong>unrelated to
+   a specific object</strong>, the <strong>class instance</strong> does <strong>not</strong> need to <strong>be passed</strong>.</li>
+</ol>
+<h5 id="syntax_23">Syntax</h5>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Friend function declaration.
+      friend RetType funcName( const ClassName&amp; obj );
+};
+</code></pre>
+<pre><code class="language-CPP">class ClassName {
+   public:
+      // Friend function declaration.
+      friend RetType funcName();
+};
+</code></pre>
+<h4 id="friend-classes"><code>friend</code> Classes</h4>
+<h5 id="explanation_32">Explanation</h5>
+<ol>
+<li>A friend class is <strong>a non-member class</strong> that is granted access to the <strong>private</strong> and
+   <strong>protected members</strong> of <strong>another</strong> class.</li>
+<li>If the member functions of the friend class need to <strong>access non-static non-static members</strong>, the
+   <strong>class instance</strong> should be <strong>passed</strong> to <strong>those functions</strong>.</li>
+<li>If the member functions of the friend class <strong>access static members</strong> or perform operations
+   <strong>unrelated to a specific object</strong>, the class instance does <strong>not</strong> need to <strong>be passed</strong>.</li>
+</ol>
+<h5 id="syntax_24">Syntax</h5>
+<pre><code class="language-CPP">class ClassA {
+   public:
+      friend class ClassB;   // Declaring ClassB as a friend
+};
+
+class ClassB {
+   public:
+      RetType funcName( const ClassA&amp; obj ) { ... };
+};
+</code></pre>
+<pre><code class="language-CPP">class ClassA {
+   public:
+      friend class ClassB;   // Declaring ClassB as a friend
+};
+
+class ClassB {
+   public:
+      RetType funcName() { ... };
+};
+</code></pre>
+<h3 id="final"><code>final</code></h3>
+<h5 id="explanation_33">Explanation</h5>
+<ol>
+<li>The final keyword in C++ is used to prevent further inheritance or overriding of classes and
+   virtual functions.</li>
+<li>It plays a crucial role in controlling the behavior of classes in the inheritance hierarchy.</li>
+</ol>
+<h4 id="final-functions"><code>final</code> Functions</h4>
+<h5 id="explanation_34">Explanation</h5>
+<ol>
+<li>A final function is <strong>a <code>virtual</code> function</strong> that <strong>cannot be overridden</strong> by any derived class.
+   The final specifier ensures that the function's implementation remains fixed in the class that
+   declares it as final.</li>
+<li>This feature can <strong>improve performance</strong> by <strong>devirtualizing calls</strong> to the final function, as
+   the compiler can safely inline such calls, knowing that no further overrides exist.</li>
+</ol>
+<h5 id="syntax_25">Syntax</h5>
+<pre><code class="language-CPP">class Base {
+   public:
+      virtual RetType funcName() final;   // Declaration of a final function.
+};
+</code></pre>
+<h4 id="final-classes"><code>final</code> Classes</h4>
+<h5 id="explanation_35">Explanation</h5>
+<ol>
+<li>A final class is <strong>a class</strong> that <strong>cannot be inherited</strong> from. Declaring a class as final
+   ensures that no further subclassing is allowed, which can prevent misuse of inheritance and
+   unintended extensions of the class’s functionality.</li>
+<li>Marking a class as final can <strong>improve runtime performance</strong>, as the compiler can <strong>optimize
+   calls</strong> and <strong>remove <code>virtual</code> dispatch overhead</strong>.</li>
+<li>Final classes are often used for <strong>singleton patterns</strong>, <strong>utility classes</strong>, or
+   <strong>performance-critical components</strong> to <strong>prevent inheritance overhead</strong>.</li>
+</ol>
+<h5 id="syntax_26">Syntax</h5>
+<pre><code class="language-CPP">class FinalClass final {};
+
+// class Derived: public FinalClass {};   // Error: Cannot inherit from a final class
+</code></pre>
+<h3 id="explicit"><code>explicit</code></h3>
+<ol>
+<li><a href="../ConversionAndCasting/#explicit"><code>explicit</code></a></li>
+</ol>
+<h3 id="using"><code>using</code></h3>
+<ol>
+<li><a href="../UsingTypedefNameSpaces/#using"><code>using</code></a></li>
+</ol>
+<h3 id="differences-between-hiding-overloading-overriding-and-overwriting">Differences Between Hiding, Overloading, Overriding, and Overwriting</h3>
+<ol>
+<li><a href="../HidingOverloadingOverridingAndOverwriting/">Differences Between Hiding, Overloading, Overriding, and Overwriting</a></li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
