@@ -1,17 +1,17 @@
 <!-- vim-markdown-toc GFM -->
 
 - [Differences Between Hiding, Overloading, Overriding, and Overwriting](#differences-between-hiding-overloading-overriding-and-overwriting)
-  - [(1) Hiding (Name Hiding)](#1-hiding-name-hiding)
+  - [Hiding (Name Hiding)](#hiding-name-hiding)
     - [Explanation](#explanation)
     - [Syntax](#syntax)
     - [How to Access Hidden Function](#how-to-access-hidden-function)
-  - [(2) Overloading](#2-overloading)
+  - [Overloading](#overloading)
     - [Explanation](#explanation-1)
     - [Syntax](#syntax-1)
-  - [(3) Overriding](#3-overriding)
+  - [Overriding](#overriding)
     - [Explanation](#explanation-2)
     - [Syntax](#syntax-2)
-  - [(4) Overwriting (Not a C++ Term)](#4-overwriting-not-a-c-term)
+  - [Overwriting (Not a C++ Term)](#overwriting-not-a-c-term)
     - [Explanation](#explanation-3)
     - [Syntax](#syntax-3)
 
@@ -19,7 +19,7 @@
 
 ### Differences Between Hiding, Overloading, Overriding, and Overwriting
 
-#### (1) Hiding (Name Hiding)
+#### Hiding (Name Hiding)
 
 ##### Explanation
 
@@ -60,7 +60,7 @@ int main() {
    obj_name.Base::funcName( para_list1 );   // Calls Base class funcName( para_list1 )
 ```
 
-#### (2) Overloading
+#### Overloading
 
 ##### Explanation
 
@@ -70,9 +70,9 @@ int main() {
    body**, it can be used to create **overloaded** functions because their **signatures** are
    **different**. For example, **const functions and noexcept functions**.
 3. However, **the return type does not** play a role in distinguishing overloaded functions.
-   Functions cannot be overloaded solely based on different return types. Overloading is resolved at
-   compile time (static polymorphism). C++ allows overloading based on the number of arguments,
-   their types, or both.
+4. Functions **cannot** be overloaded solely based on different **return types**.
+5. C++ allows overloading **based on the number of arguments, their types, or both**.
+6. Overloading is **resolved at compile time** (**static polymorphism**).
 
 ##### Syntax
 
@@ -101,14 +101,15 @@ class ClassName {
 };
 ```
 
-#### (3) Overriding
+#### Overriding
 
 ##### Explanation
 
 1. Overriding occurs when **a derived class** provides **its own implementation** of **a virtual
    function ( or a pure virtual function )** that is **already defined** in the base class.
-2. The function in the derived class must have **the same signature** as the base class's virtual
-   function. Overriding is resolved at runtime (**dynamic polymorphism**).
+2. The function in the derived class must have **the same signature** as the base class's **virtual
+   function**.
+3. Overriding is **resolved at runtime** (**dynamic polymorphism**).
 
 ##### Syntax
 
@@ -120,28 +121,29 @@ class Base {
 
 class Derived: public Base {
    public:
-      virtual RetType funcName( para_list ) override {   // This function overrides Base::funcName()
+      virtual RetType funcName( para_list ) override {   // This function overrides Base::funcName().
       };
 };
 
 int main() {
    Base* obj = new Derived();
-   obj->funcName( arg_list );   // Calls Derived class funcName (runtime polymorphism)
+   obj->funcName( arg_list );   // Calls Derived class funcName (runtime polymorphism).
 };
 ```
 
-#### (4) Overwriting (Not a C++ Term)
+#### Overwriting (Not a C++ Term)
 
 ##### Explanation
 
-1. Overwriting is **not a formal term in C++**. However, it is sometimes colloquially used to
-   describe a situation where **a function or variable in a derived class replaces or redefines a
-   function or variable from a base class**. This serves as a general description rather than a
-   specific C++ concept. Additionally, the term "overwriting" typically refers to the process of
-   **replacing an existing value in memory**, which includes assigning a new value to an existing
-   variable to replace the old value and writing data to unintended memory locations, often
-   resulting in undefined behavior or memory corruption. This can occur in various contexts, such as
-   variables, function definitions, or data structures.
+1. Overwriting is **not a formal term in C++**.
+2. However, it is sometimes colloquially used to describe a situation where **a function or variable
+   in a derived class replaces or redefines a function or variable from a base class**.
+3. This serves as a general description rather than a specific C++ concept.
+4. Additionally, the term "overwriting" typically refers to the process of **replacing an existing
+   value in memory**, which includes assigning a new value to an existing variable to replace the
+   old value and writing data to unintended memory locations, often resulting in undefined behavior
+   or memory corruption.
+5. This can occur in various contexts, such as variables, function definitions, or data structures.
 
 ##### Syntax
 
@@ -153,6 +155,6 @@ class Base {
 
 class Derived: public Base {
    public:
-      Type _mem = initializer2;   // Overwrites Base::_mem
+      Type _mem = initializer2;   // Overwrites Base::_mem.
 };
 ```
