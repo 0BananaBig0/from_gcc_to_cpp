@@ -212,16 +212,16 @@ delete[] a3d;
          T _array[size]
    };
    ```
-4. Its header file is `<array>`.
-5. `std::array` is **slower** than the raw array, but `std::array` is **safer** than a raw array.
-6. `std::array` is used like a raw array but **provides member functions** and allows us to use many
+4. `std::array` is **slower** than the raw array, but `std::array` is **safer** than a raw array.
+5. `std::array` is used like a raw array but **provides member functions** and allows us to use many
    standard C++ functions to manage it.
-7. In debug mode, `std::array` can **help us debug** like bounds checking, thanks to its debug
+6. In debug mode, `std::array` can **help us debug** like bounds checking, thanks to its debug
    macros and code.
-8. `std::array` is **a template**. Its size can be gotten by its functions, but it **doesn't store
+7. `std::array` is **a template**. Its size can be gotten by its functions, but it **doesn't store
    the size as a value**.
-9. **The size** of a `std::array` is **defined at compile time** and **cannot be changed during
+8. **The size** of a `std::array` is **defined at compile time** and **cannot be changed during
    runtime**. This means that once an array is declared, its size is fixed.
+9. Their header file is `<array>`.
 
 #### One-dimensional `std::array`
 
