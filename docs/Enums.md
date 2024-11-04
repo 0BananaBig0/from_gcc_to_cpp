@@ -1,55 +1,57 @@
 <!-- vim-markdown-toc GFM -->
 
-* [`enum`](#enum)
-  * [Explanation](#explanation)
-  * [Purpose](#purpose)
-  * [Examples of Unscoped Enumeration](#examples-of-unscoped-enumeration)
-  * [Examples of Scoped Enumeration ( C++11 )](#examples-of-scoped-enumeration--c11-)
-  * [Differences Between `enum` ( Unscoped Enumeration ) and `enum class` ( Scoped Enumeration )](#the-difference-between-enum--unscoped-enumeration--and-enum-class--scoped-enumeration-)
-    * [1) Syntax](#1-syntax)
-    * [2) Namespace Scoping](#2-namespace-scoping)
-    * [3) Type Safety](#3-type-safety)
-    * [4) Underlying Type](#4-underlying-type)
-    * [5) Forward Declaration](#5-forward-declaration)
-    * [6) Bitwise Operations](#6-bitwise-operations)
+- [Enums (`enum`)](#enums-enum)
+  - [Explanation](#explanation)
+  - [Usage](#usage)
+  - [Unscoped Enumeration Syntax](#unscoped-enumeration-syntax)
+  - [Scoped Enumeration Syntax](#scoped-enumeration-syntax)
+  - [Differences Between `enum` ( Unscoped Enumeration ) and `enum class` ( Scoped Enumeration )](#differences-between-enum--unscoped-enumeration--and-enum-class--scoped-enumeration-)
+    - [1) Syntax](#1-syntax)
+    - [2) Namespace Scoping](#2-namespace-scoping)
+    - [3) Type Safety](#3-type-safety)
+    - [4) Underlying Type](#4-underlying-type)
+    - [5) Forward Declaration](#5-forward-declaration)
+    - [6) Bitwise Operations](#6-bitwise-operations)
 
 <!-- vim-markdown-toc -->
-## `enum`
+
+## Enums (`enum`)
 
 ### Explanation
 
 1. An enum (short for "enumeration") is **a user-defined type** that consists of **a set of** named
    integral **constants**, providing a way to define a collection of related constants with
-   meaningful names. Enumerations improve code readability by replacing numeric values with
-   descriptive names.
+   meaningful names.
+2. Enumerations improve code **readability** by replacing numeric values with descriptive names.
 
-### Purpose
+### Usage
 
-1. If you need to represent some states with integers, you can use an enum to group and represent
-   them.
+1. **Represent some states with integers** by using an enum to group and represent them.
 
-### Examples of Unscoped Enumeration
+### Unscoped Enumeration Syntax
 
 ```CPP
-enum Color {
-   Red,         // 0
-   Green = 3,   // 3
-   Blue         // 4
+enum EnumName {
+   Mem1,            // 0
+   Mem2,            // 1
+   ...; Memn = n,   // n
+   Memn1            // n + 1
 };
 
-Color myColor = Green;
+EnumName enum_name = Mem2;
 ```
 
-### Examples of Scoped Enumeration ( C++11 )
+### Scoped Enumeration Syntax
 
 ```CPP
-enum class Color : char {
-   Red = 'r',
-   Green = 'g',
-   Blue = 'b'
+enum EnumName: Type {
+   Mem1,            // 0
+   Mem2,            // 1
+   ...; Memn = n,   // n
+   Memn1            // n + 1
 };
 
-Color myColor = Color::Green;
+EnumName enum_name = EnumName::Mem2;
 ```
 
 ### Differences Between `enum` ( Unscoped Enumeration ) and `enum class` ( Scoped Enumeration )
