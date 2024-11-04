@@ -211,14 +211,14 @@ delete list_ptr;
 
 1. Forward lists are **sequence containers** that allow **constant-time insertion and deletion
    operations at any point** within the sequence.
-2. Forward lists are implemented as **singly linked lists**. These lists can store their elements in
-   different, unrelated storage locations, with order maintained through a link from each element to
-   the next in the sequence.
-3. They can be implemented using **a single pointer within a class or structure**, enabling them to
+2. Forward lists are implemented as **singly linked lists**.
+3. These lists can store their elements in different, unrelated storage locations, with order
+   maintained through a link from each element to the next in the sequence.
+4. They can be implemented using **a single pointer within a class or structure**, enabling them to
    **grow dynamically in size**.
-4. Unlike vectors, forward lists do **not support random access**, meaning elements cannot be
+5. Unlike vectors, forward lists do **not support random access**, meaning elements cannot be
    accessed directly at specific indices or retrieved by index numbers.
-5. Their header file is `<forward_list>`.
+6. Their header file is `<forward_list>`.
 
 ### Declaration Syntax
 
