@@ -1391,3 +1391,7 @@ class FinalClass final {};
 ### `using`
 
 1. [`using`](./UsingTypedefNameSpaces.md#using)
+
+### Differences Between Hiding, Overloading, Overriding, and Overwriting
+
+1. [Differences Between Hiding, Overloading, Overriding, and Overwriting](./HidingOverloadingOverridingAndOverwriting.md)
