@@ -103,24 +103,24 @@ class A {
    public:
       A(): _mem( initializer1 ) {};
 
-      // Constructor for implicit conversion
+      // Constructor for implicit conversion.
       A( const B& b ): _mem( b._mem ) {};
 
-      // Assignment operator overload
+      // Assignment operator overload.
       A& operator=( const B& b ) {
          _mem = b._mem;
          return *this;
       };
 
-      // Assignment operator overload
+      // Assignment operator overload.
       A& operator=( const A& other ) = default;
 
       Type _mem;
 };
 
 int main() {
-   A a;                   // Default A
-   B b( initializer2 );   // B initialized with an initializer2
+   A a;                   // Default A.
+   B b( initializer2 );   // B initialized with an initializer2.
    // Only A's assignment operator are invoked. In fact, it's also a implicit conversion.
    a = b;
 };
@@ -137,20 +137,20 @@ class A {
    public:
       A(): _mem( initializer1 ) {};
 
-      // Constructor for implicit conversion
+      // Constructor for implicit conversion.
       A( const B& b ): _mem( b._mem ) {};
 
-      // Assignment operator overload
+      // Assignment operator overload.
       A& operator=( const A& other ) = default;
 
       Type _mem;
 };
 
 int main() {
-   A a;                   // Default A
-   B b( initializer2 );   // B initialized with an initializer2
-   // First, implicit conversion: A's conversion constructor is invoked
-   // Second, assignment: A's default assignement operator is invoked
+   A a;                   // Default A.
+   B b( initializer2 );   // B initialized with an initializer2.
+   // First, implicit conversion: A's conversion constructor is invoked.
+   // Second, assignment: A's default assignement operator is invoked.
    a = b;
 };
 ```
@@ -182,7 +182,7 @@ int main() {
 ##### Syntax
 
 ```CPP
-(TargetType)initializer;
+( TargetType )initializer;
 ```
 
 #### C++-style Casting ( Recommend for Safety )
@@ -192,18 +192,19 @@ int main() {
 1. C++ introduced several **specific casting operators** to provide **more clarity and safety** in
    type conversion. These are `static_cast`, `dynamic_cast`, `const_cast`, and `reinterpret_cast`.
 2. These four casts do **not introduce any new functionality** to C++. All of them **can be
-   implemented using C-style casting**. They **merely clarify the intent** behind the cast.
+   implemented using C-style casting**.
+3. They **merely clarify the intent** behind the cast.
 
 ##### `static_cast` ( Recommend for Safety and Performance )
 
 ###### Explanation
 
-1. `static_cast` is used for **safe, compile-time type conversion**. It can be used for well-defined
-   conversions between **related types**, such as upcasting and downcasting in **inheritance
-   hierarchies**, **without runtime checks**.
-2. It is **safer than C-style casting** but still **requires caution**, **especially** during
+1. `static_cast` is used for **safe, compile-time type conversion**.
+2. It can be used for well-defined conversions between **related types**, such as upcasting and
+   downcasting in **inheritance hierarchies**, **without runtime checks**.
+3. It is **safer than C-style casting** but still **requires caution**, **especially** during
    **downcasting**.
-3. This cast involves **compile-time checks** and is generally **efficient**, as it **can be
+4. This cast involves **compile-time checks** and is generally **efficient**, as it **can be
    optimized** by the compiler.
 
 ###### Syntax
@@ -216,21 +217,21 @@ static_cast< TargetType >( initializer );
 
 1. Primitive type conversion.
 2. Pointer type conversion within inheritance.
-3. Converting void pointer to another pointer type.
+3. Converting `void` pointer to another pointer type.
 
 ###### Limitations
 
 1. **Cannot** cast between **incompatible types**:
    - It only works with related types. For example, you cannot use `static_cast` to convert an
      **unrelated class** to another.
-2. No runtime type safety:
-   - If you use `static_cast` to **downcast in an inheritance hierarchy**, it **won't check the
+2. **No runtime type safety**:
+   - If `static_cast` is used to **downcast in an inheritance hierarchy**, it **won't check the
      actual type at runtime**.
    - This can lead to **undefined behavior** if the object isn't of the expected type.
 3. **Not** for casting **between pointers and non-pointers**:
    - You cannot cast between **objects and pointers** (e.g., from an integer to a pointer) with
      `static_cast`. For such conversions, `reinterpret_cast` is required.
-4. No removal of `const` or `volatile` qualifiers:
+4. **No removal** of **`const` or `volatile`** qualifiers:
    - `static_cast` **cannot add or remove `const` or `volatile` qualifiers**. Use `const_cast` for
      this purpose.
 
@@ -251,19 +252,21 @@ static_cast< TargetType >( initializer );
 ###### Explanation
 
 1. `dynamic_cast` is designed for **safe, runtime-checked downcasting** in **polymorphic
-   hierarchies**. It ensures that the **cast** is **valid at runtime**, making it the safest option
-   for casting within class hierarchies.
-2. If the cast is **unsuccessful**, it **returns nullptr (for pointers)** or **throws an exception
+   hierarchies**.
+2. It ensures that the **cast** is **valid at runtime**, making it the safest option for casting
+   within class hierarchies.
+3. If the cast is **unsuccessful**, it **returns nullptr (for pointers)** or **throws an exception
    (for references, `std::bad_cast`)**, thus enhancing type safety.
-3. However, this added safety can result in **slower performance** compared to `static_cast`.
-4. The **runtime check** in dynamic_cast is **implemented** **using** the **Run-Time Type
+4. However, this added safety can result in **slower performance** compared to `static_cast`.
+5. The **runtime check** in `dynamic_cast` is **implemented** **using** the **Run-Time Type
    Information (RTTI)** mechanism in C++, which **includes type information** and **the virtual
    table (vtable)**.
-5. Its **downcasting workflow** involves **RTTI lookup**, **hierarchy traversal**, and **pointer
+6. Its **downcasting workflow** involves **RTTI lookup**, **hierarchy traversal**, and **pointer
    adjustment**.
-6. Because it slows down performance, we can **use a macro to determine whether to use it in debug
+7. `dynamic_cast` requires **at least one virtual function**.
+8. Because it slows down performance, we can **use a macro to determine whether to use it in debug
    mode or release mode**.
-7. Last, we should **check if RTTI is enabled** in our compiler. ( GCC/G++ enables it by default,
+9. Last, we should **check if RTTI is enabled** in our compiler. ( GCC/G++ enables it by default,
    while MSVC does not. )
 
 ###### Syntax
@@ -279,7 +282,6 @@ dynamic_cast< TargetType >( initializer );
    ```CPP
    class Base {
       public:
-         // dynamic_cast requires at least one virtual function.
          virtual Type funcName(){ ... };
          virtual ~Base()= default;
    };
@@ -301,7 +303,6 @@ dynamic_cast< TargetType >( initializer );
    ```CPP
    class Base {
       public:
-         // dynamic_cast requires at least one virtual function.
          virtual Type funcName(){ ... };
          virtual ~Base() = default;
    };
@@ -309,9 +310,9 @@ dynamic_cast< TargetType >( initializer );
    class Derived: public Base { ... };
 
    int main() {
-      Base base;   // Not a Derived instance
+      Base base;   // Not a Derived instance.
       try {
-         // This will throw std::bad_cast because base is not of type Derived
+         // This will throw `std::bad_cast` because base is not of type Derived.
          Derived& der_ref = dynamic_cast< Derived& >( base );
       } catch( const std::bad_cast& e ) {
          std::cout << "Caught exception: " << e.what() << '\n';
@@ -405,7 +406,7 @@ reinterpret_cast< TargetType >( initializer );
      object types are compatible.
 3. Casting **Between Pointer and Integer Types**:
    - It can be used to cast pointers to integral types (e.g., `uintptr_t`) and vice versa.
-4. Interfacing with Hardware or System-Level Code:
+4. **Interfacing with Hardware or System-Level Code**:
    - Useful in systems programming or when dealing with low-level constructs, such as when
      interfacing with hardware or legacy C libraries.
 
@@ -434,7 +435,7 @@ reinterpret_cast< TargetType >( initializer );
 
 1. The `explicit` keyword in C++ is used to **prevent implicit conversions** when defining
    **constructors** or **conversion operators**.
-2. By marking a constructor as explicit, you ensure that it can only be called with a direct
+2. By marking a constructor `as explicit`, you ensure that it can only be called with a direct
    initialization, thus **avoiding unintended conversions** that might lead to errors.
 3. This feature **enhances type safety** and **code readability** by making the programmer's
    intentions clear.
@@ -446,10 +447,10 @@ explicit ConstructorName( para_list );
 ```
 
 ```CPP
-// Conversion Operator
-// `const` function
+// Conversion operator.
+// `const` function.
 explicit operator TargetType() const {
-    // Custom conversion logic here
+    // Custom conversion logic here.
 };
 ```
 
@@ -473,33 +474,39 @@ explicit operator TargetType() const {
 #### Syntax
 
 ```CPP
-// Declaration Syntax
+// Declaration syntax.
 template< typename To, typename From >
 constexpr To std::bit_cast( const From& src );
 ```
 
 ```CPP
-// Usage Syntax
+// Usage syntax.
 std::bit_cast< TargetType >( initializer );
 ```
 
 #### Usage
 
-1. **Reinterpreting fundamental types**: Commonly used to reinterpret bit patterns between types
-   **like integers and floating-point numbers**.
-2. **Casting structs or classes**: Can be used to **cast complex types** like structs or classes
-   **to and from** **byte arrays or other types**, ensuring the bit representation is preserved.
-3. **Safe type punning**: Useful in scenarios where you need to access the underlying bit
-   representation of an object without risking undefined behavior.
+1. **Reinterpreting fundamental types**:
+   - Commonly used to reinterpret bit patterns between types **like integers and floating-point
+     numbers**.
+2. **Casting structs or classes**:
+   - Can be used to **cast complex types** like structs or classes **to and from** **byte arrays or
+     other types**, ensuring the bit representation is preserved.
+3. **Safe type punning**:
+   - Useful in scenarios where you need to access the underlying bit representation of an object
+     without risking undefined behavior.
 
 #### Requirements for Using `std::bit_cast`
 
-1. Sametsize types: **The source and target** types must be of **the same size**; **otherwise**, **a
-   compile-time error will occur**.
-2. Type compatibility: While `std::bit_cast` does **not require types to be related**, it is crucial
-   to ensure the types make sense for the intended interpretation of the data.
-3. **Constexpr support**: It **can** be **used in constant expressions**, making it suitable for
-   scenarios that require **compile-time evaluations**.
+1. Sametsize types:
+   - **The source and target** types must be of **the same size**; **otherwise**, **a compile-time
+     error will occur**.
+2. Type compatibility:
+   - While `std::bit_cast` does **not require types to be related**, it is crucial to ensure the
+     types make sense for the intended interpretation of the data.
+3. **Constexpr support**:
+   - It **can** be **used in constant expressions**, making it suitable for scenarios that require
+     **compile-time evaluations**.
 
 ### Differences between `std::bit_cast` and `reinterpret_cast`
 
@@ -507,86 +514,102 @@ std::bit_cast< TargetType >( initializer );
 
 ##### `std::bit_cast`:
 
-1. Type safety: `std::bit_cast` ensures that the **source and destination** types are **the same
-   size** **at compile time**. If they are **not**, it will result in **a compilation error**.
-2. Undefined Behavior: It **avoids undefined behavior** by enforcing size constraints and ensuring
-   that both types can be safely represented with the same number of bits.
+1. Type safety:
+   - `std::bit_cast` ensures that the **source and destination** types are **the same size** **at
+     compile time**.
+   - If they are **not**, it will result in **a compilation error**.
+2. Undefined behavior:
+   - It **avoids undefined behavior** by enforcing size constraints and ensuring that both types can
+     be safely represented with the same number of bits.
 
 ##### `reinterpret_cast`:
 
-1. Type Safety: `reinterpret_cast` does **not perform any compile-time checks** on size or type
-   compatibility. It allows for **casting between unrelated types**, which can **lead to undefined
-   behavior** if **misused**.
-2. Undefined Behavior: If you attempt to **access the bits** of the reinterpreted type and **the
-   sizes** are **not compatible**, it can **result in undefined behavior**.
+1. Type safety:
+   - `reinterpret_cast` does **not perform any compile-time checks** on size or type compatibility.
+   - It allows for **casting between unrelated types**, which can **lead to undefined behavior** if
+     **misused**.
+2. Undefined behavior:
+   - If you attempt to **access the bits** of the reinterpreted type and **the sizes** are **not
+     compatible**, it can **result in undefined behavior**.
 
 #### Intent and Purpose
 
 ##### `std::bit_cast`:
 
-1. Intent: The primary intent of `std::bit_cast` is to **safely reinterpret the bit representation**
-   of an object **without modifying its underlying data**. It is used when you want to **change the
-   type of the object** while preserving its bit pattern.
-2. Use Cases: It is suitable for scenarios like **converting between integer types and
-   floating-point types** or **safely casting structs to byte arrays**.
+1. Intent:
+   - The primary intent of `std::bit_cast` is to **safely reinterpret the bit representation** of an
+     object **without modifying its underlying data**.
+   - It is used when you want to **change the type of the object** while preserving its bit pattern.
+2. Use cases:
+   - It is suitable for scenarios like **converting between integer types and floating-point types**
+     or **safely casting structs to byte arrays**.
 
 ##### `reinterpret_cast`:
 
-1. Intent: `reinterpret_cast` is used for **low-level, potentially unsafe type conversions**. It
-   conveys a need for flexibility in **converting between pointer types, reference types, or even
-   between pointers and integers**.
-2. Use Cases: Commonly used in **systems programming**, **interfacing with hardware**, or when
-   **interacting with legacy C libraries** where type safety is not a priority.
+1. Intent:
+   - `reinterpret_cast` is used for **low-level, potentially unsafe type conversions**.
+   - It conveys a need for flexibility in **converting between pointer types, reference types, or
+     even between pointers and integers**.
+2. Use cases:
+   - Commonly used in **systems programming**, **interfacing with hardware**, or when **interacting
+     with legacy C libraries** where type safety is not a priority.
 
 #### Performance
 
 ##### `std::bit_cast`:
 
-1. Performance: It has performance characteristics **similar to `reinterpret_cast`**, as it does not
-   incur the overhead of type checks at runtime. However, it provides stronger guarantees regarding
-   type safety.
+1. Performance:
+   - It has performance characteristics **similar to `reinterpret_cast`**, as it does not incur the
+     overhead of type checks at runtime.
+   - However, it provides stronger guarantees regarding type safety.
 
 ##### `reinterpret_cast`:
 
-1. Performance: Its performance is generally **comparable to C-style casting**, as it performs no
-   safety checks and directly reinterprets the bits.
+1. Performance:
+   - Its performance is generally **comparable to C-style casting**, as it performs no safety checks
+     and directly reinterprets the bits.
 
 #### Requirements for Usage
 
 ##### `std::bit_cast`:
 
-1. **Same Size**: The source and target types must be of the same size.
-2. Constexpr Support: **Can be used in constant expressions**.
+1. **Same size**:
+   - The source and target types must be of the same size.
+2. `constexpr` support:
+   - **Can be used in constant expressions**.
 
 ##### `reinterpret_cast`:
 
-1. Pointer or Reference Types: The expression being cast **must be a pointer or reference type**.
-2. **Correctness of the Cast**: **Users must ensure** that the object being accessed through the
-   cast pointer is compatible with the target type.
+1. Pointer or reference types:
+   - The expression being cast **must be a pointer or reference type**.
+2. **Correctness of the cast**:
+   - **Users must ensure** that the object being accessed through the cast pointer is compatible
+     with the target type.
 
 ### Upcasting and Downcasting
 
 #### Explanation
 
-1. In C++, upcasting and downcasting are **terms** used to describe **type conversions within an
-   inheritance hierarchy** (i.e., between a base class and its derived classes). These casts
-   typically involve **pointer or reference conversions**.
+1. Upcasting and downcasting are **terms** used to describe **type conversions within an inheritance
+   hierarchy** (i.e., between a base class and its derived classes).
+2. These casts typically involve **pointer or reference conversions**.
 
 #### Upcasting
 
-1. Upcasting refers to **casting a derived class object to a base class type**. This conversion is
-   **safe** and **performed implicitly** or **explicitly using `static_cast`**. Since the derived
-   class contains all the members of the base class, the cast will always succeed.
-2. **Base class members** will be **accessible**, but **derived class-specific members** will be
+1. Upcasting refers to **casting a derived class object to a base class type**.
+2. This conversion is **safe** and **performed implicitly** or **explicitly using `static_cast`**.
+3. Since the derived class contains all the members of the base class, the cast will always succeed.
+4. **Base class members** will be **accessible**, but **derived class-specific members** will be
    **hidden** **unless** the base class method is marked as **virtual** (allowing for polymorphism).
 
 #### Downcasting
 
-1. Downcasting refers to **casting a base class object to a derived class type**. This is
-   potentially **unsafe**, as the base class might not actually be an instance of the derived class.
-   Therefore, **`dynamic_cast` should be used** when performing downcasting to ensure runtime type
+1. Downcasting refers to **casting a base class object to a derived class type**.
+2. This is potentially **unsafe**, as the base class might not actually be an instance of the
+   derived class.
+3. Therefore, **`dynamic_cast` should be used** when performing downcasting to ensure runtime type
    safety.
-2. **`dynamic_cast` should be used** for downcasting when you are **unsure** if the **base pointer
+4. **`dynamic_cast` should be used** for downcasting when you are **unsure** if the **base pointer
    refers to an instance** of the derived class.
 
 ### Notes
