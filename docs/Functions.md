@@ -1,53 +1,52 @@
 <!-- vim-markdown-toc GFM -->
 
 - [Functions](#functions)
-  - [1) Explanation](#1-explanation)
-  - [2) Advantages and Disadvantages](#2-advantages-and-disadvantages)
+  - [Explanation](#explanation)
+  - [Advantages and Disadvantages](#advantages-and-disadvantages)
     - [Advantages ( Why Use Functions )](#advantages--why-use-functions-)
     - [Disadvantages](#disadvantages)
-  - [3) Definition Syntax](#3-definition-syntax)
-  - [4) Declaration Syntax](#4-declaration-syntax)
-  - [5) Reference Syntax](#5-reference-syntax)
-  - [6)Function Arguments](#6function-arguments)
+  - [Definition Syntax](#definition-syntax)
+  - [Declaration Syntax](#declaration-syntax)
+  - [Reference Syntax](#reference-syntax)
+  - [Function Arguments](#function-arguments)
     - [How to Pass Arguments to a Function](#how-to-pass-arguments-to-a-function)
     - [Limitations of Function Default Arguments](#limitations-of-function-default-arguments)
-  - [7) Keywords Related to Functions](#7-keywords-related-to-functions)
-    - [(1) `inline`](#1-inline)
-      - [Explanation](#explanation)
+  - [Keywords Related to Functions](#keywords-related-to-functions)
+    - [`inline`](#inline)
+      - [Explanation](#explanation-1)
       - [Syntax](#syntax)
       - [Advantages](#advantages)
       - [Disadvantages](#disadvantages-1)
       - [Usage](#usage)
-    - [(2) `const`](#2-const)
-      - [Purpose](#purpose)
-    - [(3) `constexpr`](#3-constexpr)
-    - [(4) `static`](#4-static)
-    - [(5) `noexcept`](#5-noexcept)
-      - [Explanation](#explanation-1)
+    - [`const`](#const)
+    - [`constexpr`](#constexpr)
+    - [`static`](#static)
+    - [`noexcept`](#noexcept)
+      - [Explanation](#explanation-2)
       - [Synatx](#synatx)
       - [Usage](#usage-1)
       - [Conditional `noexcept` Expressions](#conditional-noexcept-expressions)
-        - [Explanation](#explanation-2)
+        - [Explanation](#explanation-3)
         - [Synatx](#synatx-1)
-    - [(6) `asm` or `__asm`](#6-asm-or-__asm)
-      - [Explanation](#explanation-3)
+    - [`asm` or `__asm`](#asm-or-__asm)
+      - [Explanation](#explanation-4)
       - [Syntax](#syntax-1)
-  - [8) Function Pointers](#8-function-pointers)
-    - [Explanation](#explanation-4)
-    - [(1) Declaration and Definition Syntax](#1-declaration-and-definition-syntax)
-    - [(2) Declaration and Assignment Syntax](#2-declaration-and-assignment-syntax)
-    - [(2) Syntax for Function Calls Using Function Pointers](#2-syntax-for-function-calls-using-function-pointers)
-    - [(3) Syntax for Function Pinter Declaration Using `using`](#3-syntax-for-function-pinter-declaration-using-using)
-    - [(4) Syntax for Function Pinter Declaration Using `typedef`](#4-syntax-for-function-pinter-declaration-using-typedef)
-  - [9) Lambda Functions](#9-lambda-functions)
-    - [Why Use Lambda Functions](#why-use-lambda-functions)
+  - [Function Pointers](#function-pointers)
     - [Explanation](#explanation-5)
+    - [Declaration and Definition Syntax](#declaration-and-definition-syntax)
+    - [Declaration and Assignment Syntax](#declaration-and-assignment-syntax)
+    - [Syntax for Function Calls Using Function Pointers](#syntax-for-function-calls-using-function-pointers)
+    - [Syntax for Function Pinter Declaration Using `using`](#syntax-for-function-pinter-declaration-using-using)
+    - [Syntax for Function Pinter Declaration Using `typedef`](#syntax-for-function-pinter-declaration-using-typedef)
+  - [Lambda Functions](#lambda-functions)
+    - [Why Use Lambda Functions](#why-use-lambda-functions)
+    - [Explanation](#explanation-6)
     - [Syntax](#syntax-2)
       - [Code for Passing It as a Variable](#code-for-passing-it-as-a-variable)
       - [Code for Defining It as a Function](#code-for-defining-it-as-a-function)
-      - [Explanation](#explanation-6)
-    - [Capture Clause](#capture-clause)
       - [Explanation](#explanation-7)
+    - [Capture Clause](#capture-clause)
+      - [Explanation](#explanation-8)
       - [Example 1: Capture Nothing](#example-1-capture-nothing)
       - [Example 2: A Default Capture Mode `[=]` - Capture All Variables by Value](#example-2-a-default-capture-mode----capture-all-variables-by-value)
       - [Example 3: A Default Capture Mode `[&]` - Capture All Variables by Value](#example-3-a-default-capture-mode----capture-all-variables-by-value)
@@ -57,13 +56,13 @@
       - [Example 7: Specify Some Variables Captured by Value and Others by Reference](#example-7-specify-some-variables-captured-by-value-and-others-by-reference)
       - [Example 8: Specify Some Variables Captured by Reference and Some by Value](#example-8-specify-some-variables-captured-by-reference-and-some-by-value)
     - [`mutable` Lambda Functions](#mutable-lambda-functions)
-      - [Explanation](#explanation-8)
+      - [Explanation](#explanation-9)
       - [Syntax](#syntax-3)
     - [`noexcept` Lambda Functions](#noexcept-lambda-functions)
-      - [Explanation](#explanation-9)
+      - [Explanation](#explanation-10)
       - [Syntax](#syntax-4)
-  - [10) Function Parameter Packs](#10-function-parameter-packs)
-    - [Explanation](#explanation-10)
+  - [Function Parameter Packs](#function-parameter-packs)
+    - [Explanation](#explanation-11)
     - [Common Syntax](#common-syntax)
     - [Links](#links)
 
@@ -71,68 +70,78 @@
 
 ## Functions
 
-### 1) Explanation
+### Explanation
 
-1. Functions are **self-contained blocks of code** that **perform specific tasks**. They can accept
-   input values, known as parameters, process them, and optionally return a result.
+1. Functions are **self-contained blocks of code** that **perform specific tasks**.
+2. They can accept input values, known as parameters, process them, and optionally return a result.
 
-### 2) Advantages and Disadvantages
+### Advantages and Disadvantages
 
 #### Advantages ( Why Use Functions )
 
-1. **Code Reusability**: Functions allow you to write a piece of code once and reuse it multiple
-   times throughout your program. This reduces redundancy and makes the code more maintainable.
-2. Modularity: Functions enable you to break down complex problems into smaller, manageable pieces.
-   Each function can focus on a specific task, which makes understanding and maintaining the code
-   easier.
-3. Easier Debugging: Since functions isolate specific tasks, it’s easier to identify and fix bugs.
-   You can test each function independently to ensure it works correctly.
-4. Improved Readability: Well-named functions make the code more readable. They serve as
-   documentation by indicating what the function does, which can help other developers (or your
-   future self) understand the code more quickly.
-5. Abstraction: Functions help abstract away complex logic. Once a function is defined, you can use
-   it without needing to understand its internal workings, allowing you to focus on higher-level
-   programming.
+1. **Code reusability**:
+   - Functions allow you to write a piece of code once and reuse it multiple times throughout your
+     program.
+   - This reduces redundancy and makes the code more maintainable.
+2. **Modularity**:
+   - Functions enable you to break down complex problems into smaller, manageable pieces.
+   - Each function can focus on a specific task, which makes understanding and maintaining the code
+     easier.
+3. **Easier debugging**:
+   - Since functions isolate specific tasks, it’s easier to identify and fix bugs.
+   - You can test each function independently to ensure it works correctly.
+4. **Improved readability**:
+   - Well-named functions make the code more readable.
+   - They serve as documentation by indicating what the function does, which can help other
+     developers (or your future self) understand the code more quickly.
+5. Abstraction:
+   - Functions help abstract away complex logic.
+   - Once a function is defined, you can use it without needing to understand its internal workings,
+     allowing you to focus on higher-level programming.
 
 #### Disadvantages
 
-1. **Overhead**: Calling functions introduces a slight overhead due to the time taken for the call
-   and return. This can impact performance in time-critical applications, particularly if functions
-   are called excessively or are very small, except in the case of an **inline** function.
-2. Complexity: Overusing functions or creating too many small functions can lead to unnecessary
-   complexity. If functions are too granular, it may become challenging to trace program flow and
-   understand how different parts interact.
-3. Global State Management: Functions can complicate the management of global variables or states.
-   If functions modify global variables, it can lead to unpredictable behavior and make debugging
-   difficult.
-4. Scope Issues: The scope of variables defined within functions can lead to issues if not managed
-   properly. Local variables may be inaccessible outside the function, which can limit their
-   usefulness.
-5. Dependency Management: Functions can create dependencies between different parts of a program.
-   Changes in one function may require updates to others that depend on it, which can lead to
-   maintenance challenges.
+1. **Overhead**:
+   - Calling functions introduces a slight overhead due to the time taken for the call and return.
+   - This can impact performance in time-critical applications, particularly if functions are called
+     excessively or are very small, except in the case of an **inline** function.
+2. Complexity:
+   - Overusing functions or creating too many small functions can lead to unnecessary complexity.
+   - If functions are too granular, it may become challenging to trace program flow and understand
+     how different parts interact.
+3. Global state management:
+   - Functions can complicate the management of global variables or states.
+   - If functions modify global variables, it can lead to unpredictable behavior and make debugging
+     difficult.
+4. Scope issues:
+   - The scope of variables defined within functions can lead to issues if not managed properly.
+   - Local variables may be inaccessible outside the function, which can limit their usefulness.
+5. Dependency management:
+   - Functions can create dependencies between different parts of a program.
+   - Changes in one function may require updates to others that depend on it, which can lead to
+     maintenance challenges.
 
-### 3) Definition Syntax
+### Definition Syntax
 
 ```CPP
 RetType funcName( para_list ) {
-   // function body
+   // Function body.
 };
 ```
 
 ```CPP
 auto funcName( para_list ) -> RetType {
-   // function body
+   // Function body.
 };
 ```
 
-### 4) Declaration Syntax
+### Declaration Syntax
 
 ```CPP
 RetType funcName( para_list );
 ```
 
-### 5) Reference Syntax
+### Reference Syntax
 
 ```CPP
 funcName( arg_list );
@@ -142,7 +151,7 @@ funcName( arg_list );
 RetType var_name = funcName( arg_list );
 ```
 
-### 6)Function Arguments
+### Function Arguments
 
 #### How to Pass Arguments to a Function
 
@@ -152,38 +161,45 @@ RetType var_name = funcName( arg_list );
 
 #### Limitations of Function Default Arguments
 
-1. **Order of Parameters**: **Once a default argument is specified for a parameter, all subsequent
-   parameters must also have default arguments. It is not permissible to omit a parameter that has a
-   default value if one intends to provide values for later parameters**.
-2. **Ambiguity in Overloading**: The use of default arguments can lead to ambiguity in function
-   overloading. If multiple overloaded functions can match the same call due to the presence of
-   default arguments, it may result in confusion for the compiler.
-3. **Inheritance**: When overriding a virtual function **in a derived class**, **the default
-   arguments** of the base class method **cannot be altered**. The default arguments of the base
-   class will remain applicable, which may lead to confusion.
-4. **Function Pointers**: In the context of function pointers, **default arguments are not
-   considered**. The function pointer type must match the function signature precisely.
+1. **Order of Parameters**:
+   - **Once a default argument** is **specified** for a parameter, **all subsequent** parameters
+     **must** also **have default arguments**.
+   - It is **not permissible** to **omit a parameter** that **has a default value** if one intends
+     to **provide values for later parameters**.
+2. **Ambiguity in overloading**:
+   - The use of default arguments can lead to ambiguity in function overloading.
+   - If multiple overloaded functions can match the same call due to the presence of default
+     arguments, it may result in confusion for the compiler.
+3. **Inheritance**:
+   - When overriding a virtual function **in a derived class**, **the default arguments** of the
+     base class method **cannot be altered**.
+   - The default arguments of the base class will remain applicable, which may lead to confusion.
+4. **Function pointers**:
+   - In the context of function pointers, **default arguments are not considered**.
+   - The function pointer type must match the function signature precisely.
 
-### 7) Keywords Related to Functions
+### Keywords Related to Functions
 
-#### (1) `inline`
+#### `inline`
 
 ##### Explanation
 
 1. Functions defined with the `inline` keyword suggest to the compiler that it should **attempt** to
    **expand the function's code at each point where the function is called**, rather than performing
    a traditional call.
-2. Please note that this is **just a suggestion**. The compiler will decide whether or not to expand
-   the inline function depending on the situation. If you want to force the compiler to unfold the
-   function all the time, you should understand more about the compiler's behavior.
+2. Please note that this is **just a suggestion**.
+   - The compiler will decide whether or not to expand the inline function depending on the
+     situation.
+   - If you want to force the compiler to unfold the function all the time, you should understand
+     more about the compiler's behavior.
 
 ##### Syntax
 
 ```
-inline RetType funcName( para_list ) { // function body };
+inline RetType funcName( para_list ) { // Function body. };
 
 int main() {
-   RetType result = funcName( para_list );   // Function call may be replaced with the function body
+   RetType result = funcName( para_list );   // Function call may be replaced with the function body.
 };
 ```
 
@@ -200,25 +216,25 @@ int main() {
 
 ##### Usage
 
-1. Inline Functions
-2. Inline Methods
-3. Inline Template Functions
+1. Inline functions.
+2. Inline methods.
+3. Inline template functions.
 
-#### (2) `const`
+#### `const`
 
-##### Purpose
+1. [`const` Methods (`const` Member Functions)](./ConstConstexprAndStatic.md#const-methods-const-member-functions)
+2. [`const` Function Parameters](./ConstConstexprAndStatic.md##const-function-parameters)
 
-1. For more information, please refer to Section [1) `const`](#1-const).
+#### `constexpr`
 
-#### (3) `constexpr`
+1. [`constexpr` Functions (`constexpr` Return Values)](./ConstConstexprAndStatic.md#constexpr-functions-constexpr-return-values)
 
-1. For more information, please refer to Section [2) `constexpr`](#2-constexpr).
+#### `static`
 
-#### (4) `static`
+1. [`static` Methods (`static` Member Functions)](./ConstConstexprAndStatic.md#static-methods-static-member-functions)
+2. [`static` Global Functions](#static-global-functions)
 
-1. For more information, please refer to Section [3) `static`](#3-static).
-
-#### (5) `noexcept`
+#### `noexcept`
 
 ##### Explanation
 
@@ -232,29 +248,29 @@ int main() {
 
 ```CPP
 RetType funcName( para_list ) noexcept {
-   // Indicates no exceptions will be thrown
-   // Function implementation
+   // Indicates no exceptions will be thrown.
+   // Function implementation.
 };
 ```
 
 ```CPP
 // The compiler will issue a `warning`.
 RetType funcName( para_list ) noexcept {
-   // Indicates no exceptions will be thrown
-   // Function implementation
+   // Indicates no exceptions will be thrown.
+   // Function implementation.
    throw std::runtime_error( " ... " );
 };
 ```
 
 ##### Usage
 
-1. Function declarations and definitions
-2. Lambda expressions
-3. Constructors and destructors
-4. Move constructors and move assignment operators
-5. Conditional noexcept expressions
-6. Function pointers and type aliases
-7. Overloaded functions
+1. Function declarations and definitions.
+2. Lambda expressions.
+3. Constructors and destructors.
+4. Move constructors and move assignment operators.
+5. Conditional noexcept expressions.
+6. Function pointers and type aliases.
+7. Overloaded functions.
 
 ##### Conditional `noexcept` Expressions
 
@@ -262,20 +278,20 @@ RetType funcName( para_list ) noexcept {
 
 1. Conditional `noexcept` in C++ allows you to **specify that a function is noexcept** only if
    **certain conditions** are **met**.
-2. The expression accompanying `noexcept` is **evaluated** as true or false **at compile time**. If
-   the expression is **true**, the function is considered **noexcept**; if **false**, it may **throw
-   exceptions**.
+2. The expression accompanying `noexcept` is **evaluated** as true or false **at compile time**.
+   - If the expression is **true**, the function is considered **noexcept**.
+   - If **false**, it may **throw exceptions**.
 
 ###### Synatx
 
 ```CPP
 RetType funcName( para_list ) noexcept( noexcept ( an expression or a function ) {
-   // Indicates no exceptions will be thrown
-   // Function implementation
+   // Indicates no exceptions will be thrown.
+   // Function implementation.
 };
 ```
 
-#### (6) `asm` or `__asm`
+#### `asm` or `__asm`
 
 ##### Explanation
 
@@ -290,15 +306,15 @@ RetType funcName( para_list ) noexcept( noexcept ( an expression or a function )
 asm("assembly_code");
 ```
 
-### 8) Function Pointers
+### Function Pointers
 
 #### Explanation
 
 1. A function pointer is **a variable** that **stores the address of a function** in C or C++.
-2. It allows you to call a function indirectly through its pointer, enabling dynamic function calls
-   and making it possible to implement callback mechanisms.
+2. It allows you to call a function indirectly through its pointer, enabling **dynamic function
+   calls** and making it possible to **implement callback mechanisms**.
 
-#### (1) Declaration and Definition Syntax
+#### Declaration and Definition Syntax
 
 ```CPP
 // The implicit conversion occurs.
@@ -323,7 +339,7 @@ RetType ( *func_ptr_name )( para_type_list ) = funcName;
 RetType ( *func_ptr_name )( para_type_list ) = &funcName;
 ```
 
-#### (2) Declaration and Assignment Syntax
+#### Declaration and Assignment Syntax
 
 ```CPP
 RetType ( *func_ptr_name )( para_type_list );
@@ -338,10 +354,10 @@ RetType ( *func_ptr_name )( para_type_list );
 func_ptr_name = &funcName;
 ```
 
-#### (2) Syntax for Function Calls Using Function Pointers
+#### Syntax for Function Calls Using Function Pointers
 
 ```CPP
-// A function whose return type isn't `void`
+// A function whose return type isn't `void`.
 auto result = func_ptr_name( arguement_list );
 ```
 
@@ -351,73 +367,81 @@ RetType result = func_ptr_name( arguement_list );
 ```
 
 ```CPP
-// A function whose return type is `void`
+// A function whose return type is `void`.
 func_pt_name( arguement_list );
 ```
 
-#### (3) Syntax for Function Pinter Declaration Using `using`
+#### Syntax for Function Pinter Declaration Using `using`
 
 ```CPP
 using FuncPtrName = RetType ( * )( parameter_types );
 FuncPtrName func_ptr_name;
 ```
 
-#### (4) Syntax for Function Pinter Declaration Using `typedef`
+#### Syntax for Function Pinter Declaration Using `typedef`
 
 ```CPP
 typedef RetType ( *FuncPtrName )( parameter_types );
 FuncPtrName func_ptr_name;
 ```
 
-### 9) Lambda Functions
+### Lambda Functions
 
 #### Why Use Lambda Functions
 
-1.  If functionA wants to call functionB **at a particular point**, you could pass a pointer to
-    functionB into functionA. However, using traditional method to implement functionB may be
-    **overkill**, so you should use a lambda instead.
-2.  Some **C++ standard libraries require** function pointers; you can pass a lambda as a pointer to
-    them.
+1. If `functionA` intends to invoke `functionB` **at a specific juncture**, a pointer to `functionB`
+   can be passed into `functionA`.
+2. However, employing a conventional implementation of `functionB` may be **excessive**; thus,
+   utilizing a lambda expression is recommended.
+3. Certain **C++ standard libraries necessitate** the use of function pointers; in such cases, a
+   lambda expression can be passed as a pointer.
 
 #### Explanation
 
 1. A lambda function is a way to define **an anonymous inline function** (i.e., a function without a
-   name) directly in your code. It allows you to create small, simple function-like entities inline,
-   making your code more concise and flexible.
+   name) directly in your code.
+2. It allows you to create small, simple function-like entities **`inline`**, making your **code
+   more concise and flexible**.
 
 #### Syntax
 
 ##### Code for Passing It as a Variable
 
 ```CPP
-[capture]( para_list ) -> RetType { body };
+[capture]( para_list ) -> RetType { // Funtion body. };
 ```
 
 ##### Code for Defining It as a Function
 
 ```CPP
-auto funcName =  [capture]( para_list ) -> RetType { body };
+auto funcName =  [capture]( para_list ) -> RetType { // Funtion body. };
 ```
 
 ##### Explanation
 
-1. capture: Specifies which variables from the surrounding scope are captured by the lambda. This
-   can be done by value (`=`) or by reference (`&`).
-2. parameters: The parameters for the lambda function, similar to any regular function.
-3. RetType (**optional**): The return type of the lambda. If **omitted**, C++ will attempt to deduce
-   it automatically.
-4. body: The function body where the logic of the lambda resides.
+1. `capture`:
+   - Specifies which variables from the surrounding scope are captured by the lambda. This can be
+     done by value (`=`) or by reference (`&`).
+2. `para_list`:
+   - The `para_list` for the lambda function, similar to any regular function.
+3. `RetType` (**optional**):
+   - The return type of the lambda. If **omitted**, C++ will attempt to deduce it automatically.
+4. `Function body`:
+   - The function body where the logic of the lambda resides.
 
 #### Capture Clause
 
 ##### Explanation
 
-1. Capture by value (`=`): Copies the variable and makes it accessible inside the lambda.
-2. Capture by reference (`&`): Allows the lambda to modify the variable in the outer scope.
-3. Default capture: Default capture in a lambda function allows you to specify how variables from
-   the surrounding scope are captured **without explicitly listing each one**. You can set **a
-   default capture mode for all variables**, which **can be overridden for specific variables** if
-   needed.
+1. Capture by value (`=`):
+   - Copies the variable and makes it accessible inside the lambda.
+2. Capture by reference (`&`):
+   - Allows the lambda to modify the variable in the outer scope.
+3. Default capture:
+   - Default capture in a lambda function allows you to specify how variables from the surrounding
+     scope are captured **without explicitly listing each one**.
+   - You can set **a default capture mode for all variables**, which **can be overridden for
+     specific variables** if needed.
 
 ##### Example 1: Capture Nothing
 
@@ -508,11 +532,12 @@ auto funcName =  [capture]( para_list ) mutable -> RetType { body };
 auto funcName =  [capture]( para_list ) noexcept -> RetType { body };
 ```
 
-### 10) Function Parameter Packs
+### Function Parameter Packs
 
 #### Explanation
 
-1. Function parameter packs are function parameters that accept zero or more function arguments.
+1. Function parameter packs are **function parameters** that **accept zero or more function
+   arguments**.
 
 #### Common Syntax
 
@@ -525,9 +550,9 @@ template< typename... Ts > RetType funcName( Ts... args ) {
    ( std::cout << ... << &args ) << std::endl;
    // Method to print all ++arguments in order without adding any extra characters.
    ( std::cout << ... << ++args ) << std::endl;
-   std::tuple< Args... > _var;        // Store arguments in a tuple
-   std::tuple< Args*... > _var_ptr;   // Store arguments in a tuple
-                                      // Method to return an element by index
+   std::tuple< Args... > _var;        // Store arguments in a tuple.
+   std::tuple< Args*... > _var_ptr;   // Store arguments in a tuple.
+                                      // Method to return an element by index.
    return std::get< Index >( _var );
 }
 ```
