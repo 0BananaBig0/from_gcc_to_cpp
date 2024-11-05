@@ -6,7 +6,7 @@
   - [Anonymous Unions](#anonymous-unions)
     - [Explanation](#explanation-1)
     - [Syntax](#syntax)
-- [`std::variant` ( Multiple Types of Data in Single Variable )](#stdvariant--multiple-types-of-data-in-single-variable-)
+- [`std::variant` (Multiple Types of Data in Single Variable)](#stdvariant-multiple-types-of-data-in-single-variable)
   - [Explanation](#explanation-2)
   - [Synatx](#synatx-1)
   - [Members and Related Stuffs](#members-and-related-stuffs)
@@ -54,25 +54,25 @@
 ### Synatx
 
 ```CPP
-// Definition Syntax
+// Definition syntax.
 union UnionName {
       Type1 mem1;
       Type2 mem2;
-      // Other mems
+      // Other mems.
 };
 ```
 
 ```CPP
-// Definition Syntax
+// Definition syntax.
 union UnionName {
       Type1 mem1;
       Type2 mem2;
-      // Other mems
+      // Other mems.
 } obj;
 ```
 
 ```CPP
-// Usage Syntax
+// Usage syntax.
 UnionName obj;
 obj.mem1 = val1;   // obj.mem2 will also be set to val1.
 obj.mem2 = val2;   // obj.mem1 will also be set to val2.
@@ -89,43 +89,43 @@ obj.mem2 = val2;   // obj.mem1 will also be set to val2.
 #### Syntax
 
 ```CPP
-// Definition Syntax
+// Definition syntax.
 struct StructName {
       union {
             Type1 _mem1;
             Type2 _mem2;
-            // Other mems
+            // Other mems.
       };
 };
 ```
 
 ```CPP
-// Usage Syntax
+// Usage syntax.
 StructName obj;
 obj._mem1 = val1;   // obj._mem2 will also be set to  val1.
 obj._mem2 = val2;   // obj._mem1 will also be set to  val2.
 ```
 
 ```CPP
-// Definition Syntax
+// Definition syntax.
 class ClassName {
    public:
       union {
             Type1 _mem1;
             Type2 _mem2;
-            // Other mems
+            // Other mems.
       };
 };
 ```
 
 ```CPP
-// Usage Syntax
+// Usage syntax.
 ClassName obj;
 obj._mem1 = val1;   // obj._mem2 will also be set to  val1.
 obj._mem2 = val2;   // obj._mem1 will also be set to  val2.
 ```
 
-## `std::variant` ( Multiple Types of Data in Single Variable )
+## `std::variant` (Multiple Types of Data in Single Variable)
 
 ### Explanation
 
@@ -139,12 +139,12 @@ obj._mem2 = val2;   // obj._mem1 will also be set to  val2.
    means that while you can specify multiple types when declaring a `std::variant`, it can **only
    hold an instance** of one of those types at any given moment.
 5. `std::variant` is **type safer** than `std::any`.
+6. Its header file is `<variant>`.
 
 ### Synatx
 
 ```CPP
 // Declaration syntax.
-#include <variant>
 std::variant< TypeList > var_name;
 ```
 
@@ -153,6 +153,15 @@ std::variant< TypeList > var_name;
 std::variant< TypeList > var_name = val;
 // Assignment syntax.
 var_name = val;
+```
+
+```CPP
+// Definition syntax.
+std::variant< TypeList > var_name1 = val;
+// Copy constructor.
+std::variant< TypeList > var_name2 = var_name1;
+// Move constructor.
+std::variant< TypeList > var_name3 = std::move( var_name2 );
 ```
 
 ```CPP
@@ -270,12 +279,12 @@ try {
    implementation, it functions **similarly to `std::variant`**.
 5. However, if **larger sizes** are required, **dynamic allocations** are necessary, which can
    **impact performance**. This feature is **not useful**, and **few programmers use it**.
+6. Its header file is `<any>`.
 
 ### Synatx
 
 ```CPP
 // Declaration syntax.
-#include <any>
 std::any var_name;
 ```
 
@@ -284,6 +293,15 @@ std::any var_name;
 std::any var_name = val;
 // Assignment syntax.
 var_name = val;
+```
+
+```CPP
+// Definition syntax.
+std::any var_name1 = val;
+// Copy constructor.
+std::any var_name2( var_name1 );
+// Move constructor.
+std::any var_name3( std::move( var_name1 ) );
 ```
 
 ```CPP
@@ -365,23 +383,23 @@ var_name.reset();   // clears the stored value.
 ### Synatx
 
 ```CPP
-// Declaration Syntax.
+// Declaration syntax.
 #include <optional>
 std::optional< Type > var_name;
 ```
 
 ```CPP
-// Definition Syntax.
+// Definition syntax.
 std::optional< Type > var_name = std::nullopt;   // Empty optional.
 ```
 
 ```CPP
-// Definition Syntax.
+// Definition syntax.
 std::optional< Type > var_name = val;   // Contains a value.
 ```
 
 ```CPP
-// Assignment Syntax.
+// Assignment syntax.
 var_name = std::nullopt;   // Reset to empty state.
 var_name = val;            // Assign a value.
 ```
