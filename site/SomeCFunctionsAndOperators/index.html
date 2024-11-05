@@ -321,10 +321,10 @@
 <li>It counts <strong>the number of characters</strong> in the string, <strong>excluding</strong> the <strong>null</strong> terminator.</li>
 </ol>
 <h4 id="syntax_1">Syntax</h4>
-<pre><code class="language-CPP">// Its declaration syntax
+<pre><code class="language-CPP">// Its declaration syntax.
 size_t strlen( const char *str );
 </code></pre>
-<pre><code class="language-CPP">// Its usage syntax
+<pre><code class="language-CPP">// Its usage syntax.
 size_t len = strlen( str );
 </code></pre>
 <h3 id="malloc"><code>malloc</code></h3>
@@ -337,10 +337,10 @@ size_t len = strlen( str );
 <li><code>free</code> should be used to deallocate memory allocated with <code>malloc</code>.</li>
 </ol>
 <h4 id="syntax_2">Syntax</h4>
-<pre><code class="language-CPP">// Its declaration syntax
+<pre><code class="language-CPP">// Its declaration syntax.
 void* ptr = malloc( size_t size );
 </code></pre>
-<pre><code class="language-CPP">// Its usage syntax
+<pre><code class="language-CPP">// Its usage syntax.
 Type* ptr = (Type*)malloc( num * sizeof( Type ) );
 </code></pre>
 <h3 id="calloc"><code>calloc</code></h3>
@@ -353,10 +353,10 @@ Type* ptr = (Type*)malloc( num * sizeof( Type ) );
 <li><code>free</code> should be used to deallocate memory allocated with <code>calloc</code>.</li>
 </ol>
 <h4 id="syntax_3">Syntax</h4>
-<pre><code class="language-CPP">// Its declaration syntax
+<pre><code class="language-CPP">// Its declaration syntax.
 void* ptr = calloc( size_t num, size_t size );
 </code></pre>
-<pre><code class="language-CPP">// Its usage syntax
+<pre><code class="language-CPP">// Its usage syntax.
 Type* ptr = (Type*)calloc( num, sizeof( Type ) );
 </code></pre>
 <h3 id="realloc"><code>realloc</code></h3>
@@ -370,10 +370,10 @@ Type* ptr = (Type*)calloc( num, sizeof( Type ) );
 <li><code>free</code> should be used to deallocate memory resized with <code>calloc</code>.</li>
 </ol>
 <h4 id="syntax_4">Syntax</h4>
-<pre><code class="language-CPP">// Its declaration syntax
+<pre><code class="language-CPP">// Its declaration syntax.
 void* realloc( void* ptr, size_t new_size );
 </code></pre>
-<pre><code class="language-CPP">// Its usage syntax
+<pre><code class="language-CPP">// Its usage syntax.
 Type* ptr = (Type*)malloc( num1 * sizeof( Type ) );
 Type* new_ptr = (Type*)realloc( ptr, num2 * sizeof( Type ) );
 </code></pre>
@@ -388,11 +388,11 @@ Type* new_ptr = (Type*)realloc( ptr, num2 * sizeof( Type ) );
    pointers.</li>
 </ol>
 <h4 id="syntax_5">Syntax</h4>
-<pre><code class="language-CPP">// Its declaration syntax
+<pre><code class="language-CPP">// Its declaration syntax.
 void free( void* ptr );
 </code></pre>
-<pre><code class="language-CPP">// Its usage syntax
-// Free the allocated memory
+<pre><code class="language-CPP">// Its usage syntax.
+// Free the allocated memory.
 free( ptr );
 ptr = NULL;   // Good practice to avoid dangling pointers
 </code></pre>
@@ -406,10 +406,10 @@ ptr = NULL;   // Good practice to avoid dangling pointers
    behavior.</li>
 </ol>
 <h4 id="syntax_6">Syntax</h4>
-<pre><code class="language-CPP">// Its declaration syntax
+<pre><code class="language-CPP">// Its declaration syntax.
 char* strcpy( char* destination, const char* source );
 </code></pre>
-<pre><code class="language-CPP">// Its usage syntax
+<pre><code class="language-CPP">// Its usage syntax.
 strcpy( dest, sour_str );
 </code></pre>
 <h3 id="memcpy-shallow-copy"><code>memcpy</code> ( Shallow Copy )</h3>
@@ -422,14 +422,14 @@ strcpy( dest, sour_str );
    memory copying.</li>
 </ol>
 <h4 id="syntax_7">Syntax</h4>
-<pre><code class="language-CPP">// Its declaration syntax
+<pre><code class="language-CPP">// Its declaration syntax.
 void* memcpy( void* destination, const void* source, size_t num );
 </code></pre>
-<pre><code class="language-CPP">// Its usage syntax, for a string
+<pre><code class="language-CPP">// Its usage syntax, for a string.
 // +1 to include null terminator
 memcpy( dest, sour, strlen( sour ) + 1 );
 </code></pre>
-<pre><code class="language-CPP">// Its usage syntax, for a non-string array
+<pre><code class="language-CPP">// Its usage syntax, for a non-string array.
 memcpy( dest, sour, strlen( sour ) );
 </code></pre>
 <h3 id="memset"><code>memset</code></h3>
@@ -443,10 +443,10 @@ memcpy( dest, sour, strlen( sour ) );
    in memory</li>
 </ol>
 <h4 id="syntax_8">Syntax</h4>
-<pre><code class="language-CPP">// Its declaration syntax
+<pre><code class="language-CPP">// Its declaration syntax.
 void* memset( void* ptr, int value, size_t num );
 </code></pre>
-<pre><code class="language-CPP">// Its usage syntax
+<pre><code class="language-CPP">// Its usage syntax.
 memcpy( ptr, val, num );
 </code></pre></div>
             </div>

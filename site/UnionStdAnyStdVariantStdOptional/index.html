@@ -242,7 +242,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#stdvariant-multiple-types-of-data-in-single-variable" class="nav-link">std::variant ( Multiple Types of Data in Single Variable )</a>
+            <li class="nav-item" data-level="2"><a href="#stdvariant-multiple-types-of-data-in-single-variable" class="nav-link">std::variant (Multiple Types of Data in Single Variable)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -272,7 +272,7 @@
 <li><a href="#syntax">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#stdvariant--multiple-types-of-data-in-single-variable-"><code>std::variant</code> ( Multiple Types of Data in Single Variable )</a></li>
+<li><a href="#stdvariant-multiple-types-of-data-in-single-variable"><code>std::variant</code> (Multiple Types of Data in Single Variable)</a></li>
 <li><a href="#explanation-2">Explanation</a></li>
 <li><a href="#synatx-1">Synatx</a></li>
 <li><a href="#members-and-related-stuffs">Members and Related Stuffs</a><ul>
@@ -323,21 +323,21 @@
    and helps <strong>save memory</strong>.</li>
 </ol>
 <h3 id="synatx">Synatx</h3>
-<pre><code class="language-CPP">// Definition Syntax
+<pre><code class="language-CPP">// Definition syntax.
 union UnionName {
       Type1 mem1;
       Type2 mem2;
-      // Other mems
+      // Other mems.
 };
 </code></pre>
-<pre><code class="language-CPP">// Definition Syntax
+<pre><code class="language-CPP">// Definition syntax.
 union UnionName {
       Type1 mem1;
       Type2 mem2;
-      // Other mems
+      // Other mems.
 } obj;
 </code></pre>
-<pre><code class="language-CPP">// Usage Syntax
+<pre><code class="language-CPP">// Usage syntax.
 UnionName obj;
 obj.mem1 = val1;   // obj.mem2 will also be set to val1.
 obj.mem2 = val2;   // obj.mem1 will also be set to val2.
@@ -350,36 +350,36 @@ obj.mem2 = val2;   // obj.mem1 will also be set to val2.
 <li>This can <strong>simplify code</strong> when the union is used <strong>frequently within a class or structure</strong>.</li>
 </ol>
 <h4 id="syntax">Syntax</h4>
-<pre><code class="language-CPP">// Definition Syntax
+<pre><code class="language-CPP">// Definition syntax.
 struct StructName {
       union {
             Type1 _mem1;
             Type2 _mem2;
-            // Other mems
+            // Other mems.
       };
 };
 </code></pre>
-<pre><code class="language-CPP">// Usage Syntax
+<pre><code class="language-CPP">// Usage syntax.
 StructName obj;
 obj._mem1 = val1;   // obj._mem2 will also be set to  val1.
 obj._mem2 = val2;   // obj._mem1 will also be set to  val2.
 </code></pre>
-<pre><code class="language-CPP">// Definition Syntax
+<pre><code class="language-CPP">// Definition syntax.
 class ClassName {
    public:
       union {
             Type1 _mem1;
             Type2 _mem2;
-            // Other mems
+            // Other mems.
       };
 };
 </code></pre>
-<pre><code class="language-CPP">// Usage Syntax
+<pre><code class="language-CPP">// Usage syntax.
 ClassName obj;
 obj._mem1 = val1;   // obj._mem2 will also be set to  val1.
 obj._mem2 = val2;   // obj._mem1 will also be set to  val2.
 </code></pre>
-<h2 id="stdvariant-multiple-types-of-data-in-single-variable"><code>std::variant</code> ( Multiple Types of Data in Single Variable )</h2>
+<h2 id="stdvariant-multiple-types-of-data-in-single-variable"><code>std::variant</code> (Multiple Types of Data in Single Variable)</h2>
 <h3 id="explanation_2">Explanation</h3>
 <ol>
 <li><code>std::variant</code> is <strong>a type-safe union</strong> introduced that allows us to <strong>list various types</strong> for a
@@ -392,16 +392,23 @@ obj._mem2 = val2;   // obj._mem1 will also be set to  val2.
    means that while you can specify multiple types when declaring a <code>std::variant</code>, it can <strong>only
    hold an instance</strong> of one of those types at any given moment.</li>
 <li><code>std::variant</code> is <strong>type safer</strong> than <code>std::any</code>.</li>
+<li>Its header file is <code>&lt;variant&gt;</code>.</li>
 </ol>
 <h3 id="synatx_1">Synatx</h3>
 <pre><code class="language-CPP">// Declaration syntax.
-#include &lt;variant&gt;
 std::variant&lt; TypeList &gt; var_name;
 </code></pre>
 <pre><code class="language-CPP">// Definition syntax.
 std::variant&lt; TypeList &gt; var_name = val;
 // Assignment syntax.
 var_name = val;
+</code></pre>
+<pre><code class="language-CPP">// Definition syntax.
+std::variant&lt; TypeList &gt; var_name1 = val;
+// Copy constructor.
+std::variant&lt; TypeList &gt; var_name2 = var_name1;
+// Move constructor.
+std::variant&lt; TypeList &gt; var_name3 = std::move( var_name2 );
 </code></pre>
 <pre><code class="language-CPP">// Checking type.
 if( std::holds_alternative&lt; Type &gt;( var_name ) ) {
@@ -504,16 +511,23 @@ try {
    implementation, it functions <strong>similarly to <code>std::variant</code></strong>.</li>
 <li>However, if <strong>larger sizes</strong> are required, <strong>dynamic allocations</strong> are necessary, which can
    <strong>impact performance</strong>. This feature is <strong>not useful</strong>, and <strong>few programmers use it</strong>.</li>
+<li>Its header file is <code>&lt;any&gt;</code>.</li>
 </ol>
 <h3 id="synatx_2">Synatx</h3>
 <pre><code class="language-CPP">// Declaration syntax.
-#include &lt;any&gt;
 std::any var_name;
 </code></pre>
 <pre><code class="language-CPP">// Definition syntax.
 std::any var_name = val;
 // Assignment syntax.
 var_name = val;
+</code></pre>
+<pre><code class="language-CPP">// Definition syntax.
+std::any var_name1 = val;
+// Copy constructor.
+std::any var_name2( var_name1 );
+// Move constructor.
+std::any var_name3( std::move( var_name1 ) );
 </code></pre>
 <pre><code class="language-CPP">// Checking type.
 if( var_name.type() == typeid( Type ) ) {
@@ -580,17 +594,17 @@ var_name.reset();   // clears the stored value.
 <li>An example is using it to <strong>determine whether a file is successfully read</strong>.</li>
 </ol>
 <h3 id="synatx_3">Synatx</h3>
-<pre><code class="language-CPP">// Declaration Syntax.
+<pre><code class="language-CPP">// Declaration syntax.
 #include &lt;optional&gt;
 std::optional&lt; Type &gt; var_name;
 </code></pre>
-<pre><code class="language-CPP">// Definition Syntax.
+<pre><code class="language-CPP">// Definition syntax.
 std::optional&lt; Type &gt; var_name = std::nullopt;   // Empty optional.
 </code></pre>
-<pre><code class="language-CPP">// Definition Syntax.
+<pre><code class="language-CPP">// Definition syntax.
 std::optional&lt; Type &gt; var_name = val;   // Contains a value.
 </code></pre>
-<pre><code class="language-CPP">// Assignment Syntax.
+<pre><code class="language-CPP">// Assignment syntax.
 var_name = std::nullopt;   // Reset to empty state.
 var_name = val;            // Assign a value.
 </code></pre>

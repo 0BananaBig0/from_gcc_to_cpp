@@ -832,19 +832,10 @@ std::unordered_set&lt; Type &gt;* uset_ptr = new std::unordered_set&lt; Type &gt
 <li><code>Hash</code>: A unary function object type that takes an object of the same type as the elements as
    argument and returns a unique value of type <code>size_t</code> based on it. This can either be a class
    implementing a function call operator or a pointer to a function (see constructor for an
-   example). This defaults to <code>std::hash&lt;Key&gt;</code>, which returns a hash value with a probability of
-   collision approaching <code>1.0/std::numeric_limits&lt;size_t&gt;::max()</code>. The <code>unordered_set</code> object uses
-   the hash values returned by this function to organize its elements internally, speeding up the
-   process of locating individual elements. Aliased as member type <code>unordered_set::hasher</code>.</li>
+   example). This defaults to <code>std::hash&lt; Key &gt;</code>.</li>
 <li><code>KeyEqual</code>: A binary predicate that takes two arguments of the same type as the elements and
    returns a bool. The expression <code>KeyEqual( a,b )</code>, where <code>KeyEqual</code> is an object of this type and
-   <code>a</code> and <code>b</code> are key values, shall return true if <code>a</code> is to be considered equivalent to <code>b</code>. This
-   can either be a class implementing a function call operator or a pointer to a function (see
-   constructor for an example). This defaults to <code>std::equal_to&lt; Key &gt;</code>, which returns the same as
-   applying the <code>equal-to operator ( a==b )</code>. The <code>unordered_set</code> object uses this expression to
-   determine whether two element keys are equivalent. No two elements in an <code>unordered_set</code>
-   container can have keys that yield true using this predicate. Aliased as member type
-   <code>unordered_set::key_equal</code>.</li>
+   <code>a</code> and <code>b</code> are key values, shall return true if <code>a</code> is to be considered equivalent to <code>b</code>.</li>
 <li><code>Allocator</code>: An allocator that is used to acquire/release memory and to construct/destroy the
    elements in that memory.</li>
 </ol>
@@ -1054,19 +1045,10 @@ std::unordered_multiset&lt; Type &gt;* umset_ptr = new std::unordered_multiset&l
 <li><code>Hash</code>: A unary function object type that takes an object of the same type as the elements as
    argument and returns a unique value of type <code>size_t</code> based on it. This can either be a class
    implementing a function call operator or a pointer to a function (see constructor for an
-   example). This defaults to <code>std::hash&lt;Key&gt;</code>, which returns a hash value with a probability of
-   collision approaching <code>1.0/std::numeric_limits&lt;size_t&gt;::max()</code>. The <code>unordered_multiset</code> object
-   uses the hash values returned by this function to organize its elements internally, speeding up
-   the process of locating individual elements. Aliased as member type <code>unordered_multiset::hasher</code>.</li>
+   example). This defaults to <code>std::hash&lt; Key &gt;</code>.</li>
 <li><code>KeyEqual</code>: A binary predicate that takes two arguments of the same type as the elements and
    returns a bool. The expression <code>KeyEqual( a,b )</code>, where <code>KeyEqual</code> is an object of this type and
-   <code>a</code> and <code>b</code> are key values, shall return true if <code>a</code> is to be considered equivalent to <code>b</code>. This
-   can either be a class implementing a function call operator or a pointer to a function (see
-   constructor for an example). This defaults to <code>std::equal_to&lt; Key &gt;</code>, which returns the same as
-   applying the <code>equal-to operator ( a==b )</code>. The <code>unordered_multiset</code> object uses this expression
-   to determine whether two element keys are equivalent. No two elements in an <code>unordered_multiset</code>
-   container can have keys that yield true using this predicate. Aliased as member type
-   <code>unordered_multiset::key_equal</code>.</li>
+   <code>a</code> and <code>b</code> are key values, shall return true if <code>a</code> is to be considered equivalent to <code>b</code>.</li>
 <li><code>Allocator</code>: An allocator that is used to acquire/release memory and to construct/destroy the
    elements in that memory.</li>
 </ol>

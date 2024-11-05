@@ -249,44 +249,42 @@
 <!-- vim-markdown-toc GFM -->
 
 <ul>
-<li><a href="#make-and-makefile"><code>make</code> and Makefile</a><ul>
-<li><a href="#1-make">1) <code>make</code></a></li>
-<li><a href="#2-makefile">2) Makefile</a></li>
-</ul>
-</li>
+<li><a href="#make-and-makefile"><code>make</code> and Makefile</a></li>
+<li><a href="#make"><code>make</code></a></li>
+<li><a href="#makefile">Makefile</a></li>
 <li><a href="#basic-syntax-of-makefile">Basic Syntax of Makefile</a><ul>
 <li><a href="#code">Code</a></li>
 <li><a href="#explanation">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#how-make-processes-a-makefile">How <code>make</code> Processes a Makefile</a><ul>
-<li><a href="#1-prerequisite">1) Prerequisite</a></li>
-<li><a href="#2-steps">2) Steps</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#steps"><strong>Steps</strong></a></li>
 </ul>
 </li>
 <li><a href="#phony-a-pseudo-target"><code>.PHONY</code>, a Pseudo Target</a><ul>
-<li><a href="#1-syntax">1) Syntax</a></li>
-<li><a href="#2-explanation-and-usage">2) Explanation and Usage</a></li>
-<li><a href="#3-example">3) Example</a></li>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#explanation-and-usage">Explanation and Usage</a></li>
+<li><a href="#example">Example</a></li>
 </ul>
 </li>
 <li><a href="#implicit-rule">Implicit Rule</a><ul>
-<li><a href="#1-explanation">1) Explanation</a></li>
-<li><a href="#2-common-implicit-rules">2) Common Implicit Rules</a></li>
-<li><a href="#3-suggestion">3) Suggestion</a></li>
+<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#common-implicit-rules">Common Implicit Rules</a></li>
+<li><a href="#notes">Notes</a></li>
 </ul>
 </li>
 <li><a href="#variables-in-makefile">Variables in Makefile</a><ul>
-<li><a href="#1-explanation-and-usage">1) Explanation and Usage</a></li>
-<li><a href="#2-the-syntax-of-defining-a-variable">2) The Syntax of Defining a Variable</a></li>
-<li><a href="#3-the-syntax-of-referencing-a-variable">3) The Syntax of Referencing a Variable</a></li>
-<li><a href="#4-default-variables-common-variables-automatic-variables-special-symbols-and-environment-variables">4) Default Variables, Common Variables, Automatic Variables, Special Symbols and Environment Variables</a></li>
-<li><a href="#1-explanation-1">(1) Explanation</a></li>
-<li><a href="#2-name-of-default-variables">(2) Name of Default Variables</a></li>
-<li><a href="#3-name-of-common-variables">(3) Name of Common Variables</a></li>
-<li><a href="#4-common-automatic-variables">(4) Common Automatic Variables</a></li>
-<li><a href="#5-some-common-special-symbols">(5) Some Common Special Symbols</a></li>
-<li><a href="#6-environment-variables">(6) Environment Variables</a><ul>
+<li><a href="#explanation-and-usage-1">Explanation and Usage</a></li>
+<li><a href="#the-syntax-of-defining-a-variable">The Syntax of Defining a Variable</a></li>
+<li><a href="#the-syntax-of-referencing-a-variable">The Syntax of Referencing a Variable</a></li>
+<li><a href="#default-variables-common-variables-automatic-variables-special-symbols-and-environment-variables">Default Variables, Common Variables, Automatic Variables, Special Symbols and Environment Variables</a></li>
+<li><a href="#explanation-2">Explanation</a></li>
+<li><a href="#name-of-default-variables">Name of Default Variables</a></li>
+<li><a href="#name-of-common-variables">Name of Common Variables</a></li>
+<li><a href="#common-automatic-variables">Common Automatic Variables</a></li>
+<li><a href="#some-common-special-symbols">Some Common Special Symbols</a></li>
+<li><a href="#environment-variables">Environment Variables</a><ul>
 <li><a href="#1-the-syntax-of-referencing-an-environment-variable">1 The Syntax of Referencing an Environment Variable</a></li>
 <li><a href="#2-the-syntax-of-overriding-an-environment-variable">2 The Syntax of Overriding an Environment Variable</a></li>
 <li><a href="#3-important-notes">3 Important Notes</a></li>
@@ -302,111 +300,111 @@
 </ul>
 </li>
 <li><a href="#pattern-rules">Pattern Rules</a><ul>
-<li><a href="#1-explanation-and-usage-1">1) Explanation and Usage</a></li>
-<li><a href="#2-basic-syntax">2) Basic Syntax</a></li>
+<li><a href="#explanation-and-usage-2">Explanation and Usage</a></li>
+<li><a href="#basic-syntax">Basic Syntax</a></li>
 <li><a href="#code-1">Code</a></li>
-<li><a href="#explanation-1">Explanation</a></li>
-<li><a href="#3-important-notes-1">3) Important Notes</a></li>
-<li><a href="#4-how-to-understand-the-actual-process-of-pattern-rules">4) How to Understand the Actual Process of Pattern Rules</a></li>
-<li><a href="#5-example-without-variables">5) Example Without Variables</a></li>
+<li><a href="#explanation-3">Explanation</a></li>
+<li><a href="#notes-1">Notes</a></li>
+<li><a href="#how-to-understand-the-actual-process-of-pattern-rules">How to Understand the Actual Process of Pattern Rules</a></li>
+<li><a href="#example-without-variables">Example Without Variables</a></li>
 <li><a href="#example-1-compiling-cpp-files-to-o-files">Example 1: Compiling <code>.cpp</code> files to <code>.o</code> files</a><ul>
 <li><a href="#code-2">Code</a></li>
-<li><a href="#explanation-2">Explanation</a></li>
+<li><a href="#explanation-4">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-2-creating-executables">Example 2: Creating Executables</a><ul>
 <li><a href="#code-3">Code</a></li>
-<li><a href="#explanation-3">Explanation</a></li>
+<li><a href="#explanation-5">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-3-custom-pattern-rule">Example 3: Custom Pattern Rule</a><ul>
 <li><a href="#code-4">Code</a></li>
-<li><a href="#explanation-4">Explanation</a></li>
+<li><a href="#explanation-6">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-4-chaining-pattern-rules">Example 4: Chaining Pattern Rules</a><ul>
 <li><a href="#code-5">Code</a></li>
-<li><a href="#explanation-5">Explanation</a></li>
+<li><a href="#explanation-7">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-5-using--for-matching-stems">Example 5: Using <code>$*</code> for Matching Stems</a><ul>
 <li><a href="#code-6">Code</a></li>
-<li><a href="#explanation-6">Explanation</a></li>
+<li><a href="#explanation-8">Explanation</a></li>
 </ul>
 </li>
-<li><a href="#6-example-with-variables">6) Example With Variables</a></li>
+<li><a href="#example-with-variables">Example With Variables</a></li>
 <li><a href="#example-1-using-variables-for-file-extensions">Example 1: Using Variables for File Extensions</a><ul>
 <li><a href="#code-7">Code</a></li>
-<li><a href="#explanation-7">Explanation</a></li>
+<li><a href="#explanation-9">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-2-using-variables-for-directories">Example 2: Using Variables for Directories</a><ul>
 <li><a href="#code-8">Code</a></li>
-<li><a href="#explanation-8">Explanation</a></li>
+<li><a href="#explanation-10">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-3-using-variables-for-compiler-and-flags">Example 3: Using Variables for Compiler and Flags</a><ul>
 <li><a href="#code-9">Code</a></li>
-<li><a href="#explanation-9">Explanation</a></li>
+<li><a href="#explanation-11">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-4-using-variables-for-custom-commands">Example 4: Using Variables for Custom Commands</a><ul>
 <li><a href="#code-10">Code</a></li>
-<li><a href="#explanation-10">Explanation</a></li>
+<li><a href="#explanation-12">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-5-combining-multiple-variables">Example 5: Combining Multiple Variables</a><ul>
 <li><a href="#code-11">Code</a></li>
-<li><a href="#explanation-11">Explanation</a></li>
+<li><a href="#explanation-13">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-6-using-a-variable-for-a-list-of-targets">Example 6: Using a Variable for a List of Targets</a><ul>
 <li><a href="#code-12">Code</a></li>
-<li><a href="#explanation-12">Explanation</a></li>
+<li><a href="#explanation-14">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-7-using-a-variable-with-multiple-targets-for-an-executable">Example 7: Using a Variable with Multiple Targets for an Executable</a><ul>
 <li><a href="#code-13">Code</a></li>
-<li><a href="#explanation-13">Explanation</a></li>
+<li><a href="#explanation-15">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-9-using-a-variable-for-source-files-and-a-pattern-rule-to-compile-them">Example 9: Using a Variable for Source Files and a Pattern Rule to Compile Them</a><ul>
 <li><a href="#code-14">Code</a></li>
-<li><a href="#explanation-14">Explanation</a></li>
+<li><a href="#explanation-16">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-10-pattern-rule-with-variable-target-pattern-using-wildcard">Example 10: Pattern Rule with Variable Target-Pattern Using wildcard</a><ul>
 <li><a href="#code-15">Code</a></li>
-<li><a href="#explanation-15">Explanation</a></li>
+<li><a href="#explanation-17">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-11-pattern-rule-with-a-prefix">Example 11: Pattern Rule with a Prefix</a><ul>
 <li><a href="#code-16">Code</a></li>
-<li><a href="#explanation-16">Explanation</a></li>
+<li><a href="#explanation-18">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#example-12-limitations-and-an-error-demonstration">Example 12: Limitations and an Error Demonstration</a><ul>
 <li><a href="#code-17">Code</a></li>
-<li><a href="#explanation-17">Explanation</a></li>
+<li><a href="#explanation-19">Explanation</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#how-to-process-header-files-effectively">How to Process Header Files Effectively</a><ul>
-<li><a href="#1-problem">1) Problem</a></li>
-<li><a href="#2-solution">2) Solution</a></li>
+<li><a href="#problem">Problem</a></li>
+<li><a href="#solution">Solution</a></li>
 <li><a href="#code-18">Code</a></li>
-<li><a href="#explanation-18">Explanation</a></li>
+<li><a href="#explanation-20">Explanation</a></li>
 </ul>
 </li>
 <li><a href="#some-common-make-command">Some Common <code>make</code> command</a><ul>
-<li><a href="#0-make">0) <code>make</code></a></li>
-<li><a href="#1-make--jn">1) <code>make -jn</code></a></li>
-<li><a href="#2-make-target_name">2) <code>make target_name</code></a></li>
-<li><a href="#3-make--c-a_path">3) <code>make -C a_path</code></a></li>
-<li><a href="#4-make--c-a_path-target_name">4) <code>make -C a_path target_name</code></a></li>
-<li><a href="#5-make-target_name-var_name1-var_name2-">5) <code>make target_name VAR_NAME1="..." VAR_NAME2="..." ...</code></a></li>
-<li><a href="#6-make--c-a_path-target_name-var_name1-var_name2-">6) <code>make -C a_path target_name VAR_NAME1="..." VAR_NAME2="..." ...</code></a></li>
+<li><a href="#make-1"><code>make</code></a></li>
+<li><a href="#make--jn"><code>make -jn</code></a></li>
+<li><a href="#make-target_name"><code>make target_name</code></a></li>
+<li><a href="#make--c-a_path"><code>make -C a_path</code></a></li>
+<li><a href="#make--c-a_path-target_name"><code>make -C a_path target_name</code></a></li>
+<li><a href="#make-target_name-var_name1-var_name2-"><code>make target_name VAR_NAME1="..." VAR_NAME2="..." ...</code></a></li>
+<li><a href="#make--c-a_path-target_name-var_name1-var_name2-"><code>make -C a_path target_name VAR_NAME1="..." VAR_NAME2="..." ...</code></a></li>
 </ul>
 </li>
 <li><a href="#how-to-manage-libraries-or-dependencies-your-project-denpends-on">How to Manage Libraries or Dependencies Your Project Denpends On</a></li>
@@ -414,20 +412,23 @@
 <!-- vim-markdown-toc -->
 
 <h2 id="make-and-makefile"><code>make</code> and Makefile</h2>
-<h4 id="1-make">1) <code>make</code></h4>
+<h4 id="make"><code>make</code></h4>
 <ol>
-<li>The <code>make</code> command is a build automation tool primarily used for compiling and building projects
-   in C, C++, and other programming languages. It simplifies the process of compiling code, linking
-   libraries, and creating executables by reading instructions from a configuration file called a
-   Makefile. Additionally, it checks the return value of each executed command in the Makefile. If a
-   command returns an error (a non-zero value), <code>make</code> will exit.</li>
+<li>The <code>make</code> command is <strong>a build automation tool</strong> primarily used for compiling and building
+   projects in C, C++, and other programming languages.</li>
+<li>It simplifies the process of compiling code, linking libraries, and creating executables by
+   reading instructions from a configuration file called a Makefile.</li>
+<li>Additionally, it <strong>checks the return value of each executed command</strong> in the Makefile. If a
+   command returns <strong>an error</strong> (<strong>a non-zero value</strong>), <code>make</code> will <strong>exit</strong>.</li>
 </ol>
-<h4 id="2-makefile">2) Makefile</h4>
+<h4 id="makefile">Makefile</h4>
 <ol>
-<li>A Makefile consists of a set of rules, each specifying how to compile files, generate targets, or
-   perform other tasks related to building the project. These rules may include shell commands as
-   well as custom commands defined within the Makefile syntax. A rule consists of three parts:
-   target, dependency ( prerequisite ) and command. The dependency set of a rule can be empty.</li>
+<li>A Makefile <strong>consists of a set of rules</strong>, each specifying how to compile files, generate
+   targets, or perform other tasks related to building the project.</li>
+<li>These rules may <strong>include shell commands</strong> as well as <strong>custom commands</strong> defined within the
+   Makefile syntax.</li>
+<li>A rule <strong>consists of three parts</strong>: <strong>target, dependency set (prerequisites) and command set</strong>.</li>
+<li>The <strong>dependency</strong> set of a rule <strong>can be empty</strong>.</li>
 </ol>
 <h3 id="basic-syntax-of-makefile">Basic Syntax of Makefile</h3>
 <h4 id="code">Code</h4>
@@ -439,112 +440,120 @@ target2: dependency set2
 </code></pre>
 <h4 id="explanation">Explanation</h4>
 <ol>
-<li>target: It is a file you want to create, except for a pseudo target. It can be an object file, a
-   <code>.cpp</code> file, a <code>.txt</code> file, and so on.</li>
-<li>dependency: It is a file that a target requires during its creation. It can be an object file, a
-   <code>.cpp</code> file, a <code>.txt</code> file, and so on. Typically, it's unnecessary to explicitly list header
-   files because the compiler can automatically track dependencies between source files and header
-   files.</li>
-<li>command set: It is a set of commands used to compile all dependency files into a target file.</li>
-<li>Note: Only files listed as targets or within the dependency set will be checked for existence or
-   modifications.</li>
+<li><code>target</code>:</li>
+<li>It is <strong>a file</strong> you want to <strong>create</strong>, <strong>except for a pseudo target</strong>.</li>
+<li>It can be an object file, a <code>.cpp</code> file, a <code>.txt</code> file, and so on.</li>
+<li><code>dependency</code>:</li>
+<li>It is <strong>a file</strong> that <strong>a target requires</strong> during its creation.</li>
+<li>It can be an object file, a <code>.cpp</code> file, a <code>.txt</code> file, and so on.</li>
+<li>Typically, it's unnecessary to explicitly list header files because the compiler can
+     automatically track dependencies between source files and header files.</li>
+<li><code>command set</code>:</li>
+<li>It is a set of commands used to compile all dependency files into a target file.</li>
+<li>Notes:</li>
+<li>Only files listed as targets or within the dependency set will be checked for existence or
+     modifications.</li>
 </ol>
 <h3 id="how-make-processes-a-makefile">How <code>make</code> Processes a Makefile</h3>
-<h4 id="1-prerequisite">1) Prerequisite</h4>
+<h4 id="prerequisites">Prerequisites</h4>
 <ol>
 <li>Simply type the make command without any suffix or option.</li>
 <li>Ensure all source files and the Makefile are in the same folder.</li>
 </ol>
-<h4 id="2-steps">2) Steps</h4>
+<h4 id="steps"><strong>Steps</strong></h4>
 <ol>
 <li>Check for a Makefile in the current folder:</li>
-<li>(1) If the Makefile does not exist, exit and report an error: "No targets specified and no
-     makefile found. Stop.".</li>
-<li>(2) If the Makefile is found, proceed to the next step.</li>
-<li>Identify the first target: Locate the first target in the Makefile and treat it as the final or
-   default target. For example, in the basic rule of the makefile above, target1 is the first
-   target.</li>
-<li>Build the dependency graph: <code>make</code> examines the dependencies listed in the Makefile and
-   constructs a dependency graph.</li>
-<li>(1) Each target can depend on other files or targets, which are updated recursively if
-     necessary.</li>
-<li>(2) Each node in the dependency graph represents a target or file and its associated commands,
+<li>If the Makefile does not exist, exit and report an error: "No targets specified and no makefile
+     found. Stop.".</li>
+<li>If the Makefile is found, proceed to the next step.</li>
+<li>Identify the first target:</li>
+<li>Locate the first target in the Makefile and treat it as the final or default target.</li>
+<li>For example, in the basic rule of the makefile above, target1 is the first target.</li>
+<li>Build the dependency graph:</li>
+<li><code>make</code> examines the dependencies listed in the Makefile and constructs a dependency graph.</li>
+<li>Each target can depend on other files or targets, which are updated recursively if necessary.</li>
+<li>Each node in the dependency graph represents a target or file and its associated commands,
      except for the leaf nodes.</li>
-<li>(3) A child node represents a dependency of its parent (a file or target), except for the leaf
-     nodes. (4) Each leaf node represents a source or a library file or a target file and its
-     command set witout any dependency.</li>
-<li>(5) The root node represents the final target and its command set.</li>
-<li>Recursively scan the dependency graph: Traverse the dependency graph in a breadth-first manner,
-   starting from the leaves up to the root. While scanning the tree, check if the file corresponding
-   to the current node exists or if its timestamp is newer than the root's.</li>
-<li>(1) If the file exists and its timestamp is not newer than the root’s, continue scanning.</li>
-<li>(2) If the file’s timestamp is newer than the root’s, execute the parent node's commands to
-     rebuild it.</li>
-<li>(3) If the file does not exist and it's not a leaf, execute its command set and rebuild it.</li>
-<li>(4) If the file does not exist and it's a leaf with a command set, execute its command set and
-     rebuild it.</li>
-<li>(5) If the file does not exist and it's a leaf without a command set, exit and report an error:
-     "No rule to make target 'xxx', needed by 'yyy'. Stop.".</li>
+<li>A child node represents a dependency of its parent (a file or target), except for the leaf
+     nodes.</li>
+<li>Each leaf node represents a source or a library file or a target file and its command set
+     witout any dependency.</li>
+<li>The root node represents the final target and its command set.</li>
+<li>Recursively scan the dependency graph:</li>
+<li>Traverse the dependency graph in a breadth-first manner, starting from the leaves up to the
+     root.</li>
+<li>While scanning the tree, check if the file corresponding to the current node exists or if its
+     timestamp is newer than the root's.<ul>
+<li>If the file exists and its timestamp is not newer than the root’s, continue scanning.</li>
+<li>If the file’s timestamp is newer than the root’s, execute the parent node's commands to
+   rebuild it.</li>
+<li>If the file does not exist and it's not a leaf, execute its command set and rebuild it.</li>
+<li>If the file does not exist and it's a leaf with a command set, execute its command set and
+   rebuild it.</li>
+<li>If the file does not exist and it's a leaf without a command set, exit and report an error:
+   "No rule to make target 'xxx', needed by 'yyy'. Stop.".</li>
+</ul>
+</li>
 </ol>
 <h3 id="phony-a-pseudo-target"><code>.PHONY</code>, a Pseudo Target</h3>
-<h4 id="1-syntax">1) Syntax</h4>
+<h4 id="syntax">Syntax</h4>
 <pre><code class="language-Makefile">.PHONY: a_pseudo_target1, a_pseudo_target2, ...
 </code></pre>
-<h4 id="2-explanation-and-usage">2) Explanation and Usage</h4>
+<h4 id="explanation-and-usage">Explanation and Usage</h4>
 <ol>
-<li>A pseudo-target (also called a phony target) in a Makefile is a target that does not represent a
-   real file.</li>
-<li>It is used to group commands or perform actions, such as cleaning up files or running non-file
-   related tasks like tests.</li>
-<li>Since these targets do not correspond to actual files, they are marked as "phony" to avoid
-   conflicts with files of the same name that might exist in the directory.</li>
+<li>A pseudo-target (also called a phony target) in a Makefile is <strong>a target</strong> that does <strong>not
+   represent a real file</strong>.</li>
+<li>It is <strong>used to group commands or perform actions</strong>, such as cleaning up files or running
+   non-file related tasks like tests.</li>
+<li>Since these targets do not correspond to actual files, they are <strong>marked as <code>.PHONY</code> to avoid
+   conflicts</strong> with files of the same name that might exist in the directory.</li>
 </ol>
-<h4 id="3-example">3) Example</h4>
+<h4 id="example">Example</h4>
 <pre><code class="language-Makefile">.PHONY: clean
 
 clean:
   rm -f *.o *.exe
 </code></pre>
 <h3 id="implicit-rule">Implicit Rule</h3>
-<h4 id="1-explanation">1) Explanation</h4>
+<h4 id="explanation_1">Explanation</h4>
 <ol>
-<li>In a Makefile, an implicit rule is a predefined or general rule that tells make how to build
-   certain types of files automatically without explicitly specifying a rule for each file. These
-   rules are built into make and handle common tasks like compiling <code>.c</code> or <code>.cpp</code> files into object
-   files, linking object files into executables, and more.</li>
+<li>In a Makefile, an implicit rule is <strong>a predefined or general rule</strong> that tells make how to build
+   certain types of files automatically without explicitly specifying a rule for each file.</li>
+<li>These rules are built into make and handle common tasks like <strong>compiling <code>.c</code> or <code>.cpp</code> files
+   into object files, linking object files into executables, and more</strong>.</li>
 </ol>
-<h4 id="2-common-implicit-rules">2) Common Implicit Rules</h4>
+<h4 id="common-implicit-rules">Common Implicit Rules</h4>
 <ol>
 <li>
-<p>Compiling <code>.c</code> to .<code>o</code>:</p>
+<p>Compiling <code>.c</code> to <code>.o</code>:</p>
 </li>
 <li>
-<p>(1) Implicit rule: <code>n.o</code>: <code>n.c</code></p>
+<p>Implicit rule: <code>n.o</code>: <code>n.c</code></p>
 </li>
-<li>(2) Command: <code>$(CC) -c $(CFLAGS) n.c -o n.o</code></li>
+<li>Command: <code>$(CC) -c $(CFLAGS) n.c -o n.o</code></li>
 <li>
-<p>(3) This rule tells make how to compile a <code>.c</code> file into an object (<code>.o</code>) file.</p>
+<p>This rule tells make how to compile a <code>.c</code> file into an object (<code>.o</code>) file.</p>
 </li>
 <li>
 <p>Compiling <code>.cpp</code> to <code>.o</code>:</p>
 </li>
 <li>
-<p>(1) Implicit rule: <code>n.o</code>: <code>n.cpp</code></p>
+<p>Implicit rule: <code>n.o</code>: <code>n.cpp</code></p>
 </li>
-<li>(2) Command: <code>$(CXX) -c $(CXXFLAGS) n.cpp -o n.o</code></li>
+<li>Command: <code>$(CXX) -c $(CXXFLAGS) n.cpp -o n.o</code></li>
 <li>
-<p>(3) Similarly, this rule tells make how to compile C++ files into object files.</p>
+<p>Similarly, this rule tells make how to compile C++ files into object files.</p>
 </li>
 <li>
 <p>Linking object files into an executable:</p>
 </li>
 <li>
-<p>(1) Implicit rule: <code>prog</code>: <code>prog.o</code></p>
+<p>Implicit rule: <code>prog</code>: <code>prog.o</code></p>
 </li>
-<li>(2) Command: <code>$(CC) prog.o $(LDFLAGS) -o prog</code></li>
-<li>(3) This rule links an object file into an executable.</li>
+<li>Command: <code>$(CC) prog.o $(LDFLAGS) -o prog</code></li>
+<li>This rule links an object file into an executable.</li>
 </ol>
-<h4 id="3-suggestion">3) Suggestion</h4>
+<h4 id="notes">Notes</h4>
 <ol>
 <li>Avoid using implicit rules, as they can lead to various issues. Instead, define your own rules to
    override them.</li>
@@ -552,53 +561,52 @@ clean:
    rules.</li>
 </ol>
 <h3 id="variables-in-makefile">Variables in Makefile</h3>
-<h4 id="1-explanation-and-usage">1) Explanation and Usage</h4>
+<h4 id="explanation-and-usage_1">Explanation and Usage</h4>
 <ol>
-<li>In a Makefile, variables are used to store values (such as flags, paths, or file lists) that can
-   be referenced multiple times, simplifying the Makefile's maintenance. They are used in targets,
-   dependency sets, and command sets. A variable can represent multiple targets in a pattern rule or
-   a list of target files, allowing the pattern rule to apply to those targets. However, there is an
-   important limitation: a variable cannot be used directly in place of the % in the target pattern.</li>
+<li>In a Makefile, variables are <strong>used to store values</strong> (such as flags, paths, or file lists) that
+   can be referenced multiple times, simplifying the Makefile's maintenance.</li>
+<li>They are used in targets, dependency sets, and command sets.</li>
+<li>A variable can represent multiple targets in a pattern rule or a list of target files, allowing
+   the pattern rule to apply to those targets.</li>
+<li>However, there is an important limitation: a variable cannot be used directly in place of the <code>%</code>
+   in the target pattern.</li>
 </ol>
-<h4 id="2-the-syntax-of-defining-a-variable">2) The Syntax of Defining a Variable</h4>
+<h4 id="the-syntax-of-defining-a-variable">The Syntax of Defining a Variable</h4>
 <ol>
 <li>Simple assignment (<code>VAR_NAME = value</code>): The value is expanded when the variable is used.</li>
 <li>Immediate assignment (<code>VAR_NAME := value</code>): The value is expanded when the variable is defined.</li>
 <li>Conditional assignment (<code>VAR_NAME ?= value</code>): Only assigns if the variable is not already
    defined.</li>
 </ol>
-<h4 id="3-the-syntax-of-referencing-a-variable">3) The Syntax of Referencing a Variable</h4>
+<h4 id="the-syntax-of-referencing-a-variable">The Syntax of Referencing a Variable</h4>
 <pre><code class="language-Makefile">$(VAR_NAME)
 </code></pre>
-<h4 id="4-default-variables-common-variables-automatic-variables-special-symbols-and-environment-variables">4) Default Variables, Common Variables, Automatic Variables, Special Symbols and Environment Variables</h4>
-<h5 id="1-explanation_1">(1) Explanation</h5>
+<h4 id="default-variables-common-variables-automatic-variables-special-symbols-and-environment-variables">Default Variables, Common Variables, Automatic Variables, Special Symbols and Environment Variables</h4>
+<h5 id="explanation_2">Explanation</h5>
 <ol>
-<li>
-<p>Default variables: In Makefiles, default variables are pre-defined by make itself. They come with
-   default values and they can be overridden in your Makefile if necessary.</p>
-</li>
-<li>
-<p>Common variables: In Makefiles, common variables refer to variables that are frequently used in
-   build scripts, such as CC for the compiler or CFLAGS for compiler options. These are often
-   user-defined or customized for specific projects.</p>
-</li>
-<li>
-<p>Automatic variables: In Makefile, automatic variables are predefined variables that hold specific
-   values based on the rule being executed. These variables are automatically set by make and allow
-   you to write more flexible and generalized rules. They represent parts of a rule, such as the
-   target, prerequisites ( prerequisities = dependencies ), or the stem ( The part of the file name
-   that <code>%</code> matches is called the stem. ) of a filename in pattern rules.</p>
-</li>
-<li>
-<p>Special symbols: In Makefiles, special symbols help define rules and control execution.</p>
-</li>
-<li>
-<p>Environment variables: In a Makefile, environment variables play an important role in controlling
-   the build process. These variables are inherited from the shell's environment and can be used in
-   the Makefile to set values for compilers, paths, flags, or other settings.</p>
-</li>
+<li>Default variables:</li>
+<li>In Makefiles, default variables are <strong>pre-defined by <code>make</code> itself</strong>.</li>
+<li>They <strong>come with default values</strong> and they <strong>can be overridden</strong> in your Makefile if necessary.</li>
+<li>Common variables:</li>
+<li>In Makefiles, common variables refer to <strong>variables</strong> that are <strong>frequently used in build
+     scripts</strong>, such as <code>CC</code> for the compiler or <code>CFLAGS</code> for compiler options.</li>
+<li>These are often <strong>user-defined or customized</strong> for specific projects.</li>
+<li>Automatic variables:</li>
+<li>In Makefile, automatic variables are <strong>predefined variables</strong> that <strong>hold specific values</strong>
+     based on the rule being executed.</li>
+<li>These variables are automatically set by <code>make</code> and allow you to write more flexible and
+     generalized rules.</li>
+<li>They represent parts of a rule, such as the target, prerequisites ( prerequisities =
+     dependencies ), or the stem ( The part of the file name that <code>%</code> matches is called the stem. )
+     of a filename in pattern rules.</li>
+<li>Special symbols:</li>
+<li>In Makefiles, special symbols help define rules and control execution.</li>
+<li>Environment variables:</li>
+<li>In a Makefile, environment variables play an important role in controlling the build process.</li>
+<li>These variables are <strong>inherited from the shell's environment</strong> and <strong>can be used in the
+     Makefile</strong> to set values for compilers, paths, flags, or other settings.</li>
 </ol>
-<h5 id="2-name-of-default-variables">(2) Name of Default Variables</h5>
+<h5 id="name-of-default-variables">Name of Default Variables</h5>
 <ol>
 <li><code>CC</code>: Defaults to <code>cc</code>.</li>
 <li><code>CXX</code>: Defaults to <code>g++</code>.</li>
@@ -606,7 +614,7 @@ clean:
 <li><code>AR</code>: Defaults to <code>ar</code>.</li>
 <li><code>RM</code>: Defaults to <code>rm -f</code>.</li>
 </ol>
-<h5 id="3-name-of-common-variables">(3) Name of Common Variables</h5>
+<h5 id="name-of-common-variables">Name of Common Variables</h5>
 <ol>
 <li><code>CC</code>: C compiler.</li>
 <li><code>CXX</code>: C++ compiler.</li>
@@ -617,28 +625,42 @@ clean:
 <li><code>OBJS</code>: List of object files.</li>
 <li><code>SRC</code>: List of source files.</li>
 </ol>
-<h5 id="4-common-automatic-variables">(4) Common Automatic Variables</h5>
+<h5 id="common-automatic-variables">Common Automatic Variables</h5>
 <ol>
-<li><code>$@</code>: Represents the full target name. This is used when you need to refer to the target being
-   generated, like in commands that create that target.</li>
-<li><code>$&lt;</code>: Refers to the first prerequisite of the target. It is often used in rules where only the
-   first dependency is needed, like in compiling a source file.</li>
-<li><code>$^</code>: Contains all the prerequisites for the target, but with any duplicates removed. This is
-   useful for linking or when all dependencies are needed.</li>
-<li><code>$+</code>: Similar to $^, but includes duplicates. It is often used in cases where the order of
-   prerequisites is significant.</li>
-<li><code>$?</code>: Contains all prerequisites that are newer than the target. This is helpful for incremental
-   builds, as it allows make to rebuild only when necessary.</li>
-<li><code>$*</code>: Represents the stem of the target name, which is the part matched by the % in pattern
-   rules. It is useful when constructing filenames based on patterns.</li>
-<li><code>$%</code>: This variable is used when the target is an archive. It represents the member name being
-   processed, which is useful for commands dealing with archive files.</li>
-<li><code>$$</code>: Used to represent a literal dollar sign ($). In commands where a dollar sign is needed
-   (e.g., for shell commands), this is necessary to prevent it from being interpreted as the
-   beginning of a variable.</li>
-<li><code>$(a function or a VAR_NAME)</code>: Used for function calls or to evaluate the value of a variable.</li>
+<li><code>$@</code>:</li>
+<li>Represents <strong>the full target name</strong>.</li>
+<li>This is used when you need to refer to the target being generated, like in commands that create
+     that target.</li>
+<li><code>$&lt;</code>:</li>
+<li>Refers to <strong>the first prerequisite of the target</strong> or <strong>the first dependency in the dependency
+     set</strong>.</li>
+<li>It is often used in rules where only the first dependency is needed, like in compiling a source
+     file.</li>
+<li><code>$^</code>:</li>
+<li>Contains <strong>all the prerequisites</strong> for the target, but with any <strong>duplicates removed</strong>.</li>
+<li>This is useful for linking or when all dependencies are needed.</li>
+<li><code>$+</code>:</li>
+<li><strong>Similar to <code>$^</code>, but includes duplicates</strong>.</li>
+<li>It is often used in cases where the order of prerequisites is significant.</li>
+<li><code>$?</code>:</li>
+<li>Contains <strong>all prerequisites</strong> that are <strong>newer than the target</strong>.</li>
+<li>This is helpful for incremental builds, as it allows <code>make</code> to rebuild only when necessary.</li>
+<li><code>$*</code>:</li>
+<li>Represents <strong>the stem of the target name</strong>, which is the part matched by the <code>%</code> in pattern
+     rules.</li>
+<li>It is useful when constructing filenames based on patterns.</li>
+<li><code>$%</code>:</li>
+<li>This variable is used when the target is an archive.</li>
+<li>It represents <strong>the member name being processed</strong>, which is useful for commands dealing with
+     archive files.</li>
+<li><code>$$</code>:</li>
+<li>Used to represent <strong>a literal dollar sign (<code>$</code>)</strong>.</li>
+<li>In commands where a dollar sign is needed (e.g., for shell commands), this is necessary to
+     prevent it from being interpreted as the beginning of a variable.</li>
+<li><code>$(a function or a VAR_NAME)</code>:</li>
+<li>Used for function calls or to evaluate the value of a variable.</li>
 </ol>
-<h5 id="5-some-common-special-symbols">(5) Some Common Special Symbols</h5>
+<h5 id="some-common-special-symbols">Some Common Special Symbols</h5>
 <ol>
 <li><code>%</code>: Wildcard used in pattern rules (matches any string).</li>
 <li><code>:</code>: Separates targets from their prerequisites in rules.</li>
@@ -647,7 +669,7 @@ clean:
 <li><code>-</code>: Represents a command prefix that ignores errors for the command without causing make to
    exit, thereby allowing subsequent commands to execute.</li>
 </ol>
-<h5 id="6-environment-variables">(6) Environment Variables</h5>
+<h5 id="environment-variables">Environment Variables</h5>
 <h6 id="1-the-syntax-of-referencing-an-environment-variable">1 The Syntax of Referencing an Environment Variable</h6>
 <pre><code>$(ENV_VAR)
 </code></pre>
@@ -660,15 +682,11 @@ clean:
 </ol>
 <h6 id="3-important-notes">3 Important Notes</h6>
 <ol>
-<li>
-<p>Command-Line Precedence: Command-line variable assignments (e.g., <code>make CC=clang</code>) take
-   precedence over both environment variables and variables defined in the Makefile.</p>
-</li>
-<li>
-<p>Override Directive: If you want to ensure that a Makefile variable cannot be overridden by the
+<li>Command-line precedence: Command-line variable assignments (e.g., <code>make CC=clang</code>) take
+   precedence over both environment variables and variables defined in the Makefile.</li>
+<li>Override directive: If you want to ensure that a Makefile variable cannot be overridden by the
    environment or the command line, you can use the override directive: <code>override ENV_VAR = value</code>,
-   <code>override ENV_VAR := value</code> or <code>override ENV_VAR ?= value</code>.</p>
-</li>
+   <code>override ENV_VAR := value</code> or <code>override ENV_VAR ?= value</code>.</li>
 </ol>
 <h6 id="4-some-common-environment-variables-in-makefiles">4 Some Common Environment Variables in Makefiles</h6>
 <ol>
@@ -683,55 +701,57 @@ clean:
 <h3 id="functions-in-makefiles">Functions in Makefiles</h3>
 <h4 id="functions-for-transforming-text-usage">Functions for Transforming Text ( Usage )</h4>
 <ol>
-<li>Functions allow you to do text processing in the makefile to compute the files to operate on or
-   the commands to use in recipes. You use a function in a function call, where you give the name of
-   the function and some text (the arguments) for the function to operate on. The result of the
-   function’s processing is substituted into the makefile at the point of the call, just as a
-   variable might be substituted.</li>
+<li>Functions allow you to <strong>do text processing</strong> in the makefile to compute the files to operate on
+   or the commands to use in recipes.</li>
+<li>You use a function in a function call, where you give the name of the function and some text (the
+   arguments) for the function to operate on.</li>
+<li>The result of the function’s processing is substituted into the makefile at the point of the
+   call, just as a variable might be substituted.</li>
 </ol>
 <h4 id="function-call-syntax">Function Call Syntax</h4>
 <ol>
-<li><code>$(function arguments)</code></li>
-<li><code>${function arguments}</code></li>
+<li><code>$(func_name arg_list)</code></li>
+<li><code>${func_name arg1, arg2, ...}</code></li>
 </ol>
 <h4 id="more-information">More Information</h4>
 <ol>
 <li>If you want to know more about functions in Makefiles, you can refer to <code>&lt;&lt;GNU Make.pdf&gt;&gt;</code>.</li>
 </ol>
 <h3 id="pattern-rules">Pattern Rules</h3>
-<h4 id="1-explanation-and-usage_1">1) Explanation and Usage</h4>
+<h4 id="explanation-and-usage_2">Explanation and Usage</h4>
 <ol>
-<li>In Makefiles, pattern rules allow you to define generalized rules that apply to multiple targets
-   with similar file extensions or naming patterns.</li>
+<li>In Makefiles, pattern rules allow you to <strong>define generalized rules</strong> that <strong>apply to multiple
+   targets with similar file extensions</strong> or <strong>naming patterns</strong>.</li>
 <li>Pattern rules use the <code>%</code> symbol to represent a pattern that can be matched by different file
    names.</li>
-<li>This is particularly useful when you have repetitive build steps, like compiling several .cpp
+<li>This is particularly useful when you have repetitive build steps, like compiling several <code>.cpp</code>
    files into <code>.o</code> files.</li>
 </ol>
-<h4 id="2-basic-syntax">2) Basic Syntax</h4>
+<h4 id="basic-syntax">Basic Syntax</h4>
 <h5 id="code_1">Code</h5>
 <pre><code class="language-Makefile">target-pattern: prerequisite-pattern
  command set
 </code></pre>
-<h5 id="explanation_1">Explanation</h5>
+<h5 id="explanation_3">Explanation</h5>
 <ol>
-<li>target-pattern: The pattern for the file(s) to be created. <code>%</code> matches any part of the target
+<li><code>target-pattern</code>: The pattern for the file(s) to be created. <code>%</code> matches any part of the target
    name.</li>
-<li>prerequisite-pattern: A pattern for the required dependencies. <code>%</code> in this part of the rule
+<li><code>prerequisite-pattern</code>: A pattern for the required dependencies. <code>%</code> in this part of the rule
    matches the same text as in the target pattern.</li>
-<li>command set: It a set of commands to run when the pattern rule is triggered.</li>
+<li><code>command set</code>: It a set of commands to run when the pattern rule is triggered.</li>
 </ol>
-<h4 id="3-important-notes_1">3) Important Notes</h4>
+<h4 id="notes_1">Notes</h4>
 <ol>
-<li>The <code>%</code> symbol is the only wildcard symbol available for pattern rules in Makefiles. It is
-   specifically designed to represent a pattern wildcard that can match any part of a file name.</li>
-<li><code>%</code> is used to represent a placeholder for a part of the target or prerequisite name. It matches
-   any string of characters in the file names and is used to create general rules for targets that
-   follow a similar pattern.</li>
-<li>The part of the file name that <code>%</code> matches is called the stem. The stem is used to correlate the
-   target with the prerequisite.</li>
+<li>The <code>%</code> symbol is <strong>the only <code>wildcard</code> symbol</strong> available for pattern rules in Makefiles.</li>
+<li>It is specifically designed to represent a pattern <code>wildcard</code> that can match any part of a file
+   name.</li>
+<li><code>%</code> is used to represent <strong>a placeholder</strong> for a part of the target or prerequisite name.</li>
+<li>It matches any string of characters in the file names and is used to create general rules for
+   targets that follow a similar pattern.</li>
+<li>The part of the file name that <code>%</code> matches is called the stem.</li>
+<li>The stem is used to correlate the target with the prerequisite.</li>
 </ol>
-<h4 id="4-how-to-understand-the-actual-process-of-pattern-rules">4) How to Understand the Actual Process of Pattern Rules</h4>
+<h4 id="how-to-understand-the-actual-process-of-pattern-rules">How to Understand the Actual Process of Pattern Rules</h4>
 <ol>
 <li>Create a simple <code>C/C++</code> project.</li>
 <li>Writing multiple simple <code>C/C++</code> files.</li>
@@ -740,13 +760,13 @@ clean:
 <li>Check the printed information in the terminal.</li>
 <li>The printed information shows the actual process of the pattern rules of the code example.</li>
 </ol>
-<h4 id="5-example-without-variables">5) Example Without Variables</h4>
+<h4 id="example-without-variables">Example Without Variables</h4>
 <h5 id="example-1-compiling-cpp-files-to-o-files">Example 1: Compiling <code>.cpp</code> files to <code>.o</code> files</h5>
 <h6 id="code_2">Code</h6>
 <pre><code class="language-Makefile">%.o: %.cpp
   g++ -c $&lt; -o $@
 </code></pre>
-<h6 id="explanation_2">Explanation</h6>
+<h6 id="explanation_4">Explanation</h6>
 <ol>
 <li>This rule applies to all <code>.cpp</code> files in the project and compiles them into <code>.o</code> object files.</li>
 <li><code>%.o</code>: Target pattern that matches any <code>.o</code> file.</li>
@@ -759,7 +779,7 @@ clean:
 <pre><code class="language-Makefile">%: %.cpp
   g++ $&lt; -o $@
 </code></pre>
-<h6 id="explanation_3">Explanation</h6>
+<h6 id="explanation_5">Explanation</h6>
 <ol>
 <li>This rule compiles <code>.cpp</code> files into executable files directly.</li>
 <li><code>%</code>: Represents any executable name without any suffix.</li>
@@ -772,7 +792,7 @@ clean:
 <pre><code class="language-Makefile">build/%: src/%.cpp
   g++ -Wall $&lt; -o $@
 </code></pre>
-<h6 id="explanation_4">Explanation</h6>
+<h6 id="explanation_6">Explanation</h6>
 <ol>
 <li>This rule apply a custom command to get dependencies from <code>src/</code> and generate targets into
    <code>build/</code>.</li>
@@ -788,7 +808,7 @@ clean:
 Exe: Main.o Fun.o
   g++ Main.o Fun.o -o Exe
 </code></pre>
-<h6 id="explanation_5">Explanation</h6>
+<h6 id="explanation_7">Explanation</h6>
 <ol>
 <li>Pattern rules can be chained, meaning one pattern rule can produce an intermediate file, which
    can then be used as a prerequisite for another pattern rule.</li>
@@ -800,14 +820,14 @@ Exe: Main.o Fun.o
 <pre><code class="language-Makefile">%.test: %.o
   ./run_tests $*
 </code></pre>
-<h6 id="explanation_6">Explanation</h6>
+<h6 id="explanation_8">Explanation</h6>
 <ol>
 <li>This pattern rule applies to any <code>.test</code> file, using the corresponding <code>.o</code> file as a
    prerequisite. <code>$*</code> represents the stem.</li>
 <li>The part of the file name that <code>%</code> matches is called the stem. The stem is used to correlate the
    target with the prerequisite.</li>
 </ol>
-<h4 id="6-example-with-variables">6) Example With Variables</h4>
+<h4 id="example-with-variables">Example With Variables</h4>
 <h5 id="example-1-using-variables-for-file-extensions">Example 1: Using Variables for File Extensions</h5>
 <h6 id="code_7">Code</h6>
 <pre><code class="language-Makefile">
@@ -816,7 +836,7 @@ EXT = cpp
 %.o: %.$(EXT)
   g++ -c $&lt; -o $@
 </code></pre>
-<h6 id="explanation_7">Explanation</h6>
+<h6 id="explanation_9">Explanation</h6>
 <ol>
 <li>Define a variable to hold file extensions, and then use that variable in a pattern rule.</li>
 <li><code>EXT = cpp</code>: Defines a variable <code>EXT</code> with the value cpp.</li>
@@ -833,7 +853,7 @@ BUILD_DIR = build
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
   g++ -c $&lt; -o $@
 </code></pre>
-<h6 id="explanation_8">Explanation</h6>
+<h6 id="explanation_10">Explanation</h6>
 <ol>
 <li>Define a variable to to specify directory paths in pattern rules. This is useful if your source
    files and build outputs are in different directories.</li>
@@ -852,7 +872,7 @@ CFLAGS = -Wall -O2
 %.o: %.cpp
   $(CC) $(CFLAGS) -c $&lt; -o $@
 </code></pre>
-<h6 id="explanation_9">Explanation</h6>
+<h6 id="explanation_11">Explanation</h6>
 <ol>
 <li>Define the compiler and compilation flags using variables and use them within the pattern rule.</li>
 <li><code>CC = g++</code>: Defines the compiler variable.</li>
@@ -867,7 +887,7 @@ LINTER = cppcheck
 %.lint: %.cpp
   $(LINTER) $&lt;
 </code></pre>
-<h6 id="explanation_10">Explanation</h6>
+<h6 id="explanation_12">Explanation</h6>
 <ol>
 <li>Store a command in a variable and use it within a rule.</li>
 <li>This rule runs a linting tool (<code>cppcheck</code> in this case) on every <code>.cpp</code> file and creates a
@@ -884,7 +904,7 @@ CFLAGS = -O2 -Wall
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
   $(CC) $(CFLAGS) -c $&lt; -o $@
 </code></pre>
-<h6 id="explanation_11">Explanation</h6>
+<h6 id="explanation_13">Explanation</h6>
 <ol>
 <li>Combine multiple variables in a single pattern rule to control paths, files, and commands
    flexibly.</li>
@@ -898,7 +918,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 $(OBJS): %.o: %.cpp
 g++ -c $&lt; -o $@
 </code></pre>
-<h6 id="explanation_12">Explanation</h6>
+<h6 id="explanation_14">Explanation</h6>
 <ol>
 <li>Define a variable that contains a list of targets and use it with a pattern rule.</li>
 <li><code>OBJS</code>: A variable containing a list of object files (<code>Main.o</code>, <code>Fun.o</code>, <code>FunN.o</code>).</li>
@@ -914,7 +934,7 @@ EXEC = Main.exe
 $(EXEC): $(OBJS)
   g++ $(OBJS) -o $(EXEC)
 </code></pre>
-<h6 id="explanation_13">Explanation</h6>
+<h6 id="explanation_15">Explanation</h6>
 <ol>
 <li>Define two variables: one containing a list of <code>.o</code> and the other containing a target separately,
    and use them with a pattern rule..</li>
@@ -931,7 +951,7 @@ OBJS = $(SRCS:.cpp=.o)
 $(OBJS): %.o: %.cpp
   g++ -c $&lt; -o $@
 </code></pre>
-<h6 id="explanation_14">Explanation</h6>
+<h6 id="explanation_16">Explanation</h6>
 <ol>
 <li>Use a variable to represent multiple source files and compile them into object files</li>
 <li><code>SRCS</code>: A variable containing a list of <code>.cpp</code> source files.</li>
@@ -949,7 +969,7 @@ OBJS = $(SRCS:src/%.cpp=build/%.o)
 $(OBJS): build/%.o: src/%.cpp
   g++ -c $&lt; -o $@
 </code></pre>
-<h6 id="explanation_15">Explanation</h6>
+<h6 id="explanation_17">Explanation</h6>
 <ol>
 <li>Generate a list of files dynamically using the <code>wildcard</code> function and apply a pattern rule to
    them.</li>
@@ -978,7 +998,7 @@ $(TARGET): $(OBJS) $(STATIC_LIBS) $(SHARED_LIBS)
 $(SHARED_LIBS): $(PREFIX)%.so: %.o
   $(CC) -shared -o $@ $&lt;
 </code></pre>
-<h6 id="explanation_16">Explanation</h6>
+<h6 id="explanation_18">Explanation</h6>
 <ol>
 <li>Generate shared libraries and link them into a final executable.</li>
 <li><code>$(SHARED_LIBS): $(PREFIX)%.so: %.o</code>: A pattern rule that applies to each <code>$(PREFIX)%.so</code> file in
@@ -990,22 +1010,23 @@ $(SHARED_LIBS): $(PREFIX)%.so: %.o
 $(TARGET_PATTERN): %.cpp
   g++ -c $&lt; -o $@
 </code></pre>
-<h6 id="explanation_17">Explanation</h6>
+<h6 id="explanation_19">Explanation</h6>
 <ol>
 <li>The target-pattern itself cannot directly contain a variable that includes a <code>%</code>.</li>
 <li><code>TARGET_PATTERN</code>: A variable contains a <code>%</code>. This is a wrong demonstration.</li>
 </ol>
 <h3 id="how-to-process-header-files-effectively">How to Process Header Files Effectively</h3>
-<h4 id="1-problem">1) Problem</h4>
+<h4 id="problem">Problem</h4>
 <ol>
-<li>I have introduced the common knowledge regarding custom rules, implicit rules, and pattern rules.
-   However, these rules cannot process header files effectively. The make command cannot determine
-   which header files the C/C++ files depend on. These dependencies are only identified when the
-   compiler processes the C/C++ files, and there isn't a straightforward name-mapping rule.
-   Consequently, issues arise: if any header files are updated, the make command remains unaware of
-   the modifications and does nothing to update the project.</li>
+<li>I have introduced the common knowledge regarding custom rules, implicit rules, and pattern rules.</li>
+<li>However, these rules cannot process header files effectively.</li>
+<li>The <code>make</code> command cannot determine which header files the C/C++ files depend on.</li>
+<li>These dependencies are only identified when the compiler processes the C/C++ files, and there
+   isn't a straightforward name-mapping rule.</li>
+<li>Consequently, issues arise: if any <strong>header files</strong> are updated, the <code>make</code> command remains
+   unaware of the modifications and does nothing to update the project.</li>
 </ol>
-<h4 id="2-solution">2) Solution</h4>
+<h4 id="solution">Solution</h4>
 <h5 id="code_18">Code</h5>
 <pre><code class="language-Makefile">.PHONY: clean
 # Define the compiler variable
@@ -1040,67 +1061,71 @@ clean:
 # Include all .d files:
 include $(DEPS)
 </code></pre>
-<h5 id="explanation_18">Explanation</h5>
+<h5 id="explanation_20">Explanation</h5>
 <ol>
 <li><code>gcc -MM</code> and <code>g++ -MM</code> can identify the header dependencies of the source file.</li>
 <li><code>include $(DEPS)</code>: This line includes all the <code>.d</code> files in the Makefile. It tells make to use
    the dependency information to track changes to header files.</li>
 </ol>
 <h3 id="some-common-make-command">Some Common <code>make</code> command</h3>
-<h4 id="0-make">0) <code>make</code></h4>
+<h4 id="make_1"><code>make</code></h4>
 <ol>
 <li>For the default make command, please refer to
-   <a href="#4-how-to-understand-the-actual-process-of-pattern-rules">4) How to Understand the Actual Process of Pattern Rules</a></li>
+   <a href="#4-how-to-understand-the-actual-process-of-pattern-rules">How to Understand the Actual Process of Pattern Rules</a></li>
 <li>Notes: If you want to use this command in Makefiles, please use <code>$(MAKE)</code> instead of <code>make</code>. This
    is the more commonly used option.</li>
 </ol>
-<h4 id="1-make-jn">1) <code>make -jn</code></h4>
+<h4 id="make-jn"><code>make -jn</code></h4>
 <ol>
 <li>This flag <code>-j</code> allows make to run multiple jobs in parallel, speeding up the build process by
-   utilizing multiple CPU cores. The number <code>n</code> ( <code>n ≥ 1</code> )following <code>-j</code> (if provided) specifies
-   the maximum number of jobs to run simultaneously. Without a number <code>n</code>, make will use a default
-   value.</li>
+   utilizing multiple CPU cores.</li>
+<li>The number <code>n</code> ( <code>n ≥ 1</code> )following <code>-j</code> (if provided) specifies the maximum number of jobs to
+   run simultaneously. Without a number <code>n</code>, make will use a default value.</li>
 <li>Notes: If you want to use this command in Makefiles, please use <code>$(MAKE)</code> instead of <code>make</code>. This
    is the more commonly used option.</li>
 </ol>
-<h4 id="2-make-target_name">2) <code>make target_name</code></h4>
+<h4 id="make-target_name"><code>make target_name</code></h4>
 <ol>
 <li>This command tells <code>make</code> to build a specific target named <code>target_name</code> as defined in the
-   Makefile. If <code>target_name</code> has prerequisites, <code>make</code> will first build those before building the
-   specified target.</li>
+   Makefile.</li>
+<li>If <code>target_name</code> has prerequisites, <code>make</code> will first build those before building the specified
+   target.</li>
 <li>Notes: If you want to use this command in Makefiles, please use <code>$(MAKE)</code> instead of <code>make</code>. This
    is the more commonly used option.</li>
 </ol>
-<h4 id="3-make-c-a_path">3) <code>make -C a_path</code></h4>
+<h4 id="make-c-a_path"><code>make -C a_path</code></h4>
 <ol>
 <li>The <code>-C</code> option changes the directory to <code>a_path</code> before executing the <code>make</code> command. This
    allows you to run <code>make</code> in a different directory than the current one, where the Makefile is
-   located. If no target is specified, <code>make</code> will build the default target defined in the Makefile
-   in that directory.</li>
+   located.</li>
+<li>If no target is specified, <code>make</code> will build the default target defined in the Makefile in that
+   directory.</li>
 <li>Notes: If you want to use this command in Makefiles, please use <code>$(MAKE)</code> instead of <code>make</code>. This
    is the more commonly used option.</li>
 </ol>
-<h4 id="4-make-c-a_path-target_name">4) <code>make -C a_path target_name</code></h4>
+<h4 id="make-c-a_path-target_name"><code>make -C a_path target_name</code></h4>
 <ol>
 <li>Similar to the previous command, this changes the directory to <code>a_path</code> and then builds the
-   specified <code>target_name</code> defined in the Makefile located in that directory. This allows you to
-   target specific builds in different directories.</li>
+   specified <code>target_name</code> defined in the Makefile located in that directory.</li>
+<li>This allows you to target specific builds in different directories.</li>
 <li>Notes: If you want to use this command in Makefiles, please use <code>$(MAKE)</code> instead of <code>make</code>. This
    is the more commonly used option.</li>
 </ol>
-<h4 id="5-make-target_name-var_name1-var_name2">5) <code>make target_name VAR_NAME1="..." VAR_NAME2="..." ...</code></h4>
+<h4 id="make-target_name-var_name1-var_name2"><code>make target_name VAR_NAME1="..." VAR_NAME2="..." ...</code></h4>
 <ol>
 <li>This command builds the specified <code>target_name</code> while overriding or setting variables <code>VAR_NAME1</code>
-   and <code>VAR_NAME2</code> to the specified values. These variables can be used in the Makefile to customize
-   the build process or pass configuration options.</li>
+   and <code>VAR_NAME2</code> to the specified values.</li>
+<li>These variables can be used in the Makefile to customize the build process or pass configuration
+   options.</li>
 <li>Notes: If you want to use this command in Makefiles, please use <code>$(MAKE)</code> instead of <code>make</code>. This
    is the more commonly used option.</li>
 </ol>
-<h4 id="6-make-c-a_path-target_name-var_name1-var_name2">6) <code>make -C a_path target_name VAR_NAME1="..." VAR_NAME2="..." ...</code></h4>
+<h4 id="make-c-a_path-target_name-var_name1-var_name2"><code>make -C a_path target_name VAR_NAME1="..." VAR_NAME2="..." ...</code></h4>
 <ol>
-<li>This command combines the previous concepts. It changes the directory to <code>a_path</code>, builds the
-   specified <code>target_name</code>, and overrides or sets the variables <code>VAR_NAME1</code> and <code>VAR_NAME2</code> for that
-   build. This allows for targeted builds in different directories with specific configurations.</li>
+<li>This command combines the previous concepts.</li>
+<li>It changes the directory to <code>a_path</code>, builds the specified <code>target_name</code>, and overrides or sets
+   the variables <code>VAR_NAME1</code> and <code>VAR_NAME2</code> for that build.</li>
+<li>This allows for targeted builds in different directories with specific configurations.</li>
 <li>Notes: If you want to use this command in Makefiles, please use <code>$(MAKE)</code> instead of <code>make</code>. This
    is the more commonly used option.</li>
 </ol>

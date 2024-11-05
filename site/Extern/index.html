@@ -261,27 +261,30 @@
 <h3 id="explanation">Explanation</h3>
 <ol>
 <li>Extern linkage <strong>allows functions and variables to be accessed across different translation
-   units</strong>. It enables the sharing of definitions between multiple files in a program.</li>
+   units</strong>.</li>
+<li>It enables the sharing of definitions between multiple files in a program.</li>
 </ol>
 <h3 id="extern"><code>extern</code></h3>
 <ol>
 <li>The <code>extern</code> keyword is <strong>used to declare variables or functions that are defined in another
-   translation unit</strong>. It informs the compiler that the variable or function exists, but its
-   definition will be found elsewhere.</li>
+   translation unit</strong>.</li>
+<li>It informs the compiler that the variable or function exists, but its definition will be found
+   elsewhere.</li>
 <li><code>extern</code> can be used to declare global variables or functions in a header file, making them
    accessible across multiple source files.</li>
 </ol>
 <h3 id="extern-c"><code>extern "C" { ... };</code></h3>
 <ol>
 <li>The <code>extern "C"</code> construct specifies that <strong>the enclosed declarations should use C linkage</strong>
-   rather than C++ linkage. This is essential for <strong>linking C++ code with C libraries</strong> or when
-   <strong>calling C functions from C++</strong>.</li>
+   rather than C++ linkage.</li>
+<li>This is essential for <strong>linking C++ code with C libraries</strong> or when <strong>calling C functions from
+   C++</strong>.</li>
 <li><code>extern "C"</code> should be used to <strong>prevent name mangling</strong> for functions or variables declared
    within it. This ensures compatibility with C code.</li>
 </ol>
 <h3 id="default-extern-linkage">Default Extern Linkage</h3>
 <ol>
-<li>When you declare <strong>a function</strong>, it <strong>has external linkage</strong> unless specified otherwise (for
+<li>When <strong>a function</strong> is declared, it <strong>has external linkage</strong> unless specified otherwise (for
    example, if declared <code>static</code>).</li>
 <li>This means <strong>the function</strong> can be called from other translation units <strong>without needing the
    <code>extern</code> keyword</strong>.</li>

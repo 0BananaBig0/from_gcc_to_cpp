@@ -250,39 +250,39 @@
 
 <ul>
 <li><a href="#introduction-to-c-stl">Introduction to C++ STL</a></li>
-<li><a href="#0-explanation">0) Explanation</a></li>
-<li><a href="#1-containers">1) Containers</a><ul>
 <li><a href="#explanation">Explanation</a></li>
+<li><a href="#containers">Containers</a><ul>
+<li><a href="#explanation-1">Explanation</a></li>
 <li><a href="#types-of-containers">Types of Containers</a></li>
 <li><a href="#header-file">Header File</a></li>
 </ul>
 </li>
-<li><a href="#2-algorithms">2) Algorithms</a><ul>
-<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#algorithms">Algorithms</a><ul>
+<li><a href="#explanation-2">Explanation</a></li>
 <li><a href="#common-algorithms">Common Algorithms</a></li>
 <li><a href="#header-file-1">Header File</a></li>
 </ul>
 </li>
-<li><a href="#3-iterators">3) Iterators</a><ul>
-<li><a href="#explanation-2">Explanation</a></li>
+<li><a href="#iterators">Iterators</a><ul>
+<li><a href="#explanation-3">Explanation</a></li>
 <li><a href="#types-of-iterators">Types of Iterators</a></li>
 <li><a href="#header-file-2">Header File</a></li>
 </ul>
 </li>
-<li><a href="#4-function-objects-and-lambdas">4) Function Objects and Lambdas</a><ul>
-<li><a href="#explanation-3">Explanation</a></li>
+<li><a href="#function-objects-and-lambdas">Function Objects and Lambdas</a><ul>
+<li><a href="#explanation-4">Explanation</a></li>
 <li><a href="#usage">Usage</a></li>
 <li><a href="#header-file-3">Header File</a></li>
 </ul>
 </li>
-<li><a href="#5-inputoutput-io">5) Input/Output (I/O)</a><ul>
-<li><a href="#explanation-4">Explanation</a></li>
+<li><a href="#inputoutput-io">Input/Output (I/O)</a><ul>
+<li><a href="#explanation-5">Explanation</a></li>
 <li><a href="#common-classes">Common Classes</a></li>
 <li><a href="#header-file-4">Header File</a></li>
 </ul>
 </li>
-<li><a href="#6-utilities">6) Utilities</a><ul>
-<li><a href="#explanation-5">Explanation</a></li>
+<li><a href="#utilities">Utilities</a><ul>
+<li><a href="#explanation-6">Explanation</a></li>
 <li><a href="#common-utilities">Common Utilities</a></li>
 <li><a href="#header-file-5">Header File</a></li>
 </ul>
@@ -292,46 +292,69 @@
 <!-- vim-markdown-toc -->
 
 <h2 id="introduction-to-c-stl">Introduction to C++ STL</h2>
-<h3 id="0-explanation">0) Explanation</h3>
+<h3 id="explanation">Explanation</h3>
 <ol>
 <li>The C++ Standard <strong>Template</strong> Library (STL) is a powerful collection of <strong>template classes and
-   functions</strong> that provide generic and reusable components. It consists of various components that
-   work together to simplify the development of complex programs.</li>
+   functions</strong> that provide generic and reusable components.</li>
+<li>It consists of various components that work together to simplify the development of complex
+   programs.</li>
 <li>Because it is a collection of <strong>template classes and functions</strong>, all <strong>syntax</strong> applicable to
    templates, classes, and functions can also be applied to it.</li>
 <li>The C++ STL components are typically <strong>defined in header files</strong> because they rely heavily on
    templates.</li>
 <li>Below are the six <strong>basic</strong> components of STL.</li>
 </ol>
-<h3 id="1-containers">1) Containers</h3>
-<h4 id="explanation">Explanation</h4>
+<h3 id="containers">Containers</h3>
+<h4 id="explanation_1">Explanation</h4>
 <ol>
-<li>Containers are <strong>data structures</strong> that store collections of objects. They manage the
-   <strong>storage</strong>, <strong>organization</strong>, and <strong>access of data</strong>. Containers in STL can be broadly
-   categorized into three types: sequence containers, associative containers, and unordered
-   associative containers.</li>
+<li>Containers are <strong>data structures</strong> that store collections of objects.</li>
+<li>They manage the <strong>storage</strong>, <strong>organization</strong>, and <strong>access of data</strong>.</li>
+<li>Containers in STL can be broadly categorized into <strong>four types</strong>: <strong>sequence containers</strong>,
+   <strong>associative containers</strong>, <strong>unordered associative containers</strong> and <strong>container adopters</strong>.</li>
 </ol>
 <h4 id="types-of-containers">Types of Containers</h4>
 <ol>
-<li>Sequence Containers: Store elements in a linear order.</li>
+<li>Sequence containers: Store elements in a linear order.</li>
 <li><code>std::vector</code>: A dynamic array that allows fast random access.</li>
 <li><code>std::list</code>: A doubly-linked list that allows efficient insertions and deletions.</li>
 <li><code>std::deque</code>: A double-ended queue that allows fast insertions and removals from both ends.</li>
-<li>Associative Containers: Store elements in a specific order, typically based on keys.</li>
+<li>Associative containers: Store elements in a specific order, typically based on keys.</li>
 <li><code>std::set</code>: A collection of unique keys that are sorted automatically.</li>
+<li><code>std::multiset</code>: A collection of keys that are sorted automatically.</li>
 <li><code>std::map</code>: A collection of key-value pairs where keys are unique and sorted.</li>
-<li>Unordered Associative Containers: Store elements without a specific order, allowing for faster
+<li><code>std::multimap</code>: A collection of key-value pairs where keys are not unique and sorted.</li>
+<li>Unordered associative containers: Store elements without a specific order, allowing for faster
    access.</li>
 <li><code>std::unordered_set</code>: A collection of unique keys with no order.</li>
-<li><code>std::unordered_map</code>: A collection of key-value pairs with no order.</li>
+<li><code>std::unordered_multiset</code>: A collection of keys with no order.</li>
+<li><code>std::unordered_map</code>: A collection of key-value pairs with no order and each key is unique.</li>
+<li><code>std::unordered_multimap</code>: A collection of key-value pairs with no order and multiple elements</li>
+<li>Container adaptors: Provide a specific interface for using underlying containers.</li>
+<li><code>std::stack</code>: A last-in, first-out (LIFO) data structure that allows access to the most
+     recently added element.</li>
+<li><code>std::queue</code>: A first-in, first-out (FIFO) data structure that allows access to the oldest
+     added element.</li>
+<li><code>std::priority_queue</code>: A data structure that allows access to the largest (or smallest) element
+     based on a priority criterion.</li>
+<li><code>flat_set</code>: A sorted collection of unique keys, implemented using a <code>std::vector</code>.</li>
+<li><code>flat_multiset</code>: A sorted collection of keys that can contain duplicates, also implemented
+     using a <code>std::vector</code>.</li>
+<li><code>flat_map</code>: A sorted collection of key-value pairs where keys are unique, implemented using a
+     <code>std::vector</code>.</li>
+<li><code>flat_multimap</code>: A sorted collection of key-value pairs where keys can be duplicated,
+     implemented using a <code>std::vector</code>. can have the equivalent key.</li>
 </ol>
 <h4 id="header-file">Header File</h4>
-<p><code>&lt;vector&gt;</code>, <code>&lt;list&gt;</code>, <code>&lt;deque&gt;</code>, <code>&lt;set&gt;</code>, <code>&lt;map&gt;</code>, <code>&lt;unordered_set&gt;</code>, <code>&lt;unordered_map&gt;</code></p>
-<h3 id="2-algorithms">2) Algorithms</h3>
-<h4 id="explanation_1">Explanation</h4>
 <ol>
-<li>Algorithms are <strong>a set of functions</strong> that <strong>operate on containers</strong>. They provide a range of
-   operations such as searching, sorting, transforming, and manipulating data within containers.</li>
+<li><code>&lt;vector&gt;</code>, <code>&lt;list&gt;</code>, <code>&lt;deque&gt;</code>, <code>&lt;set&gt;</code>, <code>&lt;map&gt;</code>, <code>&lt;unordered_set&gt;</code>, <code>&lt;unordered_map&gt;</code>,
+   <code>&lt;stack&gt;</code>, <code>&lt;queue&gt;</code>, <code>&lt;flat_set&gt;</code>, <code>&lt;flat_map&gt;</code>.</li>
+</ol>
+<h3 id="algorithms">Algorithms</h3>
+<h4 id="explanation_2">Explanation</h4>
+<ol>
+<li>Algorithms are <strong>a set of functions</strong> that <strong>operate on containers</strong>.</li>
+<li>They provide a range of operations such as searching, sorting, transforming, and manipulating
+   data within containers.</li>
 </ol>
 <h4 id="common-algorithms">Common Algorithms</h4>
 <ol>
@@ -340,17 +363,19 @@
 <li><code>std::copy</code>: Copies elements from one range to another.</li>
 </ol>
 <h4 id="header-file_1">Header File</h4>
-<p><code>&lt;algorithm&gt;</code></p>
-<h3 id="3-iterators">3) Iterators</h3>
-<h4 id="explanation_2">Explanation</h4>
 <ol>
-<li>Iterators are <strong>objects</strong> that <strong>allow traversal through the elements of a container</strong>. They
-   provide a uniform way to access container elements without exposing the underlying
+<li><code>&lt;algorithm&gt;</code>.</li>
+</ol>
+<h3 id="iterators">Iterators</h3>
+<h4 id="explanation_3">Explanation</h4>
+<ol>
+<li>Iterators are <strong>objects</strong> that <strong>allow traversal through the elements of a container</strong>.</li>
+<li>They provide a uniform way to access container elements without exposing the underlying
    implementation.</li>
 <li>It behaves like a pointer ( stores an address and can be dereferenced ).</li>
-<li>When a container <strong>resizes its capacity or rehashes</strong>, its <strong>iterators</strong> may become <strong>invalid</strong>.
-   <strong>Using invalid iterators causes undefined behaviors</strong>. More information on <strong>iterator validity</strong>
-   after modification operations is provided below.</li>
+<li>When a container <strong>resizes its capacity or rehashes</strong>, its <strong>iterators</strong> may become <strong>invalid</strong>.</li>
+<li><strong>Using invalid iterators causes undefined behaviors</strong>.</li>
+<li>More information on <strong>iterator validity</strong> after modification operations is provided below.</li>
 <li><a href="https://en.cppreference.com/w/cpp/container#Iterator_invalidation">iterator invalidation</a>.</li>
 </ol>
 <h4 id="types-of-iterators">Types of Iterators</h4>
@@ -362,29 +387,32 @@
 <li>Random Access iterators: Provide direct access to elements using offsets.</li>
 </ol>
 <h4 id="header-file_2">Header File</h4>
-<p><code>&lt;iterator&gt;</code></p>
-<h3 id="4-function-objects-and-lambdas">4) Function Objects and Lambdas</h3>
-<h4 id="explanation_3">Explanation</h4>
 <ol>
-<li>Function objects (functors) are <strong>objects that can be called as if they were functions</strong>. They
-   can <strong>store state</strong> and are often used <strong>in algorithms to customize their behavior</strong>. Lambda
-   expressions provide a concise way to define anonymous function objects.</li>
+<li><code>&lt;iterator&gt;</code>.</li>
+</ol>
+<h3 id="function-objects-and-lambdas">Function Objects and Lambdas</h3>
+<h4 id="explanation_4">Explanation</h4>
+<ol>
+<li>Function objects (functors) are <strong>objects that can be called as if they were functions</strong>.</li>
+<li>They can <strong>store state</strong> and are often used <strong>in algorithms to customize their behavior</strong>.</li>
+<li>Lambda expressions provide a concise way to define anonymous function objects.</li>
 </ol>
 <h4 id="usage">Usage</h4>
 <ol>
 <li>Function objects can be created by overloading the <code>operator()</code>.</li>
 <li>Lambda expressions can be defined using the syntax <code>[capture]( para_list ) { body; };</code>.</li>
-<li>More information about lambdas is provided in Section
-   <a href="#10-lambda-functions">10) Lambda Functions</a>.</li>
+<li>More information about lambdas is provided in Section <a href="#10-lambda-functions">1Lambda Functions</a>.</li>
 </ol>
 <h4 id="header-file_3">Header File</h4>
-<p><code>&lt;functional&gt;</code></p>
-<h3 id="5-inputoutput-io">5) Input/Output (I/O)</h3>
-<h4 id="explanation_4">Explanation</h4>
 <ol>
-<li>The I/O component of STL provides <strong>facilities for reading and writing data</strong>. It simplifies
-   interactions with various input and output sources, such as files and standard input/output
-   streams.</li>
+<li><code>&lt;functional&gt;</code></li>
+</ol>
+<h3 id="inputoutput-io">Input/Output (I/O)</h3>
+<h4 id="explanation_5">Explanation</h4>
+<ol>
+<li>The I/O component of STL provides <strong>facilities for reading and writing data</strong>.</li>
+<li>It simplifies interactions with various input and output sources, such as files and standard
+   input/output streams.</li>
 </ol>
 <h4 id="common-classes">Common Classes</h4>
 <ol>
@@ -393,12 +421,14 @@
 <li><code>std::fstream</code>: For file input and output.</li>
 </ol>
 <h4 id="header-file_4">Header File</h4>
-<p><code>&lt;iostream&gt;</code>, <code>&lt;fstream&gt;</code>, <code>&lt;sstream&gt;</code></p>
-<h3 id="6-utilities">6) Utilities</h3>
-<h4 id="explanation_5">Explanation</h4>
 <ol>
-<li>Utilities in STL provide <strong>general-purpose functionality</strong> that aids in programming tasks. This
-   includes support for pairs, tuples, and smart pointers.</li>
+<li><code>&lt;iostream&gt;</code>, <code>&lt;fstream&gt;</code>, <code>&lt;sstream&gt;</code></li>
+</ol>
+<h3 id="utilities">Utilities</h3>
+<h4 id="explanation_6">Explanation</h4>
+<ol>
+<li>Utilities in STL provide <strong>general-purpose functionality</strong> that aids in programming tasks.</li>
+<li>This includes support for pairs, tuples, and smart pointers.</li>
 </ol>
 <h4 id="common-utilities">Common Utilities</h4>
 <ol>

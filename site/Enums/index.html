@@ -237,7 +237,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#enum" class="nav-link">enum</a>
+            <li class="nav-item" data-level="2"><a href="#enums-enum" class="nav-link">Enums (enum)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -249,12 +249,12 @@
 <!-- vim-markdown-toc GFM -->
 
 <ul>
-<li><a href="#enum"><code>enum</code></a></li>
+<li><a href="#enums-enum">Enums (<code>enum</code>)</a></li>
 <li><a href="#explanation">Explanation</a></li>
-<li><a href="#purpose">Purpose</a></li>
-<li><a href="#examples-of-unscoped-enumeration">Examples of Unscoped Enumeration</a></li>
-<li><a href="#examples-of-scoped-enumeration--c11-">Examples of Scoped Enumeration ( C++11 )</a></li>
-<li><a href="#the-difference-between-enum--unscoped-enumeration--and-enum-class--scoped-enumeration-">Differences Between <code>enum</code> ( Unscoped Enumeration ) and <code>enum class</code> ( Scoped Enumeration )</a><ul>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#unscoped-enumeration-syntax">Unscoped Enumeration Syntax</a></li>
+<li><a href="#scoped-enumeration-syntax">Scoped Enumeration Syntax</a></li>
+<li><a href="#differences-between-enum--unscoped-enumeration--and-enum-class--scoped-enumeration-">Differences Between <code>enum</code> ( Unscoped Enumeration ) and <code>enum class</code> ( Scoped Enumeration )</a><ul>
 <li><a href="#1-syntax">1) Syntax</a></li>
 <li><a href="#2-namespace-scoping">2) Namespace Scoping</a></li>
 <li><a href="#3-type-safety">3) Type Safety</a></li>
@@ -265,36 +265,38 @@
 </li>
 </ul>
 <!-- vim-markdown-toc -->
-<h2 id="enum"><code>enum</code></h2>
+
+<h2 id="enums-enum">Enums (<code>enum</code>)</h2>
 <h3 id="explanation">Explanation</h3>
 <ol>
 <li>An enum (short for "enumeration") is <strong>a user-defined type</strong> that consists of <strong>a set of</strong> named
    integral <strong>constants</strong>, providing a way to define a collection of related constants with
-   meaningful names. Enumerations improve code readability by replacing numeric values with
-   descriptive names.</li>
+   meaningful names.</li>
+<li>Enumerations improve code <strong>readability</strong> by replacing numeric values with descriptive names.</li>
 </ol>
-<h3 id="purpose">Purpose</h3>
+<h3 id="usage">Usage</h3>
 <ol>
-<li>If you need to represent some states with integers, you can use an enum to group and represent
-   them.</li>
+<li><strong>Represent some states with integers</strong> by using an enum to group and represent them.</li>
 </ol>
-<h3 id="examples-of-unscoped-enumeration">Examples of Unscoped Enumeration</h3>
-<pre><code class="language-CPP">enum Color {
-   Red,         // 0
-   Green = 3,   // 3
-   Blue         // 4
+<h3 id="unscoped-enumeration-syntax">Unscoped Enumeration Syntax</h3>
+<pre><code class="language-CPP">enum EnumName {
+   Mem1,            // 0
+   Mem2,            // 1
+   ...; Memn = n,   // n
+   Memn1            // n + 1
 };
 
-Color myColor = Green;
+EnumName enum_name = Mem2;
 </code></pre>
-<h3 id="examples-of-scoped-enumeration-c11">Examples of Scoped Enumeration ( C++11 )</h3>
-<pre><code class="language-CPP">enum class Color : char {
-   Red = 'r',
-   Green = 'g',
-   Blue = 'b'
+<h3 id="scoped-enumeration-syntax">Scoped Enumeration Syntax</h3>
+<pre><code class="language-CPP">enum EnumName: Type {
+   Mem1,            // 0
+   Mem2,            // 1
+   ...; Memn = n,   // n
+   Memn1            // n + 1
 };
 
-Color myColor = Color::Green;
+EnumName enum_name = EnumName::Mem2;
 </code></pre>
 <h3 id="differences-between-enum-unscoped-enumeration-and-enum-class-scoped-enumeration">Differences Between <code>enum</code> ( Unscoped Enumeration ) and <code>enum class</code> ( Scoped Enumeration )</h3>
 <h4 id="1-syntax">1) Syntax</h4>

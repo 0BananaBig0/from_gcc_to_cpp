@@ -309,6 +309,7 @@
 <li><a href="#notes">Notes</a></li>
 </ul>
 <!-- vim-markdown-toc -->
+
 <h2 id="memory-partitions">Memory Partitions</h2>
 <h3 id="stack"><strong>Stack</strong></h3>
 <h4 id="purpose">Purpose</h4>
@@ -428,22 +429,12 @@
 </ol>
 <h4 id="structure_2">Structure</h4>
 <ol>
-<li>
-<p>Includes:</p>
-</li>
-<li>
-<p><strong>Initialized Data Segment</strong>: Stores variables with <strong>explicit initial</strong> values.</p>
-</li>
-<li>
-<p><strong>BSS (Uninitialized Data Segment, Block Started by Symbol)</strong>: Stores variables with <strong>no
-     initial</strong> values, which are initialized to <strong>zero by default</strong>.</p>
-</li>
-<li>
-<p><strong>Character Constant Area</strong>: Stores <strong>string literals</strong> and <strong>constants</strong>.</p>
-</li>
-<li>
-<p>Organized as <strong>a continuous memory block</strong> for static, global and const variables/values.</p>
-</li>
+<li>Includes:</li>
+<li><strong>Initialized Data Segment</strong>: Stores variables with <strong>explicit initial</strong> values.</li>
+<li><strong>BSS (Uninitialized Data Segment, Block Started by Symbol)</strong>: Stores variables with <strong>no
+     initial</strong> values, which are initialized to <strong>zero by default</strong>.</li>
+<li><strong>Character Constant Area</strong>: Stores <strong>string literals</strong> and <strong>constants</strong>.</li>
+<li>Organized as <strong>a continuous memory block</strong> for static, global and const variables/values.</li>
 </ol>
 <h4 id="performance_2">Performance</h4>
 <ol>

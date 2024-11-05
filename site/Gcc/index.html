@@ -270,10 +270,10 @@
 
 <ul>
 <li><a href="#g-compiler-and-linker"><code>g++</code> Compiler and Linker</a></li>
-<li><a href="#1-header-file--preprocess-statement-">1) Header File ( Preprocess Statement )</a></li>
-<li><a href="#2-cpp-file">2) CPP File</a></li>
-<li><a href="#3-obj-file--machine-code-file-obj-in-windows-o-in-linux-">3) OBJ File ( Machine Code File, <code>.obj</code> in Windows, <code>.o</code> in Linux )</a></li>
-<li><a href="#4-linking--static-linking-and-dynamic-linking-">4) Linking ( Static Linking and Dynamic Linking )</a><ul>
+<li><a href="#header-file--preprocess-statement-">Header File ( Preprocess Statement )</a></li>
+<li><a href="#cpp-file">CPP File</a></li>
+<li><a href="#obj-file--machine-code-file-obj-in-windows-o-in-linux-">OBJ File ( Machine Code File, <code>.obj</code> in Windows, <code>.o</code> in Linux )</a></li>
+<li><a href="#linking--static-linking-and-dynamic-linking-">Linking ( Static Linking and Dynamic Linking )</a><ul>
 <li><a href="#libraries">Libraries</a></li>
 <li><a href="#static-linking">Static Linking</a></li>
 <li><a href="#explanation">Explanation</a></li>
@@ -299,83 +299,83 @@
 </ul>
 </li>
 <li><a href="#the-difference-between-gcc-and-g">The difference between <code>gcc</code> and <code>g++</code></a></li>
-<li><a href="#1-language">1) Language</a><ul>
+<li><a href="#language">Language</a><ul>
 <li><a href="#1-gcc">1. <code>gcc</code></a></li>
 <li><a href="#2-g">2. <code>g++</code></a></li>
 </ul>
 </li>
-<li><a href="#2-linking">2) Linking</a><ul>
+<li><a href="#linking">Linking</a><ul>
 <li><a href="#1-gcc-1">1. <code>gcc</code></a></li>
 <li><a href="#2-g-1">2. <code>g++</code></a></li>
 </ul>
 </li>
-<li><a href="#3-header-file-handling">3) Header File Handling</a><ul>
+<li><a href="#header-file-handling">Header File Handling</a><ul>
 <li><a href="#1-gcc-2">1. <code>gcc</code></a></li>
 <li><a href="#2-g-2">2. <code>g++</code></a></li>
 </ul>
 </li>
 <li><a href="#how-to-compile-one-cpp-file">How to compile one cpp file</a></li>
 <li><a href="#source-files">Source files</a></li>
-<li><a href="#1-g-maincpp">1) <code>g++ Main.cpp</code></a><ul>
+<li><a href="#g-maincpp"><code>g++ Main.cpp</code></a><ul>
 <li><a href="#1-usage">1. Usage</a></li>
 <li><a href="#2-output">2. Output</a></li>
 </ul>
 </li>
-<li><a href="#2-g-maincpp--o-mainexe">2) <code>g++ Main.cpp -o Main.exe</code></a><ul>
+<li><a href="#g-maincpp--o-mainexe"><code>g++ Main.cpp -o Main.exe</code></a><ul>
 <li><a href="#1-usage-1">1. Usage</a></li>
 <li><a href="#2-output-1">2. Output</a></li>
 </ul>
 </li>
-<li><a href="#3-g--e-maincpp--o-maini">3) <code>g++ -E Main.cpp -o Main.i</code></a><ul>
+<li><a href="#g--e-maincpp--o-maini"><code>g++ -E Main.cpp -o Main.i</code></a><ul>
 <li><a href="#1-usage-2">1. Usage</a></li>
 <li><a href="#2-output-2">2. Output</a></li>
 </ul>
 </li>
-<li><a href="#4-g--s-maini">4) <code>g++ -S Main.i</code></a><ul>
+<li><a href="#g--s-maini"><code>g++ -S Main.i</code></a><ul>
 <li><a href="#1-usage-3">1. Usage</a></li>
 <li><a href="#2-output-3">2. Output</a></li>
 </ul>
 </li>
-<li><a href="#5-g--s-maincpp">5) <code>g++ -S Main.cpp</code></a><ul>
+<li><a href="#g--s-maincpp"><code>g++ -S Main.cpp</code></a><ul>
 <li><a href="#1-usage-4">1. Usage</a></li>
 <li><a href="#2-output-4">2. Output</a></li>
 </ul>
 </li>
-<li><a href="#6-g--c-mains">6) <code>g++ -c Main.s</code></a><ul>
+<li><a href="#g--c-mains"><code>g++ -c Main.s</code></a><ul>
 <li><a href="#1-usage-5">1. Usage</a></li>
 <li><a href="#2-output-5">2. Output</a></li>
 </ul>
 </li>
-<li><a href="#7-g--c-maincpp">7) <code>g++ -c Main.cpp</code></a><ul>
+<li><a href="#g--c-maincpp"><code>g++ -c Main.cpp</code></a><ul>
 <li><a href="#1-usage-6">1. Usage</a></li>
 <li><a href="#2-output-6">2. Output</a></li>
 </ul>
 </li>
-<li><a href="#8-g-maino--o-mainexe">8) <code>g++ Main.o -o Main.exe</code></a><ul>
+<li><a href="#g-maino--o-mainexe"><code>g++ Main.o -o Main.exe</code></a><ul>
 <li><a href="#1-usage-7">1. Usage</a></li>
 <li><a href="#2-output-7">2. Output</a></li>
 </ul>
 </li>
-<li><a href="#9-g--on-maincpp--o-mainexe">9) <code>g++ -On Main.cpp -o Main.exe</code></a><ul>
+<li><a href="#g--on-maincpp--o-mainexe"><code>g++ -On Main.cpp -o Main.exe</code></a><ul>
 <li><a href="#1-usage-8">1. Usage</a></li>
 <li><a href="#2-output-8">2. Output</a></li>
 </ul>
 </li>
-<li><a href="#10-g--dmacro_name1--dmacro_name2--maincpp--o-mainexe">10) <code>g++ -DMACRO_NAME1 -DMACRO_NAME2 ... Main.cpp -o Main.exe</code></a><ul>
+<li><a href="#1g--dmacro_name1--dmacro_name2--maincpp--o-mainexe">1<code>g++ -DMACRO_NAME1 -DMACRO_NAME2 ... Main.cpp -o Main.exe</code></a><ul>
 <li><a href="#1-usage-9">1. Usage</a></li>
 <li><a href="#2-output-9">2. Output</a></li>
 </ul>
 </li>
 <li><a href="#how-to-compile-multiple-cpp-files">How to compile multiple cpp files</a></li>
 <li><a href="#source-files-1">Source files</a></li>
-<li><a href="#1-compile-all-files-in-one-command">1) Compile all files in one command</a><ul>
+<li><a href="#compile-all-files-in-one-command">Compile all files in one command</a><ul>
 <li><a href="#1-code">1. Code</a></li>
 <li><a href="#2-usage">2. Usage</a></li>
 <li><a href="#3-output">3. Output</a></li>
 <li><a href="#4-alternative-if-all-files-are-in-one-folder">4. Alternative: If all files are in one folder</a></li>
 </ul>
 </li>
-<li><a href="#2-compile-all-files-separately-and-then-link-them-together">2) Compile all files separately and then link them together</a><ul>
+<li><a href="#compile-all-files-separately-and-then-link-them-together">Compile all files separately and then link them together</a><ul>
 <li><a href="#1-code-1">1. Code</a></li>
 <li><a href="#2-usage-1">2. Usage</a></li>
 <li><a href="#3-output-1">3. Output</a></li>
@@ -383,31 +383,31 @@
 </li>
 <li><a href="#how-to-compile-and-link-a-library">How to compile and link a library</a></li>
 <li><a href="#source-files-2">Source files</a></li>
-<li><a href="#1-setup-paths-of-header-files">1) Setup paths of header files</a><ul>
+<li><a href="#setup-paths-of-header-files">Setup paths of header files</a><ul>
 <li><a href="#1-code-2">1. Code</a></li>
 </ul>
 </li>
-<li><a href="#2-how-to-link-multiple-static-libraries">2) How to link multiple static libraries</a><ul>
+<li><a href="#how-to-link-multiple-static-libraries">How to link multiple static libraries</a><ul>
 <li><a href="#1-code-3">1. Code</a></li>
 </ul>
 </li>
-<li><a href="#3-how-to-create-a-static-library">3) How to create a static library</a><ul>
+<li><a href="#how-to-create-a-static-library">How to create a static library</a><ul>
 <li><a href="#1-code-4">1. Code</a></li>
 <li><a href="#2-usage-2">2. Usage</a></li>
 <li><a href="#3-output-2">3. Output</a></li>
 </ul>
 </li>
-<li><a href="#4-how-to-link-multiple-dynamic-libraries">4) How to link multiple dynamic libraries</a><ul>
+<li><a href="#how-to-link-multiple-dynamic-libraries">How to link multiple dynamic libraries</a><ul>
 <li><a href="#1-code-5">1. Code</a></li>
 </ul>
 </li>
-<li><a href="#5-how-to-create-a-dynamic-library">5) How to create a dynamic library</a><ul>
+<li><a href="#how-to-create-a-dynamic-library">How to create a dynamic library</a><ul>
 <li><a href="#1-code-6">1. Code</a></li>
 <li><a href="#2-usage-3">2. Usage</a></li>
 <li><a href="#3-output-3">3. Output</a></li>
 </ul>
 </li>
-<li><a href="#6-how-to-link-a-static-library-explicitly">6) How to link a static library explicitly</a><ul>
+<li><a href="#how-to-link-a-static-library-explicitly">How to link a static library explicitly</a><ul>
 <li><a href="#1-code-7">1. Code</a></li>
 <li><a href="#2--wl-bstatic">2. -Wl,-Bstatic</a></li>
 <li><a href="#3--wl-bdynamic">3. -Wl,-Bdynamic</a></li>
@@ -416,7 +416,7 @@
 <li><a href="#6-output">6. Output</a></li>
 </ul>
 </li>
-<li><a href="#7-how-to-link-a-dynamic-library-explicitly">7) How to link a dynamic library explicitly</a><ul>
+<li><a href="#how-to-link-a-dynamic-library-explicitly">How to link a dynamic library explicitly</a><ul>
 <li><a href="#1-code-8">1. Code</a></li>
 <li><a href="#2-situation">2. Situation</a></li>
 <li><a href="#3-usage">3. Usage</a></li>
@@ -428,172 +428,200 @@
 <!-- vim-markdown-toc -->
 
 <h2 id="g-compiler-and-linker"><code>g++</code> Compiler and Linker</h2>
-<h3 id="1-header-file-preprocess-statement">1) Header File ( Preprocess Statement )</h3>
+<h3 id="header-file-preprocess-statement">Header File ( Preprocess Statement )</h3>
 <ol>
-<li>The compiler will copy and paste them into the object CPP file.</li>
+<li>The compiler will <strong>copy and paste them</strong> into the object CPP file.</li>
 </ol>
-<h3 id="2-cpp-file">2) CPP File</h3>
+<h3 id="cpp-file">CPP File</h3>
 <ol>
-<li>The compiler translates the CPP files into assembly code and then into machine code without
-   performing any linking operations. Typically, there is one OBJ file per CPP file, but sometimes
-   multiple CPP files may result in a single OBJ file. During the compilation phase, the compiler
-   also optimizes your code.</li>
+<li>The compiler translates <strong>the CPP files into assembly code</strong> and <strong>then into machine code</strong>
+   <strong>without</strong> performing any <strong>linking</strong> operations.</li>
+<li>Typically, there is <strong>one OBJ file per CPP file</strong>, but <strong>sometimes multiple CPP files may result
+   in a single OBJ file</strong>.</li>
+<li>During the compilation phase, the compiler also optimizes your code.</li>
 </ol>
-<h3 id="3-obj-file-machine-code-file-obj-in-windows-o-in-linux">3) OBJ File ( Machine Code File, <code>.obj</code> in Windows, <code>.o</code> in Linux )</h3>
+<h3 id="obj-file-machine-code-file-obj-in-windows-o-in-linux">OBJ File ( Machine Code File, <code>.obj</code> in Windows, <code>.o</code> in Linux )</h3>
 <ol>
-<li>All OBJ files will be combined into a single file by the linker. The C++ linker can perform
-   certain optimizations, although its primary role is focused on linking object files and libraries
-   rather than optimizing code.</li>
+<li><strong>All OBJ files</strong> will be <strong>combined into a single file</strong> by the linker.</li>
+<li>The C++ <strong>linker</strong> can <strong>perform certain optimizations</strong>, although its primary role is focused on
+   linking object files and libraries rather than optimizing code.</li>
 </ol>
-<h3 id="4-linking-static-linking-and-dynamic-linking">4) Linking ( Static Linking and Dynamic Linking )</h3>
+<h3 id="linking-static-linking-and-dynamic-linking">Linking ( Static Linking and Dynamic Linking )</h3>
 <h4 id="libraries">Libraries</h4>
 <ol>
-<li>Static (<code>.lib</code> or <code>.a</code>) vs dynamic libraries (<code>.dll</code> or <code>.so</code>): Linking with static libraries is
-   faster than dynamic libraries because the C++ linker performs optimizations during static
-   linking.</li>
-<li>Import libraries (<code>xxxdll.lib</code> files): These files contain references to functions and symbols
-   defined in the <code>xxx.dll</code> files, allowing linking at <strong>compile time</strong>, ensuring that the correct
-   function signatures and addresses are used and allowing the linker to know where to find them at
-   runtime. Only Windows has import libraries, whereas Linux does not.</li>
+<li>Static (<code>.lib</code> or <code>.a</code>) vs dynamic libraries (<code>.dll</code> or <code>.so</code>):</li>
+<li>Linking with static libraries is <strong>faster</strong> than dynamic libraries because the C++ linker
+     performs optimizations during static linking.</li>
+<li>Import libraries (<code>xxxdll.lib</code> files):</li>
+<li>These files <strong>contain references to functions and symbols</strong> defined in the <code>xxx.dll</code> files,
+     facilitating linking at compile time.</li>
+<li>This process ensures that the correct function signatures and addresses are utilized, allowing
+     the linker to ascertain their locations at runtime.</li>
+<li>Import libraries are <strong>specific to Windows</strong>, while <strong>Linux integrates this functionality
+     directly into dynamic libraries</strong>.</li>
 </ol>
 <h4 id="static-linking">Static Linking</h4>
 <h5 id="explanation">Explanation</h5>
 <ol>
 <li>Static linking refers to the process of combining all necessary library code into the final
-   executable at compile time. This results in a standalone binary that does not rely on external
-   libraries at runtime.</li>
+   executable <strong>at compile time</strong>.</li>
+<li>This results in a standalone binary that does <strong>not rely on external libraries at runtime</strong>.</li>
 </ol>
 <h5 id="characteristics">Characteristics</h5>
 <ol>
-<li>Self-contained: The executable includes all the library code it needs.</li>
-<li>No runtime dependencies: Once compiled, it doesn't require the presence of shared libraries on
-   the target system.</li>
-<li>Larger executable size: The resulting binary is typically larger due to the inclusion of library
-   code.</li>
-<li>No versioning issues: The code is fixed at compile time, reducing concerns about library version
-   compatibility.</li>
+<li>Self-contained:</li>
+<li>The executable includes all the library code it needs.</li>
+<li>No runtime dependencies:</li>
+<li>Once compiled, it doesn't require the presence of shared libraries on the target system.</li>
+<li>Larger executable size:</li>
+<li>The resulting binary is typically larger due to the inclusion of library code.</li>
+<li>No versioning issues:</li>
+<li>The code is fixed at compile time, reducing concerns about library version compatibility.</li>
 </ol>
 <h5 id="how-it-works">How It Works</h5>
 <ol>
-<li>Compilation: The developer compiles the source code and links it against static library files
-   (usually <code>.lib</code> in windows, <code>.a</code> files in linux).</li>
-<li>Linking: The linker combines the object files with the static library code, resolving all symbol
-   references.</li>
-<li>Executable creation: The final output is a single executable file that includes all necessary
-   code.</li>
+<li>Compilation:</li>
+<li>The developer compiles the source code and links it against static library files (usually
+     <code>.lib</code> in windows, <code>.a</code> files in linux).</li>
+<li>Linking:</li>
+<li>The linker combines the object files with the static library code, resolving all symbol
+     references.</li>
+<li>Executable creation:</li>
+<li>The final output is a single executable file that includes all necessary code.</li>
 </ol>
 <h4 id="dynamic-linking-implicit-linking-and-explicit-linking">Dynamic Linking ( Implicit Linking and Explicit Linking )</h4>
 <h5 id="explanation_1">Explanation</h5>
 <ol>
-<li>Dynamic linking allows a program to link to libraries at runtime rather than at compile time.
-   This can improve modularity and reduce executable size.</li>
+<li>Dynamic linking allows a program to <strong>link to libraries at runtime</strong> rather than at compile time.</li>
+<li>This can <strong>improve modularity</strong> and <strong>reduce executable size</strong>.</li>
 </ol>
 <h5 id="characteristics_1">Characteristics</h5>
 <ol>
-<li>Reduced executable size: Only references to shared libraries are included, keeping the executable
-   smaller.</li>
-<li>Shared code: Multiple programs can share the same library code in memory, saving resources.</li>
-<li>Version flexibility: Libraries can be updated independently of the applications that use them,
-   allowing for easier updates and bug fixes.</li>
-<li>Runtime dependencies: The executable requires the appropriate shared libraries to be present at
-   runtime.</li>
+<li>Reduced executable size:</li>
+<li>Only references to shared libraries are included, keeping the executable smaller.</li>
+<li>Shared code:</li>
+<li>Multiple programs can share the same library code in memory, saving resources.</li>
+<li>Version flexibility:</li>
+<li>Libraries can be updated independently of the applications that use them, allowing for easier
+     updates and bug fixes.</li>
+<li>Runtime dependencies:</li>
+<li>The executable requires the appropriate shared libraries to be present at runtime.</li>
 </ol>
 <h5 id="implicit-linking-load-time-dynamic-linking-default-dynamic-linking">Implicit Linking ( Load-time Dynamic Linking ) ( Default Dynamic Linking )</h5>
 <h6 id="explanation_2">Explanation</h6>
 <ol>
-<li>Implicit linking, also known as load-time dynamic linking, is a process where an executable is
-    linked to shared libraries at compile time, allowing the program to use functions and variables
-    defined in those libraries without including their code directly in the executable.</li>
+<li>Implicit linking, also referred to as <strong>load-time dynamic linking</strong>, is <strong>a process</strong> whereby an
+   executable is linked to shared libraries <strong>at compile time</strong>.</li>
+<li>This method allows the program to <strong>utilize functions and variables</strong> defined in those libraries
+   <strong>without incorporating their code directly</strong> into the executable.</li>
 </ol>
 <h6 id="characteristics_2">Characteristics</h6>
 <ol>
-<li>Automatic resolution: The operating system loads the DLLs specified in the import library when
-   the application starts.</li>
-<li>Simplified development: Developers include the DLL's import library (<code>.lib</code> file) during
-   compilation, simplifying the linking process.</li>
-<li>Single entry point: The operating system resolves function calls from the DLLs automatically,
-   allowing the application to use them seamlessly.</li>
-<li>Version dependency: If the required version of a DLL is missing or incompatible, the application
-   may fail to start.</li>
+<li>Automatic resolution:</li>
+<li>The operating system loads the DLLs specified in the import library when the application
+     starts.</li>
+<li>Simplified development:</li>
+<li>Developers include the DLL's import library (<code>.lib</code> file) during compilation, simplifying the
+     linking process.</li>
+<li>Single entry point:</li>
+<li>The operating system resolves function calls from the DLLs automatically, allowing the
+     application to use them seamlessly.</li>
+<li>Version dependency:</li>
+<li>If the required version of a DLL is missing or incompatible, the application may fail to start.</li>
 </ol>
 <h6 id="how-it-works-in-windows">How It Works in <strong>Windows</strong></h6>
 <ol>
-<li>Linking with <strong>import libraries</strong>: When compiling the application, the developer links against
-   the DLL's import library, which provides necessary metadata for the linker.</li>
-<li>Creating the executable: The resulting executable contains references to the required DLLs but
-   does not embed their code, reducing the executable's size.</li>
-<li>Loading the DLLs: Upon execution, the Windows loader reads the executable's headers to identify
-   the required DLLs and loads them into memory.</li>
-<li>Resolving symbols: The loader resolves function calls to the appropriate addresses in the loaded
-   DLLs, ensuring that the application can access the necessary functions and variables.</li>
-<li>Execution: Control is then passed to the application's entry point, allowing it to call functions
-   from the linked DLLs, enabling shared access to the library's functionality.</li>
+<li>Linking with <strong>import libraries</strong>:</li>
+<li>When compiling the application, the developer links against the DLL's import library, which
+     provides necessary metadata for the linker.</li>
+<li>Creating the executable:</li>
+<li>The resulting executable contains references to the required DLLs but does not embed their
+     code, reducing the executable's size.</li>
+<li>Loading the DLLs:</li>
+<li>Upon execution, the Windows loader reads the executable's headers to identify the required DLLs
+     and loads them into memory.</li>
+<li>Resolving symbols:</li>
+<li>The loader resolves function calls to the appropriate addresses in the loaded DLLs, ensuring
+     that the application can access the necessary functions and variables.</li>
+<li>Execution:</li>
+<li>Control is then passed to the application's entry point, allowing it to call functions from the
+     linked DLLs, enabling shared access to the library's functionality.</li>
 </ol>
 <h6 id="how-it-works-in-linux">How It Works in <strong>Linux</strong></h6>
 <ol>
-<li>Linking with <strong>shared libraries</strong>: When compiling the application, the developer specifies shared
-   libraries using flags (e.g., <code>-l</code> for linking) in the compilation command, allowing the linker to
-   record these dependencies in the executable.</li>
-<li>Creating the executable: The resulting executable contains references to the shared libraries but
-   does not include their code. This reduces the executable's size and enables shared access to the
-   libraries.</li>
-<li>Loading the libraries: Upon execution, the dynamic linker/loader (typically ld.so or ld-linux.so)
-   reads the executable's metadata to identify the required shared libraries and loads them into
-   memory.</li>
-<li>Resolving symbols: The linker resolves the function calls and variable references to the
-   appropriate addresses in the loaded shared libraries, allowing the executable to use their
-   functionality.</li>
-<li>Execution: Control is passed to the application's entry point, enabling it to call functions and
-   access data from the linked shared libraries.</li>
+<li>Linking with <strong>shared libraries</strong>:</li>
+<li>When compiling the application, the developer specifies shared libraries using flags (e.g.,
+     <code>-l</code> for linking) in the compilation command, allowing the linker to record these dependencies
+     in the executable.</li>
+<li>Creating the executable:</li>
+<li>The resulting executable contains references to the shared libraries but does not include their
+     code.</li>
+<li>This reduces the executable's size and enables shared access to the libraries.</li>
+<li>Loading the libraries:</li>
+<li>Upon execution, the dynamic linker/loader (typically ld.so or ld-linux.so) reads the
+     executable's metadata to identify the required shared libraries and loads them into memory.</li>
+<li>Resolving symbols:</li>
+<li>The linker resolves the function calls and variable references to the appropriate addresses in
+     the loaded shared libraries, allowing the executable to use their functionality.</li>
+<li>Execution:</li>
+<li>Control is passed to the application's entry point, enabling it to call functions and access
+     data from the linked shared libraries.</li>
 </ol>
 <h5 id="explicit-linking-run-time-dynamic-linking">Explicit Linking ( Run-time Dynamic Linking )</h5>
 <h6 id="explanation_3">Explanation</h6>
 <ol>
-<li>Explicit linking, also known as run-time dynamic linking, gives the programmer more control,
-    allowing applications to dynamically load shared libraries and access their functions during
-    execution, rather than linking them at compile time.</li>
-<li>The programmers will use some specific functions to manage the dynamic linking explicitly.</li>
+<li>Explicit linking, also known as <strong>run-time dynamic linking</strong>, gives the programmer more control,
+    allowing applications to <strong>dynamically load shared libraries</strong> and <strong>access their functions</strong>
+    during execution, rather than linking them at compile time.</li>
+<li>The programmers will <strong>use some specific functions to manage the dynamic linking explicitly</strong>.</li>
 </ol>
 <h6 id="characteristics_3">Characteristics</h6>
 <ol>
-<li>Dynamic control: Developers can load libraries based on runtime conditions, providing
-   flexibility.</li>
-<li>Lazy loading: Libraries can be loaded only when needed, which can improve startup performance.</li>
-<li>Error handling: Applications can handle scenarios where a library fails to load or is not found.</li>
+<li>Dynamic control:</li>
+<li>Developers can load libraries based on runtime conditions, providing flexibility.</li>
+<li>Lazy loading:</li>
+<li>Libraries can be loaded only when needed, which can improve startup performance.</li>
+<li>Error handling:</li>
+<li>Applications can handle scenarios where a library fails to load or is not found.</li>
 </ol>
 <h6 id="how-it-works-in-windows_1">How It Works in <strong>Windows</strong></h6>
 <ol>
-<li>Load the DLL: Use <code>LoadLibrary( "library.dll" )</code> to load the desired DLL into the process's
-   address space.</li>
-<li>Get function pointers: Use <code>GetProcAddress( handle, "function_name" )</code> to obtain pointers to the
-   functions within the loaded DLL.</li>
-<li>Use the functions: Call the functions using the retrieved pointers.</li>
-<li>Unload the DLL: Optionally, use <code>FreeLibrary( handle )</code> to unload the DLL when it’s no longer
-   needed.</li>
+<li>Load the DLL:</li>
+<li>Use <code>LoadLibrary( "library.dll" )</code> to load the desired DLL into the process's address space.</li>
+<li>Get function pointers:</li>
+<li>Use <code>GetProcAddress( handle, "function_name" )</code> to obtain pointers to the functions within the
+     loaded DLL.</li>
+<li>Use the functions:</li>
+<li>Call the functions using the retrieved pointers.</li>
+<li>Unload the DLL:</li>
+<li>Optionally, use <code>FreeLibrary( handle )</code> to unload the DLL when it’s no longer needed.</li>
 </ol>
 <h6 id="how-it-works-in-linux_1">How It Works in <strong>Linux</strong></h6>
 <ol>
-<li>Load the library: Use <code>dlopen( "library.so", RTLD_LAZY )</code> to load the desired shared library into
-   the process's address space.</li>
-<li>Get function pointers: Use <code>dlsym( handle, "function_name" )</code> to obtain pointers to the functions
-   within the loaded library.</li>
-<li>Use the functions: Call the functions using the retrieved pointers.</li>
-<li>Unload the library: Optionally, use <code>dlclose( handle )</code> to unload the library when it’s no longer
-   needed.</li>
+<li>Load the library:</li>
+<li>Use <code>dlopen( "library.so", RTLD_LAZY )</code> to load the desired shared library into the process's
+     address space.</li>
+<li>Get function pointers:</li>
+<li>Use <code>dlsym( handle, "function_name" )</code> to obtain pointers to the functions within the loaded
+     library.</li>
+<li>Use the functions:</li>
+<li>Call the functions using the retrieved pointers.</li>
+<li>Unload the library:</li>
+<li>Optionally, use <code>dlclose( handle )</code> to unload the library when it’s no longer needed.</li>
 </ol>
 <h2 id="the-difference-between-gcc-and-g">The difference between <code>gcc</code> and <code>g++</code></h2>
-<h3 id="1-language">1) Language</h3>
+<h3 id="language">Language</h3>
 <h4 id="1-gcc">1. <code>gcc</code></h4>
 <ol>
-<li>Primarily the GNU C Compiler, but it can also compile C++ files if passed the appropriate flags.
-   It defaults to treating source files as C code unless you specify C++.</li>
+<li>Primarily the GNU C Compiler, but it can also compile C++ files if passed the appropriate flags.</li>
+<li>It defaults to treating source files as C code unless you specify C++.</li>
 </ol>
 <h4 id="2-g">2. <code>g++</code></h4>
 <ol>
-<li>A specialized driver for C++ compilation. It automatically links the C++ standard library and
-   handles C++-specific extensions.</li>
+<li>A specialized driver for C++ compilation.</li>
+<li>It automatically links the C++ standard library and handles C++-specific extensions.</li>
 </ol>
-<h3 id="2-linking">2) Linking</h3>
+<h3 id="linking">Linking</h3>
 <h4 id="1-gcc_1">1. <code>gcc</code></h4>
 <ol>
 <li>When compiling C++ files with <code>gcc</code>, you must manually link the C++ standard library (e.g.,
@@ -603,7 +631,7 @@
 <ol>
 <li>Automatically links the C++ standard library without needing extra flags.</li>
 </ol>
-<h3 id="3-header-file-handling">3) Header File Handling</h3>
+<h3 id="header-file-handling">Header File Handling</h3>
 <h4 id="1-gcc_2">1. <code>gcc</code></h4>
 <ol>
 <li>When used with C, <code>gcc</code> processes headers as C-specific (using <code>.h</code> headers for the most part).</li>
@@ -618,7 +646,7 @@
 <ol>
 <li>Main.cpp</li>
 </ol>
-<h3 id="1-g-maincpp">1) <code>g++ Main.cpp</code></h3>
+<h3 id="g-maincpp"><code>g++ Main.cpp</code></h3>
 <h4 id="1-usage">1. Usage</h4>
 <ol>
 <li>Preprocess, compile, and link Main.cpp to generate the executable file a.out.</li>
@@ -627,7 +655,7 @@
 <ol>
 <li>a.out</li>
 </ol>
-<h3 id="2-g-maincpp-o-mainexe">2) <code>g++ Main.cpp -o Main.exe</code></h3>
+<h3 id="g-maincpp-o-mainexe"><code>g++ Main.cpp -o Main.exe</code></h3>
 <h4 id="1-usage_1">1. Usage</h4>
 <ol>
 <li>Preprocess, compile, and link Main.cpp to generate an executable file.</li>
@@ -637,7 +665,7 @@
 <ol>
 <li>Main.exe</li>
 </ol>
-<h3 id="3-g-e-maincpp-o-maini">3) <code>g++ -E Main.cpp -o Main.i</code></h3>
+<h3 id="g-e-maincpp-o-maini"><code>g++ -E Main.cpp -o Main.i</code></h3>
 <h4 id="1-usage_2">1. Usage</h4>
 <ol>
 <li>Preprocess Main.cpp to generate a preprocessed file.</li>
@@ -647,7 +675,7 @@
 <ol>
 <li>Main.i</li>
 </ol>
-<h3 id="4-g-s-maini">4) <code>g++ -S Main.i</code></h3>
+<h3 id="g-s-maini"><code>g++ -S Main.i</code></h3>
 <h4 id="1-usage_3">1. Usage</h4>
 <ol>
 <li>Compile the preprocessed file to generate an assembly file.</li>
@@ -656,7 +684,7 @@
 <ol>
 <li>Main.s</li>
 </ol>
-<h3 id="5-g-s-maincpp">5) <code>g++ -S Main.cpp</code></h3>
+<h3 id="g-s-maincpp"><code>g++ -S Main.cpp</code></h3>
 <h4 id="1-usage_4">1. Usage</h4>
 <ol>
 <li>Preprocess and compile the source file to generate an assembly file.</li>
@@ -665,7 +693,7 @@
 <ol>
 <li>Main.s</li>
 </ol>
-<h3 id="6-g-c-mains">6) <code>g++ -c Main.s</code></h3>
+<h3 id="g-c-mains"><code>g++ -c Main.s</code></h3>
 <h4 id="1-usage_5">1. Usage</h4>
 <ol>
 <li>Translate the assembly file into an object file.</li>
@@ -674,7 +702,7 @@
 <ol>
 <li>Main.o</li>
 </ol>
-<h3 id="7-g-c-maincpp">7) <code>g++ -c Main.cpp</code></h3>
+<h3 id="g-c-maincpp"><code>g++ -c Main.cpp</code></h3>
 <h4 id="1-usage_6">1. Usage</h4>
 <ol>
 <li>Preprocess and compile the source file to generate an object file.</li>
@@ -683,7 +711,7 @@
 <ol>
 <li>Main.o</li>
 </ol>
-<h3 id="8-g-maino-o-mainexe">8) <code>g++ Main.o -o Main.exe</code></h3>
+<h3 id="g-maino-o-mainexe"><code>g++ Main.o -o Main.exe</code></h3>
 <h4 id="1-usage_7">1. Usage</h4>
 <ol>
 <li>Link the object file to generate an executable file.</li>
@@ -692,7 +720,7 @@
 <ol>
 <li>Main.exe</li>
 </ol>
-<h3 id="9-g-on-maincpp-o-mainexe">9) <code>g++ -On Main.cpp -o Main.exe</code></h3>
+<h3 id="g-on-maincpp-o-mainexe"><code>g++ -On Main.cpp -o Main.exe</code></h3>
 <h4 id="1-usage_8">1. Usage</h4>
 <ol>
 <li>Compile Main.cpp with optimization level <code>n</code> (where <code>0 ≤ n ≤ 3</code>). Higher values of n result in
@@ -702,7 +730,7 @@
 <ol>
 <li>Main.exe</li>
 </ol>
-<h3 id="10-g-dmacro_name1-dmacro_name2-maincpp-o-mainexe">10) <code>g++ -DMACRO_NAME1 -DMACRO_NAME2 ... Main.cpp -o Main.exe</code></h3>
+<h3 id="1g-dmacro_name1-dmacro_name2-maincpp-o-mainexe">1<code>g++ -DMACRO_NAME1 -DMACRO_NAME2 ... Main.cpp -o Main.exe</code></h3>
 <h4 id="1-usage_9">1. Usage</h4>
 <ol>
 <li>Define a series of <code>MACRO</code> for <code>Main.cpp</code>.</li>
@@ -718,7 +746,7 @@
 <li>Main.cpp</li>
 <li>Fun.cpp</li>
 </ol>
-<h3 id="1-compile-all-files-in-one-command">1) Compile all files in one command</h3>
+<h3 id="compile-all-files-in-one-command">Compile all files in one command</h3>
 <h4 id="1-code">1. Code</h4>
 <pre><code class="language-sh">g++ Main.cpp Fun.cpp -o Main.exe
 </code></pre>
@@ -736,7 +764,7 @@
 <h4 id="4-alternative-if-all-files-are-in-one-folder">4. Alternative: If all files are in one folder</h4>
 <pre><code class="language-sh">g++ *.cpp -o Main.exe
 </code></pre>
-<h3 id="2-compile-all-files-separately-and-then-link-them-together">2) Compile all files separately and then link them together</h3>
+<h3 id="compile-all-files-separately-and-then-link-them-together">Compile all files separately and then link them together</h3>
 <h4 id="1-code_1">1. Code</h4>
 <pre><code class="language-sh">g++ -c Main.cpp
 g++ -c Fun.cpp
@@ -759,18 +787,18 @@ g++ -o Main.o Fun.o -o Main.exe
 <li>Main.cpp</li>
 <li>Fun.cpp</li>
 </ol>
-<h3 id="1-setup-paths-of-header-files">1) Setup paths of header files</h3>
+<h3 id="setup-paths-of-header-files">Setup paths of header files</h3>
 <h4 id="1-code_2">1. Code</h4>
 <pre><code class="language-sh">g++ Main.cpp Fun.cpp -o Main.exe -I/the/first/path/of/header/files \
     -I/the/second/path/of/header/files ...
 </code></pre>
-<h3 id="2-how-to-link-multiple-static-libraries">2) How to link multiple static libraries</h3>
+<h3 id="how-to-link-multiple-static-libraries">How to link multiple static libraries</h3>
 <h4 id="1-code_3">1. Code</h4>
 <pre><code class="language-sh">g++ Main.cpp -L/the/first/path/of/static/libraries \
     -L/the/second/path/of/static/libraries ... \
     -lxxx.a -lyyy.a ... -o Main.exe
 </code></pre>
-<h3 id="3-how-to-create-a-static-library">3) How to create a static library</h3>
+<h3 id="how-to-create-a-static-library">How to create a static library</h3>
 <h4 id="1-code_4">1. Code</h4>
 <pre><code class="language-sh">g++ -c Fun.cpp
 ar rcs libFun.a Fun.o
@@ -788,12 +816,12 @@ g++ Main.cpp -L. -lFun -o Main.exe
 <li>libFun.a</li>
 <li>Main.exe</li>
 </ol>
-<h3 id="4-how-to-link-multiple-dynamic-libraries">4) How to link multiple dynamic libraries</h3>
+<h3 id="how-to-link-multiple-dynamic-libraries">How to link multiple dynamic libraries</h3>
 <h4 id="1-code_5">1. Code</h4>
 <pre><code class="language-sh">g++ Main.cpp -L/the/first/path/of/dynamic/libraries -L/the/second/path/of/dynamic/libraries ... \
 -lxxx.a -lyyy.a ... -o Main.exe
 </code></pre>
-<h3 id="5-how-to-create-a-dynamic-library">5) How to create a dynamic library</h3>
+<h3 id="how-to-create-a-dynamic-library">How to create a dynamic library</h3>
 <h4 id="1-code_6">1. Code</h4>
 <pre><code class="language-sh">g++ -c -fPIC Fun.cpp -o Fun.o
 g++ -shared -o libFun.so Fun.o
@@ -811,7 +839,7 @@ g++ Main.cpp -L. -lFun -o Main.exe
 <li>libFun.so</li>
 <li>Main.exe</li>
 </ol>
-<h3 id="6-how-to-link-a-static-library-explicitly">6) How to link a static library explicitly</h3>
+<h3 id="how-to-link-a-static-library-explicitly">How to link a static library explicitly</h3>
 <h4 id="1-code_7">1. Code</h4>
 <pre><code class="language-sh">g++ -c Fun.cpp
 ar rcs libFun.a Fun.o
@@ -836,7 +864,7 @@ explicitly.</p>
 <li>libFun.so</li>
 <li>Main.exe</li>
 </ol>
-<h3 id="7-how-to-link-a-dynamic-library-explicitly">7) How to link a dynamic library explicitly</h3>
+<h3 id="how-to-link-a-dynamic-library-explicitly">How to link a dynamic library explicitly</h3>
 <h4 id="1-code_8">1. Code</h4>
 <pre><code class="language-sh">g++ -c Fun.cpp
 ar rcs libFun.a Fun.o

@@ -290,9 +290,9 @@
 <li>It <strong>returns a <code>void</code> pointer</strong> to the allocated memory.</li>
 </ol>
 <h5 id="syntax">Syntax</h5>
-<pre><code class="language-CPP">Type* ptr = new Type;   // For a single object
+<pre><code class="language-CPP">Type* ptr = new Type;   // For a single object.
 </code></pre>
-<pre><code class="language-CPP">Type* arr_ptr = new Type[size];   // For an array of objects
+<pre><code class="language-CPP">Type* arr_ptr = new Type[size];   // For an array objects.
 </code></pre>
 <h4 id="new-address"><code>new( address )</code></h4>
 <h5 id="explanation_1">Explanation</h5>
@@ -303,9 +303,9 @@
    memory.</li>
 </ol>
 <h5 id="syntax_1">Syntax</h5>
-<pre><code class="language-CPP">Type* ptr = new( address ) Type;   // For a single object
+<pre><code class="language-CPP">Type* ptr = new( address ) Type;   // For a single object.
 </code></pre>
-<pre><code class="language-CPP">Type* arr_ptr = new( address ) Type[size];   // For an array of objects
+<pre><code class="language-CPP">Type* arr_ptr = new( address ) Type[size];   // For an array objects.
 </code></pre>
 <h4 id="delete"><code>delete</code></h4>
 <h5 id="explanation_2">Explanation</h5>
@@ -316,11 +316,11 @@
    pointers.</li>
 </ol>
 <h5 id="syntax_2">Syntax</h5>
-<pre><code class="language-CPP">delete ptr;   // For a single object
-ptr = nullptr;   // Good practice to avoid dangling pointers
+<pre><code class="language-CPP">delete ptr;   // For a single object.
+ptr = nullptr;   // Good practice to avoid dangling pointers.
 </code></pre>
-<pre><code class="language-CPP">delete[] arr_ptr;   // For an array of objects
-arr_ptr = nullptr;   // Good practice to avoid dangling pointers
+<pre><code class="language-CPP">delete[] arr_ptr;   // For an array objects.
+arr_ptr = nullptr;   // Good practice to avoid dangling pointers.
 </code></pre>
 <h4 id="operator-new-size"><code>::operator new( size )</code></h4>
 <h5 id="explanation_3">Explanation</h5>
@@ -333,10 +333,10 @@ arr_ptr = nullptr;   // Good practice to avoid dangling pointers
 <li><strong><code>::operator delete</code></strong> should be used to free memory allocated with <strong><code>::operator new</code></strong>.</li>
 </ol>
 <h5 id="syntax_3">Syntax</h5>
-<pre><code class="language-CPP">// Its declaration syntax
+<pre><code class="language-CPP">// Its declaration syntax.
 void* ptr = ::operator new( size_t size );
 </code></pre>
-<pre><code class="language-CPP">// Its usage syntax
+<pre><code class="language-CPP">// Its usage syntax.
 Type* ptr = static_cast&lt; Type* &gt;( ::operator new( num * sizeof( Type ) ) );
 </code></pre>
 <h4 id="operator-delete-ptr"><code>operator delete( ptr )</code></h4>
@@ -351,17 +351,29 @@ Type* ptr = static_cast&lt; Type* &gt;( ::operator new( num * sizeof( Type ) ) )
    dangling pointers.</li>
 </ol>
 <h5 id="syntax_4">Syntax</h5>
-<pre><code class="language-CPP">// Its declaration syntax
+<pre><code class="language-CPP">// Its declaration syntax.
 void operator delete( void* ptr ) noexcept;
 </code></pre>
-<pre><code class="language-CPP">// Its usage syntax
+<pre><code class="language-CPP">// Its usage syntax.
 ::operator delete( ptr );
-ptr = nullptr;   // Good practice to avoid dangling pointers
+ptr = nullptr;   // Good practice to avoid dangling pointers.
 </code></pre>
 <h3 id="malloc"><code>malloc</code></h3>
+<ol>
+<li><a href="../SomeCFunctionsAndOperators/#malloc"><code>malloc</code></a></li>
+</ol>
 <h3 id="calloc"><code>calloc</code></h3>
+<ol>
+<li><a href="../SomeCFunctionsAndOperators/#calloc"><code>calloc</code></a></li>
+</ol>
 <h3 id="realloc"><code>realloc</code></h3>
-<h3 id="free"><code>free</code></h3></div>
+<ol>
+<li><a href="../SomeCFunctionsAndOperators/#realloc"><code>realloc</code></a></li>
+</ol>
+<h3 id="free"><code>free</code></h3>
+<ol>
+<li><a href="../SomeCFunctionsAndOperators/#free"><code>free</code></a></li>
+</ol></div>
             </div>
         </div>
 

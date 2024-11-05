@@ -276,10 +276,10 @@
 <h3 id="explanation">Explanation</h3>
 <ol>
 <li>Macros are typically defined using the preprocessor directive <code>#define</code>, which allows for <strong>text
-   substitution</strong> <strong>prior</strong> to the actual <strong>compilation</strong> of the code. They are classified as
-   <strong>preprocessor statements</strong>.</li>
-<li>Macros may <strong>represent</strong> simple <strong>constants</strong> or <strong>complex expressions</strong>. When the preprocessor
-   encounters a macro, it replaces it with the corresponding value or code.</li>
+   substitution</strong> <strong>prior</strong> to the actual <strong>compilation</strong> of the code.</li>
+<li>They are classified as <strong>preprocessor statements</strong>.</li>
+<li>Macros may <strong>represent</strong> simple <strong>constants</strong> or <strong>complex expressions</strong>.</li>
+<li>When the preprocessor encounters a macro, it replaces it with the corresponding value or code.</li>
 <li>They enable the <strong>compilation of identical code</strong> to produce varied outcomes <strong>based on distinct
    configurations</strong>.</li>
 <li>The <strong>backslash (<code>\</code>)</strong> can be utilized to create <strong>multi-line macros</strong>.</li>
@@ -295,7 +295,7 @@
 <pre><code class="language-CPP">// Multi-line Macros
 #define MACRO_NAME replacement_text1 \
                    replacement_text2 \
-                   ...
+                   ...;
 </code></pre>
 <h3 id="related-keywords">Related Keywords</h3>
 <h4 id="ifdef-ifndef-else-endif"><code>#ifdef</code>, <code>#ifndef</code>, <code>#else</code>, <code>#endif</code></h4>
@@ -344,12 +344,14 @@
 <ol>
 <li>This directive is <strong>not a macro</strong> but is often <strong>used with macros</strong> to <strong>include header files</strong>
    where macros may be defined.</li>
-<li><code>#include &lt;HeaderFile&gt;</code>: This syntax instructs the preprocessor to <strong>search for the specified
-   header file</strong> exclusively <strong>in the standard include directories</strong>. It is typically used for
-   <strong>system or library headers</strong>.</li>
-<li><code>#include "path/to/HeaderFile"</code>: This syntax tells the preprocessor to <strong>look for the specified
-   header file in the specific path first</strong>. If it is <strong>not found</strong> there, it then <strong>searches the
-   standard include directories</strong>.</li>
+<li><code>#include &lt;HeaderFile&gt;</code>:</li>
+<li>This syntax instructs the preprocessor to <strong>search for the specified header file</strong> exclusively
+     <strong>in the standard include directories</strong>.</li>
+<li>It is typically used for <strong>system or library headers</strong>.</li>
+<li><code>#include "path/to/HeaderFile"</code>:</li>
+<li>This syntax tells the preprocessor to <strong>look for the specified header file in the specific path
+     first</strong>.</li>
+<li>If it is <strong>not found</strong> there, it then <strong>searches the standard include directories</strong>.</li>
 </ol>
 <h5 id="syntax_3">Syntax</h5>
 <pre><code class="language-CPP">#include &lt;HeaderFile&gt;

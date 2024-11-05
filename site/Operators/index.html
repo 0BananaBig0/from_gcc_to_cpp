@@ -296,90 +296,88 @@
 <h2 id="operators">Operators</h2>
 <h3 id="explanation">Explanation</h3>
 <ol>
-<li>Operators are symbols that perform operations on variables or values. They allow concise data
-   manipulation, comparisons, and control of program logic.</li>
+<li>Operators are <strong>symbols</strong> that <strong>perform operations on variables or values</strong>.</li>
+<li>They allow concise data manipulation, comparisons, and control of program logic.</li>
 <li>Operators follow specific rules of precedence and associativity to determine the order of
    evaluation in complex expressions.</li>
-<li>Additionally, operators can be overloaded for custom behavior in user-defined types, improving
-   code flexibility and reusability.</li>
+<li>Additionally, operators <strong>can be overloaded</strong> for custom behavior in user-defined types,
+   improving code flexibility and reusability.</li>
 <li>In fact, it's <strong>a function</strong>. It makes our code clearer.</li>
 </ol>
 <h3 id="categories">Categories</h3>
 <ol>
-<li>Arithmetic Operators</li>
+<li>Arithmetic operators:</li>
 <li>Perform basic mathematical operations.</li>
-<li><code>+</code> (Addition)</li>
-<li><code>-</code> (Subtraction)</li>
-<li><code>*</code> (Multiplication)</li>
-<li><code>/</code> (Division)</li>
-<li><code>%</code> (Modulus)</li>
-<li>Relational (Comparison) Operators</li>
+<li><code>+</code> (Addition).</li>
+<li><code>-</code> (Subtraction).</li>
+<li><code>*</code> (Multiplication).</li>
+<li><code>/</code> (Division).</li>
+<li><code>%</code> (Modulus).</li>
+<li>Relational (comparison) operators:</li>
 <li>Compare two values and return a boolean result (<code>true</code> or <code>false</code>).</li>
-<li><code>==</code> (Equal to)</li>
-<li><code>!=</code> (Not equal to)</li>
-<li><code>&lt;</code> (Less than)</li>
-<li><code>&gt;</code> (Greater than)</li>
-<li><code>&lt;=</code> (Less than or equal to)</li>
-<li><code>&gt;=</code> (Greater than or equal to)</li>
-<li>Logical Operators</li>
+<li><code>==</code> (Equal to).</li>
+<li><code>!=</code> (Not equal to).</li>
+<li><code>&lt;</code> (Less than).</li>
+<li><code>&gt;</code> (Greater than).</li>
+<li><code>&lt;=</code> (Less than or equal to).</li>
+<li><code>&gt;=</code> (Greater than or equal to).</li>
+<li>Logical operators:</li>
 <li>Combine or invert boolean expressions.</li>
-<li><code>&amp;&amp;</code> (Logical AND)</li>
-<li><code>||</code> (Logical OR)</li>
-<li><code>!</code> (Logical NOT)</li>
-<li>Bitwise Operators</li>
+<li><code>&amp;&amp;</code> (Logical AND).</li>
+<li><code>||</code> (Logical OR).</li>
+<li><code>!</code> (Logical NOT).</li>
+<li>Bitwise operators:</li>
 <li>Perform bit-level operations on integral values.</li>
-<li><code>&amp;</code> (AND)</li>
-<li><code>|</code> (OR)</li>
-<li><code>^</code> (XOR)</li>
-<li><code>~</code> (Complement)</li>
-<li><code>&lt;&lt;</code> (Left shift)</li>
-<li><code>&gt;&gt;</code> (Right shift)</li>
-<li>Assignment Operators</li>
+<li><code>&amp;</code> (AND).</li>
+<li><code>|</code> (OR).</li>
+<li><code>^</code> (XOR).</li>
+<li><code>~</code> (Complement).</li>
+<li><code>&lt;&lt;</code> (Left shift).</li>
+<li><code>&gt;&gt;</code> (Right shift).</li>
+<li>Assignment operators:</li>
 <li>Assign values to variables, sometimes performing operations during assignment.</li>
-<li><code>=</code> (Simple assignment)</li>
-<li><code>+=</code> (Add and assign)</li>
-<li><code>-=</code> (Subtract and assign)</li>
-<li><code>=</code> (Multiply and assign)</li>
-<li><code>/=</code> (Divide and assign)</li>
-<li>Unary Operators</li>
+<li><code>=</code> (Simple assignment).</li>
+<li><code>+=</code> (Add and assign).</li>
+<li><code>-=</code> (Subtract and assign).</li>
+<li><code>=</code> (Multiply and assign).</li>
+<li><code>/=</code> (Divide and assign).</li>
+<li>Unary operators:</li>
 <li>Operate on a single operand.</li>
-<li><code>++</code> (Increment)</li>
-<li><code>--</code> (Decrement)</li>
-<li><code>+</code> (Unary plus)</li>
-<li><code>-</code> (Unary minus)</li>
-<li>Ternary Operator</li>
+<li><code>++</code> (Increment).</li>
+<li><code>--</code> (Decrement).</li>
+<li><code>+</code> (Unary plus).</li>
+<li><code>-</code> (Unary minus).</li>
+<li>Ternary operator:</li>
 <li>A compact form of an <code>if-else</code> statement.</li>
-<li><code>? :</code> (Conditional operator)</li>
-<li>Type Casting Operators</li>
+<li><code>? :</code> (Conditional operator).</li>
+<li>Type casting operators:</li>
 <li>Convert one data type to another.</li>
-<li><code>static_cast</code></li>
-<li><code>dynamic_cast</code></li>
-<li><code>const_cast</code></li>
-<li><code>reinterpret_cast</code></li>
-<li>Comma Operator (<code>,</code>)</li>
+<li><code>static_cast</code>.</li>
+<li><code>dynamic_cast</code>.</li>
+<li><code>const_cast</code>.</li>
+<li><code>reinterpret_cast</code>.</li>
+<li>Comma operator (<code>,</code>):</li>
 <li>Evaluates multiple expressions from left to right, returning the value of the last expression.</li>
-<li>Member Access Operators<ul>
+<li>Member access operators:<ul>
 <li>Access members of classes or objects.</li>
-<li><code>.</code> (Direct member access)</li>
-<li><code>-&gt;</code> (Indirect member access through a pointer)</li>
+<li><code>.</code> (Direct member access).</li>
+<li><code>-&gt;</code> (Indirect member access through a pointer).</li>
 </ul>
 </li>
-<li>Memory Management Operators<ul>
+<li>Memory management operators:<ul>
 <li>Allocate and deallocate dynamic memory.</li>
-<li><code>new</code> (Allocates memory)</li>
-<li><code>new[]</code> (Allocates memory for arrays)</li>
-<li><code>delete</code> (Deallocates memory)</li>
-<li><code>delete[]</code> (Deallocates memory for arrays)</li>
+<li><code>new</code> (Allocates memory).</li>
+<li><code>new[]</code> (Allocates memory for arrays).</li>
+<li><code>delete</code> (Deallocates memory).</li>
+<li><code>delete[]</code> (Deallocates memory for arrays).</li>
 </ul>
 </li>
-<li>Sizeof Operator<ul>
+<li>Sizeof operator (<code>sizeof</code>):<ul>
 <li>Returns the size, in bytes, of a data type or object.</li>
-<li><code>sizeof</code></li>
 </ul>
 </li>
-<li>Typeid Operator<ul>
+<li>Typeid operator (<code>typeid</code>):<ul>
 <li>Returns the type information of an expression or a type.</li>
-<li><code>typeid</code></li>
 </ul>
 </li>
 </ol>
@@ -411,12 +409,12 @@
 <h5 id="copy-assignment-operator-overloading">Copy-assignment Operator Overloading</h5>
 <h6 id="explanation_3">Explanation</h6>
 <ol>
-<li>The copy-assignment operator can be overloaded to handle <strong>deep copies</strong>, manage resources
+<li>The copy-assignment operator can be overloaded to <strong>handle deep copies</strong>, manage resources
    appropriately, and perform self-assignment checks.</li>
 </ol>
 <h6 id="syntax_2">Syntax</h6>
 <pre><code class="language-CPP">ClassName&amp; operator=( const ClassName&amp; other ) {
-   // Custom copy logic here
+   // Custom copy logic here.
    return *this;
 };
 </code></pre>
@@ -426,7 +424,7 @@
 <ol>
 <li>The default move-assignment operator is <strong>generated by the compiler</strong> if <strong>no user-defined
    copy-assignment operator</strong> is provided.</li>
-<li>It handles <strong>shallow moves</strong>, which may lead to issues like <strong>double deletion</strong> if pointers are
+<li>It <strong>handles shallow moves</strong>, which may lead to issues like <strong>double deletion</strong> if pointers are
    involved.</li>
 <li>The state of the moved-from object is unspecified but valid after the operation.</li>
 <li>The <code>= default</code> syntax <strong>explicitly requests</strong> the compiler to generate the <strong>default
@@ -440,12 +438,12 @@
 <ol>
 <li>The move-assignment operator can be overloaded to control how resources are transferred between
    objects.</li>
-<li>It handles <strong>deep moves</strong>, which deals with issues like <strong>double deletion</strong> if pointers are
+<li>It <strong>handles deep moves</strong>, which deals with issues like <strong>double deletion</strong> if pointers are
    involved.</li>
 </ol>
 <h6 id="syntax_4">Syntax</h6>
 <pre><code class="language-CPP">ClassName&amp; operator=(ClassName&amp;&amp; other) noexcept {
-    // Custom move logic here
+    // Custom move logic here.
     return *this;
 };
 </code></pre>
@@ -454,44 +452,50 @@
 <ol>
 <li>The conversion operator specifies <strong>how to convert an object of the class to a designated target
    type</strong>, which can be beneficial for implicit conversions or explicit type casting.</li>
-<li><strong>Implicit Conversion</strong>: If defined, the conversion can occur automatically in certain contexts
+<li><strong>Implicit conversion</strong>: If defined, the conversion can occur automatically in certain contexts
    (e.g., passing an object to a function expecting a different type).</li>
-<li><strong>Explicit Conversion</strong>: If marked with <code>explicit</code>, the conversion will only occur when
+<li><strong>Explicit conversion</strong>: If marked with <code>explicit</code>, the conversion will only occur when
    explicitly requested, thus preventing unintended conversions.</li>
 </ol>
 <h5 id="conversion-operator-overloading">Conversion Operator Overloading</h5>
 <h6 id="syntax_5">Syntax</h6>
-<pre><code class="language-CPP">// `const` function
+<pre><code class="language-CPP">// `const` function.
 operator TargetType() const {
-    // Custom conversion logic here
+    // Custom conversion logic here.
 };
 </code></pre>
 <h6 id="notes">Notes</h6>
 <ol>
 <li>If we <strong>implement a smart pointer</strong> by ourselves, pass it as a reference into a function and want
-   to judge it if it is a null pointer, <strong>bool conversion operator is needed</strong>.</li>
+   to judge it if it is a <code>null</code> pointer, <strong><code>bool</code> conversion operator is needed</strong>.</li>
 <li>If a class <strong>only possesses one useful member</strong>, and we want to <strong>assign it to a primitive-type
-   variables</strong> outside of the class without calling any function, <strong>bool conversion operator is
+   variables</strong> outside of the class without calling any function, <strong>`bool conversion operator is
    need</strong>.</li>
 <li><strong>Problem</strong>: less readability of code, not work if functions have been overloaded.</li>
 <li><strong>Advantange</strong>: make code cleaner.</li>
 </ol>
 <h4 id="explicit-conversion-operator"><code>explicit</code> Conversion Operator</h4>
+<ol>
+<li><a href="../ConversionAndCasting/#explicit">Conversion And Casting</a></li>
+</ol>
 <h3 id="new-and-delete"><code>new</code> and <code>delete</code></h3>
+<ol>
+<li><a href="../NewAndDelete/#new-and-delete"><code>new</code> and <code>delete</code></a></li>
+</ol>
 <h3 id="the-usage-of-the-operator">The Usage of the <code>:</code> Operator</h3>
 <ol>
-<li>Scope resolution operator(<code>::</code>)
+<li>Scope resolution operator(<code>::</code>):
    <code>CPP
    ClassName::member;
    NamespaceName:member;
    EnumclassName:member;</code></li>
-<li>Inheritance</li>
-<li>Member initialization list</li>
-<li>Conditional Operator (Ternary Operator)</li>
-<li>Label in Goto Statements
+<li>Inheritance.</li>
+<li>Member initialization list.</li>
+<li>Conditional operator (ternary operator).</li>
+<li>Label in goto statements.
    <code>CPP
    labelName: statement;</code></li>
-<li>Range-Based For Loop with Structured Bindings
+<li>Range-based for loop with structured bindings:
    <code>CPP
    for ( auto&amp; var : container );
    for ( auto&amp; [var1, var2, ...] : container );</code></li>
@@ -500,11 +504,11 @@ operator TargetType() const {
 <ol>
 <li>It is important to ensure that memory is <strong>deallocated</strong> using the <strong>corresponding</strong> operator
    that was used for <strong>allocation</strong> to <strong>avoid undefined behavior</strong>.</li>
-<li>Ternary operators: <strong>Using ternary operators to replace an <code>if-else</code> statement</strong> when
-   <strong>initializing an object</strong> can make it <strong>slightly faster</strong>. Using <strong>nested ternary operators</strong>
-   can be confusing, so we should <strong>avoid using them</strong>.</li>
+<li><strong>Using ternary operators to replace an <code>if-else</code> statement</strong> when <strong>initializing an object</strong> can
+   make it <strong>slightly faster</strong>. Using <strong>nested ternary operators</strong> can be confusing, so we should
+   <strong>avoid using them</strong>.</li>
 <li>The <strong>compiler</strong> is smart enough so that it can <strong>optimize some arithmic operations</strong> to some
-   bitwise operations, for example, 5 x 16 to 5 &lt;&lt; 4.</li>
+   bitwise operations, for example, <code>5 x 16</code> to <code>5 &lt;&lt; 4</code>.</li>
 </ol></div>
             </div>
         </div>

@@ -300,8 +300,8 @@
 <li><a href="#common-methods-of-type-punning">Common Methods of Type Punning</a><ul>
 <li><a href="#using-unions">Using Unions</a></li>
 <li><a href="#using-casting">Using Casting</a></li>
-<li><a href="#using-stdany">Using <code>std::any</code></a></li>
 <li><a href="#using-stdvariant">Using <code>std::variant</code></a></li>
+<li><a href="#using-stdany">Using <code>std::any</code></a></li>
 </ul>
 </li>
 <li><a href="#the-usage-of-automatic-scope-based-destruction">The Usage of Automatic Scope-based Destruction</a></li>
@@ -328,12 +328,12 @@
 
 <h2 id="some-small-knowledge">Some Small Knowledge</h2>
 <ol>
-<li>The <strong>performance</strong> of &lt; is better than &lt;=.</li>
+<li>The <strong>performance</strong> of <code>&lt;</code> is better than <code>&lt;=</code>.</li>
 <li><code>std::endl</code> is a little <strong>slower</strong> than <code>"\n"</code> in <strong>debug mode</strong>. Otherwise, <code>std::endl</code> is
    <strong>faster</strong>.</li>
-<li>Function argument evaluation order: Undefined. Differenct compilers with different flags have
-   different evaluation orders, until C++17, an uncomplete definiton of the function argument
-   evaluation order comes.</li>
+<li><strong>Function argument evaluation order</strong> is <strong>undefined</strong> in C++. Differenct compilers with
+   different flags have different evaluation orders, until C++17, an uncomplete definiton of the
+   function argument evaluation order comes.</li>
 <li><strong>All variables, objects, references, and pointers</strong> should be <strong>initialized explicitly and
    immediately</strong> after they are declared or created. This can avoid many unpredictable issues</li>
 </ol>
@@ -347,8 +347,8 @@
 <li>It is often <strong>recommended to avoid type punning</strong> unless absolutely necessary, and <strong>to use safer
    alternatives</strong> like: standard conversions, <code>std::bit_cast</code> and serialization.</li>
 <li>It can <strong>achieve specific goals</strong> like <strong>low-level optimization</strong>, treating a struct or a class
-   as an array, treating Type1 memory as Type2 memory at the same memory address or interfacing with
-   hardware.</li>
+   as an array, treating <code>Type1</code> memory as <code>Type2</code> memory at the same memory address or interfacing
+   with hardware.</li>
 <li>However, developers must be aware of the <strong>risks</strong>, including <strong>undefined behavior</strong> and
    <strong>portability issues</strong>, and <strong>use safer alternatives whenever possible</strong>.</li>
 </ol>
@@ -383,17 +383,29 @@ struct Vector4 {
 };
 </code></pre>
 <h4 id="using-casting">Using Casting</h4>
-<h4 id="using-stdany">Using <code>std::any</code></h4>
+<ol>
+<li><a href="../ConversionAndCasting/#stdvariant-multiple-types-of-data-in-single-variable">Conversion And Casting</a></li>
+</ol>
 <h4 id="using-stdvariant">Using <code>std::variant</code></h4>
+<ol>
+<li><a href="../UnionStdAnyStdVariantStdOptional/"><code>std::variant</code></a></li>
+</ol>
+<h4 id="using-stdany">Using <code>std::any</code></h4>
+<ol>
+<li><a href="../UnionStdAnyStdVariantStdOptional/#stdany"><code>std:any</code></a></li>
+</ol>
 <h2 id="the-usage-of-automatic-scope-based-destruction">The Usage of Automatic Scope-based Destruction</h2>
 <ol>
-<li><strong>Smart pointers or scope pointers</strong>: Create an object on the heap, and automatically destroy it
-   without using delete when it goes out of scope or when certain conditions are met. A smart
-   pointer is a wrapper around a real raw pointer.</li>
-<li><strong>Timer</strong>: Measure the execution time of a scope, print the result, and automatically destroy the
-   timer object when it goes out of scope.</li>
-<li><strong>Lock</strong>: Lock a function so that <strong>multiple threads cannot access it simultaneously</strong>, and
-   <strong>automatically unlock</strong> it at the end of the function.</li>
+<li><strong>Smart pointers or scope pointers</strong>:</li>
+<li>Create an object on the heap, and automatically destroy it without using delete when it goes
+     out of scope or when certain conditions are met.</li>
+<li>A smart pointer is a wrapper around a real raw pointer.</li>
+<li><strong>Timer</strong>:</li>
+<li>Measure the execution time of a scope, print the result, and automatically destroy the timer
+     object when it goes out of scope.</li>
+<li><strong>Lock</strong>:</li>
+<li>Lock a function so that <strong>multiple threads cannot access it simultaneously</strong>, and
+     <strong>automatically unlock</strong> it at the end of the function.</li>
 </ol>
 <h2 id="how-to-return-multiple-values">How to Return Multiple Values</h2>
 <ol>
@@ -412,30 +424,35 @@ struct Vector4 {
 </ol>
 <h2 id="breakpoints">Breakpoints</h2>
 <ol>
-<li>Normal breakpoints: A normal breakpoint is a point in the code where the execution will pause
-   when the debugger reaches it. This allows you to inspect the current state of the program,
-   including variable values, the call stack, and other context.</li>
-<li><strong>Conditional</strong> breakpoints: A conditional breakpoint is similar to a normal breakpoint but
-   includes a condition that must be met for the breakpoint to trigger. This allows you to pause
-   execution only when certain criteria are satisfied.</li>
-<li><strong>Action</strong> breakpoints: An action breakpoint (sometimes called a "tracepoint" or "logging
-   breakpoint") allows you to <strong>specify actions that occur when the breakpoint is hit</strong>, <strong>without
-   necessarily pausing the execution of the program</strong>. This can include <strong>logging messages</strong> or
-   <strong>modifying variables</strong>.</li>
+<li>Normal breakpoints:</li>
+<li>A normal breakpoint is a point in the code where the execution will pause when the debugger
+     reaches it.</li>
+<li>This allows you to inspect the current state of the program, including variable values, the
+     call stack, and other context.</li>
+<li><strong>Conditional</strong> breakpoints:</li>
+<li>A conditional breakpoint is similar to a normal breakpoint but includes a condition that must
+     be met for the breakpoint to trigger.</li>
+<li>This allows you to pause execution only when certain criteria are satisfied.</li>
+<li><strong>Action</strong> breakpoints:</li>
+<li>An action breakpoint (sometimes called a "tracepoint" or "logging breakpoint") allows you to
+     <strong>specify actions that occur when the breakpoint is hit</strong>, <strong>without necessarily pausing the
+     execution of the program</strong>.</li>
+<li>This can include <strong>logging messages</strong> or <strong>modifying variables</strong>.</li>
 </ol>
 <h2 id="precompiled-headers-pch">Precompiled Headers (PCH)</h2>
 <ol>
 <li>Precompiled headers (PCH) are a feature designed to accelerate the compilation process,
-   particularly in <strong>large projects</strong>. By <strong>precompiling frequently used header files</strong>, PCHs
-   eliminate the need to recompile these files every time a source file is processed. While
-   precompiled headers can significantly reduce compilation times, they require careful setup and
-   management to be effective.</li>
+   particularly in <strong>large projects</strong>.</li>
+<li>By <strong>precompiling frequently used header files</strong>, PCHs eliminate the need to recompile these
+   files every time a source file is processed.</li>
+<li>While precompiled headers can significantly reduce compilation times, they require careful setup
+   and management to be effective.</li>
 <li>It's vitally used for code that isn't yours, for example, STL library and OpenCL library.</li>
 <li>However, it may make your code harder to read.</li>
 </ol>
 <h2 id="how-to-measure-how-many-memory-allocations-ocur-or-track-memory-allocations">How to Measure How Many Memory Allocations Ocur or Track Memory Allocations</h2>
 <ol>
-<li>Overload the new operator to print some information.
+<li>Overload the new operator to print some information:
    <code>CPP
    void* operator new( size_t size ) {
       // Do something
@@ -444,10 +461,10 @@ struct Vector4 {
 </ol>
 <h2 id="benchmark-and-how-to-visualize-benchmark-results">Benchmark and How to Visualize Benchmark Results</h2>
 <ol>
-<li>There is <strong>no universally accepted method for measuring performance</strong>. Different techniques have
-   their own drawbacks, resulting in <strong>less than 100% accurate</strong> outcomes. Cheron, a game developer,
-   utilizes <code>std::chrono</code> to <strong>implement a scoped timer</strong> for assessing the performance of their
-   game engine.</li>
+<li>There is <strong>no universally accepted method for measuring performance</strong>.</li>
+<li>Different techniques have their own drawbacks, resulting in <strong>less than 100% accurate</strong> outcomes.</li>
+<li>Cheron, a game developer, utilizes <code>std::chrono</code> to <strong>implement a scoped timer</strong> for assessing
+   the performance of their game engine.</li>
 <li>Use macros to wrap our print functions and timer objcets so that we can determine whether we
    should compile them.</li>
 <li>Use <code>__FUNCTION__</code> or <code>__FUNSIG__</code> instead of using a string to print a function name.</li>
@@ -487,31 +504,41 @@ struct Vector4 {
 </ol>
 <h3 id="why-ci-is-important-for-c">Why CI is important for C++</h3>
 <ol>
-<li><strong>Frequent integration</strong>: Ensures new code integrates seamlessly with the existing codebase,
-   preventing compatibility and integration issues.</li>
-<li><strong>Early bug detection</strong>: <strong>Automated tests</strong> detect issues early in the development cycle.</li>
-<li><strong>Multi-platform support</strong>: C++ applications often target multiple platforms (e.g., Windows,
-   Linux, macOS), and CI ensures builds succeed across all.</li>
-<li><strong>Performance testing</strong>: CI can run benchmarks to track performance regressions.</li>
-<li><strong>Consistency</strong>: Enforces coding standards and ensures dependencies are properly managed.</li>
+<li><strong>Frequent integration</strong>:</li>
+<li>Ensures new code integrates seamlessly with the existing codebase, preventing compatibility and
+     integration issues.</li>
+<li><strong>Early bug detection</strong>:</li>
+<li><strong>Automated tests</strong> detect issues early in the development cycle.</li>
+<li><strong>Multi-platform support</strong>:</li>
+<li>C++ applications often target multiple platforms (e.g., Windows, Linux, macOS), and CI ensures
+     builds succeed across all.</li>
+<li><strong>Performance testing</strong>:</li>
+<li>CI can run benchmarks to track performance regressions.</li>
+<li><strong>Consistency</strong>:</li>
+<li>Enforces coding standards and ensures dependencies are properly managed.</li>
 </ol>
 <h3 id="ci-workflow-for-c">CI Workflow for C++</h3>
 <ol>
-<li><strong>Code changes</strong>: Developers push changes to a repository (e.g., GitHub, GitLab).</li>
-<li><strong>CI pipeline trigger</strong>: Each commit triggers the CI pipeline.</li>
-<li><strong>Build</strong>: The code is compiled and linked for different target platforms.</li>
-<li><strong>Testing</strong>: Automated unit tests, integration tests, and performance tests run.</li>
-<li><strong>Code quality</strong> checks: Tools like clang-tidy and cppcheck ensure the code follows best
-   practices.</li>
-<li><strong>Deployment (Optional)</strong>: The CI system can deploy artifacts if required.</li>
-<li><strong>Reporting</strong>: Results are reported back to developers, and any issues are highlighted for
-   resolution.</li>
+<li><strong>Code changes</strong>:</li>
+<li>Developers push changes to a repository (e.g., GitHub, GitLab).</li>
+<li><strong>CI pipeline trigger</strong>:</li>
+<li>Each commit triggers the CI pipeline.</li>
+<li><strong>Build</strong>:</li>
+<li>The code is compiled and linked for different target platforms.</li>
+<li><strong>Testing</strong>:</li>
+<li>Automated unit tests, integration tests, and performance tests run.</li>
+<li><strong>Code quality</strong> checks:</li>
+<li>Tools like clang-tidy and cppcheck ensure the code follows best practices.</li>
+<li><strong>Deployment (Optional)</strong>:</li>
+<li>The CI system can deploy artifacts if required.</li>
+<li><strong>Reporting</strong>:</li>
+<li>Results are reported back to developers, and any issues are highlighted for resolution.</li>
 </ol>
 <h3 id="tools-for-ci-in-c">Tools for CI in C++</h3>
 <h4 id="ci-platforms">CI Platforms</h4>
 <ol>
-<li>GitHub actions</li>
-<li>GitLab CI/CD</li>
+<li>GitHub actions.</li>
+<li>GitLab CI/CD.</li>
 <li>Jenkins: Provides custom pipelines using Groovy. Suitable for complex CI needs and large
    projects.</li>
 </ol>
@@ -537,14 +564,16 @@ struct Vector4 {
 </ol>
 <h4 id="best-practices-for-c-ci">Best Practices for C++ CI</h4>
 <ol>
-<li>Use CMake for cross-platform builds: Ensure the project builds across all targeted operating
-   systems.</li>
-<li>Run static analysis as part of the pipeline: Identify code quality issues early.</li>
-<li>Parallel testing: Use tools like GoogleTest and catch2 to run unit tests efficiently.</li>
-<li>Dockerize builds: For consistent build environments, use Docker images with all dependencies
-   pre-installed.</li>
-<li>Monitor performance metrics: Integrate performance benchmarks into the pipeline to detect
-   regressions.</li>
+<li>Use CMake for cross-platform builds:</li>
+<li>Ensure the project builds across all targeted operating systems.</li>
+<li>Run static analysis as part of the pipeline:</li>
+<li>Identify code quality issues early.</li>
+<li>Parallel testing:</li>
+<li>Use tools like GoogleTest and catch2 to run unit tests efficiently.</li>
+<li>Dockerize builds:</li>
+<li>For consistent build environments, use Docker images with all dependencies pre-installed.</li>
+<li>Monitor performance metrics:</li>
+<li>Integrate performance benchmarks into the pipeline to detect regressions.</li>
 </ol>
 <h4 id="what-we-can-do-in-our-project"><strong>What We Can Do in Our Project</strong></h4>
 <ol>

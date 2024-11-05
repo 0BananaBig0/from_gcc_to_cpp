@@ -246,23 +246,23 @@
 
 <ul>
 <li><a href="#differences-between-hiding-overloading-overriding-and-overwriting">Differences Between Hiding, Overloading, Overriding, and Overwriting</a></li>
-<li><a href="#1-hiding-name-hiding">(1) Hiding (Name Hiding)</a><ul>
+<li><a href="#hiding-name-hiding">Hiding (Name Hiding)</a><ul>
 <li><a href="#explanation">Explanation</a></li>
 <li><a href="#syntax">Syntax</a></li>
 <li><a href="#how-to-access-hidden-function">How to Access Hidden Function</a></li>
 </ul>
 </li>
-<li><a href="#2-overloading">(2) Overloading</a><ul>
+<li><a href="#overloading">Overloading</a><ul>
 <li><a href="#explanation-1">Explanation</a></li>
 <li><a href="#syntax-1">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#3-overriding">(3) Overriding</a><ul>
+<li><a href="#overriding">Overriding</a><ul>
 <li><a href="#explanation-2">Explanation</a></li>
 <li><a href="#syntax-2">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#4-overwriting-not-a-c-term">(4) Overwriting (Not a C++ Term)</a><ul>
+<li><a href="#overwriting-not-a-c-term">Overwriting (Not a C++ Term)</a><ul>
 <li><a href="#explanation-3">Explanation</a></li>
 <li><a href="#syntax-3">Syntax</a></li>
 </ul>
@@ -271,7 +271,7 @@
 <!-- vim-markdown-toc -->
 
 <h3 id="differences-between-hiding-overloading-overriding-and-overwriting">Differences Between Hiding, Overloading, Overriding, and Overwriting</h3>
-<h4 id="1-hiding-name-hiding">(1) Hiding (Name Hiding)</h4>
+<h4 id="hiding-name-hiding">Hiding (Name Hiding)</h4>
 <h5 id="explanation">Explanation</h5>
 <ol>
 <li>Hiding occurs when <strong>a derived class</strong> declares a function (or variable) with <strong>the same name</strong>
@@ -305,7 +305,7 @@ int main() {
 <h5 id="how-to-access-hidden-function">How to Access Hidden Function</h5>
 <pre><code class="language-CPP">   obj_name.Base::funcName( para_list1 );   // Calls Base class funcName( para_list1 )
 </code></pre>
-<h4 id="2-overloading">(2) Overloading</h4>
+<h4 id="overloading">Overloading</h4>
 <h5 id="explanation_1">Explanation</h5>
 <ol>
 <li>Overloading occurs when <strong>two or more functions</strong> in <strong>the same scope</strong> have <strong>the same name</strong>
@@ -313,10 +313,10 @@ int main() {
 <li>Additionally, if <strong>a keyword</strong> appears <strong>between</strong> the function <strong>parameters</strong> and the <strong>function
    body</strong>, it can be used to create <strong>overloaded</strong> functions because their <strong>signatures</strong> are
    <strong>different</strong>. For example, <strong>const functions and noexcept functions</strong>.</li>
-<li>However, <strong>the return type does not</strong> play a role in distinguishing overloaded functions.
-   Functions cannot be overloaded solely based on different return types. Overloading is resolved at
-   compile time (static polymorphism). C++ allows overloading based on the number of arguments,
-   their types, or both.</li>
+<li>However, <strong>the return type does not</strong> play a role in distinguishing overloaded functions.</li>
+<li>Functions <strong>cannot</strong> be overloaded solely based on different <strong>return types</strong>.</li>
+<li>C++ allows overloading <strong>based on the number of arguments, their types, or both</strong>.</li>
+<li>Overloading is <strong>resolved at compile time</strong> (<strong>static polymorphism</strong>).</li>
 </ol>
 <h5 id="syntax_1">Syntax</h5>
 <pre><code class="language-CPP">class ClassName {
@@ -342,13 +342,14 @@ int main() {
       };
 };
 </code></pre>
-<h4 id="3-overriding">(3) Overriding</h4>
+<h4 id="overriding">Overriding</h4>
 <h5 id="explanation_2">Explanation</h5>
 <ol>
 <li>Overriding occurs when <strong>a derived class</strong> provides <strong>its own implementation</strong> of <strong>a virtual
    function ( or a pure virtual function )</strong> that is <strong>already defined</strong> in the base class.</li>
-<li>The function in the derived class must have <strong>the same signature</strong> as the base class's virtual
-   function. Overriding is resolved at runtime (<strong>dynamic polymorphism</strong>).</li>
+<li>The function in the derived class must have <strong>the same signature</strong> as the base class's <strong>virtual
+   function</strong>.</li>
+<li>Overriding is <strong>resolved at runtime</strong> (<strong>dynamic polymorphism</strong>).</li>
 </ol>
 <h5 id="syntax_2">Syntax</h5>
 <pre><code class="language-CPP">class Base {
@@ -358,26 +359,27 @@ int main() {
 
 class Derived: public Base {
    public:
-      virtual RetType funcName( para_list ) override {   // This function overrides Base::funcName()
+      virtual RetType funcName( para_list ) override {   // This function overrides Base::funcName().
       };
 };
 
 int main() {
    Base* obj = new Derived();
-   obj-&gt;funcName( arg_list );   // Calls Derived class funcName (runtime polymorphism)
+   obj-&gt;funcName( arg_list );   // Calls Derived class funcName (runtime polymorphism).
 };
 </code></pre>
-<h4 id="4-overwriting-not-a-c-term">(4) Overwriting (Not a C++ Term)</h4>
+<h4 id="overwriting-not-a-c-term">Overwriting (Not a C++ Term)</h4>
 <h5 id="explanation_3">Explanation</h5>
 <ol>
-<li>Overwriting is <strong>not a formal term in C++</strong>. However, it is sometimes colloquially used to
-   describe a situation where <strong>a function or variable in a derived class replaces or redefines a
-   function or variable from a base class</strong>. This serves as a general description rather than a
-   specific C++ concept. Additionally, the term "overwriting" typically refers to the process of
-   <strong>replacing an existing value in memory</strong>, which includes assigning a new value to an existing
-   variable to replace the old value and writing data to unintended memory locations, often
-   resulting in undefined behavior or memory corruption. This can occur in various contexts, such as
-   variables, function definitions, or data structures.</li>
+<li>Overwriting is <strong>not a formal term in C++</strong>.</li>
+<li>However, it is sometimes colloquially used to describe a situation where <strong>a function or variable
+   in a derived class replaces or redefines a function or variable from a base class</strong>.</li>
+<li>This serves as a general description rather than a specific C++ concept.</li>
+<li>Additionally, the term "overwriting" typically refers to the process of <strong>replacing an existing
+   value in memory</strong>, which includes assigning a new value to an existing variable to replace the
+   old value and writing data to unintended memory locations, often resulting in undefined behavior
+   or memory corruption.</li>
+<li>This can occur in various contexts, such as variables, function definitions, or data structures.</li>
 </ol>
 <h5 id="syntax_3">Syntax</h5>
 <pre><code class="language-CPP">class Base {
@@ -387,7 +389,7 @@ int main() {
 
 class Derived: public Base {
    public:
-      Type _mem = initializer2;   // Overwrites Base::_mem
+      Type _mem = initializer2;   // Overwrites Base::_mem.
 };
 </code></pre></div>
             </div>

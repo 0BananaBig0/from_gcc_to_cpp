@@ -735,16 +735,17 @@ std::priority_queue&lt; Type &gt;* pri_queue_ptr = new std::priority_queue&lt; T
 <h2 id="deques-double-ended-queue-deck">Deques ( Double-ended Queue ) ( Deck )</h2>
 <h3 id="explanation_3">Explanation</h3>
 <ol>
-<li>Dques are <strong>sequence containers ( template classes )</strong> with dynamic sizes that can be expanded or
-   contracted on both ends (either its front or its back).</li>
+<li>Deques are <strong>sequence containers ( template classes )</strong> with dynamic sizes that can be expanded
+   or contracted on both ends (either its front or its back).</li>
 <li>They allow for the individual elements to be accessed directly through <strong>random access
    iterators</strong>, with storage handled automatically by expanding and contracting the container as
    needed.</li>
 <li>They provide a functionality <strong>similar to vectors</strong>, <strong>but with efficient insertion and
-   deletion</strong> of elements also <strong>at the beginning</strong> of the sequence, and not only <strong>at its end</strong>.
-   But, unlike vectors, deques are <strong>not</strong> guaranteed to <strong>store all its elements in contiguous
+   deletion</strong> of elements also <strong>at the beginning</strong> of the sequence, and not only <strong>at its end</strong>.</li>
+<li>But, unlike vectors, deques are <strong>not</strong> guaranteed to <strong>store all its elements in contiguous
    storage locations</strong>: accessing elements in a deque by offsetting a pointer to another element
    causes undefined behavior.</li>
+<li>Their header file is <code>&lt;deque&gt;</code>.</li>
 </ol>
 <h3 id="declaration-syntax_3">Declaration Syntax</h3>
 <pre><code class="language-CPP">std::deque&lt; Type &gt; deque_name;
