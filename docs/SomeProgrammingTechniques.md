@@ -6,8 +6,8 @@
   - [Common Methods of Type Punning](#common-methods-of-type-punning)
     - [Using Unions](#using-unions)
     - [Using Casting](#using-casting)
-    - [Using `std::any`](#using-stdany)
     - [Using `std::variant`](#using-stdvariant)
+    - [Using `std::any`](#using-stdany)
 - [The Usage of Automatic Scope-based Destruction](#the-usage-of-automatic-scope-based-destruction)
 - [How to Return Multiple Values](#how-to-return-multiple-values)
 - [Breakpoints](#breakpoints)
@@ -30,12 +30,12 @@
 
 ## Some Small Knowledge
 
-1. The **performance** of < is better than <=.
+1. The **performance** of `<` is better than `<=`.
 2. `std::endl` is a little **slower** than `"\n"` in **debug mode**. Otherwise, `std::endl` is
    **faster**.
-3. Function argument evaluation order: Undefined. Differenct compilers with different flags have
-   different evaluation orders, until C++17, an uncomplete definiton of the function argument
-   evaluation order comes.
+3. **Function argument evaluation order** is **undefined** in C++. Differenct compilers with
+   different flags have different evaluation orders, until C++17, an uncomplete definiton of the
+   function argument evaluation order comes.
 4. **All variables, objects, references, and pointers** should be **initialized explicitly and
    immediately** after they are declared or created. This can avoid many unpredictable issues
 
@@ -50,8 +50,8 @@
 3. It is often **recommended to avoid type punning** unless absolutely necessary, and **to use safer
    alternatives** like: standard conversions, `std::bit_cast` and serialization.
 4. It can **achieve specific goals** like **low-level optimization**, treating a struct or a class
-   as an array, treating Type1 memory as Type2 memory at the same memory address or interfacing with
-   hardware.
+   as an array, treating `Type1` memory as `Type2` memory at the same memory address or interfacing
+   with hardware.
 5. However, developers must be aware of the **risks**, including **undefined behavior** and
    **portability issues**, and **use safer alternatives whenever possible**.
 
@@ -93,19 +93,28 @@ struct Vector3 {
 
 #### Using Casting
 
-#### Using `std::any`
+1. [Conversion And Casting](./ConversionAndCasting.md#stdvariant-multiple-types-of-data-in-single-variable)
 
 #### Using `std::variant`
 
+1. [`std::variant`](./UnionStdAnyStdVariantStdOptional.md)
+
+#### Using `std::any`
+
+1. [`std:any`](./UnionStdAnyStdVariantStdOptional.md#stdany)
+
 ## The Usage of Automatic Scope-based Destruction
 
-1. **Smart pointers or scope pointers**: Create an object on the heap, and automatically destroy it
-   without using delete when it goes out of scope or when certain conditions are met. A smart
-   pointer is a wrapper around a real raw pointer.
-2. **Timer**: Measure the execution time of a scope, print the result, and automatically destroy the
-   timer object when it goes out of scope.
-3. **Lock**: Lock a function so that **multiple threads cannot access it simultaneously**, and
-   **automatically unlock** it at the end of the function.
+1. **Smart pointers or scope pointers**:
+   - Create an object on the heap, and automatically destroy it without using delete when it goes
+     out of scope or when certain conditions are met.
+   - A smart pointer is a wrapper around a real raw pointer.
+2. **Timer**:
+   - Measure the execution time of a scope, print the result, and automatically destroy the timer
+     object when it goes out of scope.
+3. **Lock**:
+   - Lock a function so that **multiple threads cannot access it simultaneously**, and
+     **automatically unlock** it at the end of the function.
 
 ## How to Return Multiple Values
 
@@ -124,30 +133,35 @@ struct Vector3 {
 
 ## Breakpoints
 
-1. Normal breakpoints: A normal breakpoint is a point in the code where the execution will pause
-   when the debugger reaches it. This allows you to inspect the current state of the program,
-   including variable values, the call stack, and other context.
-2. **Conditional** breakpoints: A conditional breakpoint is similar to a normal breakpoint but
-   includes a condition that must be met for the breakpoint to trigger. This allows you to pause
-   execution only when certain criteria are satisfied.
-3. **Action** breakpoints: An action breakpoint (sometimes called a "tracepoint" or "logging
-   breakpoint") allows you to **specify actions that occur when the breakpoint is hit**, **without
-   necessarily pausing the execution of the program**. This can include **logging messages** or
-   **modifying variables**.
+1. Normal breakpoints:
+   - A normal breakpoint is a point in the code where the execution will pause when the debugger
+     reaches it.
+   - This allows you to inspect the current state of the program, including variable values, the
+     call stack, and other context.
+2. **Conditional** breakpoints:
+   - A conditional breakpoint is similar to a normal breakpoint but includes a condition that must
+     be met for the breakpoint to trigger.
+   - This allows you to pause execution only when certain criteria are satisfied.
+3. **Action** breakpoints:
+   - An action breakpoint (sometimes called a "tracepoint" or "logging breakpoint") allows you to
+     **specify actions that occur when the breakpoint is hit**, **without necessarily pausing the
+     execution of the program**.
+   - This can include **logging messages** or **modifying variables**.
 
 ## Precompiled Headers (PCH)
 
 1. Precompiled headers (PCH) are a feature designed to accelerate the compilation process,
-   particularly in **large projects**. By **precompiling frequently used header files**, PCHs
-   eliminate the need to recompile these files every time a source file is processed. While
-   precompiled headers can significantly reduce compilation times, they require careful setup and
-   management to be effective.
-   - It's vitally used for code that isn't yours, for example, STL library and OpenCL library.
-   - However, it may make your code harder to read.
+   particularly in **large projects**.
+2. By **precompiling frequently used header files**, PCHs eliminate the need to recompile these
+   files every time a source file is processed.
+3. While precompiled headers can significantly reduce compilation times, they require careful setup
+   and management to be effective.
+4. It's vitally used for code that isn't yours, for example, STL library and OpenCL library.
+5. However, it may make your code harder to read.
 
 ## How to Measure How Many Memory Allocations Ocur or Track Memory Allocations
 
-1. Overload the new operator to print some information.
+1. Overload the new operator to print some information:
    ```CPP
    void* operator new( size_t size ) {
       // Do something
@@ -157,18 +171,18 @@ struct Vector3 {
 
 ## Benchmark and How to Visualize Benchmark Results
 
-1. There is **no universally accepted method for measuring performance**. Different techniques have
-   their own drawbacks, resulting in **less than 100% accurate** outcomes. Cheron, a game developer,
-   utilizes `std::chrono` to **implement a scoped timer** for assessing the performance of their
-   game engine.
-2. Use macros to wrap our print functions and timer objcets so that we can determine whether we
+1. There is **no universally accepted method for measuring performance**.
+2. Different techniques have their own drawbacks, resulting in **less than 100% accurate** outcomes.
+3. Cheron, a game developer, utilizes `std::chrono` to **implement a scoped timer** for assessing
+   the performance of their game engine.
+4. Use macros to wrap our print functions and timer objcets so that we can determine whether we
    should compile them.
-3. Use `__FUNCTION__` or `__FUNSIG__` instead of using a string to print a function name.
-4. Visualization Method One:
+5. Use `__FUNCTION__` or `__FUNSIG__` instead of using a string to print a function name.
+6. Visualization Method One:
    - Store all result into a txt file.
    - Use perl to extract all data from the txt files and store them into a excel file.
    - Use Excel to visualize all data.
-5. Visualization Method Two:
+7. Visualization Method Two:
    - Store all data into a json file in the format that the tracing tool expects.
    - Open your chrome kernel browser.
    - Type `chrome://tracing or edge://tracing or ...` depending on your which browser you use into
@@ -201,32 +215,42 @@ struct Vector3 {
 
 ### Why CI is important for C++
 
-1. **Frequent integration**: Ensures new code integrates seamlessly with the existing codebase,
-   preventing compatibility and integration issues.
-2. **Early bug detection**: **Automated tests** detect issues early in the development cycle.
-3. **Multi-platform support**: C++ applications often target multiple platforms (e.g., Windows,
-   Linux, macOS), and CI ensures builds succeed across all.
-4. **Performance testing**: CI can run benchmarks to track performance regressions.
-5. **Consistency**: Enforces coding standards and ensures dependencies are properly managed.
+1. **Frequent integration**:
+   - Ensures new code integrates seamlessly with the existing codebase, preventing compatibility and
+     integration issues.
+2. **Early bug detection**:
+   - **Automated tests** detect issues early in the development cycle.
+3. **Multi-platform support**:
+   - C++ applications often target multiple platforms (e.g., Windows, Linux, macOS), and CI ensures
+     builds succeed across all.
+4. **Performance testing**:
+   - CI can run benchmarks to track performance regressions.
+5. **Consistency**:
+   - Enforces coding standards and ensures dependencies are properly managed.
 
 ### CI Workflow for C++
 
-1. **Code changes**: Developers push changes to a repository (e.g., GitHub, GitLab).
-2. **CI pipeline trigger**: Each commit triggers the CI pipeline.
-3. **Build**: The code is compiled and linked for different target platforms.
-4. **Testing**: Automated unit tests, integration tests, and performance tests run.
-5. **Code quality** checks: Tools like clang-tidy and cppcheck ensure the code follows best
-   practices.
-6. **Deployment (Optional)**: The CI system can deploy artifacts if required.
-7. **Reporting**: Results are reported back to developers, and any issues are highlighted for
-   resolution.
+1. **Code changes**:
+   - Developers push changes to a repository (e.g., GitHub, GitLab).
+2. **CI pipeline trigger**:
+   - Each commit triggers the CI pipeline.
+3. **Build**:
+   - The code is compiled and linked for different target platforms.
+4. **Testing**:
+   - Automated unit tests, integration tests, and performance tests run.
+5. **Code quality** checks:
+   - Tools like clang-tidy and cppcheck ensure the code follows best practices.
+6. **Deployment (Optional)**:
+   - The CI system can deploy artifacts if required.
+7. **Reporting**:
+   - Results are reported back to developers, and any issues are highlighted for resolution.
 
 ### Tools for CI in C++
 
 #### CI Platforms
 
-1. GitHub actions
-2. GitLab CI/CD
+1. GitHub actions.
+2. GitLab CI/CD.
 3. Jenkins: Provides custom pipelines using Groovy. Suitable for complex CI needs and large
    projects.
 
@@ -252,14 +276,16 @@ struct Vector3 {
 
 #### Best Practices for C++ CI
 
-1. Use CMake for cross-platform builds: Ensure the project builds across all targeted operating
-   systems.
-2. Run static analysis as part of the pipeline: Identify code quality issues early.
-3. Parallel testing: Use tools like GoogleTest and catch2 to run unit tests efficiently.
-4. Dockerize builds: For consistent build environments, use Docker images with all dependencies
-   pre-installed.
-5. Monitor performance metrics: Integrate performance benchmarks into the pipeline to detect
-   regressions.
+1. Use CMake for cross-platform builds:
+   - Ensure the project builds across all targeted operating systems.
+2. Run static analysis as part of the pipeline:
+   - Identify code quality issues early.
+3. Parallel testing:
+   - Use tools like GoogleTest and catch2 to run unit tests efficiently.
+4. Dockerize builds:
+   - For consistent build environments, use Docker images with all dependencies pre-installed.
+5. Monitor performance metrics:
+   - Integrate performance benchmarks into the pipeline to detect regressions.
 
 #### **What We Can Do in Our Project**
 
