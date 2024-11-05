@@ -43,15 +43,15 @@ using AliasName = Type;
 1. Syntax simplicity.
 2. Template aliases.
    ```CPP
-   // ClassName is a template class that has been implmented.
+   // `ClassName` is a template class that has been implmented.
    template< typename T, ... > using AliasName = ClassName< T, ...  >;
    ```
    ```CPP
-   // StructName is a template structure that has been implmented.
+   // `StructName` is a template structure that has been implmented.
    template< typename T, ... > using AliasName = StructName< T, ...  >;
    ```
    ```CPP
-   // funcName is a template function that has been implmented.
+   // `funcName` is a template function that has been implmented.
    template< typename T, ... > using aliasName = funcName< T, ...  >;
    ```
 3. Function pointer declaration.
@@ -63,7 +63,7 @@ using AliasName = Type;
    ```CPP
    class ClassB {
       public:
-         // Using alias
+         // Using alias.
          using AliasName = Type;
          AliasName _mem;
    };
@@ -96,7 +96,7 @@ typedef Type AliasName;
    ```CPP
    class ClassB {
       public:
-         // Using typedef
+         // Using `typedef`.
          typedef Type AliasName;
          AliasName _mem;
    };
@@ -107,10 +107,10 @@ typedef Type AliasName;
 ### Explanation
 
 1. A `namespace` is **a way to organize and group related classes, functions, variables, and other
-   identifiers** to **avoid name conflicts**. It provides a logical structure that helps manage
-   large codebases, particularly when multiple libraries or modules are used that might define
-   identifiers with the same names.
-2. In fact, if we do not implement our classes, functions, variables, and other identifiers within a
+   identifiers** to **avoid name conflicts**.
+2. It provides a logical structure that helps manage large codebases, particularly when multiple
+   libraries or modules are used that might define identifiers with the same names.
+3. In fact, if we do not implement our classes, functions, variables, and other identifiers within a
    named `namespace`, they are implemented in **an anonymous `namespace`**.
 
 ### Declaration Syntax
