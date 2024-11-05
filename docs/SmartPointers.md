@@ -288,16 +288,19 @@ uptr = nullptr;
 #### Explanation
 
 1. `std::weak_ptr` is **a variant of shared pointer** that does **not maintain a reference count**.
-2. It does **not take ownership** of the managed object but allows **tracking of an object** managed
+2. It does **not take ownership** of the managed object **but allows tracking of an object** managed
    by `std::shared_ptr` without affecting the reference count.
-3. This feature is particularly useful for avoiding circular references and ensuring that memory is
-   not deallocated. Since `std::weak_ptr` does not increment the reference count of the resource, it
-   does **not influence the resource's lifetime**. To access the managed resource, a `std::weak_ptr`
-   must be converted to a `std::shared_ptr` using the `lock()` method.
-4. **Assigning a shared pointer to a raw pointer** can **lead to several issues** after the shared
+3. This feature is particularly useful for **avoiding circular references** and **ensuring that
+   memory is not deallocated**.
+4. Since `std::weak_ptr` does not increment the reference count of the resource, it does **not
+   influence the resource's lifetime**.
+5. **To access the managed resource**, **a `std::weak_ptr` must be converted to a
+   `std::shared_ptr`** using the **`lock()` method**.
+6. **Assigning a shared pointer to a raw pointer** can **lead to several issues** after the shared
    pointer has been released, **particularly in a multithreaded context** where a raw pointer may be
-   **deleted multiple times**. In contrast, `std::weak_ptr` provides a solution to these problems.
-   If two objects reference one another, at least one of the references must be a weak pointer to
+   **deleted multiple times**.
+7. In contrast, `std::weak_ptr` provides a solution to these problems.
+8. If two objects reference one another, at least one of the references must be a weak pointer to
    prevent circular dependencies.
 
 #### Declaration Syntax
