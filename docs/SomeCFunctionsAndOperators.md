@@ -66,12 +66,12 @@ sizeof( expression )
 #### Syntax
 
 ```CPP
-// Its declaration syntax
+// Its declaration syntax.
 size_t strlen( const char *str );
 ```
 
 ```CPP
-// Its usage syntax
+// Its usage syntax.
 size_t len = strlen( str );
 ```
 
@@ -88,12 +88,12 @@ size_t len = strlen( str );
 #### Syntax
 
 ```CPP
-// Its declaration syntax
+// Its declaration syntax.
 void* ptr = malloc( size_t size );
 ```
 
 ```CPP
-// Its usage syntax
+// Its usage syntax.
 Type* ptr = (Type*)malloc( num * sizeof( Type ) );
 ```
 
@@ -110,12 +110,12 @@ Type* ptr = (Type*)malloc( num * sizeof( Type ) );
 #### Syntax
 
 ```CPP
-// Its declaration syntax
+// Its declaration syntax.
 void* ptr = calloc( size_t num, size_t size );
 ```
 
 ```CPP
-// Its usage syntax
+// Its usage syntax.
 Type* ptr = (Type*)calloc( num, sizeof( Type ) );
 ```
 
@@ -133,12 +133,12 @@ Type* ptr = (Type*)calloc( num, sizeof( Type ) );
 #### Syntax
 
 ```CPP
-// Its declaration syntax
+// Its declaration syntax.
 void* realloc( void* ptr, size_t new_size );
 ```
 
 ```CPP
-// Its usage syntax
+// Its usage syntax.
 Type* ptr = (Type*)malloc( num1 * sizeof( Type ) );
 Type* new_ptr = (Type*)realloc( ptr, num2 * sizeof( Type ) );
 ```
@@ -157,13 +157,13 @@ Type* new_ptr = (Type*)realloc( ptr, num2 * sizeof( Type ) );
 #### Syntax
 
 ```CPP
-// Its declaration syntax
+// Its declaration syntax.
 void free( void* ptr );
 ```
 
 ```CPP
-// Its usage syntax
-// Free the allocated memory
+// Its usage syntax.
+// Free the allocated memory.
 free( ptr );
 ptr = NULL;   // Good practice to avoid dangling pointers
 ```
@@ -181,12 +181,12 @@ ptr = NULL;   // Good practice to avoid dangling pointers
 #### Syntax
 
 ```CPP
-// Its declaration syntax
+// Its declaration syntax.
 char* strcpy( char* destination, const char* source );
 ```
 
 ```CPP
-// Its usage syntax
+// Its usage syntax.
 strcpy( dest, sour_str );
 ```
 
@@ -203,18 +203,18 @@ strcpy( dest, sour_str );
 #### Syntax
 
 ```CPP
-// Its declaration syntax
+// Its declaration syntax.
 void* memcpy( void* destination, const void* source, size_t num );
 ```
 
 ```CPP
-// Its usage syntax, for a string
+// Its usage syntax, for a string.
 // +1 to include null terminator
 memcpy( dest, sour, strlen( sour ) + 1 );
 ```
 
 ```CPP
-// Its usage syntax, for a non-string array
+// Its usage syntax, for a non-string array.
 memcpy( dest, sour, strlen( sour ) );
 ```
 
@@ -232,11 +232,11 @@ memcpy( dest, sour, strlen( sour ) );
 #### Syntax
 
 ```CPP
-// Its declaration syntax
+// Its declaration syntax.
 void* memset( void* ptr, int value, size_t num );
 ```
 
 ```CPP
-// Its usage syntax
+// Its usage syntax.
 memcpy( ptr, val, num );
 ```
