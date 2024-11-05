@@ -23,7 +23,7 @@
         - [Characteristics](#characteristics-3)
         - [How It Works in **Windows**](#how-it-works-in-windows-1)
         - [How It Works in **Linux**](#how-it-works-in-linux-1)
-- [The difference between `gcc` and `g++`](#the-difference-between-gcc-and-g)
+- [Differences Between `gcc` and `g++`](#differences-between-gcc-and-g)
   - [Language](#language)
     - [1. `gcc`](#1-gcc)
     - [2. `g++`](#2-g)
@@ -33,7 +33,7 @@
   - [Header File Handling](#header-file-handling)
     - [1. `gcc`](#1-gcc-2)
     - [2. `g++`](#2-g-2)
-- [How to compile one cpp file](#how-to-compile-one-cpp-file)
+- [How to Compile One CPP File](#how-to-compile-one-cpp-file)
   - [Source files](#source-files)
   - [`g++ Main.cpp`](#g-maincpp)
     - [1. Usage](#1-usage)
@@ -65,41 +65,41 @@
   - [1`g++ -DMACRO_NAME1 -DMACRO_NAME2 ... Main.cpp -o Main.exe`](#1g--dmacro_name1--dmacro_name2--maincpp--o-mainexe)
     - [1. Usage](#1-usage-9)
     - [2. Output](#2-output-9)
-- [How to compile multiple cpp files](#how-to-compile-multiple-cpp-files)
+- [How to Compile Multiple CPP Files](#how-to-compile-multiple-cpp-files)
   - [Source files](#source-files-1)
   - [Compile all files in one command](#compile-all-files-in-one-command)
     - [1. Code](#1-code)
     - [2. Usage](#2-usage)
     - [3. Output](#3-output)
-    - [4. Alternative: If all files are in one folder](#4-alternative-if-all-files-are-in-one-folder)
-  - [Compile all files separately and then link them together](#compile-all-files-separately-and-then-link-them-together)
+    - [4. Alternative: If All Files Are in One Folder](#4-alternative-if-all-files-are-in-one-folder)
+  - [Compile All Files Separately and Then Link Them Together](#compile-all-files-separately-and-then-link-them-together)
     - [1. Code](#1-code-1)
     - [2. Usage](#2-usage-1)
     - [3. Output](#3-output-1)
-- [How to compile and link a library](#how-to-compile-and-link-a-library)
+- [How to Compile and Link a Library](#how-to-compile-and-link-a-library)
   - [Source files](#source-files-2)
-  - [Setup paths of header files](#setup-paths-of-header-files)
+  - [Setup Paths of Header Files](#setup-paths-of-header-files)
     - [1. Code](#1-code-2)
-  - [How to link multiple static libraries](#how-to-link-multiple-static-libraries)
+  - [How to Link Multiple Static Libraries](#how-to-link-multiple-static-libraries)
     - [1. Code](#1-code-3)
-  - [How to create a static library](#how-to-create-a-static-library)
+  - [How to Create a Static Library](#how-to-create-a-static-library)
     - [1. Code](#1-code-4)
     - [2. Usage](#2-usage-2)
     - [3. Output](#3-output-2)
-  - [How to link multiple dynamic libraries](#how-to-link-multiple-dynamic-libraries)
+  - [How to Link Multiple Dynamic Libraries](#how-to-link-multiple-dynamic-libraries)
     - [1. Code](#1-code-5)
-  - [How to create a dynamic library](#how-to-create-a-dynamic-library)
+  - [How to Create a Dynamic Library](#how-to-create-a-dynamic-library)
     - [1. Code](#1-code-6)
     - [2. Usage](#2-usage-3)
     - [3. Output](#3-output-3)
-  - [How to link a static library explicitly](#how-to-link-a-static-library-explicitly)
+  - [How to Create and Link a Static Library](#how-to-create-and-link-a-static-library)
     - [1. Code](#1-code-7)
     - [2. -Wl,-Bstatic](#2--wl-bstatic)
     - [3. -Wl,-Bdynamic](#3--wl-bdynamic)
     - [4. Situation](#4-situation)
     - [5. Usage](#5-usage)
     - [6. Output](#6-output)
-  - [How to link a dynamic library explicitly](#how-to-link-a-dynamic-library-explicitly)
+  - [How to Create and Link a Dynamic Library](#how-to-create-and-link-a-dynamic-library)
     - [1. Code](#1-code-8)
     - [2. Situation](#2-situation)
     - [3. Usage](#3-usage)
@@ -296,7 +296,7 @@
 4. Unload the library:
    - Optionally, use `dlclose( handle )` to unload the library when it’s no longer needed.
 
-## The difference between `gcc` and `g++`
+## Differences Between `gcc` and `g++`
 
 ### Language
 
@@ -332,7 +332,7 @@
 1. Treats headers as C++ files and supports C++ header files (like `<iostream>` instead of
    `<stdio.h>`).
 
-## How to compile one cpp file
+## How to Compile One CPP File
 
 ### Source files
 
@@ -442,7 +442,7 @@
 
 1. Main.exe
 
-## How to compile multiple cpp files
+## How to Compile Multiple CPP Files
 
 ### Source files
 
@@ -468,13 +468,13 @@ g++ Main.cpp Fun.cpp -o Main.exe
 2. Fun.o
 3. Main.exe
 
-#### 4. Alternative: If all files are in one folder
+#### 4. Alternative: If All Files Are in One Folder
 
 ```sh
 g++ *.cpp -o Main.exe
 ```
 
-### Compile all files separately and then link them together
+### Compile All Files Separately and Then Link Them Together
 
 #### 1. Code
 
@@ -495,14 +495,14 @@ g++ -o Main.o Fun.o -o Main.exe
 2. Fun.o
 3. Main.exe
 
-## How to compile and link a library
+## How to Compile and Link a Library
 
 ### Source files
 
 1. Main.cpp
 2. Fun.cpp
 
-### Setup paths of header files
+### Setup Paths of Header Files
 
 #### 1. Code
 
@@ -511,17 +511,17 @@ g++ Main.cpp Fun.cpp -o Main.exe -I/the/first/path/of/header/files \
     -I/the/second/path/of/header/files ...
 ```
 
-### How to link multiple static libraries
+### How to Link Multiple Static Libraries
 
 #### 1. Code
 
 ```sh
 g++ Main.cpp -L/the/first/path/of/static/libraries \
     -L/the/second/path/of/static/libraries ... \
-    -lxxx.a -lyyy.a ... -o Main.exe
+    -Wl,-Bstatic -lxxx -lyyy ... -Wl,-Bdynamic -o Main.exe
 ```
 
-### How to create a static library
+### How to Create a Static Library
 
 #### 1. Code
 
@@ -543,16 +543,16 @@ g++ Main.cpp -L. -lFun -o Main.exe
 2. libFun.a
 3. Main.exe
 
-### How to link multiple dynamic libraries
+### How to Link Multiple Dynamic Libraries
 
 #### 1. Code
 
 ```sh
 g++ Main.cpp -L/the/first/path/of/dynamic/libraries -L/the/second/path/of/dynamic/libraries ... \
--lxxx.a -lyyy.a ... -o Main.exe
+    -lxxx -lyyy ... -o Main.exe
 ```
 
-### How to create a dynamic library
+### How to Create a Dynamic Library
 
 #### 1. Code
 
@@ -574,7 +574,7 @@ g++ Main.cpp -L. -lFun -o Main.exe
 2. libFun.so
 3. Main.exe
 
-### How to link a static library explicitly
+### How to Create and Link a Static Library
 
 #### 1. Code
 
@@ -588,21 +588,21 @@ g++ Main.cpp -L. -Wl,-Bstatic -lFun -Wl,-Bdynamic -o Main.exe
 
 #### 2. -Wl,-Bstatic
 
-Instructs the linker (ld) to search for static libraries (`.a` files).
+1. Instructs the linker (`ld`) to search for static libraries (`.a` files).
 
 #### 3. -Wl,-Bdynamic
 
-Reverts the linker back to dynamic libraries, in case you are linking other dynamic libraries
-afterward.
+1. Reverts the linker back to dynamic libraries, in case you are linking other dynamic libraries
+   afterward.
 
 #### 4. Situation
 
-A static library has the same name as a dynamic library in the same folder.
+1. A static library has the same name as a dynamic library in the same folder.
 
 #### 5. Usage
 
-Create both a static library and a dynamic library. They have the same name. Link the static library
-explicitly.
+1. Create both a static library and a dynamic library. They have the same name. Link the static
+   library explicitly.
 
 #### 6. Output
 
@@ -611,7 +611,7 @@ explicitly.
 3. libFun.so
 4. Main.exe
 
-### How to link a dynamic library explicitly
+### How to Create and Link a Dynamic Library
 
 #### 1. Code
 
@@ -629,8 +629,9 @@ g++ Main.cpp -L. -lFun -o Main.exe
 
 #### 3. Usage
 
-1. Create both a static library and a dynamic library. They have the same name. Link the dynamic
-   library explicitly.
+1. Create both a static library and a dynamic library.
+2. They have the same name.
+3. Link the dynamic library explicitly.
 
 #### 4. Output
 
