@@ -1122,21 +1122,29 @@ class Derived: public Base {
 
 ##### Polymorphism and Problems
 
-1. **Polymorphism**: `virtual` functions enable polymorphic behavior, allowing a program to treat
-   objects of different derived classes through a base class pointer or reference. This makes it
-   easier to write flexible and reusable code.
-2. **Performance overhead**: `virtual` functions introduce **a performance penalty** due to the
-   dynamic dispatch mechanism. The program must go through the **V table** to look up the correct
-   function to call at runtime, which can be slower than static binding.
-3. **Memory overhead**: Each class that uses `virtual` functions typically includes **a `virtual`
-   table (vtable)**, which adds some memory overhead. Each object of such classes contains a pointer
-   to the vtable, increasing the size of the object.
-4. **Debugging Challenges**: Debugging issues related to `virtual` functions can be more
-   challenging, especially when it comes to understanding the flow of execution and object lifetimes
-   in the presence of polymorphism.
-5. **Potential for Resource Leaks**: If a **base** class has **`virtual` functions**, its
-   **destructor** should also be **`virtual`** to ensure proper cleanup of derived class resources.
-   Failing to declare a `virtual` destructor can lead to resource leaks.
+1. **Polymorphism**:
+   - `virtual` functions enable polymorphic behavior, allowing a program to treat objects of
+     different derived classes through a base class pointer or reference.
+   - This allows **different objects** to be operated on **using the same interface**, meaning **the
+     same operation** can **be applied to different objects**, **exhibiting different behaviors**.
+   - This makes it easier to write flexible and reusable code.
+2. **Performance overhead**:
+   - `virtual` functions introduce **a performance penalty** due to the dynamic dispatch mechanism.
+   - The program must go through the **V table** to look up the correct function to call at runtime,
+     which can be slower than static binding.
+3. **Memory overhead**:
+   - Each class that uses `virtual` functions typically includes **a `virtual` table (vtable)**,
+     which adds some memory overhead.
+   - Each object of such classes contains a pointer to the vtable, increasing the size of the
+     object.
+4. **Debugging Challenges**:
+   - Debugging issues related to `virtual` functions can be more challenging, especially when it
+     comes to understanding the flow of execution and object lifetimes in the presence of
+     polymorphism.
+5. **Potential for Resource Leaks**:
+   - If a **base** class has **`virtual` functions**, its **destructor** should also be
+     **`virtual`** to ensure proper cleanup of derived class resources.
+   - Failing to declare a `virtual` destructor can lead to resource leaks.
 
 ##### Notes
 
