@@ -113,7 +113,7 @@
 #### Explanation
 
 1. Iterators are **objects** that **allow traversal through the elements of a container**.
-2. They provide a uniform way to access container elements without exposing the underlying
+2. They provide **a uniform way to access container elements** without exposing the underlying
    implementation.
 3. It behaves like a pointer ( stores an address and can be dereferenced ).
 4. When a container **resizes its capacity or rehashes**, its **iterators** may become **invalid**.
@@ -138,8 +138,9 @@
 #### Explanation
 
 1. Function objects (functors) are **objects that can be called as if they were functions**.
-2. They can **store state** and are often used **in algorithms to customize their behavior**.
-3. Lambda expressions provide a concise way to define anonymous function objects.
+2. They **overload the function call `operator()`**; for example, for comparisons, sorting, etc.
+3. They can **store state** and are often used **in algorithms to customize their behavior**.
+4. Lambda expressions provide a concise way to define anonymous function objects.
 
 #### Usage
 
