@@ -20,7 +20,7 @@
     - [Partial Specialization (Partial Parameters)](#partial-specialization-partial-parameters)
       - [Explanation](#explanation-5)
       - [Syntax](#syntax-3)
-  - [Variadic Templates ( Template Packs )](#variadic-templates--template-packs-)
+  - [Variadic Templates (Template Packs)](#variadic-templates-template-packs)
     - [Explanation](#explanation-6)
     - [Common Syntax](#common-syntax)
     - [Link](#link)
@@ -76,20 +76,24 @@
 
 ### Limitations of Template Default Types and Values
 
-1. **Order of Parameters**: **It is not permissible to omit a parameter with a default value if one
-   intends to provide values for later parameters**.
-2. **Dependent Names**: Default template parameters **cannot depend on other template parameters**.
-   A template parameter cannot be utilized to define the default value of another template
-   parameter.
-3. **Ambiguity in Overloading**: The use of default template parameters in function overloading may
-   lead to ambiguity. If multiple templates can potentially match a call due to the presence of
-   default arguments, the compiler may encounter difficulty in determining which template to invoke.
-4. **Inheritance and Template Defaults**: **In derived template classes**, **the default arguments**
-   inherited from the base class **cannot be modified**. It is necessary to explicitly specify the
-   types in the derived class.
-5. **Specialization Limitations**: Template specializations are **unable to alter default template
-   parameters**. If a specialization employs a different type or value, it must explicitly define
-   those parameters.
+1. **Order of parameters**:
+   - **It is not permissible to omit a parameter with a default value if one intends to provide
+     values for later parameters**.
+2. **Dependent names**:
+   - Default template parameters **cannot depend on other template parameters**. A template
+     parameter cannot be utilized to define the default value of another template parameter.
+3. **Ambiguity in overloading**:
+   - The use of default template parameters in function overloading may lead to ambiguity.
+   - If multiple templates can potentially match a call due to the presence of default arguments,
+     the compiler may encounter difficulty in determining which template to invoke.
+4. **Inheritance and template defaults**:
+   - **In derived template classes**, **the default arguments** inherited from the base class
+     **cannot be modified**.
+   - It is necessary to explicitly specify the types in the derived class.
+5. **Specialization limitations**:
+   - Template specializations are **unable to alter default template parameters**.
+   - If a specialization employs a different type or value, it must explicitly define those
+     parameters.
 
 ### Explicit Instantiation
 
@@ -124,7 +128,7 @@
 ```CPP
 // Definition syntax.
 template< typename T1, typename T2, ... > T1 funcName( T2 arg1, ... ) {
-   // Function implementation
+   // Function implementation.
 }
 ```
 
@@ -195,8 +199,8 @@ template< class T, ... > struct StructName
 {
 };
 // Usage syntax, instantiation syntax.
-template struct StructName< Type, ... >;   // Explicit instantiation of StructName< Type >
-StructName< Type, ... > obj;                    // Implicit instantiation of StructName< Type >
+template struct StructName< Type, ... >;   // Explicit instantiation of StructName< Type >.
+StructName< Type, ... > obj;               // Implicit instantiation of StructName< Type >.
 ```
 
 ### Template Specialization
@@ -223,20 +227,20 @@ StructName< Type, ... > obj;                    // Implicit instantiation of Str
 
 ```CPP
 // Definition syntax.
-template< typename T, ... > class ClassName {
+template< para_list > class ClassName {
       // Implementation.
 };
 
-// Full specialization for int
-template<> class ClassName< Type2, ... > {
+// Full specialization for `arg_list2`.
+template<> class ClassName< arg_list2 > {
       // Another implementation.
 };
 ```
 
 ```CPP
 // Usage syntax.
-ClassName< Type1, ... > obj1;   // Utilizes the generic version
-ClassName< Type2, ... > obj2;   // Utilizes the specialized version
+ClassName< arg_list1 > obj1;   // Utilizes the generic version.
+ClassName< arg_list2 > obj2;   // Utilizes the specialized version.
 ```
 
 #### Partial Specialization (Partial Parameters)
@@ -254,23 +258,23 @@ ClassName< Type2, ... > obj2;   // Utilizes the specialized version
 
 ```CPP
 // Definition syntax.
-template< typename T1, typename T2, ... > class ClassName {
+template< para_list1 > class ClassName {
       // Implementation.
 };
 
-// Partial specialization for int
-template< typename T, ... > class ClassName< Type2, T, ... > {
+// Partial specialization for `arg_list3`.
+template< para_list2 > class ClassName< arg_list3 > {
       // Another implementation.
 };
 ```
 
 ```CPP
 // Usage syntax.
-ClassName< Type2, Type3... > obj1;   // Utilizes the generic version
-ClassName< Type1, Type3... > obj2;   // Utilizes the specialized version
+ClassName< arg_list1 > obj1;              // Utilizes the generic version.
+ClassName< arg_list2, arg_list3 > obj2;   // Utilizes the specialized version.
 ```
 
-### Variadic Templates ( Template Packs )
+### Variadic Templates (Template Packs)
 
 #### Explanation
 
@@ -303,16 +307,16 @@ template< typename... Args > class ClassName {
          ( std::cout << ... << ++args ) << std::endl;
       };
 
-      // Method to get an element by index
+      // Method to get an element by index.
       template< std::size_t Index > decltype( auto ) get() {
          return std::get< Index >( _mem );
       };
 
-      // Others
+      // Others.
 
    private:
-      std::tuple< Args... > _mem;        // Store arguments in a tuple
-      std::tuple< Args*... > _mem_ptr;   // Store arguments's addresses in a tuple
+      std::tuple< Args... > _mem;        // Store arguments in a tuple.
+      std::tuple< Args*... > _mem_ptr;   // Store arguments's addresses in a tuple.
       // Others
 };
 
@@ -320,11 +324,11 @@ int main() {
    ClassName< ArgType1, ArgType2, ArgType3, /* and so on */ > obj(
       arg1, arg2, arg3, /* and so on */ );
 
-   // Access specific elements by index
-   std::cout << "First element: " << obj.get< 0 >() << std::endl;    // arg1
-   std::cout << "Second element: " << obj.get< 1 >() << std::endl;   // arg2
-   std::cout << "Third element: " << obj.get< 2 >() << std::endl;    // arg3
-   // Others
+   // Access specific elements by index.
+   std::cout << "First element: " << obj.get< 0 >() << std::endl;    // arg1.
+   std::cout << "Second element: " << obj.get< 1 >() << std::endl;   // arg2.
+   std::cout << "Third element: " << obj.get< 2 >() << std::endl;    // arg3.
+   // Others.
 
    return 0;
 }
@@ -380,45 +384,90 @@ ClassName< TType, ..., val, ... > var_name;
 
 #### Explanation
 
-1. It is **a principle** that **allows template substitutions to fail without causing a compilation
-   error**. This is useful for **enabling or disabling templates based on certain conditions**.
-2. **`std::enable_if`** is a common tool for implementing SFINAE, there are other techniques and
-   constructs that can also be used, such as function overloading, template Specialization, type
+1. It is **a principle** that **allows template substitutions to fail** and **may** still **result
+   in a compilation error** — **but** it is **not treated as an error** in the context of template
+   instantiation.
+2. This is useful for **enabling or disabling templates based on certain conditions**.
+3. **`std::enable_if`** is a common tool for implementing SFINAE, there are other techniques and
+   constructs that can also be used, such as function overloading, template specialization, type
    traits, constraints and concepts in templates, and more.
    - If a function template cannot be instantiated due to type mismatches, the compiler simply
      ignores that overload instead of producing an error.
    - If a template specialization cannot be matched, it will not result in an error but rather allow
-     the compiler to try other template
+     the compiler to try other template.
+   - Its declaration syntax:
+     ```CPP
+     template< bool B, class T = void > struct enable_if; // It has a public member typedef `type`, equal to `T`.
+     ```
+   - Its implementation syntax:
+     ```CPP
+     template< bool B, class T = void > struct enable_if {};   // Primary template.
+     // Partial specialization for the case when B is true.
+     template< class T > struct enable_if< true, T > {
+           using type = T;
+     };
+     ```
+   - Its helper types:
+     ```CPP
+     template< bool B, class T = void >
+     using enable_if_t = typename enable_if< B, T >::type;
+     ```
 
 #### Syntax
 
 ```CPP
-// With std::enable_if
+// With `std::enable_if`.
 #include <type_traits>
 
-// In this, `TypeTraits` is a template function (or class or structure, even with the `constexpr` keyword) in the header <type_traits>,
-// for example, std::is_integral
+// In this, `TypeTrait` is a template function (or class or structure,
+// even with the `constexpr` keyword) in the header `<type_traits>`,
+// for example, `std::is_integral`.
 template< typename T, ... >
-typename std::enable_if< TypeTraits< T, ... >::value >::type funcName( T ) {
+typename std::enable_if< TypeTrait< T, ... >::value >::type funcName( T para, ... ) {
    // If T, ... meet specific conditions.
-   // Do something
+   // Do something.
 }
 
-template< typename T >
-typename std::enable_if< !TypeTraits< T >::value >::type funcName( T ) {
+template< typename T, ... >
+typename std::enable_if< !TypeTrait< T >::value >::type funcName( T para, ... ) {
    // If T is not a specific type.
-   // Do something
+   // Do something.
 }
 ```
 
 ```CPP
-// With constraints and concepts
+// With `std::enable_if`.
 #include <type_traits>
 
-// In this, `TypeTraits` is a template function (or class or structure, even with the `constexpr` keyword) in the header <type_traits>,
+// In this, `TypeTrait` is a template function (or class or structure,
+// even with the `constexpr` keyword) in the header `<type_traits>`,
+// for example, `std::is_integral`.
+template< typename T,
+          typename std::enable_if< TypeTrait< T, ... >::value >::type,
+          ... >
+RetType funcName( T para, ... ) {
+   // If T, ... meet specific conditions.
+   // Do something.
+}
+
+template< typename T,
+          typename std::enable_if< !TypeTrait< T >::value >::type,
+          ... >
+RetType funcName( T para, ... ) {
+   // If T is not a specific type.
+   // Do something.
+}
+```
+
+```CPP
+// With constraints and concepts.
+#include <type_traits>
+
+// In this, `TypeTrait` is a template function (or class or structure,
+// even with the `constexpr` keyword) in the header <type_traits>,
 // for example, std::is_integral
-template< typename T, ... > concept TempName = TypeTraits< T, ... >;
-template< TempName T, ... > RetType funcName( T value, ... ) {
+template< typename T, ... > concept TempName = TypeTrait< T, ... >;
+template< TempName T, ... > RetType funcName( T para, ... ) {
    // This function is only enabled for specific conditions
 }
 ```
@@ -440,14 +489,14 @@ template< TempName T, ... > RetType funcName( T value, ... ) {
 ```CPP
 // Using templates and `static_assert` to implement a type trait.
 template< typename T > struct IsPointer {
-      static const bool val = false;   // Default case
+      static const bool val = false;   // Default case.
 };
 
 template< typename T > struct IsPointer< T* > {
-      static const bool val = true;   // Specialization for pointers
+      static const bool val = true;   // Specialization for pointers.
 };
 
-// Usage
+// Usage.
 static_assert( IsPointer< int* >::val, "Should be a pointer type" );
 static_assert( !IsPointer< int >::val, "Should not be a pointer type" );
 ```
@@ -456,12 +505,15 @@ static_assert( !IsPointer< int >::val, "Should not be a pointer type" );
 // Using a type trait with `static_assert`.
 #include <type_traits>
 
-// In this, `TypeTraits` is a template function (or class or structure, even with the `constexpr` keyword) in the header <type_traits>,
-// for example, std::is_integral
+// In this, `TypeTrait` is a template function (or class or structure,
+// even with the `constexpr` keyword) in the header <type_traits>,
+// for example, `std::is_integral`.
 template< typename T, ... > RetType funcName( T t, ... ) {
-   static_assert( TypeTraits< T >::value, "T must be a specific type" );
+   static_assert( TypeTrait< T >::value, "T must be a specific type" );
    // Do something.
 }
 ```
 
 ### Template Aliases
+
+1. [`using`](./UsingTypedefNameSpaces.md#using)
