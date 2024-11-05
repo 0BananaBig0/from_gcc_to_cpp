@@ -573,16 +573,17 @@ delete pri_queue_ptr;
 
 ### Explanation
 
-1. Dques are **sequence containers ( template classes )** with dynamic sizes that can be expanded or
-   contracted on both ends (either its front or its back).
+1. Deques are **sequence containers ( template classes )** with dynamic sizes that can be expanded
+   or contracted on both ends (either its front or its back).
 2. They allow for the individual elements to be accessed directly through **random access
    iterators**, with storage handled automatically by expanding and contracting the container as
    needed.
 3. They provide a functionality **similar to vectors**, **but with efficient insertion and
    deletion** of elements also **at the beginning** of the sequence, and not only **at its end**.
-   But, unlike vectors, deques are **not** guaranteed to **store all its elements in contiguous
+4. But, unlike vectors, deques are **not** guaranteed to **store all its elements in contiguous
    storage locations**: accessing elements in a deque by offsetting a pointer to another element
    causes undefined behavior.
+5. Their header file is `<deque>`.
 
 ### Declaration Syntax
 
