@@ -36,84 +36,82 @@
 
 ### Explanation
 
-1. Operators are symbols that perform operations on variables or values. They allow concise data
-   manipulation, comparisons, and control of program logic.
-2. Operators follow specific rules of precedence and associativity to determine the order of
+1. Operators are **symbols** that **perform operations on variables or values**.
+2. They allow concise data manipulation, comparisons, and control of program logic.
+3. Operators follow specific rules of precedence and associativity to determine the order of
    evaluation in complex expressions.
-3. Additionally, operators can be overloaded for custom behavior in user-defined types, improving
-   code flexibility and reusability.
-4. In fact, it's **a function**. It makes our code clearer.
+4. Additionally, operators **can be overloaded** for custom behavior in user-defined types,
+   improving code flexibility and reusability.
+5. In fact, it's **a function**. It makes our code clearer.
 
 ### Categories
 
-1. Arithmetic Operators
+1. Arithmetic operators:
    - Perform basic mathematical operations.
-   - `+` (Addition)
-   - `-` (Subtraction)
-   - `*` (Multiplication)
-   - `/` (Division)
-   - `%` (Modulus)
-2. Relational (Comparison) Operators
+   - `+` (Addition).
+   - `-` (Subtraction).
+   - `*` (Multiplication).
+   - `/` (Division).
+   - `%` (Modulus).
+2. Relational (comparison) operators:
    - Compare two values and return a boolean result (`true` or `false`).
-   - `==` (Equal to)
-   - `!=` (Not equal to)
-   - `<` (Less than)
-   - `>` (Greater than)
-   - `<=` (Less than or equal to)
-   - `>=` (Greater than or equal to)
-3. Logical Operators
+   - `==` (Equal to).
+   - `!=` (Not equal to).
+   - `<` (Less than).
+   - `>` (Greater than).
+   - `<=` (Less than or equal to).
+   - `>=` (Greater than or equal to).
+3. Logical operators:
    - Combine or invert boolean expressions.
-   - `&&` (Logical AND)
-   - `||` (Logical OR)
-   - `!` (Logical NOT)
-4. Bitwise Operators
+   - `&&` (Logical AND).
+   - `||` (Logical OR).
+   - `!` (Logical NOT).
+4. Bitwise operators:
    - Perform bit-level operations on integral values.
-   - `&` (AND)
-   - `|` (OR)
-   - `^` (XOR)
-   - `~` (Complement)
-   - `<<` (Left shift)
-   - `>>` (Right shift)
-5. Assignment Operators
+   - `&` (AND).
+   - `|` (OR).
+   - `^` (XOR).
+   - `~` (Complement).
+   - `<<` (Left shift).
+   - `>>` (Right shift).
+5. Assignment operators:
    - Assign values to variables, sometimes performing operations during assignment.
-   - `=` (Simple assignment)
-   - `+=` (Add and assign)
-   - `-=` (Subtract and assign)
-   - `=` (Multiply and assign)
-   - `/=` (Divide and assign)
-6. Unary Operators
+   - `=` (Simple assignment).
+   - `+=` (Add and assign).
+   - `-=` (Subtract and assign).
+   - `=` (Multiply and assign).
+   - `/=` (Divide and assign).
+6. Unary operators:
    - Operate on a single operand.
-   - `++` (Increment)
-   - `--` (Decrement)
-   - `+` (Unary plus)
-   - `-` (Unary minus)
-7. Ternary Operator
+   - `++` (Increment).
+   - `--` (Decrement).
+   - `+` (Unary plus).
+   - `-` (Unary minus).
+7. Ternary operator:
    - A compact form of an `if-else` statement.
-   - `? :` (Conditional operator)
-8. Type Casting Operators
+   - `? :` (Conditional operator).
+8. Type casting operators:
    - Convert one data type to another.
-   - `static_cast`
-   - `dynamic_cast`
-   - `const_cast`
-   - `reinterpret_cast`
-9. Comma Operator (`,`)
+   - `static_cast`.
+   - `dynamic_cast`.
+   - `const_cast`.
+   - `reinterpret_cast`.
+9. Comma operator (`,`):
    - Evaluates multiple expressions from left to right, returning the value of the last expression.
-10. Member Access Operators
+10. Member access operators:
     - Access members of classes or objects.
-    - `.` (Direct member access)
-    - `->` (Indirect member access through a pointer)
-11. Memory Management Operators
+    - `.` (Direct member access).
+    - `->` (Indirect member access through a pointer).
+11. Memory management operators:
     - Allocate and deallocate dynamic memory.
-    - `new` (Allocates memory)
-    - `new[]` (Allocates memory for arrays)
-    - `delete` (Deallocates memory)
-    - `delete[]` (Deallocates memory for arrays)
-12. Sizeof Operator
+    - `new` (Allocates memory).
+    - `new[]` (Allocates memory for arrays).
+    - `delete` (Deallocates memory).
+    - `delete[]` (Deallocates memory for arrays).
+12. Sizeof operator (`sizeof`):
     - Returns the size, in bytes, of a data type or object.
-    - `sizeof`
-13. Typeid Operator
+13. Typeid operator (`typeid`):
     - Returns the type information of an expression or a type.
-    - `typeid`
 
 ### Operator Overloading
 
@@ -153,14 +151,14 @@ ClassName& operator=( const ClassName& ) = default;
 
 ###### Explanation
 
-1. The copy-assignment operator can be overloaded to handle **deep copies**, manage resources
+1. The copy-assignment operator can be overloaded to **handle deep copies**, manage resources
    appropriately, and perform self-assignment checks.
 
 ###### Syntax
 
 ```CPP
 ClassName& operator=( const ClassName& other ) {
-   // Custom copy logic here
+   // Custom copy logic here.
    return *this;
 };
 ```
@@ -173,7 +171,7 @@ ClassName& operator=( const ClassName& other ) {
 
 1. The default move-assignment operator is **generated by the compiler** if **no user-defined
    copy-assignment operator** is provided.
-2. It handles **shallow moves**, which may lead to issues like **double deletion** if pointers are
+2. It **handles shallow moves**, which may lead to issues like **double deletion** if pointers are
    involved.
 3. The state of the moved-from object is unspecified but valid after the operation.
 4. The `= default` syntax **explicitly requests** the compiler to generate the **default
@@ -191,14 +189,14 @@ ClassName& operator=( ClassName&& ) = default;
 
 1. The move-assignment operator can be overloaded to control how resources are transferred between
    objects.
-2. It handles **deep moves**, which deals with issues like **double deletion** if pointers are
+2. It **handles deep moves**, which deals with issues like **double deletion** if pointers are
    involved.
 
 ###### Syntax
 
 ```CPP
 ClassName& operator=(ClassName&& other) noexcept {
-    // Custom move logic here
+    // Custom move logic here.
     return *this;
 };
 ```
@@ -209,9 +207,9 @@ ClassName& operator=(ClassName&& other) noexcept {
 
 1. The conversion operator specifies **how to convert an object of the class to a designated target
    type**, which can be beneficial for implicit conversions or explicit type casting.
-2. **Implicit Conversion**: If defined, the conversion can occur automatically in certain contexts
+2. **Implicit conversion**: If defined, the conversion can occur automatically in certain contexts
    (e.g., passing an object to a function expecting a different type).
-3. **Explicit Conversion**: If marked with `explicit`, the conversion will only occur when
+3. **Explicit conversion**: If marked with `explicit`, the conversion will only occur when
    explicitly requested, thus preventing unintended conversions.
 
 ##### Conversion Operator Overloading
@@ -219,42 +217,46 @@ ClassName& operator=(ClassName&& other) noexcept {
 ###### Syntax
 
 ```CPP
-// `const` function
+// `const` function.
 operator TargetType() const {
-    // Custom conversion logic here
+    // Custom conversion logic here.
 };
 ```
 
 ###### Notes
 
 1. If we **implement a smart pointer** by ourselves, pass it as a reference into a function and want
-   to judge it if it is a null pointer, **bool conversion operator is needed**.
+   to judge it if it is a `null` pointer, **`bool` conversion operator is needed**.
 2. If a class **only possesses one useful member**, and we want to **assign it to a primitive-type
-   variables** outside of the class without calling any function, **bool conversion operator is
+   variables** outside of the class without calling any function, **`bool conversion operator is
    need**.
 3. **Problem**: less readability of code, not work if functions have been overloaded.
 4. **Advantange**: make code cleaner.
 
 #### `explicit` Conversion Operator
 
+1. [Conversion And Casting](./ConversionAndCasting.md#explicit)
+
 ### `new` and `delete`
+
+1. [`new` and `delete`](./NewAndDelete.md#new-and-delete)
 
 ### The Usage of the `:` Operator
 
-1. Scope resolution operator(`::`)
+1. Scope resolution operator(`::`):
    ```CPP
    ClassName::member;
    NamespaceName:member;
    EnumclassName:member;
    ```
-2. Inheritance
-3. Member initialization list
-4. Conditional Operator (Ternary Operator)
-5. Label in Goto Statements
+2. Inheritance.
+3. Member initialization list.
+4. Conditional operator (ternary operator).
+5. Label in goto statements.
    ```CPP
    labelName: statement;
    ```
-6. Range-Based For Loop with Structured Bindings
+6. Range-based for loop with structured bindings:
    ```CPP
    for ( auto& var : container );
    for ( auto& [var1, var2, ...] : container );
@@ -264,8 +266,8 @@ operator TargetType() const {
 
 1. It is important to ensure that memory is **deallocated** using the **corresponding** operator
    that was used for **allocation** to **avoid undefined behavior**.
-2. Ternary operators: **Using ternary operators to replace an `if-else` statement** when
-   **initializing an object** can make it **slightly faster**. Using **nested ternary operators**
-   can be confusing, so we should **avoid using them**.
+2. **Using ternary operators to replace an `if-else` statement** when **initializing an object** can
+   make it **slightly faster**. Using **nested ternary operators** can be confusing, so we should
+   **avoid using them**.
 3. The **compiler** is smart enough so that it can **optimize some arithmic operations** to some
-   bitwise operations, for example, 5 x 16 to 5 << 4.
+   bitwise operations, for example, `5 x 16` to `5 << 4`.
