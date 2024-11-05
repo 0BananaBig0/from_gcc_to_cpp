@@ -7,12 +7,14 @@
     - [Explanation](#explanation-1)
     - [Syntax](#syntax)
     - [Realted Stuffs](#realted-stuffs)
+      - [Links](#links-1)
       - [Template Instantiations](#template-instantiations)
       - [Member Types](#member-types)
       - [Member Functions](#member-functions)
       - [Non-member Functions](#non-member-functions)
       - [Helper Classes](#helper-classes)
       - [Helper Specializations](#helper-specializations)
+      - [Literals](#literals)
   - [Time Points](#time-points)
     - [Explanation](#explanation-2)
     - [Syntax](#syntax-1)
@@ -39,10 +41,11 @@
 
 ### Explanation
 
-1. `chrono` is **the name of a header**, but **also of a sub-namespace**: All the elements in this
-   header (except for the `common_type` specializations) are not defined directly under the `std`
-   namespace (like most of the standard library) but under the `std::chrono` namespace.
-2. The elements in this header deal with time. This is done mainly by means of three concepts:
+1. `chrono` is **the name of a header**, but **also of a sub-namespace**: **All the elements in this
+   header** (except for the `common_type` specializations) are not defined directly under the `std`
+   namespace (like most of the standard library) but **under the `std::chrono` namespace**.
+2. The elements in this header deal with time. This is done mainly by means of **three concepts**:
+   **durations, time points and clocks**.
 
 ### Links
 
@@ -64,16 +67,24 @@
 #### Syntax
 
 ```CPP
-// Declaration Syntax
+// Declaration syntax.
 template< class Rep, class Period = ratio< 1 > > class duration;
 ```
 
 ```CPP
-// Usage Syntax
-std::chrono::duration< Type, std::ratio< num1, num2 >(Optional) > dur = end - start;
+// Usage syntax.
+// Default constructor.
+std::chrono::duration< Type, std::ratio< num1, num2 >(Optional) > dur1;
+// Copy constructor.
+std::chrono::duration< Type, std::ratio< num1, num2 >(Optional) > dur2( dur1 );
 ```
 
 #### Realted Stuffs
+
+##### Links
+
+1. [`std::chrono::duration` in cplusplus](https://cplusplus.com/reference/chrono/duration/).
+2. [`std::chrono::duration` in cppreference](https://en.cppreference.com/w/cpp/chrono/duration).
 
 ##### Template Instantiations
 
@@ -140,6 +151,18 @@ std::chrono::duration< Type, std::ratio< num1, num2 >(Optional) > dur = end - st
    efficient implementation of `std::print` and `std::println` for printing a
    `std::chrono::duration` object when the template parameter Rep enables it.
 
+##### Literals
+
+1. Defined in inline namespace `std::literals::chrono_literals`.
+2. `operator""h` (C++14): A `std::chrono::duration` literal representing hours (function).
+3. `operator""min` (C++14): A `std::chrono::duration` literal representing minutes (function).
+4. `operator""s` (C++14): A `std::chrono::duration` literal representing seconds (function).
+5. `operator""ms` (C++14): A `std::chrono::duration` literal representing milliseconds (function).
+6. `operator""us` (C++14): A `std::chrono::duration` literal representing microseconds (function).
+7. `operator""ns` (C++14): A `std::chrono::duration` literal representing nanoseconds (function).
+8. Note: the literal suffixes `d` and `y` do not refer to days and years but to day and year,
+   respectively. (since C++20).
+
 ### Time Points
 
 #### Explanation
@@ -152,18 +175,19 @@ std::chrono::duration< Type, std::ratio< num1, num2 >(Optional) > dur = end - st
 #### Syntax
 
 ```CPP
-// Declaration Syntax
+// Declaration syntax.
 template< class Clock, class Duration = typename Clock::duration >
 class time_point;
 ```
 
 ```CPP
-// Usage Syntax
+// Usage syntax.
+// Default constructor.
 std::chrono::time_point< Clock > start, end;
 ```
 
 ```CPP
-// Usage Syntax
+// Usage syntax.
 auto start = Clock::now();
 auto start = Clock::now();
 // `Clock::now()`: The `now()` function defined inside the `Clock` class.
@@ -210,6 +234,7 @@ auto start = Clock::now();
    rounding up (function template).
 5. `round( std::chrono::time_point )` (C++17): Converts a `std::chrono::time_point` to another,
    rounding to nearest, ties to even (function template).
+6. `clock_cast` (C++20): Convert time points of one clock to another (function template).
 
 ##### Helper Classes
 
@@ -234,12 +259,13 @@ auto start = Clock::now();
 #### Syntax
 
 ```CPP
-// Usage Syntax
+// Usage syntax.
+// Default constructor.
 std::chrono::time_point< Clock > start, end;
 ```
 
 ```CPP
-// Usage Syntax
+// Usage syntax.
 auto start = Clock::now();
 auto start = Clock::now();
 // `Clock::now()`: The `now()` function defined inside the `Clock` class.
@@ -284,7 +310,7 @@ start = Clock::now();
 // Do something.
 end = Clock::now();
 std::chrono::duration< float, std::ratio< num1, num2 > > dur
-   = std::chrono::duration_cast< TemplateInstantiations > ( end - start );
+   = std::chrono::duration_cast< CorrespondingTemplateInstantiation > ( end - start );
 std::cout << "Elapsed time: " << dur.count() << " time unit\n";
 ```
 
@@ -293,7 +319,7 @@ std::cout << "Elapsed time: " << dur.count() << " time unit\n";
 auto start = Clock::now();
 // Do something.
 auto end = Clock::now();
-auto dur = std::chrono::duration_cast< TemplateInstantiations > ( end - start );
+auto dur = std::chrono::duration_cast< CorrespondingTemplateInstantiation > ( end - start );
 std::cout << "Elapsed time: " << dur.count() << " time unit\n";
 ```
 
