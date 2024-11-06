@@ -8,6 +8,7 @@
       - [Declaration Syntax](#declaration-syntax)
       - [Initialization Syntax](#initialization-syntax)
       - [Syntax for Deleting One-dimensional Raw Array Pointers](#syntax-for-deleting-one-dimensional-raw-array-pointers)
+      - [Three Kinds of Pointers Related to Array](#three-kinds-of-pointers-related-to-array)
     - [Multidimensional Raw Arrays ( **Not Recommend** )](#multidimensional-raw-arrays--not-recommend-)
       - [Declaration Syntax](#declaration-syntax-1)
       - [Initialization Syntax](#initialization-syntax-1)
@@ -53,6 +54,11 @@
 3. They are the **fastest** structure but are **not safe** enough..
 4. The **size** of a raw array is **defined at compile time** and **cannot be changed during
    runtime**. This means that once an array is declared, its size is fixed.
+5. **Array pointer (pointer to an array)**: A pointer that points to an **entire** array (**rather
+   than individual** elements).
+6. **Pointer array (array of pointers)**: An array where each element is a pointer.
+7. **Element pointer (pointer to an element, pointer to an specific index, array element pointer)**:
+   A pointer that points to **an element** in an array.
 
 #### One-dimensional Raw Arrays
 
@@ -107,6 +113,30 @@ Type* arr_ptr = new Type[]{ ... };
 
 ```CPP
 delete[] arr_ptr;
+```
+
+##### Three Kinds of Pointers Related to Array
+
+```CPP
+Type arr_name[size] = { ... };
+Type (*arr_ptr)[size] = &arr_name; // Array pointer.
+// array pointer + 1 = element pointer + size;
+```
+
+```CPP
+Type arr_name[size] = { ... };
+Type* arr_ptr[szie] = { ... }; // Pointer array.
+```
+
+```CPP
+Type arr_name[size] = { ... };
+Type* arr_ptr = arr_name; // Element pointer points to the first element of arr_name.
+```
+
+```CPP
+Type arr_name[size] = { ... };
+Type* arr_ptr = &arr_name[index]; // Element pointer points to the `index` element of arr_name.
+// array pointer + 1 = element pointer + size;
 ```
 
 #### Multidimensional Raw Arrays ( **Not Recommend** )
