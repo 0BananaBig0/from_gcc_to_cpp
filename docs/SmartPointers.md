@@ -1,8 +1,8 @@
 <!-- vim-markdown-toc GFM -->
 
-- [Smart Pointers](#smart-pointers)
+- [Smart Pointers (Scoped Pointers)](#smart-pointers-scoped-pointers)
   - [Explanation](#explanation)
-  - [Scoped Pointers ( `std::unique_ptr` )](#scoped-pointers--stdunique_ptr-)
+  - [Unique Pointers (`std::unique_ptr`)](#unique-pointers-stdunique_ptr)
     - [Explanation](#explanation-1)
     - [Declaration Syntax](#declaration-syntax)
     - [Initialization Syntax](#initialization-syntax)
@@ -12,7 +12,7 @@
       - [Member Functions](#member-functions)
       - [Non-member Functions](#non-member-functions)
       - [Helper Classes](#helper-classes)
-  - [Shared Pointers ( `std::shared_ptr` )](#shared-pointers--stdshared_ptr-)
+  - [Shared Pointers (`std::shared_ptr`)](#shared-pointers-stdshared_ptr)
     - [Explanation](#explanation-2)
     - [Declaration Syntax](#declaration-syntax-1)
     - [Initialization Syntax](#initialization-syntax-1)
@@ -22,7 +22,7 @@
       - [Member Functions](#member-functions-1)
       - [Non-member Functions](#non-member-functions-1)
       - [Helper Classes](#helper-classes-1)
-  - [Weak Pointers ( `std::weak_ptr` )](#weak-pointers--stdweak_ptr-)
+  - [Weak Pointers (`std::weak_ptr`)](#weak-pointers-stdweak_ptr)
     - [Explanation](#explanation-3)
     - [Declaration Syntax](#declaration-syntax-2)
     - [Initialization Syntax](#initialization-syntax-2)
@@ -35,7 +35,7 @@
 
 <!-- vim-markdown-toc -->
 
-## Smart Pointers
+## Smart Pointers (Scoped Pointers)
 
 ### Explanation
 
@@ -46,15 +46,17 @@
    pointers**.
 3. The C++ Standard Library provides **three primary types of smart pointers**: `std::unique_ptr`,
    `std::shared_ptr`, and `std::weak_ptr`.
-4. Their header file is `<memory>`.
+4. All smart pointers are **scoped pointers**. When they **leave their scope**, they either **cease
+   to exist** or **decrease their reference count**.
 5. When **designing our own data structure**, **useing a raw pointer instead**.
 6. In smart pointers, the pointer operator (or arrow operator, `->`) has been overloaded. Since the
    compiler optimizes pointer operator overloading, `obj_ptr->_mem` and `(*obj_ptr)._mem` **are
    equivalent** to `(obj_ptr)->->_mem` and `(*obj_ptr)->_mem`.
 7. **Additionally, the pointer operator can be overloaded to obtain the memory offsets of an
    object's members**.
+8. Their header file is `<memory>`.
 
-### Scoped Pointers ( `std::unique_ptr` )
+### Unique Pointers (`std::unique_ptr`)
 
 #### Explanation
 
@@ -148,7 +150,7 @@ rptr = nullptr;
 1. `std::hash< std::unique_ptr >`: Hash support for `std::unique_ptr` (class template
    specialization).
 
-### Shared Pointers ( `std::shared_ptr` )
+### Shared Pointers (`std::shared_ptr`)
 
 #### Explanation
 
@@ -159,10 +161,10 @@ rptr = nullptr;
 3. Reference counting **maintains a record of the number of references** pointing to a shared
    pointer:
    - Each time **a new reference** is established, **the reference count** is **incremented by
-     one**.
+     one**. (**Constructors**)
    - Conversely, each time **a reference** is **removed**, **the count** is **decremented by one**.
    - When **the reference count** is **reduced to zero**, the associated shared pointer is
-     **automatically deallocated**.
+     **automatically deallocated**. (**Destructors**)
 4. This reference counting mechanism **introduces a degree of overhead**.
 5. Notably, assigning one `std::shared_ptr` to another results in an increase in the reference
    count, while **assigning a `std::shared_ptr` to a `std::weak_ptr` does not affect the reference
@@ -283,7 +285,7 @@ uptr = nullptr;
 2. `std::hash< std::shared_ptr >`: Hash support for `std::shared_ptr` (class template
    specialization).
 
-### Weak Pointers ( `std::weak_ptr` )
+### Weak Pointers (`std::weak_ptr`)
 
 #### Explanation
 
