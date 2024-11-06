@@ -297,6 +297,8 @@ ClassName< arg_list2, arg_list3 > obj2;   // Utilizes the specialized version.
 // Be mindful of the Ellipsis.
 template< typename... Args > class ClassName {
    public:
+      // explicit ClassName( Args&... args ):
+      // explicit ClassName( Args&&... args ):
       explicit ClassName( Args... args ):
          _mem( args... ), _mem_ptr( &args... ) {
          // Method to print all arguments in order without adding any extra characters.
@@ -305,6 +307,14 @@ template< typename... Args > class ClassName {
          ( std::cout << ... << &args ) << std::endl;
          // Method to print all ++arguments in order without adding any extra characters.
          ( std::cout << ... << ++args ) << std::endl;
+         // Method to add all arguments in order and print the result.
+         std::cout << ( ... + args ) << std::endl;
+         // Method to multiple all arguments in order and print the result.
+         std::cout << ( ... * args ) << std::endl;
+         // Method to && all arguments in order and print the result.
+         std::cout << ( ... && args ) << std::endl;
+         // Method to || all arguments in order and print the result.
+         std::cout << ( ... || args ) << std::endl;
       };
 
       // Method to get an element by index.

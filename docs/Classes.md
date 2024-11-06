@@ -1145,6 +1145,7 @@ class Derived: public Base {
    - If a **base** class has **`virtual` functions**, its **destructor** should also be
      **`virtual`** to ensure proper cleanup of derived class resources.
    - Failing to declare a `virtual` destructor can lead to resource leaks.
+6. [Bindings](./Bindings.md)
 
 ##### Notes
 

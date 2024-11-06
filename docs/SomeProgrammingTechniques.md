@@ -36,8 +36,10 @@
 3. **Function argument evaluation order** is **undefined** in C++. Differenct compilers with
    different flags have different evaluation orders, until C++17, an uncomplete definiton of the
    function argument evaluation order comes.
-4. **All variables, objects, references, and pointers** should be **initialized explicitly and
-   immediately** after they are declared or created. This can avoid many unpredictable issues
+4. **All variables, objects, references, and pointers** should be \*\*initialized explicitly and
+5. **Float:** Be very careful. Both `float` and `double` type variables **have precision
+   limitations**. You should **never use `==` or `!=` to compare them** with any number. Instead,
+   you should try to **convert the comparison into `>=` or `<=` forms**.
 
 ## Type Puning
 

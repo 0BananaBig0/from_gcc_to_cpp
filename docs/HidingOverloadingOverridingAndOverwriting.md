@@ -106,10 +106,12 @@ class ClassName {
 ##### Explanation
 
 1. Overriding occurs when **a derived class** provides **its own implementation** of **a virtual
-   function ( or a pure virtual function )** that is **already defined** in the base class.
+   function (or a pure virtual function)** that is **already defined** in the base class.
 2. The function in the derived class must have **the same signature** as the base class's **virtual
    function**.
-3. Overriding is **resolved at runtime** (**dynamic polymorphism**).
+3. This means, for a function in a derived class to override a function in a base class, it must
+   **have the same name**, **parameter list**, and **qualifiers** as the function in the base class.
+4. Overriding is **resolved at runtime** (**dynamic polymorphism**).
 
 ##### Syntax
 
