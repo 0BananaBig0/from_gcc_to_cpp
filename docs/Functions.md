@@ -358,32 +358,34 @@ func_ptr_name = &funcName;
 
 ```CPP
 // A function whose return type isn't `void`.
-auto result = func_ptr_name( arguement_list );
+auto result = func_ptr_name( arg_list );
 ```
 
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
-RetType result = func_ptr_name( arguement_list );
+RetType result = func_ptr_name( arg_list );
 ```
 
 ```CPP
 // A function whose return type is `void`.
-func_pt_name( arguement_list );
+func_pt_name( arg_list );
 ```
 
 #### Syntax for Function Pinter Declaration Using `using`
 
-```CPP
-using FuncPtrName = RetType ( * )( parameter_types );
-FuncPtrName func_ptr_name;
-```
+1. [Syntax for Function Pinter Declaration Using `using`](./UsingTypedefNameSpaces.md#usage)
+   ```CPP
+   using FuncPtrName = RetType ( * )( parameter_types );
+   FuncPtrName func_ptr_name;
+   ```
 
 #### Syntax for Function Pinter Declaration Using `typedef`
 
-```CPP
-typedef RetType ( *FuncPtrName )( parameter_types );
-FuncPtrName func_ptr_name;
-```
+1. [Syntax for Function Pinter Declaration Using `typedef`](./UsingTypedefNameSpaces.md#usage-1)
+   ```CPP
+   typedef RetType ( *FuncPtrName )( parameter_types );
+   FuncPtrName func_ptr_name;
+   ```
 
 ### Lambda Functions
 
@@ -402,6 +404,8 @@ FuncPtrName func_ptr_name;
    name) directly in your code.
 2. It allows you to create small, simple function-like entities **`inline`**, making your **code
    more concise and flexible**.
+3. **All elements captured** by a lambda function **must be declared before the lambda’s
+   definition**.
 
 #### Syntax
 
@@ -420,12 +424,13 @@ auto funcName =  [capture]( para_list ) -> RetType { // Funtion body. };
 ##### Explanation
 
 1. `capture`:
-   - Specifies which variables from the surrounding scope are captured by the lambda. This can be
-     done by value (`=`) or by reference (`&`).
+   - Specifies which variables from the surrounding scope are captured by the lambda.
+   - This can be done by value (`=`) or by reference (`&`).
 2. `para_list`:
    - The `para_list` for the lambda function, similar to any regular function.
 3. `RetType` (**optional**):
-   - The return type of the lambda. If **omitted**, C++ will attempt to deduce it automatically.
+   - The return type of the lambda.
+   - If **omitted**, C++ will attempt to deduce it automatically.
 4. `Function body`:
    - The function body where the logic of the lambda resides.
 
