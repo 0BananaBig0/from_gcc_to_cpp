@@ -356,7 +356,7 @@ constexpr RetType funcName( para_list ) {
 constexpr RetType var_name = funcName( para_list );
 ```
 
-##### `constexpr` Constructors (C++11 and later):
+##### `constexpr` Constructors (C++11 and later)
 
 ###### Explanation
 
@@ -403,6 +403,30 @@ constexpr ClassName obj_name( para_list );
 
 ```CPP
 constexpr ClassName obj_ptr;
+```
+
+##### User-Defined Literals
+
+###### Explanation
+
+1. User-defined literals allow you to **create custom literal suffixes** that **extend the
+   functionality of built-in literals**.
+2. This feature lets you **define special behaviors for literals of various types**, including
+   integers, floating-point numbers, and strings.
+3. It's especially useful for **creating more readable code**, **adding context or units to
+   values**, and **improving type safety**.
+4. User-defined literals are **created by defining functions with specific naming and parameter
+   rules**.
+5. They **begin with an underscore** and **are appended to a literal to convert it into a specific
+   type or to invoke custom logic**.
+
+###### Syntax
+
+```CPP
+constexpr RetType operator"" _name( Type para, ... ) {
+   // Do something that can be evaluated at compile time.
+   return ...;
+}
 ```
 
 ### `static`
