@@ -276,7 +276,7 @@ std::string var_name( count, ch_ptr );
 24. `clear`: Clears the contents (public member function).
 25. `insert`: Inserts characters (public member function).
 26. `insert_range` (C++23): Inserts a range of characters (public member function).
-27. `erase`: Removes characters (public member function).
+27. `erase`: Removes characters and returns a valid iterator (public member function).
 28. `push_back`: Appends a character to the end (public member function).
 29. `pop_back` (`DR*`): Removes the last character (public member function).
 30. `append`: Appends characters to the end (public member function).

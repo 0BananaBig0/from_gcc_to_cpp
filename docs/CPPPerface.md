@@ -59,6 +59,7 @@
   - [Interface](#interface)
   - [Keyword](#keyword)
   - [Type Specifier](#type-specifier)
+  - [Segmentation Fault (Linux) and Access Violation (Win)](#segmentation-fault-linux-and-access-violation-win)
   - [Notes](#notes-1)
 
 <!-- vim-markdown-toc -->
@@ -508,6 +509,14 @@
 2. Type specifiers tell the compiler what kind of data the variable will hold or the function will
    return.
 3. They are an essential part of variable declarations and type definitions.
+
+### Segmentation Fault (Linux) and Access Violation (Win)
+
+1. Access nullptr, for example, `Type *ptr = nullptr; (*ptr) = val;`.
+2. Access protected addredd, for example, `Type *ptr = 0; (*ptr) = val;`.
+3. Modify read-only memory, for example, `const Type var_name = val1; var_name = val2;`.
+4. Stack overflow, infinite loop.
+5. Multiple destruction or multiple deletion.
 
 ### Notes
 

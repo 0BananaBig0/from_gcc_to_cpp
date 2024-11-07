@@ -179,7 +179,7 @@ delete list_ptr;
 17. `insert`: Inserts elements (public member function).
 18. `insert_range` (C++23): Inserts a range of elements (public member function).
 19. `emplace`: Constructs elements in-place (public member function).
-20. `erase`: Erases elements (public member function).
+20. `erase`: Erases elements and returns a valid iterator (public member function).
 21. `push_back`: Adds an element to the end (public member function).
 22. `emplace_back`: Constructs an element in-place at the end (public member function).
 23. `append_range` (C++23): Adds a range of elements to the end (public member function).

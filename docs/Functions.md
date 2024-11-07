@@ -9,6 +9,7 @@
   - [Declaration Syntax](#declaration-syntax)
   - [Reference Syntax](#reference-syntax)
   - [Function Arguments](#function-arguments)
+  - [Function Argument Pushing Order (Stack Order)](#function-argument-pushing-order-stack-order)
     - [How to Pass Arguments to a Function](#how-to-pass-arguments-to-a-function)
     - [Limitations of Function Default Arguments](#limitations-of-function-default-arguments)
   - [Keywords Related to Functions](#keywords-related-to-functions)
@@ -65,6 +66,7 @@
     - [Explanation](#explanation-11)
     - [Common Syntax](#common-syntax)
     - [Links](#links)
+  - [Callback Functions and Registeration Functions](#callback-functions-and-registeration-functions)
 
 <!-- vim-markdown-toc -->
 
@@ -152,6 +154,24 @@ RetType var_name = funcName( arg_list );
 ```
 
 ### Function Arguments
+
+### Function Argument Pushing Order (Stack Order)
+
+1. **Right to left** (**most common**):
+   - In most platforms and compilers (e.g., x86 and x64 using the C calling convention), arguments
+     are pushed onto the stack from right to left.
+   - This means the rightmost parameter is pushed first.
+   - This allows the function to access arguments in the correct order when it retrieves them from
+     the stack.
+2. Left to right (less common):
+   - Some calling conventions (e.g., used in some versions of the ARM architecture) may push
+     arguments left to right (from leftmost to rightmost).
+   - This is less common in mainstream desktop systems but might be used in embedded or
+     special-purpose systems.
+3. Registers:
+   - For performance reasons, many modern platforms (like x64) pass the first few arguments to a
+     function in registers rather than pushing them onto the stack.
+   - Only arguments that don't fit into the available registers are pushed onto the stack.
 
 #### How to Pass Arguments to a Function
 

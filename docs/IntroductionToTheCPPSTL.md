@@ -27,6 +27,7 @@
     - [Common Utilities](#common-utilities)
     - [Header File](#header-file-5)
   - [EASTL](#eastl)
+  - [Notes](#notes)
 
 <!-- vim-markdown-toc -->
 
@@ -115,7 +116,8 @@
 1. Iterators are **objects** that **allow traversal through the elements of a container**.
 2. They provide **a uniform way to access container elements** without exposing the underlying
    implementation.
-3. It behaves like a pointer ( stores an address and can be dereferenced ).
+3. It is **not a pointer**, **but** behaves like one (stores an address and can be dereferenced)
+   because it **encapsulates a pointer** and **overloads certain operators**.
 4. When a container **resizes its capacity or rehashes**, its **iterators** may become **invalid**.
 5. **Using invalid iterators causes undefined behaviors**.
 6. More information on **iterator validity** after modification operations is provided below.
@@ -191,3 +193,7 @@
 
 1. EASTL is **a open source library**, **optimized for game developers**.
 2. The **performance** of EASTL is **higher than STL**.
+
+### Notes
+
+1. Most methods that add or remove elements in containers return a valid iterator.

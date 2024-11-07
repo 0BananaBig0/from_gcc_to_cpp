@@ -726,7 +726,7 @@ delete deque_ptr;
 20. `insert`: Inserts elements (public member function).
 21. `insert_range` (C++23): Inserts a range of elements (public member function).
 22. `emplace`: Constructs elements in-place (public member function).
-23. `erase`: Erases elements (public member function).
+23. `erase`: Erases elements and returns a valid iterator (public member function).
 24. `push_back`: Adds an element to the end (public member function).
 25. `emplace_back`: Constructs an element in-place at the end (public member function).
 26. `append_range` (C++23): Adds a range of elements to the end (public member function).

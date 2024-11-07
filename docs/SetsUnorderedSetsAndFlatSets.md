@@ -268,7 +268,7 @@ delete set_ptr;
 14. `insert_range` (C++23): Inserts a range of elements (public member function).
 15. `emplace`: Constructs elements in-place (public member function).
 16. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-17. `erase`: Erases elements (public member function).
+17. `erase`: Erases elements and returns a valid iterator (public member function).
 18. `swap`: Swaps the contents (public member function).
 19. `extract` (C++17): Extracts nodes from the container (public member function).
 20. `merge` (C++17): Splices nodes from another container (public member function).
@@ -475,7 +475,7 @@ delete mset_ptr;
 14. `insert_range` (C++23): Inserts a range of elements (public member function).
 15. `emplace`: Constructs elements in-place (public member function).
 16. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-17. `erase`: Erases elements (public member function).
+17. `erase`: Erases elements and returns a valid iterator (public member function).
 18. `swap`: Swaps the contents (public member function).
 19. `extract` (C++17): Extracts nodes from the container (public member function).
 20. `merge` (C++17): Splices nodes from another container (public member function).
@@ -724,7 +724,7 @@ delete uset_ptr;
 12. `insert_range` (C++23): Inserts a range of elements (public member function).
 13. `emplace`: Constructs elements in-place (public member function).
 14. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-15. `erase`: Erases elements (public member function).
+15. `erase`: Erases elements and returns a valid iterator (public member function).
 16. `swap`: Swaps the contents (public member function).
 17. `extract` (C++17): Extracts nodes from the container (public member function).
 18. `merge` (C++17): Splices nodes from another container (public member function).
@@ -971,7 +971,7 @@ delete umset_ptr;
 12. `insert_range` (C++23): Inserts a range of elements (public member function).
 13. `emplace`: Constructs elements in-place (public member function).
 14. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-15. `erase`: Erases elements (public member function).
+15. `erase`: Erases elements and returns a valid iterator (public member function).
 16. `swap`: Swaps the contents (public member function).
 17. `extract` (C++17): Extracts nodes from the container (public member function).
 18. `merge` (C++17): Splices nodes from another container (public member function).
@@ -1244,7 +1244,7 @@ delete fset_ptr;
 14. `insert_range`: Inserts a range of elements (public member function).
 15. `extract`: Extracts the underlying container (public member function).
 16. `replace`: Replaces the underlying container (public member function).
-17. `erase`: Erases elements (public member function).
+17. `erase`: Erases elements and returns a valid iterator (public member function).
 18. `swap`: Swaps the contents (public member function).
 19. `clear`: Clears the contents (public member function).
 20. `find`: Finds an element with specific key (public member function).
@@ -1515,7 +1515,7 @@ delete fmset_ptr;
 14. `insert_range`: Inserts a range of elements (public member function).
 15. `extract`: Extracts the underlying container (public member function).
 16. `replace`: Replaces the underlying container (public member function).
-17. `erase`: Erases elements (public member function).
+17. `erase`: Erases elements and returns a valid iterator (public member function).
 18. `swap`: Swaps the contents (public member function).
 19. `clear`: Clears the contents (public member function).
 20. `find`: Finds an element with specific key (public member function).

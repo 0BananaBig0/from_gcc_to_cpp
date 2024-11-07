@@ -286,7 +286,7 @@ delete map_ptr;
 19. `emplace_hint`: Constructs elements in-place using a hint (public member function).
 20. `try_emplace` (C++17): Inserts in-place if the key does not exist, does nothing if the key
     exists (public member function).
-21. `erase`: Erases elements (public member function).
+21. `erase`: Erases elements and returns a valid iterator (public member function).
 22. `swap`: Swaps the contents (public member function).
 23. `extract` (C++17): Extracts nodes from the container (public member function).
 24. `merge` (C++17): Splices nodes from another container (public member function).
@@ -498,7 +498,7 @@ delete mmap_ptr;
 14. `insert_range` (C++23): Inserts a range of elements (public member function).
 15. `emplace`: Constructs elements in-place (public member function).
 16. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-17. `erase`: Erases elements (public member function).
+17. `erase`: Erases elements and returns a valid iterator (public member function).
 18. `swap`: Swaps the contents (public member function).
 19. `extract` (C++17): Extracts nodes from the container (public member function).
 20. `merge` (C++17): Splices nodes from another container (public member function).
@@ -751,7 +751,7 @@ delete umap_ptr;
 14. `emplace`: Constructs elements in-place (public member function).
 15. `emplace_hint`: Constructs elements in-place using a hint (public member function).
 16. `try_emplace` (C++17): Inserts in-place if the key does not exist, does nothing if the key
-17. `erase`: Erases elements (public member function).
+17. `erase`: Erases elements and returns a valid iterator (public member function).
 18. `swap`: Swaps the contents (public member function).
 19. `extract` (C++17): Extracts nodes from the container (public member function).
 20. `merge` (C++17): Splices nodes from another container (public member function).
@@ -1013,7 +1013,7 @@ delete ummap_ptr;
 14. `emplace`: Constructs elements in-place (public member function).
 15. `emplace_hint`: Constructs elements in-place using a hint (public member function).
 16. `try_emplace` (C++17): Inserts in-place if the key does not exist, does nothing if the key
-17. `erase`: Erases elements (public member function).
+17. `erase`: Erases elements and returns a valid iterator (public member function).
 18. `swap`: Swaps the contents (public member function).
 19. `extract` (C++17): Extracts nodes from the container (public member function).
 20. `merge` (C++17): Splices nodes from another container (public member function).
@@ -1310,7 +1310,7 @@ delete fmap_ptr;
 18. `insert_or_assign` (C++17): Inserts an element or assigns to the current element if the key
 19. `extract`: Extracts the underlying containers (public member function).
 20. `replace`: Replaces the underlying containers (public member function).
-21. `erase`: Erases elements (public member function).
+21. `erase`: Erases elements and returns a valid iterator (public member function).
 22. `swap`: Swaps the contents (public member function).
 23. `clear`: Clears the contents (public member function).
 24. `find`: Finds an element with specific key (public member function).
@@ -1598,7 +1598,7 @@ delete fmmap_ptr;
 14. `insert_range`: Inserts a range of elements (public member function).
 15. `extract`: Extracts the underlying containers (public member function).
 16. `replace`: Replaces the underlying containers (public member function).
-17. `erase`: Erases elements (public member function).
+17. `erase`: Erases elements and returns a valid iterator (public member function).
 18. `swap`: Swaps the contents (public member function).
 19. `clear`: Clears the contents (public member function).
 20. `find`: Finds an element with specific key (public member function).
