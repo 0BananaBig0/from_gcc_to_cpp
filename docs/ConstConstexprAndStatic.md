@@ -48,33 +48,36 @@
       - [`constexpr` Functions (`constexpr` Return Values)](#constexpr-functions-constexpr-return-values)
         - [Explanation](#explanation-14)
         - [Syntax](#syntax-12)
-      - [`constexpr` Constructors (C++11 and later):](#constexpr-constructors-c11-and-later)
+      - [`constexpr` Constructors (C++11 and later)](#constexpr-constructors-c11-and-later)
         - [Explanation](#explanation-15)
         - [Syntax](#syntax-13)
       - [`constexpr` Instances of Classes](#constexpr-instances-of-classes)
         - [Explanation](#explanation-16)
         - [Syntax](#syntax-14)
+      - [User-defined Literals](#user-defined-literals)
+        - [Explanation](#explanation-17)
+        - [Syntax](#syntax-15)
   - [`static`](#static)
-    - [Explanation](#explanation-17)
+    - [Explanation](#explanation-18)
     - [Usage](#usage-2)
       - [`static` Local Variables](#static-local-variables)
-        - [Explanation](#explanation-18)
-        - [Syntax](#syntax-15)
-      - [`static` Global Variables](#static-global-variables)
         - [Explanation](#explanation-19)
         - [Syntax](#syntax-16)
-      - [`static` Member Variables](#static-member-variables)
+      - [`static` Global Variables](#static-global-variables)
         - [Explanation](#explanation-20)
         - [Syntax](#syntax-17)
-      - [`static` Methods (`static` Member Functions)](#static-methods-static-member-functions)
+      - [`static` Member Variables](#static-member-variables)
         - [Explanation](#explanation-21)
         - [Syntax](#syntax-18)
-      - [`static` Global Functions](#static-global-functions)
+      - [`static` Methods (`static` Member Functions)](#static-methods-static-member-functions)
         - [Explanation](#explanation-22)
         - [Syntax](#syntax-19)
-      - [`static` Instances of Classes](#static-instances-of-classes)
+      - [`static` Global Functions](#static-global-functions)
         - [Explanation](#explanation-23)
         - [Syntax](#syntax-20)
+      - [`static` Instances of Classes](#static-instances-of-classes)
+        - [Explanation](#explanation-24)
+        - [Syntax](#syntax-21)
 
 <!-- vim-markdown-toc -->
 
@@ -269,7 +272,9 @@ const ClassName obj_ptr;
    operations, as they cannot be evaluated at compile time.
 4. It enforces that **certain values and calculations** can be **performed at compile-time**,
    leading to significant performance improvements.
-5. It enhances the code readabilit.
+5. Any variable or object declared with the `constexpr` keyword is constant and **cannot be modified
+   after it is initialized**.
+6. It enhances **the code readabilit**.
 
 #### Allowed Elements (Valid Elements)
 
@@ -405,7 +410,7 @@ constexpr ClassName obj_name( para_list );
 constexpr ClassName obj_ptr;
 ```
 
-##### User-Defined Literals
+##### User-defined Literals
 
 ###### Explanation
 

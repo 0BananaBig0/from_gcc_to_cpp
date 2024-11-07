@@ -218,6 +218,7 @@ static_cast< TargetType >( initializer );
 1. Primitive type conversion.
 2. Pointer type conversion within inheritance.
 3. Converting `void` pointer to another pointer type.
+4. All implicit conversions.
 
 ###### Limitations
 
@@ -277,17 +278,14 @@ dynamic_cast< TargetType >( initializer );
 
 ###### Usage
 
-1. Safe Downcasting with Pointers:
-
+1. Safe downcasting with pointers:
    ```CPP
    class Base {
       public:
          virtual Type funcName(){ ... };
          virtual ~Base()= default;
    };
-
    class Derived: public Base { ... };
-
    int main() {
       Base* base_ptr = new Derived();
       Derived* der_ptr = dynamic_cast< Derived* >( base_ptr );
@@ -297,18 +295,14 @@ dynamic_cast< TargetType >( initializer );
       };
    };
    ```
-
-2. Downcasting with References:
-
+2. Downcasting with references:
    ```CPP
    class Base {
       public:
          virtual Type funcName(){ ... };
          virtual ~Base() = default;
    };
-
    class Derived: public Base { ... };
-
    int main() {
       Base base;   // Not a Derived instance.
       try {
@@ -398,26 +392,29 @@ reinterpret_cast< TargetType >( initializer );
 
 ###### Usage
 
-1. **Pointer Type** Conversions:
+1. **Pointer type** conversions:
    - It is commonly used to convert one pointer type to another, even between unrelated types.
-2. **Reference Type** Conversions:
-   - Similar to pointers, `reinterpret_cast` can convert one reference type to another. This allows
-     for casting references of different types, but care must be taken to ensure the underlying
-     object types are compatible.
-3. Casting **Between Pointer and Integer Types**:
+2. **Reference type** conversions:
+   - Similar to pointers, `reinterpret_cast` can convert one reference type to another.
+   - This allows for casting references of different types, but care must be taken to ensure the
+     underlying object types are compatible.
+3. Casting **between pointer and integer types**:
    - It can be used to cast pointers to integral types (e.g., `uintptr_t`) and vice versa.
-4. **Interfacing with Hardware or System-Level Code**:
+   - **The integral types must be** either a **32-bit** unsigned or a **64-bit** **unsigned type**,
+     depending on the system architecture.
+4. **Interfacing with hardware or system-level code**:
    - Useful in systems programming or when dealing with low-level constructs, such as when
      interfacing with hardware or legacy C libraries.
 
 ###### Requirements for Using `reinterpret_cast`
 
-1. **Pointer or Reference** Types:
+1. **Pointer or reference** Types:
    - The expression being cast must be a pointer or reference type.
-2. **Correctness** of the Cast:
+2. **Correctness** of the cast:
    - Ensure that the object being accessed through the cast pointer is **compatible with the
-     target** type. **Avoid** using `reinterpret_cast` on pointers of **unrelated types** unless you
-     are sure of what you are doing.
+     target** type.
+   - **Avoid** using `reinterpret_cast` on pointers of **unrelated types** unless you are sure of
+     what you are doing.
 
 ##### Notes
 
@@ -426,8 +423,11 @@ reinterpret_cast< TargetType >( initializer );
 2. It is essential to **understand** **whether** a particular cast **involves runtime or
    compile-time checks**.
 3. The distinct naming of these casts **enhances code readability** and **facilitates easy
-   identification during code searches** ( Search for their names to identify where explicit
-   conversions occur. ).
+   identification during code searches**. (Search for their names to identify where explicit
+   conversions occur.)
+4. When **converting a `void` pointer type to a specific pointer type (or vice versa)**,
+   **`static_cast` is the preferred choice**. It is best used for casting between `void` pointer
+   type and other pointer types, provided there’s no need for low-level reinterpretation.
 
 #### `explicit`
 

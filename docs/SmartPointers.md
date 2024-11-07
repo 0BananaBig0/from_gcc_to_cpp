@@ -26,7 +26,10 @@
     - [Explanation](#explanation-3)
     - [Declaration Syntax](#declaration-syntax-2)
     - [Initialization Syntax](#initialization-syntax-2)
+    - [Circular References](#circular-references)
     - [Members and Related Stuffs](#members-and-related-stuffs-2)
+      - [Explanation](#explanation-4)
+      - [Examples](#examples)
       - [Links](#links-2)
       - [Member Types](#member-types-2)
       - [Member Functions](#member-functions-2)
@@ -338,7 +341,68 @@ std::weak_ptr< Type > wptr;
 wptr.reset( sptr );
 ```
 
+#### Circular References
+
 #### Members and Related Stuffs
+
+##### Explanation
+
+1. A circular reference occurs when **two or more objects reference each other in a way** that
+   **creates a cycle**.
+2. This happens when Object A holds a reference to Object B, and Object B holds a reference back to
+   Object A (or when a longer chain of objects reference each other in a loop).
+3. This can cause **memory leaks** or **infinite loops**.
+4. The best approach is to **use a `weak_ptr`** for references between objects.
+
+##### Examples
+
+```CPP
+// Circular references occur.
+#include <iostream>
+#include <memory>
+
+struct Node {
+      std::shared_ptr< Node > next;
+      ~Node() { std::cout << "Node destroyed\n"; }
+};
+
+int main() {
+   auto nodeA = std::make_shared< Node >();
+   auto nodeB = std::make_shared< Node >();
+   std::cout << nodeA.use_count() << std::endl;
+   std::cout << nodeB.use_count() << std::endl;
+   nodeA->next = nodeB;   // nodeB.use_count() + 1;
+   nodeB->next = nodeA;   // nodeA.use_count() + 1; Creates a circular reference
+   std::cout << nodeA.use_count() << std::endl;
+   std::cout << nodeB.use_count() << std::endl;
+   // Both nodes will never be deleted due to circular reference
+   return 0;
+}
+```
+
+```CPP
+// Circular references do not occur.
+#include <iostream>
+#include <memory>
+
+struct Node {
+      std::weak_ptr< Node > next;
+      ~Node() { std::cout << "Node destroyed\n"; }
+};
+
+int main() {
+   auto nodeA = std::make_shared< Node >();
+   auto nodeB = std::make_shared< Node >();
+   std::cout << nodeA.use_count() << std::endl;
+   std::cout << nodeB.use_count() << std::endl;
+   nodeA->next = nodeB;
+   nodeB->next = nodeA;
+   std::cout << nodeA.use_count() << std::endl;
+   std::cout << nodeB.use_count() << std::endl;
+   // Both nodes will be deleted.
+   return 0;
+}
+```
 
 ##### Links
 

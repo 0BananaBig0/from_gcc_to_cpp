@@ -1,8 +1,8 @@
 <!-- vim-markdown-toc GFM -->
 
 - [`make` and Makefile](#make-and-makefile)
-  - [`make`](#make)
-  - [Makefile](#makefile)
+    - [`make`](#make)
+    - [Makefile](#makefile)
   - [Basic Syntax of Makefile](#basic-syntax-of-makefile)
     - [Code](#code)
     - [Explanation](#explanation)
@@ -84,7 +84,7 @@
       - [Example 9: Using a Variable for Source Files and a Pattern Rule to Compile Them](#example-9-using-a-variable-for-source-files-and-a-pattern-rule-to-compile-them)
         - [Code](#code-14)
         - [Explanation](#explanation-16)
-      - [Example 10: Pattern Rule with Variable Target-Pattern Using wildcard](#example-10-pattern-rule-with-variable-target-pattern-using-wildcard)
+      - [Example 10: Pattern Rule with Variable Target-pattern Using wildcard](#example-10-pattern-rule-with-variable-target-pattern-using-wildcard)
         - [Code](#code-15)
         - [Explanation](#explanation-17)
       - [Example 11: Pattern Rule with a Prefix](#example-11-pattern-rule-with-a-prefix)
@@ -729,7 +729,7 @@ $(OBJS): %.o: %.cpp
 4. `$(OBJS): %.o: %.cpp`: A pattern rule that applies to all the object files in `OBJS`, and each
    `.cpp` file will be compiled to its corresponding `.o` file.
 
-##### Example 10: Pattern Rule with Variable Target-Pattern Using wildcard
+##### Example 10: Pattern Rule with Variable Target-pattern Using wildcard
 
 ###### Code
 

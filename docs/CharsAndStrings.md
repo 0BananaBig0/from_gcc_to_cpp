@@ -5,7 +5,7 @@
     - [Explanation](#explanation)
     - [Syntax](#syntax)
     - [Char Types](#char-types)
-  - [Raw Strings (Char **Arrays**)](#raw-strings-char-arrays)
+  - [Raw Strings (`char` **Arrays**)](#raw-strings-char-arrays)
     - [Explanation](#explanation-1)
     - [Syntax](#syntax-1)
   - [`std::string`](#stdstring)
@@ -39,6 +39,7 @@
       - [Helper Classes](#helper-classes-1)
       - [Helper Templates](#helper-templates)
   - [`std::literals` Namespace](#stdliterals-namespace)
+  - [Notes](#notes)
 
 <!-- vim-markdown-toc -->
 
@@ -71,7 +72,7 @@ var_name = 'a letter';
    they all store character data, there are notable **differences** in **their size** and **intended
    use**.
 
-### Raw Strings (Char **Arrays**)
+### Raw Strings (`char` **Arrays**)
 
 #### Explanation
 
@@ -83,7 +84,7 @@ var_name = 'a letter';
    **the number of characters plus one** for the null terminator.
 4. `"a string"`: A string literal, a `const char` array.
 5. A string literal is **stored** in the **read-only section** of memory. However, if it is used to
-   **initialize a non-const char array**, its **contents** will be **copied to the array**, which
+   **initialize a non-const `char` array**, its **contents** will be **copied to the array**, which
    can then be **modified like any other array**.
 6. When **single quotes** or `memcpy` are used to assign or copy values to a `char` array or a
    `char` pointer, **`'\0'` or `0`** **should be explicitly included** at the end.
@@ -130,11 +131,11 @@ char var_name =  var_ptr[index];
 
 1. `std::string` is **a class** in the C++ STL that represents **a sequence of characters**.
 2. It has several features, including the following:
-   - **Dynamic Sizing**: `std::string` can grow and shrink in size automatically, allowing for easy
+   - **Dynamic sizing**: `std::string` can grow and shrink in size automatically, allowing for easy
      modifications without the need for manual memory management.
-   - **Memory Management**: It handles memory allocation and deallocation internally, reducing the
+   - **Memory management**: It handles memory allocation and deallocation internally, reducing the
      risk of memory leaks and buffer overflows.
-   - **Null-Termination**: Unlike C-style strings, which require a null terminator to indicate the
+   - **Null-termination**: Unlike C-style strings, which require a null terminator to indicate the
      end of the string, `std::string` **manages this internally**.
    - **Compatibility**: It can easily be converted to and from C-style strings using the `c_str()`
      member function.
@@ -314,9 +315,9 @@ std::string var_name( count, ch_ptr );
    (function template).
 2. `operator==/!=/</>/<=/>=` (removed in C++20), `operator<=>` (C++20): Lexicographically compares
    two strings (function template).
-3. `std::swap( std::basic_string )`: Specializes the `std::swap` algorithm (function template).
-4. `erase( std::basic_string )`, `erase_if( std::basic_string )` (C++20): Erases all elements
-   satisfying specific criteria (function template).
+3. `std::swap( std::string )`: Specializes the `std::swap` algorithm (function template).
+4. `erase( std::string )`, `erase_if( std::string )` (C++20): Erases all elements satisfying
+   specific criteria (function template).
 5. `operator<<`, `operator>>`: Performs stream input and output on strings (function template).
 6. `getline`: Read data from an I/O stream into a string (function template).
 
@@ -336,7 +337,7 @@ std::string var_name( count, ch_ptr );
 
 ##### Helper Classes
 
-1. `std::hash< std::basic_string >`: Hash support for strings (class template specialization).
+1. `std::hash< std::string >`: Hash support for strings (class template specialization).
 
 #### String Types in STL
 
@@ -351,22 +352,23 @@ std::string var_name( count, ch_ptr );
    library, usually which is **smaller than 16 characters**, **on stack**.
 2. **Otherwise**, it stores a string **on heap**.
 3. Therefore, if the string is **small enough**, we **define** it **as a `std::string`** type instad
-   of const char pointer type. However, if the code compiled in **debug mode**, even the string is
-   **small enough**, it **still** causes **a head allocation**.
+   of const `char` pointer type.
+4. However, if the code compiled in **debug mode**, even the string is **small enough**, it
+   **still** causes **a head allocation**.
 
 #### How to Make Strings Faster in C++ (C++17)
 
 1. Use **`std::string_view`** to **get a substring** of a `std::string`, instead of
    `std::string::substr()`.
-2. Use **const char pointer** to **store a string**, instead of `std::string`. `std::string`
-   requires one memory allocation, while const char pointer does not.
+2. Use **const `char` pointer** to **store a string**, instead of `std::string`. `std::string`
+   requires one memory allocation, while const `char` pointer does not.
 3. When **a `const char` pointer** is passed **to** a function whose argument is **a
    `const std::string` reference**, **one memory allocation** occurs. However, if the argument of
    the function is changed from a `const std::string` reference to **a `std::string_view`**, **no
    memory allocation** occurs.
-4. Every time, **a char pointer or a char array** is **converted into a `std::string` implicitly**,
-   **although** the argument of the function is a `std::string` **reference**, **one memory
-   allocation occurs**.
+4. Every time, **a `char` pointer or a `char` array** is **converted into a `std::string`
+   implicitly**, **although** the argument of the function is a `std::string` **reference**, **one
+   memory allocation occurs**.
 
 ### `std::string_view`
 
@@ -421,7 +423,7 @@ std::string_view var_name( count, ch_ptr );
 
 1. `CharT`: Character type.
 2. `Traits`: CharTraits class specifying the operations on the character type. Like for
-   `std::basic_string`, `Traits::char_type` must name the same type as `CharT` or the program is
+   `std::string`, `Traits::char_type` must name the same type as `CharT` or the program is
    ill-formed.
 
 ##### Member Types
@@ -506,10 +508,10 @@ std::string_view var_name( count, ch_ptr );
 
 ##### Helper Templates
 
-1. `template< class CharT, class Traits > inline constexpr bool ranges::enable_borrowed_range< std::basic_string_view< CharT, Traits > > = true;`
+1. `template< class CharT, class Traits > inline constexpr bool ranges::enable_borrowed_range< std::string_view< CharT, Traits > > = true;`
    (since C++20): This specialization of `ranges::enable_borrowed_range` makes `basic_string_view`
    satisfy `borrowed_range`.
-2. `template< class CharT, class Traits > inline constexpr bool ranges::enable_view< std::basic_string_view < CharT, Traits > > = true;`
+2. `template< class CharT, class Traits > inline constexpr bool ranges::enable_view< std::string_view < CharT, Traits > > = true;`
    (since C++20): This specialization of `ranges::enable_view` makes `basic_string_view` satisfy
    view.
 
@@ -517,3 +519,9 @@ std::string_view var_name( count, ch_ptr );
 
 1. [`std::literals` in cplusplus]().
 2. [`std::literals` in cppreference](https://en.cppreference.com/w/cpp/symbol_index/literals).
+
+### Notes
+
+1. The strings stored in `const char` arrays, `const char` pointers, and `char` pointers cannot be
+   modified. It is not recommended to store a string in a `char` pointer.
+2. Only strings stored in `char` arrays or `std::string` can be modified.

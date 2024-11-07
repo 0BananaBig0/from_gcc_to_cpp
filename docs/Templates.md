@@ -349,7 +349,7 @@ int main() {
 1. [`parameter packs` in cplusplus]().
 2. [`parameter packs` in cppreference](https://en.cppreference.com/w/cpp/language/parameter_pack).
 
-### Template Parameters with Non-Type Parameters
+### Template Parameters with Non-type Parameters
 
 #### Explanation
 

@@ -19,7 +19,7 @@
     - [Structure](#structure-1)
     - [Performance](#performance-1)
     - [Other Characteristics](#other-characteristics-1)
-  - [Global/Static Memory or Data Segment](#globalstatic-memory-or-data-segment)
+  - [Data Segment (Global/Static Memory)](#data-segment-globalstatic-memory)
     - [Purpose](#purpose-2)
     - [Allocation/Deallocation](#allocationdeallocation-2)
     - [Lifetime](#lifetime-2)
@@ -28,7 +28,7 @@
     - [Structure](#structure-2)
     - [Performance](#performance-2)
     - [Other Characteristics](#other-characteristics-2)
-  - [Code Segment](#code-segment)
+  - [Code Segment (Text Segment)](#code-segment-text-segment)
     - [Purpose](#purpose-3)
     - [Allocation/Deallocation](#allocationdeallocation-3)
     - [Lifetime](#lifetime-3)
@@ -78,9 +78,15 @@
 
 #### Size
 
-1. **Limited size** (typically between **1 MB to 8 MB**, determined by the OS).
-2. Prone to **stack overflow** for deep recursion or large allocations.
-3. The size **cannot grow dynamically**.
+1. **Predefined to a default value** (typically between **1 MB and 10 MB**, determined by the OS),
+   but the stack **can grow** as the application progresses. (Grows downward in memory).
+2. However, **the stack's growth** is usually **limited by system settings**.
+3. If the stack grows too large, a **stack overflow** occurs.
+4. The stack is **prone to overflow** due to **deep recursion** or **large allocations** of local
+   variables.
+5. On Linux systems, **the stack size limit** for **a process** **can be adjusted**, either
+   temporarily or permanently, **using the `ulimit` command**, providing flexibility in managing
+   memory resources during runtime.
 
 #### Structure
 
@@ -126,7 +132,7 @@
 #### Size
 
 1. **Predefined** to a default value according to the system but **can grow and shrink** as the
-   application progresses.
+   application progresses. (Grows upward in memory).
 2. Limited by **system memory** and subject to **fragmentation**.
 3. Large allocations are possible, unlike the stack.
 
@@ -147,7 +153,7 @@
    **performance cost** of this allocation is **high**.
 3. **More cache misses**.
 
-### Global/Static Memory or Data Segment
+### Data Segment (Global/Static Memory)
 
 #### Purpose
 
@@ -175,11 +181,12 @@
 #### Structure
 
 1. Includes:
-   - **Initialized Data Segment**: Stores variables with **explicit initial** values.
-   - **BSS (Uninitialized Data Segment, Block Started by Symbol)**: Stores variables with **no
+   - **Constant segment**: Stores **string literals** and **constants**.
+   - **Initialized data segment**: Stores variables with **explicit initial** values.
+   - **BSS (uninitialized data segment, block started by symbol)**: Stores variables with **no
      initial** values, which are initialized to **zero by default**.
-   - **Character Constant Area**: Stores **string literals** and **constants**.
 2. Organized as **a continuous memory block** for static, global and const variables/values.
+3. **The storage order: Constant segment, initialized data segment, BSS**.
 
 #### Performance
 
@@ -191,7 +198,7 @@
 1. **Persistent values** can introduce side effects if not managed properly.
 2. Typically **read-only** for constants to prevent accidental modification.
 
-### Code Segment
+### Code Segment (Text Segment)
 
 #### Purpose
 
@@ -271,11 +278,15 @@
 
 ### Memory Partitioning in C++ Program Execution
 
-1. Stack vs. Heap: The stack is **fast** and **automatically managed**, but **limited in size**. The
-   heap allows for more flexible memory usage at the cost of **manual management**.
-2. Global/Static vs. Local: Global and static variables have global lifetimes, while local variables
-   (on the stack) have a shorter scope, limited to the block they are declared in.
+1. Stack vs. Heap:
+   - The stack is **fast** and **automatically managed**, but **limited in size**.
+   - The heap allows for more flexible memory usage at the cost of **manual management**.
+2. Global/Static vs. Local:
+   - Global and static variables have global lifetimes, while local variables (on the stack) have a
+     shorter scope, limited to the block they are declared in.
 
 ### Notes
 
 1. store data on stack > store data on heap > store pointers on stack > store pointers on heap.
+2. The storage order: Text segment, data segment, memory mapping segment, heap, stack. (May vary,
+   depending on OS, hardwares and compiler settings)

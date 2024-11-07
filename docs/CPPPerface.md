@@ -407,7 +407,8 @@
 
 1. An lvalue reference is **a reference to a persistent object** (i.e., an object with a
    well-defined memory address, such as variables or class members).
-2. It binds only to lvalues — objects that can appear on the left side of an assignment.
+2. It **binds only to lvalues** — objects that can appear on the left side of an assignment.
+3. However, **a `const` lvalue reference** can bind to **a literal value**.
 
 ##### Usage
 
@@ -438,6 +439,8 @@
    it **behaves much like a copy**.
 5. This is primarily because primitive types do not have complex resource management like objects
    that own dynamic memory.
+6. When **an rvalue reference is named** (i.e., bound to a variable), the compiler **treats it as an
+   lvalue**.
 
 ##### Usage
 
@@ -488,8 +491,9 @@
 1. In C++, the term "interface" does **not have a formal definition** like it does in some other
    programming languages (like Java).
 2. However, in C++, an interface is generally understood to be **a class** that **defines a set of
-   pure virtual functions**, which means that it declares functions that **must be implemented by
+   pure `virtual` functions**, which means that it declares functions that **must be implemented by
    derived classes** but does **not provide any implementation of its own**.
+3. **It only contains pure `virtual` functions**.
 
 ### Keyword
 

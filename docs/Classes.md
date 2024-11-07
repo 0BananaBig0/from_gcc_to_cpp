@@ -149,6 +149,8 @@
       - [Syntax](#syntax-26)
   - [`explicit`](#explicit)
   - [`using`](#using)
+  - [Differences Between Hiding, Overloading, Overriding, and Overwriting](#differences-between-hiding-overloading-overriding-and-overwriting)
+  - [Notes](#notes-4)
 
 <!-- vim-markdown-toc -->
 
@@ -365,6 +367,15 @@ class {
 ```
 
 ```CPP
+union {
+      class {
+            ...
+      };
+      ...;
+}
+```
+
+```CPP
 // In this case, members should all be public.
 class {
   ...
@@ -397,7 +408,7 @@ class ClassName {
    invoked the member function. It allows access to the calling object's members.
 2. `this` is **implicitly passed** to all **non-static** member **functions**.
 3. It can be useful for **disambiguation** when member variables and parameters have the same name.
-4. It is **not available in static member functions** as there is no associated object.
+4. It is **not available in `static` member functions** as there is no associated object.
 
 ##### Syntax
 
@@ -460,9 +471,12 @@ class ClassName {
 1. Reference member variables are **alternatives to pointers** that **refer to existing objects**.
    They **cannot be reassigned** once established.
 2. Theyt must be **initialized when defined** and **cannot be null**.
-3. There are **only two way to initialize** a const reference:
+3. There are **only two ways to initialize** a reference member:
    - **In-Class Initialization**: It can be **overridden** by the constructor.
    - **Constructor Initialization**.
+4. When **initializing a reference member** in a class, the reference **must be bound to** either
+   **another member variable** of the class or **an external variable passed as a reference** during
+   object construction.
 
 ##### Syntax
 
@@ -694,6 +708,16 @@ class ClassName {
    existing object**.
 2. This is essential for managing resource ownership and ensuring that objects behave properly when
    passed, returned, or assigned.
+3. **The parameter** of a copy constructor and copy assignment operator **should not be passed by
+   value**, as this can lead to issues.
+   - When passing the argument by value, the copy constructor will be called to create a temporary
+     object for the parameter.
+   - This temporary object creation requires another call to the copy constructor, which leads to a
+     recursive cycle.
+   - The cycle continues until the call stack overflows, causing a stack overflow error.
+   - In other words, passing by value in the copy constructor or copy assignment operator **triggers
+     an infinite loop**, as each invocation requires another copy of the argument, which again
+     invokes the copy constructor.
 
 ##### Default Copy ( `default` ) ( Avoid ) ( Double Destructions )
 
@@ -1160,13 +1184,14 @@ class Derived: public Base {
    that it does **not provide any implementation** in the **base** class.
 2. Pure `virtual` functions enforce a contract that derived classes must fulfill, promoting **design
    consistency**.
-3. A class containing **at least one pure** `virtual` function is termed **an abstract class** and
+3. A class containing **at least one pure `virtual` function** is termed **an abstract class** and
    **cannot be instantiated**.
-4. **Abstract classes** serve as **interfaces** or **base types** for deriving more specific
-   implementations.
-5. **All derived** classes **must override the pure `virtual` functions**; **otherwise**, they also
+4. **The abstract class is not restricted to only contain `virtual` functions**.
+5. If **a class only contains pure `virtual` functions**, it serves as **an interface** or **a base
+   type** for deriving more specific implementations.
+6. **All derived** classes **must override the pure `virtual` functions**; **otherwise**, they also
    become **abstract**.
-6. **Abstract classes** may contain **non-virtual member functions** in addition to pure `virtual`
+7. **Abstract classes** may contain **non-virtual member functions** in addition to pure `virtual`
    ones.
 
 ##### Syntax
@@ -1359,10 +1384,11 @@ class ClassB {
 ##### Explanation
 
 1. A final function is **a `virtual` function** that **cannot be overridden** by any derived class.
-   The final specifier ensures that the function's implementation remains fixed in the class that
+2. The final specifier ensures that the function's implementation remains fixed in the class that
    declares it as final.
-2. This feature can **improve performance** by **devirtualizing calls** to the final function, as
-   the compiler can safely inline such calls, knowing that no further overrides exist.
+3. This feature can **improve performance** by **devirtualizing calls** to the final function, as
+   the compiler can safely **inline such calls**, knowing that no further overrides exist and **not
+   add this function to `vtable`**.
 
 ##### Syntax
 
@@ -1404,3 +1430,11 @@ class FinalClass final {};
 ### Differences Between Hiding, Overloading, Overriding, and Overwriting
 
 1. [Differences Between Hiding, Overloading, Overriding, and Overwriting](./HidingOverloadingOverridingAndOverwriting.md)
+
+### Notes
+
+1. All destructors of base classes (parent classes) should be declared as virtual functions.
+2. All functions of base classes (parent classes) that you intend to override in derived classes
+   need to be declared as virtual.
+3. The parameter of a copy constructor and copy assignment operator should not be passed by value,
+   as this can lead to a issue, an infinite loop.

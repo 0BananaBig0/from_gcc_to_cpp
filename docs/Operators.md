@@ -153,6 +153,16 @@ ClassName& operator=( const ClassName& ) = default;
 
 1. The copy-assignment operator can be overloaded to **handle deep copies**, manage resources
    appropriately, and perform self-assignment checks.
+2. **The parameter** of a copy constructor and copy assignment operator **should not be passed by
+   value**, as this can lead to issues.
+   - When passing the argument by value, the copy constructor will be called to create a temporary
+     object for the parameter.
+   - This temporary object creation requires another call to the copy constructor, which leads to a
+     recursive cycle.
+   - The cycle continues until the call stack overflows, causing a stack overflow error.
+   - In other words, passing by value in the copy constructor or copy assignment operator **triggers
+     an infinite loop**, as each invocation requires another copy of the argument, which again
+     invokes the copy constructor.
 
 ###### Syntax
 
