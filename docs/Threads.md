@@ -103,43 +103,46 @@
         - [Specialized for Integral and Pointer Types Only](#specialized-for-integral-and-pointer-types-only)
         - [Specialized for Integral Types Only](#specialized-for-integral-types-only)
       - [Type Aliases (Only for `std::atomic`)](#type-aliases-only-for-stdatomic)
-  - [`std::condition_variable`](#stdcondition_variable)
+  - [`std::condition_variable` and `std::condition_variable_any`](#stdcondition_variable-and-stdcondition_variable_any)
+    - [`std::condition_variable`](#stdcondition_variable)
+    - [`std::condition_variable_any`](#stdcondition_variable_any)
+    - [Examples](#examples)
+    - [Members and Related Stuffs](#members-and-related-stuffs-7)
+      - [Links](#links-8)
+      - [Nested Types](#nested-types-2)
+      - [Member Functions](#member-functions-7)
+  - [`std::notify_all_at_thread_exit`](#stdnotify_all_at_thread_exit)
     - [Explanation](#explanation-14)
     - [Syntax](#syntax-13)
-    - [Related Stuffs](#related-stuffs)
-  - [`std::condition_variable_any`](#stdcondition_variable_any)
+  - [`std::async`](#stdasync)
     - [Explanation](#explanation-15)
     - [Syntax](#syntax-14)
-    - [Related Stuffs](#related-stuffs-1)
-  - [`std::async`](#stdasync)
-    - [Explanation](#explanation-16)
-    - [Syntax](#syntax-15)
-    - [Related Stuffs](#related-stuffs-2)
-      - [Links](#links-8)
+    - [Related Stuffs](#related-stuffs)
+      - [Links](#links-9)
       - [Parameters](#parameters)
       - [Return Value](#return-value)
       - [Launching Policies](#launching-policies)
     - [Notes](#notes-2)
   - [`std::future`](#stdfuture)
-    - [Explanation](#explanation-17)
+    - [Explanation](#explanation-16)
     - [Declaration Syntax](#declaration-syntax-2)
     - [Initialization Syntax](#initialization-syntax-2)
-      - [Members and Related Stuffs](#members-and-related-stuffs-7)
-        - [Links](#links-9)
-        - [Member Functions](#member-functions-7)
+      - [Members and Related Stuffs](#members-and-related-stuffs-8)
+        - [Links](#links-10)
+        - [Member Functions](#member-functions-8)
         - [`std::future_status` (Returned by `wait_for` and `wait_until` Functions)](#stdfuture_status-returned-by-wait_for-and-wait_until-functions)
   - [`std::shared_future`](#stdshared_future)
     - [Declaration Syntax](#declaration-syntax-3)
     - [Initialization Syntax](#initialization-syntax-3)
-    - [Members and Related Stuffs](#members-and-related-stuffs-8)
-      - [Links](#links-10)
-      - [Member Functions](#member-functions-8)
+    - [Members and Related Stuffs](#members-and-related-stuffs-9)
+      - [Links](#links-11)
+      - [Member Functions](#member-functions-9)
         - [`std::future_status` (Returned by `wait_for` and `wait_until` Functions)](#stdfuture_status-returned-by-wait_for-and-wait_until-functions-1)
   - [Differences Between `std::future` and `std::shared_future`](#differences-between-stdfuture-and-stdshared_future)
   - [`std::promise`](#stdpromise)
-    - [Explanation](#explanation-18)
-    - [Syntax](#syntax-16)
-    - [Related Stuffs](#related-stuffs-3)
+    - [Explanation](#explanation-17)
+    - [Syntax](#syntax-15)
+    - [Related Stuffs](#related-stuffs-1)
   - [Notes](#notes-3)
 
 <!-- vim-markdown-toc -->
@@ -203,14 +206,14 @@ std::thread thread_name( a_lambad_func, arg_list_of_the_lambad_func );
 ```
 
 ```CPP
-// Move constructor.
 std::thread thread_name1( ... );
+// Move constructor.
 std::thread thread_name2( std::move( thread_name1 ) );
 ```
 
 ```CPP
-// Move constructor.
 std::thread thread_name1( ... );
+// Move constructor.
 std::thread thread_name2 = std::move( thread_name1 );
 ```
 
@@ -316,14 +319,14 @@ std::jthread thread_name( a_lambad_func, arg_list_of_the_lambad_func );
 ```
 
 ```CPP
-// Move constructor.
 std::jthread thread_name1( ... );
+// Move constructor.
 std::jthread thread_name2( std::move( thread_name1 ) );
 ```
 
 ```CPP
-// Move constructor.
 std::jthread thread_name1( ... );
+// Move constructor.
 std::jthread thread_name2 = std::move( thread_name1 );
 ```
 
@@ -661,7 +664,8 @@ std::shared_timed_mutex stmutex_name;
 
 1. All lock classes or functions that receive mutex objects implement the locking or unlocking
    behavior by calling the mutex object's lock or unlock member functions.
-2. All lock objects do not manage the lifetime of the mutex object in any way: the duration of the
+2. All mutex objects are passed to them by reference.
+3. All lock objects do not manage the lifetime of the mutex object in any way: the duration of the
    mutex object shall extend at least until the destruction of the lock object that locks it.
 
 ### `std::lock_guard`
@@ -746,7 +750,8 @@ std::lock_guard< MutexType > lck( mtx, std::adopt_lock );
 6. While **acquiring a shared lock** allows other threads to also acquire shared locks, **no thread
    can acquire an exclusive lock** until all shared locks are released.
 7. The class does not manage the lifetime of the mutex object.
-8. Its header file is `<shared_mutex>`.
+8. **The `MutexType` used with `std::shared_lock` must be a shared mutex type**.
+9. Its header file is `<shared_mutex>`.
 
 #### Syntax
 
@@ -824,6 +829,8 @@ std::shared_lock< MutexType > slck( mtx, tpoint );
 
 1. [`std::unique_lock` in cplusplus](https://cplusplus.com/reference/mutex/unique_lock/).
 2. [`std::unique_lock` in cppreference](https://en.cppreference.com/w/cpp/thread/unique_lock).
+3. [`std::shared_lock` in cplusplus]().
+4. [`std::shared_lock` in cppreference](https://en.cppreference.com/w/cpp/thread/shared_lock).
 
 ##### Template Parameters
 
@@ -862,8 +869,8 @@ std::shared_lock< MutexType > slck( mtx, tpoint );
 
 ##### Non-member Functions
 
-1. `std::swap( std::unique_lock )` (C++11): Specializes the `std::swap` algorithm (function
-   template).
+1. `std::swap( std::unique_lock )` (C++11), `std::swap( std::unique_lock )` (C++11): Specializes the
+   `std::swap` algorithm (function template).
 
 ### `std::scoped_lock`
 
@@ -1132,21 +1139,122 @@ std::atomic_ref< Type > avar_name2( avar_name1 );
 1. [`std::atomic` in cplusplus](https://cplusplus.com/reference/atomic/atomic/).
 2. [`std::atomic` in cppreference](https://en.cppreference.com/w/cpp/atomic/atomic).
 
-### `std::condition_variable`
+### `std::condition_variable` and `std::condition_variable_any`
+
+#### `std::condition_variable`
+
+1. A condition variable is **a class object** able to **block the calling thread until notified to
+   resume**.
+2. It **uses a `std::unique_lock`** (over a mutex) to **lock the thread** when one of its **wait
+   functions** is called.
+3. The thread **remains blocked until woken up by another thread** that calls **a notification
+   function** **on the same `std::condition_variable` object**.
+4. Objects of type `std::condition_variable` always use `std::unique_lock< std::mutex >` to `wait`:
+   for an alternative that works with any kind of lockable type, see `std::condition_variable_any`.
+5. Its header file is `<condition_variable>`.
+
+#### `std::condition_variable_any`
+
+1. It's **the same as `std::condition_variable`**, except that **its wait functions can take any
+   lockable type** as argument (`std::condition_variable` objects can only take
+   `std::unique_lock< std::mutex >`).
+2. Other than that, they are identical.
+3. However, `std::condition_variable_any` is slower than `std::condition_variable`.
+4. Its header file is `<condition_variable>`.
+
+#### Examples
+
+```CPP
+// condition_variable example
+#include <iostream>             // std::cout
+#include <thread>               // std::thread
+#include <mutex>                // std::mutex, std::unique_lock
+#include <condition_variable>   // std::condition_variable
+
+std::mutex mtx;
+std::condition_variable cv;
+bool ready = false;
+
+void print_id( int id ) {
+   std::unique_lock< std::mutex > lck( mtx );
+   while( !ready )
+      cv.wait( lck );
+   // ...
+   std::cout << "thread " << id << '\n';
+}
+
+void go() {
+   std::unique_lock< std::mutex > lck( mtx );
+   ready = true;
+   cv.notify_all();
+}
+
+int main() {
+   std::thread threads[10];
+   // spawn 10 threads:
+   for( int i = 0; i < 10; ++i )
+      threads[i] = std::thread( print_id, i );
+
+   std::cout << "10 threads ready to race...\n";
+   go();   // go!
+
+   for( auto& th: threads )
+      th.join();
+
+   return 0;
+}
+```
+
+#### Members and Related Stuffs
+
+##### Links
+
+1. [`<condition_variable>` in cplusplus](https://cplusplus.com/reference/condition_variable/).
+2. [`<condition_variable>` in cppreference](https://en.cppreference.com/w/cpp/thread#Condition_variables).
+3. [`std::condition_variable` in cplusplus](https://cplusplus.com/reference/condition_variable/condition_variable/).
+4. [`std::condition_variable` in cppreference](https://en.cppreference.com/w/cpp/thread/condition_variable).
+5. [`std::condition_variable_any` in cplusplus](https://cplusplus.com/reference/condition_variable/condition_variable_any/).
+6. [`std::condition_variable_any` in cppreference](https://en.cppreference.com/w/cpp/thread/condition_variable_any).
+
+##### Nested Types
+
+1. `native_handle_type`: Implementation-defined.
+
+##### Member Functions
+
+1. (constructor): Constructs the object (public member function).
+2. (destructor): Destructs the object (public member function).
+3. `operator=[deleted]`: Not copy-assignable (public member function).
+4. `notify_one`: Notifies one waiting thread (public member function).
+5. `notify_all`: Notifies all waiting threads (public member function).
+6. `wait`: Blocks the current thread until the condition variable is awakened (public member
+   function).
+7. `wait_for`: Blocks the current thread until the condition variable is awakened or after the
+   specified timeout duration (public member function).
+8. `wait_until`: Blocks the current thread until the condition variable is awakened or until
+   specified time point has been reached (public member function).
+9. `native_handle`: Returns the native handle (public member function).
+
+### `std::notify_all_at_thread_exit`
 
 #### Explanation
 
+1. When the calling **thread exits**, **all threads waiting on `cond`** are **notified to resume**
+   execution.
+2. The function also **acquires ownership of the lock on the mutex object** managed by `lck`, which
+   is **stored internally** by the function and **unlocked at thread exit** (just **before notifying
+   all threads**), behaving as if the following was called once all objects with thread storage
+   duration have been destroyed:
+   - `lck.unlock()`;
+   - `cond.notify_all()`;
+
 #### Syntax
 
-#### Related Stuffs
-
-### `std::condition_variable_any`
-
-#### Explanation
-
-#### Syntax
-
-#### Related Stuffs
+```CPP
+// Its declaration syntax.
+void notify_all_at_thread_exit( std::condition_variable& cond,
+                                std::unique_lock< std::mutex > lk );
+```
 
 ### `std::async`
 

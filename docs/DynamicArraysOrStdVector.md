@@ -91,8 +91,10 @@ std::vector< Type > arr_name2 = arr_name1;
 ```
 
 ```CPP
+// Initializer list constructor.
+std::vector< Type > arr_name1( { ... } );
 // Move constructor.
-std::vector< Type > arr_name( { ... } );
+std::vector< Type > arr_name2 = std::move( arr_name1 );
 ```
 
 ```CPP

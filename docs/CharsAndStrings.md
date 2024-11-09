@@ -162,7 +162,7 @@ std::string var_name( "a string" );
 
 ```CPP
 // Initializer list constructor.
-std::string var_name{ "a string" };
+std::string var_name{ 'letter1', 'letter2', ... };
 ```
 
 ```CPP
@@ -176,21 +176,21 @@ var_name += "..."; // Allowed.
 
 ```CPP
 // Initializer list constructor.
-std::string var_name1{ "a string" };
+std::string var_name1{ 'letter1', 'letter2', ... };
 // Copy constructor.
 std::string var_name2( var_name1 );
 ```
 
 ```CPP
 // Initializer list constructor.
-std::string var_name1{ "a string" };
+std::string var_name1{ 'letter1', 'letter2', ... };
 // Move constructor.
 std::string var_name2( std::move( var_name1 ) );
 ```
 
 ```CPP
 // Initializer list constructor.
-std::string var_name1{ "a string" };
+std::string var_name1{ 'letter1', 'letter2', ... };
 // Constructs the string with the contents of the range `[first, last)`.
 std::string var_name2( var_name1.begin(), var_name1.end() );
 ```
@@ -396,12 +396,12 @@ std::string_view var_name( "a string" );
 
 ```CPP
 // Initializer list constructor.
-std::string_view var_name{ "a string" };
+std::string_view var_name{ 'letter1', 'letter2', ... };
 ```
 
 ```CPP
 // Initializer list constructor.
-std::string str = { "a string" };
+std::string str = { 'letter1', 'letter2', ... };
 // Constructs a `std::string_view` over the range `[first, last)`.
 std::string_view var_name( str.begin(), str.end() );
 ```

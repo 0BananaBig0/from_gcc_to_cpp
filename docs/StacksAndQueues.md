@@ -89,6 +89,7 @@ std::stack< Type > stack_name;
 ```
 
 ```CPP
+// Initializer list constructor.
 Container< Type > cont = { ... };
 // Copy the content of the `cont`.
 std::stack< Type, Container< Type > > stack_name( cont );
@@ -100,21 +101,21 @@ std::stack< Type, Container< Type > > stack_name( Container< Type >{ ... } );
 ```
 
 ```CPP
-// Move the content of the underlying container.
+// Initializer list constructor.
 std::stack< Type > stack_name1( { ... } );
 // Copy constructor.
 std::stack< Type > stack_name2( stack_name1 );
 ```
 
 ```CPP
-// Move the content of the underlying container.
+// Initializer list constructor.
 std::stack< Type > stack_name1( { ... } );
 // Copy constructor.
 std::stack< Type > stack_name2 = stack_name1;
 ```
 
 ```CPP
-// Move the content of the underlying container.
+// Initializer list constructor.
 std::stack< Type > stack_name1( { ... } );
 // Move constructor.
 std::stack< Type > stack_name2( std::move( stack_name1 ) );
@@ -136,7 +137,7 @@ std::stack< Type, Container< Type > >* stack_ptr = new std::stack< Type >( Conta
 ```
 
 ```CPP
-// Move the content of the underlying container.
+// Initializer list constructor.
 std::stack< Type > stack_name( { ... } );
 std::stack< Type >* stack_ptr = new std::stack< Type >( stack_name );
 ```
@@ -258,21 +259,21 @@ std::queue< Type, Container< Type > > queue_name( Container< Type >{ ... } );
 ```
 
 ```CPP
-// Move the content of the underlying container.
+// Initializer list constructor.
 std::queue< Type > queue_name1( { ... } );
 // Copy constructor.
 std::queue< Type > queue_name2( queue_name1 );
 ```
 
 ```CPP
-// Move the content of the underlying container.
+// Initializer list constructor.
 std::queue< Type > queue_name1( { ... } );
 // Copy constructor.
 std::queue< Type > queue_name2 = queue_name1;
 ```
 
 ```CPP
-// Move the content of the underlying container.
+// Initializer list constructor.
 std::queue< Type > queue_name1( { ... } );
 // Move constructor.
 std::queue< Type > queue_name1( std::move( queue_name1 ) );
@@ -294,7 +295,7 @@ std::queue< Type, Container< Type > >* queue_ptr = new std::queue< Type >( Conta
 ```
 
 ```CPP
-// Move the content of the underlying container.
+// Initializer list constructor.
 std::queue< Type > queue_name( { ... } );
 std::queue< Type >* queue_ptr = new std::queue< Type >( queue_name );
 ```
@@ -637,13 +638,15 @@ std::deque< Type > deque_name2 = deque_name1;
 ```
 
 ```CPP
+// Initializer deque constructor.
+std::deque< Type > deque_name1 = { ... };
 // Move constructor.
-std::deque< Type > deque_name( { ... } );
+std::deque< Type > deque_name2 = std::move( deque_name1 );
 ```
 
 ```CPP
-// Move the content of the underlying container.
-std::deque< Type, Container< Type > > deque_name1( Container< Type >{ ... } );
+// Initializer deque constructor.
+std::deque< Type > deque_name1 = { ... };
 // Constructs the underlying container with the contents of the range `[first, last)`.
 std::deque< Type, Container< Type > > deque_name2( deque_name1.begin(), deque_name2.end() );
 ```

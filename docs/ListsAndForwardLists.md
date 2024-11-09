@@ -94,8 +94,10 @@ std::list< Type > list_name2 = list_name1;
 ```
 
 ```CPP
+// Initializer list constructor.
+std::list< Type > list_name1( { ... } );
 // Move constructor.
-std::list< Type > list_name( { ... } );
+std::list< Type > list_name2 = std::move( list_name1 );
 ```
 
 ```CPP
@@ -272,8 +274,10 @@ std::forward_list< Type > list_name2 = list_name1;
 ```
 
 ```CPP
+// Initializer list constructor.
+std::forward_list< Type > list_name1( { ... } );
 // Move constructor.
-std::forward_list< Type > list_name( { ... } );
+std::forward_list< Type > list_name2 = std::move( list_name1 );
 ```
 
 ```CPP

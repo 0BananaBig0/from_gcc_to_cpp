@@ -275,6 +275,30 @@ ClassName< arg_list1 > obj1;              // Utilizes the generic version.
 ClassName< arg_list2, arg_list3 > obj2;   // Utilizes the specialized version.
 ```
 
+```CPP
+// Definition syntax.
+template< typename Type1, typename T2, ... > class ClassName {
+      // Implementation.
+};
+
+// Partial specialization for generic reference types.
+template< typename Type1, typename T2, ... > class ClassName< T1&, T2&, ... > {
+      // Another implementation.
+};
+```
+
+```CPP
+// Definition syntax.
+template< typename Type1, typename T2, ... > class ClassName {
+      // Implementation.
+};
+
+// Partial specialization for generic pointer types.
+template< typename Type1, typename T2, ... > class ClassName< T1*, T2*, ... > {
+      // Another implementation.
+};
+```
+
 ### Variadic Templates (Template Packs)
 
 #### Explanation

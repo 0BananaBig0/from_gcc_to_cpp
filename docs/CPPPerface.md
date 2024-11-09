@@ -450,6 +450,16 @@
    that own dynamic memory.
 6. When **an rvalue reference is named** (i.e., bound to a variable), the compiler **treats it as an
    lvalue**.
+7. Rvalue references are a way for the compiler to distinguish between lvalues (objects that have a
+   name and can be assigned to) and rvalues (temporary objects that are about to go out of scope).
+8. However, **just accepting an rvalue reference** in **a function does not** automatically **mean**
+   that **the object will be moved**.
+   - Rvalue reference simply indicates that the function can accept an rvalue (temporary object).
+   - `std::move` is the mechanism used to cast an lvalue into an rvalue, signaling that you want to
+     move the object instead of copying it.
+9. **Even** when a function **receives arguments as rvalue references** (i.e., when they are passed
+   as `Type&&`), you still need to **use `std::move` explicitly** to transfer ownership of these
+   arguments to other objects.
 
 ##### Usage
 
@@ -487,6 +497,9 @@
 3. For **all primitive-type** variables including poiners and references, it does nothing, **only
    copys** them directly.
 4. It **only** tells the compiler to **treat an object as an rvalue reference**.
+5. **Even** when a function **receives arguments as rvalue references** (i.e., when they are passed
+   as `Type&&`), you still need to **use `std::move` explicitly** to transfer ownership of these
+   arguments to other objects.
 
 ##### Usage
 
