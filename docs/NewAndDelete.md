@@ -145,3 +145,7 @@ ptr = nullptr;   // Good practice to avoid dangling pointers.
 ### `free`
 
 1. [`free`](./SomeCFunctionsAndOperators.md#free)
+
+### Pointers
+
+1. [Pointers](./CPPPerface.md#pointers)

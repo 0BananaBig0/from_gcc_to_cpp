@@ -249,7 +249,11 @@
 2. Pointers enable **dynamic memory allocation**, efficient array handling, and the ability to pass
    large data structures to functions without copying them.
 3. They **require careful management** of memory (allocation/deallocation).
-4. They can be **null ( nullptr )**.
+4. They can be **null (`nullptr`)**.
+5. **After a pointer is released** using `delete` or `free`, it should be **set to `nullptr`**.
+6. **Before releasing a pointer**, **it should be checked to ensure it is not `nullptr`**.
+7. You can encapsulate safe and efficient releasing functions in a macro and conditionally compile
+   them based on the build mode.
 
 ##### Void Pointers
 
@@ -294,6 +298,10 @@
 6. A reference is defined as a type. However, I believe it is **merely an alias**, not a distinct
    type, because `auto` cannot deduce a type as a reference without using `&`.
 7. A reference is **neither a variable nor an object**.
+8. Categories:
+   - [Lvalue References (`Type&`)](#lvalue-references-type)
+   - [Rvalue References (`Type&&`)](#rvalue-references-type)
+   - [Universial References (Forward References)](./Templates.md#universial-references-forward-references)
 
 ### Parameters
 

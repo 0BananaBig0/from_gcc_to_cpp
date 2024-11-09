@@ -165,6 +165,13 @@ git push -u origin CurrentBranch
 git clone TheRemoteRepositoryLink
 ```
 
+```SH
+// If the remote repository is too large to clone successfully, use the following commands.
+git clone TheRemoteRepositoryLink --depth 1
+cd TheRemoteRepositoryName
+git fetch --unshallow
+```
+
 ### Update the Local Repository form a Remote Repository
 
 ```SH

@@ -60,9 +60,11 @@
    like: one minute, two hours, or ten milliseconds.
 2. For the `std::chrono::duration` class, **only `std::ratio< num1, num2 >` can be used**.
 3. The **corresponding named** types of `std::ratio< num1, num2 >` (e.g., `std::chrono::seconds`)
-   **cannot be used directly** in `std::chrono::duration`; instead, `use std::ratio< 1, 1 >`.
+   **cannot be used directly** in `std::chrono::duration`; instead, `use std::ratio< num1, num2 >`
+   (e.g., `std::ratio< 1, 1 >`).
 4. However, `std::chrono::time_point`, `std::chrono::time_point_cast`, and
    `std::chrono::duration_cast` support these named types.
+5. In some C++ STL types, `std::ratio< num1, num2 >` **has alias names**, such as `std::milli`.
 
 #### Syntax
 
@@ -79,6 +81,14 @@ std::chrono::duration< Type, std::ratio< num1, num2 >(Optional) > dur1;
 std::chrono::duration< Type, std::ratio< num1, num2 >(Optional) > dur2( dur1 );
 ```
 
+```CPP
+// Usage syntax.
+// Default constructor.
+std::chrono::duration< Type1, std::ratio< num1, num2 >(Optional) > dur1;
+// Conversion constructor.
+std::chrono::duration< Type2, std::ratio< num3, num4 > > dur2( dur1 );
+```
+
 #### Realted Stuffs
 
 ##### Links
@@ -88,15 +98,16 @@ std::chrono::duration< Type, std::ratio< num1, num2 >(Optional) > dur2( dur1 );
 
 ##### Template Instantiations
 
-1. `std::chrono::hours`: Signed integral type of at least 23 bits, period `std::ratio< 3600, 1 >`.
-2. `std::chrono::minutes`: Signed integral type of at least 29 bits, period `std::ratio< 60, 1 >`.
-3. `std::chrono::seconds`: Signed integral type of at least 35 bits, period `std::ratio< 1, 1 >`.
-   Default Period.
-4. `std::chrono::milliseconds`: Signed integral type of at least 45 bits, period
+1. **All of these are alias names are predefined `std::chrono::duration` specializations**.
+2. `std::chrono::hours`: Signed integral type of at least 23 bits, period `std::ratio< 3600, 1 >`.
+3. `std::chrono::minutes`: Signed integral type of at least 29 bits, period `std::ratio< 60, 1 >`.
+4. `std::chrono::seconds` (Default period): Signed integral type of at least 35 bits, period
+   `std::ratio< 1, 1 >`.
+5. `std::chrono::milliseconds`: Signed integral type of at least 45 bits, period
    `std::ratio< 1, 1000 >`.
-5. `std::chrono::microseconds`: Signed integral type of at least 55 bits, period
+6. `std::chrono::microseconds`: Signed integral type of at least 55 bits, period
    `std::ratio< 1, 1000000 >`.
-6. `std::chrono::nanoseconds`: Signed integral type of at least 64 bits, period
+7. `std::chrono::nanoseconds`: Signed integral type of at least 64 bits, period
    `std::ratio< 1, 1000000000 >`.
 
 ##### Member Types

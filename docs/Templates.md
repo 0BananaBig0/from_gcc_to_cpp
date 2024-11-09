@@ -24,7 +24,7 @@
     - [Explanation](#explanation-6)
     - [Common Syntax](#common-syntax)
     - [Link](#link)
-  - [Template Parameters with Non-Type Parameters](#template-parameters-with-non-type-parameters)
+  - [Template Parameters with Non-type Parameters](#template-parameters-with-non-type-parameters)
     - [Explanation](#explanation-7)
     - [Syntax](#syntax-4)
   - [Constraints and Concepts](#constraints-and-concepts)
@@ -37,6 +37,7 @@
     - [Explanation](#explanation-10)
     - [Syntax](#syntax-6)
   - [Template Aliases](#template-aliases)
+  - [Universial References (Forward References)](#universial-references-forward-references)
 
 <!-- vim-markdown-toc -->
 
@@ -287,6 +288,11 @@ ClassName< arg_list2, arg_list3 > obj2;   // Utilizes the specialized version.
    thereby enhancing versatility.
 5. For **a function template**, **multiple parameter packs** can be defined, while **a class
    template** can **only have one**.
+6. For **a function template**, a template parameter pack can **automatically deduce types** and the
+   types are not explicitly specified when the function is called.
+7. However, **for a class template** (such as `std::tuple` or `std::vector`), **the types must be
+   explicitly specified** because template parameter packs are typically not deduced in class
+   templates.
 
 #### Common Syntax
 
@@ -527,3 +533,24 @@ template< typename T, ... > RetType funcName( T t, ... ) {
 ### Template Aliases
 
 1. [`using`](./UsingTypedefNameSpaces.md#using)
+
+### Universial References (Forward References)
+
+1. A universal reference is **a type of reference** in C++ that **can bind to both lvalues and
+   rvalues**.
+2. It is also called **a forwarding reference** in modern C++ terminology.
+3. The term "universal reference" is **particularly used in the context of template functions**.
+4. A universal reference typically appears in a template function parameter when the type is
+   declared as `T&&` but is not a reference type (such as in `T&&` where `T` is a template
+   parameter). This is a special case of rvalue reference, which can either bind to:
+   - An rvalue (temporary object).
+   - An lvalue (persistent object) if it's used in the context of a template.
+5. Lvalue reference (`T&`) and rvalue reference (`T&&`) are distinct in C++. But when template type
+   deduction is used, the compiler deduces the right reference type depending on the value category
+   of the argument passed.
+   - When an lvalue is passed, `T` is deduced as `Type&`, so the universal reference becomes
+     `Type& &`, which is collapsed to `Type&`.
+   - When an rvalue is passed, `T` is deduced as `Type&`, and the universal reference becomes
+     `Type& &`.
+6. Universal references are often used in **perfect forwarding**, where you want to forward the
+   arguments exactly as received, keeping their value category intact.
