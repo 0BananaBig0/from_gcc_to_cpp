@@ -19,6 +19,7 @@
     - [Explanation](#explanation-2)
     - [Syntax](#syntax-1)
     - [Realted Stuffs](#realted-stuffs-1)
+      - [Links](#links-2)
       - [Template Parameters](#template-parameters)
       - [Member Types](#member-types-1)
       - [Member Functions](#member-functions-1)
@@ -28,6 +29,7 @@
     - [Explanation](#explanation-3)
     - [Syntax](#syntax-2)
     - [Related Stuffs of Three Clock Classes](#related-stuffs-of-three-clock-classes)
+      - [Links](#links-3)
       - [Member Types of Three Clock Classes](#member-types-of-three-clock-classes)
       - [Member Constants of Three Clock Classes](#member-constants-of-three-clock-classes)
       - [Member Functions of Three Clock Classes](#member-functions-of-three-clock-classes)
@@ -206,6 +208,11 @@ auto start = Clock::now();
 
 #### Realted Stuffs
 
+##### Links
+
+1. [`std::chrono::time_point` in cplusplus](https://cplusplus.com/reference/chrono/time_point/).
+2. [`std::chrono::time_point` in cppreference](https://en.cppreference.com/w/cpp/chrono/time_point).
+
 ##### Template Parameters
 
 1. `Clock`: A clock class, such as `std::chrono::system_clock`, `std::chrono::steady_clock`,
@@ -283,6 +290,15 @@ auto start = Clock::now();
 ```
 
 #### Related Stuffs of Three Clock Classes
+
+##### Links
+
+1. [`std::chrono::system_clock` in cplusplus](https://cplusplus.com/reference/chrono/system_clock/).
+2. [`std::chrono::system_clock` in cppreference](https://en.cppreference.com/w/cpp/chrono/system_clock).
+3. [`std::chrono::stead_clock` in cplusplus](https://cplusplus.com/reference/chrono/steady_clock/).
+4. [`std::chrono::stead_clock` in cppreference](https://en.cppreference.com/w/cpp/chrono/steady_clock).
+5. [`std::chrono::high_resolution_clock` in cplusplus](https://cplusplus.com/reference/chrono/high_resolution_clock/).
+6. [`std::chrono::high_resolution_clock` in cppreference](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock).
 
 ##### Member Types of Three Clock Classes
 
