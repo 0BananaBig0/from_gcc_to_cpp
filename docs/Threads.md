@@ -82,13 +82,14 @@
       - [Template Parameters](#template-parameters-2)
       - [Member Types](#member-types-3)
       - [Member Functions](#member-functions-5)
-  - [`std::lock`](#stdlock)
-    - [Explanation](#explanation-12)
+  - [`std::lock` and `std::try_lock`](#stdlock-and-stdtry_lock)
+    - [`std::lock`](#stdlock)
+    - [`std::try_lock`](#stdtry_lock)
     - [Syntax](#syntax-10)
-  - [`std::try_lock`](#stdtry_lock)
-    - [Explanation](#explanation-13)
-    - [Syntax](#syntax-11)
   - [Three Lock Type Tags](#three-lock-type-tags)
+  - [`std::call_once` and `std::once_flag`](#stdcall_once-and-stdonce_flag)
+    - [Explanation](#explanation-12)
+    - [Syntax](#syntax-11)
   - [`std::atomic` and `std::atomic_ref`](#stdatomic-and-stdatomic_ref)
     - [`std::atomic`](#stdatomic)
     - [`std::atomic_ref`](#stdatomic_ref)
@@ -112,10 +113,10 @@
       - [Nested Types](#nested-types-2)
       - [Member Functions](#member-functions-7)
   - [`std::notify_all_at_thread_exit`](#stdnotify_all_at_thread_exit)
-    - [Explanation](#explanation-14)
+    - [Explanation](#explanation-13)
     - [Syntax](#syntax-13)
   - [`std::async`](#stdasync)
-    - [Explanation](#explanation-15)
+    - [Explanation](#explanation-14)
     - [Syntax](#syntax-14)
     - [Related Stuffs](#related-stuffs)
       - [Links](#links-9)
@@ -123,24 +124,18 @@
       - [Return Value](#return-value)
       - [Launching Policies](#launching-policies)
     - [Notes](#notes-2)
-  - [`std::future`](#stdfuture)
-    - [Explanation](#explanation-16)
+  - [`std::future` and `std::shared_future`](#stdfuture-and-stdshared_future)
+    - [`std::future`](#stdfuture)
+    - [`std::shared_future`](#stdshared_future)
     - [Declaration Syntax](#declaration-syntax-2)
     - [Initialization Syntax](#initialization-syntax-2)
       - [Members and Related Stuffs](#members-and-related-stuffs-8)
         - [Links](#links-10)
         - [Member Functions](#member-functions-8)
         - [`std::future_status` (Returned by `wait_for` and `wait_until` Functions)](#stdfuture_status-returned-by-wait_for-and-wait_until-functions)
-  - [`std::shared_future`](#stdshared_future)
-    - [Declaration Syntax](#declaration-syntax-3)
-    - [Initialization Syntax](#initialization-syntax-3)
-    - [Members and Related Stuffs](#members-and-related-stuffs-9)
-      - [Links](#links-11)
-      - [Member Functions](#member-functions-9)
-        - [`std::future_status` (Returned by `wait_for` and `wait_until` Functions)](#stdfuture_status-returned-by-wait_for-and-wait_until-functions-1)
-  - [Differences Between `std::future` and `std::shared_future`](#differences-between-stdfuture-and-stdshared_future)
+    - [Differences Between `std::future` and `std::shared_future`](#differences-between-stdfuture-and-stdshared_future)
   - [`std::promise`](#stdpromise)
-    - [Explanation](#explanation-17)
+    - [Explanation](#explanation-15)
     - [Syntax](#syntax-15)
     - [Related Stuffs](#related-stuffs-1)
   - [Notes](#notes-3)
@@ -939,9 +934,9 @@ std::scoped_lock< MutexType1, MutexType2, ... > lck( std::adopt_lock, mtx1, mtx2
    member function).
 3. `operator=[deleted]`: Not copy-assignable (public member function).
 
-### `std::lock`
+### `std::lock` and `std::try_lock`
 
-#### Explanation
+#### `std::lock`
 
 1. `std::lock` **locks all the objects passed as arguments**, blocking the calling thread if
    necessary.
@@ -954,17 +949,7 @@ std::scoped_lock< MutexType1, MutexType2, ... > lck( std::adopt_lock, mtx1, mtx2
 4. **To prevent deadlock, the order of acquiring multiple locks must be consistent**.
 5. Its header file is `<mutex>`.
 
-#### Syntax
-
-```CPP
-// Its declaration syntax.
-template< class Lockable1, class Lockable2, class... LockableN >
-void lock( Lockable1& lock1, Lockable2& lock2, LockableN&... lockn );
-```
-
-### `std::try_lock`
-
-#### Explanation
+#### `std::try_lock`
 
 1. `std::try_lock` **attempts to lock all the objects passed as arguments using their
    `std::try_lock` member functions (non-blocking)**.
@@ -984,6 +969,12 @@ void lock( Lockable1& lock1, Lockable2& lock2, LockableN&... lockn );
 ```CPP
 // Its declaration syntax.
 template< class Lockable1, class Lockable2, class... LockableN >
+void lock( Lockable1& lock1, Lockable2& lock2, LockableN&... lockn );
+```
+
+```CPP
+// Its declaration syntax.
+template< class Lockable1, class Lockable2, class... LockableN >
 int try_lock( Lockable1& lock1, Lockable2& lock2, LockableN&... lockn );
 ```
 
@@ -991,9 +982,28 @@ int try_lock( Lockable1& lock1, Lockable2& lock2, LockableN&... lockn );
 
 1. [`<mutex>` in cplusplus](https://cplusplus.com/reference/mutex/).
 2. [`<mutex>` in cppreference](https://en.cppreference.com/w/cpp/header/mutex).
-3. `std::defer`: `defer_lock_t`. Do not acquire ownership of the mutex.
-4. `std::try_to_lock`: `try_to_lock_t`. Try to acquire ownership of the mutex without blocking.
-5. `std::adopt_lock`: `adopt_lock_t`. Assume the calling thread already has ownership of the mutex.
+3. `std::defer`: A `constexpr defer_lock_t` object. Do not acquire ownership of the mutex.
+4. `std::try_to_lock`: A `constexpr try_to_lock_t` object. Try to acquire ownership of the mutex
+   without blocking.
+5. `std::adopt_lock`: A `constexpr adopt_lock_t` object. Assume the calling thread already has
+   ownership of the mutex.
+
+### `std::call_once` and `std::once_flag`
+
+#### Explanation
+
+1. `std::call_once` **executes** the callable object **`f` exactly once**, **even if** called
+   concurrently from **several threads**.
+2. `std::once_flag` is **a helper object** to **ensure** that **`std::call_once` invokes the
+   function only once**.
+
+#### Syntax
+
+```CPP
+// Its declaration syntax.
+template< class Callable, class... Args >
+void call_once( std::once_flag& flag, Callable&& f, Args&&... args );
+```
 
 ### `std::atomic` and `std::atomic_ref`
 
@@ -1336,9 +1346,9 @@ std::future< RetType > obj_name = std::async( ... );
 2. **Passing variables or objects as references** can **lead to issues**. Instead, **passing them as
    pointers** might be **a better option**.
 
-### `std::future`
+### `std::future` and `std::shared_future`
 
-#### Explanation
+#### `std::future`
 
 1. `std::future` is **a template class** used to **represent the result of an asynchronous
    operation**.
@@ -1352,60 +1362,7 @@ std::future< RetType > obj_name = std::async( ... );
 5. A `std::future` object **cannot be copied**, but it can be moved.
 6. Its header file is `<future>`.
 
-#### Declaration Syntax
-
-```CPP
-// Declaration syntax.
-template< class T > class future;         // (1)   (since C++11)
-template< class T > class future< T& >;   // (2)   (since C++11)
-template<> class future< void >;          // (3)   (since C++11)
-```
-
-```CPP
-std::future< Type > fut_name;
-```
-
-#### Initialization Syntax
-
-```CPP
-// Default constructor.
-std::future< Type > fut_name1;
-// Move constructor.
-std::future< Type > fut_name1 = std::move( fut_name1 );
-```
-
-##### Members and Related Stuffs
-
-###### Links
-
-1. [`std::future` in cplusplus](https://cplusplus.com/reference/future/future/).
-2. [`std::future` in cppreference](https://en.cppreference.com/w/cpp/thread/future).
-
-###### Member Functions
-
-1. (constructor): Constructs the `future` object ( Only default and move ) (public member function).
-2. (destructor): Destructs the `future` object (public member function).
-3. `operator=`: Moves the `future` object ( Only Move ) (public member function).
-4. `share`: Transfers the shared state from `*this` to a `shared_future` and returns it (public.
-   member function)
-5. `get`: Returns **the result** if the result is **available**. **Otherwise**, **blocks the calling
-   thread**. And **only** allows to **call once**.(public member function).
-6. `valid`: Checks if the `future` has a shared state (public member function).
-7. `wait`: Waits for the result to become available (public member function).
-8. `wait_for`: Waits for the result, returns if it is not available for the specified timeout
-   duration (public member function).
-9. `wait_until`: Waits for the result, returns if it is not available until specified time point has
-   been reached (public member function).
-
-###### `std::future_status` (Returned by `wait_for` and `wait_until` Functions)
-
-1. `std::future_status::deferred`: The shared state contains a deferred function, so the result will
-   be computed only when explicitly requested.
-2. `std::future_status::ready`: The shared state is ready.
-3. `std::future_status::timeout`: The shared state did not become ready before specified timeout
-   duration has passed.
-
-### `std::shared_future`
+#### `std::shared_future`
 
 1. **The class template** `std::shared_future` provides a mechanism to access the result of
    asynchronous operations, similar to `std::future`, except that **multiple threads are allowed to
@@ -1420,10 +1377,7 @@ std::future< Type > fut_name1 = std::move( fut_name1 );
 #### Declaration Syntax
 
 ```CPP
-// Declaration syntax.
-template< class T > class shared_future;         // (1)   (since C++11)
-template< class T > class shared_future< T& >;   // (2)   (since C++11)
-template<> class shared_future< void >;          // (3)   (since C++11)
+std::future< Type > fut_name;
 ```
 
 ```CPP
@@ -1431,6 +1385,13 @@ std::shared_future< Type > sfut_name;
 ```
 
 #### Initialization Syntax
+
+```CPP
+// Default constructor.
+std::future< Type > fut_name1;
+// Move constructor.
+std::future< Type > fut_name1 = std::move( fut_name1 );
+```
 
 ```CPP
 // Default constructor.
@@ -1452,24 +1413,29 @@ std::future< Type > fut_name;
 std::shared_future< Type > sfut_name = std::move( fut_name );
 ```
 
-#### Members and Related Stuffs
+##### Members and Related Stuffs
 
-##### Links
+###### Links
 
-1. [`std::shared_future` in cplusplus](https://cplusplus.com/reference/future/shared_future/).
-2. [`std::shared_future` in cppreference](https://en.cppreference.com/w/cpp/thread/shared_future).
+1. [`std::future` in cplusplus](https://cplusplus.com/reference/future/future/).
+2. [`std::future` in cppreference](https://en.cppreference.com/w/cpp/thread/future).
+3. [`std::shared_future` in cplusplus](https://cplusplus.com/reference/future/shared_future/).
+4. [`std::shared_future` in cppreference](https://en.cppreference.com/w/cpp/thread/shared_future).
 
-##### Member Functions
+###### Member Functions
 
-1. (constructor): Constructs the future object (public member function).
+1. (constructor): Constructs the future object ( Only default and move ) (public member function).
 2. (destructor): Destructs the future object (public member function).
-3. `operator=`: Assigns the contents (public member function).
-4. `get`: Returns the result (public member function).
-5. `valid`: Checks if the future has a shared state (public member function).
-6. `wait`: Waits for the result to become available (public member function).
-7. `wait_for`: Waits for the result, returns if it is not available for the specified timeout
+3. `operator=`: Moves the future object ( Only Move ) (public member function).
+4. `share` (only for `std::future`): Transfers the shared state from `*this` to a `shared_future`
+   and returns it (public. member function)
+5. `get`: Returns **the result** if the result is **available**. **Otherwise**, **blocks the calling
+   thread**. And **only** allows to **call once**.(public member function).
+6. `valid`: Checks if the future has a shared state (public member function).
+7. `wait`: Waits for the result to become available (public member function).
+8. `wait_for`: Waits for the result, returns if it is not available for the specified timeout
    duration (public member function).
-8. `wait_until`: Waits for the result, returns if it is not available until specified time point has
+9. `wait_until`: Waits for the result, returns if it is not available until specified time point has
    been reached (public member function).
 
 ###### `std::future_status` (Returned by `wait_for` and `wait_until` Functions)
@@ -1480,7 +1446,7 @@ std::shared_future< Type > sfut_name = std::move( fut_name );
 3. `std::future_status::timeout`: The shared state did not become ready before specified timeout
    duration has passed.
 
-### Differences Between `std::future` and `std::shared_future`
+#### Differences Between `std::future` and `std::shared_future`
 
 1. Ownership:
    - `std::future`: Sole ownership of the result.
@@ -1507,7 +1473,32 @@ std::shared_future< Type > sfut_name = std::move( fut_name );
 
 #### Explanation
 
+1. A promise is **an template class object** that can store a value of type `R` to be retrieved by a
+   `std::future` object (possibly in another thread), offering a synchronization point.
+2. **On construction**, promise objects are **associated to a new shared state** on which they can
+   **store either a value of type `R` or an exception** derived from `std::exception`.
+3. This shared state can be associated to a `std::future` object by calling member `get_future`.
+4. After the call, **both objects share the same shared state**:
+   - **The promise object** is **the asynchronous provider** and is expected to **set a value for
+     the shared state** at some point.
+   - **The `std::future` object** is **an asynchronous return object** that can **retrieve the value
+     of the shared state**, waiting for it to be ready, if necessary.
+5. The lifetime of the shared state lasts at least until the last object with which it is associated
+   releases it or is destroyed.
+6. Therefore it can survive the promise object that obtained it in the first place if associated
+   also to a future.
+7. Its header file is `<future>`.
+
 #### Syntax
+
+```CPP
+std::promise< Type > pro_name;
+// Get the `std::future` associated with the promise.
+std::future< Type > fut_name = pro_name.get_future();
+// Convert it to a shared future.
+// Method that `std::shared_future` works with `std::promise`.
+std::shared_future< Type > sfut_name = fut_name.share();
+```
 
 #### Related Stuffs
 
