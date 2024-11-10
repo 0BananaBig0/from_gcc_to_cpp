@@ -9,6 +9,7 @@
     - [Explanation](#explanation-1)
     - [Syntax](#syntax-1)
     - [Usage](#usage-1)
+  - [Notes](#notes)
 - [`namespace`](#namespace)
   - [Explanation](#explanation-2)
   - [Declaration Syntax](#declaration-syntax)
@@ -16,7 +17,7 @@
   - [How to Reference a Member from a `namespace`](#how-to-reference-a-member-from-a-namespace)
   - [`using namespace SpaceName`](#using-namespace-spacename)
     - [Disadvantages](#disadvantages)
-  - [Notes](#notes)
+  - [Notes](#notes-1)
 
 <!-- vim-markdown-toc -->
 
@@ -29,8 +30,8 @@
 1. `using` is **a keyword** and has multiple uses, each serving a different purpose depending on the
    context.
 2. It can be used for **type aliasing**, **namespace introduction (not recommend)**, and **template
-   aliasing**. It offers more flexibility compared to `typedef`, particularly when working with
-   templates.
+   aliasing**.
+3. It offers more flexibility compared to `typedef`, particularly when working with templates.
 
 #### Syntax
 
@@ -41,7 +42,7 @@ using AliasName = Type;
 #### Usage
 
 1. Syntax simplicity.
-2. Template aliases.
+2. Template aliases. (**No limitations**).
    ```CPP
    // `ClassName` is a template class that has been implmented.
    template< typename T, ... > using AliasName = ClassName< T, ...  >;
@@ -55,13 +56,24 @@ using AliasName = Type;
    template< typename T, ... > using aliasName = funcName< T, ...  >;
    ```
 3. Function pointer declaration.
+
    ```CPP
    using FuncPtrName = RetType ( * )( parameter_types );
    FuncPtrName func_ptr_name;
    ```
+
+   ```CPP
+   struct ClassName {
+         RetType funcName( ... ) {};
+         ...;
+
+         using funcPtrName = RetType ( MyClass::* )( ... );   // Alias for member function
+   };
+   ```
+
 4. Alias for member types in classes.
    ```CPP
-   class ClassB {
+   class ClassName {
       public:
          // Using alias.
          using AliasName = Type;
@@ -87,20 +99,36 @@ typedef Type AliasName;
 #### Usage
 
 1. Syntax simplicity.
-2. Function pointer declaration.
+2. Template aliases. (**Only allows inside a struct or class, but not allows outside of a struct or
+   class**).
+   ```CPP
+   // `ClassName` is a template class that has been implmented.
+   template< typename T, ... > class ClassName< T, ...  > { ...; };
+   // `StructName` is a template structure that has been implmented.
+   template< typename T, ... > StructName{
+      typedef Classname< T, ...  > AliasName;
+      ...;
+   }
+   ```
+3. Function pointer declaration.
    ```CPP
    typedef RetType ( *FuncPtrName )( parameter_types );
    FuncPtrName func_ptr_name;
    ```
-3. Alias for member types in classes.
+4. Alias for member types in classes.
    ```CPP
-   class ClassB {
+   class ClassName {
       public:
          // Using `typedef`.
          typedef Type AliasName;
          AliasName _mem;
    };
    ```
+
+### Notes
+
+1. Using `using` is generally better than using `typedef` for aliasing a data type, especially in
+   modern C++ (C++11 and beyond).
 
 ## `namespace`
 
