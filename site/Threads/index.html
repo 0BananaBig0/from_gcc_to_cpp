@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -263,6 +271,7 @@
 <li><a href="#see-also">See also</a></li>
 </ul>
 </li>
+<li><a href="#notes">Notes</a></li>
 <li><a href="#stdjthread"><code>std::jthread</code></a></li>
 <li><a href="#explanation-2">Explanation</a></li>
 <li><a href="#declaration-syntax-1">Declaration Syntax</a></li>
@@ -293,38 +302,140 @@
 <li><a href="#syntax-3">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#stdasync"><code>std::async</code></a><ul>
+<li><a href="#stdforward"><code>std::forward</code></a><ul>
 <li><a href="#explanation-8">Explanation</a></li>
 <li><a href="#syntax-4">Syntax</a></li>
-<li><a href="#related-stuffs">Related Stuffs</a></li>
-<li><a href="#links-3">Links</a></li>
-<li><a href="#parameters">Parameters</a></li>
-<li><a href="#return-value">Return Value</a></li>
-<li><a href="#launching-policies">Launching Policies</a></li>
-<li><a href="#notes">Notes</a></li>
 </ul>
 </li>
-<li><a href="#stdfuture"><code>std::future</code></a><ul>
+<li><a href="#stdref-and-stdcref"><code>std::ref</code> and <code>std::cref</code></a><ul>
 <li><a href="#explanation-9">Explanation</a></li>
-<li><a href="#declaration-syntax-2">Declaration Syntax</a></li>
-<li><a href="#initialization-syntax-2">Initialization Syntax</a></li>
-<li><a href="#members-and-related-stuffs-2">Members and Related Stuffs</a><ul>
-<li><a href="#links-4">Links</a></li>
+<li><a href="#syntax-5">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#six-std-mutex-classes">Six STD Mutex Classes</a><ul>
+<li><a href="#stdmutex"><code>std::mutex</code></a></li>
+<li><a href="#stdrecursive_mutex"><code>std::recursive_mutex</code></a></li>
+<li><a href="#stdtimed_mutex"><code>std::timed_mutex</code></a></li>
+<li><a href="#stdrecursive_timed_mutex"><code>std::recursive_timed_mutex</code></a></li>
+<li><a href="#stdshared_mutex"><code>std::shared_mutex</code></a></li>
+<li><a href="#stdshared_timed_mutex"><code>std::shared_timed_mutex</code></a></li>
+<li><a href="#syntax-6">Syntax</a></li>
+<li><a href="#members-and-related-stuffs-2">Members and Related Stuffs</a></li>
+<li><a href="#links-3">Links</a></li>
+<li><a href="#nested-types">Nested Types</a></li>
 <li><a href="#member-functions-2">Member Functions</a></li>
+<li><a href="#notes-1"><strong>Notes</strong></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#stdshared_future"><code>std::shared_future</code></a><ul>
-<li><a href="#declaration-syntax-3">Declaration Syntax</a></li>
-<li><a href="#initialization-syntax-3">Initialization Syntax</a></li>
+<li><a href="#stdlock_guard"><code>std::lock_guard</code></a><ul>
+<li><a href="#explanation-10">Explanation</a></li>
+<li><a href="#syntax-7">Syntax</a></li>
 <li><a href="#members-and-related-stuffs-3">Members and Related Stuffs</a></li>
-<li><a href="#links-5">Links</a></li>
+<li><a href="#links-4">Links</a></li>
+<li><a href="#template-parameters">Template Parameters</a></li>
+<li><a href="#member-types-2">Member Types</a></li>
 <li><a href="#member-functions-3">Member Functions</a></li>
 </ul>
 </li>
+<li><a href="#stdunique_lock-and-stdshared_lock"><code>std::unique_lock</code> and <code>std::shared_lock</code></a><ul>
+<li><a href="#stdunique_lock"><code>std::unique_lock</code></a></li>
+<li><a href="#stdshared_lock"><code>std::shared_lock</code></a></li>
+<li><a href="#syntax-8">Syntax</a></li>
+<li><a href="#members-and-related-stuffs-4">Members and Related Stuffs</a></li>
+<li><a href="#links-5">Links</a></li>
+<li><a href="#template-parameters-1">Template Parameters</a></li>
+<li><a href="#nested-types-1">Nested Types</a></li>
+<li><a href="#member-functions-4">Member Functions</a></li>
+<li><a href="#non-member-functions-2">Non-member Functions</a></li>
+</ul>
+</li>
+<li><a href="#stdscoped_lock"><code>std::scoped_lock</code></a><ul>
+<li><a href="#explanation-11">Explanation</a></li>
+<li><a href="#syntax-9">Syntax</a></li>
+<li><a href="#members-and-related-stuffs-5">Members and Related Stuffs</a></li>
+<li><a href="#links-6">Links</a></li>
+<li><a href="#template-parameters-2">Template Parameters</a></li>
+<li><a href="#member-types-3">Member Types</a></li>
+<li><a href="#member-functions-5">Member Functions</a></li>
+</ul>
+</li>
+<li><a href="#stdlock-and-stdtry_lock"><code>std::lock</code> and <code>std::try_lock</code></a><ul>
+<li><a href="#stdlock"><code>std::lock</code></a></li>
+<li><a href="#stdtry_lock"><code>std::try_lock</code></a></li>
+<li><a href="#syntax-10">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#three-lock-type-tags">Three Lock Type Tags</a></li>
+<li><a href="#stdcall_once-and-stdonce_flag"><code>std::call_once</code> and <code>std::once_flag</code></a><ul>
+<li><a href="#explanation-12">Explanation</a></li>
+<li><a href="#syntax-11">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#stdatomic-and-stdatomic_ref"><code>std::atomic</code> and <code>std::atomic_ref</code></a><ul>
+<li><a href="#stdatomic"><code>std::atomic</code></a></li>
+<li><a href="#stdatomic_ref"><code>std::atomic_ref</code></a></li>
+<li><a href="#syntax-12">Syntax</a></li>
+<li><a href="#members-and-related-stuffs-6">Members and Related Stuffs</a></li>
+<li><a href="#links-7">Links</a></li>
+<li><a href="#member-types-4">Member Types</a></li>
+<li><a href="#member-functions-6">Member Functions</a></li>
+<li><a href="#constants">Constants</a></li>
+<li><a href="#specialized-member-functions">Specialized Member Functions</a><ul>
+<li><a href="#specialized-for-integral-floating-point-since-c20-and-pointer-types">Specialized for Integral, Floating-point (Since C++20) and Pointer Types</a></li>
+<li><a href="#specialized-for-integral-and-pointer-types-only">Specialized for Integral and Pointer Types Only</a></li>
+<li><a href="#specialized-for-integral-types-only">Specialized for Integral Types Only</a></li>
+</ul>
+</li>
+<li><a href="#type-aliases-only-for-stdatomic">Type Aliases (Only for <code>std::atomic</code>)</a></li>
+</ul>
+</li>
+<li><a href="#stdcondition_variable-and-stdcondition_variable_any"><code>std::condition_variable</code> and <code>std::condition_variable_any</code></a><ul>
+<li><a href="#stdcondition_variable"><code>std::condition_variable</code></a></li>
+<li><a href="#stdcondition_variable_any"><code>std::condition_variable_any</code></a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#members-and-related-stuffs-7">Members and Related Stuffs</a></li>
+<li><a href="#links-8">Links</a></li>
+<li><a href="#nested-types-2">Nested Types</a></li>
+<li><a href="#member-functions-7">Member Functions</a></li>
+</ul>
+</li>
+<li><a href="#stdnotify_all_at_thread_exit"><code>std::notify_all_at_thread_exit</code></a><ul>
+<li><a href="#explanation-13">Explanation</a></li>
+<li><a href="#syntax-13">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#stdasync"><code>std::async</code></a><ul>
+<li><a href="#explanation-14">Explanation</a></li>
+<li><a href="#syntax-14">Syntax</a></li>
+<li><a href="#related-stuffs">Related Stuffs</a></li>
+<li><a href="#links-9">Links</a></li>
+<li><a href="#parameters">Parameters</a></li>
+<li><a href="#return-value">Return Value</a></li>
+<li><a href="#launching-policies">Launching Policies</a></li>
+<li><a href="#notes-2">Notes</a></li>
+</ul>
+</li>
+<li><a href="#stdfuture-and-stdshared_future"><code>std::future</code> and <code>std::shared_future</code></a><ul>
+<li><a href="#stdfuture"><code>std::future</code></a></li>
+<li><a href="#stdshared_future"><code>std::shared_future</code></a></li>
+<li><a href="#declaration-syntax-2">Declaration Syntax</a></li>
+<li><a href="#initialization-syntax-2">Initialization Syntax</a></li>
+<li><a href="#members-and-related-stuffs-8">Members and Related Stuffs</a><ul>
+<li><a href="#links-10">Links</a></li>
+<li><a href="#member-functions-8">Member Functions</a></li>
+<li><a href="#stdfuture_status-returned-by-wait_for-and-wait_until-functions"><code>std::future_status</code> (Returned by <code>wait_for</code> and <code>wait_until</code> Functions)</a></li>
+</ul>
+</li>
 <li><a href="#differences-between-stdfuture-and-stdshared_future">Differences Between <code>std::future</code> and <code>std::shared_future</code></a></li>
-<li><a href="#notes-1">Notes</a></li>
+</ul>
+</li>
+<li><a href="#stdpromise"><code>std::promise</code></a><ul>
+<li><a href="#explanation-15">Explanation</a></li>
+<li><a href="#syntax-15">Syntax</a></li>
+<li><a href="#related-stuffs-1">Related Stuffs</a></li>
+</ul>
+</li>
+<li><a href="#notes-3">Notes</a></li>
 </ul>
 <!-- vim-markdown-toc -->
 
@@ -348,7 +459,12 @@
    <code>thread id</code></strong> is <strong>common for all non-joinable threads</strong>.</li>
 <li>A <code>joinable</code> thread becomes not <code>joinable</code> if moved from, or if either <code>join</code> or <code>detach</code> are
    called on them.</li>
-<li>A <code>std::thread</code> object cannot be copied because its copy constructor is deleted.</li>
+<li>A <code>std::thread</code> object <strong>cannot be copied</strong> because its copy constructor is deleted.</li>
+<li>When <strong>some parameters</strong> of <code>funName</code> are <strong>lvalue references</strong>, you <strong>must wrap the
+   corresponding arguments</strong> in <strong><code>std::ref</code></strong> (for non-const lvalue references) or <strong><code>std::cref</code></strong>
+   (for <code>const</code> lvalue references) <strong>when passing them to <code>std::thread</code></strong>.</li>
+<li>This is necessary because <code>std::thread</code> moves its arguments into the thread function by default,
+   which can break lvalue reference bindings.</li>
 <li>Its header file is <code>&lt;thread&gt;</code>.</li>
 </ol>
 <h5 id="declaration-syntax">Declaration Syntax</h5>
@@ -367,12 +483,12 @@ std::thread thread_name( fun_ptr, arg_list_of_fun_ptr );
 <pre><code class="language-CPP">// Initialization constructor.
 std::thread thread_name( a_lambad_func, arg_list_of_the_lambad_func );
 </code></pre>
-<pre><code class="language-CPP">// Move constructor.
-std::thread thread_name1( ... );
+<pre><code class="language-CPP">std::thread thread_name1( ... );
+// Move constructor.
 std::thread thread_name2( std::move( thread_name1 ) );
 </code></pre>
-<pre><code class="language-CPP">// Move constructor.
-std::thread thread_name1( ... );
+<pre><code class="language-CPP">std::thread thread_name1( ... );
+// Move constructor.
 std::thread thread_name2 = std::move( thread_name1 );
 </code></pre>
 <h5 id="members-and-related-stuffs">Members and Related Stuffs</h5>
@@ -412,12 +528,27 @@ std::thread thread_name2 = std::move( thread_name1 );
 <ol>
 <li><code>std::jthread</code> (C++20): <code>std::thread</code> with support for auto-joining and cancellation (class).</li>
 </ol>
+<h5 id="notes">Notes</h5>
+<ol>
+<li>A thread starts executing when the <code>std::thread</code> object is defined, not when the <code>join</code> function
+   is called.</li>
+<li>Calling <code>join</code> merely blocks the calling thread, waiting for the thread to finish and releasing
+   its resources.</li>
+<li>A detached thread (a thread that has been <code>detach</code>ed) will release its resources either when the
+   calling thread ends or when it finishes executing itself.</li>
+<li>However, it cannot safely access resources of the main thread unless those resources have been
+   explicitly managed for concurrent access.</li>
+<li>Threads automatically release resources when their function completes.</li>
+<li>It is not recommended to forcefully terminate a thread using other methods, as this may cause
+   memory leaks due to unreleased resources.</li>
+<li>A thread that is neither joined nor detached will throw an exception when the program exits.</li>
+</ol>
 <h4 id="stdjthread"><code>std::jthread</code></h4>
 <h5 id="explanation_2">Explanation</h5>
 <ol>
 <li><code>std::jthread</code> is <strong>a class</strong> that represents <strong>a managed thread of execution</strong> with <strong>automatic
    joining</strong> and <strong>optional cooperative cancellation</strong>.</li>
-<li>A <code>std::jthread</code> executes <strong>a sequence of instructions</strong> that can run <strong>concurrently</strong> with other
+<li><code>std::jthread</code> executes <strong>a sequence of instructions</strong> that can run <strong>concurrently</strong> with other
    threads, all <strong>sharing the same address space</strong> in a multithreaded environment.</li>
 <li><strong>An initialized <code>std::jthread</code> object</strong> represents <strong>an active thread</strong> of execution that is
    <strong>automatically joined</strong> when the object is destroyed, making it safer and more convenient to
@@ -447,12 +578,12 @@ std::jthread thread_name( fun_ptr, arg_list_of_fun_ptr );
 <pre><code class="language-CPP">// Initialization constructor.
 std::jthread thread_name( a_lambad_func, arg_list_of_the_lambad_func );
 </code></pre>
-<pre><code class="language-CPP">// Move constructor.
-std::jthread thread_name1( ... );
+<pre><code class="language-CPP">std::jthread thread_name1( ... );
+// Move constructor.
 std::jthread thread_name2( std::move( thread_name1 ) );
 </code></pre>
-<pre><code class="language-CPP">// Move constructor.
-std::jthread thread_name1( ... );
+<pre><code class="language-CPP">std::jthread thread_name1( ... );
+// Move constructor.
 std::jthread thread_name2 = std::move( thread_name1 );
 </code></pre>
 <h5 id="members-and-related-stuffs_1">Members and Related Stuffs</h5>
@@ -558,8 +689,753 @@ void sleep_until(
 <pre><code class="language-CPP">// Its declaration syntax.
 void yield() noexcept;
 </code></pre>
-<h3 id="stdasync"><code>std::async</code></h3>
+<h3 id="stdforward"><code>std::forward</code></h3>
 <h4 id="explanation_8">Explanation</h4>
+<ol>
+<li><code>std::forward</code> is <strong>a utility function</strong> that is used <strong>for perfect forwarding of function
+   arguments</strong>, ensuring that their value categories (whether they are lvalues or rvalues) are
+   preserved during the forwarding process.</li>
+<li>It returns an rvalue reference to <code>obj_name</code> if <code>obj_name</code> is not an lvalue reference.</li>
+<li>If <code>obj_name</code> is an lvalue reference, the function returns <code>obj_name</code> without modifying its type.</li>
+<li><code>std::forward</code> <strong>acts as a transfer station</strong> that <strong>preserves the original value category
+   (whether it is an lvalue or an rvalue) of the argument it forwards</strong>.</li>
+<li>Its header file is <code>&lt;utility&gt;</code>.</li>
+</ol>
+<h4 id="syntax_4">Syntax</h4>
+<pre><code class="language-CPP">// Its usage syntax.
+std::forward( obj_name );
+</code></pre>
+<pre><code class="language-CPP">// An usage example.
+#include &lt;iostream&gt;
+#include &lt;utility&gt;   // For std::forward
+// Function to demonstrate perfect forwarding
+template&lt; typename T &gt; void wrapper( T&amp;&amp; arg ) {
+   // Forward the argument to another function
+   // This preserves whether arg is an lvalue or rvalue
+   process( std::forward&lt; T &gt;( arg ) );
+}
+// Helper function to handle both lvalues and rvalues
+void process( int&amp; x ) { std::cout &lt;&lt; &quot;Lvalue processed: &quot; &lt;&lt; x &lt;&lt; std::endl; }
+void process( int&amp;&amp; x ) { std::cout &lt;&lt; &quot;Rvalue processed: &quot; &lt;&lt; x &lt;&lt; std::endl; }
+int main() {
+   int x = 42;
+   wrapper( x );   // Lvalue passed, so it will call process(int&amp;)
+   wrapper( 10 );   // Rvalue passed, so it will call process(int&amp;&amp;)
+}
+</code></pre>
+<h3 id="stdref-and-stdcref"><code>std::ref</code> and <code>std::cref</code></h3>
+<h4 id="explanation_9">Explanation</h4>
+<ol>
+<li><code>std::ref</code> is a utility function that <strong>creates a reference wrapper for a given object</strong>.</li>
+<li>It is used when you need to pass an argument by reference to a function, particularly in
+   situations where a function or class expects its argument to be passed by value (like in
+   <code>std::thread</code> or in certain algorithms that use copy semantics).</li>
+<li>The key purpose of <code>std::ref</code> is to <strong>ensure that arguments are passed as references even when
+   the target function is expecting arguments by value</strong>.</li>
+<li><code>std::ref</code> works <strong>like a reference</strong>, <strong>but</strong> it is <strong>not a true reference</strong>.</li>
+<li>Therefore, a function whose <strong>parameters</strong> are <strong>expecting a direct reference</strong> <strong>cannot directly
+   receive a <code>std::reference_wrapper</code></strong>.</li>
+<li><code>std::cref</code> works similarly to <code>std::ref</code>, but it creates a reference wrapper for constant
+   references.</li>
+<li>They are usually used with <code>std::thread</code> and <code>std::async</code>.</li>
+<li>Their header file is <code>&lt;functional&gt;</code>.</li>
+</ol>
+<h4 id="syntax_5">Syntax</h4>
+<pre><code class="language-CPP">// Its usage syntax.
+std::ref( var_name );
+std::cref( var_name );
+</code></pre>
+<h3 id="six-std-mutex-classes">Six STD Mutex Classes</h3>
+<h4 id="stdmutex"><code>std::mutex</code></h4>
+<ol>
+<li>A mutex is <strong>a lockable object</strong> that is designed to signal when critical sections of code need
+   exclusive access, <strong>preventing other threads</strong> with the same protection from <strong>executing
+   concurrently and access the same memory locations</strong>.</li>
+<li><code>std::mutex</code> objects provide <strong>exclusive ownership</strong> and <strong>do not support recursivity</strong> (i.e., a
+   thread shall not <code>lock</code> a <code>std::mutex</code> it already owns) -- see <code>std::recursive_mutex</code> for an
+   alternative class that does.</li>
+<li>It is guaranteed to be <strong>a standard-layout class</strong>.</li>
+<li>Its header file is <code>&lt;mutex&gt;</code>.</li>
+</ol>
+<h4 id="stdrecursive_mutex"><code>std::recursive_mutex</code></h4>
+<ol>
+<li><code>std::recursive_mutex</code> is <strong>a lockable object</strong>, just like <code>std::mutex</code>, but allows the same
+   thread to <strong>acquire multiple levels of ownership over the <code>std::mutex</code> object</strong> (<strong>recursivity,
+   recursive calls</strong>).</li>
+<li>This allows to <code>lock</code> (or <code>try-lock</code>) the mutex object from a thread that is already locking it,
+   <strong>acquiring a new level of ownership</strong> over the <code>std::mutex</code> object: the <code>std::mutex</code>object will
+   actually remain locked owning the thread until its member unlock is called as many times as this
+   level of ownership.</li>
+<li>It is guaranteed to be <strong>a standard-layout class</strong>.</li>
+<li>Its header file is <code>&lt;mutex&gt;</code>.</li>
+</ol>
+<h4 id="stdtimed_mutex"><code>std::timed_mutex</code></h4>
+<ol>
+<li>A timed mutex is <strong>a time lockable object</strong> that is designed to signal when critical sections of
+   code need exclusive access, <strong>just like a regular mutex</strong>, <strong>but additionally supporting timed
+   <code>try-lock</code> requests</strong>.</li>
+<li>As such, a <code>std::timed_mutex</code> has two additional members: <code>try_lock_for</code> and <code>try_lock_until</code>.</li>
+<li>It is guaranteed to be a standard-layout class.</li>
+<li>Its header file is <code>&lt;mutex&gt;</code>.</li>
+</ol>
+<h4 id="stdrecursive_timed_mutex"><code>std::recursive_timed_mutex</code></h4>
+<ol>
+<li>A recursive timed mutex <strong>combines both the features of <code>std::recursive_mutex</code> and the features
+   of <code>std::timed_mutex</code> into a single class</strong>: it supports both acquiring multiple <code>lock</code> levels by
+   a single thread and also timed <code>try-lock</code> requests.</li>
+<li>It is guaranteed to be a standard-layout class.</li>
+<li>Its header file is <code>&lt;mutex&gt;</code>.</li>
+</ol>
+<h4 id="stdshared_mutex"><code>std::shared_mutex</code></h4>
+<ol>
+<li>The <code>std::shared_mutex</code> <strong>template class</strong> is a synchronization primitive that can <strong>be used to
+   protect shared data from being simultaneously accessed by multiple threads</strong>.</li>
+<li>In contrast to other mutex types which facilitate exclusive access, a <code>std::shared_mutex</code> <strong>has
+   two levels of access</strong>:</li>
+<li><strong>shared (read-shared-data-only)</strong>: several threads can share ownership of the same mutex.</li>
+<li><strong>exclusive (read-or-modify-shared-date)</strong>: only one thread can own the mutex.</li>
+<li>If one thread has <strong>acquired the exclusive lock (through <code>lock</code>, <code>try_lock</code>)</strong>, no other threads
+   can acquire the lock (including the shared).</li>
+<li>If one thread has <strong>acquired the shared lock (through <code>lock_shared</code>, <code>try_lock_shared</code>)</strong>, no
+   other thread can acquire the exclusive lock, but can acquire the shared lock.</li>
+<li>Only when the exclusive lock has not been acquired by any thread, the shared lock can be acquired
+   by multiple threads.</li>
+<li>Within <strong>one thread, only one lock</strong> (shared or exclusive) can be acquired at the same time.</li>
+<li>Shared mutexes are especially useful when <strong>shared data</strong> can be <strong>safely read</strong> by <strong>any number
+   of threads simultaneously</strong>, <strong>but</strong> <strong>a thread may only write the same data when no other thread
+   is reading or writing at the same time</strong>.</li>
+<li>The <code>std::shared_mutex</code> class satisfies all requirements of <code>SharedMutex</code> and
+   <code>StandardLayoutType</code>.</li>
+<li>Its header file is <code>&lt;mutex&gt;</code>.</li>
+</ol>
+<h4 id="stdshared_timed_mutex"><code>std::shared_timed_mutex</code></h4>
+<ol>
+<li>The <code>std::shared_timed_mutex</code> <strong>template class</strong> is <strong>a synchronization primitive</strong> that can be
+   <strong>used to protect shared data from being simultaneously accessed by multiple threads</strong>.</li>
+<li>In contrast to other mutex types which facilitate exclusive access, a <code>std::shared_timed_mutex</code>
+   <strong>has two levels of access</strong>:</li>
+<li><strong>shared (read-shared-data-only)</strong>: several threads can share ownership of the same mutex.</li>
+<li><strong>exclusive (read-or-modify-shared-date)</strong>: only one thread can own the mutex.</li>
+<li>Shared mutexes are usually used in situations when multiple readers can access the same resource
+   at the same time without causing data races, but only one writer can do so.</li>
+<li>In a manner similar to <code>std::timed_mutex</code>, <code>std::shared_timed_mutex</code> <strong>provides the ability to
+   attempt to claim ownership</strong> of a <code>std::shared_timed_mutex</code> <strong>with a timeout</strong> via the
+   <code>try_lock_for()</code>, <code>try_lock_until()</code>, <code>try_lock_shared_for()</code>, <code>try_lock_shared_until()</code> member
+   functions.</li>
+<li>The <code>std::shared_timed_mutex</code> class satisfies all requirements of <code>SharedTimedMutex</code> and
+   <code>StandardLayoutType</code>.</li>
+<li>Its header file is <code>&lt;mutex&gt;</code>.</li>
+</ol>
+<h4 id="syntax_6">Syntax</h4>
+<pre><code class="language-CPP">// Its usage syntax.
+std::mutex mutex_name;
+std::recursive_mutex rmutex_name;
+std::timed_mutex tmutex_name;
+std::recursive_timed_mutex rtmutex_name;
+std::shared_mutex smutex_name;
+std::shared_timed_mutex stmutex_name;
+</code></pre>
+<h4 id="members-and-related-stuffs_2">Members and Related Stuffs</h4>
+<h5 id="links_3">Links</h5>
+<ol>
+<li><a href="https://cplusplus.com/reference/mutex/"><code>&lt;mutex&gt;</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/header/mutex"><code>&lt;mutex&gt;</code> in cppreference</a>.</li>
+<li><a href="https://cplusplus.com/reference/mutex/mutex/"><code>std::mutex</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/mutex"><code>std::mutex</code> in cppreference</a>.</li>
+<li><a href="https://cplusplus.com/reference/mutex/recursive_mutex/"><code>std::recursive_mutex</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/recursive_mutex"><code>std::recursive_mutex</code> in cppreference</a>.</li>
+<li><a href="https://cplusplus.com/reference/mutex/timed_mutex/"><code>std::timed_mutex</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/timed_mutex"><code>std::timed_mutex</code> in cppreference</a>.</li>
+<li><a href="https://cplusplus.com/reference/mutex/recursive_timed_mutex/"><code>std::recursive_timed_mutex</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/recursive_timed_mutex"><code>std::recursive_timed_mutex</code> in cppreference</a>.</li>
+</ol>
+<h5 id="nested-types">Nested Types</h5>
+<ol>
+<li><code>native_handle_type (optional*)</code>: Implementation-defined.</li>
+</ol>
+<h5 id="member-functions_2">Member Functions</h5>
+<ol>
+<li>(constructor): Constructs the mutex (public member function).</li>
+<li>(destructor): Destroys the mutex (public member function).</li>
+<li><code>operator=[deleted]</code>: Not copy-assignabl (public member function).</li>
+<li><code>lock</code>: Locks the mutex, blocks if the mutex is not available (public member function).</li>
+<li><code>try_lock</code>: Tries to lock the mutex, returns if the mutex is not available (public member
+   function).</li>
+<li><code>try_lock_for</code> (only for <code>std::timed_mutex</code>, <code>std::recursive_timed_mutex</code> and
+   <code>std::shared_timed_mutex</code>): Tries to lock the mutex, returns if the mutex has been unavailable
+   for the specified timeout duration (public member function).</li>
+<li><code>try_lock_until</code> (only for <code>std::timed_mutex</code>, <code>std::recursive_timed_mutex</code> and
+   <code>std::shared_timed_mutex</code>): Tries to lock the mutex, returns if the mutex has been unavailable
+   until specified time point has been reached (public member function).</li>
+<li><code>unlock</code>: Unlocks the mutex (public member function).</li>
+<li><code>lock_shared</code> (only for <code>std::shared_mutex</code> and <code>std::shared_timed_mutex</code>): Locks the mutex for
+   shared ownership, blocks if the mutex is not available (public member function).</li>
+<li><code>try_lock_shared</code> (only for <code>std::shared_mutex</code> and <code>std::shared_timed_mutex</code>): Tries to lock
+    the mutex for shared ownership, returns if the mutex is not available (public member function).</li>
+<li><code>try_lock_shared_for</code> (only for <code>std::shared_timed_mutex</code>): Tries to lock the mutex for shared
+    ownership, returns if the mutex has been unavailable for the specified timeout duration (public
+    member function).</li>
+<li><code>try_lock_shared_until</code> (only for <code>std::shared_timed_mutex</code>): Tries to lock the mutex for shared
+    ownership, returns if the mutex has been unavailable until specified time point has been reached
+    (public member function).</li>
+<li><code>unlock_shared</code> (only for <code>std::shared_mutex</code> and <code>std::shared_timed_mutex</code>): Unlocks the mutex
+    (shared ownership) (public member function).</li>
+<li><code>native_handle</code>: Returns the underlying implementation-defined native handle object (public
+    member function).</li>
+</ol>
+<h4 id="notes_1"><strong>Notes</strong></h4>
+<ol>
+<li>All lock classes or functions that receive mutex objects implement the locking or unlocking
+   behavior by calling the mutex object's lock or unlock member functions.</li>
+<li>All mutex objects are passed to them by reference.</li>
+<li>All lock objects do not manage the lifetime of the mutex object in any way: the duration of the
+   mutex object shall extend at least until the destruction of the lock object that locks it.</li>
+</ol>
+<h3 id="stdlock_guard"><code>std::lock_guard</code></h3>
+<h4 id="explanation_10">Explanation</h4>
+<ol>
+<li><code>std::lock_guard</code> is <strong>a template class that manages a mutex object</strong> by <strong>keeping it always
+   locked</strong>.</li>
+<li><strong>On construction</strong>, the mutex object is <strong>locked</strong> by the calling thread, and <strong>on
+   destruction</strong>, the mutex is <strong>unlocked</strong>.</li>
+<li>It is the simplest lock, and is specially useful as an object with automatic duration that lasts
+   until the end of its context.</li>
+<li>In this way, it guarantees the mutex object is properly unlocked in case an exception is thrown.</li>
+<li>Its header file is <code>&lt;mutex&gt;</code>.</li>
+</ol>
+<h4 id="syntax_7">Syntax</h4>
+<pre><code class="language-CPP">// Its usage syntax.
+MutexType mtx;
+std::lock_guard&lt; MutexType &gt; lck( mtx );
+</code></pre>
+<pre><code class="language-CPP">// Its usage syntax.
+MutexType mtx;
+mtx.lock();
+std::lock_guard&lt; MutexType &gt; lck( mtx, std::adopt_lock );
+</code></pre>
+<h4 id="members-and-related-stuffs_3">Members and Related Stuffs</h4>
+<h5 id="links_4">Links</h5>
+<ol>
+<li><a href="https://cplusplus.com/reference/mutex/lock_guard/"><code>std::lock_guard</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/lock_guard"><code>std::lock_guard</code> in cppreference</a>.</li>
+</ol>
+<h5 id="template-parameters">Template Parameters</h5>
+<ol>
+<li><code>Mutex</code>: The type of the mutex to lock. The type must meet the <code>BasicLockable</code> requirements.</li>
+</ol>
+<h5 id="member-types_2">Member Types</h5>
+<ol>
+<li><code>mutex_type</code>: <code>Mutex</code>.</li>
+</ol>
+<h5 id="member-functions_3">Member Functions</h5>
+<ol>
+<li>(constructor): Constructs a <code>lock_guard</code>, optionally locking the given mutex. Not
+   copy-constructable (public member function).</li>
+<li>(destructor): Destructs the <code>lock_guard</code> object, unlocks the underlying mutex (public member
+   function).</li>
+<li><code>operator=[deleted]</code>: Not copy-assignable (public member function).</li>
+</ol>
+<h3 id="stdunique_lock-and-stdshared_lock"><code>std::unique_lock</code> and <code>std::shared_lock</code></h3>
+<h4 id="stdunique_lock"><code>std::unique_lock</code></h4>
+<ol>
+<li><code>std::unique_lock</code> is <strong>a template class</strong> that <strong>manages a mutex object with unique ownership</strong>
+   in <strong>both states</strong>: <strong>locked and unlocked</strong>.</li>
+<li><strong>On construction</strong> (or by move-assigning to it), the object <strong>acquires a mutex object</strong>, for
+   whose locking and unlocking operations becomes responsible.</li>
+<li>This class <strong>guarantees an unlocked status on destruction</strong> (even if not called explicitly).</li>
+<li>Therefore it is especially useful as an object with automatic duration, as it guarantees the
+   mutex object is properly unlocked in case an exception is thrown.</li>
+<li>Even when working <strong>with a shared mutex</strong>, <strong><code>std::unique_lock</code> essentially behaves like a normal
+   lock</strong>, <strong>blocking other threads</strong> from accessing the shared data.</li>
+<li>This is because <strong>a <code>std::unique_lock</code> provides exclusive access</strong> to the resource, preventing
+   other threads from acquiring either a shared or exclusive lock until the unique lock is released.</li>
+<li>Its header file is <code>&lt;mutex&gt;</code>.</li>
+</ol>
+<h4 id="stdshared_lock"><code>std::shared_lock</code></h4>
+<ol>
+<li><code>std::shared_lock</code> is <strong>a template class</strong> that <strong>manages a mutex object with shared ownership</strong>.</li>
+<li><strong>On construction</strong> (or by move-assigning to it), the object <strong>acquires a shared lock</strong> on a
+   mutex object, <strong>allowing multiple threads to hold the lock concurrently</strong>.</li>
+<li>This class <strong>guarantees an unlocked status on destruction</strong>, releasing the shared lock when the
+   <code>std::shared_lock</code> object goes out of scope.</li>
+<li>It is especially useful for <strong>shared access to a resource</strong> when <strong>multiple threads need to read
+   from it concurrently</strong>, without blocking each other.</li>
+<li>However, that <strong><code>std::shared_lock</code> provides only shared access</strong> to the resource, meaning
+   <strong>exclusive access is not possible</strong> while a shared lock is held.</li>
+<li>While <strong>acquiring a shared lock</strong> allows other threads to also acquire shared locks, <strong>no thread
+   can acquire an exclusive lock</strong> until all shared locks are released.</li>
+<li>The class does not manage the lifetime of the mutex object.</li>
+<li><strong>The <code>MutexType</code> used with <code>std::shared_lock</code> must be a shared mutex type</strong>.</li>
+<li>Its header file is <code>&lt;shared_mutex&gt;</code>.</li>
+</ol>
+<h4 id="syntax_8">Syntax</h4>
+<pre><code class="language-CPP">// Its usage syntax.
+MutexType mtx;
+std::unique_lock&lt; MutexType &gt; ulck( mtx );
+std::shared_lock&lt; MutexType &gt; slck( mtx );
+</code></pre>
+<pre><code class="language-CPP">// Its usage syntax.
+MutexType mtx;
+std::unique_lock&lt; MutexType &gt; ulck1( mtx );
+std::shared_lock&lt; MutexType &gt; slck1( mtx );
+// Move constructor.
+std::unique_lock&lt; MutexType &gt; ulck2( std::move( ulck1 ) );
+std::shared_lock&lt; MutexType &gt; slck2( std::move( slck1 ) );
+</code></pre>
+<pre><code class="language-CPP">// Its usage syntax.
+MutexType mtx;
+std::unique_lock&lt; MutexType &gt; ulck( mtx, std::defer_lock );
+ulck.lock();
+std::shared_lock&lt; MutexType &gt; slck( mtx, std::defer_lock );
+slck.lock();
+</code></pre>
+<pre><code class="language-CPP">// Its usage syntax.
+MutexType mtx;
+mtx.lock();
+std::unique_lock&lt; MutexType &gt; ulck( mtx, std::try_to_lock );
+if( ulck.owns_lock() ) {
+   // Critical section: code that must be executed atomically.
+} else {
+   // Lock acquisition failed, handle the situation appropriately.
+}
+std::shared_lock&lt; MutexType &gt; slck( mtx, std::try_to_lock );
+if( slck.owns_lock() ) {
+   // Critical section: code that must be executed atomically.
+} else {
+   // Lock acquisition failed, handle the situation appropriately.
+}
+</code></pre>
+<pre><code class="language-CPP">// Its usage syntax.
+MutexType mtx;
+mtx.lock();
+std::unique_lock&lt; MutexType &gt; ulck( mtx, std::adopt_lock );
+std::shared_lock&lt; MutexType &gt; slck( mtx, std::adopt_lock );
+</code></pre>
+<pre><code class="language-CPP">// Its usage syntax.
+MutexType mtx;
+std::chrono::duration&lt; Type, std::ratio&lt; num1, num2 &gt;(Optional) &gt; dur;
+std::unique_lock&lt; MutexType &gt; ulck( mtx, dur );
+std::shared_lock&lt; MutexType &gt; slck( mtx, dur );
+</code></pre>
+<pre><code class="language-CPP">// Its usage syntax.
+MutexType mtx;
+std::chrono::time_point&lt; Clock &gt; tpoint;
+std::unique_lock&lt; MutexType &gt; ulck( mtx, tpoint );
+std::shared_lock&lt; MutexType &gt; slck( mtx, tpoint );
+</code></pre>
+<h4 id="members-and-related-stuffs_4">Members and Related Stuffs</h4>
+<h5 id="links_5">Links</h5>
+<ol>
+<li><a href="https://cplusplus.com/reference/mutex/unique_lock/"><code>std::unique_lock</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/unique_lock"><code>std::unique_lock</code> in cppreference</a>.</li>
+<li><a href=""><code>std::shared_lock</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/shared_lock"><code>std::shared_lock</code> in cppreference</a>.</li>
+</ol>
+<h5 id="template-parameters_1">Template Parameters</h5>
+<ol>
+<li><code>Mutex</code>: The type of the mutex to lock. The type must meet the <code>BasicLockable</code> requirements.</li>
+</ol>
+<h5 id="nested-types_1">Nested Types</h5>
+<ol>
+<li><code>mutex_type</code>: <code>Mutex</code>.</li>
+</ol>
+<h5 id="member-functions_4">Member Functions</h5>
+<ol>
+<li>(constructor): Constructs a <code>std::unique_lock</code>, optionally locking (i.e., taking ownership of)
+   the supplied mutex (public member function).</li>
+<li>(destructor): Unlocks (i.e., releases ownership of) the associated mutex, if owned (public member
+   function).</li>
+<li><code>operator=</code>: Unlocks (i.e., releases ownership of) the mutex, if owned, and acquires ownership of
+   another (public member function).</li>
+<li><code>lock</code>: Locks (i.e., takes ownership of) the associated mutex (public member function).</li>
+<li><code>try_lock</code>: Tries to lock (i.e., takes ownership of) the associated mutex without blocking
+   (public member function).</li>
+<li><code>try_lock_for</code>: Attempts to lock (i.e., takes ownership of) the associated TimedLockable mutex,
+   returns if the mutex has been unavailable for the specified time duration (public member
+   function).</li>
+<li><code>try_lock_until</code>: Tries to lock (i.e., takes ownership of) the associated TimedLockable mutex,
+   returns if the mutex has been unavailable until specified time point has been reached (public
+   member function).</li>
+<li><code>unlock</code>: Unlocks (i.e., releases ownership of) the associated mutex (public member function).</li>
+<li><code>swap</code>: Swaps state with another <code>std::unique_lock</code> (public member function).</li>
+<li><code>release</code>: Disassociates the associated mutex without unlocking (i.e., releasing ownership of)
+    it (public member function).</li>
+<li><code>mutex</code>: Returns a pointer to the associated mutex (public member function).</li>
+<li><code>owns_lock</code>: Tests whether the lock owns (i.e., has locked) its associated mutex (public member
+    function).</li>
+<li><code>operator bool</code>: Tests whether the lock owns (i.e., has locked) its associated mutex (public
+    member function).</li>
+</ol>
+<h5 id="non-member-functions_2">Non-member Functions</h5>
+<ol>
+<li><code>std::swap( std::unique_lock )</code> (C++11), <code>std::swap( std::unique_lock )</code> (C++11): Specializes the
+   <code>std::swap</code> algorithm (function template).</li>
+</ol>
+<h3 id="stdscoped_lock"><code>std::scoped_lock</code></h3>
+<h4 id="explanation_11">Explanation</h4>
+<ol>
+<li><strong>The template class</strong> <code>std::scoped_lock</code> is <strong>a mutex wrapper</strong> that provides a convenient
+   <strong>RAII-style mechanism for owning zero or more mutexes</strong> for the duration of a scoped block.</li>
+<li>When a <code>std::scoped_lock</code> object is created, it attempts to take ownership of the mutexes it is
+   given.</li>
+<li>When control leaves the scope in which the <code>std::scoped_lock</code> object was created, the
+   <code>std::scoped_lock</code> is destructed and the mutexes are released.</li>
+<li>If <strong>several mutexes</strong> are <strong>given</strong>, <strong>deadlock avoidance algorithm</strong> is used as if by
+   <code>std::lock</code>.</li>
+<li>The <code>std::scoped_lock</code> class is <strong>non-copyable</strong>.</li>
+<li>Its header file is <code>&lt;mutex&gt;</code>.</li>
+</ol>
+<h4 id="syntax_9">Syntax</h4>
+<pre><code class="language-CPP">// Its declaration syntax.
+template&lt; class... MutexTypes &gt; class scoped_lock;
+</code></pre>
+<pre><code class="language-CPP">// Its declaration syntax.
+MutexType1 mtx1;
+MutexType2 mtx2;
+...;
+std::scoped_lock&lt; MutexType1, MutexType2, ... &gt; lck( mtx1, mtx2, ... );
+</code></pre>
+<pre><code class="language-CPP">// Its declaration syntax.
+MutexType1 mtx1;
+MutexType2 mtx2;
+...;
+mtx1.lock;
+mtx2.lock;
+...;
+std::scoped_lock&lt; MutexType1, MutexType2, ... &gt; lck( std::adopt_lock, mtx1, mtx2, ... );
+</code></pre>
+<h4 id="members-and-related-stuffs_5">Members and Related Stuffs</h4>
+<h5 id="links_6">Links</h5>
+<ol>
+<li><a href=""><code>std::scoped_lock</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/unique_lock"><code>std::scoped_lock</code> in cppreference</a>.</li>
+</ol>
+<h5 id="template-parameters_2">Template Parameters</h5>
+<ol>
+<li><code>MutexTypes</code>: The types of the mutexes to lock. The types must meet the Lockable requirements
+   unless <code>sizeof...( MutexTypes ) == 1</code>, in which case the only type must meet BasicLockable.</li>
+</ol>
+<h5 id="member-types_3">Member Types</h5>
+<ol>
+<li><code>mutex_type</code> (conditionally present): If <code>sizeof...( MutexTypes ) == 1</code>, member type <code>mutex_type</code>
+   is the same as Mutex, the sole type in <code>MutexTypes...</code>. Otherwise, there is no member
+   <code>mutex_type</code>.</li>
+</ol>
+<h5 id="member-functions_5">Member Functions</h5>
+<ol>
+<li>(constructor): Constructs a <code>std::scoped_lock</code>, optionally locking the given mutexes (public
+   member function).</li>
+<li>(destructor): Destructs the <code>std::scoped_lock</code> object, unlocks the underlying mutexes (public
+   member function).</li>
+<li><code>operator=[deleted]</code>: Not copy-assignable (public member function).</li>
+</ol>
+<h3 id="stdlock-and-stdtry_lock"><code>std::lock</code> and <code>std::try_lock</code></h3>
+<h4 id="stdlock"><code>std::lock</code></h4>
+<ol>
+<li><code>std::lock</code> <strong>locks all the objects passed as arguments</strong>, blocking the calling thread if
+   necessary.</li>
+<li>The function locks the objects using an unspecified sequence of calls to their members lock,
+   <code>try_lock</code> and unlock that ensures that all arguments are locked on return (without producing any
+   deadlocks).</li>
+<li>If the function <strong>cannot lock all objects</strong> (such as because one of its internal calls <strong>threw an
+   exception</strong>), the function <strong>first unlocks all objects it successfully locked</strong> (if any) before
+   failing.</li>
+<li><strong>To prevent deadlock, the order of acquiring multiple locks must be consistent</strong>.</li>
+<li>Its header file is <code>&lt;mutex&gt;</code>.</li>
+</ol>
+<h4 id="stdtry_lock"><code>std::try_lock</code></h4>
+<ol>
+<li><code>std::try_lock</code> <strong>attempts to lock all the objects passed as arguments using their
+   <code>std::try_lock</code> member functions (non-blocking)</strong>.</li>
+<li>The function <strong>calls the <code>std::try_lock</code> member function</strong> for each argument (first <code>lock1</code>, then
+   <code>lock2</code>, and eventually the others in <code>lockn</code>, in the same order), until either all calls are
+   successful, or as soon as one of the calls fails (either by returning false or throwing an
+   exception).</li>
+<li>If the function ends because a call <strong>fails</strong>, unlock is called on all objects for which the call
+   to <code>std::try_lock</code> was successful, and <strong>the function returns the argument order number of the
+   object whose lock failed</strong>.</li>
+<li>No further calls are performed for the remaining objects in the argument list.</li>
+<li>If the function locks all mutex objects successfully, it returns <code>-1</code>.</li>
+<li>Its header file is <code>&lt;mutex&gt;</code>.</li>
+</ol>
+<h4 id="syntax_10">Syntax</h4>
+<pre><code class="language-CPP">// Its declaration syntax.
+template&lt; class Lockable1, class Lockable2, class... LockableN &gt;
+void lock( Lockable1&amp; lock1, Lockable2&amp; lock2, LockableN&amp;... lockn );
+</code></pre>
+<pre><code class="language-CPP">// Its declaration syntax.
+template&lt; class Lockable1, class Lockable2, class... LockableN &gt;
+int try_lock( Lockable1&amp; lock1, Lockable2&amp; lock2, LockableN&amp;... lockn );
+</code></pre>
+<h3 id="three-lock-type-tags">Three Lock Type Tags</h3>
+<ol>
+<li><a href="https://cplusplus.com/reference/mutex/"><code>&lt;mutex&gt;</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/header/mutex"><code>&lt;mutex&gt;</code> in cppreference</a>.</li>
+<li><code>std::defer</code>: A <code>constexpr defer_lock_t</code> object. Do not acquire ownership of the mutex.</li>
+<li><code>std::try_to_lock</code>: A <code>constexpr try_to_lock_t</code> object. Try to acquire ownership of the mutex
+   without blocking.</li>
+<li><code>std::adopt_lock</code>: A <code>constexpr adopt_lock_t</code> object. Assume the calling thread already has
+   ownership of the mutex.</li>
+</ol>
+<h3 id="stdcall_once-and-stdonce_flag"><code>std::call_once</code> and <code>std::once_flag</code></h3>
+<h4 id="explanation_12">Explanation</h4>
+<ol>
+<li><code>std::call_once</code> <strong>executes</strong> the callable object <strong><code>f</code> exactly once</strong>, <strong>even if</strong> called
+   concurrently from <strong>several threads</strong>.</li>
+<li><code>std::once_flag</code> is <strong>a helper object</strong> to <strong>ensure</strong> that <strong><code>std::call_once</code> invokes the
+   function only once</strong>.</li>
+</ol>
+<h4 id="syntax_11">Syntax</h4>
+<pre><code class="language-CPP">// Its declaration syntax.
+template&lt; class Callable, class... Args &gt;
+void call_once( std::once_flag&amp; flag, Callable&amp;&amp; f, Args&amp;&amp;... args );
+</code></pre>
+<h3 id="stdatomic-and-stdatomic_ref"><code>std::atomic</code> and <code>std::atomic_ref</code></h3>
+<h4 id="stdatomic"><code>std::atomic</code></h4>
+<ol>
+<li><code>std::atomic</code> is <strong>a template class</strong> that <strong>provides</strong> a variety of <strong>atomic operations</strong> that
+   guarantee the integrity of <strong>data access across multiple threads</strong>.</li>
+<li>These operations include <strong>read-modify-write operations</strong> and <strong>compare-and-swap (CAS)
+   operations</strong>.</li>
+<li>These operations are implemented using hardware-level atomic instructions, ensuring that they are
+   indivisible and <strong>cannot be interrupted by other threads</strong>.</li>
+<li><code>std::atomic</code> <strong>allows</strong> you to <strong>specify the memory ordering of operations</strong>, which
+   <strong>determines</strong> how operations on <strong>different threads are synchronized</strong>.</li>
+<li>This is crucial for ensuring correct behavior in complex concurrent programs.</li>
+<li>Many of the operations provided by <code>std::atomic</code> are <strong>lock-free</strong>, meaning they don't require
+   explicit locking mechanisms.</li>
+<li>Besides, some operations are <strong>wait-free</strong>, ensuring that a thread will eventually succeed in its
+   operation, even if other threads are also contending.</li>
+<li>These two features can significantly <strong>improve performance</strong> in <strong>high-concurrency scenarios</strong>.</li>
+<li>The <code>std::atomic</code> class is <strong>non-copyable</strong>.</li>
+<li>Its header file is <code>&lt;atomic&gt;</code>.</li>
+</ol>
+<h4 id="stdatomic_ref"><code>std::atomic_ref</code></h4>
+<ol>
+<li><code>std::atomic_ref</code> is <strong>a template class</strong> that <strong>provides</strong> atomic operations on <strong>non-atomic
+   objects</strong>, allowing them to be accessed safely across multiple threads.</li>
+<li>It <strong>works</strong> by <strong>wrapping a reference to an existing object</strong> and <strong>providing atomic
+   operations</strong> such as <strong>read-modify-write</strong> and <strong>compare-and-swap</strong> (CAS) on the referenced
+   object.</li>
+<li>These operations are <strong>implemented using hardware-level atomic instructions</strong>, ensuring that they
+   are indivisible and <strong>cannot be interrupted by other threads</strong>.</li>
+<li><code>std::atomic_ref</code> <strong>allows</strong> you to <strong>specify the memory ordering of operations</strong>, which
+   <strong>determines</strong> how operations on <strong>different threads are synchronized</strong>.</li>
+<li>This ensures correct behavior in multi-threaded programs, even when dealing with non-atomic
+   types.</li>
+<li>Unlike <code>std::atomic</code>, which requires atomic types, <code>std::atomic_ref</code> <strong>works</strong> with regular types
+   like <code>int</code>, <code>double</code>, and user-defined types.</li>
+<li>The class <strong>does not manage the lifetime</strong> of the referenced object, meaning you must ensure that
+   the referenced object remains valid for the duration of the atomic operations.</li>
+<li>The use of <code>std::atomic_ref</code> can help <strong>reduce the overhead</strong> of atomic operations on non-atomic
+   objects and <strong>improve performance</strong> in multi-threaded scenarios.</li>
+<li><code>std::atomic_ref</code> is <strong>non-copyable</strong>, ensuring that the reference is consistent across multiple
+   threads.</li>
+<li>Its header file is <code>&lt;atomic&gt;</code>.</li>
+</ol>
+<h4 id="syntax_12">Syntax</h4>
+<pre><code class="language-CPP">// Its usage syntax.
+std::atomic&lt; Type &gt; avar_name1;
+Type obj_name;
+avar_name1 = obj_name;
+// Allows temporary objects.
+std::atomic&lt; Type &gt; avar_name2( obj_name );
+</code></pre>
+<pre><code class="language-CPP">// Its usage syntax.
+Type obj_name;
+// Constructs an `atomic_ref` object referencing the object `obj_name`.
+std::atomic_ref&lt; Type &gt; avar_name1( obj_name );
+// Constructs an `atomic_ref` object referencing the object `avar_name1`.
+std::atomic_ref&lt; Type &gt; avar_name2( avar_name1 );
+</code></pre>
+<h4 id="members-and-related-stuffs_6">Members and Related Stuffs</h4>
+<h5 id="links_7">Links</h5>
+<ol>
+<li><a href="https://cplusplus.com/reference/atomic/"><code>&lt;atomic&gt;</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread"><code>&lt;atomic&gt;</code> in cppreference</a>.</li>
+<li><a href="https://cplusplus.com/reference/atomic/atomic/"><code>std::atomic</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/atomic/atomic"><code>std::atomic</code> in cppreference</a>.</li>
+</ol>
+<h5 id="member-types_4">Member Types</h5>
+<ol>
+<li><code>value_type</code>: <code>T</code> (regardless of whether specialized or not).</li>
+<li><code>difference_type</code>: <code>value_type</code> (only for <code>atomic&lt; Integral &gt;</code> and <code>atomic&lt; Floating &gt;</code>(since
+   C++20) specializations), <code>std::ptrdiff_t</code> (only for <code>std::atomic&lt; U* &gt;</code> specializations).</li>
+<li><code>difference_type</code> is not defined in the primary <code>std::atomic</code> template or in the partial
+   specializations for <code>std::shared_ptr</code> and <code>std::weak_ptr</code>.</li>
+</ol>
+<h5 id="member-functions_6">Member Functions</h5>
+<ol>
+<li>(constructor): Constructs an atomic object (public member function).</li>
+<li><code>operator=</code>: Stores a value into an atomic object (public member function).</li>
+<li><code>is_lock_free</code>: Checks if the atomic object is lock-free (public member function).</li>
+<li><code>store</code>: Atomically replaces the value of the atomic object with a non-atomic argument (public
+   member function).</li>
+<li><code>load</code>: Atomically obtains the value of the atomic object (public member function).</li>
+<li><code>operator T</code>: Loads a value from an atomic object (public member function).</li>
+<li><code>exchange</code>: Atomically replaces the value of the atomic object and obtains the value held
+   previously (public member function).</li>
+<li><code>compare_exchange_weak</code>, <code>compare_exchange_strong</code>: Atomically compares the value of the atomic
+   object with non-atomic argument and performs atomic exchange if equal or atomic load if not
+   (public member function).</li>
+<li><code>wait</code> (C++20): Blocks the thread until notified and the atomic value changes (public member
+   function).</li>
+<li><code>notify_one</code> (C++20): Notifies at least one thread waiting on the atomic object (public member
+    function).</li>
+<li><code>notify_all</code> (C++20): Notifies all threads blocked waiting on the atomic object (public member
+    function).</li>
+</ol>
+<h5 id="constants">Constants</h5>
+<ol>
+<li><code>is_always_lock_free</code> [<code>static</code>] (C++17): Indicates that the type is always lock-free (public
+   static member constant).</li>
+<li><code>required_alignment</code> [<code>static</code>] (only for
+   <code>std::atomic_ref): Indicates the required alignment of an object to be referenced by</code>atomic_ref`
+   (public static member constant).</li>
+</ol>
+<h5 id="specialized-member-functions">Specialized Member Functions</h5>
+<h6 id="specialized-for-integral-floating-point-since-c20-and-pointer-types">Specialized for Integral, Floating-point (Since C++20) and Pointer Types</h6>
+<ol>
+<li><code>fetch_add</code>: Atomically adds the argument to the value stored in the atomic object and obtains
+   the value held previously (public member function).</li>
+<li><code>fetch_sub</code>: Atomically subtracts the argument from the value stored in the atomic object and
+   obtains the value held previously (public member function).</li>
+<li><code>operator+=/-=</code>: Adds to or subtracts from the atomic value (public member function).</li>
+</ol>
+<h6 id="specialized-for-integral-and-pointer-types-only">Specialized for Integral and Pointer Types Only</h6>
+<ol>
+<li><code>fetch_max</code> (C++26): Atomically performs <code>std::max</code> between the argument and the value of the
+   atomic object and obtains the value held previously (public member function).</li>
+<li><code>fetch_min</code> (C++26): Atomically performs <code>std::min</code> between the argument and the value of the
+   atomic object and obtains the value held previously (public member function).</li>
+<li><code>operator++/++(int)/--/--(int)</code>: Increments or decrements the atomic value by one (public member
+   function).</li>
+</ol>
+<h6 id="specialized-for-integral-types-only">Specialized for Integral Types Only</h6>
+<ol>
+<li><code>fetch_and</code>: Atomically performs bitwise AND between the argument and the value of the atomic
+   object and obtains the value held previously (public member function).</li>
+<li><code>fetch_or</code>: Atomically performs bitwise OR between the argument and the value of the atomic
+   object and obtains the value held previously (public member function).</li>
+<li><code>fetch_xor</code>: Atomically performs bitwise XOR between the argument and the value of the atomic
+   object and obtains the value held previously (public member function).</li>
+<li><code>operator&amp;=/|=/^=</code>: Performs bitwise AND, OR, XOR with the atomic value (public member function).</li>
+</ol>
+<h5 id="type-aliases-only-for-stdatomic">Type Aliases (Only for <code>std::atomic</code>)</h5>
+<ol>
+<li><a href="https://cplusplus.com/reference/atomic/atomic/"><code>std::atomic</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/atomic/atomic"><code>std::atomic</code> in cppreference</a>.</li>
+</ol>
+<h3 id="stdcondition_variable-and-stdcondition_variable_any"><code>std::condition_variable</code> and <code>std::condition_variable_any</code></h3>
+<h4 id="stdcondition_variable"><code>std::condition_variable</code></h4>
+<ol>
+<li>A condition variable is <strong>a class object</strong> able to <strong>block the calling thread until notified to
+   resume</strong>.</li>
+<li>It <strong>uses a <code>std::unique_lock</code></strong> (over a mutex) to <strong>lock the thread</strong> when one of its <strong>wait
+   functions</strong> is called.</li>
+<li>The thread <strong>remains blocked until woken up by another thread</strong> that calls <strong>a notification
+   function</strong> <strong>on the same <code>std::condition_variable</code> object</strong>.</li>
+<li>Objects of type <code>std::condition_variable</code> always use <code>std::unique_lock&lt; std::mutex &gt;</code> to <code>wait</code>:
+   for an alternative that works with any kind of lockable type, see <code>std::condition_variable_any</code>.</li>
+<li>Its header file is <code>&lt;condition_variable&gt;</code>.</li>
+</ol>
+<h4 id="stdcondition_variable_any"><code>std::condition_variable_any</code></h4>
+<ol>
+<li>It's <strong>the same as <code>std::condition_variable</code></strong>, except that <strong>its wait functions can take any
+   lockable type</strong> as argument (<code>std::condition_variable</code> objects can only take
+   <code>std::unique_lock&lt; std::mutex &gt;</code>).</li>
+<li>Other than that, they are identical.</li>
+<li>However, <code>std::condition_variable_any</code> is slower than <code>std::condition_variable</code>.</li>
+<li>Its header file is <code>&lt;condition_variable&gt;</code>.</li>
+</ol>
+<h4 id="examples">Examples</h4>
+<pre><code class="language-CPP">// condition_variable example
+#include &lt;iostream&gt;             // std::cout
+#include &lt;thread&gt;               // std::thread
+#include &lt;mutex&gt;                // std::mutex, std::unique_lock
+#include &lt;condition_variable&gt;   // std::condition_variable
+
+std::mutex mtx;
+std::condition_variable cv;
+bool ready = false;
+
+void print_id( int id ) {
+   std::unique_lock&lt; std::mutex &gt; lck( mtx );
+   while( !ready )
+      cv.wait( lck );
+   // ...
+   std::cout &lt;&lt; &quot;thread &quot; &lt;&lt; id &lt;&lt; '\n';
+}
+
+void go() {
+   std::unique_lock&lt; std::mutex &gt; lck( mtx );
+   ready = true;
+   cv.notify_all();
+}
+
+int main() {
+   std::thread threads[10];
+   // spawn 10 threads:
+   for( int i = 0; i &lt; 10; ++i )
+      threads[i] = std::thread( print_id, i );
+
+   std::cout &lt;&lt; &quot;10 threads ready to race...\n&quot;;
+   go();   // go!
+
+   for( auto&amp; th: threads )
+      th.join();
+
+   return 0;
+}
+</code></pre>
+<h4 id="members-and-related-stuffs_7">Members and Related Stuffs</h4>
+<h5 id="links_8">Links</h5>
+<ol>
+<li><a href="https://cplusplus.com/reference/condition_variable/"><code>&lt;condition_variable&gt;</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread#Condition_variables"><code>&lt;condition_variable&gt;</code> in cppreference</a>.</li>
+<li><a href="https://cplusplus.com/reference/condition_variable/condition_variable/"><code>std::condition_variable</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/condition_variable"><code>std::condition_variable</code> in cppreference</a>.</li>
+<li><a href="https://cplusplus.com/reference/condition_variable/condition_variable_any/"><code>std::condition_variable_any</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/condition_variable_any"><code>std::condition_variable_any</code> in cppreference</a>.</li>
+</ol>
+<h5 id="nested-types_2">Nested Types</h5>
+<ol>
+<li><code>native_handle_type</code>: Implementation-defined.</li>
+</ol>
+<h5 id="member-functions_7">Member Functions</h5>
+<ol>
+<li>(constructor): Constructs the object (public member function).</li>
+<li>(destructor): Destructs the object (public member function).</li>
+<li><code>operator=[deleted]</code>: Not copy-assignable (public member function).</li>
+<li><code>notify_one</code>: Notifies one waiting thread (public member function).</li>
+<li><code>notify_all</code>: Notifies all waiting threads (public member function).</li>
+<li><code>wait</code>: Blocks the current thread until the condition variable is awakened (public member
+   function).</li>
+<li><code>wait_for</code>: Blocks the current thread until the condition variable is awakened or after the
+   specified timeout duration (public member function).</li>
+<li><code>wait_until</code>: Blocks the current thread until the condition variable is awakened or until
+   specified time point has been reached (public member function).</li>
+<li><code>native_handle</code>: Returns the native handle (public member function).</li>
+</ol>
+<h3 id="stdnotify_all_at_thread_exit"><code>std::notify_all_at_thread_exit</code></h3>
+<h4 id="explanation_13">Explanation</h4>
+<ol>
+<li>When the calling <strong>thread exits</strong>, <strong>all threads waiting on <code>cond</code></strong> are <strong>notified to resume</strong>
+   execution.</li>
+<li>The function also <strong>acquires ownership of the lock on the mutex object</strong> managed by <code>lck</code>, which
+   is <strong>stored internally</strong> by the function and <strong>unlocked at thread exit</strong> (just <strong>before notifying
+   all threads</strong>), behaving as if the following was called once all objects with thread storage
+   duration have been destroyed:</li>
+<li><code>lck.unlock()</code>;</li>
+<li><code>cond.notify_all()</code>;</li>
+</ol>
+<h4 id="syntax_13">Syntax</h4>
+<pre><code class="language-CPP">// Its declaration syntax.
+void notify_all_at_thread_exit( std::condition_variable&amp; cond,
+                                std::unique_lock&lt; std::mutex &gt; lk );
+</code></pre>
+<h3 id="stdasync"><code>std::async</code></h3>
+<h4 id="explanation_14">Explanation</h4>
 <ol>
 <li><code>std::async</code> is <strong>a template function</strong> that calls <code>F</code> (with <code>Args</code> as arguments) at some point,
    returning without waiting for the execution of <code>F</code> to complete.</li>
@@ -567,10 +1443,10 @@ void yield() noexcept;
    <strong>calling its member <code>future::get</code></strong>).</li>
 <li><strong>The second version</strong> (2) lets the caller <strong>select a specific launching policy</strong>, while <strong>the
    first version</strong> (1) uses <strong>automatic selection</strong>, as if calling (2) with
-   <code>launch::async</code>|<code>launch::deferred</code> as policy.</li>
+   <code>launch::async | launch::deferred</code> as policy.</li>
 <li>Its header file is <code>&lt;future&gt;</code>.</li>
 </ol>
-<h4 id="syntax_4">Syntax</h4>
+<h4 id="syntax_14">Syntax</h4>
 <pre><code class="language-CPP">// Declaration syntax.
 // The first version.
 template&lt; class F, class... Args &gt;
@@ -588,7 +1464,7 @@ std::future&lt; /* see below */ &gt; async( std::launch policy,
 std::future&lt; RetType &gt; obj_name = std::async( ... );
 </code></pre>
 <h4 id="related-stuffs">Related Stuffs</h4>
-<h5 id="links_3">Links</h5>
+<h5 id="links_9">Links</h5>
 <ol>
 <li><a href="https://cplusplus.com/reference/future/async/"><code>std::async</code> in cplusplus</a>.</li>
 <li><a href="https://en.cppreference.com/w/cpp/thread/async"><code>std::async</code> in cppreference</a>.</li>
@@ -613,7 +1489,7 @@ std::future&lt; RetType &gt; obj_name = std::async( ... );
      <code>wait</code> or <code>get</code>).</li>
 <li>At that point, <code>F</code> is called and the function is no longer considered deferred.</li>
 <li>When this call returns, the shared state of the returned <code>future</code> is made ready.</li>
-<li><strong>Automatic</strong> (<code>launch::async</code>|<code>launch::deferred</code>):</li>
+<li><strong>Automatic</strong> (<code>launch::async | launch::deferred</code>):</li>
 <li>The function chooses the policy automatically (at some point).</li>
 <li>This <strong>depends on the system and library implementation</strong>, which generally optimizes for the
      current availability of concurrency in the system.</li>
@@ -621,7 +1497,7 @@ std::future&lt; RetType &gt; obj_name = std::async( ... );
    label defined in type launch. Combining multiple values is possible, in which case, the function
    automatically chooses one among them.</li>
 </ol>
-<h4 id="notes">Notes</h4>
+<h4 id="notes_2">Notes</h4>
 <ol>
 <li>Pay attention to the lifetimes of variables or objects passed to a function executed
    asynchronously. Instead of passing them as references, it may be <strong>better to copy them into the
@@ -629,8 +1505,8 @@ std::future&lt; RetType &gt; obj_name = std::async( ... );
 <li><strong>Passing variables or objects as references</strong> can <strong>lead to issues</strong>. Instead, <strong>passing them as
    pointers</strong> might be <strong>a better option</strong>.</li>
 </ol>
-<h3 id="stdfuture"><code>std::future</code></h3>
-<h4 id="explanation_9">Explanation</h4>
+<h3 id="stdfuture-and-stdshared_future"><code>std::future</code> and <code>std::shared_future</code></h3>
+<h4 id="stdfuture"><code>std::future</code></h4>
 <ol>
 <li><code>std::future</code> is <strong>a template class</strong> used to <strong>represent the result of an asynchronous
    operation</strong>.</li>
@@ -644,43 +1520,7 @@ std::future&lt; RetType &gt; obj_name = std::async( ... );
 <li>A <code>std::future</code> object <strong>cannot be copied</strong>, but it can be moved.</li>
 <li>Its header file is <code>&lt;future&gt;</code>.</li>
 </ol>
-<h4 id="declaration-syntax_2">Declaration Syntax</h4>
-<pre><code class="language-CPP">// Declaration syntax.
-template&lt; class T &gt; class future;         // (1)   (since C++11)
-template&lt; class T &gt; class future&lt; T&amp; &gt;;   // (2)   (since C++11)
-template&lt;&gt; class future&lt; void &gt;;          // (3)   (since C++11)
-</code></pre>
-<pre><code class="language-CPP">std::future&lt; Type &gt; fut_name;
-</code></pre>
-<h4 id="initialization-syntax_2">Initialization Syntax</h4>
-<pre><code class="language-CPP">// Default constructor.
-std::future&lt; Type &gt; fut_name1;
-// Move constructor.
-std::future&lt; Type &gt; fut_name1 = std::move( fut_name1 );
-</code></pre>
-<h5 id="members-and-related-stuffs_2">Members and Related Stuffs</h5>
-<h6 id="links_4">Links</h6>
-<ol>
-<li><a href="https://cplusplus.com/reference/future/future/"><code>std::future</code> in cplusplus</a>.</li>
-<li><a href="https://en.cppreference.com/w/cpp/thread/future"><code>std::future</code> in cppreference</a>.</li>
-</ol>
-<h6 id="member-functions_2">Member Functions</h6>
-<ol>
-<li>(constructor): Constructs the <code>future</code> object ( Only default and move ) (public member function).</li>
-<li>(destructor): Destructs the <code>future</code> object (public member function).</li>
-<li><code>operator=</code>: Moves the <code>future</code> object ( Only Move ) (public member function).</li>
-<li><code>share</code>: Transfers the shared state from <code>*this</code> to a <code>shared_future</code> and returns it (public.
-   member function)</li>
-<li><code>get</code>: Returns <strong>the result</strong> if the result is <strong>available</strong>. <strong>Otherwise</strong>, <strong>blocks the calling
-   thread</strong>. And <strong>only</strong> allows to <strong>call once</strong>.(public member function).</li>
-<li><code>valid</code>: Checks if the <code>future</code> has a shared state (public member function).</li>
-<li><code>wait: waits</code>: For the result to become available (public member function).</li>
-<li><code>wait_for</code>: Waits for the result, returns if it is not available for the specified timeout
-   duration (public member function).</li>
-<li><code>wait_until</code>: Waits for the result, returns if it is not available until specified time point has
-   been reached (public member function).</li>
-</ol>
-<h3 id="stdshared_future"><code>std::shared_future</code></h3>
+<h4 id="stdshared_future"><code>std::shared_future</code></h4>
 <ol>
 <li><strong>The class template</strong> <code>std::shared_future</code> provides a mechanism to access the result of
    asynchronous operations, similar to <code>std::future</code>, except that <strong>multiple threads are allowed to
@@ -692,15 +1532,17 @@ std::future&lt; Type &gt; fut_name1 = std::move( fut_name1 );
    its own copy of a <code>shared_future</code> object.</li>
 <li>Its header file is <code>&lt;future&gt;</code>.</li>
 </ol>
-<h4 id="declaration-syntax_3">Declaration Syntax</h4>
-<pre><code class="language-CPP">// Declaration syntax.
-template&lt; class T &gt; class shared_future;         // (1)   (since C++11)
-template&lt; class T &gt; class shared_future&lt; T&amp; &gt;;   // (2)   (since C++11)
-template&lt;&gt; class shared_future&lt; void &gt;;          // (3)   (since C++11)
+<h4 id="declaration-syntax_2">Declaration Syntax</h4>
+<pre><code class="language-CPP">std::future&lt; Type &gt; fut_name;
 </code></pre>
 <pre><code class="language-CPP">std::shared_future&lt; Type &gt; sfut_name;
 </code></pre>
-<h4 id="initialization-syntax_3">Initialization Syntax</h4>
+<h4 id="initialization-syntax_2">Initialization Syntax</h4>
+<pre><code class="language-CPP">// Default constructor.
+std::future&lt; Type &gt; fut_name1;
+// Move constructor.
+std::future&lt; Type &gt; fut_name1 = std::move( fut_name1 );
+</code></pre>
 <pre><code class="language-CPP">// Default constructor.
 std::shared_future&lt; Type &gt; sfut_name1;
 // Copy constructor.
@@ -715,18 +1557,23 @@ std::shared_future&lt; Type &gt; sfut_name2 = std::move( fut_name1 );
 // Move constructor.
 std::shared_future&lt; Type &gt; sfut_name = std::move( fut_name );
 </code></pre>
-<h4 id="members-and-related-stuffs_3">Members and Related Stuffs</h4>
-<h5 id="links_5">Links</h5>
+<h5 id="members-and-related-stuffs_8">Members and Related Stuffs</h5>
+<h6 id="links_10">Links</h6>
 <ol>
+<li><a href="https://cplusplus.com/reference/future/future/"><code>std::future</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/thread/future"><code>std::future</code> in cppreference</a>.</li>
 <li><a href="https://cplusplus.com/reference/future/shared_future/"><code>std::shared_future</code> in cplusplus</a>.</li>
 <li><a href="https://en.cppreference.com/w/cpp/thread/shared_future"><code>std::shared_future</code> in cppreference</a>.</li>
 </ol>
-<h5 id="member-functions_3">Member Functions</h5>
+<h6 id="member-functions_8">Member Functions</h6>
 <ol>
-<li>(constructor): Constructs the future object (public member function).</li>
+<li>(constructor): Constructs the future object ( Only default and move ) (public member function).</li>
 <li>(destructor): Destructs the future object (public member function).</li>
-<li><code>operator=</code>: Assigns the contents (public member function).</li>
-<li><code>get</code>: Returns the result (public member function).</li>
+<li><code>operator=</code>: Moves the future object ( Only Move ) (public member function).</li>
+<li><code>share</code> (only for <code>std::future</code>): Transfers the shared state from <code>*this</code> to a <code>shared_future</code>
+   and returns it (public. member function)</li>
+<li><code>get</code>: Returns <strong>the result</strong> if the result is <strong>available</strong>. <strong>Otherwise</strong>, <strong>blocks the calling
+   thread</strong>. And <strong>only</strong> allows to <strong>call once</strong>.(public member function).</li>
 <li><code>valid</code>: Checks if the future has a shared state (public member function).</li>
 <li><code>wait</code>: Waits for the result to become available (public member function).</li>
 <li><code>wait_for</code>: Waits for the result, returns if it is not available for the specified timeout
@@ -734,7 +1581,15 @@ std::shared_future&lt; Type &gt; sfut_name = std::move( fut_name );
 <li><code>wait_until</code>: Waits for the result, returns if it is not available until specified time point has
    been reached (public member function).</li>
 </ol>
-<h3 id="differences-between-stdfuture-and-stdshared_future">Differences Between <code>std::future</code> and <code>std::shared_future</code></h3>
+<h6 id="stdfuture_status-returned-by-wait_for-and-wait_until-functions"><code>std::future_status</code> (Returned by <code>wait_for</code> and <code>wait_until</code> Functions)</h6>
+<ol>
+<li><code>std::future_status::deferred</code>: The shared state contains a deferred function, so the result will
+   be computed only when explicitly requested.</li>
+<li><code>std::future_status::ready</code>: The shared state is ready.</li>
+<li><code>std::future_status::timeout</code>: The shared state did not become ready before specified timeout
+   duration has passed.</li>
+</ol>
+<h4 id="differences-between-stdfuture-and-stdshared_future">Differences Between <code>std::future</code> and <code>std::shared_future</code></h4>
 <ol>
 <li>Ownership:</li>
 <li><code>std::future</code>: Sole ownership of the result.</li>
@@ -757,13 +1612,42 @@ std::shared_future&lt; Type &gt; sfut_name = std::move( fut_name );
 <li>Conversion:</li>
 <li><code>std::future</code> can be converted to <code>std::shared_future</code> using the <code>share()</code> function.</li>
 </ol>
-<h3 id="notes_1">Notes</h3>
+<h3 id="stdpromise"><code>std::promise</code></h3>
+<h4 id="explanation_15">Explanation</h4>
+<ol>
+<li>A promise is <strong>an template class object</strong> that can store a value of type <code>R</code> to be retrieved by a
+   <code>std::future</code> object (possibly in another thread), offering a synchronization point.</li>
+<li><strong>On construction</strong>, promise objects are <strong>associated to a new shared state</strong> on which they can
+   <strong>store either a value of type <code>R</code> or an exception</strong> derived from <code>std::exception</code>.</li>
+<li>This shared state can be associated to a <code>std::future</code> object by calling member <code>get_future</code>.</li>
+<li>After the call, <strong>both objects share the same shared state</strong>:</li>
+<li><strong>The promise object</strong> is <strong>the asynchronous provider</strong> and is expected to <strong>set a value for
+     the shared state</strong> at some point.</li>
+<li><strong>The <code>std::future</code> object</strong> is <strong>an asynchronous return object</strong> that can <strong>retrieve the value
+     of the shared state</strong>, waiting for it to be ready, if necessary.</li>
+<li>The lifetime of the shared state lasts at least until the last object with which it is associated
+   releases it or is destroyed.</li>
+<li>Therefore it can survive the promise object that obtained it in the first place if associated
+   also to a future.</li>
+<li>Its header file is <code>&lt;future&gt;</code>.</li>
+</ol>
+<h4 id="syntax_15">Syntax</h4>
+<pre><code class="language-CPP">std::promise&lt; Type &gt; pro_name;
+// Get the `std::future` associated with the promise.
+std::future&lt; Type &gt; fut_name = pro_name.get_future();
+// Convert it to a shared future.
+// Method that `std::shared_future` works with `std::promise`.
+std::shared_future&lt; Type &gt; sfut_name = fut_name.share();
+</code></pre>
+<h4 id="related-stuffs_1">Related Stuffs</h4>
+<h3 id="notes_3">Notes</h3>
 <ol>
 <li>A game typically loads different objects asynchronously and in parallel using multiple threads.
     This is why, at times, players can control their characters while some objects remain
     unresponsive.</li>
 <li><strong>To the best of my knowledge, all classes related to threads lack a copy constructor, except
     for some classes with a <code>shared</code> prefix or suffix.</strong></li>
+<li>To prevent deadlock, the order of acquiring multiple locks must be consistent.</li>
 </ol></div>
             </div>
         </div>

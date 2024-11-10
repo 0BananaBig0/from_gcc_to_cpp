@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -198,6 +202,10 @@
                                     
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
+</li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
 </li>
                                 </ul>
                             </li>
@@ -429,8 +437,8 @@ void* memcpy( void* destination, const void* source, size_t num );
 // +1 to include null terminator
 memcpy( dest, sour, strlen( sour ) + 1 );
 </code></pre>
-<pre><code class="language-CPP">// Its usage syntax, for a non-string array.
-memcpy( dest, sour, strlen( sour ) );
+<pre><code class="language-CPP">// Its usage syntax, for a array (including char array).
+memcpy( dest, sour, sizeof( sour ) );
 </code></pre>
 <h3 id="memset"><code>memset</code></h3>
 <h4 id="explanation_8">Explanation</h4>

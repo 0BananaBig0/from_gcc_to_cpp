@@ -7,6 +7,7 @@
   - [`auto` and `decltype`](./AutoAndDecltype.md)
   - [`using`, `typedef` and Namespaces](./UsingTypedefNameSpaces.md)
   - [`const`, `constexpr` and `static`](./ConstConstexprAndStatic.md)
+  - [`volatile`](./Volatile.md)
   - [Macros and Related Keywords ( Including `pragma` )](./MacrosAndPragma.md)
   - [Functions](./Functions.md)
     - [Differences Between Hiding, Overloading, Overriding, and Overwriting](./HidingOverloadingOverridingAndOverwriting.md)
@@ -36,3 +37,4 @@
   - [Some C Functions and Operators](./SomeCFunctionsAndOperators.md)
   - [Extern](./Extern.md)
   - [Some Programming Techniques](./SomeProgrammingTechniques.md)
+  - [Handles](./Handles.md)

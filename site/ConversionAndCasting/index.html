@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -198,6 +202,10 @@
                                     
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
+</li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
 </li>
                                 </ul>
                             </li>
@@ -341,6 +349,8 @@
    programmer.</li>
 <li>In contrast, <strong>explicit conversion</strong> <strong>requires</strong> the programmer to define the <strong>conversion
    process</strong>, which can be accomplished through various casting methods.</li>
+<li>Conversion and casting can <strong>impact performance</strong>, especially in performance-critical
+   applications.</li>
 </ol>
 <h3 id="implicit-conversion">Implicit Conversion</h3>
 <h4 id="explanation_1">Explanation</h4>
@@ -468,6 +478,7 @@ int main() {
 <li>Primitive type conversion.</li>
 <li>Pointer type conversion within inheritance.</li>
 <li>Converting <code>void</code> pointer to another pointer type.</li>
+<li>All implicit conversions.</li>
 </ol>
 <h6 id="limitations">Limitations</h6>
 <ol>
@@ -523,44 +534,40 @@ int main() {
 </code></pre>
 <h6 id="usage_1">Usage</h6>
 <ol>
-<li>Safe Downcasting with Pointers:</li>
-</ol>
-<p>```CPP
+<li>Safe downcasting with pointers:
+   <code>CPP
    class Base {
       public:
          virtual Type funcName(){ ... };
          virtual ~Base()= default;
-   };</p>
-<p>class Derived: public Base { ... };</p>
-<p>int main() {
-      Base<em> base_ptr = new Derived();
-      Derived</em> der_ptr = dynamic_cast&lt; Derived* &gt;( base_ptr );
+   };
+   class Derived: public Base { ... };
+   int main() {
+      Base* base_ptr = new Derived();
+      Derived* der_ptr = dynamic_cast&lt; Derived* &gt;( base_ptr );
       if( !der_ptr ) {
          std::cout &lt;&lt; "Failed to cast to Derived." &lt;&lt; std::endl;
          return 0;
       };
-   };
-   ```</p>
-<ol>
-<li>Downcasting with References:</li>
-</ol>
-<p>```CPP
+   };</code></li>
+<li>Downcasting with references:
+   <code>CPP
    class Base {
       public:
          virtual Type funcName(){ ... };
          virtual ~Base() = default;
-   };</p>
-<p>class Derived: public Base { ... };</p>
-<p>int main() {
+   };
+   class Derived: public Base { ... };
+   int main() {
       Base base;   // Not a Derived instance.
       try {
-         // This will throw <code>std::bad_cast</code> because base is not of type Derived.
+         // This will throw `std::bad_cast` because base is not of type Derived.
          Derived&amp; der_ref = dynamic_cast&lt; Derived&amp; &gt;( base );
       } catch( const std::bad_cast&amp; e ) {
          std::cout &lt;&lt; "Caught exception: " &lt;&lt; e.what() &lt;&lt; '\n';
       };
-   };
-   ```</p>
+   };</code></li>
+</ol>
 <h6 id="limitations_1">Limitations</h6>
 <ol>
 <li><strong>Polymorphic</strong> base class required:</li>
@@ -631,26 +638,29 @@ int main() {
 </code></pre>
 <h6 id="usage_3">Usage</h6>
 <ol>
-<li><strong>Pointer Type</strong> Conversions:</li>
+<li><strong>Pointer type</strong> conversions:</li>
 <li>It is commonly used to convert one pointer type to another, even between unrelated types.</li>
-<li><strong>Reference Type</strong> Conversions:</li>
-<li>Similar to pointers, <code>reinterpret_cast</code> can convert one reference type to another. This allows
-     for casting references of different types, but care must be taken to ensure the underlying
-     object types are compatible.</li>
-<li>Casting <strong>Between Pointer and Integer Types</strong>:</li>
+<li><strong>Reference type</strong> conversions:</li>
+<li>Similar to pointers, <code>reinterpret_cast</code> can convert one reference type to another.</li>
+<li>This allows for casting references of different types, but care must be taken to ensure the
+     underlying object types are compatible.</li>
+<li>Casting <strong>between pointer and integer types</strong>:</li>
 <li>It can be used to cast pointers to integral types (e.g., <code>uintptr_t</code>) and vice versa.</li>
-<li><strong>Interfacing with Hardware or System-Level Code</strong>:</li>
+<li><strong>The integral types must be</strong> either a <strong>32-bit</strong> unsigned or a <strong>64-bit</strong> <strong>unsigned type</strong>,
+     depending on the system architecture.</li>
+<li><strong>Interfacing with hardware or system-level code</strong>:</li>
 <li>Useful in systems programming or when dealing with low-level constructs, such as when
      interfacing with hardware or legacy C libraries.</li>
 </ol>
 <h6 id="requirements-for-using-reinterpret_cast">Requirements for Using <code>reinterpret_cast</code></h6>
 <ol>
-<li><strong>Pointer or Reference</strong> Types:</li>
+<li><strong>Pointer or reference</strong> Types:</li>
 <li>The expression being cast must be a pointer or reference type.</li>
-<li><strong>Correctness</strong> of the Cast:</li>
+<li><strong>Correctness</strong> of the cast:</li>
 <li>Ensure that the object being accessed through the cast pointer is <strong>compatible with the
-     target</strong> type. <strong>Avoid</strong> using <code>reinterpret_cast</code> on pointers of <strong>unrelated types</strong> unless you
-     are sure of what you are doing.</li>
+     target</strong> type.</li>
+<li><strong>Avoid</strong> using <code>reinterpret_cast</code> on pointers of <strong>unrelated types</strong> unless you are sure of
+     what you are doing.</li>
 </ol>
 <h5 id="notes">Notes</h5>
 <ol>
@@ -659,8 +669,11 @@ int main() {
 <li>It is essential to <strong>understand</strong> <strong>whether</strong> a particular cast <strong>involves runtime or
    compile-time checks</strong>.</li>
 <li>The distinct naming of these casts <strong>enhances code readability</strong> and <strong>facilitates easy
-   identification during code searches</strong> ( Search for their names to identify where explicit
-   conversions occur. ).</li>
+   identification during code searches</strong>. (Search for their names to identify where explicit
+   conversions occur.)</li>
+<li>When <strong>converting a <code>void</code> pointer type to a specific pointer type (or vice versa)</strong>,
+   <strong><code>static_cast</code> is the preferred choice</strong>. It is best used for casting between <code>void</code> pointer
+   type and other pointer types, provided there’s no need for low-level reinterpretation.</li>
 </ol>
 <h4 id="explicit"><code>explicit</code></h4>
 <h5 id="explanation_9">Explanation</h5>

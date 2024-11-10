@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -242,22 +250,22 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#the-difference-between-gcc-and-g" class="nav-link">The difference between gcc and g++</a>
+            <li class="nav-item" data-level="2"><a href="#differences-between-gcc-and-g" class="nav-link">Differences Between gcc and g++</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#how-to-compile-one-cpp-file" class="nav-link">How to compile one cpp file</a>
+            <li class="nav-item" data-level="2"><a href="#how-to-compile-one-cpp-file" class="nav-link">How to Compile One CPP File</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#how-to-compile-multiple-cpp-files" class="nav-link">How to compile multiple cpp files</a>
+            <li class="nav-item" data-level="2"><a href="#how-to-compile-multiple-cpp-files" class="nav-link">How to Compile Multiple CPP Files</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#how-to-compile-and-link-a-library" class="nav-link">How to compile and link a library</a>
+            <li class="nav-item" data-level="2"><a href="#how-to-compile-and-link-a-library" class="nav-link">How to Compile and Link a Library</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -298,7 +306,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#the-difference-between-gcc-and-g">The difference between <code>gcc</code> and <code>g++</code></a></li>
+<li><a href="#differences-between-gcc-and-g">Differences Between <code>gcc</code> and <code>g++</code></a></li>
 <li><a href="#language">Language</a><ul>
 <li><a href="#1-gcc">1. <code>gcc</code></a></li>
 <li><a href="#2-g">2. <code>g++</code></a></li>
@@ -314,7 +322,7 @@
 <li><a href="#2-g-2">2. <code>g++</code></a></li>
 </ul>
 </li>
-<li><a href="#how-to-compile-one-cpp-file">How to compile one cpp file</a></li>
+<li><a href="#how-to-compile-one-cpp-file">How to Compile One CPP File</a></li>
 <li><a href="#source-files">Source files</a></li>
 <li><a href="#g-maincpp"><code>g++ Main.cpp</code></a><ul>
 <li><a href="#1-usage">1. Usage</a></li>
@@ -366,48 +374,48 @@
 <li><a href="#2-output-9">2. Output</a></li>
 </ul>
 </li>
-<li><a href="#how-to-compile-multiple-cpp-files">How to compile multiple cpp files</a></li>
+<li><a href="#how-to-compile-multiple-cpp-files">How to Compile Multiple CPP Files</a></li>
 <li><a href="#source-files-1">Source files</a></li>
 <li><a href="#compile-all-files-in-one-command">Compile all files in one command</a><ul>
 <li><a href="#1-code">1. Code</a></li>
 <li><a href="#2-usage">2. Usage</a></li>
 <li><a href="#3-output">3. Output</a></li>
-<li><a href="#4-alternative-if-all-files-are-in-one-folder">4. Alternative: If all files are in one folder</a></li>
+<li><a href="#4-alternative-if-all-files-are-in-one-folder">4. Alternative: If All Files Are in One Folder</a></li>
 </ul>
 </li>
-<li><a href="#compile-all-files-separately-and-then-link-them-together">Compile all files separately and then link them together</a><ul>
+<li><a href="#compile-all-files-separately-and-then-link-them-together">Compile All Files Separately and Then Link Them Together</a><ul>
 <li><a href="#1-code-1">1. Code</a></li>
 <li><a href="#2-usage-1">2. Usage</a></li>
 <li><a href="#3-output-1">3. Output</a></li>
 </ul>
 </li>
-<li><a href="#how-to-compile-and-link-a-library">How to compile and link a library</a></li>
+<li><a href="#how-to-compile-and-link-a-library">How to Compile and Link a Library</a></li>
 <li><a href="#source-files-2">Source files</a></li>
-<li><a href="#setup-paths-of-header-files">Setup paths of header files</a><ul>
+<li><a href="#setup-paths-of-header-files">Setup Paths of Header Files</a><ul>
 <li><a href="#1-code-2">1. Code</a></li>
 </ul>
 </li>
-<li><a href="#how-to-link-multiple-static-libraries">How to link multiple static libraries</a><ul>
+<li><a href="#how-to-link-multiple-static-libraries">How to Link Multiple Static Libraries</a><ul>
 <li><a href="#1-code-3">1. Code</a></li>
 </ul>
 </li>
-<li><a href="#how-to-create-a-static-library">How to create a static library</a><ul>
+<li><a href="#how-to-create-a-static-library">How to Create a Static Library</a><ul>
 <li><a href="#1-code-4">1. Code</a></li>
 <li><a href="#2-usage-2">2. Usage</a></li>
 <li><a href="#3-output-2">3. Output</a></li>
 </ul>
 </li>
-<li><a href="#how-to-link-multiple-dynamic-libraries">How to link multiple dynamic libraries</a><ul>
+<li><a href="#how-to-link-multiple-dynamic-libraries">How to Link Multiple Dynamic Libraries</a><ul>
 <li><a href="#1-code-5">1. Code</a></li>
 </ul>
 </li>
-<li><a href="#how-to-create-a-dynamic-library">How to create a dynamic library</a><ul>
+<li><a href="#how-to-create-a-dynamic-library">How to Create a Dynamic Library</a><ul>
 <li><a href="#1-code-6">1. Code</a></li>
 <li><a href="#2-usage-3">2. Usage</a></li>
 <li><a href="#3-output-3">3. Output</a></li>
 </ul>
 </li>
-<li><a href="#how-to-link-a-static-library-explicitly">How to link a static library explicitly</a><ul>
+<li><a href="#how-to-create-and-link-a-static-library">How to Create and Link a Static Library</a><ul>
 <li><a href="#1-code-7">1. Code</a></li>
 <li><a href="#2--wl-bstatic">2. -Wl,-Bstatic</a></li>
 <li><a href="#3--wl-bdynamic">3. -Wl,-Bdynamic</a></li>
@@ -416,7 +424,7 @@
 <li><a href="#6-output">6. Output</a></li>
 </ul>
 </li>
-<li><a href="#how-to-link-a-dynamic-library-explicitly">How to link a dynamic library explicitly</a><ul>
+<li><a href="#how-to-create-and-link-a-dynamic-library">How to Create and Link a Dynamic Library</a><ul>
 <li><a href="#1-code-8">1. Code</a></li>
 <li><a href="#2-situation">2. Situation</a></li>
 <li><a href="#3-usage">3. Usage</a></li>
@@ -609,7 +617,7 @@
 <li>Unload the library:</li>
 <li>Optionally, use <code>dlclose( handle )</code> to unload the library when it’s no longer needed.</li>
 </ol>
-<h2 id="the-difference-between-gcc-and-g">The difference between <code>gcc</code> and <code>g++</code></h2>
+<h2 id="differences-between-gcc-and-g">Differences Between <code>gcc</code> and <code>g++</code></h2>
 <h3 id="language">Language</h3>
 <h4 id="1-gcc">1. <code>gcc</code></h4>
 <ol>
@@ -641,7 +649,7 @@
 <li>Treats headers as C++ files and supports C++ header files (like <code>&lt;iostream&gt;</code> instead of
    <code>&lt;stdio.h&gt;</code>).</li>
 </ol>
-<h2 id="how-to-compile-one-cpp-file">How to compile one cpp file</h2>
+<h2 id="how-to-compile-one-cpp-file">How to Compile One CPP File</h2>
 <h3 id="source-files">Source files</h3>
 <ol>
 <li>Main.cpp</li>
@@ -740,7 +748,7 @@
 <ol>
 <li>Main.exe</li>
 </ol>
-<h2 id="how-to-compile-multiple-cpp-files">How to compile multiple cpp files</h2>
+<h2 id="how-to-compile-multiple-cpp-files">How to Compile Multiple CPP Files</h2>
 <h3 id="source-files_1">Source files</h3>
 <ol>
 <li>Main.cpp</li>
@@ -761,10 +769,10 @@
 <li>Fun.o</li>
 <li>Main.exe</li>
 </ol>
-<h4 id="4-alternative-if-all-files-are-in-one-folder">4. Alternative: If all files are in one folder</h4>
+<h4 id="4-alternative-if-all-files-are-in-one-folder">4. Alternative: If All Files Are in One Folder</h4>
 <pre><code class="language-sh">g++ *.cpp -o Main.exe
 </code></pre>
-<h3 id="compile-all-files-separately-and-then-link-them-together">Compile all files separately and then link them together</h3>
+<h3 id="compile-all-files-separately-and-then-link-them-together">Compile All Files Separately and Then Link Them Together</h3>
 <h4 id="1-code_1">1. Code</h4>
 <pre><code class="language-sh">g++ -c Main.cpp
 g++ -c Fun.cpp
@@ -781,24 +789,24 @@ g++ -o Main.o Fun.o -o Main.exe
 <li>Fun.o</li>
 <li>Main.exe</li>
 </ol>
-<h2 id="how-to-compile-and-link-a-library">How to compile and link a library</h2>
+<h2 id="how-to-compile-and-link-a-library">How to Compile and Link a Library</h2>
 <h3 id="source-files_2">Source files</h3>
 <ol>
 <li>Main.cpp</li>
 <li>Fun.cpp</li>
 </ol>
-<h3 id="setup-paths-of-header-files">Setup paths of header files</h3>
+<h3 id="setup-paths-of-header-files">Setup Paths of Header Files</h3>
 <h4 id="1-code_2">1. Code</h4>
 <pre><code class="language-sh">g++ Main.cpp Fun.cpp -o Main.exe -I/the/first/path/of/header/files \
     -I/the/second/path/of/header/files ...
 </code></pre>
-<h3 id="how-to-link-multiple-static-libraries">How to link multiple static libraries</h3>
+<h3 id="how-to-link-multiple-static-libraries">How to Link Multiple Static Libraries</h3>
 <h4 id="1-code_3">1. Code</h4>
 <pre><code class="language-sh">g++ Main.cpp -L/the/first/path/of/static/libraries \
     -L/the/second/path/of/static/libraries ... \
-    -lxxx.a -lyyy.a ... -o Main.exe
+    -Wl,-Bstatic -lxxx -lyyy ... -Wl,-Bdynamic -o Main.exe
 </code></pre>
-<h3 id="how-to-create-a-static-library">How to create a static library</h3>
+<h3 id="how-to-create-a-static-library">How to Create a Static Library</h3>
 <h4 id="1-code_4">1. Code</h4>
 <pre><code class="language-sh">g++ -c Fun.cpp
 ar rcs libFun.a Fun.o
@@ -816,12 +824,12 @@ g++ Main.cpp -L. -lFun -o Main.exe
 <li>libFun.a</li>
 <li>Main.exe</li>
 </ol>
-<h3 id="how-to-link-multiple-dynamic-libraries">How to link multiple dynamic libraries</h3>
+<h3 id="how-to-link-multiple-dynamic-libraries">How to Link Multiple Dynamic Libraries</h3>
 <h4 id="1-code_5">1. Code</h4>
 <pre><code class="language-sh">g++ Main.cpp -L/the/first/path/of/dynamic/libraries -L/the/second/path/of/dynamic/libraries ... \
--lxxx.a -lyyy.a ... -o Main.exe
+    -lxxx -lyyy ... -o Main.exe
 </code></pre>
-<h3 id="how-to-create-a-dynamic-library">How to create a dynamic library</h3>
+<h3 id="how-to-create-a-dynamic-library">How to Create a Dynamic Library</h3>
 <h4 id="1-code_6">1. Code</h4>
 <pre><code class="language-sh">g++ -c -fPIC Fun.cpp -o Fun.o
 g++ -shared -o libFun.so Fun.o
@@ -839,7 +847,7 @@ g++ Main.cpp -L. -lFun -o Main.exe
 <li>libFun.so</li>
 <li>Main.exe</li>
 </ol>
-<h3 id="how-to-link-a-static-library-explicitly">How to link a static library explicitly</h3>
+<h3 id="how-to-create-and-link-a-static-library">How to Create and Link a Static Library</h3>
 <h4 id="1-code_7">1. Code</h4>
 <pre><code class="language-sh">g++ -c Fun.cpp
 ar rcs libFun.a Fun.o
@@ -848,15 +856,23 @@ g++ -shared -o libFun.so Fun.o
 g++ Main.cpp -L. -Wl,-Bstatic -lFun -Wl,-Bdynamic -o Main.exe
 </code></pre>
 <h4 id="2-wl-bstatic">2. -Wl,-Bstatic</h4>
-<p>Instructs the linker (ld) to search for static libraries (<code>.a</code> files).</p>
+<ol>
+<li>Instructs the linker (<code>ld</code>) to search for static libraries (<code>.a</code> files).</li>
+</ol>
 <h4 id="3-wl-bdynamic">3. -Wl,-Bdynamic</h4>
-<p>Reverts the linker back to dynamic libraries, in case you are linking other dynamic libraries
-afterward.</p>
+<ol>
+<li>Reverts the linker back to dynamic libraries, in case you are linking other dynamic libraries
+   afterward.</li>
+</ol>
 <h4 id="4-situation">4. Situation</h4>
-<p>A static library has the same name as a dynamic library in the same folder.</p>
+<ol>
+<li>A static library has the same name as a dynamic library in the same folder.</li>
+</ol>
 <h4 id="5-usage">5. Usage</h4>
-<p>Create both a static library and a dynamic library. They have the same name. Link the static library
-explicitly.</p>
+<ol>
+<li>Create both a static library and a dynamic library. They have the same name. Link the static
+   library explicitly.</li>
+</ol>
 <h4 id="6-output">6. Output</h4>
 <ol>
 <li>Fun.o</li>
@@ -864,7 +880,7 @@ explicitly.</p>
 <li>libFun.so</li>
 <li>Main.exe</li>
 </ol>
-<h3 id="how-to-link-a-dynamic-library-explicitly">How to link a dynamic library explicitly</h3>
+<h3 id="how-to-create-and-link-a-dynamic-library">How to Create and Link a Dynamic Library</h3>
 <h4 id="1-code_8">1. Code</h4>
 <pre><code class="language-sh">g++ -c Fun.cpp
 ar rcs libFun.a Fun.o
@@ -878,8 +894,9 @@ g++ Main.cpp -L. -lFun -o Main.exe
 </ol>
 <h4 id="3-usage">3. Usage</h4>
 <ol>
-<li>Create both a static library and a dynamic library. They have the same name. Link the dynamic
-   library explicitly.</li>
+<li>Create both a static library and a dynamic library.</li>
+<li>They have the same name.</li>
+<li>Link the dynamic library explicitly.</li>
 </ol>
 <h4 id="4-output">4. Output</h4>
 <ol>

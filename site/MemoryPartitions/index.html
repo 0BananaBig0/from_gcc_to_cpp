@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -272,7 +280,7 @@
 <li><a href="#other-characteristics-1">Other Characteristics</a></li>
 </ul>
 </li>
-<li><a href="#globalstatic-memory-or-data-segment">Global/Static Memory or Data Segment</a><ul>
+<li><a href="#data-segment-globalstatic-memory">Data Segment (Global/Static Memory)</a><ul>
 <li><a href="#purpose-2">Purpose</a></li>
 <li><a href="#allocationdeallocation-2">Allocation/Deallocation</a></li>
 <li><a href="#lifetime-2">Lifetime</a></li>
@@ -283,7 +291,7 @@
 <li><a href="#other-characteristics-2">Other Characteristics</a></li>
 </ul>
 </li>
-<li><a href="#code-segment">Code Segment</a><ul>
+<li><a href="#code-segment-text-segment">Code Segment (Text Segment)</a><ul>
 <li><a href="#purpose-3">Purpose</a></li>
 <li><a href="#allocationdeallocation-3">Allocation/Deallocation</a></li>
 <li><a href="#lifetime-3">Lifetime</a></li>
@@ -335,9 +343,15 @@
 </ol>
 <h4 id="size">Size</h4>
 <ol>
-<li><strong>Limited size</strong> (typically between <strong>1 MB to 8 MB</strong>, determined by the OS).</li>
-<li>Prone to <strong>stack overflow</strong> for deep recursion or large allocations.</li>
-<li>The size <strong>cannot grow dynamically</strong>.</li>
+<li><strong>Predefined to a default value</strong> (typically between <strong>1 MB and 10 MB</strong>, determined by the OS),
+   but the stack <strong>can grow</strong> as the application progresses. (Grows downward in memory).</li>
+<li>However, <strong>the stack's growth</strong> is usually <strong>limited by system settings</strong>.</li>
+<li>If the stack grows too large, a <strong>stack overflow</strong> occurs.</li>
+<li>The stack is <strong>prone to overflow</strong> due to <strong>deep recursion</strong> or <strong>large allocations</strong> of local
+   variables.</li>
+<li>On Linux systems, <strong>the stack size limit</strong> for <strong>a process</strong> <strong>can be adjusted</strong>, either
+   temporarily or permanently, <strong>using the <code>ulimit</code> command</strong>, providing flexibility in managing
+   memory resources during runtime.</li>
 </ol>
 <h4 id="structure">Structure</h4>
 <ol>
@@ -382,7 +396,7 @@
 <h4 id="size_1">Size</h4>
 <ol>
 <li><strong>Predefined</strong> to a default value according to the system but <strong>can grow and shrink</strong> as the
-   application progresses.</li>
+   application progresses. (Grows upward in memory).</li>
 <li>Limited by <strong>system memory</strong> and subject to <strong>fragmentation</strong>.</li>
 <li>Large allocations are possible, unlike the stack.</li>
 </ol>
@@ -403,7 +417,7 @@
    <strong>performance cost</strong> of this allocation is <strong>high</strong>.</li>
 <li><strong>More cache misses</strong>.</li>
 </ol>
-<h3 id="globalstatic-memory-or-data-segment">Global/Static Memory or Data Segment</h3>
+<h3 id="data-segment-globalstatic-memory">Data Segment (Global/Static Memory)</h3>
 <h4 id="purpose_2">Purpose</h4>
 <ol>
 <li>Stores <strong>global, static, and constant variables</strong>.</li>
@@ -430,11 +444,12 @@
 <h4 id="structure_2">Structure</h4>
 <ol>
 <li>Includes:</li>
-<li><strong>Initialized Data Segment</strong>: Stores variables with <strong>explicit initial</strong> values.</li>
-<li><strong>BSS (Uninitialized Data Segment, Block Started by Symbol)</strong>: Stores variables with <strong>no
+<li><strong>Constant segment</strong>: Stores <strong>string literals</strong> and <strong>constants</strong>.</li>
+<li><strong>Initialized data segment</strong>: Stores variables with <strong>explicit initial</strong> values.</li>
+<li><strong>BSS (uninitialized data segment, block started by symbol)</strong>: Stores variables with <strong>no
      initial</strong> values, which are initialized to <strong>zero by default</strong>.</li>
-<li><strong>Character Constant Area</strong>: Stores <strong>string literals</strong> and <strong>constants</strong>.</li>
 <li>Organized as <strong>a continuous memory block</strong> for static, global and const variables/values.</li>
+<li><strong>The storage order: Constant segment, initialized data segment, BSS</strong>.</li>
 </ol>
 <h4 id="performance_2">Performance</h4>
 <ol>
@@ -446,7 +461,7 @@
 <li><strong>Persistent values</strong> can introduce side effects if not managed properly.</li>
 <li>Typically <strong>read-only</strong> for constants to prevent accidental modification.</li>
 </ol>
-<h3 id="code-segment">Code Segment</h3>
+<h3 id="code-segment-text-segment">Code Segment (Text Segment)</h3>
 <h4 id="purpose_3">Purpose</h4>
 <ol>
 <li>Stores <strong>compiled instructions</strong> (machine code) of the program.</li>
@@ -524,14 +539,18 @@
 </ol>
 <h3 id="memory-partitioning-in-c-program-execution">Memory Partitioning in C++ Program Execution</h3>
 <ol>
-<li>Stack vs. Heap: The stack is <strong>fast</strong> and <strong>automatically managed</strong>, but <strong>limited in size</strong>. The
-   heap allows for more flexible memory usage at the cost of <strong>manual management</strong>.</li>
-<li>Global/Static vs. Local: Global and static variables have global lifetimes, while local variables
-   (on the stack) have a shorter scope, limited to the block they are declared in.</li>
+<li>Stack vs. Heap:</li>
+<li>The stack is <strong>fast</strong> and <strong>automatically managed</strong>, but <strong>limited in size</strong>.</li>
+<li>The heap allows for more flexible memory usage at the cost of <strong>manual management</strong>.</li>
+<li>Global/Static vs. Local:</li>
+<li>Global and static variables have global lifetimes, while local variables (on the stack) have a
+     shorter scope, limited to the block they are declared in.</li>
 </ol>
 <h3 id="notes">Notes</h3>
 <ol>
 <li>store data on stack &gt; store data on heap &gt; store pointers on stack &gt; store pointers on heap.</li>
+<li>The storage order: Text segment, data segment, memory mapping segment, heap, stack. (May vary,
+   depending on OS, hardwares and compiler settings)</li>
 </ol></div>
             </div>
         </div>

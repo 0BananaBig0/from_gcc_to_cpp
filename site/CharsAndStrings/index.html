@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -256,7 +264,7 @@
 <li><a href="#char-types">Char Types</a></li>
 </ul>
 </li>
-<li><a href="#raw-strings-char-arrays">Raw Strings (Char <strong>Arrays</strong>)</a><ul>
+<li><a href="#raw-strings-char-arrays">Raw Strings (<code>char</code> <strong>Arrays</strong>)</a><ul>
 <li><a href="#explanation-1">Explanation</a></li>
 <li><a href="#syntax-1">Syntax</a></li>
 </ul>
@@ -296,6 +304,7 @@
 </ul>
 </li>
 <li><a href="#stdliterals-namespace"><code>std::literals</code> Namespace</a></li>
+<li><a href="#notes">Notes</a></li>
 </ul>
 <!-- vim-markdown-toc -->
 
@@ -321,7 +330,7 @@ var_name = 'a letter';
    they all store character data, there are notable <strong>differences</strong> in <strong>their size</strong> and <strong>intended
    use</strong>.</li>
 </ol>
-<h3 id="raw-strings-char-arrays">Raw Strings (Char <strong>Arrays</strong>)</h3>
+<h3 id="raw-strings-char-arrays">Raw Strings (<code>char</code> <strong>Arrays</strong>)</h3>
 <h4 id="explanation_1">Explanation</h4>
 <ol>
 <li>A raw string or a character array is <strong>a sequence of characters</strong> <strong>terminated by a null
@@ -332,7 +341,7 @@ var_name = 'a letter';
    <strong>the number of characters plus one</strong> for the null terminator.</li>
 <li><code>"a string"</code>: A string literal, a <code>const char</code> array.</li>
 <li>A string literal is <strong>stored</strong> in the <strong>read-only section</strong> of memory. However, if it is used to
-   <strong>initialize a non-const char array</strong>, its <strong>contents</strong> will be <strong>copied to the array</strong>, which
+   <strong>initialize a non-const <code>char</code> array</strong>, its <strong>contents</strong> will be <strong>copied to the array</strong>, which
    can then be <strong>modified like any other array</strong>.</li>
 <li>When <strong>single quotes</strong> or <code>memcpy</code> are used to assign or copy values to a <code>char</code> array or a
    <code>char</code> pointer, <strong><code>'\0'</code> or <code>0</code></strong> <strong>should be explicitly included</strong> at the end.</li>
@@ -365,11 +374,11 @@ char var_name =  var_ptr[index];
 <ol>
 <li><code>std::string</code> is <strong>a class</strong> in the C++ STL that represents <strong>a sequence of characters</strong>.</li>
 <li>It has several features, including the following:</li>
-<li><strong>Dynamic Sizing</strong>: <code>std::string</code> can grow and shrink in size automatically, allowing for easy
+<li><strong>Dynamic sizing</strong>: <code>std::string</code> can grow and shrink in size automatically, allowing for easy
      modifications without the need for manual memory management.</li>
-<li><strong>Memory Management</strong>: It handles memory allocation and deallocation internally, reducing the
+<li><strong>Memory management</strong>: It handles memory allocation and deallocation internally, reducing the
      risk of memory leaks and buffer overflows.</li>
-<li><strong>Null-Termination</strong>: Unlike C-style strings, which require a null terminator to indicate the
+<li><strong>Null-termination</strong>: Unlike C-style strings, which require a null terminator to indicate the
      end of the string, <code>std::string</code> <strong>manages this internally</strong>.</li>
 <li><strong>Compatibility</strong>: It can easily be converted to and from C-style strings using the <code>c_str()</code>
      member function.</li>
@@ -387,7 +396,7 @@ std::string var_name = &quot;a string&quot;;
 std::string var_name( &quot;a string&quot; );
 </code></pre>
 <pre><code class="language-CPP">// Initializer list constructor.
-std::string var_name{ &quot;a string&quot; };
+std::string var_name{ 'letter1', 'letter2', ... };
 </code></pre>
 <pre><code class="language-CPP">// Concatenation.
 std::string var_name = std::string( &quot;a string&quot; ) + &quot;another string&quot;;
@@ -397,17 +406,17 @@ var_name += &quot;...&quot;; // Allowed.
 // std::string var_name = &quot;a string&quot; + &quot;another string&quot;; // Not allowed.
 </code></pre>
 <pre><code class="language-CPP">// Initializer list constructor.
-std::string var_name1{ &quot;a string&quot; };
+std::string var_name1{ 'letter1', 'letter2', ... };
 // Copy constructor.
 std::string var_name2( var_name1 );
 </code></pre>
 <pre><code class="language-CPP">// Initializer list constructor.
-std::string var_name1{ &quot;a string&quot; };
+std::string var_name1{ 'letter1', 'letter2', ... };
 // Move constructor.
 std::string var_name2( std::move( var_name1 ) );
 </code></pre>
 <pre><code class="language-CPP">// Initializer list constructor.
-std::string var_name1{ &quot;a string&quot; };
+std::string var_name1{ 'letter1', 'letter2', ... };
 // Constructs the string with the contents of the range `[first, last)`.
 std::string var_name2( var_name1.begin(), var_name1.end() );
 </code></pre>
@@ -487,7 +496,7 @@ std::string var_name( count, ch_ptr );
 <li><code>clear</code>: Clears the contents (public member function).</li>
 <li><code>insert</code>: Inserts characters (public member function).</li>
 <li><code>insert_range</code> (C++23): Inserts a range of characters (public member function).</li>
-<li><code>erase</code>: Removes characters (public member function).</li>
+<li><code>erase</code>: Removes characters and returns a valid iterator (public member function).</li>
 <li><code>push_back</code>: Appends a character to the end (public member function).</li>
 <li><code>pop_back</code> (<code>DR*</code>): Removes the last character (public member function).</li>
 <li><code>append</code>: Appends characters to the end (public member function).</li>
@@ -526,9 +535,9 @@ std::string var_name( count, ch_ptr );
    (function template).</li>
 <li><code>operator==/!=//&lt;=/&gt;=</code> (removed in C++20), <code>operator&lt;=&gt;</code> (C++20): Lexicographically compares
    two strings (function template).</li>
-<li><code>std::swap( std::basic_string )</code>: Specializes the <code>std::swap</code> algorithm (function template).</li>
-<li><code>erase( std::basic_string )</code>, <code>erase_if( std::basic_string )</code> (C++20): Erases all elements
-   satisfying specific criteria (function template).</li>
+<li><code>std::swap( std::string )</code>: Specializes the <code>std::swap</code> algorithm (function template).</li>
+<li><code>erase( std::string )</code>, <code>erase_if( std::string )</code> (C++20): Erases all elements satisfying
+   specific criteria (function template).</li>
 <li><code>operator&lt;&lt;</code>, <code>operator&gt;&gt;</code>: Performs stream input and output on strings (function template).</li>
 <li><code>getline</code>: Read data from an I/O stream into a string (function template).</li>
 </ol>
@@ -551,7 +560,7 @@ std::string var_name( count, ch_ptr );
 </ol>
 <h5 id="helper-classes">Helper Classes</h5>
 <ol>
-<li><code>std::hash&lt; std::basic_string &gt;</code>: Hash support for strings (class template specialization).</li>
+<li><code>std::hash&lt; std::string &gt;</code>: Hash support for strings (class template specialization).</li>
 </ol>
 <h4 id="string-types-in-stl">String Types in STL</h4>
 <ol>
@@ -566,22 +575,23 @@ std::string var_name( count, ch_ptr );
    library, usually which is <strong>smaller than 16 characters</strong>, <strong>on stack</strong>.</li>
 <li><strong>Otherwise</strong>, it stores a string <strong>on heap</strong>.</li>
 <li>Therefore, if the string is <strong>small enough</strong>, we <strong>define</strong> it <strong>as a <code>std::string</code></strong> type instad
-   of const char pointer type. However, if the code compiled in <strong>debug mode</strong>, even the string is
-   <strong>small enough</strong>, it <strong>still</strong> causes <strong>a head allocation</strong>.</li>
+   of const <code>char</code> pointer type.</li>
+<li>However, if the code compiled in <strong>debug mode</strong>, even the string is <strong>small enough</strong>, it
+   <strong>still</strong> causes <strong>a head allocation</strong>.</li>
 </ol>
 <h4 id="how-to-make-strings-faster-in-c-c17">How to Make Strings Faster in C++ (C++17)</h4>
 <ol>
 <li>Use <strong><code>std::string_view</code></strong> to <strong>get a substring</strong> of a <code>std::string</code>, instead of
    <code>std::string::substr()</code>.</li>
-<li>Use <strong>const char pointer</strong> to <strong>store a string</strong>, instead of <code>std::string</code>. <code>std::string</code>
-   requires one memory allocation, while const char pointer does not.</li>
+<li>Use <strong>const <code>char</code> pointer</strong> to <strong>store a string</strong>, instead of <code>std::string</code>. <code>std::string</code>
+   requires one memory allocation, while const <code>char</code> pointer does not.</li>
 <li>When <strong>a <code>const char</code> pointer</strong> is passed <strong>to</strong> a function whose argument is <strong>a
    <code>const std::string</code> reference</strong>, <strong>one memory allocation</strong> occurs. However, if the argument of
    the function is changed from a <code>const std::string</code> reference to <strong>a <code>std::string_view</code></strong>, <strong>no
    memory allocation</strong> occurs.</li>
-<li>Every time, <strong>a char pointer or a char array</strong> is <strong>converted into a <code>std::string</code> implicitly</strong>,
-   <strong>although</strong> the argument of the function is a <code>std::string</code> <strong>reference</strong>, <strong>one memory
-   allocation occurs</strong>.</li>
+<li>Every time, <strong>a <code>char</code> pointer or a <code>char</code> array</strong> is <strong>converted into a <code>std::string</code>
+   implicitly</strong>, <strong>although</strong> the argument of the function is a <code>std::string</code> <strong>reference</strong>, <strong>one
+   memory allocation occurs</strong>.</li>
 </ol>
 <h3 id="stdstring_view"><code>std::string_view</code></h3>
 <h4 id="explanation_3">Explanation</h4>
@@ -602,10 +612,10 @@ std::string_view var_name = &quot;a string&quot;;
 std::string_view var_name( &quot;a string&quot; );
 </code></pre>
 <pre><code class="language-CPP">// Initializer list constructor.
-std::string_view var_name{ &quot;a string&quot; };
+std::string_view var_name{ 'letter1', 'letter2', ... };
 </code></pre>
 <pre><code class="language-CPP">// Initializer list constructor.
-std::string str = { &quot;a string&quot; };
+std::string str = { 'letter1', 'letter2', ... };
 // Constructs a `std::string_view` over the range `[first, last)`.
 std::string_view var_name( str.begin(), str.end() );
 </code></pre>
@@ -623,7 +633,7 @@ std::string_view var_name( count, ch_ptr );
 <ol>
 <li><code>CharT</code>: Character type.</li>
 <li><code>Traits</code>: CharTraits class specifying the operations on the character type. Like for
-   <code>std::basic_string</code>, <code>Traits::char_type</code> must name the same type as <code>CharT</code> or the program is
+   <code>std::string</code>, <code>Traits::char_type</code> must name the same type as <code>CharT</code> or the program is
    ill-formed.</li>
 </ol>
 <h5 id="member-types_1">Member Types</h5>
@@ -710,10 +720,10 @@ std::string_view var_name( count, ch_ptr );
 </ol>
 <h5 id="helper-templates">Helper Templates</h5>
 <ol>
-<li><code>template&lt; class CharT, class Traits &gt; inline constexpr bool ranges::enable_borrowed_range&lt; std::basic_string_view&lt; CharT, Traits &gt; &gt; = true;</code>
+<li><code>template&lt; class CharT, class Traits &gt; inline constexpr bool ranges::enable_borrowed_range&lt; std::string_view&lt; CharT, Traits &gt; &gt; = true;</code>
    (since C++20): This specialization of <code>ranges::enable_borrowed_range</code> makes <code>basic_string_view</code>
    satisfy <code>borrowed_range</code>.</li>
-<li><code>template&lt; class CharT, class Traits &gt; inline constexpr bool ranges::enable_view&lt; std::basic_string_view &lt; CharT, Traits &gt; &gt; = true;</code>
+<li><code>template&lt; class CharT, class Traits &gt; inline constexpr bool ranges::enable_view&lt; std::string_view &lt; CharT, Traits &gt; &gt; = true;</code>
    (since C++20): This specialization of <code>ranges::enable_view</code> makes <code>basic_string_view</code> satisfy
    view.</li>
 </ol>
@@ -721,6 +731,12 @@ std::string_view var_name( count, ch_ptr );
 <ol>
 <li><a href=""><code>std::literals</code> in cplusplus</a>.</li>
 <li><a href="https://en.cppreference.com/w/cpp/symbol_index/literals"><code>std::literals</code> in cppreference</a>.</li>
+</ol>
+<h3 id="notes">Notes</h3>
+<ol>
+<li>The strings stored in <code>const char</code> arrays, <code>const char</code> pointers, and <code>char</code> pointers cannot be
+   modified. It is not recommended to store a string in a <code>char</code> pointer.</li>
+<li>Only strings stored in <code>char</code> arrays or <code>std::string</code> can be modified.</li>
 </ol></div>
             </div>
         </div>

@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -259,7 +267,8 @@
 <li><a href="#definition-syntax">Definition Syntax</a></li>
 <li><a href="#declaration-syntax">Declaration Syntax</a></li>
 <li><a href="#reference-syntax">Reference Syntax</a></li>
-<li><a href="#function-arguments">Function Arguments</a><ul>
+<li><a href="#function-arguments">Function Arguments</a></li>
+<li><a href="#function-argument-pushing-order-stack-order">Function Argument Pushing Order (Stack Order)</a><ul>
 <li><a href="#how-to-pass-arguments-to-a-function">How to Pass Arguments to a Function</a></li>
 <li><a href="#limitations-of-function-default-arguments">Limitations of Function Default Arguments</a></li>
 </ul>
@@ -328,6 +337,7 @@
 <li><a href="#links">Links</a></li>
 </ul>
 </li>
+<li><a href="#callback-functions-and-registeration-functions">Callback Functions and Registeration Functions</a></li>
 </ul>
 <!-- vim-markdown-toc -->
 
@@ -400,6 +410,24 @@
 <pre><code class="language-CPP">RetType var_name = funcName( arg_list );
 </code></pre>
 <h3 id="function-arguments">Function Arguments</h3>
+<h3 id="function-argument-pushing-order-stack-order">Function Argument Pushing Order (Stack Order)</h3>
+<ol>
+<li><strong>Right to left</strong> (<strong>most common</strong>):</li>
+<li>In most platforms and compilers (e.g., x86 and x64 using the C calling convention), arguments
+     are pushed onto the stack from right to left.</li>
+<li>This means the rightmost parameter is pushed first.</li>
+<li>This allows the function to access arguments in the correct order when it retrieves them from
+     the stack.</li>
+<li>Left to right (less common):</li>
+<li>Some calling conventions (e.g., used in some versions of the ARM architecture) may push
+     arguments left to right (from leftmost to rightmost).</li>
+<li>This is less common in mainstream desktop systems but might be used in embedded or
+     special-purpose systems.</li>
+<li>Registers:</li>
+<li>For performance reasons, many modern platforms (like x64) pass the first few arguments to a
+     function in registers rather than pushing them onto the stack.</li>
+<li>Only arguments that don't fit into the available registers are pushed onto the stack.</li>
+</ol>
 <h4 id="how-to-pass-arguments-to-a-function">How to Pass Arguments to a Function</h4>
 <ol>
 <li><strong>Primitive</strong>-type arguments: Pass their <strong>values</strong> to the function.</li>
@@ -569,22 +597,28 @@ func_ptr_name = &amp;funcName;
 </code></pre>
 <h4 id="syntax-for-function-calls-using-function-pointers">Syntax for Function Calls Using Function Pointers</h4>
 <pre><code class="language-CPP">// A function whose return type isn't `void`.
-auto result = func_ptr_name( arguement_list );
+auto result = func_ptr_name( arg_list );
 </code></pre>
 <pre><code class="language-CPP">// This syntax is equivalent to the syntax mentioned above.
-RetType result = func_ptr_name( arguement_list );
+RetType result = func_ptr_name( arg_list );
 </code></pre>
 <pre><code class="language-CPP">// A function whose return type is `void`.
-func_pt_name( arguement_list );
+func_pt_name( arg_list );
 </code></pre>
 <h4 id="syntax-for-function-pinter-declaration-using-using">Syntax for Function Pinter Declaration Using <code>using</code></h4>
-<pre><code class="language-CPP">using FuncPtrName = RetType ( * )( parameter_types );
-FuncPtrName func_ptr_name;
-</code></pre>
+<ol>
+<li><a href="../UsingTypedefNameSpaces/#usage">Syntax for Function Pinter Declaration Using <code>using</code></a>
+   <code>CPP
+   using FuncPtrName = RetType ( * )( parameter_types );
+   FuncPtrName func_ptr_name;</code></li>
+</ol>
 <h4 id="syntax-for-function-pinter-declaration-using-typedef">Syntax for Function Pinter Declaration Using <code>typedef</code></h4>
-<pre><code class="language-CPP">typedef RetType ( *FuncPtrName )( parameter_types );
-FuncPtrName func_ptr_name;
-</code></pre>
+<ol>
+<li><a href="../UsingTypedefNameSpaces/#usage-1">Syntax for Function Pinter Declaration Using <code>typedef</code></a>
+   <code>CPP
+   typedef RetType ( *FuncPtrName )( parameter_types );
+   FuncPtrName func_ptr_name;</code></li>
+</ol>
 <h3 id="lambda-functions">Lambda Functions</h3>
 <h4 id="why-use-lambda-functions">Why Use Lambda Functions</h4>
 <ol>
@@ -601,6 +635,8 @@ FuncPtrName func_ptr_name;
    name) directly in your code.</li>
 <li>It allows you to create small, simple function-like entities <strong><code>inline</code></strong>, making your <strong>code
    more concise and flexible</strong>.</li>
+<li><strong>All elements captured</strong> by a lambda function <strong>must be declared before the lambda’s
+   definition</strong>.</li>
 </ol>
 <h4 id="syntax_2">Syntax</h4>
 <h5 id="code-for-passing-it-as-a-variable">Code for Passing It as a Variable</h5>
@@ -612,12 +648,13 @@ FuncPtrName func_ptr_name;
 <h5 id="explanation_7">Explanation</h5>
 <ol>
 <li><code>capture</code>:</li>
-<li>Specifies which variables from the surrounding scope are captured by the lambda. This can be
-     done by value (<code>=</code>) or by reference (<code>&amp;</code>).</li>
+<li>Specifies which variables from the surrounding scope are captured by the lambda.</li>
+<li>This can be done by value (<code>=</code>) or by reference (<code>&amp;</code>).</li>
 <li><code>para_list</code>:</li>
 <li>The <code>para_list</code> for the lambda function, similar to any regular function.</li>
 <li><code>RetType</code> (<strong>optional</strong>):</li>
-<li>The return type of the lambda. If <strong>omitted</strong>, C++ will attempt to deduce it automatically.</li>
+<li>The return type of the lambda.</li>
+<li>If <strong>omitted</strong>, C++ will attempt to deduce it automatically.</li>
 <li><code>Function body</code>:</li>
 <li>The function body where the logic of the lambda resides.</li>
 </ol>
@@ -712,6 +749,21 @@ template&lt; typename... Ts &gt; RetType funcName( Ts... args ) {
 <ol>
 <li><a href=""><code>parameter packs</code> in cplusplus</a>.</li>
 <li><a href="https://en.cppreference.com/w/cpp/language/parameter_pack"><code>parameter packs</code> in cppreference</a>.</li>
+</ol>
+<h3 id="callback-functions-and-registeration-functions">Callback Functions and Registeration Functions</h3>
+<ol>
+<li>Callback function:</li>
+<li>A callback function is <strong>a function</strong> that is <strong>passed as a parameter to another function</strong>.</li>
+<li>The function receiving the callback can then call it at the appropriate time, typically in
+     response to an event or condition.</li>
+<li>In essence, it is calling a function indirectly through a pointer to it (i.e., function
+     pointer).</li>
+<li>Registration function:</li>
+<li>A registration function is <strong>a function</strong> that is <strong>typically used to register a callback or
+     handler</strong>.</li>
+<li>It <strong>takes a function pointer as an argument</strong> and <strong>stores or uses it later</strong>, allowing other
+     functions to invoke it when needed.</li>
+<li>It’s essentially a way of registering a function for future calls.</li>
 </ol></div>
             </div>
         </div>

@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -198,6 +202,10 @@
                                     
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
+</li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
 </li>
                                 </ul>
                             </li>
@@ -349,24 +357,25 @@ std::stack&lt; Type, Container&lt; Type &gt; &gt; stack_name;
 <pre><code class="language-CPP">// Default constructor. Value-initializes the underlying container.
 std::stack&lt; Type &gt; stack_name;
 </code></pre>
-<pre><code class="language-CPP">Container&lt; Type &gt; cont = { ... };
+<pre><code class="language-CPP">// Initializer list constructor.
+Container&lt; Type &gt; cont = { ... };
 // Copy the content of the `cont`.
 std::stack&lt; Type, Container&lt; Type &gt; &gt; stack_name( cont );
 </code></pre>
 <pre><code class="language-CPP">// Move the content of the underlying container.
 std::stack&lt; Type, Container&lt; Type &gt; &gt; stack_name( Container&lt; Type &gt;{ ... } );
 </code></pre>
-<pre><code class="language-CPP">// Move the content of the underlying container.
+<pre><code class="language-CPP">// Initializer list constructor.
 std::stack&lt; Type &gt; stack_name1( { ... } );
 // Copy constructor.
 std::stack&lt; Type &gt; stack_name2( stack_name1 );
 </code></pre>
-<pre><code class="language-CPP">// Move the content of the underlying container.
+<pre><code class="language-CPP">// Initializer list constructor.
 std::stack&lt; Type &gt; stack_name1( { ... } );
 // Copy constructor.
 std::stack&lt; Type &gt; stack_name2 = stack_name1;
 </code></pre>
-<pre><code class="language-CPP">// Move the content of the underlying container.
+<pre><code class="language-CPP">// Initializer list constructor.
 std::stack&lt; Type &gt; stack_name1( { ... } );
 // Move constructor.
 std::stack&lt; Type &gt; stack_name2( std::move( stack_name1 ) );
@@ -380,7 +389,7 @@ std::stack&lt; Type, Container&lt; Type &gt; &gt; stack_name2( stack_name1.begin
 </code></pre>
 <pre><code class="language-CPP">std::stack&lt; Type, Container&lt; Type &gt; &gt;* stack_ptr = new std::stack&lt; Type &gt;( Container&lt; Type &gt;{ ... } );
 </code></pre>
-<pre><code class="language-CPP">// Move the content of the underlying container.
+<pre><code class="language-CPP">// Initializer list constructor.
 std::stack&lt; Type &gt; stack_name( { ... } );
 std::stack&lt; Type &gt;* stack_ptr = new std::stack&lt; Type &gt;( stack_name );
 </code></pre>
@@ -479,17 +488,17 @@ std::queue&lt; Type, Container&lt; Type &gt; &gt; queue_name( cont );
 <pre><code class="language-CPP">// Move the content of the underlying container.
 std::queue&lt; Type, Container&lt; Type &gt; &gt; queue_name( Container&lt; Type &gt;{ ... } );
 </code></pre>
-<pre><code class="language-CPP">// Move the content of the underlying container.
+<pre><code class="language-CPP">// Initializer list constructor.
 std::queue&lt; Type &gt; queue_name1( { ... } );
 // Copy constructor.
 std::queue&lt; Type &gt; queue_name2( queue_name1 );
 </code></pre>
-<pre><code class="language-CPP">// Move the content of the underlying container.
+<pre><code class="language-CPP">// Initializer list constructor.
 std::queue&lt; Type &gt; queue_name1( { ... } );
 // Copy constructor.
 std::queue&lt; Type &gt; queue_name2 = queue_name1;
 </code></pre>
-<pre><code class="language-CPP">// Move the content of the underlying container.
+<pre><code class="language-CPP">// Initializer list constructor.
 std::queue&lt; Type &gt; queue_name1( { ... } );
 // Move constructor.
 std::queue&lt; Type &gt; queue_name1( std::move( queue_name1 ) );
@@ -503,7 +512,7 @@ std::queue&lt; Type, Container&lt; Type &gt; &gt; queue_name2( queue_name1.begin
 </code></pre>
 <pre><code class="language-CPP">std::queue&lt; Type, Container&lt; Type &gt; &gt;* queue_ptr = new std::queue&lt; Type &gt;( Container&lt; Type &gt;{ ... } );
 </code></pre>
-<pre><code class="language-CPP">// Move the content of the underlying container.
+<pre><code class="language-CPP">// Initializer list constructor.
 std::queue&lt; Type &gt; queue_name( { ... } );
 std::queue&lt; Type &gt;* queue_ptr = new std::queue&lt; Type &gt;( queue_name );
 </code></pre>
@@ -778,11 +787,13 @@ std::deque&lt; Type &gt; deque_name1 = { ... };
 // Copy constructor.
 std::deque&lt; Type &gt; deque_name2 = deque_name1;
 </code></pre>
-<pre><code class="language-CPP">// Move constructor.
-std::deque&lt; Type &gt; deque_name( { ... } );
+<pre><code class="language-CPP">// Initializer deque constructor.
+std::deque&lt; Type &gt; deque_name1 = { ... };
+// Move constructor.
+std::deque&lt; Type &gt; deque_name2 = std::move( deque_name1 );
 </code></pre>
-<pre><code class="language-CPP">// Move the content of the underlying container.
-std::deque&lt; Type, Container&lt; Type &gt; &gt; deque_name1( Container&lt; Type &gt;{ ... } );
+<pre><code class="language-CPP">// Initializer deque constructor.
+std::deque&lt; Type &gt; deque_name1 = { ... };
 // Constructs the underlying container with the contents of the range `[first, last)`.
 std::deque&lt; Type, Container&lt; Type &gt; &gt; deque_name2( deque_name1.begin(), deque_name2.end() );
 </code></pre>
@@ -852,7 +863,7 @@ std::deque&lt; Type &gt;* deque_ptr = new std::deque&lt; Type &gt;( deque_name )
 <li><code>insert</code>: Inserts elements (public member function).</li>
 <li><code>insert_range</code> (C++23): Inserts a range of elements (public member function).</li>
 <li><code>emplace</code>: Constructs elements in-place (public member function).</li>
-<li><code>erase</code>: Erases elements (public member function).</li>
+<li><code>erase</code>: Erases elements and returns a valid iterator (public member function).</li>
 <li><code>push_back</code>: Adds an element to the end (public member function).</li>
 <li><code>emplace_back</code>: Constructs an element in-place at the end (public member function).</li>
 <li><code>append_range</code> (C++23): Adds a range of elements to the end (public member function).</li>

@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -237,7 +245,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#smart-pointers" class="nav-link">Smart Pointers</a>
+            <li class="nav-item" data-level="2"><a href="#smart-pointers-scoped-pointers" class="nav-link">Smart Pointers (Scoped Pointers)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -249,9 +257,9 @@
 <!-- vim-markdown-toc GFM -->
 
 <ul>
-<li><a href="#smart-pointers">Smart Pointers</a></li>
+<li><a href="#smart-pointers-scoped-pointers">Smart Pointers (Scoped Pointers)</a></li>
 <li><a href="#explanation">Explanation</a></li>
-<li><a href="#scoped-pointers--stdunique_ptr-">Scoped Pointers ( <code>std::unique_ptr</code> )</a><ul>
+<li><a href="#unique-pointers-stdunique_ptr">Unique Pointers (<code>std::unique_ptr</code>)</a><ul>
 <li><a href="#explanation-1">Explanation</a></li>
 <li><a href="#declaration-syntax">Declaration Syntax</a></li>
 <li><a href="#initialization-syntax">Initialization Syntax</a></li>
@@ -263,7 +271,7 @@
 <li><a href="#helper-classes">Helper Classes</a></li>
 </ul>
 </li>
-<li><a href="#shared-pointers--stdshared_ptr-">Shared Pointers ( <code>std::shared_ptr</code> )</a><ul>
+<li><a href="#shared-pointers-stdshared_ptr">Shared Pointers (<code>std::shared_ptr</code>)</a><ul>
 <li><a href="#explanation-2">Explanation</a></li>
 <li><a href="#declaration-syntax-1">Declaration Syntax</a></li>
 <li><a href="#initialization-syntax-1">Initialization Syntax</a></li>
@@ -275,10 +283,13 @@
 <li><a href="#helper-classes-1">Helper Classes</a></li>
 </ul>
 </li>
-<li><a href="#weak-pointers--stdweak_ptr-">Weak Pointers ( <code>std::weak_ptr</code> )</a><ul>
+<li><a href="#weak-pointers-stdweak_ptr">Weak Pointers (<code>std::weak_ptr</code>)</a><ul>
 <li><a href="#explanation-3">Explanation</a></li>
 <li><a href="#declaration-syntax-2">Declaration Syntax</a></li>
 <li><a href="#initialization-syntax-2">Initialization Syntax</a></li>
+<li><a href="#circular-references">Circular References</a></li>
+<li><a href="#explanation-4">Explanation</a></li>
+<li><a href="#examples">Examples</a></li>
 <li><a href="#members-and-related-stuffs-2">Members and Related Stuffs</a></li>
 <li><a href="#links-2">Links</a></li>
 <li><a href="#member-types-2">Member Types</a></li>
@@ -290,7 +301,7 @@
 </ul>
 <!-- vim-markdown-toc -->
 
-<h2 id="smart-pointers">Smart Pointers</h2>
+<h2 id="smart-pointers-scoped-pointers">Smart Pointers (Scoped Pointers)</h2>
 <h3 id="explanation">Explanation</h3>
 <ol>
 <li>Smart pointers are <strong>wrapper classes (template classes)</strong> about <strong>a real raw pointer</strong> that
@@ -300,15 +311,17 @@
    pointers</strong>.</li>
 <li>The C++ Standard Library provides <strong>three primary types of smart pointers</strong>: <code>std::unique_ptr</code>,
    <code>std::shared_ptr</code>, and <code>std::weak_ptr</code>.</li>
-<li>Their header file is <code>&lt;memory&gt;</code>.</li>
+<li>All smart pointers are <strong>scoped pointers</strong>. When they <strong>leave their scope</strong>, they either <strong>cease
+   to exist</strong> or <strong>decrease their reference count</strong>.</li>
 <li>When <strong>designing our own data structure</strong>, <strong>useing a raw pointer instead</strong>.</li>
 <li>In smart pointers, the pointer operator (or arrow operator, <code>-&gt;</code>) has been overloaded. Since the
    compiler optimizes pointer operator overloading, <code>obj_ptr-&gt;_mem</code> and <code>(*obj_ptr)._mem</code> <strong>are
    equivalent</strong> to <code>(obj_ptr)-&gt;-&gt;_mem</code> and <code>(*obj_ptr)-&gt;_mem</code>.</li>
 <li><strong>Additionally, the pointer operator can be overloaded to obtain the memory offsets of an
    object's members</strong>.</li>
+<li>Their header file is <code>&lt;memory&gt;</code>.</li>
 </ol>
-<h3 id="scoped-pointers-stdunique_ptr">Scoped Pointers ( <code>std::unique_ptr</code> )</h3>
+<h3 id="unique-pointers-stdunique_ptr">Unique Pointers (<code>std::unique_ptr</code>)</h3>
 <h4 id="explanation_1">Explanation</h4>
 <ol>
 <li><code>std::unique_ptr</code> is a smart pointer that provides <strong>exclusive ownership of a resource</strong>.</li>
@@ -388,7 +401,7 @@ rptr = nullptr;
 <li><code>std::hash&lt; std::unique_ptr &gt;</code>: Hash support for <code>std::unique_ptr</code> (class template
    specialization).</li>
 </ol>
-<h3 id="shared-pointers-stdshared_ptr">Shared Pointers ( <code>std::shared_ptr</code> )</h3>
+<h3 id="shared-pointers-stdshared_ptr">Shared Pointers (<code>std::shared_ptr</code>)</h3>
 <h4 id="explanation_2">Explanation</h4>
 <ol>
 <li><code>std::shared_ptr</code> is a type of smart pointer that <strong>enables multiple instances of
@@ -398,10 +411,10 @@ rptr = nullptr;
 <li>Reference counting <strong>maintains a record of the number of references</strong> pointing to a shared
    pointer:</li>
 <li>Each time <strong>a new reference</strong> is established, <strong>the reference count</strong> is <strong>incremented by
-     one</strong>.</li>
+     one</strong>. (<strong>Constructors</strong>)</li>
 <li>Conversely, each time <strong>a reference</strong> is <strong>removed</strong>, <strong>the count</strong> is <strong>decremented by one</strong>.</li>
 <li>When <strong>the reference count</strong> is <strong>reduced to zero</strong>, the associated shared pointer is
-     <strong>automatically deallocated</strong>.</li>
+     <strong>automatically deallocated</strong>. (<strong>Destructors</strong>)</li>
 <li>This reference counting mechanism <strong>introduces a degree of overhead</strong>.</li>
 <li>Notably, assigning one <code>std::shared_ptr</code> to another results in an increase in the reference
    count, while <strong>assigning a <code>std::shared_ptr</code> to a <code>std::weak_ptr</code> does not affect the reference
@@ -505,21 +518,26 @@ uptr = nullptr;
 <li><code>std::hash&lt; std::shared_ptr &gt;</code>: Hash support for <code>std::shared_ptr</code> (class template
    specialization).</li>
 </ol>
-<h3 id="weak-pointers-stdweak_ptr">Weak Pointers ( <code>std::weak_ptr</code> )</h3>
+<h3 id="weak-pointers-stdweak_ptr">Weak Pointers (<code>std::weak_ptr</code>)</h3>
 <h4 id="explanation_3">Explanation</h4>
 <ol>
 <li><code>std::weak_ptr</code> is <strong>a variant of shared pointer</strong> that does <strong>not maintain a reference count</strong>.</li>
-<li>It does <strong>not take ownership</strong> of the managed object but allows <strong>tracking of an object</strong> managed
+<li>It does <strong>not take ownership</strong> of the managed object <strong>but allows tracking of an object</strong> managed
    by <code>std::shared_ptr</code> without affecting the reference count.</li>
-<li>This feature is particularly useful for avoiding circular references and ensuring that memory is
-   not deallocated. Since <code>std::weak_ptr</code> does not increment the reference count of the resource, it
-   does <strong>not influence the resource's lifetime</strong>. To access the managed resource, a <code>std::weak_ptr</code>
-   must be converted to a <code>std::shared_ptr</code> using the <code>lock()</code> method.</li>
+<li>This feature is particularly useful for <strong>avoiding circular references</strong> and <strong>ensuring that
+   memory is not deallocated</strong>.</li>
+<li>Since <code>std::weak_ptr</code> does not increment the reference count of the resource, it does <strong>not
+   influence the resource's lifetime</strong>.</li>
+<li><strong>To access the managed resource</strong>, <strong>a <code>std::weak_ptr</code> must be converted to a
+   <code>std::shared_ptr</code></strong> using the <strong><code>lock()</code> method</strong>.</li>
 <li><strong>Assigning a shared pointer to a raw pointer</strong> can <strong>lead to several issues</strong> after the shared
    pointer has been released, <strong>particularly in a multithreaded context</strong> where a raw pointer may be
-   <strong>deleted multiple times</strong>. In contrast, <code>std::weak_ptr</code> provides a solution to these problems.
-   If two objects reference one another, at least one of the references must be a weak pointer to
-   prevent circular dependencies.</li>
+   <strong>deleted multiple times</strong>.</li>
+<li>In contrast, <code>std::weak_ptr</code> provides a solution to these problems.</li>
+<li>If <strong>two objects reference one another</strong>, <strong>at least one of the references</strong> <strong>must</strong> be <strong>a weak
+   pointer</strong> to <strong>prevent circular dependencies</strong>.</li>
+<li>Although <code>std::weak_ptr</code> does not maintain the resources's lifetime, the best practice is calling
+   <code>reset()</code> if we do not need a <code>std::weak_ptr</code>.</li>
 </ol>
 <h4 id="declaration-syntax_2">Declaration Syntax</h4>
 <pre><code class="language-CPP">std::weak_ptr&lt; Type &gt; wptr;
@@ -539,8 +557,81 @@ std::weak_ptr&lt; Type &gt; wptr1 = sptr;
 std::weak_ptr&lt; Type &gt; wptr2 = std::move( wptr1 );
 </code></pre>
 <pre><code class="language-CPP">std::shared_ptr&lt; Type &gt; sptr = std::make_shared&lt; Type &gt;( /* constructor arguments */ );
-std::weak_ptr&lt; Type &gt; wptr;
-wptr.reset( sptr );
+std::weak_ptr&lt; Type &gt; wptr = sptr;
+wptr.reset();
+</code></pre>
+<pre><code class="language-CPP">std::shared_ptr&lt; Type &gt; sptr1 = std::make_shared&lt; Type &gt;( /* constructor arguments */ );
+std::weak_ptr&lt; Type &gt; wptr = sptr1;
+auto sptr2 = wptr.lock();
+if( sptr2 ) {
+   ...;
+} else {
+   ...
+}
+</code></pre>
+<pre><code class="language-CPP">std::shared_ptr&lt; Type &gt; sptr1 = std::make_shared&lt; Type &gt;( /* constructor arguments */ );
+std::weak_ptr&lt; Type &gt; wptr = sptr1;
+// C++17.
+if( auto sptr2 = wptr.lock(); ) {
+   ...;
+} else {
+   ...
+}
+</code></pre>
+<h4 id="circular-references">Circular References</h4>
+<h5 id="explanation_4">Explanation</h5>
+<ol>
+<li>A circular reference occurs when <strong>two or more objects reference each other in a way</strong> that
+   <strong>creates a cycle</strong>.</li>
+<li>This happens when Object A holds a reference to Object B, and Object B holds a reference back to
+   Object A (or when a longer chain of objects reference each other in a loop).</li>
+<li>This can cause <strong>memory leaks</strong> or <strong>infinite loops</strong>.</li>
+<li>The best approach is to <strong>use a <code>weak_ptr</code></strong> for references between objects.</li>
+</ol>
+<h5 id="examples">Examples</h5>
+<pre><code class="language-CPP">// Circular references occur.
+#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+struct Node {
+      std::shared_ptr&lt; Node &gt; next;
+      ~Node() { std::cout &lt;&lt; &quot;Node destroyed\n&quot;; }
+};
+
+int main() {
+   auto nodeA = std::make_shared&lt; Node &gt;();
+   auto nodeB = std::make_shared&lt; Node &gt;();
+   std::cout &lt;&lt; nodeA.use_count() &lt;&lt; std::endl;
+   std::cout &lt;&lt; nodeB.use_count() &lt;&lt; std::endl;
+   nodeA-&gt;next = nodeB;   // nodeB.use_count() + 1;
+   nodeB-&gt;next = nodeA;   // nodeA.use_count() + 1; Creates a circular reference
+   std::cout &lt;&lt; nodeA.use_count() &lt;&lt; std::endl;
+   std::cout &lt;&lt; nodeB.use_count() &lt;&lt; std::endl;
+   // Both nodes will never be deleted due to circular reference
+   return 0;
+}
+</code></pre>
+<pre><code class="language-CPP">// Circular references do not occur.
+#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+struct Node {
+      std::weak_ptr&lt; Node &gt; next;
+      ~Node() { std::cout &lt;&lt; &quot;Node destroyed\n&quot;; }
+};
+
+int main() {
+   auto nodeA = std::make_shared&lt; Node &gt;();
+   auto nodeB = std::make_shared&lt; Node &gt;();
+   std::cout &lt;&lt; nodeA.use_count() &lt;&lt; std::endl;
+   std::cout &lt;&lt; nodeB.use_count() &lt;&lt; std::endl;
+   nodeA-&gt;next = nodeB;
+   nodeB-&gt;next = nodeA;
+   std::cout &lt;&lt; nodeA.use_count() &lt;&lt; std::endl;
+   std::cout &lt;&lt; nodeB.use_count() &lt;&lt; std::endl;
+   // Both nodes will be deleted.
+   return 0;
+}
 </code></pre>
 <h4 id="members-and-related-stuffs_2">Members and Related Stuffs</h4>
 <h5 id="links_2">Links</h5>

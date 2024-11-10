@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -257,6 +265,7 @@
 <li><a href="#declaration-syntax">Declaration Syntax</a></li>
 <li><a href="#initialization-syntax">Initialization Syntax</a></li>
 <li><a href="#syntax-for-deleting-one-dimensional-raw-array-pointers">Syntax for Deleting One-dimensional Raw Array Pointers</a></li>
+<li><a href="#three-kinds-of-pointers-related-to-array">Three Kinds of Pointers Related to Array</a></li>
 <li><a href="#multidimensional-raw-arrays--not-recommend-">Multidimensional Raw Arrays ( <strong>Not Recommend</strong> )</a></li>
 <li><a href="#declaration-syntax-1">Declaration Syntax</a></li>
 <li><a href="#initialization-syntax-1">Initialization Syntax</a></li>
@@ -304,6 +313,11 @@
 <li>They are the <strong>fastest</strong> structure but are <strong>not safe</strong> enough..</li>
 <li>The <strong>size</strong> of a raw array is <strong>defined at compile time</strong> and <strong>cannot be changed during
    runtime</strong>. This means that once an array is declared, its size is fixed.</li>
+<li><strong>Array pointer (pointer to an array)</strong>: A pointer that points to an <strong>entire</strong> array (<strong>rather
+   than individual</strong> elements).</li>
+<li><strong>Pointer array (array of pointers)</strong>: An array where each element is a pointer.</li>
+<li><strong>Element pointer (pointer to an element, pointer to an specific index, array element pointer)</strong>:
+   A pointer that points to <strong>an element</strong> in an array.</li>
 </ol>
 <h4 id="one-dimensional-raw-arrays">One-dimensional Raw Arrays</h4>
 <h5 id="declaration-syntax">Declaration Syntax</h5>
@@ -335,6 +349,21 @@ Type arr_name[] = { ... };
 </code></pre>
 <h5 id="syntax-for-deleting-one-dimensional-raw-array-pointers">Syntax for Deleting One-dimensional Raw Array Pointers</h5>
 <pre><code class="language-CPP">delete[] arr_ptr;
+</code></pre>
+<h5 id="three-kinds-of-pointers-related-to-array">Three Kinds of Pointers Related to Array</h5>
+<pre><code class="language-CPP">Type arr_name[size] = { ... };
+Type (*arr_ptr)[size] = &amp;arr_name; // Array pointer.
+// array pointer + 1 = element pointer + size;
+</code></pre>
+<pre><code class="language-CPP">Type arr_name[size] = { ... };
+Type* arr_ptr[szie] = { ... }; // Pointer array.
+</code></pre>
+<pre><code class="language-CPP">Type arr_name[size] = { ... };
+Type* arr_ptr = arr_name; // Element pointer points to the first element of arr_name.
+</code></pre>
+<pre><code class="language-CPP">Type arr_name[size] = { ... };
+Type* arr_ptr = &amp;arr_name[index]; // Element pointer points to the `index` element of arr_name.
+// array pointer + 1 = element pointer + size;
 </code></pre>
 <h4 id="multidimensional-raw-arrays-not-recommend">Multidimensional Raw Arrays ( <strong>Not Recommend</strong> )</h4>
 <h5 id="declaration-syntax_1">Declaration Syntax</h5>
@@ -440,8 +469,10 @@ std::array&lt; Type, size &gt; arr_name = {};
 <pre><code class="language-CPP">// Aggregate initialization or uniform initialization (C++11 and later).
 std::array&lt; Type, size &gt; arr_name{ val1, val2, val3, ... };
 </code></pre>
-<pre><code class="language-CPP">// Move constructor.
-std::array&lt; Type, size &gt; arr_name( { ... } );
+<pre><code class="language-CPP">// Aggregate initialization or uniform initialization (C++11 and later).
+std::array&lt; Type, size &gt; arr_name1( { ... } );
+// Move constructor.
+std::array&lt; Type, size &gt; arr_name2( std::move( arr_name1 ) );
 </code></pre>
 <pre><code class="language-CPP">// Aggregate initialization.
 std::array&lt; Type, size &gt; arr_name1 = { ... };

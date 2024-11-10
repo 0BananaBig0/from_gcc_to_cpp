@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="./" class="dropdown-item active">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -215,7 +223,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
+                                <a rel="next" href="../Handles/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -286,6 +294,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#raii-resource-acquisition-is-initialization" class="nav-link">RAII (Resource Acquisition Is Initialization)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -323,6 +336,11 @@
 <li><a href="#what-we-can-do-in-our-project"><strong>What We Can Do in Our Project</strong></a></li>
 </ul>
 </li>
+<li><a href="#raii-resource-acquisition-is-initialization">RAII (Resource Acquisition Is Initialization)</a></li>
+<li><a href="#explanation-2">Explanation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#advantages">Advantages</a></li>
+<li><a href="#disadvantages">Disadvantages</a></li>
 </ul>
 <!-- vim-markdown-toc -->
 
@@ -334,8 +352,10 @@
 <li><strong>Function argument evaluation order</strong> is <strong>undefined</strong> in C++. Differenct compilers with
    different flags have different evaluation orders, until C++17, an uncomplete definiton of the
    function argument evaluation order comes.</li>
-<li><strong>All variables, objects, references, and pointers</strong> should be <strong>initialized explicitly and
-   immediately</strong> after they are declared or created. This can avoid many unpredictable issues</li>
+<li><strong>All variables, objects, references, and pointers</strong> should be **initialized explicitly and</li>
+<li><strong>Float:</strong> Be very careful. Both <code>float</code> and <code>double</code> type variables <strong>have precision
+   limitations</strong>. You should <strong>never use <code>==</code> or <code>!=</code> to compare them</strong> with any number. Instead,
+   you should try to <strong>convert the comparison into <code>&gt;=</code> or <code>&lt;=</code> forms</strong>.</li>
 </ol>
 <h2 id="type-puning">Type Puning</h2>
 <h3 id="explanation">Explanation</h3>
@@ -583,6 +603,54 @@ struct Vector4 {
 <li>Write some shell scripts to manage your project and execute these scripts you write on previous
    three steps.</li>
 <li>Use some tools to visualize these steps, for example, Jenkins. (<strong>Optional</strong>)</li>
+</ol>
+<h2 id="raii-resource-acquisition-is-initialization">RAII (Resource Acquisition Is Initialization)</h2>
+<h3 id="explanation_2">Explanation</h3>
+<ol>
+<li>RAII <strong>ties resource management (acquisition and release) to object lifetime</strong>.</li>
+<li>Resources are acquired during object construction and automatically released during destruction.</li>
+<li>Guarantees resource cleanup even in the face of exceptions or complex control flows.</li>
+</ol>
+<h3 id="usage">Usage</h3>
+<ol>
+<li>Dynamic memory</li>
+<li>Managed via smart pointers like <code>std::unique_ptr</code> or <code>std::shared_ptr</code>.</li>
+<li>File handles:</li>
+<li>Managed by RAII-style classes to open and close files automatically.</li>
+<li>Mutex locks:</li>
+<li>Managed with objects like <code>std::lock_guard</code> to handle locking and unlocking.</li>
+<li>Network connections:</li>
+<li>Managed through RAII for automatic connection and disconnection.</li>
+<li>Resource pooling:</li>
+<li>Ensures proper acquisition and release of resources like database connections.</li>
+</ol>
+<h3 id="advantages">Advantages</h3>
+<ol>
+<li>Automatic resource management:</li>
+<li>Reduces risk of resource leaks by ensuring cleanup.</li>
+<li>Exception safety:</li>
+<li>Ensures resources are released even if an exception is thrown.</li>
+<li>Simplified code:</li>
+<li>Minimizes explicit resource management code.</li>
+<li>Fewer bugs:</li>
+<li>Helps avoid common issues like dangling pointers and memory leaks.</li>
+<li>Scoped resource control:</li>
+<li>Clearly defines the scope and duration of resource usage.</li>
+</ol>
+<h3 id="disadvantages">Disadvantages</h3>
+<ol>
+<li>Limited flexibility:</li>
+<li>Resource lifetime is tied to object lifetime, which may not always align with program
+     requirements.</li>
+<li>Complexity in destruction:</li>
+<li>Destructors may become complex if managing multiple resources.</li>
+<li>Increased memory usage:</li>
+<li>Smart pointers introduce slight memory and performance overhead.</li>
+<li>Potential for overhead:</li>
+<li>RAII can add overhead, especially with frequent acquisition/release.</li>
+<li>Not suitable for non-scope-based resources:</li>
+<li>Less effective for resources not naturally scoped to an object’s lifetime (e.g., global or
+     shared resources).</li>
 </ol></div>
             </div>
         </div>

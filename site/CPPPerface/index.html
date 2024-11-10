@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -323,6 +331,7 @@
 <li><a href="#interface">Interface</a></li>
 <li><a href="#keyword">Keyword</a></li>
 <li><a href="#type-specifier">Type Specifier</a></li>
+<li><a href="#segmentation-fault-linux-and-access-violation-win">Segmentation Fault (Linux) and Access Violation (Win)</a></li>
 <li><a href="#notes-1">Notes</a></li>
 </ul>
 <!-- vim-markdown-toc -->
@@ -501,7 +510,13 @@
 <li>Pointers enable <strong>dynamic memory allocation</strong>, efficient array handling, and the ability to pass
    large data structures to functions without copying them.</li>
 <li>They <strong>require careful management</strong> of memory (allocation/deallocation).</li>
-<li>They can be <strong>null ( nullptr )</strong>.</li>
+<li>They can be <strong>null (<code>nullptr</code>)</strong>.</li>
+<li><strong>After</strong> a pointer is <strong>released</strong> using <code>delete</code> or <code>free</code>, it should be <strong>set to <code>nullptr</code></strong>.</li>
+<li><strong>After</strong> a pointer is <strong>declared</strong>, it should be <strong>initialized with <code>nullptr</code> or a concret
+   address immediately</strong>.</li>
+<li><strong>Before releasing</strong> a pointer, it should be <strong>checked to ensure it is not <code>nullptr</code></strong>.</li>
+<li>It is possible to <strong>encapsulate safe and efficient resource release functions within a macro</strong>,
+   and <strong>conditionally enable or disable</strong> them based on the selected build configuration.</li>
 </ol>
 <h5 id="void-pointers">Void Pointers</h5>
 <ol>
@@ -546,6 +561,10 @@
 <li>A reference is defined as a type. However, I believe it is <strong>merely an alias</strong>, not a distinct
    type, because <code>auto</code> cannot deduce a type as a reference without using <code>&amp;</code>.</li>
 <li>A reference is <strong>neither a variable nor an object</strong>.</li>
+<li>Categories:</li>
+<li><a href="#lvalue-references-type">Lvalue References (<code>Type&amp;</code>)</a></li>
+<li><a href="#rvalue-references-type">Rvalue References (<code>Type&amp;&amp;</code>)</a></li>
+<li><a href="../Templates/#universial-references-forward-references">Universial References (Forward References)</a></li>
 </ol>
 <h3 id="parameters">Parameters</h3>
 <ol>
@@ -649,7 +668,8 @@
 <ol>
 <li>An lvalue reference is <strong>a reference to a persistent object</strong> (i.e., an object with a
    well-defined memory address, such as variables or class members).</li>
-<li>It binds only to lvalues — objects that can appear on the left side of an assignment.</li>
+<li>It <strong>binds only to lvalues</strong> — objects that can appear on the left side of an assignment.</li>
+<li>However, <strong>a <code>const</code> lvalue reference</strong> can bind to <strong>a literal value</strong>.</li>
 </ol>
 <h5 id="usage">Usage</h5>
 <ol>
@@ -679,6 +699,18 @@
    it <strong>behaves much like a copy</strong>.</li>
 <li>This is primarily because primitive types do not have complex resource management like objects
    that own dynamic memory.</li>
+<li>When <strong>an rvalue reference is named</strong> (i.e., bound to a variable), the compiler <strong>treats it as an
+   lvalue</strong>.</li>
+<li>Rvalue references are a way for the compiler to distinguish between lvalues (objects that have a
+   name and can be assigned to) and rvalues (temporary objects that are about to go out of scope).</li>
+<li>However, <strong>just accepting an rvalue reference</strong> in <strong>a function does not</strong> automatically <strong>mean</strong>
+   that <strong>the object will be moved</strong>.</li>
+<li>Rvalue reference simply indicates that the function can accept an rvalue (temporary object).</li>
+<li><code>std::move</code> is the mechanism used to cast an lvalue into an rvalue, signaling that you want to
+     move the object instead of copying it.</li>
+<li><strong>Even</strong> when a function <strong>receives arguments as rvalue references</strong> (i.e., when they are passed
+   as <code>Type&amp;&amp;</code>), you still need to <strong>use <code>std::move</code> explicitly</strong> to transfer ownership of these
+   arguments to other objects.</li>
 </ol>
 <h5 id="usage_1">Usage</h5>
 <ol>
@@ -714,6 +746,9 @@
 <li>For <strong>all primitive-type</strong> variables including poiners and references, it does nothing, <strong>only
    copys</strong> them directly.</li>
 <li>It <strong>only</strong> tells the compiler to <strong>treat an object as an rvalue reference</strong>.</li>
+<li><strong>Even</strong> when a function <strong>receives arguments as rvalue references</strong> (i.e., when they are passed
+   as <code>Type&amp;&amp;</code>), you still need to <strong>use <code>std::move</code> explicitly</strong> to transfer ownership of these
+   arguments to other objects.</li>
 </ol>
 <h5 id="usage_3">Usage</h5>
 <ol>
@@ -727,8 +762,9 @@
 <li>In C++, the term "interface" does <strong>not have a formal definition</strong> like it does in some other
    programming languages (like Java).</li>
 <li>However, in C++, an interface is generally understood to be <strong>a class</strong> that <strong>defines a set of
-   pure virtual functions</strong>, which means that it declares functions that <strong>must be implemented by
+   pure <code>virtual</code> functions</strong>, which means that it declares functions that <strong>must be implemented by
    derived classes</strong> but does <strong>not provide any implementation of its own</strong>.</li>
+<li><strong>It only contains pure <code>virtual</code> functions</strong>.</li>
 </ol>
 <h3 id="keyword">Keyword</h3>
 <ol>
@@ -743,6 +779,14 @@
 <li>Type specifiers tell the compiler what kind of data the variable will hold or the function will
    return.</li>
 <li>They are an essential part of variable declarations and type definitions.</li>
+</ol>
+<h3 id="segmentation-fault-linux-and-access-violation-win">Segmentation Fault (Linux) and Access Violation (Win)</h3>
+<ol>
+<li>Access nullptr, for example, <code>Type *ptr = nullptr; (*ptr) = val;</code>.</li>
+<li>Access protected addredd, for example, <code>Type *ptr = 0; (*ptr) = val;</code>.</li>
+<li>Modify read-only memory, for example, <code>const Type var_name = val1; var_name = val2;</code>.</li>
+<li>Stack overflow, infinite loop.</li>
+<li>Multiple destruction or multiple deletion.</li>
 </ol>
 <h3 id="notes_1">Notes</h3>
 <ol>

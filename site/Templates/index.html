@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -281,7 +289,7 @@
 <li><a href="#link">Link</a></li>
 </ul>
 </li>
-<li><a href="#template-parameters-with-non-type-parameters">Template Parameters with Non-Type Parameters</a><ul>
+<li><a href="#template-parameters-with-non-type-parameters">Template Parameters with Non-type Parameters</a><ul>
 <li><a href="#explanation-7">Explanation</a></li>
 <li><a href="#syntax-4">Syntax</a></li>
 </ul>
@@ -302,6 +310,7 @@
 </ul>
 </li>
 <li><a href="#template-aliases">Template Aliases</a></li>
+<li><a href="#universial-references-forward-references">Universial References (Forward References)</a></li>
 </ul>
 <!-- vim-markdown-toc -->
 
@@ -503,6 +512,26 @@ template&lt; para_list2 &gt; class ClassName&lt; arg_list3 &gt; {
 ClassName&lt; arg_list1 &gt; obj1;              // Utilizes the generic version.
 ClassName&lt; arg_list2, arg_list3 &gt; obj2;   // Utilizes the specialized version.
 </code></pre>
+<pre><code class="language-CPP">// Definition syntax.
+template&lt; typename Type1, typename T2, ... &gt; class ClassName {
+      // Implementation.
+};
+
+// Partial specialization for generic reference types.
+template&lt; typename Type1, typename T2, ... &gt; class ClassName&lt; T1&amp;, T2&amp;, ... &gt; {
+      // Another implementation.
+};
+</code></pre>
+<pre><code class="language-CPP">// Definition syntax.
+template&lt; typename Type1, typename T2, ... &gt; class ClassName {
+      // Implementation.
+};
+
+// Partial specialization for generic pointer types.
+template&lt; typename Type1, typename T2, ... &gt; class ClassName&lt; T1*, T2*, ... &gt; {
+      // Another implementation.
+};
+</code></pre>
 <h3 id="variadic-templates-template-packs">Variadic Templates (Template Packs)</h3>
 <h4 id="explanation_6">Explanation</h4>
 <ol>
@@ -515,6 +544,11 @@ ClassName&lt; arg_list2, arg_list3 &gt; obj2;   // Utilizes the specialized vers
    thereby enhancing versatility.</li>
 <li>For <strong>a function template</strong>, <strong>multiple parameter packs</strong> can be defined, while <strong>a class
    template</strong> can <strong>only have one</strong>.</li>
+<li>For <strong>a function template</strong>, a template parameter pack can <strong>automatically deduce types</strong> and the
+   types are not explicitly specified when the function is called.</li>
+<li>However, <strong>for a class template</strong> (such as <code>std::tuple</code> or <code>std::vector</code>), <strong>the types must be
+   explicitly specified</strong> because template parameter packs are typically not deduced in class
+   templates.</li>
 </ol>
 <h4 id="common-syntax">Common Syntax</h4>
 <pre><code class="language-CPP">#include &lt;iostream&gt;
@@ -523,6 +557,8 @@ ClassName&lt; arg_list2, arg_list3 &gt; obj2;   // Utilizes the specialized vers
 // Be mindful of the Ellipsis.
 template&lt; typename... Args &gt; class ClassName {
    public:
+      // explicit ClassName( Args&amp;... args ):
+      // explicit ClassName( Args&amp;&amp;... args ):
       explicit ClassName( Args... args ):
          _mem( args... ), _mem_ptr( &amp;args... ) {
          // Method to print all arguments in order without adding any extra characters.
@@ -531,6 +567,14 @@ template&lt; typename... Args &gt; class ClassName {
          ( std::cout &lt;&lt; ... &lt;&lt; &amp;args ) &lt;&lt; std::endl;
          // Method to print all ++arguments in order without adding any extra characters.
          ( std::cout &lt;&lt; ... &lt;&lt; ++args ) &lt;&lt; std::endl;
+         // Method to add all arguments in order and print the result.
+         std::cout &lt;&lt; ( ... + args ) &lt;&lt; std::endl;
+         // Method to multiple all arguments in order and print the result.
+         std::cout &lt;&lt; ( ... * args ) &lt;&lt; std::endl;
+         // Method to &amp;&amp; all arguments in order and print the result.
+         std::cout &lt;&lt; ( ... &amp;&amp; args ) &lt;&lt; std::endl;
+         // Method to || all arguments in order and print the result.
+         std::cout &lt;&lt; ( ... || args ) &lt;&lt; std::endl;
       };
 
       // Method to get an element by index.
@@ -564,7 +608,7 @@ int main() {
 <li><a href=""><code>parameter packs</code> in cplusplus</a>.</li>
 <li><a href="https://en.cppreference.com/w/cpp/language/parameter_pack"><code>parameter packs</code> in cppreference</a>.</li>
 </ol>
-<h3 id="template-parameters-with-non-type-parameters">Template Parameters with Non-Type Parameters</h3>
+<h3 id="template-parameters-with-non-type-parameters">Template Parameters with Non-type Parameters</h3>
 <h4 id="explanation_7">Explanation</h4>
 <ol>
 <li>Template parameters can include <strong>non-type parameters</strong>, which are constants of integral or
@@ -718,6 +762,27 @@ template&lt; typename T, ... &gt; RetType funcName( T t, ... ) {
 <h3 id="template-aliases">Template Aliases</h3>
 <ol>
 <li><a href="../UsingTypedefNameSpaces/#using"><code>using</code></a></li>
+</ol>
+<h3 id="universial-references-forward-references">Universial References (Forward References)</h3>
+<ol>
+<li>A universal reference is <strong>a type of reference</strong> in C++ that <strong>can bind to both lvalues and
+   rvalues</strong>.</li>
+<li>It is also called <strong>a forwarding reference</strong> in modern C++ terminology.</li>
+<li>The term "universal reference" is <strong>particularly used in the context of template functions</strong>.</li>
+<li>A universal reference typically appears in a template function parameter when the type is
+   declared as <code>T&amp;&amp;</code> but is not a reference type (such as in <code>T&amp;&amp;</code> where <code>T</code> is a template
+   parameter). This is a special case of rvalue reference, which can either bind to:</li>
+<li>An rvalue (temporary object).</li>
+<li>An lvalue (persistent object) if it's used in the context of a template.</li>
+<li>Lvalue reference (<code>T&amp;</code>) and rvalue reference (<code>T&amp;&amp;</code>) are distinct in C++. But when template type
+   deduction is used, the compiler deduces the right reference type depending on the value category
+   of the argument passed.</li>
+<li>When an lvalue is passed, <code>T</code> is deduced as <code>Type&amp;</code>, so the universal reference becomes
+     <code>Type&amp; &amp;</code>, which is collapsed to <code>Type&amp;</code>.</li>
+<li>When an rvalue is passed, <code>T</code> is deduced as <code>Type&amp;</code>, and the universal reference becomes
+     <code>Type&amp; &amp;</code>.</li>
+<li>Universal references are often used in <strong>perfect forwarding</strong>, where you want to forward the
+   arguments exactly as received, keeping their value category intact.</li>
 </ol></div>
             </div>
         </div>

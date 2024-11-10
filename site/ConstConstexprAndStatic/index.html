@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -215,7 +223,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../MacrosAndPragma/" class="nav-link">
+                                <a rel="next" href="../Volatile/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -325,7 +333,7 @@
 <li><a href="#syntax-12">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#constexpr-constructors-c11-and-later"><code>constexpr</code> Constructors (C++11 and later):</a><ul>
+<li><a href="#constexpr-constructors-c11-and-later"><code>constexpr</code> Constructors (C++11 and later)</a><ul>
 <li><a href="#explanation-15">Explanation</a></li>
 <li><a href="#syntax-13">Syntax</a></li>
 </ul>
@@ -335,39 +343,44 @@
 <li><a href="#syntax-14">Syntax</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#static"><code>static</code></a><ul>
+<li><a href="#user-defined-literals">User-defined Literals</a><ul>
 <li><a href="#explanation-17">Explanation</a></li>
-<li><a href="#usage-2">Usage</a></li>
-<li><a href="#static-local-variables"><code>static</code> Local Variables</a><ul>
-<li><a href="#explanation-18">Explanation</a></li>
 <li><a href="#syntax-15">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#static-global-variables"><code>static</code> Global Variables</a><ul>
+</ul>
+</li>
+<li><a href="#static"><code>static</code></a><ul>
+<li><a href="#explanation-18">Explanation</a></li>
+<li><a href="#usage-2">Usage</a></li>
+<li><a href="#static-local-variables"><code>static</code> Local Variables</a><ul>
 <li><a href="#explanation-19">Explanation</a></li>
 <li><a href="#syntax-16">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#static-member-variables"><code>static</code> Member Variables</a><ul>
+<li><a href="#static-global-variables"><code>static</code> Global Variables</a><ul>
 <li><a href="#explanation-20">Explanation</a></li>
 <li><a href="#syntax-17">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#static-methods-static-member-functions"><code>static</code> Methods (<code>static</code> Member Functions)</a><ul>
+<li><a href="#static-member-variables"><code>static</code> Member Variables</a><ul>
 <li><a href="#explanation-21">Explanation</a></li>
 <li><a href="#syntax-18">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#static-global-functions"><code>static</code> Global Functions</a><ul>
+<li><a href="#static-methods-static-member-functions"><code>static</code> Methods (<code>static</code> Member Functions)</a><ul>
 <li><a href="#explanation-22">Explanation</a></li>
 <li><a href="#syntax-19">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#static-instances-of-classes"><code>static</code> Instances of Classes</a><ul>
+<li><a href="#static-global-functions"><code>static</code> Global Functions</a><ul>
 <li><a href="#explanation-23">Explanation</a></li>
 <li><a href="#syntax-20">Syntax</a></li>
+</ul>
+</li>
+<li><a href="#static-instances-of-classes"><code>static</code> Instances of Classes</a><ul>
+<li><a href="#explanation-24">Explanation</a></li>
+<li><a href="#syntax-21">Syntax</a></li>
 </ul>
 </li>
 </ul>
@@ -531,7 +544,9 @@
    operations, as they cannot be evaluated at compile time.</li>
 <li>It enforces that <strong>certain values and calculations</strong> can be <strong>performed at compile-time</strong>,
    leading to significant performance improvements.</li>
-<li>It enhances the code readabilit.</li>
+<li>Any variable or object declared with the <code>constexpr</code> keyword is constant and <strong>cannot be modified
+   after it is initialized</strong>.</li>
+<li>It enhances <strong>the code readabilit</strong>.</li>
 </ol>
 <h4 id="allowed-elements-valid-elements">Allowed Elements (Valid Elements)</h4>
 <ol>
@@ -601,7 +616,7 @@
 
 constexpr RetType var_name = funcName( para_list );
 </code></pre>
-<h5 id="constexpr-constructors-c11-and-later"><code>constexpr</code> Constructors (C++11 and later):</h5>
+<h5 id="constexpr-constructors-c11-and-later"><code>constexpr</code> Constructors (C++11 and later)</h5>
 <h6 id="explanation_15">Explanation</h6>
 <ol>
 <li>A <code>constexpr</code> constructor is <strong>a construcotr</strong> that can be used to <strong>create instances</strong> of the
@@ -642,8 +657,28 @@ constexpr ClassName obj_name( para_list );
 <h6 id="syntax_14">Syntax</h6>
 <pre><code class="language-CPP">constexpr ClassName obj_ptr;
 </code></pre>
+<h5 id="user-defined-literals">User-defined Literals</h5>
+<h6 id="explanation_17">Explanation</h6>
+<ol>
+<li>User-defined literals allow you to <strong>create custom literal suffixes</strong> that <strong>extend the
+   functionality of built-in literals</strong>.</li>
+<li>This feature lets you <strong>define special behaviors for literals of various types</strong>, including
+   integers, floating-point numbers, and strings.</li>
+<li>It's especially useful for <strong>creating more readable code</strong>, <strong>adding context or units to
+   values</strong>, and <strong>improving type safety</strong>.</li>
+<li>User-defined literals are <strong>created by defining functions with specific naming and parameter
+   rules</strong>.</li>
+<li>They <strong>begin with an underscore</strong> and <strong>are appended to a literal to convert it into a specific
+   type or to invoke custom logic</strong>.</li>
+</ol>
+<h6 id="syntax_15">Syntax</h6>
+<pre><code class="language-CPP">constexpr RetType operator&quot;&quot; _name( Type para, ... ) {
+   // Do something that can be evaluated at compile time.
+   return ...;
+}
+</code></pre>
 <h3 id="static"><code>static</code></h3>
-<h4 id="explanation_17">Explanation</h4>
+<h4 id="explanation_18">Explanation</h4>
 <ol>
 <li>The <code>static</code> <strong>keyword</strong> in C++ is used to <strong>change the storage duration and visibility</strong> of
    variables and functions. It alters how variables are initialized and where they can be accessed.</li>
@@ -658,7 +693,7 @@ constexpr ClassName obj_name( para_list );
 </ol>
 <h4 id="usage_2">Usage</h4>
 <h5 id="static-local-variables"><code>static</code> Local Variables</h5>
-<h6 id="explanation_18">Explanation</h6>
+<h6 id="explanation_19">Explanation</h6>
 <ol>
 <li>A <code>static</code> local variable is <strong>a <code>static</code> variable</strong> declared within a function that <strong>maintains
    its state between function calls</strong>.</li>
@@ -666,7 +701,7 @@ constexpr ClassName obj_name( para_list );
    declared</strong>.</li>
 <li>The variable is <strong>automatically initialized to zero</strong> if <strong>not explicitly initialized</strong>.</li>
 </ol>
-<h6 id="syntax_15">Syntax</h6>
+<h6 id="syntax_16">Syntax</h6>
 <pre><code class="language-CPP">RetType funcName() {
     // Initialized only once and retains value between calls.
     static Type count = val;
@@ -674,17 +709,17 @@ constexpr ClassName obj_name( para_list );
 };
 </code></pre>
 <h5 id="static-global-variables"><code>static</code> Global Variables</h5>
-<h6 id="explanation_19">Explanation</h6>
+<h6 id="explanation_20">Explanation</h6>
 <ol>
 <li>A <code>static</code> global variable is declared outside of all functions and is <strong>only accessible within
    the file</strong> in which it is declared, <strong>preventing name conflicts in other files</strong>.</li>
 <li>The variable is <strong>automatically initialized to zero</strong> if <strong>not explicitly initialized</strong>.</li>
 </ol>
-<h6 id="syntax_16">Syntax</h6>
+<h6 id="syntax_17">Syntax</h6>
 <pre><code class="language-CPP">static Type var_name;
 </code></pre>
 <h5 id="static-member-variables"><code>static</code> Member Variables</h5>
-<h6 id="explanation_20">Explanation</h6>
+<h6 id="explanation_21">Explanation</h6>
 <ol>
 <li><code>static</code> members of a class belong to the class itself rather than any object instance and <strong>can
    be accessed without an instance</strong>. <strong><code>static</code> members</strong> are <strong>shared among all instances of that
@@ -694,7 +729,7 @@ constexpr ClassName obj_name( para_list );
 <li>We should <strong>define or initialize it outside the class</strong>.</li>
 <li>In fact, <code>static</code> members are <strong><code>static</code> variables defined within a namespace</strong>.</li>
 </ol>
-<h6 id="syntax_17">Syntax</h6>
+<h6 id="syntax_18">Syntax</h6>
 <pre><code class="language-CPP">class ClassName {
    public:
       // Declaration of a static public class member.
@@ -709,7 +744,7 @@ Type1 ClassName::_staticMember1 = 0;
 Type2 ClassName::_staticMember2 = 0;
 </code></pre>
 <h5 id="static-methods-static-member-functions"><code>static</code> Methods (<code>static</code> Member Functions)</h5>
-<h6 id="explanation_21">Explanation</h6>
+<h6 id="explanation_22">Explanation</h6>
 <ol>
 <li>A <code>static</code> member function is <strong>a function</strong> defined within a class that can <strong>be called without
    creating an instance</strong> of the class.</li>
@@ -719,7 +754,7 @@ Type2 ClassName::_staticMember2 = 0;
    within the class.</li>
 <li>It can be <strong>called using the class name</strong>.</li>
 </ol>
-<h6 id="syntax_18">Syntax</h6>
+<h6 id="syntax_19">Syntax</h6>
 <pre><code class="language-CPP">class ClassName {
 public:
     static RetType funcName( para_list ) {
@@ -730,18 +765,18 @@ public:
 RetType var_name = ClassName::funcName( para_list );
 </code></pre>
 <h5 id="static-global-functions"><code>static</code> Global Functions</h5>
-<h6 id="explanation_22">Explanation</h6>
+<h6 id="explanation_23">Explanation</h6>
 <ol>
 <li>A <code>static</code> global function is a function <strong>limited in visibility to the file</strong> where it is
    defined, which helps to <strong>avoid name conflicts across different files</strong>.</li>
 </ol>
-<h6 id="syntax_19">Syntax</h6>
+<h6 id="syntax_20">Syntax</h6>
 <pre><code class="language-CPP">static RetType funcName() {
     // Function body.
 };
 </code></pre>
 <h5 id="static-instances-of-classes"><code>static</code> Instances of Classes</h5>
-<h6 id="explanation_23">Explanation</h6>
+<h6 id="explanation_24">Explanation</h6>
 <ol>
 <li>A <code>static</code> instance of a class refers to <strong>an object of the class</strong> that has <code>static</code> storage
    duration.</li>
@@ -750,7 +785,7 @@ RetType var_name = ClassName::funcName( para_list );
 <li>It can be scoped to a function, class, or namespace, depending on where it is declared.</li>
 <li>In fact, it's <strong>a <code>static</code> variable</strong>, a <code>static</code> local variable or a <code>static</code> global variable.</li>
 </ol>
-<h6 id="syntax_20">Syntax</h6>
+<h6 id="syntax_21">Syntax</h6>
 <pre><code class="language-CPP">static ClassName obj_ptr;
 </code></pre></div>
             </div>

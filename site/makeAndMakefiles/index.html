@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -249,9 +257,11 @@
 <!-- vim-markdown-toc GFM -->
 
 <ul>
-<li><a href="#make-and-makefile"><code>make</code> and Makefile</a></li>
+<li><a href="#make-and-makefile"><code>make</code> and Makefile</a><ul>
 <li><a href="#make"><code>make</code></a></li>
 <li><a href="#makefile">Makefile</a></li>
+</ul>
+</li>
 <li><a href="#basic-syntax-of-makefile">Basic Syntax of Makefile</a><ul>
 <li><a href="#code">Code</a></li>
 <li><a href="#explanation">Explanation</a></li>
@@ -373,7 +383,7 @@
 <li><a href="#explanation-16">Explanation</a></li>
 </ul>
 </li>
-<li><a href="#example-10-pattern-rule-with-variable-target-pattern-using-wildcard">Example 10: Pattern Rule with Variable Target-Pattern Using wildcard</a><ul>
+<li><a href="#example-10-pattern-rule-with-variable-target-pattern-using-wildcard">Example 10: Pattern Rule with Variable Target-pattern Using wildcard</a><ul>
 <li><a href="#code-15">Code</a></li>
 <li><a href="#explanation-17">Explanation</a></li>
 </ul>
@@ -960,7 +970,7 @@ $(OBJS): %.o: %.cpp
 <li><code>$(OBJS): %.o: %.cpp</code>: A pattern rule that applies to all the object files in <code>OBJS</code>, and each
    <code>.cpp</code> file will be compiled to its corresponding <code>.o</code> file.</li>
 </ol>
-<h5 id="example-10-pattern-rule-with-variable-target-pattern-using-wildcard">Example 10: Pattern Rule with Variable Target-Pattern Using wildcard</h5>
+<h5 id="example-10-pattern-rule-with-variable-target-pattern-using-wildcard">Example 10: Pattern Rule with Variable Target-pattern Using wildcard</h5>
 <h6 id="code_15">Code</h6>
 <pre><code class="language-Makefile">
 SRCS = $(wildcard src/\*.cpp)

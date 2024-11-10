@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -270,6 +278,7 @@
 <li><a href="#explanation-2">Explanation</a></li>
 <li><a href="#syntax-1">Syntax</a></li>
 <li><a href="#realted-stuffs-1">Realted Stuffs</a></li>
+<li><a href="#links-2">Links</a></li>
 <li><a href="#template-parameters">Template Parameters</a></li>
 <li><a href="#member-types-1">Member Types</a></li>
 <li><a href="#member-functions-1">Member Functions</a></li>
@@ -281,6 +290,7 @@
 <li><a href="#explanation-3">Explanation</a></li>
 <li><a href="#syntax-2">Syntax</a></li>
 <li><a href="#related-stuffs-of-three-clock-classes">Related Stuffs of Three Clock Classes</a></li>
+<li><a href="#links-3">Links</a></li>
 <li><a href="#member-types-of-three-clock-classes">Member Types of Three Clock Classes</a></li>
 <li><a href="#member-constants-of-three-clock-classes">Member Constants of Three Clock Classes</a></li>
 <li><a href="#member-functions-of-three-clock-classes">Member Functions of Three Clock Classes</a></li>
@@ -313,9 +323,11 @@
    like: one minute, two hours, or ten milliseconds.</li>
 <li>For the <code>std::chrono::duration</code> class, <strong>only <code>std::ratio&lt; num1, num2 &gt;</code> can be used</strong>.</li>
 <li>The <strong>corresponding named</strong> types of <code>std::ratio&lt; num1, num2 &gt;</code> (e.g., <code>std::chrono::seconds</code>)
-   <strong>cannot be used directly</strong> in <code>std::chrono::duration</code>; instead, <code>use std::ratio&lt; 1, 1 &gt;</code>.</li>
+   <strong>cannot be used directly</strong> in <code>std::chrono::duration</code>; instead, <code>use std::ratio&lt; num1, num2 &gt;</code>
+   (e.g., <code>std::ratio&lt; 1, 1 &gt;</code>).</li>
 <li>However, <code>std::chrono::time_point</code>, <code>std::chrono::time_point_cast</code>, and
    <code>std::chrono::duration_cast</code> support these named types.</li>
+<li>In some C++ STL types, <code>std::ratio&lt; num1, num2 &gt;</code> <strong>has alias names</strong>, such as <code>std::milli</code>.</li>
 </ol>
 <h4 id="syntax">Syntax</h4>
 <pre><code class="language-CPP">// Declaration syntax.
@@ -327,6 +339,12 @@ std::chrono::duration&lt; Type, std::ratio&lt; num1, num2 &gt;(Optional) &gt; du
 // Copy constructor.
 std::chrono::duration&lt; Type, std::ratio&lt; num1, num2 &gt;(Optional) &gt; dur2( dur1 );
 </code></pre>
+<pre><code class="language-CPP">// Usage syntax.
+// Default constructor.
+std::chrono::duration&lt; Type1, std::ratio&lt; num1, num2 &gt;(Optional) &gt; dur1;
+// Conversion constructor.
+std::chrono::duration&lt; Type2, std::ratio&lt; num3, num4 &gt; &gt; dur2( dur1 );
+</code></pre>
 <h4 id="realted-stuffs">Realted Stuffs</h4>
 <h5 id="links_1">Links</h5>
 <ol>
@@ -335,10 +353,11 @@ std::chrono::duration&lt; Type, std::ratio&lt; num1, num2 &gt;(Optional) &gt; du
 </ol>
 <h5 id="template-instantiations">Template Instantiations</h5>
 <ol>
+<li><strong>All of these are alias names are predefined <code>std::chrono::duration</code> specializations</strong>.</li>
 <li><code>std::chrono::hours</code>: Signed integral type of at least 23 bits, period <code>std::ratio&lt; 3600, 1 &gt;</code>.</li>
 <li><code>std::chrono::minutes</code>: Signed integral type of at least 29 bits, period <code>std::ratio&lt; 60, 1 &gt;</code>.</li>
-<li><code>std::chrono::seconds</code>: Signed integral type of at least 35 bits, period <code>std::ratio&lt; 1, 1 &gt;</code>.
-   Default Period.</li>
+<li><code>std::chrono::seconds</code> (Default period): Signed integral type of at least 35 bits, period
+   <code>std::ratio&lt; 1, 1 &gt;</code>.</li>
 <li><code>std::chrono::milliseconds</code>: Signed integral type of at least 45 bits, period
    <code>std::ratio&lt; 1, 1000 &gt;</code>.</li>
 <li><code>std::chrono::microseconds</code>: Signed integral type of at least 55 bits, period
@@ -433,6 +452,11 @@ auto start = Clock::now();
 // `Clock::now()`: The `now()` function defined inside the `Clock` class.
 </code></pre>
 <h4 id="realted-stuffs_1">Realted Stuffs</h4>
+<h5 id="links_2">Links</h5>
+<ol>
+<li><a href="https://cplusplus.com/reference/chrono/time_point/"><code>std::chrono::time_point</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/chrono/time_point"><code>std::chrono::time_point</code> in cppreference</a>.</li>
+</ol>
 <h5 id="template-parameters">Template Parameters</h5>
 <ol>
 <li><code>Clock</code>: A clock class, such as <code>std::chrono::system_clock</code>, <code>std::chrono::steady_clock</code>,
@@ -504,6 +528,15 @@ auto start = Clock::now();
 // `Clock::now()`: The `now()` function defined inside the `Clock` class.
 </code></pre>
 <h4 id="related-stuffs-of-three-clock-classes">Related Stuffs of Three Clock Classes</h4>
+<h5 id="links_3">Links</h5>
+<ol>
+<li><a href="https://cplusplus.com/reference/chrono/system_clock/"><code>std::chrono::system_clock</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/chrono/system_clock"><code>std::chrono::system_clock</code> in cppreference</a>.</li>
+<li><a href="https://cplusplus.com/reference/chrono/steady_clock/"><code>std::chrono::stead_clock</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/chrono/steady_clock"><code>std::chrono::stead_clock</code> in cppreference</a>.</li>
+<li><a href="https://cplusplus.com/reference/chrono/high_resolution_clock/"><code>std::chrono::high_resolution_clock</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/chrono/high_resolution_clock"><code>std::chrono::high_resolution_clock</code> in cppreference</a>.</li>
+</ol>
 <h5 id="member-types-of-three-clock-classes">Member Types of Three Clock Classes</h5>
 <ol>
 <li><code>rep</code>: An arithmetic type representing the number of ticks in the clock's duration. <strong>For system

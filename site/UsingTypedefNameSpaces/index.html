@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -267,6 +275,7 @@
 <li><a href="#usage-1">Usage</a></li>
 </ul>
 </li>
+<li><a href="#notes">Notes</a></li>
 <li><a href="#namespace"><code>namespace</code></a></li>
 <li><a href="#explanation-2">Explanation</a></li>
 <li><a href="#declaration-syntax">Declaration Syntax</a></li>
@@ -276,7 +285,7 @@
 <li><a href="#disadvantages">Disadvantages</a></li>
 </ul>
 </li>
-<li><a href="#notes">Notes</a></li>
+<li><a href="#notes-1">Notes</a></li>
 </ul>
 <!-- vim-markdown-toc -->
 
@@ -287,8 +296,8 @@
 <li><code>using</code> is <strong>a keyword</strong> and has multiple uses, each serving a different purpose depending on the
    context.</li>
 <li>It can be used for <strong>type aliasing</strong>, <strong>namespace introduction (not recommend)</strong>, and <strong>template
-   aliasing</strong>. It offers more flexibility compared to <code>typedef</code>, particularly when working with
-   templates.</li>
+   aliasing</strong>.</li>
+<li>It offers more flexibility compared to <code>typedef</code>, particularly when working with templates.</li>
 </ol>
 <h4 id="syntax">Syntax</h4>
 <pre><code class="language-CPP">using AliasName = Type;
@@ -296,7 +305,7 @@
 <h4 id="usage">Usage</h4>
 <ol>
 <li>Syntax simplicity.</li>
-<li>Template aliases.
+<li>Template aliases. (<strong>No limitations</strong>).
    <code>CPP
    // `ClassName` is a template class that has been implmented.
    template&lt; typename T, ... &gt; using AliasName = ClassName&lt; T, ...  &gt;;</code>
@@ -306,13 +315,23 @@
    <code>CPP
    // `funcName` is a template function that has been implmented.
    template&lt; typename T, ... &gt; using aliasName = funcName&lt; T, ...  &gt;;</code></li>
-<li>Function pointer declaration.
-   <code>CPP
+<li>Function pointer declaration.</li>
+</ol>
+<p><code>CPP
    using FuncPtrName = RetType ( * )( parameter_types );
-   FuncPtrName func_ptr_name;</code></li>
+   FuncPtrName func_ptr_name;</code></p>
+<p>```CPP
+   struct ClassName {
+         RetType funcName( ... ) {};
+         ...;</p>
+<pre><code>     using funcPtrName = RetType ( MyClass::* )( ... );   // Alias for member function
+</code></pre>
+<p>};
+   ```</p>
+<ol>
 <li>Alias for member types in classes.
    <code>CPP
-   class ClassB {
+   class ClassName {
       public:
          // Using alias.
          using AliasName = Type;
@@ -333,18 +352,33 @@
 <h4 id="usage_1">Usage</h4>
 <ol>
 <li>Syntax simplicity.</li>
+<li>Template aliases. (<strong>Only allows inside a struct or class, but not allows outside of a struct or
+   class</strong>).
+   <code>CPP
+   // `ClassName` is a template class that has been implmented.
+   template&lt; typename T, ... &gt; class ClassName&lt; T, ...  &gt; { ...; };
+   // `StructName` is a template structure that has been implmented.
+   template&lt; typename T, ... &gt; StructName{
+      typedef Classname&lt; T, ...  &gt; AliasName;
+      ...;
+   }</code></li>
 <li>Function pointer declaration.
    <code>CPP
    typedef RetType ( *FuncPtrName )( parameter_types );
    FuncPtrName func_ptr_name;</code></li>
 <li>Alias for member types in classes.
    <code>CPP
-   class ClassB {
+   class ClassName {
       public:
          // Using `typedef`.
          typedef Type AliasName;
          AliasName _mem;
    };</code></li>
+</ol>
+<h3 id="notes">Notes</h3>
+<ol>
+<li>Using <code>using</code> is generally better than using <code>typedef</code> for aliasing a data type, especially in
+   modern C++ (C++11 and beyond).</li>
 </ol>
 <h2 id="namespace"><code>namespace</code></h2>
 <h3 id="explanation_2">Explanation</h3>
@@ -387,7 +421,7 @@ using namespace SpaceNameB;
 <li>Both functions do not have the same signature, but <strong>implicit conversion</strong> can occur between
      their parameters.</li>
 </ol>
-<h3 id="notes">Notes</h3>
+<h3 id="notes_1">Notes</h3>
 <ol>
 <li><strong>Do not use it</strong> in header files, but it can be <strong>used within a small scope</strong>, such as a
    function or an if statement.</li>

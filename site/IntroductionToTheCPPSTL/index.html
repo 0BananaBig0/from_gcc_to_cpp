@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -199,6 +203,10 @@
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
 </li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -288,6 +296,7 @@
 </ul>
 </li>
 <li><a href="#eastl">EASTL</a></li>
+<li><a href="#notes">Notes</a></li>
 </ul>
 <!-- vim-markdown-toc -->
 
@@ -370,9 +379,10 @@
 <h4 id="explanation_3">Explanation</h4>
 <ol>
 <li>Iterators are <strong>objects</strong> that <strong>allow traversal through the elements of a container</strong>.</li>
-<li>They provide a uniform way to access container elements without exposing the underlying
+<li>They provide <strong>a uniform way to access container elements</strong> without exposing the underlying
    implementation.</li>
-<li>It behaves like a pointer ( stores an address and can be dereferenced ).</li>
+<li>It is <strong>not a pointer</strong>, <strong>but</strong> behaves like one (stores an address and can be dereferenced)
+   because it <strong>encapsulates a pointer</strong> and <strong>overloads certain operators</strong>.</li>
 <li>When a container <strong>resizes its capacity or rehashes</strong>, its <strong>iterators</strong> may become <strong>invalid</strong>.</li>
 <li><strong>Using invalid iterators causes undefined behaviors</strong>.</li>
 <li>More information on <strong>iterator validity</strong> after modification operations is provided below.</li>
@@ -394,6 +404,7 @@
 <h4 id="explanation_4">Explanation</h4>
 <ol>
 <li>Function objects (functors) are <strong>objects that can be called as if they were functions</strong>.</li>
+<li>They <strong>overload the function call <code>operator()</code></strong>; for example, for comparisons, sorting, etc.</li>
 <li>They can <strong>store state</strong> and are often used <strong>in algorithms to customize their behavior</strong>.</li>
 <li>Lambda expressions provide a concise way to define anonymous function objects.</li>
 </ol>
@@ -442,6 +453,10 @@
 <ol>
 <li>EASTL is <strong>a open source library</strong>, <strong>optimized for game developers</strong>.</li>
 <li>The <strong>performance</strong> of EASTL is <strong>higher than STL</strong>.</li>
+</ol>
+<h3 id="notes">Notes</h3>
+<ol>
+<li>Most methods that add or remove elements in containers return a valid iterator.</li>
 </ol></div>
             </div>
         </div>

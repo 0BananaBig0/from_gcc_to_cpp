@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Git - from_gcc_to_cpp</title>
+        <title>volatile - from_gcc_to_cpp</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -42,10 +42,10 @@
                             <li class="navitem">
                                 <a href="../makeAndMakefiles/" class="nav-link">make and Makefiles</a>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Git</a>
+                            <li class="navitem">
+                                <a href="../Git/" class="nav-link">Git</a>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">CPP <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -70,7 +70,7 @@
 </li>
                                     
 <li>
-    <a href="../Volatile/" class="dropdown-item">volatile</a>
+    <a href="./" class="dropdown-item active">volatile</a>
 </li>
                                     
 <li>
@@ -218,12 +218,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../makeAndMakefiles/" class="nav-link">
+                                <a rel="prev" href="../ConstConstexprAndStatic/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../CPPPerface/" class="nav-link">
+                                <a rel="next" href="../MacrosAndPragma/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -245,7 +245,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#git" class="nav-link">Git</a>
+            <li class="nav-item" data-level="2"><a href="#volatile" class="nav-link">volatile</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -257,206 +257,49 @@
 <!-- vim-markdown-toc GFM -->
 
 <ul>
-<li><a href="#git">Git</a></li>
-<li><a href="#perface">Perface</a></li>
-<li><a href="#create-and-initialize-a-repository">Create and Initialize a Repository</a><ul>
-<li><a href="#code">Code</a></li>
-<li><a href="#the-workflow-of-git-add-targetlist-and-git-commit--m-your-comments">The Workflow of <code>git add TargetList</code> and <code>git commit -m "Your comments"</code></a></li>
-<li><a href="#the-workflow">The Workflow</a></li>
+<li><a href="#volatile"><code>volatile</code></a></li>
 <li><a href="#explanation">Explanation</a></li>
-</ul>
-</li>
-<li><a href="#add-files-to-a-branch">Add Files to a Branch</a></li>
-<li><a href="#delete-files-of-a-branch">Delete Files of a Branch</a></li>
-<li><a href="#check-the-status">Check the Status</a></li>
-<li><a href="#discard-current-modifications">Discard Current Modifications</a></li>
-<li><a href="#check-the-differences">Check the Differences</a></li>
-<li><a href="#check-the-revision-history">Check the Revision History</a></li>
-<li><a href="#revert-to-the-previous-version-while-keeping-current-modifications">Revert to the Previous Version While Keeping Current Modifications</a></li>
-<li><a href="#revert-to-the-previous-version-and-discard-current-modifications">Revert to the Previous Version and Discard Current Modifications</a></li>
-<li><a href="#link-the-local-repository-to-a-remote-repository">Link the Local Repository to a Remote Repository</a></li>
-<li><a href="#clone-a-remote-repository">Clone a Remote Repository</a></li>
-<li><a href="#update-the-local-repository-form-a-remote-repository">Update the Local Repository form a Remote Repository</a></li>
-<li><a href="#push-the-local-repository-to-the-remote-repository">Push the Local Repository to the Remote Repository</a></li>
-<li><a href="#check-branches">Check Branches</a></li>
-<li><a href="#create-a-new-branch-and-switch-to-the-new-branch">Create a New Branch and Switch to The New Branch</a></li>
-<li><a href="#merge-another-branch-into-the-current-branch">Merge Another Branch into the Current Branch</a></li>
-<li><a href="#delete-a-branch">Delete a Branch</a></li>
-<li><a href="#stash-current-changes-and-restore-previous-changes">Stash Current Changes and Restore Previous Changes</a></li>
-<li><a href="#copy-the-specific-modification-from-another-branch-to-the-current-branch">Copy the Specific Modification from Another Branch to the Current Branch</a></li>
-<li><a href="#push-the-current-branch-to-the-remote-repository">Push the Current Branch to The Remote Repository</a></li>
-<li><a href="#reorganize-the-commit-history">Reorganize the Commit History</a></li>
-<li><a href="#tag-commits">Tag Commits</a></li>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#limitations">Limitations</a></li>
 </ul>
 <!-- vim-markdown-toc -->
-
-<h2 id="git">Git</h2>
-<h3 id="perface">Perface</h3>
+<h2 id="volatile"><code>volatile</code></h2>
+<h3 id="explanation">Explanation</h3>
 <ol>
-<li>This file lists only common Git commands.</li>
-<li>For a deeper understanding of Git, you should learn from a comprehensive Git tutorial.</li>
+<li>The <code>volatile</code> keyword tells the compiler that a variable's value may change unexpectedly,
+   outside the program's control (e.g., hardware, interrupts, etc.).</li>
+<li>It prevents the compiler from optimizing reads and writes to the variable, ensuring that every
+   read/write of a variable occurs exactly as written in the code.</li>
+<li>It is used when variables might be modified by hardware, interrupts, or external threads.</li>
 </ol>
-<h3 id="create-and-initialize-a-repository">Create and Initialize a Repository</h3>
-<h4 id="code">Code</h4>
-<pre><code class="language-SH">cd ~
-mkdir repository_name
-cd repository_name
-git init
-### Edit lots of files.
-git add TargetList
-git commit -m &quot;Your comments&quot;
+<h3 id="syntax">Syntax</h3>
+<pre><code class="language-CPP">volatile Type var_name;
+volatile Type* var_ptr;
 </code></pre>
-<h4 id="the-workflow-of-git-add-targetlist-and-git-commit-m-your-comments">The Workflow of <code>git add TargetList</code> and <code>git commit -m "Your comments"</code></h4>
-<h5 id="the-workflow">The Workflow</h5>
-<pre><code class="language-mermaid">flowchart LR
-    A[Working Directory] --&gt;|git add TargetList| B[Stage #40;Index#41;]
-    B --&gt;|git commit -m #quot;Your comments#quot;| C[Current Branch]
-    D[Head] --&gt; C
-    subgraph Repository
-        B
-        C
-    end
-</code></pre>
-<h5 id="explanation">Explanation</h5>
+<h3 id="usage">Usage</h3>
 <ol>
-<li>Working directory:</li>
-<li>This is the directory where you work on your project.</li>
-<li>Typically, it serves as the root directory and often contains a <code>.git</code> directory, which
-     primarily includes the config file, the staging area, branches, and the head.</li>
-<li>You can use the <code>exa</code> command to explore its tree structure.</li>
-<li>Stage:</li>
-<li>After executing the <code>git add TargetList</code> command, all changes to the files in <code>TargetList</code> are
-     submitted to the staging area.</li>
-<li>Current branch:</li>
-<li>This refers to the branch you are currently working on in your project.</li>
-<li>HEAD:</li>
-<li>It is a pointer that refers to the current commit in your local repository.</li>
-<li>It indicates where you are in the commit history.</li>
-<li>When you make new commits, HEAD moves forward to point to the latest commit.</li>
-<li>master:</li>
-<li>It is typically the name of the main branch in your local repository.</li>
-<li>It represents the latest commit on that branch. When you switch to the master branch, HEAD
-     points to master.</li>
-<li>origin/master:</li>
-<li>It is a remote-tracking branch that represents the state of the master branch on the remote
-     repository (usually named origin).</li>
-<li>It reflects the last known state of the master branch on the remote when you last fetched or
-     pulled changes.</li>
-<li>It doesn't change unless you explicitly fetch or pull.</li>
-<li>origin/HEAD:</li>
-<li>It is a symbolic reference that points to the default branch of the origin remote repository,
-     often pointing to origin/master.</li>
-<li>It helps Git determine which branch to track for new clones of the repository.</li>
+<li>Embedded systems:</li>
+<li>Hardware registers, memory-mapped I/O, and flags.</li>
+<li>Interrupt service routines (ISRs):</li>
+<li>Variables modified by ISRs to ensure the main program does not cache them.</li>
+<li>Multi-threading (discouraged):</li>
+<li>Shared variables accessed by multiple threads (use <code>std::atomic</code> instead for thread
+     synchronization).</li>
 </ol>
-<h3 id="add-files-to-a-branch">Add Files to a Branch</h3>
-<pre><code class="language-SH">git add TargetList
-git commit -m &quot;Your comments&quot;
-</code></pre>
-<h3 id="delete-files-of-a-branch">Delete Files of a Branch</h3>
-<pre><code class="language-SH">git rm TargetList
-git commit -m &quot;Your comments&quot;
-</code></pre>
-<h3 id="check-the-status">Check the Status</h3>
-<pre><code class="language-SH">git status
-</code></pre>
-<h3 id="discard-current-modifications">Discard Current Modifications</h3>
-<pre><code class="language-SH">git checkout -- TargetList
-</code></pre>
-<h3 id="check-the-differences">Check the Differences</h3>
-<pre><code class="language-SH">git log -Number(How many, Optional)
-git diff CommitNumber(A sequence of number, Optional) TargetList(Optional)
-</code></pre>
-<h3 id="check-the-revision-history">Check the Revision History</h3>
-<pre><code class="language-SH">git log -Number(How many, Optional)
-git show CommitNumber(A sequence of number, Optional) TargetList(Optional)
-</code></pre>
-<h3 id="revert-to-the-previous-version-while-keeping-current-modifications">Revert to the Previous Version While Keeping Current Modifications</h3>
-<pre><code class="language-SH">git log -Number(How many, Optional)
-git reset CommitNumber(A sequence of number) TargetList(Optional)
-</code></pre>
-<h3 id="revert-to-the-previous-version-and-discard-current-modifications">Revert to the Previous Version and Discard Current Modifications</h3>
-<pre><code class="language-SH">git log -Number(How many, Optional)
-git reset --hard CommitNumber(A sequence of number) TargetList(Optional)
-</code></pre>
-<h3 id="link-the-local-repository-to-a-remote-repository">Link the Local Repository to a Remote Repository</h3>
-<pre><code class="language-SH">git remote add origin TheRemoteRepositoryLink
-git push -u origin CurrentBranch
-</code></pre>
-<h3 id="clone-a-remote-repository">Clone a Remote Repository</h3>
-<pre><code class="language-SH">git clone TheRemoteRepositoryLink
-</code></pre>
-<pre><code class="language-SH">// If the remote repository is too large to clone successfully, use the following commands.
-git clone TheRemoteRepositoryLink --depth 1
-cd TheRemoteRepositoryName
-git fetch --unshallow
-</code></pre>
-<h3 id="update-the-local-repository-form-a-remote-repository">Update the Local Repository form a Remote Repository</h3>
-<pre><code class="language-SH">git pull
-</code></pre>
-<h3 id="push-the-local-repository-to-the-remote-repository">Push the Local Repository to the Remote Repository</h3>
-<pre><code class="language-SH">git push
-</code></pre>
-<pre><code class="language-SH">git push -f # Force
-</code></pre>
-<h3 id="check-branches">Check Branches</h3>
-<pre><code class="language-SH">git branch
-</code></pre>
-<h3 id="create-a-new-branch-and-switch-to-the-new-branch">Create a New Branch and Switch to The New Branch</h3>
-<pre><code class="language-SH"># Old method
-git checkout -b ANewBranch # Create and swithc
-</code></pre>
-<pre><code class="language-SH"># Old method
-git branch ANewBranch # Create
-git checkout ANewBranch # Switch
-</code></pre>
-<pre><code class="language-SH"># New method
-git switch -c ANewBranch # Create and swithc
-</code></pre>
-<pre><code class="language-SH"># New method
-git branch ANewBranch # Create
-git switch ANewBranch # Switch
-</code></pre>
-<h3 id="merge-another-branch-into-the-current-branch">Merge Another Branch into the Current Branch</h3>
-<pre><code class="language-SH">git merge AnotherBranch
-</code></pre>
-<pre><code class="language-SH">git merge --no-ff -m &quot;Your comments&quot; AnotherBranch # Ban fast forward
-</code></pre>
-<h3 id="delete-a-branch">Delete a Branch</h3>
-<pre><code class="language-SH">git branch -d ABranch
-</code></pre>
-<pre><code class="language-SH">git branch -D ABranch # Force
-</code></pre>
-<h3 id="stash-current-changes-and-restore-previous-changes">Stash Current Changes and Restore Previous Changes</h3>
-<pre><code class="language-SH">git stash # Stash current changes
-</code></pre>
-<pre><code class="language-SH">git stash list # List all stashes
-</code></pre>
-<pre><code class="language-SH"># The structure of the stash is a stack.
-git stash pop # Restore the recent stash and delete it in the stash.
-</code></pre>
-<pre><code class="language-SH">git stash list # List all stashes
-git stash apply stash@{number}(Optional) # Restore the recent stash
-git stash drop stash@{number}(Optional) # Delete it in the stash.
-# The larger the number, the earlier the stash.
-</code></pre>
-<h3 id="copy-the-specific-modification-from-another-branch-to-the-current-branch">Copy the Specific Modification from Another Branch to the Current Branch</h3>
-<pre><code class="language-SH">git switch AnotherBranch
-git log # Find the specific Modification
-git switch CurrentBranch
-git cherry-pick CommitNumber
-</code></pre>
-<h3 id="push-the-current-branch-to-the-remote-repository">Push the Current Branch to The Remote Repository</h3>
-<pre><code class="language-SH">git push origin CurrentBranch
-</code></pre>
-<h3 id="reorganize-the-commit-history">Reorganize the Commit History</h3>
-<pre><code class="language-SH">git rebase
-</code></pre>
-<h3 id="tag-commits">Tag Commits</h3>
-<pre><code class="language-SH">git tag #Check tags
-</code></pre>
-<pre><code class="language-SH">git tag TagName CommitNumber(Optional)
-# If you tag CommitNumber with TagName, TagName can replace CommitNumber in git commands that require it.
-</code></pre></div>
+<h3 id="limitations">Limitations</h3>
+<ol>
+<li>No atomicity:</li>
+<li>Does not guarantee atomic access or synchronization between threads.</li>
+<li>No memory ordering:</li>
+<li><code>volatile</code> does not enforce memory ordering or prevent reordering of instructions.</li>
+<li>Not a synchronization mechanism:</li>
+<li><code>volatile</code> should not be used for thread synchronization.</li>
+<li>Use <code>std::atomic</code> or other synchronization techniques instead.</li>
+<li>Does not ensure thread safety:</li>
+<li>Used for hardware interaction or volatile memory locations, not for controlling access to
+     shared variables between threads.</li>
+</ol></div>
             </div>
         </div>
 

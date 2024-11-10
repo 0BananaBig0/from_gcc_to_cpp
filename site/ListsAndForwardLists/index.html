@@ -70,6 +70,10 @@
 </li>
                                     
 <li>
+    <a href="../Volatile/" class="dropdown-item">volatile</a>
+</li>
+                                    
+<li>
     <a href="../MacrosAndPragma/" class="dropdown-item">Macros and Related Keywords ( Including pragma</a>
 </li>
                                 </ul>
@@ -198,6 +202,10 @@
                                     
 <li>
     <a href="../SomeProgrammingTechniques/" class="dropdown-item">Some Programming Techniques</a>
+</li>
+                                    
+<li>
+    <a href="../Handles/" class="dropdown-item">Handles</a>
 </li>
                                 </ul>
                             </li>
@@ -330,8 +338,10 @@ std::list&lt; Type &gt; list_name1 = { ... };
 // Copy constructor.
 std::list&lt; Type &gt; list_name2 = list_name1;
 </code></pre>
-<pre><code class="language-CPP">// Move constructor.
-std::list&lt; Type &gt; list_name( { ... } );
+<pre><code class="language-CPP">// Initializer list constructor.
+std::list&lt; Type &gt; list_name1( { ... } );
+// Move constructor.
+std::list&lt; Type &gt; list_name2 = std::move( list_name1 );
 </code></pre>
 <pre><code class="language-CPP">// Constructs the container with the contents of the range `[first, last)`.
 std::list&lt; Type &gt; list_name1( { ... } );
@@ -400,7 +410,7 @@ std::list&lt; Type &gt;* list_ptr = new std::list&lt; Type &gt;( list_name );
 <li><code>insert</code>: Inserts elements (public member function).</li>
 <li><code>insert_range</code> (C++23): Inserts a range of elements (public member function).</li>
 <li><code>emplace</code>: Constructs elements in-place (public member function).</li>
-<li><code>erase</code>: Erases elements (public member function).</li>
+<li><code>erase</code>: Erases elements and returns a valid iterator (public member function).</li>
 <li><code>push_back</code>: Adds an element to the end (public member function).</li>
 <li><code>emplace_back</code>: Constructs an element in-place at the end (public member function).</li>
 <li><code>append_range</code> (C++23): Adds a range of elements to the end (public member function).</li>
@@ -471,8 +481,10 @@ std::forward_list&lt; Type &gt; list_name1 = { ... };
 // Copy constructor.
 std::forward_list&lt; Type &gt; list_name2 = list_name1;
 </code></pre>
-<pre><code class="language-CPP">// Move constructor.
-std::forward_list&lt; Type &gt; list_name( { ... } );
+<pre><code class="language-CPP">// Initializer list constructor.
+std::forward_list&lt; Type &gt; list_name1( { ... } );
+// Move constructor.
+std::forward_list&lt; Type &gt; list_name2 = std::move( list_name1 );
 </code></pre>
 <pre><code class="language-CPP">// Constructs the container with the contents of the range `[first, last)`.
 std::forward_list&lt; Type &gt; list_name1( { ... } );

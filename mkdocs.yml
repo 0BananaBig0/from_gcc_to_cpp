@@ -10,6 +10,7 @@ nav:
     - auto and decltype: AutoAndDecltype.md
     - using, typedef and Namespaces: UsingTypedefNameSpaces.md
     - const, constexpr and static: ConstConstexprAndStatic.md
+    - volatile: Volatile.md
     - Macros and Related Keywords ( Including pragma : MacrosAndPragma.md
   - Functions, Classes, Operators And Templates:
     - Functions: Functions.md
@@ -42,3 +43,4 @@ nav:
     - Extern: Extern.md
     - Some C Functions and Operators: SomeCFunctionsAndOperators.md
     - Some Programming Techniques: SomeProgrammingTechniques.md
+    - Handles: Handles.md
