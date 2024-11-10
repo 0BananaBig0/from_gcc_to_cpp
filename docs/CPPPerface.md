@@ -250,10 +250,12 @@
    large data structures to functions without copying them.
 3. They **require careful management** of memory (allocation/deallocation).
 4. They can be **null (`nullptr`)**.
-5. **After a pointer is released** using `delete` or `free`, it should be **set to `nullptr`**.
-6. **Before releasing a pointer**, **it should be checked to ensure it is not `nullptr`**.
-7. You can encapsulate safe and efficient releasing functions in a macro and conditionally compile
-   them based on the build mode.
+5. **After** a pointer is **released** using `delete` or `free`, it should be **set to `nullptr`**.
+6. **After** a pointer is **declared**, it should be **initialized with `nullptr` or a concret
+   address immediately**.
+7. **Before releasing** a pointer, it should be **checked to ensure it is not `nullptr`**.
+8. It is possible to **encapsulate safe and efficient resource release functions within a macro**,
+   and **conditionally enable or disable** them based on the selected build configuration.
 
 ##### Void Pointers
 

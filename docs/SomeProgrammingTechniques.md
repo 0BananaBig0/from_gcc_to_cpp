@@ -25,6 +25,11 @@
     - [Code Quality and Static Analysis Tools](#code-quality-and-static-analysis-tools)
     - [Best Practices for C++ CI](#best-practices-for-c-ci)
     - [**What We Can Do in Our Project**](#what-we-can-do-in-our-project)
+- [RAII (Resource Acquisition Is Initialization)](#raii-resource-acquisition-is-initialization)
+  - [Explanation](#explanation-2)
+  - [Usage](#usage)
+  - [Advantages](#advantages)
+  - [Disadvantages](#disadvantages)
 
 <!-- vim-markdown-toc -->
 
@@ -297,3 +302,52 @@ struct Vector3 {
 4. Write some shell scripts to manage your project and execute these scripts you write on previous
    three steps.
 5. Use some tools to visualize these steps, for example, Jenkins. (**Optional**)
+
+## RAII (Resource Acquisition Is Initialization)
+
+### Explanation
+
+1. RAII **ties resource management (acquisition and release) to object lifetime**.
+2. Resources are acquired during object construction and automatically released during destruction.
+3. Guarantees resource cleanup even in the face of exceptions or complex control flows.
+
+### Usage
+
+1. Dynamic memory
+   - Managed via smart pointers like `std::unique_ptr` or `std::shared_ptr`.
+2. File handles:
+   - Managed by RAII-style classes to open and close files automatically.
+3. Mutex locks:
+   - Managed with objects like `std::lock_guard` to handle locking and unlocking.
+4. Network connections:
+   - Managed through RAII for automatic connection and disconnection.
+5. Resource pooling:
+   - Ensures proper acquisition and release of resources like database connections.
+
+### Advantages
+
+1. Automatic resource management:
+   - Reduces risk of resource leaks by ensuring cleanup.
+2. Exception safety:
+   - Ensures resources are released even if an exception is thrown.
+3. Simplified code:
+   - Minimizes explicit resource management code.
+4. Fewer bugs:
+   - Helps avoid common issues like dangling pointers and memory leaks.
+5. Scoped resource control:
+   - Clearly defines the scope and duration of resource usage.
+
+### Disadvantages
+
+1. Limited flexibility:
+   - Resource lifetime is tied to object lifetime, which may not always align with program
+     requirements.
+2. Complexity in destruction:
+   - Destructors may become complex if managing multiple resources.
+3. Increased memory usage:
+   - Smart pointers introduce slight memory and performance overhead.
+4. Potential for overhead:
+   - RAII can add overhead, especially with frequent acquisition/release.
+5. Not suitable for non-scope-based resources:
+   - Less effective for resources not naturally scoped to an object’s lifetime (e.g., global or
+     shared resources).

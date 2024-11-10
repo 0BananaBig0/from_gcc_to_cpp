@@ -153,8 +153,11 @@
 
 1. These keywords are **alternatives** to macros for **defining constant values** with **type
    safety**.
+2. [`const`](./ConstConstexprAndStatic.md#const).
+2. [`constexpr`](./ConstConstexprAndStatic.md#constexpr).
 
 #### `inline`
 
 1. This keyword can be used to **define functions** that behave **like macros** **but with type
    checking and scope**.
+2. [`inline`](./Functions.md#inline).
