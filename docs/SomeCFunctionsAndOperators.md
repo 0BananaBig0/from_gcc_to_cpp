@@ -214,8 +214,8 @@ memcpy( dest, sour, strlen( sour ) + 1 );
 ```
 
 ```CPP
-// Its usage syntax, for a non-string array.
-memcpy( dest, sour, strlen( sour ) );
+// Its usage syntax, for a array (including char array).
+memcpy( dest, sour, sizeof( sour ) );
 ```
 
 ### `memset`

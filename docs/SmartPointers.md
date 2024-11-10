@@ -27,9 +27,9 @@
     - [Declaration Syntax](#declaration-syntax-2)
     - [Initialization Syntax](#initialization-syntax-2)
     - [Circular References](#circular-references)
-    - [Members and Related Stuffs](#members-and-related-stuffs-2)
       - [Explanation](#explanation-4)
       - [Examples](#examples)
+    - [Members and Related Stuffs](#members-and-related-stuffs-2)
       - [Links](#links-2)
       - [Member Types](#member-types-2)
       - [Member Functions](#member-functions-2)
@@ -305,8 +305,10 @@ uptr = nullptr;
    pointer has been released, **particularly in a multithreaded context** where a raw pointer may be
    **deleted multiple times**.
 7. In contrast, `std::weak_ptr` provides a solution to these problems.
-8. If two objects reference one another, at least one of the references must be a weak pointer to
-   prevent circular dependencies.
+8. If **two objects reference one another**, **at least one of the references** **must** be **a weak
+   pointer** to **prevent circular dependencies**.
+9. Although `std::weak_ptr` does not maintain the resources's lifetime, the best practice is calling
+   `reset()` if we do not need a `std::weak_ptr`.
 
 #### Declaration Syntax
 
@@ -337,13 +339,33 @@ std::weak_ptr< Type > wptr2 = std::move( wptr1 );
 
 ```CPP
 std::shared_ptr< Type > sptr = std::make_shared< Type >( /* constructor arguments */ );
-std::weak_ptr< Type > wptr;
-wptr.reset( sptr );
+std::weak_ptr< Type > wptr = sptr;
+wptr.reset();
+```
+
+```CPP
+std::shared_ptr< Type > sptr1 = std::make_shared< Type >( /* constructor arguments */ );
+std::weak_ptr< Type > wptr = sptr1;
+auto sptr2 = wptr.lock();
+if( sptr2 ) {
+   ...;
+} else {
+   ...
+}
+```
+
+```CPP
+std::shared_ptr< Type > sptr1 = std::make_shared< Type >( /* constructor arguments */ );
+std::weak_ptr< Type > wptr = sptr1;
+// C++17.
+if( auto sptr2 = wptr.lock(); ) {
+   ...;
+} else {
+   ...
+}
 ```
 
 #### Circular References
-
-#### Members and Related Stuffs
 
 ##### Explanation
 
@@ -403,6 +425,8 @@ int main() {
    return 0;
 }
 ```
+
+#### Members and Related Stuffs
 
 ##### Links
 

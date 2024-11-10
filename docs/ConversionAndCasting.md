@@ -75,6 +75,8 @@
    programmer.
 4. In contrast, **explicit conversion** **requires** the programmer to define the **conversion
    process**, which can be accomplished through various casting methods.
+5. Conversion and casting can **impact performance**, especially in performance-critical
+   applications.
 
 ### Implicit Conversion
 
