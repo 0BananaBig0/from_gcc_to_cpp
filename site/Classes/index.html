@@ -207,6 +207,10 @@
 <li>
     <a href="../Handles/" class="dropdown-item">Handles</a>
 </li>
+                                    
+<li>
+    <a href="../FileIOs/" class="dropdown-item">FileIOs</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -490,9 +494,9 @@ ClassName obj_name1( para_list );
 // Copy constructor.
 ClassName obj_name2( obj_name1 );
 </code></pre>
-<pre><code class="language-CPP">// Not Recommend, although the compiler may optimize it so that only one constructor is called.
-// First, Parameterized constructor.
-// Second, Copy constructor.
+<pre><code class="language-CPP">// Not recommend, although the compiler may optimize it so that only one constructor is called.
+// First, parameterized constructor.
+// Second, copy constructor.
 ClassName obj_name = ClassName( para_list );
 </code></pre>
 <pre><code class="language-CPP">// Parameterized constructor.
@@ -509,8 +513,13 @@ ClassName obj_name2 = std::move( obj_name1 );
 ClassName obj_name = initializer;
 </code></pre>
 <pre><code class="language-CPP">// Without related parameterized constructors and all members are public, aggregate initialization.
-// With related parameterized constructors, Parameterized constructor or uniform initialization or brace initialization.
+// With related parameterized constructors, parameterized constructor or uniform initialization or brace initialization.
 ClassName obj_name{ para_list };
+</code></pre>
+<pre><code class="language-CPP">// With default construcotr, default constructor.
+// Otherwise, aggregate initialization.
+// All members are initialized to 0.
+ClassName obj_name{ };
 </code></pre>
 <pre><code class="language-CPP">// Aggregate initialization.
 ClassName obj_name = { para_list };
@@ -802,9 +811,11 @@ class Derived: public Base {
 <ol>
 <li>A default constructor is <strong>a constructor</strong> with <strong>no parameters</strong> or with <strong>all parameters having
    default values</strong>.</li>
-<li>It is <strong>called</strong> when an object is <strong>instantiated without any arguments</strong>. It initializes data
-   members to their default values (<strong>primitive types remain uninitialized</strong>).</li>
+<li>It is <strong>called</strong> when an object is <strong>instantiated without any arguments</strong>.</li>
+<li>It initializes data members to their default values (<strong>primitive types remain uninitialized</strong>).</li>
 <li>If <strong>no other constructors</strong> are defined, the <strong>compiler provides</strong> a default constructor.</li>
+<li>The <strong>non-customized</strong> default constructor will <strong>initialize</strong> all <strong>non-user-defined type</strong>
+   members <strong>to</strong> their <strong>zero values</strong>.</li>
 <li>The <code>= default</code> syntax <strong>explicitly requests</strong> the compiler to generate <strong>the default
    constructor</strong>.</li>
 </ol>
@@ -1193,6 +1204,16 @@ class Derived: public Base {
 };
 
 class Derived: public Base {
+      // Members of derived class.
+};
+</code></pre>
+<pre><code class="language-CPP">template&lt; class T, ... &gt;
+class public Base{
+   // Members of base class.
+};
+
+template&lt; class T, ... &gt;
+class Derived: public Base&lt; class T, ... &gt; {
       // Members of derived class.
 };
 </code></pre>

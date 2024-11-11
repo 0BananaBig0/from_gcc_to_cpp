@@ -207,6 +207,10 @@
 <li>
     <a href="../Handles/" class="dropdown-item">Handles</a>
 </li>
+                                    
+<li>
+    <a href="../FileIOs/" class="dropdown-item">FileIOs</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -513,22 +517,32 @@ ClassName&lt; arg_list1 &gt; obj1;              // Utilizes the generic version.
 ClassName&lt; arg_list2, arg_list3 &gt; obj2;   // Utilizes the specialized version.
 </code></pre>
 <pre><code class="language-CPP">// Definition syntax.
-template&lt; typename Type1, typename T2, ... &gt; class ClassName {
+template&lt; typename T1, typename T2, ... &gt; class ClassName {
       // Implementation.
 };
 
 // Partial specialization for generic reference types.
-template&lt; typename Type1, typename T2, ... &gt; class ClassName&lt; T1&amp;, T2&amp;, ... &gt; {
+template&lt; typename T1, typename T2, ... &gt; class ClassName&lt; T1&amp;, T2&amp;, ... &gt; {
       // Another implementation.
 };
 </code></pre>
 <pre><code class="language-CPP">// Definition syntax.
-template&lt; typename Type1, typename T2, ... &gt; class ClassName {
+template&lt; typename T1, typename T2, ... &gt; class ClassName {
       // Implementation.
 };
 
 // Partial specialization for generic pointer types.
-template&lt; typename Type1, typename T2, ... &gt; class ClassName&lt; T1*, T2*, ... &gt; {
+template&lt; typename T1, typename T2, ... &gt; class ClassName&lt; T1*, T2*, ... &gt; {
+      // Another implementation.
+};
+</code></pre>
+<pre><code class="language-CPP">// Definition syntax.
+template&lt; typename T, typename... Args &gt; class ClassName {
+      // Implementation.
+};
+
+// Partial specialization for function types.
+template&lt; typename T, typename... Args &gt; class ClassName&lt; T(... Args) &gt; {
       // Another implementation.
 };
 </code></pre>
