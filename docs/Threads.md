@@ -475,15 +475,15 @@ template< typename T > void wrapper( T&& arg ) {
    // Forward the argument to another function
    // This preserves whether arg is an lvalue or rvalue
    process( std::forward< T >( arg ) );
-}
+};
 // Helper function to handle both lvalues and rvalues
-void process( int& x ) { std::cout << "Lvalue processed: " << x << std::endl; }
-void process( int&& x ) { std::cout << "Rvalue processed: " << x << std::endl; }
+void process( int& x ) { std::cout << "Lvalue processed: " << x << std::endl; };
+void process( int&& x ) { std::cout << "Rvalue processed: " << x << std::endl; };
 int main() {
    int x = 42;
    wrapper( x );   // Lvalue passed, so it will call process(int&)
    wrapper( 10 );   // Rvalue passed, so it will call process(int&&)
-}
+};
 ```
 
 ### `std::ref` and `std::cref`
@@ -785,13 +785,13 @@ if( ulck.owns_lock() ) {
    // Critical section: code that must be executed atomically.
 } else {
    // Lock acquisition failed, handle the situation appropriately.
-}
+};
 std::shared_lock< MutexType > slck( mtx, std::try_to_lock );
 if( slck.owns_lock() ) {
    // Critical section: code that must be executed atomically.
 } else {
    // Lock acquisition failed, handle the situation appropriately.
-}
+};
 ```
 
 ```CPP
@@ -1191,13 +1191,13 @@ void print_id( int id ) {
       cv.wait( lck );
    // ...
    std::cout << "thread " << id << '\n';
-}
+};
 
 void go() {
    std::unique_lock< std::mutex > lck( mtx );
    ready = true;
    cv.notify_all();
-}
+};
 
 int main() {
    std::thread threads[10];
@@ -1212,7 +1212,7 @@ int main() {
       th.join();
 
    return 0;
-}
+};
 ```
 
 #### Members and Related Stuffs

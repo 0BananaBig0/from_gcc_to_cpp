@@ -534,13 +534,13 @@ struct Hash {
          // This is only an example.
          return std::hash< SubType1 >()( obj._mem1 )
               ^ std::hash< SubType2 >()( obj._mem2 );
-      }
+      };
 };
 struct KeyEqual {
       bool operator()( const Type& lhs, const Type& rhs ) const {
          // This is only an example.
          return lhs.id == rhs.id;   // Custom equality based on id only
-      }
+      };
 };
 std::unordered_set< Type, Hash, KeyEqual > uset_name;
 ```
@@ -793,13 +793,13 @@ struct Hash {
          // This is only an example.
          return std::hash< SubType1 >()( obj._mem1 )
               ^ std::hash< SubType2 >()( obj._mem2 );
-      }
+      };
 };
 struct KeyEqual {
       bool operator()( const Type& lhs, const Type& rhs ) const {
          // This is only an example.
          return lhs.id == rhs.id;   // Custom equality based on id only
-      }
+      };
 };
 std::unordered_multiset< Type, Hash, KeyEqual > umset_name;
 ```

@@ -351,7 +351,7 @@ if( sptr2 ) {
    ...;
 } else {
    ...
-}
+};
 ```
 
 ```CPP
@@ -362,7 +362,7 @@ if( auto sptr2 = wptr.lock(); ) {
    ...;
 } else {
    ...
-}
+};
 ```
 
 #### Circular References
@@ -385,7 +385,7 @@ if( auto sptr2 = wptr.lock(); ) {
 
 struct Node {
       std::shared_ptr< Node > next;
-      ~Node() { std::cout << "Node destroyed\n"; }
+      ~Node() { std::cout << "Node destroyed\n"; };
 };
 
 int main() {
@@ -399,7 +399,7 @@ int main() {
    std::cout << nodeB.use_count() << std::endl;
    // Both nodes will never be deleted due to circular reference
    return 0;
-}
+};
 ```
 
 ```CPP
@@ -409,7 +409,7 @@ int main() {
 
 struct Node {
       std::weak_ptr< Node > next;
-      ~Node() { std::cout << "Node destroyed\n"; }
+      ~Node() { std::cout << "Node destroyed\n"; };
 };
 
 int main() {
@@ -423,7 +423,7 @@ int main() {
    std::cout << nodeB.use_count() << std::endl;
    // Both nodes will be deleted.
    return 0;
-}
+};
 ```
 
 #### Members and Related Stuffs

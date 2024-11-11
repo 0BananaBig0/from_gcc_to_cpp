@@ -558,13 +558,13 @@ struct Hash {
          // This is only an example.
          return std::hash< SubKType1 >()( obj._mem1 )
               ^ std::hash< SubKType2 >()( obj._mem2 );
-      }
+      };
 };
 struct KeyEqual {
       bool operator()( const KType& lhs, const KType& rhs ) const {
          // This is only an example.
          return lhs.id == rhs.id;   // Custom equality based on id only
-      }
+      };
 };
 std::unordered_map< KType, VType, Hash, KeyEqual > umap_name;
 ```
@@ -820,13 +820,13 @@ struct Hash {
          // This is only an example.
          return std::hash< SubKType1 >()( obj._mem1 )
               ^ std::hash< SubKType2 >()( obj._mem2 );
-      }
+      };
 };
 struct KeyEqual {
       bool operator()( const KType& lhs, const KType& rhs ) const {
          // This is only an example.
          return lhs.id == rhs.id;   // Custom equality based on id only
-      }
+      };
 };
 std::unordered_multimap< KType, VType, Hash, KeyEqual > ummap_name;
 ```

@@ -356,9 +356,9 @@ if( file.is_open() ) {
    std::string line;
    while( std::getline( file, line ) ) {
       std::cout << line << std::endl;
-   }
+   };
    file.close();
-}
+};
 ```
 
 ```CPP
@@ -366,7 +366,7 @@ std::ofstream file( "filename.txt" );
 if( file.is_open() ) {
    file << "Hello, World!" << std::endl;
    file.close();
-}
+};
 ```
 
 ```CPP
@@ -376,14 +376,14 @@ if( file.is_open() ) {
    std::string line;
    while( std::getline( file, line ) ) {
       std::cout << line << std::endl;
-   }
+   };
 
    // Writing
    file.clear();                     // Clear flags before writing after reading
    file.seekp( 0, std::ios::end );   // Move write pointer to end
    file << "Appending text" << std::endl;
    file.close();
-}
+};
 ```
 
 #### Members and Related Stuffs

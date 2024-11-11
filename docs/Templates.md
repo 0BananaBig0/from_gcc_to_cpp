@@ -130,7 +130,7 @@
 // Definition syntax.
 template< typename T1, typename T2, ... > T1 funcName( T2 arg1, ... ) {
    // Function implementation.
-}
+};
 ```
 
 ```CPP
@@ -181,9 +181,9 @@ namespace SpaceName {
    template< class T, ... > class ClassName {
          RetType funcName( ... ) {
             // Do something.
-         }
+         };
    };
-}   // namespace SpaceName.
+};   // namespace SpaceName.
 
 // Usage syntax, instantiation syntax.
 // template class ClassName<int>; // error: class template ClassName not visible in the global namespace.
@@ -383,7 +383,7 @@ int main() {
    // Others.
 
    return 0;
-}
+};
 ```
 
 #### Link
@@ -478,13 +478,13 @@ template< typename T, ... >
 typename std::enable_if< TypeTrait< T, ... >::value >::type funcName( T para, ... ) {
    // If T, ... meet specific conditions.
    // Do something.
-}
+};
 
 template< typename T, ... >
 typename std::enable_if< !TypeTrait< T >::value >::type funcName( T para, ... ) {
    // If T is not a specific type.
    // Do something.
-}
+};
 ```
 
 ```CPP
@@ -500,7 +500,7 @@ template< typename T,
 RetType funcName( T para, ... ) {
    // If T, ... meet specific conditions.
    // Do something.
-}
+};
 
 template< typename T,
           typename std::enable_if< !TypeTrait< T >::value >::type,
@@ -508,7 +508,7 @@ template< typename T,
 RetType funcName( T para, ... ) {
    // If T is not a specific type.
    // Do something.
-}
+};
 ```
 
 ```CPP
@@ -521,7 +521,7 @@ RetType funcName( T para, ... ) {
 template< typename T, ... > concept TempName = TypeTrait< T, ... >;
 template< TempName T, ... > RetType funcName( T para, ... ) {
    // This function is only enabled for specific conditions
-}
+};
 ```
 
 ### Type Traits
@@ -563,7 +563,7 @@ static_assert( !IsPointer< int >::val, "Should not be a pointer type" );
 template< typename T, ... > RetType funcName( T t, ... ) {
    static_assert( TypeTrait< T >::value, "T must be a specific type" );
    // Do something.
-}
+};
 ```
 
 ### Template Aliases

@@ -173,7 +173,7 @@ struct Vector3 {
    void* operator new( size_t size ) {
       // Do something
       return malloc( size );
-   }
+   };
    ```
 
 ## Benchmark and How to Visualize Benchmark Results
