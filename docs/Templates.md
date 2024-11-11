@@ -277,24 +277,36 @@ ClassName< arg_list2, arg_list3 > obj2;   // Utilizes the specialized version.
 
 ```CPP
 // Definition syntax.
-template< typename Type1, typename T2, ... > class ClassName {
+template< typename T1, typename T2, ... > class ClassName {
       // Implementation.
 };
 
 // Partial specialization for generic reference types.
-template< typename Type1, typename T2, ... > class ClassName< T1&, T2&, ... > {
+template< typename T1, typename T2, ... > class ClassName< T1&, T2&, ... > {
       // Another implementation.
 };
 ```
 
 ```CPP
 // Definition syntax.
-template< typename Type1, typename T2, ... > class ClassName {
+template< typename T1, typename T2, ... > class ClassName {
       // Implementation.
 };
 
 // Partial specialization for generic pointer types.
-template< typename Type1, typename T2, ... > class ClassName< T1*, T2*, ... > {
+template< typename T1, typename T2, ... > class ClassName< T1*, T2*, ... > {
+      // Another implementation.
+};
+```
+
+```CPP
+// Definition syntax.
+template< typename T, typename... Args > class ClassName {
+      // Implementation.
+};
+
+// Partial specialization for function types.
+template< typename T, typename... Args > class ClassName< T(... Args) > {
       // Another implementation.
 };
 ```

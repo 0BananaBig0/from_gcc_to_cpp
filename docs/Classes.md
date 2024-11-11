@@ -218,9 +218,9 @@ ClassName obj_name2( obj_name1 );
 ```
 
 ```CPP
-// Not Recommend, although the compiler may optimize it so that only one constructor is called.
-// First, Parameterized constructor.
-// Second, Copy constructor.
+// Not recommend, although the compiler may optimize it so that only one constructor is called.
+// First, parameterized constructor.
+// Second, copy constructor.
 ClassName obj_name = ClassName( para_list );
 ```
 
@@ -245,8 +245,15 @@ ClassName obj_name = initializer;
 
 ```CPP
 // Without related parameterized constructors and all members are public, aggregate initialization.
-// With related parameterized constructors, Parameterized constructor or uniform initialization or brace initialization.
+// With related parameterized constructors, parameterized constructor or uniform initialization or brace initialization.
 ClassName obj_name{ para_list };
+```
+
+```CPP
+// With default construcotr, default constructor.
+// Otherwise, aggregate initialization.
+// All members are initialized to 0.
+ClassName obj_name{ };
 ```
 
 ```CPP
@@ -602,10 +609,12 @@ class ClassName {
 
 1. A default constructor is **a constructor** with **no parameters** or with **all parameters having
    default values**.
-2. It is **called** when an object is **instantiated without any arguments**. It initializes data
-   members to their default values (**primitive types remain uninitialized**).
-3. If **no other constructors** are defined, the **compiler provides** a default constructor.
-4. The `= default` syntax **explicitly requests** the compiler to generate **the default
+2. It is **called** when an object is **instantiated without any arguments**.
+3. It initializes data members to their default values (**primitive types remain uninitialized**).
+4. If **no other constructors** are defined, the **compiler provides** a default constructor.
+5. The **non-customized** default constructor will **initialize** all **non-user-defined type**
+   members **to** their **zero values**.
+6. The `= default` syntax **explicitly requests** the compiler to generate **the default
    constructor**.
 
 ##### Syntax
@@ -1050,6 +1059,18 @@ class public Base{
 };
 
 class Derived: public Base {
+      // Members of derived class.
+};
+```
+
+```CPP
+template< class T, ... >
+class public Base{
+   // Members of base class.
+};
+
+template< class T, ... >
+class Derived: public Base< class T, ... > {
       // Members of derived class.
 };
 ```
