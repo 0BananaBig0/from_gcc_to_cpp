@@ -67,6 +67,7 @@
     - [Common Syntax](#common-syntax)
     - [Links](#links)
   - [Callback Functions and Registeration Functions](#callback-functions-and-registeration-functions)
+- [`std::function`](#stdfunction)
 
 <!-- vim-markdown-toc -->
 
@@ -601,3 +602,7 @@ template< typename... Ts > RetType funcName( Ts... args ) {
    - It **takes a function pointer as an argument** and **stores or uses it later**, allowing other
      functions to invoke it when needed.
    - It’s essentially a way of registering a function for future calls.
+
+## `std::function`
+
+1. [`std::function`](./StdBindAndStdFunction.md#stdfunction)

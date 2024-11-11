@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Introduction to C++ STL - from_gcc_to_cpp</title>
+        <title>std::bind and std::function - from_gcc_to_cpp</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -116,7 +116,7 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active">Introduction to C++ STL</a>
+    <a href="../IntroductionToTheCPPSTL/" class="dropdown-item">Introduction to C++ STL</a>
 </li>
                                     
 <li>
@@ -128,7 +128,7 @@
 </li>
                                     
 <li>
-    <a href="../StdBindAndStdFunction/" class="dropdown-item">std::bind and std::function</a>
+    <a href="./" class="dropdown-item active">std::bind and std::function</a>
 </li>
                                     
 <li>
@@ -226,12 +226,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../Templates/" class="nav-link">
+                                <a rel="prev" href="../Bindings/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../ConversionAndCasting/" class="nav-link">
+                                <a rel="next" href="../Arrays/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -253,7 +253,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#introduction-to-c-stl" class="nav-link">Introduction to C++ STL</a>
+            <li class="nav-item" data-level="2"><a href="#stdbind" class="nav-link">std::bind</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#stdfunction" class="nav-link">std::function</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -265,206 +270,147 @@
 <!-- vim-markdown-toc GFM -->
 
 <ul>
-<li><a href="#introduction-to-c-stl">Introduction to C++ STL</a></li>
+<li><a href="#stdbind"><code>std::bind</code></a></li>
 <li><a href="#explanation">Explanation</a></li>
-<li><a href="#containers">Containers</a><ul>
-<li><a href="#explanation-1">Explanation</a></li>
-<li><a href="#types-of-containers">Types of Containers</a></li>
-<li><a href="#header-file">Header File</a></li>
-</ul>
-</li>
-<li><a href="#algorithms">Algorithms</a><ul>
-<li><a href="#explanation-2">Explanation</a></li>
-<li><a href="#common-algorithms">Common Algorithms</a></li>
-<li><a href="#header-file-1">Header File</a></li>
-</ul>
-</li>
-<li><a href="#iterators">Iterators</a><ul>
-<li><a href="#explanation-3">Explanation</a></li>
-<li><a href="#types-of-iterators">Types of Iterators</a></li>
-<li><a href="#header-file-2">Header File</a></li>
-</ul>
-</li>
-<li><a href="#function-objects-and-lambdas">Function Objects and Lambdas</a><ul>
-<li><a href="#explanation-4">Explanation</a></li>
+<li><a href="#syntax">Syntax</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#header-file-3">Header File</a></li>
-</ul>
-</li>
-<li><a href="#inputoutput-io">Input/Output (I/O)</a><ul>
-<li><a href="#explanation-5">Explanation</a></li>
-<li><a href="#common-classes">Common Classes</a></li>
-<li><a href="#header-file-4">Header File</a></li>
-</ul>
-</li>
-<li><a href="#utilities">Utilities</a><ul>
-<li><a href="#explanation-6">Explanation</a></li>
-<li><a href="#common-utilities">Common Utilities</a></li>
-<li><a href="#header-file-5">Header File</a></li>
-</ul>
-</li>
-<li><a href="#eastl">EASTL</a></li>
-<li><a href="#notes">Notes</a></li>
+<li><a href="#links">Links</a></li>
+<li><a href="#stdfunction"><code>std::function</code></a></li>
+<li><a href="#explanation-1">Explanation</a></li>
+<li><a href="#syntax-1">Syntax</a></li>
+<li><a href="#usage-1">Usage</a></li>
+<li><a href="#links-1">Links</a></li>
 </ul>
 <!-- vim-markdown-toc -->
 
-<h2 id="introduction-to-c-stl">Introduction to C++ STL</h2>
+<h2 id="stdbind"><code>std::bind</code></h2>
 <h3 id="explanation">Explanation</h3>
 <ol>
-<li>The C++ Standard <strong>Template</strong> Library (STL) is a powerful collection of <strong>template classes and
-   functions</strong> that provide generic and reusable components.</li>
-<li>It consists of various components that work together to simplify the development of complex
-   programs.</li>
-<li>Because it is a collection of <strong>template classes and functions</strong>, all <strong>syntax</strong> applicable to
-   templates, classes, and functions can also be applied to it.</li>
-<li>The C++ STL components are typically <strong>defined in header files</strong> because they rely heavily on
-   templates.</li>
-<li>Below are the six <strong>basic</strong> components of STL.</li>
+<li><code>std::bind</code> is a function adapter in C++ that allows you to create a callable object by binding
+   one or more arguments to a function or function object.</li>
+<li>It is part of the <code>&lt;functional&gt;</code> header and provides a way to create a new function that can be
+   invoked with a specific set of arguments, while leaving some arguments unbound.</li>
+<li><code>std::bind</code> is useful when you need to adapt a function to match a specific signature for
+   algorithms or event-driven programming.</li>
+<li>It can also be used to create a function that calls another function with a fixed set of
+   arguments, reducing the need to repeatedly pass those arguments.</li>
 </ol>
-<h3 id="containers">Containers</h3>
-<h4 id="explanation_1">Explanation</h4>
+<h3 id="syntax">Syntax</h3>
+<pre><code class="language-CPP">// (1) (since C++11) (constexpr since C++20).
+template&lt; class F, class... Args &gt;
+/* unspecified */ bind( F&amp;&amp; f, Args&amp;&amp;... args );
+// (2) (since C++11) (constexpr since C++20).
+template&lt; class R, class F, class... Args &gt;
+/* unspecified */ bind( F&amp;&amp; f, Args&amp;&amp;... args );
+</code></pre>
+<h3 id="usage">Usage</h3>
 <ol>
-<li>Containers are <strong>data structures</strong> that store collections of objects.</li>
-<li>They manage the <strong>storage</strong>, <strong>organization</strong>, and <strong>access of data</strong>.</li>
-<li>Containers in STL can be broadly categorized into <strong>four types</strong>: <strong>sequence containers</strong>,
-   <strong>associative containers</strong>, <strong>unordered associative containers</strong> and <strong>container adopters</strong>.</li>
+<li>Partial function application:
+   <code>CPP
+   RetType funName( Type1 para1, Type2 para2, ... ) { ...; };
+   Type2 arg2;
+   auto boundName = std::bind( funName, arg2, std::placeholders::_1, ... );</code></li>
+<li>Working with callbacks or functional interfaces:
+   <code>CPP
+   RetType funName( Type1 para1, Type2 para2, ... ) { ...; };
+   auto boundName = std::bind( funName, arg1, arg2, ... );
+   std::thread thread_name( boundName );</code></li>
+<li>Binding member functions:
+   <code>CPP
+   class ClassName {
+      public:
+         RetType funcName( Type1 para1, ... ) const { ...; };
+   };
+   int main() {
+      ClassName obj_name;
+      auto boundName = std::bind( &amp;ClassName::funcName, obj_name, arg1, ... );
+      boundName();
+      return 0;
+   };</code></li>
+<li>Reordering arguments:
+   <code>CPP
+   RetType funcName( Type1 para1, Type2 para2, ... ) { ...; };
+   int main() {
+      auto boundName = std::bind(
+         funcName, std::placeholders::_2, std::placeholders::_1, ... );
+      boundName( arg2, arg1 );
+   };</code></li>
+<li>Avoiding verbose lambda expressions.</li>
+<li>Compatibility with legacy code: <code>std::bind1st/std::bind2nd</code> (from C++98).</li>
 </ol>
-<h4 id="types-of-containers">Types of Containers</h4>
+<h3 id="links">Links</h3>
 <ol>
-<li>Sequence containers: Store elements in a linear order.</li>
-<li><code>std::vector</code>: A dynamic array that allows fast random access.</li>
-<li><code>std::list</code>: A doubly-linked list that allows efficient insertions and deletions.</li>
-<li><code>std::deque</code>: A double-ended queue that allows fast insertions and removals from both ends.</li>
-<li>Associative containers: Store elements in a specific order, typically based on keys.</li>
-<li><code>std::set</code>: A collection of unique keys that are sorted automatically.</li>
-<li><code>std::multiset</code>: A collection of keys that are sorted automatically.</li>
-<li><code>std::map</code>: A collection of key-value pairs where keys are unique and sorted.</li>
-<li><code>std::multimap</code>: A collection of key-value pairs where keys are not unique and sorted.</li>
-<li>Unordered associative containers: Store elements without a specific order, allowing for faster
-   access.</li>
-<li><code>std::unordered_set</code>: A collection of unique keys with no order.</li>
-<li><code>std::unordered_multiset</code>: A collection of keys with no order.</li>
-<li><code>std::unordered_map</code>: A collection of key-value pairs with no order and each key is unique.</li>
-<li><code>std::unordered_multimap</code>: A collection of key-value pairs with no order and multiple elements</li>
-<li>Container adaptors: Provide a specific interface for using underlying containers.</li>
-<li><code>std::stack</code>: A last-in, first-out (LIFO) data structure that allows access to the most
-     recently added element.</li>
-<li><code>std::queue</code>: A first-in, first-out (FIFO) data structure that allows access to the oldest
-     added element.</li>
-<li><code>std::priority_queue</code>: A data structure that allows access to the largest (or smallest) element
-     based on a priority criterion.</li>
-<li><code>flat_set</code>: A sorted collection of unique keys, implemented using a <code>std::vector</code>.</li>
-<li><code>flat_multiset</code>: A sorted collection of keys that can contain duplicates, also implemented
-     using a <code>std::vector</code>.</li>
-<li><code>flat_map</code>: A sorted collection of key-value pairs where keys are unique, implemented using a
-     <code>std::vector</code>.</li>
-<li><code>flat_multimap</code>: A sorted collection of key-value pairs where keys can be duplicated,
-     implemented using a <code>std::vector</code>. can have the equivalent key.</li>
+<li><a href="https://cplusplus.com/reference/functional/bind/"><code>std::bind</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/utility/functional/bind"><code>std::bind</code> in cppreference</a>.</li>
 </ol>
-<h4 id="header-file">Header File</h4>
+<h2 id="stdfunction"><code>std::function</code></h2>
+<h3 id="explanation_1">Explanation</h3>
 <ol>
-<li><code>&lt;vector&gt;</code>, <code>&lt;list&gt;</code>, <code>&lt;deque&gt;</code>, <code>&lt;set&gt;</code>, <code>&lt;map&gt;</code>, <code>&lt;unordered_set&gt;</code>, <code>&lt;unordered_map&gt;</code>,
-   <code>&lt;stack&gt;</code>, <code>&lt;queue&gt;</code>, <code>&lt;flat_set&gt;</code>, <code>&lt;flat_map&gt;</code>.</li>
+<li><code>std::function</code> is a template class in C++ that provides a type-safe wrapper for any callable
+   entity, including functions, function pointers, and function objects.</li>
+<li>It is part of the <functional> header and allows you to store and invoke callable objects with a
+   specific signature.</li>
+<li><code>std::function</code> is useful for scenarios where you need to store or pass around functions as
+   first-class objects, such as callback functions, event handlers, or when working with algorithms
+   that require generic function signatures.</li>
+<li>For high-performance code where overhead is a concern, function pointers or direct calls may be
+   more suitable.</li>
 </ol>
-<h3 id="algorithms">Algorithms</h3>
-<h4 id="explanation_2">Explanation</h4>
+<h3 id="syntax_1">Syntax</h3>
+<pre><code class="language-CPP">// (1) (since C++11).
+template&lt; class &gt; class function; /* undefined */
+// (2) (since C++11).
+template&lt; class R, class... Args &gt; class function&lt; R( Args... ) &gt;;
+</code></pre>
+<h3 id="usage_1">Usage</h3>
 <ol>
-<li>Algorithms are <strong>a set of functions</strong> that <strong>operate on containers</strong>.</li>
-<li>They provide a range of operations such as searching, sorting, transforming, and manipulating
-   data within containers.</li>
+<li>Type-erased function wrapper:
+   <code>CPP
+   RetType funcName( Type1 para1, Type2 para2, ... ) { ...; };
+   int main() {
+      std::function&lt; RetType( Type1, Type2, ... ) &gt; func = funcName;
+      func();   // Calls funcName().
+   };</code></li>
+<li>Storing different types of callables:
+   <code>CPP
+   RetType funcName1() { ...; };
+   struct FuncName2 {
+         RetType operator()( ... ) const { ...; };
+   };
+   int main() {
+      std::function&lt; RetType( ... ) &gt; f1 = funcName1;          // Function pointer.
+      std::function&lt; RetType( ... ) &gt; f2 = FuncName2( ... );   // Functor.
+      std::function&lt; RetType( ... ) &gt; f3 = [...]( ... ) {      // Lambda.
+         ...;
+      };
+      f1();   // Calls funcName1.
+      f2();   // Calls FuncName2().
+      f3();   // Calls the lambda.
+      return 0;
+   };</code></li>
+<li>Use in callbacks and event handlers.</li>
+<li>Memory and performance considerations: Dynamic memory allocation.</li>
+<li>Function composition and higher-order functions.</li>
+<li>Use in containers.</li>
+<li>Flexible function signatures.</li>
+<li>Passing functions as arguments.</li>
+<li>Using <code>std::function</code> with member functions:
+   <code>CPP
+   class ClassName {
+      public:
+         RetType funcName( Type1 para1, Type2 para2, ... ) const { ...; };
+   };
+   int main() {
+      ClassName obj_name;
+      std::function&lt; RetType( const ClassName&amp;, Type1, Type2, ... ) &gt; obj_nameFunc
+         = &amp;ClassName::funcName;
+      obj_nameFunc( obj_name, arg1, arg2, ... );
+   };</code></li>
 </ol>
-<h4 id="common-algorithms">Common Algorithms</h4>
+<h3 id="links_1">Links</h3>
 <ol>
-<li><code>std::sort</code>: Sorts the elements in a range.</li>
-<li><code>std::find</code>: Searches for a value in a range.</li>
-<li><code>std::copy</code>: Copies elements from one range to another.</li>
-</ol>
-<h4 id="header-file_1">Header File</h4>
-<ol>
-<li><code>&lt;algorithm&gt;</code>.</li>
-</ol>
-<h3 id="iterators">Iterators</h3>
-<h4 id="explanation_3">Explanation</h4>
-<ol>
-<li>Iterators are <strong>objects</strong> that <strong>allow traversal through the elements of a container</strong>.</li>
-<li>They provide <strong>a uniform way to access container elements</strong> without exposing the underlying
-   implementation.</li>
-<li>It is <strong>not a pointer</strong>, <strong>but</strong> behaves like one (stores an address and can be dereferenced)
-   because it <strong>encapsulates a pointer</strong> and <strong>overloads certain operators</strong>.</li>
-<li>When a container <strong>resizes its capacity or rehashes</strong>, its <strong>iterators</strong> may become <strong>invalid</strong>.</li>
-<li><strong>Using invalid iterators causes undefined behaviors</strong>.</li>
-<li>More information on <strong>iterator validity</strong> after modification operations is provided below.</li>
-<li><a href="https://en.cppreference.com/w/cpp/container#Iterator_invalidation">iterator invalidation</a>.</li>
-</ol>
-<h4 id="types-of-iterators">Types of Iterators</h4>
-<ol>
-<li>Input iterators: Read elements from a container.</li>
-<li>Output iterators: Write elements to a container.</li>
-<li>Forward iterators: Move forward in a container and allow reading and writing.</li>
-<li>Bidirectional iterators: Move in both directions (forward and backward).</li>
-<li>Random Access iterators: Provide direct access to elements using offsets.</li>
-</ol>
-<h4 id="header-file_2">Header File</h4>
-<ol>
-<li><code>&lt;iterator&gt;</code>.</li>
-</ol>
-<h3 id="function-objects-and-lambdas">Function Objects and Lambdas</h3>
-<h4 id="explanation_4">Explanation</h4>
-<ol>
-<li>Function objects (functors) are <strong>objects that can be called as if they were functions</strong>.</li>
-<li>They <strong>overload the function call <code>operator()</code></strong>; for example, for comparisons, sorting, etc.</li>
-<li>They can <strong>store state</strong> and are often used <strong>in algorithms to customize their behavior</strong>.</li>
-<li>Lambda expressions provide a concise way to define anonymous function objects.</li>
-</ol>
-<h4 id="usage">Usage</h4>
-<ol>
-<li>Function objects can be created by overloading the <code>operator()</code>.</li>
-<li>Lambda expressions can be defined using the syntax <code>[capture]( para_list ) { body; };</code>.</li>
-<li>More information about lambdas is provided in Section <a href="#10-lambda-functions">1Lambda Functions</a>.</li>
-</ol>
-<h4 id="header-file_3">Header File</h4>
-<ol>
-<li><code>&lt;functional&gt;</code></li>
-</ol>
-<h3 id="inputoutput-io">Input/Output (I/O)</h3>
-<h4 id="explanation_5">Explanation</h4>
-<ol>
-<li>The I/O component of STL provides <strong>facilities for reading and writing data</strong>.</li>
-<li>It simplifies interactions with various input and output sources, such as files and standard
-   input/output streams.</li>
-</ol>
-<h4 id="common-classes">Common Classes</h4>
-<ol>
-<li><code>std::istream</code>: For input streams (e.g., reading from the console).</li>
-<li><code>std::ostream</code>: For output streams (e.g., writing to the console).</li>
-<li><code>std::fstream</code>: For file input and output.</li>
-</ol>
-<h4 id="header-file_4">Header File</h4>
-<ol>
-<li><code>&lt;iostream&gt;</code>, <code>&lt;fstream&gt;</code>, <code>&lt;sstream&gt;</code></li>
-</ol>
-<h3 id="utilities">Utilities</h3>
-<h4 id="explanation_6">Explanation</h4>
-<ol>
-<li>Utilities in STL provide <strong>general-purpose functionality</strong> that aids in programming tasks.</li>
-<li>This includes support for pairs, tuples, and smart pointers.</li>
-</ol>
-<h4 id="common-utilities">Common Utilities</h4>
-<ol>
-<li><code>std::pair</code>: A simple container to store two values.</li>
-<li><code>std::tuple</code>: A fixed-size collection of heterogeneous values.</li>
-<li><code>std::unique_ptr</code>: A smart pointer that manages a dynamically allocated object.</li>
-</ol>
-<h4 id="header-file_5">Header File</h4>
-<p><code>&lt;utility&gt;</code>, <code>&lt;tuple&gt;</code>, <code>&lt;memory&gt;</code></p>
-<h3 id="eastl">EASTL</h3>
-<ol>
-<li>EASTL is <strong>a open source library</strong>, <strong>optimized for game developers</strong>.</li>
-<li>The <strong>performance</strong> of EASTL is <strong>higher than STL</strong>.</li>
-</ol>
-<h3 id="notes">Notes</h3>
-<ol>
-<li>Most methods that add or remove elements in containers return a valid iterator.</li>
+<li><a href="https://cplusplus.com/reference/functional/function/"><code>std::function</code> in cplusplus</a>.</li>
+<li><a href="https://en.cppreference.com/w/cpp/utility/functional/function"><code>std::function</code> in cppreference</a>.</li>
 </ol></div>
             </div>
         </div>

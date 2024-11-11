@@ -14,6 +14,7 @@
     - [Syntax](#syntax-1)
   - [Differences Between Structured Binding and `std::tie`](#differences-between-structured-binding-and-stdtie)
   - [Pairs and Tuples](#pairs-and-tuples)
+- [`std::bind`](#stdbind)
 - [Other Bindings](#other-bindings)
   - [Variable Binding](#variable-binding)
   - [Name Binding](#name-binding)
@@ -129,6 +130,10 @@ std::tie( var1, var2, ... ) = initializer;
 ### Pairs and Tuples
 
 1. [Pairs and Tuples](./PairsAndTuples.md)
+
+## `std::bind`
+
+1. [`std::bind`](./StdBindAndStdFunction.md#stdbind)
 
 ## Other Bindings
 

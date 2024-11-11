@@ -20,6 +20,7 @@
   - [Introduction to C++ STL](./docs/IntroductionToTheCPPSTL.md)
   - [Conversion And Casting](./docs/ConversionAndCasting.md)
   - [Bindings](./docs/Bindings.md)
+  - [`std::bind` and `std::function`](./doc/StdBindAndStdFunction.md)
   - [Arrays](./docs/Arrays.md)
     - [Dynamic Arrays (`std::vector`)](./docs/DynamicArraysOrStdVector.md)
   - [Lists and Forward Lists](./docs/ListsAndForwardLists.md)

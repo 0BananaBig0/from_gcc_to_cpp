@@ -55,9 +55,10 @@
 
 ### Explanation
 
-1. The`iostream` library provides functionalities for handling input and output operations in C++.
-2. It includes both wide and narrow character streams for interacting with data, allowing for
-   flexibility in handling different encodings, such as single-byte characters (ASCII) and
+1. The`iostream` library provides functionalities for **handling input and output operations** in
+   C++.
+2. It includes **both wide and narrow character streams** for interacting with data, allowing for
+   flexibility in **handling different encodings**, such as single-byte characters (ASCII) and
    multi-byte characters (UTF-16, UTF-32).
 
 ### `std::cin` and `std::wcin`
