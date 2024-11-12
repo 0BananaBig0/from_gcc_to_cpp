@@ -197,3 +197,5 @@
 ### Notes
 
 1. Most methods that add or remove elements in containers return a valid iterator.
+2. References and iterators to individual elements within a container can become invalid after
+   adding or inserting elements

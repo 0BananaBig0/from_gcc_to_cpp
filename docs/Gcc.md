@@ -62,7 +62,7 @@
   - [`g++ -On Main.cpp -o Main.exe`](#g--on-maincpp--o-mainexe)
     - [1. Usage](#1-usage-8)
     - [2. Output](#2-output-8)
-  - [1`g++ -DMACRO_NAME1 -DMACRO_NAME2 ... Main.cpp -o Main.exe`](#1g--dmacro_name1--dmacro_name2--maincpp--o-mainexe)
+  - [`g++ -DMACRO_NAME1 -DMACRO_NAME2 ... Main.cpp -o Main.exe`](#g--dmacro_name1--dmacro_name2--maincpp--o-mainexe)
     - [1. Usage](#1-usage-9)
     - [2. Output](#2-output-9)
 - [How to Compile Multiple CPP Files](#how-to-compile-multiple-cpp-files)
@@ -424,14 +424,14 @@
 
 #### 1. Usage
 
-1. Compile Main.cpp with optimization level `n` (where `0 ≤ n ≤ 3`). Higher values of n result in
+1. Compile Main.cpp with optimization level `n` (where `0 ≤ n ≤ 3`). Higher values of `n` result in
    longer compile times and more aggressive optimizations.
 
 #### 2. Output
 
 1. Main.exe
 
-### 1`g++ -DMACRO_NAME1 -DMACRO_NAME2 ... Main.cpp -o Main.exe`
+### `g++ -DMACRO_NAME1 -DMACRO_NAME2 ... Main.cpp -o Main.exe`
 
 #### 1. Usage
 
