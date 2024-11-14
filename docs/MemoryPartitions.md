@@ -260,7 +260,7 @@
 #### Size
 
 1. Depends on the **size of the mapped file or library**.
-
+2. **Either fixed or dynamic (grows upward in memory)**, depending on the type of mapping.
 #### Structure
 
 1. Divided into **read-only** and **read-write** segments.
