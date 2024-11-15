@@ -265,11 +265,9 @@
 <!-- vim-markdown-toc GFM -->
 
 <ul>
-<li><a href="#make-and-makefile"><code>make</code> and Makefile</a><ul>
+<li><a href="#make-and-makefile"><code>make</code> and Makefile</a></li>
 <li><a href="#make"><code>make</code></a></li>
 <li><a href="#makefile">Makefile</a></li>
-</ul>
-</li>
 <li><a href="#basic-syntax-of-makefile">Basic Syntax of Makefile</a><ul>
 <li><a href="#code">Code</a></li>
 <li><a href="#explanation">Explanation</a></li>
@@ -312,7 +310,7 @@
 </ul>
 </li>
 <li><a href="#functions-in-makefiles">Functions in Makefiles</a><ul>
-<li><a href="#functions-for-transforming-text--usage-">Functions for Transforming Text ( Usage )</a></li>
+<li><a href="#functions-for-transforming-text-usage">Functions for Transforming Text (Usage)</a></li>
 <li><a href="#function-call-syntax">Function Call Syntax</a></li>
 <li><a href="#more-information">More Information</a></li>
 </ul>
@@ -614,9 +612,9 @@ clean:
      based on the rule being executed.</li>
 <li>These variables are automatically set by <code>make</code> and allow you to write more flexible and
      generalized rules.</li>
-<li>They represent parts of a rule, such as the target, prerequisites ( prerequisities =
-     dependencies ), or the stem ( The part of the file name that <code>%</code> matches is called the stem. )
-     of a filename in pattern rules.</li>
+<li>They represent parts of a rule, such as the target, prerequisites (prerequisities =
+     dependencies), or the stem (The part of the file name that <code>%</code> matches is called the stem.) of
+     a filename in pattern rules.</li>
 <li>Special symbols:</li>
 <li>In Makefiles, special symbols help define rules and control execution.</li>
 <li>Environment variables:</li>
@@ -717,7 +715,7 @@ clean:
 <li><code>LD</code>: Linker.</li>
 </ol>
 <h3 id="functions-in-makefiles">Functions in Makefiles</h3>
-<h4 id="functions-for-transforming-text-usage">Functions for Transforming Text ( Usage )</h4>
+<h4 id="functions-for-transforming-text-usage">Functions for Transforming Text (Usage)</h4>
 <ol>
 <li>Functions allow you to <strong>do text processing</strong> in the makefile to compute the files to operate on
    or the commands to use in recipes.</li>
@@ -1097,8 +1095,8 @@ include $(DEPS)
 <ol>
 <li>This flag <code>-j</code> allows make to run multiple jobs in parallel, speeding up the build process by
    utilizing multiple CPU cores.</li>
-<li>The number <code>n</code> ( <code>n ≥ 1</code> )following <code>-j</code> (if provided) specifies the maximum number of jobs to
-   run simultaneously. Without a number <code>n</code>, make will use a default value.</li>
+<li>The number <code>n</code> (<code>n ≥ 1</code>)following <code>-j</code> (if provided) specifies the maximum number of jobs to run
+   simultaneously. Without a number <code>n</code>, make will use a default value.</li>
 <li>Notes: If you want to use this command in Makefiles, please use <code>$(MAKE)</code> instead of <code>make</code>. This
    is the more commonly used option.</li>
 </ol>

@@ -434,7 +434,7 @@ std::string var_name( count, ch );
 </code></pre>
 <pre><code class="language-CPP">char* ch_ptr = &quot;a string&quot;;
 // Constructs the string with the first `count` characters of character string pointed to by `ch`.
-std::string var_name( count, ch_ptr );
+std::string var_name( ch_ptr, count );
 </code></pre>
 <h4 id="members-and-related-stuffs">Members and Related Stuffs</h4>
 <h5 id="links">Links</h5>
@@ -629,7 +629,7 @@ std::string_view var_name( str.begin(), str.end() );
 </code></pre>
 <pre><code class="language-CPP">char* ch_ptr = &quot;a string&quot;;
 // Constructs the `std::string_view` with the first `count` characters of character string pointed to by `ch`.
-std::string_view var_name( count, ch_ptr );
+std::string_view var_name( ch_ptr, count );
 </code></pre>
 <h4 id="member-functions_1">Member Functions</h4>
 <h5 id="links_1">Links</h5>

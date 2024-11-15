@@ -339,17 +339,17 @@
 <li><a href="#notes-1">Notes</a></li>
 <li><a href="#copy-constructors">Copy Constructors</a></li>
 <li><a href="#explanation-13">Explanation</a></li>
-<li><a href="#default-copy--default---avoid---double-destructions-">Default Copy ( <code>default</code> ) ( Avoid ) ( Double Destructions )</a><ul>
+<li><a href="#default-copy-default-avoid-double-destructions">Default Copy (<code>default</code>) (Avoid) (Double Destructions)</a><ul>
 <li><a href="#explanation-14">Explanation</a></li>
 <li><a href="#syntax-12">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#shallow-copy--eg-memcpy---avoid---double-destructions-">Shallow Copy ( e.g. <code>memcpy</code> ) ( Avoid ) ( Double Destructions )</a><ul>
+<li><a href="#shallow-copy-eg-memcpy-avoid-double-destructions">Shallow Copy (e.g. <code>memcpy</code>) (Avoid) (Double Destructions)</a><ul>
 <li><a href="#explanation-15">Explanation</a></li>
 <li><a href="#syntax-13">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#deep-copy--recommend-">Deep Copy ( Recommend )</a><ul>
+<li><a href="#deep-copy-recommend">Deep Copy (Recommend)</a><ul>
 <li><a href="#explanation-16">Explanation</a></li>
 <li><a href="#syntax-14">Syntax</a></li>
 </ul>
@@ -918,7 +918,7 @@ class Derived: public Base {
      an infinite loop</strong>, as each invocation requires another copy of the argument, which again
      invokes the copy constructor.</li>
 </ol>
-<h5 id="default-copy-default-avoid-double-destructions">Default Copy ( <code>default</code> ) ( Avoid ) ( Double Destructions )</h5>
+<h5 id="default-copy-default-avoid-double-destructions">Default Copy (<code>default</code>) (Avoid) (Double Destructions)</h5>
 <h6 id="explanation_14">Explanation</h6>
 <ol>
 <li>A default copy constructor is <strong>automatically generated</strong> by the compiler if <strong>no user-defined
@@ -950,7 +950,7 @@ class Derived: public Base {
       ClassName( const ClassName&amp; ) = default;
 };
 </code></pre>
-<h5 id="shallow-copy-eg-memcpy-avoid-double-destructions">Shallow Copy ( e.g. <code>memcpy</code> ) ( Avoid ) ( Double Destructions )</h5>
+<h5 id="shallow-copy-eg-memcpy-avoid-double-destructions">Shallow Copy (e.g. <code>memcpy</code>) (Avoid) (Double Destructions)</h5>
 <h6 id="explanation_15">Explanation</h6>
 <ol>
 <li>A shallow copy occurs when the copy constructor <strong>simply copies the pointer values</strong> instead of
@@ -983,7 +983,7 @@ class Derived: public Base {
       };
 };
 </code></pre>
-<h5 id="deep-copy-recommend">Deep Copy ( Recommend )</h5>
+<h5 id="deep-copy-recommend">Deep Copy (Recommend)</h5>
 <h6 id="explanation_16">Explanation</h6>
 <ol>
 <li>A deep copy <strong>ensures</strong> that the copy constructor <strong>creates a new instance</strong> of any dynamically

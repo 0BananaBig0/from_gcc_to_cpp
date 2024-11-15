@@ -272,14 +272,14 @@
 <li><a href="#examples">Examples</a></li>
 </ul>
 </li>
-<li><a href="#explicit-conversion--type-casting-">Explicit Conversion ( Type Casting )</a><ul>
+<li><a href="#explicit-conversion-type-casting">Explicit Conversion (Type Casting)</a><ul>
 <li><a href="#explanation-2">Explanation</a></li>
-<li><a href="#c-style-casting--recommend-for-performance-">C-style Casting ( Recommend for Performance )</a></li>
+<li><a href="#c-style-casting-recommend-for-performance">C-style Casting (Recommend for Performance)</a></li>
 <li><a href="#explanation-3">Explanation</a></li>
 <li><a href="#syntax">Syntax</a></li>
-<li><a href="#c-style-casting--recommend-for-safety-">C++-style Casting ( Recommend for Safety )</a></li>
+<li><a href="#c-style-casting-recommend-for-safety">C++-style Casting (Recommend for Safety)</a></li>
 <li><a href="#explanation-4">Explanation</a></li>
-<li><a href="#static_cast--recommend-for-safety-and-performance-"><code>static_cast</code> ( Recommend for Safety and Performance )</a><ul>
+<li><a href="#static_cast-recommend-for-safety-and-performance"><code>static_cast</code> (Recommend for Safety and Performance)</a><ul>
 <li><a href="#explanation-5">Explanation</a></li>
 <li><a href="#syntax-1">Syntax</a></li>
 <li><a href="#usage">Usage</a></li>
@@ -287,7 +287,7 @@
 <li><a href="#requirements-for-using-static_cast">Requirements for Using <code>static_cast</code></a></li>
 </ul>
 </li>
-<li><a href="#dynamic_cast--recommend-for-safety-but-not-recommend-for-performance-"><code>dynamic_cast</code> ( Recommend for Safety but Not Recommend for Performance )</a><ul>
+<li><a href="#dynamic_cast-recommend-for-safety-but-not-recommend-for-performance"><code>dynamic_cast</code> (Recommend for Safety but Not Recommend for Performance)</a><ul>
 <li><a href="#explanation-6">Explanation</a></li>
 <li><a href="#syntax-2">Syntax</a></li>
 <li><a href="#usage-1">Usage</a></li>
@@ -295,13 +295,13 @@
 <li><a href="#requirements-for-using-dynamic_cast">Requirements for Using <code>dynamic_cast</code></a></li>
 </ul>
 </li>
-<li><a href="#const_cast--recommend-for-safety-but-not-recommend-for-performance-"><code>const_cast</code> ( Recommend for Safety but Not Recommend for Performance )</a><ul>
+<li><a href="#const_cast-recommend-for-safety-but-not-recommend-for-performance"><code>const_cast</code> (Recommend for Safety but Not Recommend for Performance)</a><ul>
 <li><a href="#explanation-7">Explanation</a></li>
 <li><a href="#syntax-3">Syntax</a></li>
 <li><a href="#usage-2">Usage</a></li>
 </ul>
 </li>
-<li><a href="#reinterpret_cast--recommend-for-performance-but-not-recommend-for-safety-"><code>reinterpret_cast</code> ( Recommend for Performance but Not Recommend for Safety )</a><ul>
+<li><a href="#reinterpret_cast-recommend-for-performance-but-not-recommend-for-safety"><code>reinterpret_cast</code> (Recommend for Performance but Not Recommend for Safety)</a><ul>
 <li><a href="#explanation-8">Explanation</a></li>
 <li><a href="#syntax-4">Syntax</a></li>
 <li><a href="#usage-3">Usage</a></li>
@@ -433,7 +433,7 @@ int main() {
    a = b;
 };
 </code></pre>
-<h3 id="explicit-conversion-type-casting">Explicit Conversion ( Type Casting )</h3>
+<h3 id="explicit-conversion-type-casting">Explicit Conversion (Type Casting)</h3>
 <h4 id="explanation_2">Explanation</h4>
 <ol>
 <li><strong>Explicit conversion</strong>, or <strong>type casting</strong>, allows <strong>programmers</strong> to <strong>define how a value
@@ -443,7 +443,7 @@ int main() {
 <li>However, there’s <strong>no guarantee</strong> that the <strong>conversion is safe</strong>, and <strong>programmers</strong> must
    <strong>ensure</strong> the <strong>correctness</strong>.</li>
 </ol>
-<h4 id="c-style-casting-recommend-for-performance">C-style Casting ( Recommend for Performance )</h4>
+<h4 id="c-style-casting-recommend-for-performance">C-style Casting (Recommend for Performance)</h4>
 <h5 id="explanation_3">Explanation</h5>
 <ol>
 <li>C-style casting uses the syntax <code>(Type)initializer</code> to convert a variable or a value to the
@@ -458,7 +458,7 @@ int main() {
 <h5 id="syntax">Syntax</h5>
 <pre><code class="language-CPP">( TargetType )initializer;
 </code></pre>
-<h4 id="c-style-casting-recommend-for-safety">C++-style Casting ( Recommend for Safety )</h4>
+<h4 id="c-style-casting-recommend-for-safety">C++-style Casting (Recommend for Safety)</h4>
 <h5 id="explanation_4">Explanation</h5>
 <ol>
 <li>C++ introduced several <strong>specific casting operators</strong> to provide <strong>more clarity and safety</strong> in
@@ -467,7 +467,7 @@ int main() {
    implemented using C-style casting</strong>.</li>
 <li>They <strong>merely clarify the intent</strong> behind the cast.</li>
 </ol>
-<h5 id="static_cast-recommend-for-safety-and-performance"><code>static_cast</code> ( Recommend for Safety and Performance )</h5>
+<h5 id="static_cast-recommend-for-safety-and-performance"><code>static_cast</code> (Recommend for Safety and Performance)</h5>
 <h6 id="explanation_5">Explanation</h6>
 <ol>
 <li><code>static_cast</code> is used for <strong>safe, compile-time type conversion</strong>.</li>
@@ -516,7 +516,7 @@ int main() {
 <li>The conversion must be determined at compile time, as <code>static_cast</code> does not involve any
      runtime checks.</li>
 </ol>
-<h5 id="dynamic_cast-recommend-for-safety-but-not-recommend-for-performance"><code>dynamic_cast</code> ( Recommend for Safety but Not Recommend for Performance )</h5>
+<h5 id="dynamic_cast-recommend-for-safety-but-not-recommend-for-performance"><code>dynamic_cast</code> (Recommend for Safety but Not Recommend for Performance)</h5>
 <h6 id="explanation_6">Explanation</h6>
 <ol>
 <li><code>dynamic_cast</code> is designed for <strong>safe, runtime-checked downcasting</strong> in <strong>polymorphic
@@ -534,8 +534,8 @@ int main() {
 <li><code>dynamic_cast</code> requires <strong>at least one virtual function</strong>.</li>
 <li>Because it slows down performance, we can <strong>use a macro to determine whether to use it in debug
    mode or release mode</strong>.</li>
-<li>Last, we should <strong>check if RTTI is enabled</strong> in our compiler. ( GCC/G++ enables it by default,
-   while MSVC does not. )</li>
+<li>Last, we should <strong>check if RTTI is enabled</strong> in our compiler. (GCC/G++ enables it by default,
+   while MSVC does not.)</li>
 </ol>
 <h6 id="syntax_2">Syntax</h6>
 <pre><code class="language-CPP">dynamic_cast&lt; TargetType &gt;( initializer );
@@ -605,7 +605,7 @@ int main() {
 <li>For downcasting, the object at runtime must match the derived type you're casting to;
      otherwise, the cast fails.</li>
 </ol>
-<h5 id="const_cast-recommend-for-safety-but-not-recommend-for-performance"><code>const_cast</code> ( Recommend for Safety but Not Recommend for Performance )</h5>
+<h5 id="const_cast-recommend-for-safety-but-not-recommend-for-performance"><code>const_cast</code> (Recommend for Safety but Not Recommend for Performance)</h5>
 <h6 id="explanation_7">Explanation</h6>
 <ol>
 <li><code>const_cast</code> is used for <strong>adding or removing <code>const</code> or <code>volatile</code> qualifiers</strong> from <strong>a pointer
@@ -625,7 +625,7 @@ int main() {
 <li>Removing <code>const</code> to modify a non-const object.</li>
 <li>Adding or removing <code>volatile</code>.</li>
 </ol>
-<h5 id="reinterpret_cast-recommend-for-performance-but-not-recommend-for-safety"><code>reinterpret_cast</code> ( Recommend for Performance but Not Recommend for Safety )</h5>
+<h5 id="reinterpret_cast-recommend-for-performance-but-not-recommend-for-safety"><code>reinterpret_cast</code> (Recommend for Performance but Not Recommend for Safety)</h5>
 <h6 id="explanation_8">Explanation</h6>
 <ol>
 <li><code>reinterpret_cast</code> is intended for <strong>low-level reinterpretation</strong> of an object’s bit pattern,

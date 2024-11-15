@@ -286,26 +286,26 @@
 
 <ul>
 <li><a href="#g-compiler-and-linker"><code>g++</code> Compiler and Linker</a></li>
-<li><a href="#header-file--preprocess-statement-">Header File ( Preprocess Statement )</a></li>
+<li><a href="#header-file-preprocess-statement">Header File (Preprocess Statement)</a></li>
 <li><a href="#cpp-file">CPP File</a></li>
-<li><a href="#obj-file--machine-code-file-obj-in-windows-o-in-linux-">OBJ File ( Machine Code File, <code>.obj</code> in Windows, <code>.o</code> in Linux )</a></li>
-<li><a href="#linking--static-linking-and-dynamic-linking-">Linking ( Static Linking and Dynamic Linking )</a><ul>
+<li><a href="#obj-file-machine-code-file-obj-in-windows-o-in-linux">OBJ File (Machine Code File, <code>.obj</code> in Windows, <code>.o</code> in Linux)</a></li>
+<li><a href="#linking-static-linking-and-dynamic-linking">Linking (Static Linking and Dynamic Linking)</a><ul>
 <li><a href="#libraries">Libraries</a></li>
 <li><a href="#static-linking">Static Linking</a></li>
 <li><a href="#explanation">Explanation</a></li>
 <li><a href="#characteristics">Characteristics</a></li>
 <li><a href="#how-it-works">How It Works</a></li>
-<li><a href="#dynamic-linking--implicit-linking-and-explicit-linking-">Dynamic Linking ( Implicit Linking and Explicit Linking )</a></li>
+<li><a href="#dynamic-linking-implicit-linking-and-explicit-linking">Dynamic Linking (Implicit Linking and Explicit Linking)</a></li>
 <li><a href="#explanation-1">Explanation</a></li>
 <li><a href="#characteristics-1">Characteristics</a></li>
-<li><a href="#implicit-linking--load-time-dynamic-linking---default-dynamic-linking-">Implicit Linking ( Load-time Dynamic Linking ) ( Default Dynamic Linking )</a><ul>
+<li><a href="#implicit-linking-load-time-dynamic-linking-default-dynamic-linking">Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking)</a><ul>
 <li><a href="#explanation-2">Explanation</a></li>
 <li><a href="#characteristics-2">Characteristics</a></li>
 <li><a href="#how-it-works-in-windows">How It Works in <strong>Windows</strong></a></li>
 <li><a href="#how-it-works-in-linux">How It Works in <strong>Linux</strong></a></li>
 </ul>
 </li>
-<li><a href="#explicit-linking--run-time-dynamic-linking-">Explicit Linking ( Run-time Dynamic Linking )</a><ul>
+<li><a href="#explicit-linking-run-time-dynamic-linking">Explicit Linking (Run-time Dynamic Linking)</a><ul>
 <li><a href="#explanation-3">Explanation</a></li>
 <li><a href="#characteristics-3">Characteristics</a></li>
 <li><a href="#how-it-works-in-windows-1">How It Works in <strong>Windows</strong></a></li>
@@ -444,7 +444,7 @@
 <!-- vim-markdown-toc -->
 
 <h2 id="g-compiler-and-linker"><code>g++</code> Compiler and Linker</h2>
-<h3 id="header-file-preprocess-statement">Header File ( Preprocess Statement )</h3>
+<h3 id="header-file-preprocess-statement">Header File (Preprocess Statement)</h3>
 <ol>
 <li>The compiler will <strong>copy and paste them</strong> into the object CPP file.</li>
 </ol>
@@ -456,13 +456,13 @@
    in a single OBJ file</strong>.</li>
 <li>During the compilation phase, the compiler also optimizes your code.</li>
 </ol>
-<h3 id="obj-file-machine-code-file-obj-in-windows-o-in-linux">OBJ File ( Machine Code File, <code>.obj</code> in Windows, <code>.o</code> in Linux )</h3>
+<h3 id="obj-file-machine-code-file-obj-in-windows-o-in-linux">OBJ File (Machine Code File, <code>.obj</code> in Windows, <code>.o</code> in Linux)</h3>
 <ol>
 <li><strong>All OBJ files</strong> will be <strong>combined into a single file</strong> by the linker.</li>
 <li>The C++ <strong>linker</strong> can <strong>perform certain optimizations</strong>, although its primary role is focused on
    linking object files and libraries rather than optimizing code.</li>
 </ol>
-<h3 id="linking-static-linking-and-dynamic-linking">Linking ( Static Linking and Dynamic Linking )</h3>
+<h3 id="linking-static-linking-and-dynamic-linking">Linking (Static Linking and Dynamic Linking)</h3>
 <h4 id="libraries">Libraries</h4>
 <ol>
 <li>Static (<code>.lib</code> or <code>.a</code>) vs dynamic libraries (<code>.dll</code> or <code>.so</code>):</li>
@@ -505,7 +505,7 @@
 <li>Executable creation:</li>
 <li>The final output is a single executable file that includes all necessary code.</li>
 </ol>
-<h4 id="dynamic-linking-implicit-linking-and-explicit-linking">Dynamic Linking ( Implicit Linking and Explicit Linking )</h4>
+<h4 id="dynamic-linking-implicit-linking-and-explicit-linking">Dynamic Linking (Implicit Linking and Explicit Linking)</h4>
 <h5 id="explanation_1">Explanation</h5>
 <ol>
 <li>Dynamic linking allows a program to <strong>link to libraries at runtime</strong> rather than at compile time.</li>
@@ -523,7 +523,7 @@
 <li>Runtime dependencies:</li>
 <li>The executable requires the appropriate shared libraries to be present at runtime.</li>
 </ol>
-<h5 id="implicit-linking-load-time-dynamic-linking-default-dynamic-linking">Implicit Linking ( Load-time Dynamic Linking ) ( Default Dynamic Linking )</h5>
+<h5 id="implicit-linking-load-time-dynamic-linking-default-dynamic-linking">Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking)</h5>
 <h6 id="explanation_2">Explanation</h6>
 <ol>
 <li>Implicit linking, also referred to as <strong>load-time dynamic linking</strong>, is <strong>a process</strong> whereby an
@@ -583,7 +583,7 @@
 <li>Control is passed to the application's entry point, enabling it to call functions and access
      data from the linked shared libraries.</li>
 </ol>
-<h5 id="explicit-linking-run-time-dynamic-linking">Explicit Linking ( Run-time Dynamic Linking )</h5>
+<h5 id="explicit-linking-run-time-dynamic-linking">Explicit Linking (Run-time Dynamic Linking)</h5>
 <h6 id="explanation_3">Explanation</h6>
 <ol>
 <li>Explicit linking, also known as <strong>run-time dynamic linking</strong>, gives the programmer more control,
