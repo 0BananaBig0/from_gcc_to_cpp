@@ -7,7 +7,7 @@
     - [Declaration Syntax](#declaration-syntax)
     - [Initialization Syntax](#initialization-syntax)
     - [Syntax for Deleting One-dimensional `std::vector` Pointers](#syntax-for-deleting-one-dimensional-stdvector-pointers)
-  - [Multidimensional `std::vector` ( **Not Recommend**)](#multidimensional-stdvector--not-recommend-)
+  - [Multidimensional `std::vector` (**Not Recommend**)](#multidimensional-stdvector-not-recommend)
     - [Declaration Syntax](#declaration-syntax-1)
     - [Initialization Syntax](#initialization-syntax-1)
   - [Members and Related Stuffs](#members-and-related-stuffs)

@@ -7,6 +7,7 @@
   - [Limitations](#limitations)
 
 <!-- vim-markdown-toc -->
+
 ## `volatile`
 
 ### Explanation

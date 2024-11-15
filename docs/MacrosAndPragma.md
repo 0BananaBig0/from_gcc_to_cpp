@@ -154,7 +154,7 @@
 1. These keywords are **alternatives** to macros for **defining constant values** with **type
    safety**.
 2. [`const`](./ConstConstexprAndStatic.md#const).
-2. [`constexpr`](./ConstConstexprAndStatic.md#constexpr).
+3. [`constexpr`](./ConstConstexprAndStatic.md#constexpr).
 
 #### `inline`
 

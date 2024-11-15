@@ -39,7 +39,7 @@
     - [Member Functions](#member-functions-2)
     - [Non-member Functions](#non-member-functions-2)
     - [Helper Classes](#helper-classes-2)
-- [Deques ( Double-ended Queue ) ( Deck )](#deques--double-ended-queue---deck-)
+- [Deques (Double-ended Queue) (Deck)](#deques-double-ended-queue-deck)
   - [Explanation](#explanation-3)
   - [Declaration Syntax](#declaration-syntax-3)
   - [Initialization Syntax](#initialization-syntax-3)
@@ -574,8 +574,8 @@ delete pri_queue_ptr;
 
 ### Explanation
 
-1. Deques are **sequence containers (template classes)** with **dynamic sizes** that can be
-   expanded or contracted on both ends (either its front or its back).
+1. Deques are **sequence containers (template classes)** with **dynamic sizes** that can be expanded
+   or contracted on both ends (either its front or its back).
 2. They allow for the individual elements to be accessed directly through **random access
    iterators**, with storage handled automatically by expanding and contracting the container as
    needed.
