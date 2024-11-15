@@ -50,8 +50,8 @@
       - [Syntax](#syntax-7)
       - [Notes](#notes)
   - [Constructors](#constructors)
-    - [Explanation](#explanation-9)
-    - [Syntax](#syntax-8)
+      - [Explanation](#explanation-9)
+      - [Syntax](#syntax-8)
     - [Defalut Constructors and `default` Constructors](#defalut-constructors-and-default-constructors)
       - [Explanation](#explanation-10)
       - [Syntax](#syntax-9)
@@ -111,7 +111,7 @@
     - [Destruction Order](#destruction-order)
     - [`virtual` Inheritance](#virtual-inheritance)
   - [`virtual`](#virtual)
-    - [Explanation](#explanation-25)
+      - [Explanation](#explanation-25)
     - [`virtual` Methods (`virtual` Functions) (`virtual` Memeber Functions)](#virtual-methods-virtual-functions-virtual-memeber-functions-1)
       - [Explanation](#explanation-26)
       - [Syntax](#syntax-20)
@@ -132,7 +132,7 @@
     - [Construction Order](#construction-order-1)
     - [Destruction Order](#destruction-order-1)
   - [`friend`](#friend)
-    - [Explanation](#explanation-30)
+      - [Explanation](#explanation-30)
     - [`friend` Functions](#friend-functions)
       - [Explanation](#explanation-31)
       - [Syntax](#syntax-23)
@@ -140,7 +140,7 @@
       - [Explanation](#explanation-32)
       - [Syntax](#syntax-24)
   - [`final`](#final)
-    - [Explanation](#explanation-33)
+      - [Explanation](#explanation-33)
     - [`final` Functions](#final-functions)
       - [Explanation](#explanation-34)
       - [Syntax](#syntax-25)
@@ -149,7 +149,7 @@
       - [Syntax](#syntax-26)
   - [`explicit`](#explicit)
   - [`using`](#using)
-  - [Differences Between Hiding, Overloading, Overriding, and Overwriting](#differences-between-hiding-overloading-overriding-and-overwriting)
+  - [Hiding, Overloading, Overriding, and Overwriting](#hiding-overloading-overriding-and-overwriting)
   - [Notes](#notes-4)
 
 <!-- vim-markdown-toc -->
@@ -1448,9 +1448,9 @@ class FinalClass final {};
 
 1. [`using`](./UsingTypedefNameSpaces.md#using)
 
-### Differences Between Hiding, Overloading, Overriding, and Overwriting
+### Hiding, Overloading, Overriding, and Overwriting
 
-1. [Differences Between Hiding, Overloading, Overriding, and Overwriting](./HidingOverloadingOverridingAndOverwriting.md)
+1. [Hiding, Overloading, Overriding, and Overwriting](./HidingOverloadingOverridingAndOverwriting.md)
 
 ### Notes
 

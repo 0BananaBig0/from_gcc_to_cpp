@@ -91,7 +91,7 @@
 </li>
                                     
 <li>
-    <a href="../HidingOverloadingOverridingAndOverwriting/" class="dropdown-item">Differences Between Hiding, Overloading, Overriding, and Overwriting</a>
+    <a href="../HidingOverloadingOverridingAndOverwriting/" class="dropdown-item">Hiding, Overloading, Overriding, and Overwriting</a>
 </li>
                                     
 <li>
@@ -407,7 +407,7 @@
 <pre><code class="language-CPP">// Definition syntax.
 template&lt; typename T1, typename T2, ... &gt; T1 funcName( T2 arg1, ... ) {
    // Function implementation.
-}
+};
 </code></pre>
 <pre><code class="language-CPP">// Usage syntax, explicit instantitaion syntax.
 template Type funcName( ... );
@@ -442,9 +442,9 @@ namespace SpaceName {
    template&lt; class T, ... &gt; class ClassName {
          RetType funcName( ... ) {
             // Do something.
-         }
+         };
    };
-}   // namespace SpaceName.
+};   // namespace SpaceName.
 
 // Usage syntax, instantiation syntax.
 // template class ClassName&lt;int&gt;; // error: class template ClassName not visible in the global namespace.
@@ -619,7 +619,7 @@ int main() {
    // Others.
 
    return 0;
-}
+};
 </code></pre>
 <h4 id="link">Link</h4>
 <ol>
@@ -700,13 +700,13 @@ template&lt; typename T, ... &gt;
 typename std::enable_if&lt; TypeTrait&lt; T, ... &gt;::value &gt;::type funcName( T para, ... ) {
    // If T, ... meet specific conditions.
    // Do something.
-}
+};
 
 template&lt; typename T, ... &gt;
 typename std::enable_if&lt; !TypeTrait&lt; T &gt;::value &gt;::type funcName( T para, ... ) {
    // If T is not a specific type.
    // Do something.
-}
+};
 </code></pre>
 <pre><code class="language-CPP">// With `std::enable_if`.
 #include &lt;type_traits&gt;
@@ -720,7 +720,7 @@ template&lt; typename T,
 RetType funcName( T para, ... ) {
    // If T, ... meet specific conditions.
    // Do something.
-}
+};
 
 template&lt; typename T,
           typename std::enable_if&lt; !TypeTrait&lt; T &gt;::value &gt;::type,
@@ -728,7 +728,7 @@ template&lt; typename T,
 RetType funcName( T para, ... ) {
    // If T is not a specific type.
    // Do something.
-}
+};
 </code></pre>
 <pre><code class="language-CPP">// With constraints and concepts.
 #include &lt;type_traits&gt;
@@ -739,7 +739,7 @@ RetType funcName( T para, ... ) {
 template&lt; typename T, ... &gt; concept TempName = TypeTrait&lt; T, ... &gt;;
 template&lt; TempName T, ... &gt; RetType funcName( T para, ... ) {
    // This function is only enabled for specific conditions
-}
+};
 </code></pre>
 <h3 id="type-traits">Type Traits</h3>
 <h4 id="explanation_10">Explanation</h4>
@@ -775,7 +775,7 @@ static_assert( !IsPointer&lt; int &gt;::val, &quot;Should not be a pointer type&
 template&lt; typename T, ... &gt; RetType funcName( T t, ... ) {
    static_assert( TypeTrait&lt; T &gt;::value, &quot;T must be a specific type&quot; );
    // Do something.
-}
+};
 </code></pre>
 <h3 id="template-aliases">Template Aliases</h3>
 <ol>

@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Differences Between Hiding, Overloading, Overriding, and Overwriting - from_gcc_to_cpp</title>
+        <title>Hiding, Overloading, Overriding, and Overwriting - from_gcc_to_cpp</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -91,7 +91,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">Differences Between Hiding, Overloading, Overriding, and Overwriting</a>
+    <a href="./" class="dropdown-item active">Hiding, Overloading, Overriding, and Overwriting</a>
 </li>
                                     
 <li>
@@ -253,6 +253,10 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="2"><a href="#hiding-overloading-overriding-and-overwriting" class="nav-link">Hiding, Overloading, Overriding, and Overwriting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -261,7 +265,7 @@
 <!-- vim-markdown-toc GFM -->
 
 <ul>
-<li><a href="#differences-between-hiding-overloading-overriding-and-overwriting">Differences Between Hiding, Overloading, Overriding, and Overwriting</a></li>
+<li><a href="#hiding-overloading-overriding-and-overwriting">Hiding, Overloading, Overriding, and Overwriting</a></li>
 <li><a href="#hiding-name-hiding">Hiding (Name Hiding)</a><ul>
 <li><a href="#explanation">Explanation</a></li>
 <li><a href="#syntax">Syntax</a></li>
@@ -286,9 +290,9 @@
 </ul>
 <!-- vim-markdown-toc -->
 
-<h3 id="differences-between-hiding-overloading-overriding-and-overwriting">Differences Between Hiding, Overloading, Overriding, and Overwriting</h3>
-<h4 id="hiding-name-hiding">Hiding (Name Hiding)</h4>
-<h5 id="explanation">Explanation</h5>
+<h2 id="hiding-overloading-overriding-and-overwriting">Hiding, Overloading, Overriding, and Overwriting</h2>
+<h3 id="hiding-name-hiding">Hiding (Name Hiding)</h3>
+<h4 id="explanation">Explanation</h4>
 <ol>
 <li>Hiding occurs when <strong>a derived class</strong> declares a function (or variable) with <strong>the same name</strong>
    as a function (or variable) in <strong>the base class</strong>, regardless of the parameters.</li>
@@ -297,7 +301,7 @@
 <li>This can lead to confusion or errors because the <strong>base class function</strong> is <strong>no longer
    accessible directly</strong> from the derived class.</li>
 </ol>
-<h5 id="syntax">Syntax</h5>
+<h4 id="syntax">Syntax</h4>
 <pre><code class="language-CPP">class Base {
    public:
       RetType1 funcName( para_list1 ) {
@@ -318,11 +322,11 @@ int main() {
    obj_name.show();
 };
 </code></pre>
-<h5 id="how-to-access-hidden-function">How to Access Hidden Function</h5>
+<h4 id="how-to-access-hidden-function">How to Access Hidden Function</h4>
 <pre><code class="language-CPP">   obj_name.Base::funcName( para_list1 );   // Calls Base class funcName( para_list1 )
 </code></pre>
-<h4 id="overloading">Overloading</h4>
-<h5 id="explanation_1">Explanation</h5>
+<h3 id="overloading">Overloading</h3>
+<h4 id="explanation_1">Explanation</h4>
 <ol>
 <li>Overloading occurs when <strong>two or more functions</strong> in <strong>the same scope</strong> have <strong>the same name</strong>
    but <strong>different parameter types or numbers of parameters</strong>.</li>
@@ -334,7 +338,7 @@ int main() {
 <li>C++ allows overloading <strong>based on the number of arguments, their types, or both</strong>.</li>
 <li>Overloading is <strong>resolved at compile time</strong> (<strong>static polymorphism</strong>).</li>
 </ol>
-<h5 id="syntax_1">Syntax</h5>
+<h4 id="syntax_1">Syntax</h4>
 <pre><code class="language-CPP">class ClassName {
    public:
       RetType1 funcName( para_list1 ) {
@@ -358,8 +362,8 @@ int main() {
       };
 };
 </code></pre>
-<h4 id="overriding">Overriding</h4>
-<h5 id="explanation_2">Explanation</h5>
+<h3 id="overriding">Overriding</h3>
+<h4 id="explanation_2">Explanation</h4>
 <ol>
 <li>Overriding occurs when <strong>a derived class</strong> provides <strong>its own implementation</strong> of <strong>a virtual
    function (or a pure virtual function)</strong> that is <strong>already defined</strong> in the base class.</li>
@@ -369,7 +373,7 @@ int main() {
    <strong>have the same name</strong>, <strong>parameter list</strong>, and <strong>qualifiers</strong> as the function in the base class.</li>
 <li>Overriding is <strong>resolved at runtime</strong> (<strong>dynamic polymorphism</strong>).</li>
 </ol>
-<h5 id="syntax_2">Syntax</h5>
+<h4 id="syntax_2">Syntax</h4>
 <pre><code class="language-CPP">class Base {
    public:
       virtual RetType funcName( para_list ) {};
@@ -386,8 +390,8 @@ int main() {
    obj-&gt;funcName( arg_list );   // Calls Derived class funcName (runtime polymorphism).
 };
 </code></pre>
-<h4 id="overwriting-not-a-c-term">Overwriting (Not a C++ Term)</h4>
-<h5 id="explanation_3">Explanation</h5>
+<h3 id="overwriting-not-a-c-term">Overwriting (Not a C++ Term)</h3>
+<h4 id="explanation_3">Explanation</h4>
 <ol>
 <li>Overwriting is <strong>not a formal term in C++</strong>.</li>
 <li>However, it is sometimes colloquially used to describe a situation where <strong>a function or variable
@@ -399,7 +403,7 @@ int main() {
    or memory corruption.</li>
 <li>This can occur in various contexts, such as variables, function definitions, or data structures.</li>
 </ol>
-<h5 id="syntax_3">Syntax</h5>
+<h4 id="syntax_3">Syntax</h4>
 <pre><code class="language-CPP">class Base {
    public:
       Type _mem = initializer1;

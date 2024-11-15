@@ -91,7 +91,7 @@
 </li>
                                     
 <li>
-    <a href="../HidingOverloadingOverridingAndOverwriting/" class="dropdown-item">Differences Between Hiding, Overloading, Overriding, and Overwriting</a>
+    <a href="../HidingOverloadingOverridingAndOverwriting/" class="dropdown-item">Hiding, Overloading, Overriding, and Overwriting</a>
 </li>
                                     
 <li>
@@ -575,7 +575,7 @@ if( sptr2 ) {
    ...;
 } else {
    ...
-}
+};
 </code></pre>
 <pre><code class="language-CPP">std::shared_ptr&lt; Type &gt; sptr1 = std::make_shared&lt; Type &gt;( /* constructor arguments */ );
 std::weak_ptr&lt; Type &gt; wptr = sptr1;
@@ -584,7 +584,7 @@ if( auto sptr2 = wptr.lock(); ) {
    ...;
 } else {
    ...
-}
+};
 </code></pre>
 <h4 id="circular-references">Circular References</h4>
 <h5 id="explanation_4">Explanation</h5>
@@ -603,7 +603,7 @@ if( auto sptr2 = wptr.lock(); ) {
 
 struct Node {
       std::shared_ptr&lt; Node &gt; next;
-      ~Node() { std::cout &lt;&lt; &quot;Node destroyed\n&quot;; }
+      ~Node() { std::cout &lt;&lt; &quot;Node destroyed\n&quot;; };
 };
 
 int main() {
@@ -617,7 +617,7 @@ int main() {
    std::cout &lt;&lt; nodeB.use_count() &lt;&lt; std::endl;
    // Both nodes will never be deleted due to circular reference
    return 0;
-}
+};
 </code></pre>
 <pre><code class="language-CPP">// Circular references do not occur.
 #include &lt;iostream&gt;
@@ -625,7 +625,7 @@ int main() {
 
 struct Node {
       std::weak_ptr&lt; Node &gt; next;
-      ~Node() { std::cout &lt;&lt; &quot;Node destroyed\n&quot;; }
+      ~Node() { std::cout &lt;&lt; &quot;Node destroyed\n&quot;; };
 };
 
 int main() {
@@ -639,7 +639,7 @@ int main() {
    std::cout &lt;&lt; nodeB.use_count() &lt;&lt; std::endl;
    // Both nodes will be deleted.
    return 0;
-}
+};
 </code></pre>
 <h4 id="members-and-related-stuffs_2">Members and Related Stuffs</h4>
 <h5 id="links_2">Links</h5>

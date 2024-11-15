@@ -91,7 +91,7 @@
 </li>
                                     
 <li>
-    <a href="../HidingOverloadingOverridingAndOverwriting/" class="dropdown-item">Differences Between Hiding, Overloading, Overriding, and Overwriting</a>
+    <a href="../HidingOverloadingOverridingAndOverwriting/" class="dropdown-item">Hiding, Overloading, Overriding, and Overwriting</a>
 </li>
                                     
 <li>
@@ -780,13 +780,13 @@ struct Hash {
          // This is only an example.
          return std::hash&lt; SubKType1 &gt;()( obj._mem1 )
               ^ std::hash&lt; SubKType2 &gt;()( obj._mem2 );
-      }
+      };
 };
 struct KeyEqual {
       bool operator()( const KType&amp; lhs, const KType&amp; rhs ) const {
          // This is only an example.
          return lhs.id == rhs.id;   // Custom equality based on id only
-      }
+      };
 };
 std::unordered_map&lt; KType, VType, Hash, KeyEqual &gt; umap_name;
 </code></pre>
@@ -996,13 +996,13 @@ struct Hash {
          // This is only an example.
          return std::hash&lt; SubKType1 &gt;()( obj._mem1 )
               ^ std::hash&lt; SubKType2 &gt;()( obj._mem2 );
-      }
+      };
 };
 struct KeyEqual {
       bool operator()( const KType&amp; lhs, const KType&amp; rhs ) const {
          // This is only an example.
          return lhs.id == rhs.id;   // Custom equality based on id only
-      }
+      };
 };
 std::unordered_multimap&lt; KType, VType, Hash, KeyEqual &gt; ummap_name;
 </code></pre>

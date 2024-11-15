@@ -91,7 +91,7 @@
 </li>
                                     
 <li>
-    <a href="../HidingOverloadingOverridingAndOverwriting/" class="dropdown-item">Differences Between Hiding, Overloading, Overriding, and Overwriting</a>
+    <a href="../HidingOverloadingOverridingAndOverwriting/" class="dropdown-item">Hiding, Overloading, Overriding, and Overwriting</a>
 </li>
                                     
 <li>
@@ -756,13 +756,13 @@ struct Hash {
          // This is only an example.
          return std::hash&lt; SubType1 &gt;()( obj._mem1 )
               ^ std::hash&lt; SubType2 &gt;()( obj._mem2 );
-      }
+      };
 };
 struct KeyEqual {
       bool operator()( const Type&amp; lhs, const Type&amp; rhs ) const {
          // This is only an example.
          return lhs.id == rhs.id;   // Custom equality based on id only
-      }
+      };
 };
 std::unordered_set&lt; Type, Hash, KeyEqual &gt; uset_name;
 </code></pre>
@@ -969,13 +969,13 @@ struct Hash {
          // This is only an example.
          return std::hash&lt; SubType1 &gt;()( obj._mem1 )
               ^ std::hash&lt; SubType2 &gt;()( obj._mem2 );
-      }
+      };
 };
 struct KeyEqual {
       bool operator()( const Type&amp; lhs, const Type&amp; rhs ) const {
          // This is only an example.
          return lhs.id == rhs.id;   // Custom equality based on id only
-      }
+      };
 };
 std::unordered_multiset&lt; Type, Hash, KeyEqual &gt; umset_name;
 </code></pre>

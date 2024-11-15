@@ -15,7 +15,7 @@ nav:
   - Functions, Classes, Operators And Templates:
     - Functions: Functions.md
     - Classes: Classes.md
-    - Differences Between Hiding, Overloading, Overriding, and Overwriting: HidingOverloadingOverridingAndOverwriting.md
+    - Hiding, Overloading, Overriding, and Overwriting: HidingOverloadingOverridingAndOverwriting.md
     - Structures: Structures.md
     - Operators: Operators.md
     - new and delete: NewAndDelete.md

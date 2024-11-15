@@ -1,6 +1,6 @@
 <!-- vim-markdown-toc GFM -->
 
-- [Differences Between Hiding, Overloading, Overriding, and Overwriting](#differences-between-hiding-overloading-overriding-and-overwriting)
+- [Hiding, Overloading, Overriding, and Overwriting](#hiding-overloading-overriding-and-overwriting)
   - [Hiding (Name Hiding)](#hiding-name-hiding)
     - [Explanation](#explanation)
     - [Syntax](#syntax)
@@ -17,11 +17,11 @@
 
 <!-- vim-markdown-toc -->
 
-### Differences Between Hiding, Overloading, Overriding, and Overwriting
+## Hiding, Overloading, Overriding, and Overwriting
 
-#### Hiding (Name Hiding)
+### Hiding (Name Hiding)
 
-##### Explanation
+#### Explanation
 
 1. Hiding occurs when **a derived class** declares a function (or variable) with **the same name**
    as a function (or variable) in **the base class**, regardless of the parameters.
@@ -30,7 +30,7 @@
 3. This can lead to confusion or errors because the **base class function** is **no longer
    accessible directly** from the derived class.
 
-##### Syntax
+#### Syntax
 
 ```CPP
 class Base {
@@ -54,15 +54,15 @@ int main() {
 };
 ```
 
-##### How to Access Hidden Function
+#### How to Access Hidden Function
 
 ```CPP
    obj_name.Base::funcName( para_list1 );   // Calls Base class funcName( para_list1 )
 ```
 
-#### Overloading
+### Overloading
 
-##### Explanation
+#### Explanation
 
 1. Overloading occurs when **two or more functions** in **the same scope** have **the same name**
    but **different parameter types or numbers of parameters**.
@@ -74,7 +74,7 @@ int main() {
 5. C++ allows overloading **based on the number of arguments, their types, or both**.
 6. Overloading is **resolved at compile time** (**static polymorphism**).
 
-##### Syntax
+#### Syntax
 
 ```CPP
 class ClassName {
@@ -101,9 +101,9 @@ class ClassName {
 };
 ```
 
-#### Overriding
+### Overriding
 
-##### Explanation
+#### Explanation
 
 1. Overriding occurs when **a derived class** provides **its own implementation** of **a virtual
    function (or a pure virtual function)** that is **already defined** in the base class.
@@ -113,7 +113,7 @@ class ClassName {
    **have the same name**, **parameter list**, and **qualifiers** as the function in the base class.
 4. Overriding is **resolved at runtime** (**dynamic polymorphism**).
 
-##### Syntax
+#### Syntax
 
 ```CPP
 class Base {
@@ -133,9 +133,9 @@ int main() {
 };
 ```
 
-#### Overwriting (Not a C++ Term)
+### Overwriting (Not a C++ Term)
 
-##### Explanation
+#### Explanation
 
 1. Overwriting is **not a formal term in C++**.
 2. However, it is sometimes colloquially used to describe a situation where **a function or variable
@@ -147,7 +147,7 @@ int main() {
    or memory corruption.
 5. This can occur in various contexts, such as variables, function definitions, or data structures.
 
-##### Syntax
+#### Syntax
 
 ```CPP
 class Base {

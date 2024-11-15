@@ -67,6 +67,7 @@
     - [Common Syntax](#common-syntax)
     - [Links](#links)
   - [Callback Functions and Registeration Functions](#callback-functions-and-registeration-functions)
+  - [Hiding, Overloading, Overriding, and Overwriting](#hiding-overloading-overriding-and-overwriting)
 - [`std::function`](#stdfunction)
 
 <!-- vim-markdown-toc -->
@@ -602,6 +603,10 @@ template< typename... Ts > RetType funcName( Ts... args ) {
    - It **takes a function pointer as an argument** and **stores or uses it later**, allowing other
      functions to invoke it when needed.
    - It’s essentially a way of registering a function for future calls.
+
+### Hiding, Overloading, Overriding, and Overwriting
+
+1. [Hiding, Overloading, Overriding, and Overwriting](./HidingOverloadingOverridingAndOverwriting.md)
 
 ## `std::function`
 

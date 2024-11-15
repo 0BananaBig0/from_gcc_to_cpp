@@ -91,7 +91,7 @@
 </li>
                                     
 <li>
-    <a href="../HidingOverloadingOverridingAndOverwriting/" class="dropdown-item">Differences Between Hiding, Overloading, Overriding, and Overwriting</a>
+    <a href="../HidingOverloadingOverridingAndOverwriting/" class="dropdown-item">Hiding, Overloading, Overriding, and Overwriting</a>
 </li>
                                     
 <li>
@@ -721,15 +721,15 @@ template&lt; typename T &gt; void wrapper( T&amp;&amp; arg ) {
    // Forward the argument to another function
    // This preserves whether arg is an lvalue or rvalue
    process( std::forward&lt; T &gt;( arg ) );
-}
+};
 // Helper function to handle both lvalues and rvalues
-void process( int&amp; x ) { std::cout &lt;&lt; &quot;Lvalue processed: &quot; &lt;&lt; x &lt;&lt; std::endl; }
-void process( int&amp;&amp; x ) { std::cout &lt;&lt; &quot;Rvalue processed: &quot; &lt;&lt; x &lt;&lt; std::endl; }
+void process( int&amp; x ) { std::cout &lt;&lt; &quot;Lvalue processed: &quot; &lt;&lt; x &lt;&lt; std::endl; };
+void process( int&amp;&amp; x ) { std::cout &lt;&lt; &quot;Rvalue processed: &quot; &lt;&lt; x &lt;&lt; std::endl; };
 int main() {
    int x = 42;
    wrapper( x );   // Lvalue passed, so it will call process(int&amp;)
    wrapper( 10 );   // Rvalue passed, so it will call process(int&amp;&amp;)
-}
+};
 </code></pre>
 <h3 id="stdref-and-stdcref"><code>std::ref</code> and <code>std::cref</code></h3>
 <h4 id="explanation_9">Explanation</h4>
@@ -1005,13 +1005,13 @@ if( ulck.owns_lock() ) {
    // Critical section: code that must be executed atomically.
 } else {
    // Lock acquisition failed, handle the situation appropriately.
-}
+};
 std::shared_lock&lt; MutexType &gt; slck( mtx, std::try_to_lock );
 if( slck.owns_lock() ) {
    // Critical section: code that must be executed atomically.
 } else {
    // Lock acquisition failed, handle the situation appropriately.
-}
+};
 </code></pre>
 <pre><code class="language-CPP">// Its usage syntax.
 MutexType mtx;
@@ -1373,13 +1373,13 @@ void print_id( int id ) {
       cv.wait( lck );
    // ...
    std::cout &lt;&lt; &quot;thread &quot; &lt;&lt; id &lt;&lt; '\n';
-}
+};
 
 void go() {
    std::unique_lock&lt; std::mutex &gt; lck( mtx );
    ready = true;
    cv.notify_all();
-}
+};
 
 int main() {
    std::thread threads[10];
@@ -1394,7 +1394,7 @@ int main() {
       th.join();
 
    return 0;
-}
+};
 </code></pre>
 <h4 id="members-and-related-stuffs_7">Members and Related Stuffs</h4>
 <h5 id="links_8">Links</h5>
