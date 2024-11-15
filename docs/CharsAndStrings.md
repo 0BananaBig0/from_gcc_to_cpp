@@ -204,7 +204,7 @@ std::string var_name( count, ch );
 ```CPP
 char* ch_ptr = "a string";
 // Constructs the string with the first `count` characters of character string pointed to by `ch`.
-std::string var_name( count, ch_ptr );
+std::string var_name( ch_ptr, count );
 ```
 
 #### Members and Related Stuffs
@@ -409,7 +409,7 @@ std::string_view var_name( str.begin(), str.end() );
 ```CPP
 char* ch_ptr = "a string";
 // Constructs the `std::string_view` with the first `count` characters of character string pointed to by `ch`.
-std::string_view var_name( count, ch_ptr );
+std::string_view var_name( ch_ptr, count );
 ```
 
 #### Member Functions
