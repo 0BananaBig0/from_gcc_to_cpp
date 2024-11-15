@@ -570,11 +570,11 @@ delete pri_queue_ptr;
 2. `std::formatter< std::priority_queue >` (C++23): Formatting support for `std::priority_queue`
    (class template specialization).
 
-## Deques ( Double-ended Queue ) ( Deck )
+## Deques (Double-ended Queue) (Deck)
 
 ### Explanation
 
-1. Deques are **sequence containers ( template classes )** with **dynamic sizes** that can be
+1. Deques are **sequence containers (template classes)** with **dynamic sizes** that can be
    expanded or contracted on both ends (either its front or its back).
 2. They allow for the individual elements to be accessed directly through **random access
    iterators**, with storage handled automatically by expanding and contracting the container as

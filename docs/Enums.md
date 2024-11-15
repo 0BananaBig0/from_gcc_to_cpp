@@ -5,7 +5,7 @@
   - [Usage](#usage)
   - [Unscoped Enumeration Syntax](#unscoped-enumeration-syntax)
   - [Scoped Enumeration Syntax](#scoped-enumeration-syntax)
-  - [Differences Between `enum` ( Unscoped Enumeration ) and `enum class` ( Scoped Enumeration )](#differences-between-enum--unscoped-enumeration--and-enum-class--scoped-enumeration-)
+  - [Differences Between `enum` (Unscoped Enumeration) and `enum class` (Scoped Enumeration)](#differences-between-enum-unscoped-enumeration-and-enum-class-scoped-enumeration)
     - [1) Syntax](#1-syntax)
     - [2) Namespace Scoping](#2-namespace-scoping)
     - [3) Type Safety](#3-type-safety)
@@ -54,7 +54,7 @@ enum EnumName: Type {
 EnumName enum_name = EnumName::Mem2;
 ```
 
-### Differences Between `enum` ( Unscoped Enumeration ) and `enum class` ( Scoped Enumeration )
+### Differences Between `enum` (Unscoped Enumeration) and `enum class` (Scoped Enumeration)
 
 #### 1) Syntax
 

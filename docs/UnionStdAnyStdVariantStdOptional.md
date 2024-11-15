@@ -24,7 +24,7 @@
     - [Member Functions](#member-functions-1)
     - [Non-member Functions](#non-member-functions-1)
     - [Helper Classes](#helper-classes-1)
-- [`std::optional` ( Optional Data )](#stdoptional--optional-data-)
+- [`std::optional` (Optional Data)](#stdoptional-optional-data)
   - [Explanation](#explanation-4)
   - [Synatx](#synatx-3)
   - [Members and Related Stuffs](#members-and-related-stuffs-2)
@@ -367,7 +367,7 @@ var_name.reset();   // clears the stored value.
 1. `bad_any_cast` (C++17): Exception thrown by the value-returning forms of `any_cast` on a type
    mismatch (class).
 
-## `std::optional` ( Optional Data )
+## `std::optional` (Optional Data)
 
 ### Explanation
 

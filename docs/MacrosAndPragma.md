@@ -1,6 +1,6 @@
 <!-- vim-markdown-toc GFM -->
 
-- [Macro and Related Keywords ( Including `pragma` )](#macro-and-related-keywords--including-pragma-)
+- [Macro and Related Keywords (Including `pragma`)](#macro-and-related-keywords-including-pragma)
   - [Explanation](#explanation)
   - [Syntax](#syntax)
   - [Related Keywords](#related-keywords)
@@ -21,7 +21,7 @@
 
 <!-- vim-markdown-toc -->
 
-## Macro and Related Keywords ( Including `pragma` )
+## Macro and Related Keywords (Including `pragma`)
 
 ### Explanation
 

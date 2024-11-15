@@ -5,30 +5,30 @@
   - [Implicit Conversion](#implicit-conversion)
     - [Explanation](#explanation-1)
     - [Examples](#examples)
-  - [Explicit Conversion ( Type Casting )](#explicit-conversion--type-casting-)
+  - [Explicit Conversion (Type Casting)](#explicit-conversion-type-casting)
     - [Explanation](#explanation-2)
-    - [C-style Casting ( Recommend for Performance )](#c-style-casting--recommend-for-performance-)
+    - [C-style Casting (Recommend for Performance)](#c-style-casting-recommend-for-performance)
       - [Explanation](#explanation-3)
       - [Syntax](#syntax)
-    - [C++-style Casting ( Recommend for Safety )](#c-style-casting--recommend-for-safety-)
+    - [C++-style Casting (Recommend for Safety)](#c-style-casting-recommend-for-safety)
       - [Explanation](#explanation-4)
-      - [`static_cast` ( Recommend for Safety and Performance )](#static_cast--recommend-for-safety-and-performance-)
+      - [`static_cast` (Recommend for Safety and Performance)](#static_cast-recommend-for-safety-and-performance)
         - [Explanation](#explanation-5)
         - [Syntax](#syntax-1)
         - [Usage](#usage)
         - [Limitations](#limitations)
         - [Requirements for Using `static_cast`](#requirements-for-using-static_cast)
-      - [`dynamic_cast` ( Recommend for Safety but Not Recommend for Performance )](#dynamic_cast--recommend-for-safety-but-not-recommend-for-performance-)
+      - [`dynamic_cast` (Recommend for Safety but Not Recommend for Performance)](#dynamic_cast-recommend-for-safety-but-not-recommend-for-performance)
         - [Explanation](#explanation-6)
         - [Syntax](#syntax-2)
         - [Usage](#usage-1)
         - [Limitations](#limitations-1)
         - [Requirements for Using `dynamic_cast`](#requirements-for-using-dynamic_cast)
-      - [`const_cast` ( Recommend for Safety but Not Recommend for Performance )](#const_cast--recommend-for-safety-but-not-recommend-for-performance-)
+      - [`const_cast` (Recommend for Safety but Not Recommend for Performance)](#const_cast-recommend-for-safety-but-not-recommend-for-performance)
         - [Explanation](#explanation-7)
         - [Syntax](#syntax-3)
         - [Usage](#usage-2)
-      - [`reinterpret_cast` ( Recommend for Performance but Not Recommend for Safety )](#reinterpret_cast--recommend-for-performance-but-not-recommend-for-safety-)
+      - [`reinterpret_cast` (Recommend for Performance but Not Recommend for Safety)](#reinterpret_cast-recommend-for-performance-but-not-recommend-for-safety)
         - [Explanation](#explanation-8)
         - [Syntax](#syntax-4)
         - [Usage](#usage-3)
@@ -157,7 +157,7 @@ int main() {
 };
 ```
 
-### Explicit Conversion ( Type Casting )
+### Explicit Conversion (Type Casting)
 
 #### Explanation
 
@@ -168,7 +168,7 @@ int main() {
 3. However, there’s **no guarantee** that the **conversion is safe**, and **programmers** must
    **ensure** the **correctness**.
 
-#### C-style Casting ( Recommend for Performance )
+#### C-style Casting (Recommend for Performance)
 
 ##### Explanation
 
@@ -187,7 +187,7 @@ int main() {
 ( TargetType )initializer;
 ```
 
-#### C++-style Casting ( Recommend for Safety )
+#### C++-style Casting (Recommend for Safety)
 
 ##### Explanation
 
@@ -197,7 +197,7 @@ int main() {
    implemented using C-style casting**.
 3. They **merely clarify the intent** behind the cast.
 
-##### `static_cast` ( Recommend for Safety and Performance )
+##### `static_cast` (Recommend for Safety and Performance)
 
 ###### Explanation
 
@@ -250,7 +250,7 @@ static_cast< TargetType >( initializer );
    - The conversion must be determined at compile time, as `static_cast` does not involve any
      runtime checks.
 
-##### `dynamic_cast` ( Recommend for Safety but Not Recommend for Performance )
+##### `dynamic_cast` (Recommend for Safety but Not Recommend for Performance)
 
 ###### Explanation
 
@@ -269,8 +269,8 @@ static_cast< TargetType >( initializer );
 7. `dynamic_cast` requires **at least one virtual function**.
 8. Because it slows down performance, we can **use a macro to determine whether to use it in debug
    mode or release mode**.
-9. Last, we should **check if RTTI is enabled** in our compiler. ( GCC/G++ enables it by default,
-   while MSVC does not. )
+9. Last, we should **check if RTTI is enabled** in our compiler. (GCC/G++ enables it by default,
+   while MSVC does not.)
 
 ###### Syntax
 
@@ -345,7 +345,7 @@ dynamic_cast< TargetType >( initializer );
    - For downcasting, the object at runtime must match the derived type you're casting to;
      otherwise, the cast fails.
 
-##### `const_cast` ( Recommend for Safety but Not Recommend for Performance )
+##### `const_cast` (Recommend for Safety but Not Recommend for Performance)
 
 ###### Explanation
 
@@ -369,7 +369,7 @@ const_cast< TargetType >( initializer );
 1. Removing `const` to modify a non-const object.
 2. Adding or removing `volatile`.
 
-##### `reinterpret_cast` ( Recommend for Performance but Not Recommend for Safety )
+##### `reinterpret_cast` (Recommend for Performance but Not Recommend for Safety)
 
 ###### Explanation
 

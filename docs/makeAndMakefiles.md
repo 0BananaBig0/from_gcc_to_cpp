@@ -1,8 +1,8 @@
 <!-- vim-markdown-toc GFM -->
 
 - [`make` and Makefile](#make-and-makefile)
-    - [`make`](#make)
-    - [Makefile](#makefile)
+  - [`make`](#make)
+  - [Makefile](#makefile)
   - [Basic Syntax of Makefile](#basic-syntax-of-makefile)
     - [Code](#code)
     - [Explanation](#explanation)
@@ -33,7 +33,7 @@
         - [3 Important Notes](#3-important-notes)
         - [4 Some Common Environment Variables in Makefiles](#4-some-common-environment-variables-in-makefiles)
   - [Functions in Makefiles](#functions-in-makefiles)
-    - [Functions for Transforming Text ( Usage )](#functions-for-transforming-text--usage-)
+    - [Functions for Transforming Text (Usage)](#functions-for-transforming-text-usage)
     - [Function Call Syntax](#function-call-syntax)
     - [More Information](#more-information)
   - [Pattern Rules](#pattern-rules)
@@ -301,9 +301,9 @@ $(VAR_NAME)
      based on the rule being executed.
    - These variables are automatically set by `make` and allow you to write more flexible and
      generalized rules.
-   - They represent parts of a rule, such as the target, prerequisites ( prerequisities =
-     dependencies ), or the stem ( The part of the file name that `%` matches is called the stem. )
-     of a filename in pattern rules.
+   - They represent parts of a rule, such as the target, prerequisites (prerequisities =
+     dependencies), or the stem (The part of the file name that `%` matches is called the stem.) of
+     a filename in pattern rules.
 4. Special symbols:
    - In Makefiles, special symbols help define rules and control execution.
 5. Environment variables:
@@ -409,7 +409,7 @@ $(ENV_VAR)
 
 ### Functions in Makefiles
 
-#### Functions for Transforming Text ( Usage )
+#### Functions for Transforming Text (Usage)
 
 1. Functions allow you to **do text processing** in the makefile to compute the files to operate on
    or the commands to use in recipes.
@@ -866,8 +866,8 @@ include $(DEPS)
 
 1. This flag `-j` allows make to run multiple jobs in parallel, speeding up the build process by
    utilizing multiple CPU cores.
-2. The number `n` ( `n ≥ 1` )following `-j` (if provided) specifies the maximum number of jobs to
-   run simultaneously. Without a number `n`, make will use a default value.
+2. The number `n` (`n ≥ 1`)following `-j` (if provided) specifies the maximum number of jobs to run
+   simultaneously. Without a number `n`, make will use a default value.
 3. Notes: If you want to use this command in Makefiles, please use `$(MAKE)` instead of `make`. This
    is the more commonly used option.
 

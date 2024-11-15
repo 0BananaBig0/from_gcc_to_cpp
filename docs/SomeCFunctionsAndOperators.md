@@ -22,7 +22,7 @@
   - [`strcpy`](#strcpy)
     - [Explanation](#explanation-6)
     - [Syntax](#syntax-6)
-  - [`memcpy` ( Shallow Copy )](#memcpy--shallow-copy-)
+  - [`memcpy` (Shallow Copy)](#memcpy-shallow-copy)
     - [Explanation](#explanation-7)
     - [Syntax](#syntax-7)
   - [`memset`](#memset)
@@ -190,7 +190,7 @@ char* strcpy( char* destination, const char* source );
 strcpy( dest, sour_str );
 ```
 
-### `memcpy` ( Shallow Copy )
+### `memcpy` (Shallow Copy)
 
 #### Explanation
 

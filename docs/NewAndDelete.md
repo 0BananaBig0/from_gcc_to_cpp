@@ -20,6 +20,7 @@
 - [`calloc`](#calloc)
 - [`realloc`](#realloc)
 - [`free`](#free)
+- [Pointers](#pointers)
 
 <!-- vim-markdown-toc -->
 

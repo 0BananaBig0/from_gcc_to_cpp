@@ -1,13 +1,13 @@
 <!-- vim-markdown-toc GFM -->
 
-- [Structures ( `struct` )](#structures--struct-)
+- [Structures (`struct`)](#structures-struct)
   - [Explanation](#explanation)
   - [Differences Between Structures and Classes](#differences-between-structures-and-classes)
   - [Notes](#notes)
 
 <!-- vim-markdown-toc -->
 
-## Structures ( `struct` )
+## Structures (`struct`)
 
 ### Explanation
 

@@ -9,7 +9,7 @@
       - [Initialization Syntax](#initialization-syntax)
       - [Syntax for Deleting One-dimensional Raw Array Pointers](#syntax-for-deleting-one-dimensional-raw-array-pointers)
       - [Three Kinds of Pointers Related to Array](#three-kinds-of-pointers-related-to-array)
-    - [Multidimensional Raw Arrays ( **Not Recommend** )](#multidimensional-raw-arrays--not-recommend-)
+    - [Multidimensional Raw Arrays (**Not Recommend**)](#multidimensional-raw-arrays-not-recommend)
       - [Declaration Syntax](#declaration-syntax-1)
       - [Initialization Syntax](#initialization-syntax-1)
       - [Syntax for Deleting Multidimensional Raw Array Pointers](#syntax-for-deleting-multidimensional-raw-array-pointers)
@@ -139,7 +139,7 @@ Type* arr_ptr = &arr_name[index]; // Element pointer points to the `index` eleme
 // array pointer + 1 = element pointer + size;
 ```
 
-#### Multidimensional Raw Arrays ( **Not Recommend** )
+#### Multidimensional Raw Arrays (**Not Recommend**)
 
 ##### Declaration Syntax
 
