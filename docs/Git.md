@@ -97,6 +97,11 @@ flowchart LR
    - It is a symbolic reference that points to the default branch of the origin remote repository,
      often pointing to origin/master.
    - It helps Git determine which branch to track for new clones of the repository.
+8. origin
+   - origin is the default name given to a remote repository when you first clone a repository or
+     add a remote with the command `git remote add origin TheRemoteRepositoryLink`
+   - It is a shorthand alias used to refer to that remote repository, making it easier to work with
+     Git commands without typing the full URL each time.
 
 ### Add Files to a Branch
 
@@ -155,8 +160,9 @@ git reset --hard CommitNumber(A sequence of number) TargetList(Optional)
 ### Link the Local Repository to a Remote Repository
 
 ```SH
-git remote add origin TheRemoteRepositoryLink
-git push -u origin CurrentBranch
+git remote add origin TheRemoteRepositoryLink # Connect the local repository to the remote one.
+git remote -v # Verify the remote link.
+git push -u origin CurrentBranch # Push local changes to the remote.
 ```
 
 ### Clone a Remote Repository
@@ -225,8 +231,11 @@ git merge AnotherBranch
 ```
 
 ```SH
-git merge --no-ff -m "Your comments" AnotherBranch # Ban fast forward
+git merge --no-ff -m "Your comments" AnotherBranch # Ban fast-forward
+# In Git, "fast-forward" is a type of merge operation that happens when there is no divergent history
+# between the current branch and the branch you're merging.
 ```
+
 
 ### Delete a Branch
 
