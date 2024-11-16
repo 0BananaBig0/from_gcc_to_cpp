@@ -13,7 +13,7 @@
     - [Dynamic Linking (Implicit Linking and Explicit Linking)](#dynamic-linking-implicit-linking-and-explicit-linking)
       - [Explanation](#explanation-1)
       - [Characteristics](#characteristics-1)
-      - [Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking)](#implicit-linking-load-time-dynamic-linking-default-dynamic-linking)
+      - [Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking) (Standard Dynamic Linking)](#implicit-linking-load-time-dynamic-linking-default-dynamic-linking-standard-dynamic-linking)
         - [Explanation](#explanation-2)
         - [Characteristics](#characteristics-2)
         - [How It Works in **Windows**](#how-it-works-in-windows)
@@ -192,28 +192,29 @@
 4. Runtime dependencies:
    - The executable requires the appropriate shared libraries to be present at runtime.
 
-##### Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking)
+##### Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking) (Standard Dynamic Linking)
 
 ###### Explanation
 
-1. Implicit linking, also referred to as **load-time dynamic linking**, is **a process** whereby an
-   executable is linked to shared libraries **at compile time**.
-2. This method allows the program to **utilize functions and variables** defined in those libraries
+1. Implicit linking, also referred to as **load-time dynamic linking** is a form of dynamic linking
+   where required libraries are automatically loaded at application startup.
+2. It is **a process** whereby an executable is linked to shared libraries **at compile time**.
+3. This method allows the program to **utilize functions and variables** defined in those libraries
    **without incorporating their code directly** into the executable.
 
 ###### Characteristics
 
 1. Automatic resolution:
-   - The operating system loads the DLLs specified in the import library when the application
-     starts.
+   - The operating system loads the shared libraries automatically when the application starts.
 2. Simplified development:
-   - Developers include the DLL's import library (`.lib` file) during compilation, simplifying the
-     linking process.
+   - Developers include the DLL's import library (`.lib` file) in Windows or the shared library
+     (`.so` file) in Linux during compilation, simplifying the linking process.
 3. Single entry point:
-   - The operating system resolves function calls from the DLLs automatically, allowing the
-     application to use them seamlessly.
+   - The operating system resolves function calls from the shared libraries automatically, allowing
+     the application to use them seamlessly.
 4. Version dependency:
-   - If the required version of a DLL is missing or incompatible, the application may fail to start.
+   - If the required version of a shared library is missing or incompatible, the application may
+     fail to start.
 
 ###### How It Works in **Windows**
 
@@ -257,10 +258,12 @@
 
 ###### Explanation
 
-1.  Explicit linking, also known as **run-time dynamic linking**, gives the programmer more control,
-    allowing applications to **dynamically load shared libraries** and **access their functions**
-    during execution, rather than linking them at compile time.
-2.  The programmers will **use some specific functions to manage the dynamic linking explicitly**.
+1. Explicit linking, also known as **run-time dynamic linking**, is a dynamic linking form where the
+   application manually loads libraries during execution.
+2. It gives the programmer more control, allowing applications to **dynamically load shared
+   libraries** and **access their functions** during execution, rather than linking them at compile
+   time.
+3. The programmers will **use some specific functions to manage the dynamic linking explicitly**.
 
 ###### Characteristics
 
@@ -426,27 +429,31 @@
 
 1. Compile Main.cpp with optimization level `n` (where `0 ≤ n ≤ 3`). Higher values of `n` result in
    longer compile times and more aggressive optimizations.
-2. Compiler optimization levels adjust the types of optimizations applied during compilation to balance speed, size, and behavior.
-3. **No optimization (`-O0`)**: 
-   - Keeps debugging information intact, with no optimizations.  
+2. Compiler optimization levels adjust the types of optimizations applied during compilation to
+   balance speed, size, and behavior.
+3. **No optimization (`-O0`)**:
+   - Keeps debugging information intact, with no optimizations.
    - Best for development and debugging.
-4. **Basic optimization (`-O1`)**: 
+4. **Basic optimization (`-O1`)**:
    - Minor optimizations like dead code elimination improve speed slightly.
    - Suitable for builds needing small improvements without large compile times.
-5. **Moderate optimization (`-O2`)**: 
+5. **Moderate optimization (`-O2`)**:
    - Balances speed and code size with optimizations like loop unrolling and better register usage.
    - Ideal for production builds.
-6. **Aggressive optimization (`-O3`)**: 
-   - Adds further optimizations like vectorization, yielding higher speed but potentially increasing code size and instability.
+6. **Aggressive optimization (`-O3`)**:
+   - Adds further optimizations like vectorization, yielding higher speed but potentially increasing
+     code size and instability.
    - Best for performance-critical applications, though requires careful testing.
-7. **Optimize for size (`-Os`)**: 
+7. **Optimize for size (`-Os`)**:
    - Prioritizes a smaller binary, omitting some space-costly optimizations.
    - Useful for memory-constrained environments.
-8. **Fastest optimization (`-Ofast`)**: 
-   - Maximizes speed with non-standard optimizations, such as unsafe math operations, reducing standard compliance.
-   - Suitable for performance-critical applications that can relax stability or portability requirements.
-9. Generally, `-O2` and `-Os` are widely used for balanced builds, while `-O3` and `-Ofast` cater to performance-intensive needs where behavior can be less predictable.
-
+8. **Fastest optimization (`-Ofast`)**:
+   - Maximizes speed with non-standard optimizations, such as unsafe math operations, reducing
+     standard compliance.
+   - Suitable for performance-critical applications that can relax stability or portability
+     requirements.
+9. Generally, `-O2` and `-Os` are widely used for balanced builds, while `-O3` and `-Ofast` cater to
+   performance-intensive needs where behavior can be less predictable.
 
 #### 2. Output
 

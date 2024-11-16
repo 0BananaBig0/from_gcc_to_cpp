@@ -574,7 +574,7 @@ auto sptr2 = wptr.lock();
 if( sptr2 ) {
    ...;
 } else {
-   ...
+   ...;
 };
 </code></pre>
 <pre><code class="language-CPP">std::shared_ptr&lt; Type &gt; sptr1 = std::make_shared&lt; Type &gt;( /* constructor arguments */ );
@@ -583,7 +583,7 @@ std::weak_ptr&lt; Type &gt; wptr = sptr1;
 if( auto sptr2 = wptr.lock(); ) {
    ...;
 } else {
-   ...
+   ...;
 };
 </code></pre>
 <h4 id="circular-references">Circular References</h4>

@@ -327,6 +327,8 @@
 <ol>
 <li>Templates are C++ entities that use the <strong><code>template</code> keyword</strong> to define and use <strong>the <code>typename</code>
    or the <code>class</code> keyword</strong> to speficy a generic type .</li>
+<li>Template parameters <strong>cannot be references or pointers</strong>.</li>
+<li>Template parameters <strong>must be either types (e.g., <code>class T</code>, <code>typename T</code>) or values (e.g., <code>int N</code>)</strong>.</li>
 <li>All <strong>type parameters</strong> can be bound to <strong>default types</strong>, and all <strong>non-type parameters</strong> can be
    bound to <strong>default values</strong>.</li>
 <li>Templates empower developers to write <strong>generic and reusable code</strong>. By enabling functions and

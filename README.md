@@ -12,7 +12,7 @@
       - [Dynamic Linking (Implicit Linking and Explicit Linking)](./docs/Gcc.md#dynamic-linking-implicit-linking-and-explicit-linking)
         - [Explanation](./docs/Gcc.md#explanation-1)
         - [Characteristics](./docs/Gcc.md#characteristics-1)
-        - [Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking)](./docs/Gcc.md#implicit-linking-load-time-dynamic-linking-default-dynamic-linking)
+        - [Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking) (Standard Dynamic Linking)](./docs/Gcc.md#implicit-linking-load-time-dynamic-linking-default-dynamic-linking-standard-dynamic-linking)
           - [Explanation](./docs/Gcc.md#explanation-2)
           - [Characteristics](./docs/Gcc.md#characteristics-2)
           - [How It Works in **Windows**](./docs/Gcc.md#how-it-works-in-windows)

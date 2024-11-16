@@ -642,7 +642,7 @@ constexpr RetType var_name = funcName( para_list );
       constexpr ClassName( para_list ): ... {};
 
    private:
-      ...
+      ...;
 };
 
 constexpr ClassName obj_name( para_list );
@@ -713,7 +713,7 @@ constexpr ClassName obj_name( para_list );
 <pre><code class="language-CPP">RetType funcName() {
     // Initialized only once and retains value between calls.
     static Type count = val;
-    ...
+    ...;
 };
 </code></pre>
 <h5 id="static-global-variables"><code>static</code> Global Variables</h5>

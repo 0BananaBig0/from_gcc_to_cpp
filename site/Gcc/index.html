@@ -298,7 +298,7 @@
 <li><a href="#dynamic-linking-implicit-linking-and-explicit-linking">Dynamic Linking (Implicit Linking and Explicit Linking)</a></li>
 <li><a href="#explanation-1">Explanation</a></li>
 <li><a href="#characteristics-1">Characteristics</a></li>
-<li><a href="#implicit-linking-load-time-dynamic-linking-default-dynamic-linking">Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking)</a><ul>
+<li><a href="#implicit-linking-load-time-dynamic-linking-default-dynamic-linking-standard-dynamic-linking">Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking) (Standard Dynamic Linking)</a><ul>
 <li><a href="#explanation-2">Explanation</a></li>
 <li><a href="#characteristics-2">Characteristics</a></li>
 <li><a href="#how-it-works-in-windows">How It Works in <strong>Windows</strong></a></li>
@@ -523,27 +523,28 @@
 <li>Runtime dependencies:</li>
 <li>The executable requires the appropriate shared libraries to be present at runtime.</li>
 </ol>
-<h5 id="implicit-linking-load-time-dynamic-linking-default-dynamic-linking">Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking)</h5>
+<h5 id="implicit-linking-load-time-dynamic-linking-default-dynamic-linking-standard-dynamic-linking">Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking) (Standard Dynamic Linking)</h5>
 <h6 id="explanation_2">Explanation</h6>
 <ol>
-<li>Implicit linking, also referred to as <strong>load-time dynamic linking</strong>, is <strong>a process</strong> whereby an
-   executable is linked to shared libraries <strong>at compile time</strong>.</li>
+<li>Implicit linking, also referred to as <strong>load-time dynamic linking</strong> is a form of dynamic linking
+   where required libraries are automatically loaded at application startup.</li>
+<li>It is <strong>a process</strong> whereby an executable is linked to shared libraries <strong>at compile time</strong>.</li>
 <li>This method allows the program to <strong>utilize functions and variables</strong> defined in those libraries
    <strong>without incorporating their code directly</strong> into the executable.</li>
 </ol>
 <h6 id="characteristics_2">Characteristics</h6>
 <ol>
 <li>Automatic resolution:</li>
-<li>The operating system loads the DLLs specified in the import library when the application
-     starts.</li>
+<li>The operating system loads the shared libraries automatically when the application starts.</li>
 <li>Simplified development:</li>
-<li>Developers include the DLL's import library (<code>.lib</code> file) during compilation, simplifying the
-     linking process.</li>
+<li>Developers include the DLL's import library (<code>.lib</code> file) in Windows or the shared library
+     (<code>.so</code> file) in Linux during compilation, simplifying the linking process.</li>
 <li>Single entry point:</li>
-<li>The operating system resolves function calls from the DLLs automatically, allowing the
-     application to use them seamlessly.</li>
+<li>The operating system resolves function calls from the shared libraries automatically, allowing
+     the application to use them seamlessly.</li>
 <li>Version dependency:</li>
-<li>If the required version of a DLL is missing or incompatible, the application may fail to start.</li>
+<li>If the required version of a shared library is missing or incompatible, the application may
+     fail to start.</li>
 </ol>
 <h6 id="how-it-works-in-windows">How It Works in <strong>Windows</strong></h6>
 <ol>
@@ -586,9 +587,11 @@
 <h5 id="explicit-linking-run-time-dynamic-linking">Explicit Linking (Run-time Dynamic Linking)</h5>
 <h6 id="explanation_3">Explanation</h6>
 <ol>
-<li>Explicit linking, also known as <strong>run-time dynamic linking</strong>, gives the programmer more control,
-    allowing applications to <strong>dynamically load shared libraries</strong> and <strong>access their functions</strong>
-    during execution, rather than linking them at compile time.</li>
+<li>Explicit linking, also known as <strong>run-time dynamic linking</strong>, is a dynamic linking form where the
+   application manually loads libraries during execution.</li>
+<li>It gives the programmer more control, allowing applications to <strong>dynamically load shared
+   libraries</strong> and <strong>access their functions</strong> during execution, rather than linking them at compile
+   time.</li>
 <li>The programmers will <strong>use some specific functions to manage the dynamic linking explicitly</strong>.</li>
 </ol>
 <h6 id="characteristics_3">Characteristics</h6>
@@ -741,6 +744,31 @@
 <ol>
 <li>Compile Main.cpp with optimization level <code>n</code> (where <code>0 ≤ n ≤ 3</code>). Higher values of <code>n</code> result in
    longer compile times and more aggressive optimizations.</li>
+<li>Compiler optimization levels adjust the types of optimizations applied during compilation to
+   balance speed, size, and behavior.</li>
+<li><strong>No optimization (<code>-O0</code>)</strong>:</li>
+<li>Keeps debugging information intact, with no optimizations.</li>
+<li>Best for development and debugging.</li>
+<li><strong>Basic optimization (<code>-O1</code>)</strong>:</li>
+<li>Minor optimizations like dead code elimination improve speed slightly.</li>
+<li>Suitable for builds needing small improvements without large compile times.</li>
+<li><strong>Moderate optimization (<code>-O2</code>)</strong>:</li>
+<li>Balances speed and code size with optimizations like loop unrolling and better register usage.</li>
+<li>Ideal for production builds.</li>
+<li><strong>Aggressive optimization (<code>-O3</code>)</strong>:</li>
+<li>Adds further optimizations like vectorization, yielding higher speed but potentially increasing
+     code size and instability.</li>
+<li>Best for performance-critical applications, though requires careful testing.</li>
+<li><strong>Optimize for size (<code>-Os</code>)</strong>:</li>
+<li>Prioritizes a smaller binary, omitting some space-costly optimizations.</li>
+<li>Useful for memory-constrained environments.</li>
+<li><strong>Fastest optimization (<code>-Ofast</code>)</strong>:</li>
+<li>Maximizes speed with non-standard optimizations, such as unsafe math operations, reducing
+     standard compliance.</li>
+<li>Suitable for performance-critical applications that can relax stability or portability
+     requirements.</li>
+<li>Generally, <code>-O2</code> and <code>-Os</code> are widely used for balanced builds, while <code>-O3</code> and <code>-Ofast</code> cater to
+   performance-intensive needs where behavior can be less predictable.</li>
 </ol>
 <h4 id="2-output_8">2. Output</h4>
 <ol>
@@ -806,7 +834,7 @@ g++ -o Main.o Fun.o -o Main.exe
 <h3 id="setup-paths-of-header-files">Setup Paths of Header Files</h3>
 <h4 id="1-code_2">1. Code</h4>
 <pre><code class="language-sh">g++ Main.cpp Fun.cpp -o Main.exe -I/the/first/path/of/header/files \
-    -I/the/second/path/of/header/files ...
+    -I/the/second/path/of/header/files ...;
 </code></pre>
 <h3 id="how-to-link-multiple-static-libraries">How to Link Multiple Static Libraries</h3>
 <h4 id="1-code_3">1. Code</h4>
