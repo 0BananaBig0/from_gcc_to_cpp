@@ -1358,7 +1358,7 @@ std::future< RetType > obj_name = std::async( ... );
    operation**.
 2. It provides a mechanism to access the result of a function that runs concurrently, typically on a
    separate thread.
-3. This allows a thread to **retrieve results at some point** in the future, **once the asynchronous
+3. This allows **a thread** to **retrieve results at some point** in the future, **once the asynchronous
    task has completed**.
 4. `std::future` is generally used in **combination with `std::async`, `std::promise`, or
    thread-based libraries**.
