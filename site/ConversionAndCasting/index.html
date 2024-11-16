@@ -359,6 +359,12 @@
    process</strong>, which can be accomplished through various casting methods.</li>
 <li>Conversion and casting can <strong>impact performance</strong>, especially in performance-critical
    applications.</li>
+<li>When <strong>a conversion occurs</strong> between two types, <strong>the impact on performance depends on how
+   difficult it is to operate on those types</strong>.</li>
+<li>For example, converting between <code>int</code> and <code>float</code> can impact performance because operations on
+   <code>float</code> are generally slower.</li>
+<li>However, converting between <code>int</code> and <code>unsigned int</code> does not typically have a significant
+   performance impact, as both are integer types.</li>
 </ol>
 <h3 id="implicit-conversion">Implicit Conversion</h3>
 <h4 id="explanation_1">Explanation</h4>
