@@ -350,7 +350,7 @@ auto sptr2 = wptr.lock();
 if( sptr2 ) {
    ...;
 } else {
-   ...
+   ...;
 };
 ```
 
@@ -361,7 +361,7 @@ std::weak_ptr< Type > wptr = sptr1;
 if( auto sptr2 = wptr.lock(); ) {
    ...;
 } else {
-   ...
+   ...;
 };
 ```
 

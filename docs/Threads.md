@@ -1193,7 +1193,7 @@ void print_id( int id ) {
    std::unique_lock< std::mutex > lck( mtx );
    while( !ready )
       cv.wait( lck );
-   // ...
+   // ...;
    std::cout << "thread " << id << '\n';
 };
 

@@ -151,7 +151,7 @@ namespace SpaceName {};
 
 ```CPP
 namespace SpaceName {
-    ...
+    ...;
   };
 ```
 

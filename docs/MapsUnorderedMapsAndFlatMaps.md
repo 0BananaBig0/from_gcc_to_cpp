@@ -116,9 +116,9 @@ class Compare {
       };
       bool operator()( const KType& lhs, const KType& rhs ) const {
          if( _reverse ) {
-            ...
+            ...;
          } else {
-            ...
+            ...;
          };
       };
 };
@@ -346,9 +346,9 @@ class Compare {
       };
       bool operator()( const KType& lhs, const KType& rhs ) const {
          if( _reverse ) {
-            ...
+            ...;
          } else {
-            ...
+            ...;
          };
       };
 };
@@ -1098,9 +1098,9 @@ class Compare {
 
       bool operator()( const KType& lhs, const KType& rhs ) const {
          if( _reverse ) {
-            ...
+            ...;
          } else {
-            ...
+            ...;
          };
       };
 };
@@ -1390,9 +1390,9 @@ class Compare {
 
       bool operator()( const KType& lhs, const KType& rhs ) const {
          if( _reverse ) {
-            ...
+            ...;
          } else {
-            ...
+            ...;
          };
       };
 };

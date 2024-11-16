@@ -113,7 +113,7 @@ for ( auto& [var1, var2, ...] : container );
 ```CPP
 Type1 var1;
 Type2 var2;
-...
+...;
 std::tie( var1, var2, ... ) = initializer;
 ```
 

@@ -186,7 +186,7 @@ class ClassName;
 
 ```CPP
 class ClassName {
-   ...
+   ...;
 };
 ```
 
@@ -369,14 +369,14 @@ ClassName& obj_ref = &obj_name;
 
 ```CPP
 class {
-  ...
+  ...;
 } obj_name;
 ```
 
 ```CPP
 union {
       class {
-            ...
+            ...;
       };
       ...;
 };
@@ -385,7 +385,7 @@ union {
 ```CPP
 // In this case, members should all be public.
 class {
-  ...
+  ...;
 } obj_name{ para_list };
 ```
 

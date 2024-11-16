@@ -382,7 +382,7 @@ class ClassName {
       constexpr ClassName( para_list ): ... {};
 
    private:
-      ...
+      ...;
 };
 
 constexpr ClassName obj_name( para_list );
@@ -467,7 +467,7 @@ constexpr RetType operator"" _name( Type para, ... ) {
 RetType funcName() {
     // Initialized only once and retains value between calls.
     static Type count = val;
-    ...
+    ...;
 };
 ```
 

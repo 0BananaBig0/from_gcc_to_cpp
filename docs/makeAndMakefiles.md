@@ -139,7 +139,7 @@ target1: dependency set1
   command set1
 target2: dependency set2
   command set2
-  ...
+  ...;
 ```
 
 #### Explanation
@@ -203,7 +203,7 @@ target2: dependency set2
 #### Syntax
 
 ```Makefile
-.PHONY: a_pseudo_target1, a_pseudo_target2, ...
+.PHONY: a_pseudo_target1, a_pseudo_target2, ...;
 ```
 
 #### Explanation and Usage

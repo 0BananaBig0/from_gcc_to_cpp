@@ -529,7 +529,7 @@ g++ -o Main.o Fun.o -o Main.exe
 
 ```sh
 g++ Main.cpp Fun.cpp -o Main.exe -I/the/first/path/of/header/files \
-    -I/the/second/path/of/header/files ...
+    -I/the/second/path/of/header/files ...;
 ```
 
 ### How to Link Multiple Static Libraries

@@ -108,9 +108,9 @@ class Compare {
       };
       bool operator()( const Type& lhs, const Type& rhs ) const {
          if( _reverse ) {
-            ...
+            ...;
          } else {
-            ...
+            ...;
          };
       };
 };
@@ -327,9 +327,9 @@ class Compare {
       };
       bool operator()( const Type& lhs, const Type& rhs ) const {
          if( _reverse ) {
-            ...
+            ...;
          } else {
-            ...
+            ...;
          };
       };
 };
@@ -1046,9 +1046,9 @@ class Compare {
 
       bool operator()( const Type& lhs, const Type& rhs ) const {
          if( _reverse ) {
-            ...
+            ...;
          } else {
-            ...
+            ...;
          };
       };
 };
@@ -1317,9 +1317,9 @@ class Compare {
 
       bool operator()( const Type& lhs, const Type& rhs ) const {
          if( _reverse ) {
-            ...
+            ...;
          } else {
-            ...
+            ...;
          };
       };
 };
