@@ -609,8 +609,6 @@ g++ Main.cpp -L. -lFun -o Main.exe
 ```sh
 g++ -c Fun.cpp
 ar rcs libFun.a Fun.o
-g++ -c -fPIC Fun.cpp -o Fun.o
-g++ -shared -o libFun.so Fun.o
 g++ Main.cpp -L. -Wl,-Bstatic -lFun -Wl,-Bdynamic -o Main.exe
 ```
 
@@ -645,7 +643,6 @@ g++ Main.cpp -L. -Wl,-Bstatic -lFun -Wl,-Bdynamic -o Main.exe
 
 ```sh
 g++ -c Fun.cpp
-ar rcs libFun.a Fun.o
 g++ -c -fPIC Fun.cpp -o Fun.o
 g++ -shared -o libFun.so Fun.o
 g++ Main.cpp -L. -lFun -o Main.exe
