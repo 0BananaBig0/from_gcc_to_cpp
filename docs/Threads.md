@@ -129,15 +129,19 @@
     - [`std::shared_future`](#stdshared_future)
     - [Declaration Syntax](#declaration-syntax-2)
     - [Initialization Syntax](#initialization-syntax-2)
-      - [Members and Related Stuffs](#members-and-related-stuffs-8)
-        - [Links](#links-10)
-        - [Member Functions](#member-functions-8)
-        - [`std::future_status` (Returned by `wait_for` and `wait_until` Functions)](#stdfuture_status-returned-by-wait_for-and-wait_until-functions)
+    - [Members and Related Stuffs](#members-and-related-stuffs-8)
+      - [Links](#links-10)
+      - [Member Functions](#member-functions-8)
+      - [`std::future_status` (Returned by `wait_for` and `wait_until` Functions)](#stdfuture_status-returned-by-wait_for-and-wait_until-functions)
     - [Differences Between `std::future` and `std::shared_future`](#differences-between-stdfuture-and-stdshared_future)
   - [`std::promise`](#stdpromise)
     - [Explanation](#explanation-15)
     - [Syntax](#syntax-15)
     - [Related Stuffs](#related-stuffs-1)
+      - [Links](#links-11)
+      - [Member Functions](#member-functions-9)
+      - [Non-member Functions](#non-member-functions-3)
+      - [Helper Classes](#helper-classes)
   - [Notes](#notes-3)
 
 <!-- vim-markdown-toc -->
@@ -499,8 +503,8 @@ int main() {
 4. `std::ref` works **like a reference**, **but** it is **not a true reference**.
 5. Therefore, a function whose **parameters** are **expecting a direct reference** **cannot directly
    receive a `std::reference_wrapper`**.
-6. `std::cref` works similarly to `std::ref`, but it creates a reference wrapper for constant
-   references.
+6. **`std::cref`** works similarly to `std::ref`, but it creates **a reference wrapper for constant
+   references**.
 7. They are usually used with `std::thread` and `std::async`.
 8. Their header file is `<functional>`.
 
@@ -1270,8 +1274,8 @@ void notify_all_at_thread_exit( std::condition_variable& cond,
 
 #### Explanation
 
-1. `std::async` is **a template function** that calls `F` (with `Args` as arguments) at some point,
-   returning without waiting for the execution of `F` to complete.
+1. `std::async` is **a template function** that **calls `F` (with `Args` as arguments)** at some
+   point, **returning without waiting for the execution of `F` to complete**.
 2. The **value returned** by `F` can be **accessed through the `future` object** returned (by
    **calling its member `future::get`**).
 3. **The second version** (2) lets the caller **select a specific launching policy**, while **the
@@ -1357,16 +1361,16 @@ std::future< RetType > obj_name = std::async( ... );
 3. This allows a thread to **retrieve results at some point** in the future, **once the asynchronous
    task has completed**.
 4. `std::future` is generally used in **combination with `std::async`, `std::promise`, or
-   thread-based libraries**. It **acts as a placeholder** for the result that will eventually become
-   available.
-5. A `std::future` object **cannot be copied**, but it can be moved.
-6. Its header file is `<future>`.
+   thread-based libraries**.
+5. It **acts as a placeholder** for the result that will eventually become available.
+6. A `std::future` object **cannot be copied**, but it can be moved.
+7. Its header file is `<future>`.
 
 #### `std::shared_future`
 
-1. **The class template** `std::shared_future` provides a mechanism to access the result of
-   asynchronous operations, similar to `std::future`, except that **multiple threads are allowed to
-   wait for the same shared state**.
+1. **The class template** `std::shared_future` provides a mechanism to **access the result of
+   asynchronous operations**, similar to `std::future`, except that **multiple threads are allowed
+   to wait for the same shared state**.
 2. Unlike `std::future`, which is only moveable (so only one instance can refer to any particular
    asynchronous result), `std::shared_future` is **copyable** and **multiple shared future objects**
    may **refer to the same shared state**.
@@ -1397,14 +1401,14 @@ std::future< Type > fut_name1 = std::move( fut_name1 );
 // Default constructor.
 std::shared_future< Type > sfut_name1;
 // Copy constructor.
-std::shared_future< Type > sfut_name2 = fut_name1;
+std::shared_future< Type > sfut_name2 = sfut_name1;
 ```
 
 ```CPP
 // Default constructor.
 std::shared_future< Type > sfut_name1;
 // Move constructor.
-std::shared_future< Type > sfut_name2 = std::move( fut_name1 );
+std::shared_future< Type > sfut_name2 = std::move( sfut_name1 );
 ```
 
 ```CPP
@@ -1413,16 +1417,16 @@ std::future< Type > fut_name;
 std::shared_future< Type > sfut_name = std::move( fut_name );
 ```
 
-##### Members and Related Stuffs
+#### Members and Related Stuffs
 
-###### Links
+##### Links
 
 1. [`std::future` in cplusplus](https://cplusplus.com/reference/future/future/).
 2. [`std::future` in cppreference](https://en.cppreference.com/w/cpp/thread/future).
 3. [`std::shared_future` in cplusplus](https://cplusplus.com/reference/future/shared_future/).
 4. [`std::shared_future` in cppreference](https://en.cppreference.com/w/cpp/thread/shared_future).
 
-###### Member Functions
+##### Member Functions
 
 1. (constructor): Constructs the future object ( Only default and move ) (public member function).
 2. (destructor): Destructs the future object (public member function).
@@ -1438,7 +1442,7 @@ std::shared_future< Type > sfut_name = std::move( fut_name );
 9. `wait_until`: Waits for the result, returns if it is not available until specified time point has
    been reached (public member function).
 
-###### `std::future_status` (Returned by `wait_for` and `wait_until` Functions)
+##### `std::future_status` (Returned by `wait_for` and `wait_until` Functions)
 
 1. `std::future_status::deferred`: The shared state contains a deferred function, so the result will
    be computed only when explicitly requested.
@@ -1473,11 +1477,11 @@ std::shared_future< Type > sfut_name = std::move( fut_name );
 
 #### Explanation
 
-1. A promise is **an template class object** that can store a value of type `R` to be retrieved by a
-   `std::future` object (possibly in another thread), offering a synchronization point.
+1. A promise is **an template class object** that can **store a value of type `R` to be retrieved by
+   a `std::future` object** (possibly in another thread), **offering a synchronization point**.
 2. **On construction**, promise objects are **associated to a new shared state** on which they can
    **store either a value of type `R` or an exception** derived from `std::exception`.
-3. This shared state can be associated to a `std::future` object by calling member `get_future`.
+3. This shared state can be **associated to a `std::future` object** by calling member `get_future`.
 4. After the call, **both objects share the same shared state**:
    - **The promise object** is **the asynchronous provider** and is expected to **set a value for
      the shared state** at some point.
@@ -1485,7 +1489,7 @@ std::shared_future< Type > sfut_name = std::move( fut_name );
      of the shared state**, waiting for it to be ready, if necessary.
 5. The lifetime of the shared state lasts at least until the last object with which it is associated
    releases it or is destroyed.
-6. Therefore it can survive the promise object that obtained it in the first place if associated
+6. Therefore, it can survive the promise object that obtained it in the first place if associated
    also to a future.
 7. Its header file is `<future>`.
 
@@ -1500,7 +1504,42 @@ std::future< Type > fut_name = pro_name.get_future();
 std::shared_future< Type > sfut_name = fut_name.share();
 ```
 
+```CPP
+std::promise< Type > pro_name;
+// Convert it to a shared future.
+// Method that `std::shared_future` works with `std::promise`.
+std::shared_future< Type > sfut_name = fut_name.share();
+```
+
 #### Related Stuffs
+
+##### Links
+
+1. [`std::promise` in cplusplus](https://cplusplus.com/reference/future/promise/).
+2. [`std::promise` in cppreference](https://en.cppreference.com/w/cpp/thread/promise).
+
+##### Member Functions
+
+1. (constructor): Constructs the promise object (public member function).
+2. (destructor): Destructs the promise object (public member function).
+3. `operator=`: Assigns the shared state (public member function).
+4. `swap`: Swaps two promise objects (public member function).
+5. `get_future`: Returns a future associated with the promised result (public member function).
+6. `set_value`: Sets the result to specific value (public member function).
+7. `set_value_at_thread_exit`: Sets the result to specific value while delivering the notification
+   only at thread exit (public member function).
+8. `set_exception`: Sets the result to indicate an exception (public member function).
+9. `set_exception_at_thread_exit`: Sets the result to indicate an exception while delivering the
+   notification only at thread exit (public member function).
+
+##### Non-member Functions
+
+1. `std::swap( std::promise )`: Specializes the `std::swap` algorithm (function template).
+
+##### Helper Classes
+
+1. `std::uses_allocator< std::promise >`: specializes the `std::uses_allocator` type trait (class
+   template specialization).
 
 ### Notes
 

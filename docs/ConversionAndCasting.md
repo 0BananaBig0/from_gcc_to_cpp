@@ -77,6 +77,12 @@
    process**, which can be accomplished through various casting methods.
 5. Conversion and casting can **impact performance**, especially in performance-critical
    applications.
+6. When **a conversion occurs** between two types, **the impact on performance depends on how
+   difficult it is to operate on those types**.
+7. For example, converting between `int` and `float` can impact performance because operations on
+   `float` are generally slower.
+8. However, converting between `int` and `unsigned int` does not typically have a significant
+   performance impact, as both are integer types.
 
 ### Implicit Conversion
 
