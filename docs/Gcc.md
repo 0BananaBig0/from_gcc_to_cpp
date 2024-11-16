@@ -426,6 +426,27 @@
 
 1. Compile Main.cpp with optimization level `n` (where `0 ≤ n ≤ 3`). Higher values of `n` result in
    longer compile times and more aggressive optimizations.
+2. Compiler optimization levels adjust the types of optimizations applied during compilation to balance speed, size, and behavior.
+3. **No optimization (`-O0`)**: 
+   - Keeps debugging information intact, with no optimizations.  
+   - Best for development and debugging.
+4. **Basic optimization (`-O1`)**: 
+   - Minor optimizations like dead code elimination improve speed slightly.
+   - Suitable for builds needing small improvements without large compile times.
+5. **Moderate optimization (`-O2`)**: 
+   - Balances speed and code size with optimizations like loop unrolling and better register usage.
+   - Ideal for production builds.
+6. **Aggressive optimization (`-O3`)**: 
+   - Adds further optimizations like vectorization, yielding higher speed but potentially increasing code size and instability.
+   - Best for performance-critical applications, though requires careful testing.
+7. **Optimize for size (`-Os`)**: 
+   - Prioritizes a smaller binary, omitting some space-costly optimizations.
+   - Useful for memory-constrained environments.
+8. **Fastest optimization (`-Ofast`)**: 
+   - Maximizes speed with non-standard optimizations, such as unsafe math operations, reducing standard compliance.
+   - Suitable for performance-critical applications that can relax stability or portability requirements.
+9. Generally, `-O2` and `-Os` are widely used for balanced builds, while `-O3` and `-Ofast` cater to performance-intensive needs where behavior can be less predictable.
+
 
 #### 2. Output
 
