@@ -468,9 +468,14 @@
    involved.</li>
 </ol>
 <h6 id="syntax_4">Syntax</h6>
-<pre><code class="language-CPP">ClassName&amp; operator=(ClassName&amp;&amp; other) noexcept {
-    // Custom move logic here.
-    return *this;
+<pre><code class="language-CPP">ClassName&amp; operator=( ClassName&amp;&amp; other ) noexcept {
+   // If moved to the same object, nothing need to be done.
+   if( this != &amp;other ) {
+      // Custom move logic here.
+      // Release this object's resources.
+      // Move the other object's resources into this object.
+   }
+   return *this;
 };
 </code></pre>
 <h4 id="conversion-operator">Conversion Operator</h4>

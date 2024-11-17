@@ -320,11 +320,11 @@
 <li><a href="#lvalues-and-rvalues-value-categories-in-c">Lvalues and Rvalues: Value Categories in C++</a><ul>
 <li><a href="#lvalues-left-values">Lvalues (Left Values)</a></li>
 <li><a href="#rvalues-right-values">Rvalues (Right Values)</a></li>
+<li><a href="#how-to-identify-whether-an-object-is-an-lvalue-or-an-rvalue">How to Identify Whether an Object is an Lvalue or an Rvalue</a></li>
 <li><a href="#lvalue-references-type">Lvalue References (<code>Type&amp;</code>)</a></li>
 <li><a href="#explanation-7">Explanation</a></li>
 <li><a href="#usage">Usage</a></li>
 <li><a href="#notes">Notes</a></li>
-<li><a href="#how-to-identify-whether-a-value-is-an-lvalue-or-an-rvalue">How to Identify Whether a Value is an Lvalue or an Rvalue</a></li>
 <li><a href="#rvalue-references-type">Rvalue References (<code>Type&amp;&amp;</code>)</a></li>
 <li><a href="#explanation-8">Explanation</a></li>
 <li><a href="#usage-1">Usage</a></li>
@@ -337,8 +337,8 @@
 </ul>
 </li>
 <li><a href="#interface">Interface</a></li>
-<li><a href="#keyword">Keyword</a></li>
-<li><a href="#type-specifier">Type Specifier</a></li>
+<li><a href="#keywords">Keywords</a></li>
+<li><a href="#type-specifiers">Type Specifiers</a></li>
 <li><a href="#segmentation-fault-linux-and-access-violation-win">Segmentation Fault (Linux) and Access Violation (Win)</a></li>
 <li><a href="#notes-1">Notes</a></li>
 </ul>
@@ -372,8 +372,8 @@
    retain everything you consider necessary, like a simple tutorial.</li>
 <li>Lastly, it’s important to note that different compilers have slightly different implementations
    of the Standard Template Library (STL). While they provide the same library, there may be minor
-   variations in implementation. For instance, in std::vector, if the size exceeds its capacity, it
-   grows by 50% in Clang, whereas it grows by 100% in GCC.</li>
+   variations in implementation. For instance, in <code>std::vector</code>, if the size exceeds its capacity,
+   it grows by 50% in Clang, whereas it grows by 100% in GCC.</li>
 <li><strong>Ask ChatGPT the following question</strong> to learn more:</li>
 <li>There are many different STL implementations in C++; some are more efficient than the default
      STL, such as EASTL. Why hasn't the default STL been replaced with these more efficient
@@ -385,15 +385,17 @@
 <ol>
 <li>The term declaration refers to the introduction of <strong>a variable, function, class, or other entity
    to the program, specifying its name and type without allocating storage or providing an
-   implementation</strong>. It <strong>merely states</strong> that a function, class, struct or variable <strong>exists</strong>
-   without concerning itself with a definition.</li>
+   implementation</strong>.</li>
+<li>It <strong>merely states</strong> that a function, class, struct or variable <strong>exists</strong> without concerning
+   itself with a definition.</li>
 </ol>
 <h4 id="forward-declarations">Forward Declarations</h4>
 <ol>
 <li>It is <strong>a declaration</strong> of a class, function, or variable that <strong>informs the compiler of its
-    existence without providing the full definition</strong> at that point. It allows the compiler to
-    handle references to an entity (e.g., a class or a function) without needing to know all the
-    details at that time. The complete definition is provided later in the code.</li>
+    existence without providing the full definition</strong> at that point.</li>
+<li>It allows the compiler to handle references to an entity (e.g., a class or a function) without
+    needing to know all the details at that time.</li>
+<li>The complete definition is provided later in the code.</li>
 <li>This is typically used to <strong>improve compilation times</strong>, <strong>resolve circular dependencies</strong>, or
     when the full details of the entity are not yet required.</li>
 </ol>
@@ -425,14 +427,15 @@
 <li><strong>Traditionally</strong>, a temporary variable <strong>must have a name</strong>.</li>
 <li>However, <strong>in C++</strong>, temporary variables can <strong>also refer to unnamed temporary objects</strong> that
    arise during operations, such as the result of a function call or type conversion, which exist
-   only for the duration of their use. They help simplify code without requiring permanent storage.</li>
+   only for the duration of their use.</li>
+<li>They help simplify code without requiring permanent storage.</li>
 </ol>
 <h4 id="instances">Instances</h4>
 <h5 id="explanation_1">Explanation</h5>
 <ol>
-<li>An instance is <strong>a concrete occurrence</strong> of <strong>a particular data type</strong>. This term is most
-   commonly used in the context of user-defined types like <strong>classes or structs</strong>. When you create
-   an instance of a class, you're creating an object of that class type.</li>
+<li>An instance is <strong>a concrete occurrence</strong> of <strong>a particular data type</strong>.</li>
+<li>This term is most commonly used in the context of user-defined types like <strong>classes or structs</strong>.</li>
+<li>When you create an instance of a class, you're creating an object of that class type.</li>
 </ol>
 <h5 id="characteristics_1">Characteristics</h5>
 <ol>
@@ -541,8 +544,8 @@
 <ol>
 <li><strong><code>nullptr</code></strong> is a <strong>null pointer</strong> constant introduced in C++11.</li>
 <li>It represents a pointer that does <strong>not point to any valid memory location</strong>.</li>
-<li>It provides type safety compared to the traditional NULL, which is typically <strong>defined as 0</strong>.</li>
-<li><strong>Access nullptr: segmentation fault (Linux), access violation (Win)</strong>.</li>
+<li>It provides type safety compared to the traditional <code>NULL</code>, which is typically <strong>defined as 0</strong>.</li>
+<li><strong>Access <code>nullptr</code>: segmentation fault (Linux), access violation (Win)</strong>.</li>
 </ol>
 <h5 id="dangling-pointers">Dangling Pointers</h5>
 <ol>
@@ -595,8 +598,8 @@
    that <strong>evaluates to a value</strong>.</li>
 <li>Expressions are the building blocks of C++ programs and can range from simple values like <code>42</code> to
    complex operations involving multiple variables and function calls.</li>
-<li>They are <strong>evaluated at runtime</strong> to produce a result, which may or may not be used further in
-   the program.</li>
+<li>They <strong>can be evaluated at runtime</strong> to produce a result if possible, which may or may not be
+   used further in the program.</li>
 </ol>
 <h4 id="types-of-expressions-in-c">Types of Expressions in C++</h4>
 <ol>
@@ -655,8 +658,8 @@
 <h3 id="lvalues-and-rvalues-value-categories-in-c">Lvalues and Rvalues: Value Categories in C++</h3>
 <h4 id="lvalues-left-values">Lvalues (Left Values)</h4>
 <ol>
-<li>A lvalue refers to <strong>an object or memory location</strong> that <strong>persists</strong> beyond a single expression
-   and occupies some <strong>identifiable location</strong> in memory (i.e., it has an address).</li>
+<li>A lvalue refers to <strong>an object or memory location</strong> that <strong>persists beyond a single expression</strong>
+   and <strong>occupies some identifiable location</strong> in memory (i.e., it <strong>has an address</strong>).</li>
 <li>It <strong>can</strong> appear on the <strong>left side</strong> or the <strong>right side</strong> of an assignment</li>
 <li><strong>Typically</strong>, it refers to <strong>variables</strong>, <strong>array elements</strong>, or <strong>dereferenced pointers</strong>.</li>
 <li>It <strong>can take the address</strong> of an lvalue using the address-of operator (<code>&amp;</code>).</li>
@@ -670,6 +673,11 @@
 <li>It <strong>cannot</strong> appear on the <strong>left-hand side</strong> of an assignment.</li>
 <li>Its <strong>examples</strong> include <strong>literals</strong>, <strong>temporary results</strong> of expressions, and <strong>return
    values</strong> of functions without <code>&amp;</code>.</li>
+</ol>
+<h4 id="how-to-identify-whether-an-object-is-an-lvalue-or-an-rvalue">How to Identify Whether an Object is an Lvalue or an Rvalue</h4>
+<ol>
+<li>Define a normal reference for an object, if it can be store by a reference, it is an lvalue.
+    Otherwise, it is an rvalue.</li>
 </ol>
 <h4 id="lvalue-references-type">Lvalue References (<code>Type&amp;</code>)</h4>
 <h5 id="explanation_7">Explanation</h5>
@@ -689,11 +697,6 @@
 <li>A <strong>normal</strong> reference <strong>can't</strong> store an <strong>rvalue</strong> <strong>but</strong> a <strong>const reference can</strong>.</li>
 <li>A <strong>normal reference parameter</strong> of a function <strong>can't</strong> accept <strong>an rvalue</strong> <strong>but</strong> a <strong>const
    reference parameter can</strong>.</li>
-</ol>
-<h4 id="how-to-identify-whether-a-value-is-an-lvalue-or-an-rvalue">How to Identify Whether a Value is an Lvalue or an Rvalue</h4>
-<ol>
-<li>Define a normal reference for a value, if it can be store by a reference, it is an lvalur.
-    Otherwise, it is an rvalue.</li>
 </ol>
 <h4 id="rvalue-references-type">Rvalue References (<code>Type&amp;&amp;</code>)</h4>
 <h5 id="explanation_8">Explanation</h5>
@@ -717,7 +720,7 @@
 <li><code>std::move</code> is the mechanism used to cast an lvalue into an rvalue, signaling that you want to
      move the object instead of copying it.</li>
 <li><strong>Even</strong> when a function <strong>receives arguments as rvalue references</strong> (i.e., when they are passed
-   as <code>Type&amp;&amp;</code>), you still need to <strong>use <code>std::move</code> explicitly</strong> to transfer ownership of these
+   as <code>Type&amp;&amp;</code>), you <strong>still need to use <code>std::move</code> explicitly</strong> to transfer ownership of these
    arguments to other objects.</li>
 </ol>
 <h5 id="usage_1">Usage</h5>
@@ -757,12 +760,15 @@
 <li><strong>Even</strong> when a function <strong>receives arguments as rvalue references</strong> (i.e., when they are passed
    as <code>Type&amp;&amp;</code>), you still need to <strong>use <code>std::move</code> explicitly</strong> to transfer ownership of these
    arguments to other objects.</li>
+<li>When <strong>an object</strong> is <strong>transferred into an rvalue reference</strong> with <code>std::move</code> and <strong>passed into
+   a function</strong> that receives an rvalue reference, whether the original object can still <strong>access
+   its original data</strong> <strong>depends on how the function process the rvalue reference</strong>.</li>
 </ol>
 <h5 id="usage_3">Usage</h5>
 <ol>
 <li>Everytime, if you want to assign <strong>an object</strong> that you want to <strong>remove</strong> after assigning to a
    variable, you can use <code>std::move</code>.</li>
-<li>To deal with <strong>double deletion</strong>, <strong>the original pointer</strong> should point a <strong>nullptr</strong> after
+<li>To deal with <strong>double deletion</strong>, <strong>the original pointer</strong> should point a <strong><code>nullptr</code></strong> after
    <strong><code>std::move</code></strong> moved its data to another pointer.</li>
 </ol>
 <h3 id="interface">Interface</h3>
@@ -773,15 +779,16 @@
    pure <code>virtual</code> functions</strong>, which means that it declares functions that <strong>must be implemented by
    derived classes</strong> but does <strong>not provide any implementation of its own</strong>.</li>
 <li><strong>It only contains pure <code>virtual</code> functions</strong>.</li>
+<li><a href="../Classes/#pure-virtual-functions-and-abstract-class-1">Pure <code>virtual</code> Functions and Abstract Class</a></li>
 </ol>
-<h3 id="keyword">Keyword</h3>
+<h3 id="keywords">Keywords</h3>
 <ol>
 <li>A keyword is <strong>a reserved word</strong> that has a predefined meaning in the language and <strong>cannot be
    used as an identifier</strong> (such as a variable name, function name, etc.).</li>
 <li>Keywords are part of the C++ syntax and represent fundamental constructs or operations in the
    language.</li>
 </ol>
-<h3 id="type-specifier">Type Specifier</h3>
+<h3 id="type-specifiers">Type Specifiers</h3>
 <ol>
 <li>A type specifier is <strong>used to define the type of a variable, function return value, or object</strong>.</li>
 <li>Type specifiers tell the compiler what kind of data the variable will hold or the function will
@@ -799,7 +806,8 @@
 <h3 id="notes_1">Notes</h3>
 <ol>
 <li>C++: performance, memory, optimization, safe or not; scope ({})( where we can access the
-   function/object/... ) and lifetime; make code clearer.</li>
+   function/object/... ) and lifetime; make code clearer; compile time and runtime; limitation and
+   usage; definiton.</li>
 </ol></div>
             </div>
         </div>

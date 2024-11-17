@@ -351,6 +351,7 @@
 </ul>
 </li>
 <li><a href="#callback-functions-and-registeration-functions">Callback Functions and Registeration Functions</a></li>
+<li><a href="#function-signatures">Function Signatures</a></li>
 <li><a href="#hiding-overloading-overriding-and-overwriting">Hiding, Overloading, Overriding, and Overwriting</a></li>
 <li><a href="#stdfunction"><code>std::function</code></a></li>
 </ul>
@@ -779,6 +780,47 @@ template&lt; typename... Ts &gt; RetType funcName( Ts... args ) {
 <li>It <strong>takes a function pointer as an argument</strong> and <strong>stores or uses it later</strong>, allowing other
      functions to invoke it when needed.</li>
 <li>It’s essentially a way of registering a function for future calls.</li>
+</ol>
+<h3 id="function-signatures">Function Signatures</h3>
+<ol>
+<li><strong>A function signature</strong> is <strong>the unique combination of elements</strong> that the compiler <strong>uses to
+   identify a function</strong> and differentiate it from others.</li>
+<li>The signature <strong>determines if functions are overloads or redefinitions</strong> and allows the compiler
+   to select the correct function during compilation.</li>
+<li>The function signature in C++ <strong>includes</strong>:</li>
+<li><strong>Function name</strong>: The name of the function.</li>
+<li><strong>Parameter list</strong>:<ul>
+<li>The <strong>number</strong> of parameters.</li>
+<li>The <strong>types</strong> of each parameter.</li>
+<li>The <strong>order</strong> of parameters.</li>
+<li>Whether parameters are <strong>references (<code>&amp;</code>), rvalue references (<code>&amp;&amp;</code>)</strong>, or <strong>pointers</strong> (<code>*</code>).</li>
+<li><strong>Const qualifiers</strong> on <strong>reference</strong> and <strong>pointer</strong> parameters. (<strong>Only references and
+   pointers</strong>).</li>
+</ul>
+</li>
+<li><strong>All keywords and specifiers that appear after the parameter list but before the function body
+   or <code>;</code> are considered part of the function signature in C++</strong>:</li>
+<li><strong><code>const</code> qualifier</strong>.</li>
+<li><strong>Reference qualifiers</strong>: For example, <code>RetType funcName( ... ) &amp;</code> (lvalue qualifier) is
+     distinct from <code>RetType funcName( ... ) &amp;&amp;</code> (rvalue qualifier).<ul>
+<li><code>&amp;</code> means the function can only be called on lvalues (objects that have a persistent
+   address).</li>
+<li><code>&amp;&amp;</code> means the function can only be called on rvalues (temporary objects).</li>
+</ul>
+</li>
+<li><strong><code>volatile</code> qualifier</strong>: Rarely used, but <code>RetType funcName( ... ) volatile</code> would be distinct
+     from <code>RetType funcName( ... )</code>.<ul>
+<li>The <code>volatile</code> qualifier indicates that the value of the variable can be changed by an
+   external source, such as hardware or another thread.</li>
+<li>This can prevent optimizations that might otherwise assume the variable is not modified
+   unexpectedly.</li>
+</ul>
+</li>
+<li><strong><code>noexcpet</code> qualifier</strong>.</li>
+<li>However, a function signature in C++ does <strong>not include</strong>:</li>
+<li>The <strong>return type</strong> of the function.</li>
+<li>The <strong>const qualifier</strong> of parameters <strong>passed by value</strong> (e.g., <code>int x</code> vs. <code>const int x</code>).</li>
+<li><strong>Default argument values</strong>.</li>
 </ol>
 <h3 id="hiding-overloading-overriding-and-overwriting">Hiding, Overloading, Overriding, and Overwriting</h3>
 <ol>

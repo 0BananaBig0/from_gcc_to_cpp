@@ -73,8 +73,8 @@
 #### Explanation
 
 1. Structured binding allows you to **declare multiple variables** that can **simultaneously hold
-   the values** extracted from **tuple-like structures** (such as `std::tuple`, `std::pair`, arrays,
-   or user-defined types).
+   the values** extracted from **tuple-like structures** (such as `std::tuple`, `std::pair`,
+   fixed-size arrays, or user-defined types).
 2. It simplifies the syntax for unpacking values and allows for more expressive code.
 3. **The number of variables** in `[var1, var2, ...]` is equal to **the number of values** provided
    by the `initializer`.
@@ -82,16 +82,23 @@
 #### Syntax
 
 ```CPP
+// Decomposition.
+// Except for fixed-size arrays, `std::tuple`, and `std::pair`, other containers can only use this
+// syntax to work with a single tuple-like element.
 auto [var1, var2, ...] = initializer;
 ```
 
 ```CPP
+// Decomposition.
+// Except for fixed-size arrays, `std::tuple`, and `std::pair`, other containers can only use this
+// syntax to work with a single tuple-like element.
 auto& [var1, var2, ...] = initializer;
 ```
 
 ```CPP
-// Use it with a range-based for loop.
-for ( auto& [var1, var2, ...] : container );
+// Decomposition with a range-based for loop.
+// All containers can use structured bindings when iterating over elements.
+for ( auto& [var1, var2, ...] : container ) { ...; };
 ```
 
 ### `std::tie`

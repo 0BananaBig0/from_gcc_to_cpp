@@ -57,8 +57,8 @@
       - [Explanation](#explanation-10)
       - [Usage](#usage-3)
   - [Interface](#interface)
-  - [Keyword](#keyword)
-  - [Type Specifier](#type-specifier)
+  - [Keywords](#keywords)
+  - [Type Specifiers](#type-specifiers)
   - [Segmentation Fault (Linux) and Access Violation (Win)](#segmentation-fault-linux-and-access-violation-win)
   - [Notes](#notes-1)
 
@@ -526,14 +526,14 @@
 3. **It only contains pure `virtual` functions**.
 4. [Pure `virtual` Functions and Abstract Class](./Classes.md#pure-virtual-functions-and-abstract-class-1)
 
-### Keyword
+### Keywords
 
 1. A keyword is **a reserved word** that has a predefined meaning in the language and **cannot be
    used as an identifier** (such as a variable name, function name, etc.).
 2. Keywords are part of the C++ syntax and represent fundamental constructs or operations in the
    language.
 
-### Type Specifier
+### Type Specifiers
 
 1. A type specifier is **used to define the type of a variable, function return value, or object**.
 2. Type specifiers tell the compiler what kind of data the variable will hold or the function will

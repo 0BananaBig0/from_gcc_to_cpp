@@ -1023,6 +1023,11 @@ class Derived: public Base {
    retain their original state.</li>
 <li>Move constructors <strong>should be marked noexcept</strong> to ensure <strong>compatibility</strong> with standard
    containers and to optimize <strong>performance</strong>.</li>
+<li>Move constructors <strong>behave similarly to shallow copy constructors</strong> but use move semantics and
+   rvalue references.</li>
+<li><strong>A shallow move</strong> resembles <strong>a shallow copy</strong> but <strong>without</strong> assigning all pointers in the
+   source object to <strong><code>nullptr</code></strong>, whereas <strong>a deep move</strong> resembles <strong>a shallow copy</strong> <strong>with</strong> all
+   pointers in the source object being assigned to <strong><code>nullptr</code></strong>.</li>
 </ol>
 <h5 id="default-move-constructors">Default Move Constructors</h5>
 <h6 id="explanation_18">Explanation</h6>
@@ -1037,7 +1042,7 @@ class Derived: public Base {
    without resetting any pointer members of the original object to <code>nullptr</code></strong>.</li>
 <li>This can cause issues such as <strong>double deletions</strong> and <strong>dangling pointers</strong>.</li>
 <li>While terms like "shallow move" and "deep move" are <strong>not part of standard C++ terminology</strong>,
-   "unsafe copy" and "safe copy" better convey the risks and benefits of different copying
+   "unsafe move" and "safe move" better convey the risks and benefits of different copying
    strategies.</li>
 <li>The default move constructor is <strong>typically marked as noexcept</strong>, improving performance by
    ensuring compatibility with standard containers, such as <code>std::vector</code>.</li>

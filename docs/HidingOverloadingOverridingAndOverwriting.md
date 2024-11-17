@@ -111,7 +111,9 @@ class ClassName {
    function**.
 3. This means, for a function in a derived class to override a function in a base class, it must
    **have the same name**, **parameter list**, and **qualifiers** as the function in the base class.
-4. Overriding is **resolved at runtime** (**dynamic polymorphism**).
+4. In addition, their **return types** must be **the same type** or **a covariant return type (a
+   subtype of the base class's return type, like subclass types)**.
+5. Overriding is **resolved at runtime** (**dynamic polymorphism**).
 
 #### Syntax
 

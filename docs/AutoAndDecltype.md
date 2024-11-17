@@ -28,7 +28,8 @@
    lvalue references).
 4. If the variable is initialized with **a const value**, `auto` **deduces a non-const type**.
 5. When the variable is initialized with **an initializer list**, `auto` deduces the type to be the
-   corresponding container type (e.g., `std::initializer_list`).
+   corresponding container type (e.g., `auto` = `std::initializer_list` if
+   `auto var_name = { ... }`.).
 6. `auto` **maintains type safety** by ensuring that the deduced type matches the initializer.
 
 #### Syntax
@@ -66,7 +67,7 @@ auto var_name = initializer;
 2. `auto` can deduce whether a type is a pointer based on the initializer.
    `auto var_name = ptr_name;` `<=>` `auto* var_name = ptr_name; \\ **Better**` However, if you use
    `auto` to **deduce a type with a pointer** as the initializer, you'd better **specify it
-   explicitly with a star ( `*` )**.
+   explicitly with a star** (`*`).
 3. `auto` **cannot deduce** whether a type is **a reference** based on the initializer. Therefore,
    If you want the type to be deduced as a reference, **specify it explicitly with `&`**.
    `auto & var_name = ini_name;`
@@ -91,8 +92,9 @@ auto var_name = initializer;
 3. **The inference result** is **a reference type** if the expression is **an lvalue enclosed in
    parentheses**.
 4. **Otherwise**, the inference result is **the the actual type** of the expression.
-5. `decltype` does **not evaluate the expression**; it merely inspects it to determine the type.
+5. `decltype` does **not evaluate the expression**; it **merely inspects it** to determine the type.
 6. It ensures that the deduced type is consistent with the expression, aiding in **type-safe code**.
+7. **The expression cannot be `{ ... }`**.
 
 #### Syntax
 
@@ -119,7 +121,7 @@ decltype( expression )
    expression is already a reference. Although these four expressions yield the same inference
    result, the first option is preferred.
 2. **Add `const`** as a prefix to `decltype( expression )` if you want to **deduce a result as a
-   const type**, even if the expression is already a const type.
+   const type**, even if the expression is already a `const` type.
 3. **Use `decltype( expression )`** instead of `decltype( expression )*`,
    `decltype( ( expression ) )`, or `decltype( ( expression ) )*` if the expression is **a
    pointer**; the latter three do not yield the same inference result as the former.

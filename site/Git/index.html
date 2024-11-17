@@ -355,6 +355,11 @@ git commit -m &quot;Your comments&quot;
 <li>It is a symbolic reference that points to the default branch of the origin remote repository,
      often pointing to origin/master.</li>
 <li>It helps Git determine which branch to track for new clones of the repository.</li>
+<li>origin</li>
+<li>origin is the default name given to a remote repository when you first clone a repository or
+     add a remote with the command <code>git remote add origin TheRemoteRepositoryLink</code></li>
+<li>It is a shorthand alias used to refer to that remote repository, making it easier to work with
+     Git commands without typing the full URL each time.</li>
 </ol>
 <h3 id="add-files-to-a-branch">Add Files to a Branch</h3>
 <pre><code class="language-SH">git add TargetList
@@ -387,8 +392,9 @@ git reset CommitNumber(A sequence of number) TargetList(Optional)
 git reset --hard CommitNumber(A sequence of number) TargetList(Optional)
 </code></pre>
 <h3 id="link-the-local-repository-to-a-remote-repository">Link the Local Repository to a Remote Repository</h3>
-<pre><code class="language-SH">git remote add origin TheRemoteRepositoryLink
-git push -u origin CurrentBranch
+<pre><code class="language-SH">git remote add origin TheRemoteRepositoryLink # Connect the local repository to the remote one.
+git remote -v # Verify the remote link.
+git push -u origin CurrentBranch # Push local changes to the remote.
 </code></pre>
 <h3 id="clone-a-remote-repository">Clone a Remote Repository</h3>
 <pre><code class="language-SH">git clone TheRemoteRepositoryLink
@@ -427,7 +433,9 @@ git switch ANewBranch # Switch
 <h3 id="merge-another-branch-into-the-current-branch">Merge Another Branch into the Current Branch</h3>
 <pre><code class="language-SH">git merge AnotherBranch
 </code></pre>
-<pre><code class="language-SH">git merge --no-ff -m &quot;Your comments&quot; AnotherBranch # Ban fast forward
+<pre><code class="language-SH">git merge --no-ff -m &quot;Your comments&quot; AnotherBranch # Ban fast-forward
+# In Git, &quot;fast-forward&quot; is a type of merge operation that happens when there is no divergent history
+# between the current branch and the branch you're merging.
 </code></pre>
 <h3 id="delete-a-branch">Delete a Branch</h3>
 <pre><code class="language-SH">git branch -d ABranch

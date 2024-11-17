@@ -494,8 +494,11 @@ static Type var_name;
    class**.
 2. They are **accessed using the class name** instead of the object name.
 3. `static` keyword **only changes their lifetime**; it does **not affect their visibility**.
-4. We should **define or initialize it outside the class**.
-5. In fact, `static` members are **`static` variables defined within a namespace**.
+4. **Non-inline or non-constexpr** `static` member variables should be **defined or initialized
+   outside the class**.
+5. **`inline` or `constexpr`** `static` member variables can be **defined or initialized inside or
+   outside the class**.
+6. In fact, `static` members are **`static` variables defined within a namespace**.
 
 ###### Syntax
 
@@ -504,14 +507,31 @@ class ClassName {
    public:
       // Declaration of a static public class member.
       static Type1 _staticMember1;
+      static Type2 _staticMember2;
+      static inline Type3 _staticMember3;
+      static constexpr Type4 _staticMember4;
+      static inline Type5 _staticMember5 = val5;
+      static constexpr Type6 _staticMember6 = val6;
 
    private:
       // Declaration of a static private class member.
-      static Type2 _staticMember2;};
+      static Type7 _staticMember7;
+      static Type8 _staticMember8;
+      static inline Type9 _staticMember9;
+      static constexpr Type10 _staticMember10;
+      static inline Type11 _staticMember11 = val11;
+      static constexpr Type12 _staticMember12 = val12;
+};
 
 // Providing definition and initialization for the static member.
-Type1 ClassName::_staticMember1 = 0;
-Type2 ClassName::_staticMember2 = 0;
+Type1 ClassName::_staticMember1 = val1;
+Type2 ClassName::_staticMember2 = val2;
+Type3 ClassName::_staticMember3 = val3;
+Type4 ClassName::_staticMember4 = val4;
+Type7 ClassName::_staticMember7 = val7;
+Type8 ClassName::_staticMember2 = val8;
+Type9 ClassName::_staticMember9 = val9;
+Type10 ClassName::_staticMember10 = val10;
 ```
 
 ##### `static` Methods (`static` Member Functions)
@@ -530,13 +550,24 @@ Type2 ClassName::_staticMember2 = 0;
 
 ```CPP
 class ClassName {
-public:
-    static RetType funcName( para_list ) {
-        // Function body.
-    };
+   public:
+      static RetType funcName( para_list ){
+         // Function body.
+      };
 };
 
 RetType var_name = ClassName::funcName( para_list );
+```
+
+```CPP
+class ClassName {
+   public:
+      static RetType funcName( para_list );
+};
+
+RetType var_name = ClassName::funcName( para_list ){
+   // Function body.
+};
 ```
 
 ##### `static` Global Functions

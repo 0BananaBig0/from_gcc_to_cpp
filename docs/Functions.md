@@ -67,6 +67,7 @@
     - [Common Syntax](#common-syntax)
     - [Links](#links)
   - [Callback Functions and Registeration Functions](#callback-functions-and-registeration-functions)
+  - [Function Signatures](#function-signatures)
   - [Hiding, Overloading, Overriding, and Overwriting](#hiding-overloading-overriding-and-overwriting)
 - [`std::function`](#stdfunction)
 
@@ -603,6 +604,41 @@ template< typename... Ts > RetType funcName( Ts... args ) {
    - It **takes a function pointer as an argument** and **stores or uses it later**, allowing other
      functions to invoke it when needed.
    - It’s essentially a way of registering a function for future calls.
+
+### Function Signatures
+
+1. **A function signature** is **the unique combination of elements** that the compiler **uses to
+   identify a function** and differentiate it from others.
+2. The signature **determines if functions are overloads or redefinitions** and allows the compiler
+   to select the correct function during compilation.
+3. The function signature in C++ **includes**:
+   - **Function name**: The name of the function.
+   - **Parameter list**:
+     - The **number** of parameters.
+     - The **types** of each parameter.
+     - The **order** of parameters.
+     - Whether parameters are **references (`&`), rvalue references (`&&`)**, or **pointers** (`*`).
+     - **Const qualifiers** on **reference** and **pointer** parameters. (**Only references and
+       pointers**).
+4. **All keywords and specifiers that appear after the parameter list but before the function body
+   or `;` are considered part of the function signature in C++**:
+   - **`const` qualifier**.
+   - **Reference qualifiers**: For example, `RetType funcName( ... ) &` (lvalue qualifier) is
+     distinct from `RetType funcName( ... ) &&` (rvalue qualifier).
+     - `&` means the function can only be called on lvalues (objects that have a persistent
+       address).
+     - `&&` means the function can only be called on rvalues (temporary objects).
+   - **`volatile` qualifier**: Rarely used, but `RetType funcName( ... ) volatile` would be distinct
+     from `RetType funcName( ... )`.
+     - The `volatile` qualifier indicates that the value of the variable can be changed by an
+       external source, such as hardware or another thread.
+     - This can prevent optimizations that might otherwise assume the variable is not modified
+       unexpectedly.
+   - **`noexcpet` qualifier**.
+5. However, a function signature in C++ does **not include**:
+   - The **return type** of the function.
+   - The **const qualifier** of parameters **passed by value** (e.g., `int x` vs. `const int x`).
+   - **Default argument values**.
 
 ### Hiding, Overloading, Overriding, and Overwriting
 
