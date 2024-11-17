@@ -79,7 +79,7 @@ void processMarkdownFiles() {
                   break;
                }
                size_t special_char_index = 0;
-               for( size_t i = 0; i < target_line.size(); i++ ) {
+               for( size_t i = target_line.size() - 1; i > 0; i-- ) {
                   if( target_line[i] == '#' ) {
                      special_char_index = i;
                      break;
