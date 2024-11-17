@@ -1,5 +1,7 @@
+#include <filesystem>
 #include <iostream>
 #include <fstream>
+#include <optional>
 #include <string>
 
 using namespace std;
@@ -19,17 +21,17 @@ void clearFile( const string& filename ) {
 }
 
 // Function to process the FromGccToCPP.md and generate the README.md
-void processMarkdownFiles() {
+void processMarkdownFiles( const string& root_path ) {
    // Check if README.md exists. If it does, clear its content. If not, create it.
-   string readme_file = "README.md";
+   string readme_file = root_path + "/README.md";
    clearFile( readme_file );
    // Create or open README.md for writing
    ofstream readme( readme_file, ios::out );
 
    // Read the FromGccToCPP.md file
-   ifstream input_file( "./docs/FromGccToCPP.md" );
+   ifstream input_file( root_path + "/docs/FromGccToCPP.md" );
    if( !input_file.is_open() ) {
-      std::cout << "Fail to open FromGccToCPP.md." << std::endl;
+      cout << "Fail to open FromGccToCPP.md." << endl;
       return;
    }
 
@@ -38,7 +40,7 @@ void processMarkdownFiles() {
    while( getline( input_file, line ) ) {
       if( !first_line_processed ) {
          // Extract the first line from FromGccToCPP.md
-         readme << line << std::endl;
+         readme << line << endl;
          first_line_processed = true;
          continue;
       }
@@ -106,7 +108,26 @@ void processMarkdownFiles() {
    readme.close();
 }
 
+optional< filesystem::path > findGitRoot( const filesystem::path& startPath ) {
+   auto currentPath = startPath;
+
+   while( !currentPath.empty() ) {
+      // Check if ".git" exists in the current directory
+      if( filesystem::exists( currentPath / ".git" ) ) {
+         return currentPath;   // Return the path if ".git" directory is found
+      }
+
+      // Move up one directory level
+      currentPath = currentPath.parent_path();
+   }
+
+   // Return an empty optional if no ".git" directory is found
+   return nullopt;
+}
+
 int main() {
-   processMarkdownFiles();
+   auto currentPath = filesystem::current_path();
+   auto gitRootPath = findGitRoot( currentPath );
+   processMarkdownFiles( gitRootPath->generic_string() );
    return 0;
 }
