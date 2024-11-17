@@ -354,19 +354,26 @@
 <h4 id="explanation_2">Explanation</h4>
 <ol>
 <li>Structured binding allows you to <strong>declare multiple variables</strong> that can <strong>simultaneously hold
-   the values</strong> extracted from <strong>tuple-like structures</strong> (such as <code>std::tuple</code>, <code>std::pair</code>, arrays,
-   or user-defined types).</li>
+   the values</strong> extracted from <strong>tuple-like structures</strong> (such as <code>std::tuple</code>, <code>std::pair</code>,
+   fixed-size arrays, or user-defined types).</li>
 <li>It simplifies the syntax for unpacking values and allows for more expressive code.</li>
 <li><strong>The number of variables</strong> in <code>[var1, var2, ...]</code> is equal to <strong>the number of values</strong> provided
    by the <code>initializer</code>.</li>
 </ol>
 <h4 id="syntax">Syntax</h4>
-<pre><code class="language-CPP">auto [var1, var2, ...] = initializer;
+<pre><code class="language-CPP">// Decomposition.
+// Except for fixed-size arrays, `std::tuple`, and `std::pair`, other containers can only use this
+// syntax to work with a single tuple-like element.
+auto [var1, var2, ...] = initializer;
 </code></pre>
-<pre><code class="language-CPP">auto&amp; [var1, var2, ...] = initializer;
+<pre><code class="language-CPP">// Decomposition.
+// Except for fixed-size arrays, `std::tuple`, and `std::pair`, other containers can only use this
+// syntax to work with a single tuple-like element.
+auto&amp; [var1, var2, ...] = initializer;
 </code></pre>
-<pre><code class="language-CPP">// Use it with a range-based for loop.
-for ( auto&amp; [var1, var2, ...] : container );
+<pre><code class="language-CPP">// Decomposition with a range-based for loop.
+// All containers can use structured bindings when iterating over elements.
+for ( auto&amp; [var1, var2, ...] : container ) { ...; };
 </code></pre>
 <h3 id="stdtie"><code>std::tie</code></h3>
 <h4 id="explanation_3">Explanation</h4>

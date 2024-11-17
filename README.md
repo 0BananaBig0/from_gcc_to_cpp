@@ -481,7 +481,7 @@
   - [Functions](./docs/Functions.md#functions)
     - [Explanation](./docs/Functions.md#explanation)
     - [Advantages and Disadvantages](./docs/Functions.md#advantages-and-disadvantages)
-      - [Advantages ( Why Use Functions )](./docs/Functions.md#advantages--why-use-functions-)
+      - [Advantages (Why Use Functions)](./docs/Functions.md#advantages-why-use-functions)
       - [Disadvantages](./docs/Functions.md#disadvantages)
     - [Definition Syntax](./docs/Functions.md#definition-syntax)
     - [Declaration Syntax](./docs/Functions.md#declaration-syntax)

@@ -295,7 +295,8 @@
    lvalue references).</li>
 <li>If the variable is initialized with <strong>a const value</strong>, <code>auto</code> <strong>deduces a non-const type</strong>.</li>
 <li>When the variable is initialized with <strong>an initializer list</strong>, <code>auto</code> deduces the type to be the
-   corresponding container type (e.g., <code>std::initializer_list</code>).</li>
+   corresponding container type (e.g., <code>auto</code> = <code>std::initializer_list</code> if
+   <code>auto var_name = { ... }</code>.).</li>
 <li><code>auto</code> <strong>maintains type safety</strong> by ensuring that the deduced type matches the initializer.</li>
 </ol>
 <h4 id="syntax">Syntax</h4>
@@ -328,7 +329,7 @@
 <li><code>auto</code> can deduce whether a type is a pointer based on the initializer.
    <code>auto var_name = ptr_name;</code> <code>&lt;=&gt;</code> <code>auto* var_name = ptr_name; \\ **Better**</code> However, if you use
    <code>auto</code> to <strong>deduce a type with a pointer</strong> as the initializer, you'd better <strong>specify it
-   explicitly with a star ( <code>*</code> )</strong>.</li>
+   explicitly with a star</strong> (<code>*</code>).</li>
 <li><code>auto</code> <strong>cannot deduce</strong> whether a type is <strong>a reference</strong> based on the initializer. Therefore,
    If you want the type to be deduced as a reference, <strong>specify it explicitly with <code>&amp;</code></strong>.
    <code>auto &amp; var_name = ini_name;</code></li>
@@ -352,8 +353,9 @@
 <li><strong>The inference result</strong> is <strong>a reference type</strong> if the expression is <strong>an lvalue enclosed in
    parentheses</strong>.</li>
 <li><strong>Otherwise</strong>, the inference result is <strong>the the actual type</strong> of the expression.</li>
-<li><code>decltype</code> does <strong>not evaluate the expression</strong>; it merely inspects it to determine the type.</li>
+<li><code>decltype</code> does <strong>not evaluate the expression</strong>; it <strong>merely inspects it</strong> to determine the type.</li>
 <li>It ensures that the deduced type is consistent with the expression, aiding in <strong>type-safe code</strong>.</li>
+<li><strong>The expression cannot be <code>{ ... }</code></strong>.</li>
 </ol>
 <h4 id="syntax_1">Syntax</h4>
 <pre><code class="language-CPP">decltype( expression )
@@ -376,7 +378,7 @@
    expression is already a reference. Although these four expressions yield the same inference
    result, the first option is preferred.</li>
 <li><strong>Add <code>const</code></strong> as a prefix to <code>decltype( expression )</code> if you want to <strong>deduce a result as a
-   const type</strong>, even if the expression is already a const type.</li>
+   const type</strong>, even if the expression is already a <code>const</code> type.</li>
 <li><strong>Use <code>decltype( expression )</code></strong> instead of <code>decltype( expression )*</code>,
    <code>decltype( ( expression ) )</code>, or <code>decltype( ( expression ) )*</code> if the expression is <strong>a
    pointer</strong>; the latter three do not yield the same inference result as the former.</li>

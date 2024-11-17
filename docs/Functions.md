@@ -3,7 +3,7 @@
 - [Functions](#functions)
   - [Explanation](#explanation)
   - [Advantages and Disadvantages](#advantages-and-disadvantages)
-    - [Advantages ( Why Use Functions )](#advantages--why-use-functions-)
+    - [Advantages (Why Use Functions)](#advantages-why-use-functions)
     - [Disadvantages](#disadvantages)
   - [Definition Syntax](#definition-syntax)
   - [Declaration Syntax](#declaration-syntax)
@@ -82,7 +82,7 @@
 
 ### Advantages and Disadvantages
 
-#### Advantages ( Why Use Functions )
+#### Advantages (Why Use Functions)
 
 1. **Code reusability**:
    - Functions allow you to write a piece of code once and reuse it multiple times throughout your
