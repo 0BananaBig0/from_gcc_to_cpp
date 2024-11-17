@@ -205,9 +205,14 @@ ClassName& operator=( ClassName&& ) = default;
 ###### Syntax
 
 ```CPP
-ClassName& operator=(ClassName&& other) noexcept {
-    // Custom move logic here.
-    return *this;
+ClassName& operator=( ClassName&& other ) noexcept {
+   // If moved to the same object, nothing need to be done.
+   if( this != &other ) {
+      // Custom move logic here.
+      // Release this object's resources.
+      // Move the other object's resources into this object.
+   }
+   return *this;
 };
 ```
 

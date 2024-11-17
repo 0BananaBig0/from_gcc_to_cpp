@@ -50,8 +50,8 @@
       - [Syntax](#syntax-7)
       - [Notes](#notes)
   - [Constructors](#constructors)
-    - [Explanation](#explanation-9)
-    - [Syntax](#syntax-8)
+      - [Explanation](#explanation-9)
+      - [Syntax](#syntax-8)
     - [Defalut Constructors and `default` Constructors](#defalut-constructors-and-default-constructors)
       - [Explanation](#explanation-10)
       - [Syntax](#syntax-9)
@@ -111,7 +111,7 @@
     - [Destruction Order](#destruction-order)
     - [`virtual` Inheritance](#virtual-inheritance)
   - [`virtual`](#virtual)
-    - [Explanation](#explanation-25)
+      - [Explanation](#explanation-25)
     - [`virtual` Methods (`virtual` Functions) (`virtual` Memeber Functions)](#virtual-methods-virtual-functions-virtual-memeber-functions-1)
       - [Explanation](#explanation-26)
       - [Syntax](#syntax-20)
@@ -132,7 +132,7 @@
     - [Construction Order](#construction-order-1)
     - [Destruction Order](#destruction-order-1)
   - [`friend`](#friend)
-    - [Explanation](#explanation-30)
+      - [Explanation](#explanation-30)
     - [`friend` Functions](#friend-functions)
       - [Explanation](#explanation-31)
       - [Syntax](#syntax-23)
@@ -140,7 +140,7 @@
       - [Explanation](#explanation-32)
       - [Syntax](#syntax-24)
   - [`final`](#final)
-    - [Explanation](#explanation-33)
+      - [Explanation](#explanation-33)
     - [`final` Functions](#final-functions)
       - [Explanation](#explanation-34)
       - [Syntax](#syntax-25)
@@ -848,6 +848,11 @@ class ClassName {
    retain their original state.
 4. Move constructors **should be marked noexcept** to ensure **compatibility** with standard
    containers and to optimize **performance**.
+5. Move constructors **behave similarly to shallow copy constructors** but use move semantics and
+   rvalue references.
+6. **A shallow move** resembles **a shallow copy** but **without** assigning all pointers in the
+   source object to **`nullptr`**, whereas **a deep move** resembles **a shallow copy** **with** all
+   pointers in the source object being assigned to **`nullptr`**.
 
 ##### Default Move Constructors
 
@@ -863,7 +868,7 @@ class ClassName {
    without resetting any pointer members of the original object to `nullptr`**.
 4. This can cause issues such as **double deletions** and **dangling pointers**.
 5. While terms like "shallow move" and "deep move" are **not part of standard C++ terminology**,
-   "unsafe copy" and "safe copy" better convey the risks and benefits of different copying
+   "unsafe move" and "safe move" better convey the risks and benefits of different copying
    strategies.
 6. The default move constructor is **typically marked as noexcept**, improving performance by
    ensuring compatibility with standard containers, such as `std::vector`.

@@ -42,11 +42,11 @@
   - [Lvalues and Rvalues: Value Categories in C++](#lvalues-and-rvalues-value-categories-in-c)
     - [Lvalues (Left Values)](#lvalues-left-values)
     - [Rvalues (Right Values)](#rvalues-right-values)
+    - [How to Identify Whether an Object is an Lvalue or an Rvalue](#how-to-identify-whether-an-object-is-an-lvalue-or-an-rvalue)
     - [Lvalue References (`Type&`)](#lvalue-references-type)
       - [Explanation](#explanation-7)
       - [Usage](#usage)
       - [Notes](#notes)
-    - [How to Identify Whether a Value is an Lvalue or an Rvalue](#how-to-identify-whether-a-value-is-an-lvalue-or-an-rvalue)
     - [Rvalue References (`Type&&`)](#rvalue-references-type)
       - [Explanation](#explanation-8)
       - [Usage](#usage-1)
@@ -92,8 +92,8 @@
    retain everything you consider necessary, like a simple tutorial.
 6. Lastly, it’s important to note that different compilers have slightly different implementations
    of the Standard Template Library (STL). While they provide the same library, there may be minor
-   variations in implementation. For instance, in std::vector, if the size exceeds its capacity, it
-   grows by 50% in Clang, whereas it grows by 100% in GCC.
+   variations in implementation. For instance, in `std::vector`, if the size exceeds its capacity,
+   it grows by 50% in Clang, whereas it grows by 100% in GCC.
 7. **Ask ChatGPT the following question** to learn more:
    - There are many different STL implementations in C++; some are more efficient than the default
      STL, such as EASTL. Why hasn't the default STL been replaced with these more efficient
@@ -107,16 +107,18 @@
 
 1. The term declaration refers to the introduction of **a variable, function, class, or other entity
    to the program, specifying its name and type without allocating storage or providing an
-   implementation**. It **merely states** that a function, class, struct or variable **exists**
-   without concerning itself with a definition.
+   implementation**.
+2. It **merely states** that a function, class, struct or variable **exists** without concerning
+   itself with a definition.
 
 #### Forward Declarations
 
 1.  It is **a declaration** of a class, function, or variable that **informs the compiler of its
-    existence without providing the full definition** at that point. It allows the compiler to
-    handle references to an entity (e.g., a class or a function) without needing to know all the
-    details at that time. The complete definition is provided later in the code.
-2.  This is typically used to **improve compilation times**, **resolve circular dependencies**, or
+    existence without providing the full definition** at that point.
+2.  It allows the compiler to handle references to an entity (e.g., a class or a function) without
+    needing to know all the details at that time.
+3.  The complete definition is provided later in the code.
+4.  This is typically used to **improve compilation times**, **resolve circular dependencies**, or
     when the full details of the entity are not yet required.
 
 ### Definitions
@@ -149,15 +151,16 @@
 3. **Traditionally**, a temporary variable **must have a name**.
 4. However, **in C++**, temporary variables can **also refer to unnamed temporary objects** that
    arise during operations, such as the result of a function call or type conversion, which exist
-   only for the duration of their use. They help simplify code without requiring permanent storage.
+   only for the duration of their use.
+5. They help simplify code without requiring permanent storage.
 
 #### Instances
 
 ##### Explanation
 
-1. An instance is **a concrete occurrence** of **a particular data type**. This term is most
-   commonly used in the context of user-defined types like **classes or structs**. When you create
-   an instance of a class, you're creating an object of that class type.
+1. An instance is **a concrete occurrence** of **a particular data type**.
+2. This term is most commonly used in the context of user-defined types like **classes or structs**.
+3. When you create an instance of a class, you're creating an object of that class type.
 
 ##### Characteristics
 
@@ -272,8 +275,8 @@
 
 1. **`nullptr`** is a **null pointer** constant introduced in C++11.
 2. It represents a pointer that does **not point to any valid memory location**.
-3. It provides type safety compared to the traditional NULL, which is typically **defined as 0**.
-4. **Access nullptr: segmentation fault (Linux), access violation (Win)**.
+3. It provides type safety compared to the traditional `NULL`, which is typically **defined as 0**.
+4. **Access `nullptr`: segmentation fault (Linux), access violation (Win)**.
 
 ##### Dangling Pointers
 
@@ -327,8 +330,8 @@
    that **evaluates to a value**.
 2. Expressions are the building blocks of C++ programs and can range from simple values like `42` to
    complex operations involving multiple variables and function calls.
-3. They are **evaluated at runtime** to produce a result, which may or may not be used further in
-   the program.
+3. They **can be evaluated at runtime** to produce a result if possible, which may or may not be
+   used further in the program.
 
 #### Types of Expressions in C++
 
@@ -396,8 +399,8 @@
 
 #### Lvalues (Left Values)
 
-1. A lvalue refers to **an object or memory location** that **persists** beyond a single expression
-   and occupies some **identifiable location** in memory (i.e., it has an address).
+1. A lvalue refers to **an object or memory location** that **persists beyond a single expression**
+   and **occupies some identifiable location** in memory (i.e., it **has an address**).
 2. It **can** appear on the **left side** or the **right side** of an assignment
 3. **Typically**, it refers to **variables**, **array elements**, or **dereferenced pointers**.
 4. It **can take the address** of an lvalue using the address-of operator (`&`).
@@ -411,6 +414,11 @@
 3. It **cannot** appear on the **left-hand side** of an assignment.
 4. Its **examples** include **literals**, **temporary results** of expressions, and **return
    values** of functions without `&`.
+
+#### How to Identify Whether an Object is an Lvalue or an Rvalue
+
+1.  Define a normal reference for an object, if it can be store by a reference, it is an lvalue.
+    Otherwise, it is an rvalue.
 
 #### Lvalue References (`Type&`)
 
@@ -431,11 +439,6 @@
 1. A **normal** reference **can't** store an **rvalue** **but** a **const reference can**.
 2. A **normal reference parameter** of a function **can't** accept **an rvalue** **but** a **const
    reference parameter can**.
-
-#### How to Identify Whether a Value is an Lvalue or an Rvalue
-
-1.  Define a normal reference for a value, if it can be store by a reference, it is an lvalur.
-    Otherwise, it is an rvalue.
 
 #### Rvalue References (`Type&&`)
 
@@ -460,7 +463,7 @@
    - `std::move` is the mechanism used to cast an lvalue into an rvalue, signaling that you want to
      move the object instead of copying it.
 9. **Even** when a function **receives arguments as rvalue references** (i.e., when they are passed
-   as `Type&&`), you still need to **use `std::move` explicitly** to transfer ownership of these
+   as `Type&&`), you **still need to use `std::move` explicitly** to transfer ownership of these
    arguments to other objects.
 
 ##### Usage
@@ -502,12 +505,15 @@
 5. **Even** when a function **receives arguments as rvalue references** (i.e., when they are passed
    as `Type&&`), you still need to **use `std::move` explicitly** to transfer ownership of these
    arguments to other objects.
+6. When **an object** is **transferred into an rvalue reference** with `std::move` and **passed into
+   a function** that receives an rvalue reference, whether the original object can still **access
+   its original data** **depends on how the function process the rvalue reference**.
 
 ##### Usage
 
 1. Everytime, if you want to assign **an object** that you want to **remove** after assigning to a
    variable, you can use `std::move`.
-2. To deal with **double deletion**, **the original pointer** should point a **nullptr** after
+2. To deal with **double deletion**, **the original pointer** should point a **`nullptr`** after
    **`std::move`** moved its data to another pointer.
 
 ### Interface
@@ -518,6 +524,7 @@
    pure `virtual` functions**, which means that it declares functions that **must be implemented by
    derived classes** but does **not provide any implementation of its own**.
 3. **It only contains pure `virtual` functions**.
+4. [Pure `virtual` Functions and Abstract Class](./Classes.md#pure-virtual-functions-and-abstract-class-1)
 
 ### Keyword
 
@@ -544,4 +551,5 @@
 ### Notes
 
 1. C++: performance, memory, optimization, safe or not; scope ({})( where we can access the
-   function/object/... ) and lifetime; make code clearer.
+   function/object/... ) and lifetime; make code clearer; compile time and runtime; limitation and
+   usage; definiton.
