@@ -155,7 +155,7 @@ std::vector< std::vector< Type > > arr_name = {};
 
 ```CPP
 // Uniform Initialization (C++11 and later).
-std::vector< std::vector< Type > > arr_name{ { { ...  /* size_y */}, { ... }, ... /* size_x */ } };
+std::vector< std::vector< Type > > arr_name{ { { ... /* size_y */}, { ... }, ... /* size_x */ } };
 ```
 
 ```CPP

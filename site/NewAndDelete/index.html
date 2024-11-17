@@ -287,7 +287,7 @@
 <li><a href="#syntax-3">Syntax</a></li>
 </ul>
 </li>
-<li><a href="#operator-delete-ptr-"><code>operator delete( ptr )</code></a><ul>
+<li><a href="#operator-delete-ptr-"><code>::operator delete( ptr )</code></a><ul>
 <li><a href="#explanation-4">Explanation</a></li>
 <li><a href="#syntax-4">Syntax</a></li>
 </ul>
@@ -357,7 +357,7 @@ void* ptr = ::operator new( size_t size );
 <pre><code class="language-CPP">// Its usage syntax.
 Type* ptr = static_cast&lt; Type* &gt;( ::operator new( num * sizeof( Type ) ) );
 </code></pre>
-<h4 id="operator-delete-ptr"><code>operator delete( ptr )</code></h4>
+<h4 id="operator-delete-ptr"><code>::operator delete( ptr )</code></h4>
 <h5 id="explanation_4">Explanation</h5>
 <ol>
 <li><code>::operator delete</code> is <strong>a global operator function</strong> that <strong>deallocates memory</strong> previously

@@ -274,18 +274,23 @@ clean:
 
 #### The Syntax of Defining a Variable
 
-1. Simple assignment (`VAR_NAME = value`): 
-  - The value is expanded when the variable is used. 
-  - Whenever its dependencies are updated, or anything that depends on it is modified, all
-    related components will be updated.
-2. Immediate assignment (`VAR_NAME := value`): 
-  - The value is expanded when the variable is defined.
-  - Whenever its dependencies are updated, or anything that depends on it is modified, all
-    related components will not be updated.
-3. Conditional assignment (`VAR_NAME ?= value`): 
-  - Only assigns if the variable is not already defined.
-  - Whenever its dependencies are updated, or anything that depends on it is modified, all
-    related components will be updated.
+1. Simple assignment (`VAR_NAME = value`):
+
+- The value is expanded when the variable is used.
+- Whenever its dependencies are updated, or anything that depends on it is modified, all related
+  components will be updated.
+
+2. Immediate assignment (`VAR_NAME := value`):
+
+- The value is expanded when the variable is defined.
+- Whenever its dependencies are updated, or anything that depends on it is modified, all related
+  components will not be updated.
+
+3. Conditional assignment (`VAR_NAME ?= value`):
+
+- Only assigns if the variable is not already defined.
+- Whenever its dependencies are updated, or anything that depends on it is modified, all related
+  components will be updated.
 
 #### The Syntax of Referencing a Variable
 
@@ -428,8 +433,8 @@ $(ENV_VAR)
 
 #### Function Call Syntax
 
-1.  `$(func_name arg_list)`
-2.  `${func_name arg1, arg2, ...}`
+1. `$(func_name arg_list)`
+2. `${func_name arg1, arg2, ...}`
 
 #### More Information
 

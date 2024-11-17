@@ -484,10 +484,10 @@ std::tuple&lt; type_para_list &gt; tuple_name( std::move( pair_name ) );
 <h5 id="explanation_3">Explanation</h5>
 <ol>
 <li><code>std::make_tuple</code> is <strong>a template function</strong> that <strong>constructs an object of</strong> the appropriate
-    <strong>tuple</strong> type to contain the elements specified in<code>args</code>.</li>
+   <strong>tuple</strong> type to contain the elements specified in<code>args</code>.</li>
 <li><strong>The type of the returned object (<code>tuple&lt; VTypes... &gt;</code>) is deduced from Types</strong>: For each type
-    in Types, its decay equivalent is used in <code>VTypes</code> (except <code>reference_wrapper</code> types, for which
-    the corresponding reference type is used instead).</li>
+   in Types, its decay equivalent is used in <code>VTypes</code> (except <code>reference_wrapper</code> types, for which
+   the corresponding reference type is used instead).</li>
 <li>The function calls tuple's initialization constructor, forwarding <code>args</code> to it.</li>
 </ol>
 <h5 id="syntax_1">Syntax</h5>

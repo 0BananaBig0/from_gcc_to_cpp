@@ -261,8 +261,8 @@ operator TargetType() const {
 1. Scope resolution operator(`::`):
    ```CPP
    ClassName::member;
-   NamespaceName:member;
-   EnumclassName:member;
+   NamespaceName::member;
+   EnumclassName::member;
    ```
 2. Inheritance.
 3. Member initialization list.

@@ -1522,8 +1522,8 @@ std::future&lt; RetType &gt; obj_name = std::async( ... );
    operation</strong>.</li>
 <li>It provides a mechanism to access the result of a function that runs concurrently, typically on a
    separate thread.</li>
-<li>This allows <strong>a thread</strong> to <strong>retrieve results at some point</strong> in the future, <strong>once the asynchronous
-   task has completed</strong>.</li>
+<li>This allows <strong>a thread</strong> to <strong>retrieve results at some point</strong> in the future, <strong>once the
+   asynchronous task has completed</strong>.</li>
 <li><code>std::future</code> is generally used in <strong>combination with <code>std::async</code>, <code>std::promise</code>, or
    thread-based libraries</strong>.</li>
 <li>It <strong>acts as a placeholder</strong> for the result that will eventually become available.</li>
@@ -1686,10 +1686,10 @@ std::shared_future&lt; Type &gt; sfut_name = fut_name.share();
 <h3 id="notes_3">Notes</h3>
 <ol>
 <li>A game typically loads different objects asynchronously and in parallel using multiple threads.
-    This is why, at times, players can control their characters while some objects remain
-    unresponsive.</li>
-<li><strong>To the best of my knowledge, all classes related to threads lack a copy constructor, except
-    for some classes with a <code>shared</code> prefix or suffix.</strong></li>
+   This is why, at times, players can control their characters while some objects remain
+   unresponsive.</li>
+<li><strong>To the best of my knowledge, all classes related to threads lack a copy constructor, except for
+   some classes with a <code>shared</code> prefix or suffix.</strong></li>
 <li>To prevent deadlock, the order of acquiring multiple locks must be consistent.</li>
 </ol></div>
             </div>

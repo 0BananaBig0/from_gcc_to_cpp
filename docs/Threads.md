@@ -1358,8 +1358,8 @@ std::future< RetType > obj_name = std::async( ... );
    operation**.
 2. It provides a mechanism to access the result of a function that runs concurrently, typically on a
    separate thread.
-3. This allows **a thread** to **retrieve results at some point** in the future, **once the asynchronous
-   task has completed**.
+3. This allows **a thread** to **retrieve results at some point** in the future, **once the
+   asynchronous task has completed**.
 4. `std::future` is generally used in **combination with `std::async`, `std::promise`, or
    thread-based libraries**.
 5. It **acts as a placeholder** for the result that will eventually become available.
@@ -1543,9 +1543,9 @@ std::shared_future< Type > sfut_name = fut_name.share();
 
 ### Notes
 
-1.  A game typically loads different objects asynchronously and in parallel using multiple threads.
-    This is why, at times, players can control their characters while some objects remain
-    unresponsive.
-2.  **To the best of my knowledge, all classes related to threads lack a copy constructor, except
-    for some classes with a `shared` prefix or suffix.**
-3.  To prevent deadlock, the order of acquiring multiple locks must be consistent.
+1. A game typically loads different objects asynchronously and in parallel using multiple threads.
+   This is why, at times, players can control their characters while some objects remain
+   unresponsive.
+2. **To the best of my knowledge, all classes related to threads lack a copy constructor, except for
+   some classes with a `shared` prefix or suffix.**
+3. To prevent deadlock, the order of acquiring multiple locks must be consistent.

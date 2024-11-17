@@ -1134,7 +1134,7 @@ std::flat_map< KType, VType > fmap_name;
 ```
 
 ```CPP
-// Default constructor.  Constructs an empty container adaptor.
+// Default constructor. Constructs an empty container adaptor.
 std::flat_map< KType, VType, Compare, KeyContainer< KType >, MappedContainer< VType > > fmap_name;
 ```
 
@@ -1426,7 +1426,7 @@ std::flat_multimap< KType, VType > fmmap_name;
 ```
 
 ```CPP
-// Default constructor.  Constructs an empty container adaptor.
+// Default constructor. Constructs an empty container adaptor.
 std::flat_multimap< KType, VType, Compare, KeyContainer< KType >, MappedContainer< VType > > fmmap_name;
 ```
 

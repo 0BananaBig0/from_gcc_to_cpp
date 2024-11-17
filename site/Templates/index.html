@@ -328,7 +328,8 @@
 <li>Templates are C++ entities that use the <strong><code>template</code> keyword</strong> to define and use <strong>the <code>typename</code>
    or the <code>class</code> keyword</strong> to speficy a generic type .</li>
 <li>Template parameters <strong>cannot be references or pointers</strong>.</li>
-<li>Template parameters <strong>must be either types (e.g., <code>class T</code>, <code>typename T</code>) or values (e.g., <code>int N</code>)</strong>.</li>
+<li>Template parameters <strong>must be either types (e.g., <code>class T</code>, <code>typename T</code>) or values (e.g.,
+   <code>int N</code>)</strong>.</li>
 <li>All <strong>type parameters</strong> can be bound to <strong>default types</strong>, and all <strong>non-type parameters</strong> can be
    bound to <strong>default values</strong>.</li>
 <li>Templates empower developers to write <strong>generic and reusable code</strong>. By enabling functions and
@@ -380,22 +381,22 @@
 </ol>
 <h3 id="explicit-instantiation">Explicit Instantiation</h3>
 <ol>
-<li>The explicit instantiation refers to the deliberate and formal creation of a specific instance
-    of a template with a particular type, as specified by the programmer.</li>
+<li>The explicit instantiation refers to the deliberate and formal creation of a specific instance of
+   a template with a particular type, as specified by the programmer.</li>
 <li><strong>It works similarly to declaring a template with specific types and then using it</strong>.</li>
 <li>This is done <strong>using the <code>template</code> keyword</strong> followed by the instantiation of the template with</li>
 <li>the desired type.</li>
 <li>This mechanism is primarily used to control when and where a template is instantiated,
-    particularly in larger codebases where managing template definitions and instances can become
-    complex.</li>
+   particularly in larger codebases where managing template definitions and instances can become
+   complex.</li>
 </ol>
 <h3 id="implicit-instantiation-common-instantiation">Implicit Instantiation (<strong>Common Instantiation</strong>)</h3>
 <ol>
 <li>The implicit instantiation refers to the automatic creation of a template instance by the
-    compiler when a template is used with a specific type, without requiring explicit instantiation
-    by the programmer.</li>
+   compiler when a template is used with a specific type, without requiring explicit instantiation
+   by the programmer.</li>
 <li><strong>It works similarly to using a template directly with specific types, without any prior
-    declaration</strong>.</li>
+   declaration</strong>.</li>
 </ol>
 <h3 id="function-templates">Function Templates</h3>
 <h4 id="explanation_1">Explanation</h4>
@@ -449,9 +450,9 @@ namespace SpaceName {
 };   // namespace SpaceName.
 
 // Usage syntax, instantiation syntax.
-// template class ClassName&lt;int&gt;; // error: class template ClassName not visible in the global namespace.
+/* template class ClassName&lt;int&gt;; // error: class template ClassName not visible in the global namespace.
 using SpaceName::ClassName;
-// template class ClassName&lt;int&gt;; // error: explicit instantiation outside of the namespace of the template.
+template class ClassName&lt;int&gt;; // error: explicit instantiation outside of the namespace of the template. */
 template class SpaceName::ClassName&lt; Type, ... &gt;;         // OK: explicit instantiation.
 template RetType SpaceName::ClassName&lt; Type, ... &gt;::funcName( ... );   // OK: explicit instantiation.
 </code></pre>

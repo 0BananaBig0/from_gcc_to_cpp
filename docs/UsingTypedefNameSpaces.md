@@ -45,15 +45,15 @@ using AliasName = Type;
 2. Template aliases. (**No limitations**).
    ```CPP
    // `ClassName` is a template class that has been implmented.
-   template< typename T, ... > using AliasName = ClassName< T, ...  >;
+   template< typename T, ... > using AliasName = ClassName< T, ... >;
    ```
    ```CPP
    // `StructName` is a template structure that has been implmented.
-   template< typename T, ... > using AliasName = StructName< T, ...  >;
+   template< typename T, ... > using AliasName = StructName< T, ... >;
    ```
    ```CPP
    // `funcName` is a template function that has been implmented.
-   template< typename T, ... > using aliasName = funcName< T, ...  >;
+   template< typename T, ... > using aliasName = funcName< T, ... >;
    ```
 3. Function pointer declaration.
 
@@ -103,10 +103,10 @@ typedef Type AliasName;
    class**).
    ```CPP
    // `ClassName` is a template class that has been implmented.
-   template< typename T, ... > class ClassName< T, ...  > { ...; };
+   template< typename T, ... > class ClassName< T, ... > { ...; };
    // `StructName` is a template structure that has been implmented.
    template< typename T, ... > StructName{
-      typedef Classname< T, ...  > AliasName;
+      typedef Classname< T, ... > AliasName;
       ...;
    }
    ```

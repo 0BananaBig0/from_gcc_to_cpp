@@ -48,16 +48,17 @@
 1. Templates are C++ entities that use the **`template` keyword** to define and use **the `typename`
    or the `class` keyword** to speficy a generic type .
 2. Template parameters **cannot be references or pointers**.
-3. Template parameters **must be either types (e.g., `class T`, `typename T`) or values (e.g., `int N`)**.
-3. All **type parameters** can be bound to **default types**, and all **non-type parameters** can be
+3. Template parameters **must be either types (e.g., `class T`, `typename T`) or values (e.g.,
+   `int N`)**.
+4. All **type parameters** can be bound to **default types**, and all **non-type parameters** can be
    bound to **default values**.
-4. Templates empower developers to write **generic and reusable code**. By enabling functions and
+5. Templates empower developers to write **generic and reusable code**. By enabling functions and
    classes to **operate on arbitrary data types**, templates facilitate enhanced flexibility and
    **type safety** in programming.
-5. They **do not exist**, and the compiler **does not create them**, and some compilers **do not
+6. They **do not exist**, and the compiler **does not create them**, and some compilers **do not
    detect its syntax** **until they are called**. At compile time, the compiler create and detect
    them.
-6. Because templates **exist and are compiled only for specific types when instantiated**, they
+7. Because templates **exist and are compiled only for specific types when instantiated**, they
    **can** be **declared and defined in header files**.
 
 ### Order of Parameters in the Parameter List
@@ -100,22 +101,22 @@
 
 ### Explicit Instantiation
 
-1.  The explicit instantiation refers to the deliberate and formal creation of a specific instance
-    of a template with a particular type, as specified by the programmer.
-2.  **It works similarly to declaring a template with specific types and then using it**.
-3.  This is done **using the `template` keyword** followed by the instantiation of the template with
-4.  the desired type.
-5.  This mechanism is primarily used to control when and where a template is instantiated,
-    particularly in larger codebases where managing template definitions and instances can become
-    complex.
+1. The explicit instantiation refers to the deliberate and formal creation of a specific instance of
+   a template with a particular type, as specified by the programmer.
+2. **It works similarly to declaring a template with specific types and then using it**.
+3. This is done **using the `template` keyword** followed by the instantiation of the template with
+4. the desired type.
+5. This mechanism is primarily used to control when and where a template is instantiated,
+   particularly in larger codebases where managing template definitions and instances can become
+   complex.
 
 ### Implicit Instantiation (**Common Instantiation**)
 
-1.  The implicit instantiation refers to the automatic creation of a template instance by the
-    compiler when a template is used with a specific type, without requiring explicit instantiation
-    by the programmer.
-2.  **It works similarly to using a template directly with specific types, without any prior
-    declaration**.
+1. The implicit instantiation refers to the automatic creation of a template instance by the
+   compiler when a template is used with a specific type, without requiring explicit instantiation
+   by the programmer.
+2. **It works similarly to using a template directly with specific types, without any prior
+   declaration**.
 
 ### Function Templates
 
@@ -188,9 +189,9 @@ namespace SpaceName {
 };   // namespace SpaceName.
 
 // Usage syntax, instantiation syntax.
-// template class ClassName<int>; // error: class template ClassName not visible in the global namespace.
+/* template class ClassName<int>; // error: class template ClassName not visible in the global namespace.
 using SpaceName::ClassName;
-// template class ClassName<int>; // error: explicit instantiation outside of the namespace of the template.
+template class ClassName<int>; // error: explicit instantiation outside of the namespace of the template. */
 template class SpaceName::ClassName< Type, ... >;         // OK: explicit instantiation.
 template RetType SpaceName::ClassName< Type, ... >::funcName( ... );   // OK: explicit instantiation.
 ```

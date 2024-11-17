@@ -353,7 +353,7 @@ std::array< std::array< Type, size_y >, size_x > arr_name = {};
 
 ```CPP
 // Uniform initialization (C++11 and later).
-std::array< std::array< Type, size_y >, size_x > arr_name{ { { ...  /* size_y */}, { ... }, ... /* size_x */ } };
+std::array< std::array< Type, size_y >, size_x > arr_name{ { { ... /* size_y */}, { ... }, ... /* size_x */ } };
 ```
 
 ```CPP

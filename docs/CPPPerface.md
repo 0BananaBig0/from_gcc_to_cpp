@@ -113,18 +113,18 @@
 
 #### Forward Declarations
 
-1.  It is **a declaration** of a class, function, or variable that **informs the compiler of its
-    existence without providing the full definition** at that point.
-2.  It allows the compiler to handle references to an entity (e.g., a class or a function) without
-    needing to know all the details at that time.
-3.  The complete definition is provided later in the code.
-4.  This is typically used to **improve compilation times**, **resolve circular dependencies**, or
-    when the full details of the entity are not yet required.
+1. It is **a declaration** of a class, function, or variable that **informs the compiler of its
+   existence without providing the full definition** at that point.
+2. It allows the compiler to handle references to an entity (e.g., a class or a function) without
+   needing to know all the details at that time.
+3. The complete definition is provided later in the code.
+4. This is typically used to **improve compilation times**, **resolve circular dependencies**, or
+   when the full details of the entity are not yet required.
 
 ### Definitions
 
-1.  A definition **provides a body** that implements a function, class, struct or variable. It
-    includes **an actual value or implementation** and **allocates storage for variables**.
+1. A definition **provides a body** that implements a function, class, struct or variable. It
+   includes **an actual value or implementation** and **allocates storage for variables**.
 
 ### Variables, Instances, Objects, Initializers and Values
 
@@ -310,17 +310,17 @@
 
 ### Parameters
 
-1.  A parameter is **a variable declared in a function definition**.
-2.  It **serves as a placeholder** for the values that will be passed to the function when it is
-    called.
-3.  Parameters are used to **receive input values** within the function and specify the type of data
-    the function expects.
+1. A parameter is **a variable declared in a function definition**.
+2. It **serves as a placeholder** for the values that will be passed to the function when it is
+   called.
+3. Parameters are used to **receive input values** within the function and specify the type of data
+   the function expects.
 
 ### Arguments
 
-1.  An argument is **an actual value, variable, object or reference passed to the function** when it
-    is called.
-2.  Arguments are the specific data supplied to the function's parameters.
+1. An argument is **an actual value, variable, object or reference passed to the function** when it
+   is called.
+2. Arguments are the specific data supplied to the function's parameters.
 
 ### Expressions
 
@@ -417,8 +417,8 @@
 
 #### How to Identify Whether an Object is an Lvalue or an Rvalue
 
-1.  Define a normal reference for an object, if it can be store by a reference, it is an lvalue.
-    Otherwise, it is an rvalue.
+1. Define a normal reference for an object, if it can be store by a reference, it is an lvalue.
+   Otherwise, it is an rvalue.
 
 #### Lvalue References (`Type&`)
 

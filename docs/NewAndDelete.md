@@ -13,7 +13,7 @@
   - [`::operator new( size )`](#operator-new-size-)
     - [Explanation](#explanation-3)
     - [Syntax](#syntax-3)
-  - [`operator delete( ptr )`](#operator-delete-ptr-)
+  - [`::operator delete( ptr )`](#operator-delete-ptr-)
     - [Explanation](#explanation-4)
     - [Syntax](#syntax-4)
 - [`malloc`](#malloc)
@@ -106,7 +106,7 @@ void* ptr = ::operator new( size_t size );
 Type* ptr = static_cast< Type* >( ::operator new( num * sizeof( Type ) ) );
 ```
 
-#### `operator delete( ptr )`
+#### `::operator delete( ptr )`
 
 ##### Explanation
 

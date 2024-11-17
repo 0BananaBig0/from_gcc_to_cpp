@@ -258,12 +258,12 @@ std::tuple< type_para_list > tuple_name( std::move( pair_name ) );
 
 ##### Explanation
 
-1.  `std::make_tuple` is **a template function** that **constructs an object of** the appropriate
-    **tuple** type to contain the elements specified in`args`.
-2.  **The type of the returned object (`tuple< VTypes... >`) is deduced from Types**: For each type
-    in Types, its decay equivalent is used in `VTypes` (except `reference_wrapper` types, for which
-    the corresponding reference type is used instead).
-3.  The function calls tuple's initialization constructor, forwarding `args` to it.
+1. `std::make_tuple` is **a template function** that **constructs an object of** the appropriate
+   **tuple** type to contain the elements specified in`args`.
+2. **The type of the returned object (`tuple< VTypes... >`) is deduced from Types**: For each type
+   in Types, its decay equivalent is used in `VTypes` (except `reference_wrapper` types, for which
+   the corresponding reference type is used instead).
+3. The function calls tuple's initialization constructor, forwarding `args` to it.
 
 ##### Syntax
 

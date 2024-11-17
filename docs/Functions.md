@@ -589,16 +589,17 @@ template< typename... Ts > RetType funcName( Ts... args ) {
 
 1. [`parameter packs` in cplusplus]().
 2. [`parameter packs` in cppreference](https://en.cppreference.com/w/cpp/language/parameter_pack).
+3. [Variadic Templates (Template Packs)](./Templates.md/#variadic-templates-template-packs)
 
 ### Callback Functions and Registeration Functions
 
-1. Callback function:
+1. Callback functions:
    - A callback function is **a function** that is **passed as a parameter to another function**.
    - The function receiving the callback can then call it at the appropriate time, typically in
      response to an event or condition.
    - In essence, it is calling a function indirectly through a pointer to it (i.e., function
      pointer).
-2. Registration function:
+2. Registration functions:
    - A registration function is **a function** that is **typically used to register a callback or
      handler**.
    - It **takes a function pointer as an argument** and **stores or uses it later**, allowing other

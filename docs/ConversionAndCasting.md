@@ -88,15 +88,15 @@
 
 #### Explanation
 
-1.  Implicit conversion occurs when the compiler **automatically converts a value from one type to
-    another**, usually in situations involving mixed-type expressions.
-2.  It is **only** allowed to **happen once** and happens **automatically**.
-3.  The **compiler ensures** that the conversion is **valid** and **safe**.
-4.  However, implicit conversions can sometimes **lead to unexpected behavior**, especially if
-    there’s **data loss** (e.g., converting a double to an int might lose the fractional part).
-5.  When an **object** is **copied** using the **assignment operator**, if the source object is of
-    **a different type**, **implicit conversion** may occur, invoking the **assignment operator
-    overload** and potentially a **constructor**.
+1. Implicit conversion occurs when the compiler **automatically converts a value from one type to
+   another**, usually in situations involving mixed-type expressions.
+2. It is **only** allowed to **happen once** and happens **automatically**.
+3. The **compiler ensures** that the conversion is **valid** and **safe**.
+4. However, implicit conversions can sometimes **lead to unexpected behavior**, especially if
+   there’s **data loss** (e.g., converting a double to an int might lose the fractional part).
+5. When an **object** is **copied** using the **assignment operator**, if the source object is of
+   **a different type**, **implicit conversion** may occur, invoking the **assignment operator
+   overload** and potentially a **constructor**.
 
 #### Examples
 

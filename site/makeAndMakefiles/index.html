@@ -589,18 +589,34 @@ clean:
 </ol>
 <h4 id="the-syntax-of-defining-a-variable">The Syntax of Defining a Variable</h4>
 <ol>
-<li>Simple assignment (<code>VAR_NAME = value</code>): </li>
-<li>The value is expanded when the variable is used. </li>
-<li>Whenever its dependencies are updated, or anything that depends on it is modified, all
-    related components will be updated.</li>
-<li>Immediate assignment (<code>VAR_NAME := value</code>): </li>
-<li>The value is expanded when the variable is defined.</li>
-<li>Whenever its dependencies are updated, or anything that depends on it is modified, all
-    related components will not be updated.</li>
-<li>Conditional assignment (<code>VAR_NAME ?= value</code>): </li>
-<li>Only assigns if the variable is not already defined.</li>
-<li>Whenever its dependencies are updated, or anything that depends on it is modified, all
-    related components will be updated.</li>
+<li>
+<p>Simple assignment (<code>VAR_NAME = value</code>):</p>
+</li>
+<li>
+<p>The value is expanded when the variable is used.</p>
+</li>
+<li>
+<p>Whenever its dependencies are updated, or anything that depends on it is modified, all related
+  components will be updated.</p>
+</li>
+<li>
+<p>Immediate assignment (<code>VAR_NAME := value</code>):</p>
+</li>
+<li>
+<p>The value is expanded when the variable is defined.</p>
+</li>
+<li>
+<p>Whenever its dependencies are updated, or anything that depends on it is modified, all related
+  components will not be updated.</p>
+</li>
+<li>
+<p>Conditional assignment (<code>VAR_NAME ?= value</code>):</p>
+</li>
+<li>
+<p>Only assigns if the variable is not already defined.</p>
+</li>
+<li>Whenever its dependencies are updated, or anything that depends on it is modified, all related
+  components will be updated.</li>
 </ol>
 <h4 id="the-syntax-of-referencing-a-variable">The Syntax of Referencing a Variable</h4>
 <pre><code class="language-Makefile">$(VAR_NAME)

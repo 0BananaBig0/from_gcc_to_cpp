@@ -236,7 +236,6 @@ git merge --no-ff -m "Your comments" AnotherBranch # Ban fast-forward
 # between the current branch and the branch you're merging.
 ```
 
-
 ### Delete a Branch
 
 ```SH

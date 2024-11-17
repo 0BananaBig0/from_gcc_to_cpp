@@ -379,12 +379,12 @@ var_name.reset();   // clears the stored value.
 3. By explicitly managing cases where a value might be absent, it **enhances code clarity** and
    **reduces the risks of runtime errors** (like accessing uninitialized variables).
 4. An example is using it to **determine whether a file is successfully read**.
+5. Its header file is `<optional>`.
 
 ### Synatx
 
 ```CPP
 // Declaration syntax.
-#include <optional>
 std::optional< Type > var_name;
 ```
 

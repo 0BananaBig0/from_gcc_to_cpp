@@ -370,7 +370,7 @@ std::multiset< Type, Compare > rmset_name( Compare( true ) );
 ```
 
 ```CPP
-// Copy-constructs the comparison functor `comp` with the contents of compare.  Constructs an empty container.
+// Copy-constructs the comparison functor `comp` with the contents of compare. Constructs an empty container.
 Compare comp;
 std::multiset< Type, Compare  > mset_name( comp );
 ```
@@ -1082,7 +1082,7 @@ std::flat_set< Type > fset_name;
 ```
 
 ```CPP
-// Default constructor.  Constructs an empty container adaptor.
+// Default constructor. Constructs an empty container adaptor.
 std::flat_set< Type, Compare, KeyContainer< Type > > fset_name;
 ```
 

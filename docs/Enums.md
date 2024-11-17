@@ -60,23 +60,23 @@ EnumName enum_name = EnumName::Mem2;
 
 #### 2) Namespace Scoping
 
-1.  `enum`: Enum values injected into enclosing scope.
-2.  `enum class`: Enum values scoped within the enum type.
+1. `enum`: Enum values injected into enclosing scope.
+2. `enum class`: Enum values scoped within the enum type.
 
 #### 3) Type Safety
 
-1.  `enum`: Implicitly converts to int.
-2.  `enum class`: No implicit conversions.
+1. `enum`: Implicitly converts to int.
+2. `enum class`: No implicit conversions.
 
 #### 4) Underlying Type
 
-1.  `enum`: Cannot specify underlying type explicitly.
-2.  `enum class`: Can specify underlying type (e.g., `enum class Color : unsigned int`).
+1. `enum`: Cannot specify underlying type explicitly.
+2. `enum class`: Can specify underlying type (e.g., `enum class Color : unsigned int`).
 
 #### 5) Forward Declaration
 
-1.  `enum`: Not allowed.
-2.  `enum class`: Allowed.
+1. `enum`: Not allowed.
+2. `enum class`: Allowed.
 
 #### 6) Bitwise Operations
 
