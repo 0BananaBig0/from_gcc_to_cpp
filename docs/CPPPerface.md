@@ -427,7 +427,9 @@
 1. An lvalue reference is **a reference to a persistent object** (i.e., an object with a
    well-defined memory address, such as variables or class members).
 2. It **binds only to lvalues** — objects that can appear on the left side of an assignment.
-3. However, **a `const` lvalue reference** can bind to **a literal value**.
+3. However, **a `const` lvalue reference** can bind to **a literal value or a temporary result**.
+4. [`const` References](./ConstConstexprAndStatic.md#const-references)
+5. [`constexpr` References](./ConstConstexprAndStatic.md#constexpr-references)
 
 ##### Usage
 

@@ -10,74 +10,80 @@
       - [`const` Pointers](#const-pointers)
         - [Explanation](#explanation-2)
         - [Syntax](#syntax-1)
-      - [`const` Member Variables](#const-member-variables)
+      - [`const` References](#const-references)
         - [Explanation](#explanation-3)
         - [Syntax](#syntax-2)
-      - [`const` Methods (`const` Member Functions)](#const-methods-const-member-functions)
+      - [`const` Member Variables](#const-member-variables)
         - [Explanation](#explanation-4)
         - [Syntax](#syntax-3)
-      - [`const` Function Parameters](#const-function-parameters)
+      - [`const` Methods (`const` Member Functions)](#const-methods-const-member-functions)
         - [Explanation](#explanation-5)
         - [Syntax](#syntax-4)
-      - [`const` Return Values](#const-return-values)
+      - [`const` Function Parameters](#const-function-parameters)
         - [Explanation](#explanation-6)
         - [Syntax](#syntax-5)
-      - [`const` Return Pointers](#const-return-pointers)
+      - [`const` Return Values](#const-return-values)
         - [Explanation](#explanation-7)
         - [Syntax](#syntax-6)
-      - [`const` Return References](#const-return-references)
+      - [`const` Return Pointers](#const-return-pointers)
         - [Explanation](#explanation-8)
         - [Syntax](#syntax-7)
-      - [`const` Instances of Classes](#const-instances-of-classes)
+      - [`const` Return References](#const-return-references)
         - [Explanation](#explanation-9)
         - [Syntax](#syntax-8)
+      - [`const` Instances of Classes](#const-instances-of-classes)
+        - [Explanation](#explanation-10)
+        - [Syntax](#syntax-9)
   - [`constexpr`](#constexpr)
-    - [Explanation](#explanation-10)
+    - [Explanation](#explanation-11)
     - [Allowed Elements (Valid Elements)](#allowed-elements-valid-elements)
     - [Disallowed Elements](#disallowed-elements)
     - [Usage](#usage-1)
       - [`constexpr` Variables](#constexpr-variables)
-        - [Explanation](#explanation-11)
-        - [Syntax](#syntax-9)
-      - [`constexpr` Pointers](#constexpr-pointers)
         - [Explanation](#explanation-12)
         - [Syntax](#syntax-10)
-      - [`constexpr` Member Variables](#constexpr-member-variables)
+      - [`constexpr` Pointers](#constexpr-pointers)
         - [Explanation](#explanation-13)
         - [Syntax](#syntax-11)
-      - [`constexpr` Functions (`constexpr` Return Values)](#constexpr-functions-constexpr-return-values)
+      - [`constexpr` References](#constexpr-references)
         - [Explanation](#explanation-14)
         - [Syntax](#syntax-12)
-      - [`constexpr` Constructors (C++11 and later)](#constexpr-constructors-c11-and-later)
+      - [`constexpr` Member Variables](#constexpr-member-variables)
         - [Explanation](#explanation-15)
         - [Syntax](#syntax-13)
-      - [`constexpr` Instances of Classes](#constexpr-instances-of-classes)
+      - [`constexpr` Functions (`constexpr` Return Values)](#constexpr-functions-constexpr-return-values)
         - [Explanation](#explanation-16)
         - [Syntax](#syntax-14)
-      - [User-defined Literals](#user-defined-literals)
+      - [`constexpr` Constructors (C++11 and later)](#constexpr-constructors-c11-and-later)
         - [Explanation](#explanation-17)
         - [Syntax](#syntax-15)
+      - [`constexpr` Instances of Classes](#constexpr-instances-of-classes)
+        - [Explanation](#explanation-18)
+        - [Syntax](#syntax-16)
+      - [User-defined Literals](#user-defined-literals)
+        - [Explanation](#explanation-19)
+        - [Syntax](#syntax-17)
   - [`static`](#static)
-    - [Explanation](#explanation-18)
+    - [Explanation](#explanation-20)
     - [Usage](#usage-2)
       - [`static` Local Variables](#static-local-variables)
-        - [Explanation](#explanation-19)
-        - [Syntax](#syntax-16)
-      - [`static` Global Variables](#static-global-variables)
-        - [Explanation](#explanation-20)
-        - [Syntax](#syntax-17)
-      - [`static` Member Variables](#static-member-variables)
         - [Explanation](#explanation-21)
         - [Syntax](#syntax-18)
-      - [`static` Methods (`static` Member Functions)](#static-methods-static-member-functions)
+      - [`static` Global Variables](#static-global-variables)
         - [Explanation](#explanation-22)
         - [Syntax](#syntax-19)
-      - [`static` Global Functions](#static-global-functions)
+      - [`static` Member Variables](#static-member-variables)
         - [Explanation](#explanation-23)
         - [Syntax](#syntax-20)
-      - [`static` Instances of Classes](#static-instances-of-classes)
+      - [`static` Methods (`static` Member Functions)](#static-methods-static-member-functions)
         - [Explanation](#explanation-24)
         - [Syntax](#syntax-21)
+      - [`static` Global Functions](#static-global-functions)
+        - [Explanation](#explanation-25)
+        - [Syntax](#syntax-22)
+      - [`static` Instances of Classes](#static-instances-of-classes)
+        - [Explanation](#explanation-26)
+        - [Syntax](#syntax-23)
 
 <!-- vim-markdown-toc -->
 
@@ -105,8 +111,8 @@
 2. The keyword `const` stands for "constant" and is used to define variables that should remain
    unchanged throughout their lifespan.
 3. A `const` variable must **be initialized when it is declared**.
-4. A `const` variable can be **evaluated at compile time** if it is **initialized with a constant
-   expression**.
+4. It can be **evaluated at compile time** if it is **initialized with a constant expression**.
+5. It can bind to **a literal value or a temporary result**.
 
 ###### Syntax
 
@@ -127,6 +133,21 @@ const Type var_name = value;
 
 1. Pointer to constant value: `const Type* ptr_name;`
 2. Constant pointer: `Type* const ptr_name;`
+
+##### `const` References
+
+###### Explanation
+
+1. A `const` reference is **a reference** that **points to a value but cannot modify it**.
+2. `const` references are commonly **used to avoid copying large objects** in function parameters or
+   to ensure a value isn’t modified when it’s passed as a reference.
+3. **a `const` reference** can bind to **a literal value or a temporary result**.
+
+###### Syntax
+
+```CPP
+const& Type var_name = value;
+```
 
 ##### `const` Member Variables
 
@@ -316,6 +337,22 @@ constexpr Type var_name = initializer;
 
 ```CPP
 constexpr Type* var_name = initializer;
+```
+
+##### `constexpr` References
+
+###### Explanation
+
+1. A `constexpr` reference is **a constant reference** that can **be evaluated at compile time**.
+2. It can bind to **a literal value or a temporary result**.
+3. `constexpr` references are used when you need a reference to a compile-time constant expression.
+4. To declare a `constexpr` reference, it must be a const reference, and it must refer to a constant
+   expression.
+
+###### Syntax
+
+```CPP
+constexpr& Type var_name = initializer;
 ```
 
 ##### `constexpr` Member Variables

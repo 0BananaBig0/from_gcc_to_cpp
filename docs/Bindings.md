@@ -77,7 +77,7 @@
    fixed-size arrays, or user-defined types).
 2. It simplifies the syntax for unpacking values and allows for more expressive code.
 3. **The number of variables** in `[var1, var2, ...]` is equal to **the number of values** provided
-   by the `initializer`.
+   by the `tuple_like_structure`.
 
 #### Syntax
 
@@ -85,14 +85,14 @@
 // Decomposition.
 // Except for fixed-size arrays, `std::tuple`, and `std::pair`, other containers can only use this
 // syntax to work with a single tuple-like element.
-auto [var1, var2, ...] = initializer;
+auto [var1, var2, ...] = tuple_like_structure;
 ```
 
 ```CPP
 // Decomposition.
 // Except for fixed-size arrays, `std::tuple`, and `std::pair`, other containers can only use this
 // syntax to work with a single tuple-like element.
-auto& [var1, var2, ...] = initializer;
+auto& [var1, var2, ...] = tuple_like_structure;
 ```
 
 ```CPP
@@ -110,8 +110,8 @@ for ( auto& [var1, var2, ...] : container ) { ...; };
    them.
 2. This is particularly useful when working with functions that return **multiple values** in
    **tuple format**.
-3. The **`initializer`** passed to `std::tie` must evaluate to **a tuple-like structure**, such as
-   `std::tuple` or `std::pair`. It will **not work** with types that **lack a tuple-like
+3. The **`tuple_like_structure`** passed to `std::tie` must evaluate to **a tuple-like structure**,
+   such as `std::tuple` or `std::pair`. It will **not work** with types that **lack a tuple-like
    interface**, such as `std::get`.
 4. `std::tie` should **not** be used to **bind a temporary object** to avoid **undefined behavior**.
 
@@ -121,14 +121,14 @@ for ( auto& [var1, var2, ...] : container ) { ...; };
 Type1 var1;
 Type2 var2;
 ...;
-std::tie( var1, var2, ... ) = initializer;
+std::tie( var1, var2, ... ) = tuple_like_structure;
 ```
 
 ### Differences Between Structured Binding and `std::tie`
 
 1. Their syntax differs.
-2. **Structured binding** can unpack all values from the initializer into new **variables or
-   references**, while **`std::tie`** only binds these values to **references**.
+2. **Structured binding** can unpack all values from the `tuple_like_structure` into new **variables
+   or references**, while **`std::tie`** only binds these values to **references**.
 3. **Structured binding** can bind **a wider variety of types** than `std::tie`, as it can unpack
    values from any tuple-like structure, **including arrays and user-defined types** that implement
    the necessary interface, while **`std::tie`** is **limited** to binding **only** to **existing

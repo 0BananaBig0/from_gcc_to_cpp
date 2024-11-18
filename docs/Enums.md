@@ -6,12 +6,12 @@
   - [Unscoped Enumeration Syntax](#unscoped-enumeration-syntax)
   - [Scoped Enumeration Syntax](#scoped-enumeration-syntax)
   - [Differences Between `enum` (Unscoped Enumeration) and `enum class` (Scoped Enumeration)](#differences-between-enum-unscoped-enumeration-and-enum-class-scoped-enumeration)
-    - [1) Syntax](#1-syntax)
-    - [2) Namespace Scoping](#2-namespace-scoping)
-    - [3) Type Safety](#3-type-safety)
-    - [4) Underlying Type](#4-underlying-type)
-    - [5) Forward Declaration](#5-forward-declaration)
-    - [6) Bitwise Operations](#6-bitwise-operations)
+    - [Syntax](#syntax)
+    - [Namespace Scoping](#namespace-scoping)
+    - [Type Safety](#type-safety)
+    - [Underlying Type](#underlying-type)
+    - [Forward Declaration](#forward-declaration)
+    - [Bitwise Operations](#bitwise-operations)
 
 <!-- vim-markdown-toc -->
 
@@ -56,29 +56,29 @@ EnumName enum_name = EnumName::Mem2;
 
 ### Differences Between `enum` (Unscoped Enumeration) and `enum class` (Scoped Enumeration)
 
-#### 1) Syntax
+#### Syntax
 
-#### 2) Namespace Scoping
+#### Namespace Scoping
 
 1. `enum`: Enum values injected into enclosing scope.
 2. `enum class`: Enum values scoped within the enum type.
 
-#### 3) Type Safety
+#### Type Safety
 
 1. `enum`: Implicitly converts to int.
 2. `enum class`: No implicit conversions.
 
-#### 4) Underlying Type
+#### Underlying Type
 
 1. `enum`: Cannot specify underlying type explicitly.
 2. `enum class`: Can specify underlying type (e.g., `enum class Color : unsigned int`).
 
-#### 5) Forward Declaration
+#### Forward Declaration
 
 1. `enum`: Not allowed.
 2. `enum class`: Allowed.
 
-#### 6) Bitwise Operations
+#### Bitwise Operations
 
 1. `enum`: Allowed without extra effort.
 2. `enum class`: Not allowed without operator overloading.

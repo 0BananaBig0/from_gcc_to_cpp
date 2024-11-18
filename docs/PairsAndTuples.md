@@ -162,7 +162,7 @@ std::pair< V1, V2 > make_pair(
 2. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>` (C++20): Lexicographically
    compares the values in the pair (function template).
 3. `std::swap( std::pair )`: Specializes the `std::swap algorithm` (function template).
-4. `get( std::pair )`: Accesses an element of a pair (function template).
+4. `get( std::pair )`: Accesses an element of a pair (function template). [`std::get`](#stdget).
 
 #### Helper Classes
 
@@ -372,7 +372,7 @@ std::cout << std::get< Type > << std::endl;
 1. `make_tuple`: Creates a tuple object of the type defined by the argument types (function
    template).
 2. `tie`: Creates a tuple of lvalue references or unpacks a tuple into individual objects (function
-   template).
+   template). [`std::tie`](./Bindings.md#stdtie)
 3. `forward_as_tuple`: Creates a tuple of forwarding references (function template).
 4. `tuple_cat`: Creates a tuple by concatenating any number of tuples (function template).
 5. `get( std::tuple )`: Tuple accesses specified element (function template).

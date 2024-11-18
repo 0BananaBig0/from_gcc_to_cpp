@@ -436,6 +436,10 @@ reinterpret_cast< TargetType >( initializer );
 4. When **converting a `void` pointer type to a specific pointer type (or vice versa)**,
    **`static_cast` is the preferred choice**. It is best used for casting between `void` pointer
    type and other pointer types, provided there’s no need for low-level reinterpretation.
+5. **`const` lvalue references can bind to temporary results directly**.
+6. **Non-const lvalue references cannot bind to temporaries directly**; you need a separate
+   variable.
+7. **Rvalue references can bind to temporaries, including results of casts and conversions**.
 
 #### `explicit`
 

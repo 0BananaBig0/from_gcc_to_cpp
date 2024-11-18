@@ -37,11 +37,12 @@
     - [`std::this_thread::yield`](#stdthis_threadyield)
     - [Explanation](#explanation-7)
       - [Syntax](#syntax-3)
-  - [`std::forward`](#stdforward)
-    - [Explanation](#explanation-8)
+  - [`std::forward` and Universial References (Forward References)](#stdforward-and-universial-references-forward-references)
+    - [`std::forward`](#stdforward)
+    - [Universial References (Forward References)](#universial-references-forward-references)
     - [Syntax](#syntax-4)
   - [`std::ref` and `std::cref`](#stdref-and-stdcref)
-    - [Explanation](#explanation-9)
+    - [Explanation](#explanation-8)
     - [Syntax](#syntax-5)
   - [Six STD Mutex Classes](#six-std-mutex-classes)
     - [`std::mutex`](#stdmutex)
@@ -57,7 +58,7 @@
       - [Member Functions](#member-functions-2)
     - [**Notes**](#notes-1)
   - [`std::lock_guard`](#stdlock_guard)
-    - [Explanation](#explanation-10)
+    - [Explanation](#explanation-9)
     - [Syntax](#syntax-7)
     - [Members and Related Stuffs](#members-and-related-stuffs-3)
       - [Links](#links-4)
@@ -75,7 +76,7 @@
       - [Member Functions](#member-functions-4)
       - [Non-member Functions](#non-member-functions-2)
   - [`std::scoped_lock`](#stdscoped_lock)
-    - [Explanation](#explanation-11)
+    - [Explanation](#explanation-10)
     - [Syntax](#syntax-9)
     - [Members and Related Stuffs](#members-and-related-stuffs-5)
       - [Links](#links-6)
@@ -88,7 +89,7 @@
     - [Syntax](#syntax-10)
   - [Three Lock Type Tags](#three-lock-type-tags)
   - [`std::call_once` and `std::once_flag`](#stdcall_once-and-stdonce_flag)
-    - [Explanation](#explanation-12)
+    - [Explanation](#explanation-11)
     - [Syntax](#syntax-11)
   - [`std::atomic` and `std::atomic_ref`](#stdatomic-and-stdatomic_ref)
     - [`std::atomic`](#stdatomic)
@@ -113,10 +114,10 @@
       - [Nested Types](#nested-types-2)
       - [Member Functions](#member-functions-7)
   - [`std::notify_all_at_thread_exit`](#stdnotify_all_at_thread_exit)
-    - [Explanation](#explanation-13)
+    - [Explanation](#explanation-12)
     - [Syntax](#syntax-13)
   - [`std::async`](#stdasync)
-    - [Explanation](#explanation-14)
+    - [Explanation](#explanation-13)
     - [Syntax](#syntax-14)
     - [Related Stuffs](#related-stuffs)
       - [Links](#links-9)
@@ -135,7 +136,7 @@
       - [`std::future_status` (Returned by `wait_for` and `wait_until` Functions)](#stdfuture_status-returned-by-wait_for-and-wait_until-functions)
     - [Differences Between `std::future` and `std::shared_future`](#differences-between-stdfuture-and-stdshared_future)
   - [`std::promise`](#stdpromise)
-    - [Explanation](#explanation-15)
+    - [Explanation](#explanation-14)
     - [Syntax](#syntax-15)
     - [Related Stuffs](#related-stuffs-1)
       - [Links](#links-11)
@@ -450,9 +451,9 @@ void sleep_until(
 void yield() noexcept;
 ```
 
-### `std::forward`
+### `std::forward` and Universial References (Forward References)
 
-#### Explanation
+#### `std::forward`
 
 1. `std::forward` is **a utility function** that is used **for perfect forwarding of function
    arguments**, ensuring that their value categories (whether they are lvalues or rvalues) are
@@ -463,11 +464,38 @@ void yield() noexcept;
    (whether it is an lvalue or an rvalue) of the argument it forwards**.
 5. Its header file is `<utility>`.
 
+#### Universial References (Forward References)
+
+1. A universal reference is **a type of reference** in C++ that **can bind to both lvalues and
+   rvalues**.
+2. It is also called **a forwarding reference** in modern C++ terminology.
+3. The term "universal reference" is **particularly used in the context of template functions**.
+4. A universal reference typically appears in a template function parameter when the type is
+   declared as `T&&` but is not a reference type (such as in `T&&` where `T` is a template
+   parameter). This is a special case of rvalue reference, which can either bind to:
+   - An rvalue (temporary object).
+   - An lvalue (persistent object) if it's used in the context of a template.
+5. Lvalue reference (`T&`) and rvalue reference (`T&&`) are distinct in C++. But when template type
+   deduction is used, the compiler deduces the right reference type depending on the value category
+   of the argument passed.
+   - When an lvalue is passed, `T` is deduced as `Type&`, so the universal reference becomes
+     `Type& &`, which is collapsed to `Type&`.
+   - When an rvalue is passed, `T` is deduced as `Type&`, and the universal reference becomes
+     `Type& &`.
+6. Universal references are often used in **perfect forwarding**, where you want to forward the
+   arguments exactly as received, keeping their value category intact.
+
 #### Syntax
 
 ```CPP
-// Its usage syntax.
+// Usage syntax.
 std::forward( obj_name );
+```
+
+```CPP
+template< typename T, ... > RetType funcName( T&& arg, ... ) {
+   ...;
+}
 ```
 
 ```CPP
@@ -986,11 +1014,12 @@ int try_lock( Lockable1& lock1, Lockable2& lock2, LockableN&... lockn );
 
 1. [`<mutex>` in cplusplus](https://cplusplus.com/reference/mutex/).
 2. [`<mutex>` in cppreference](https://en.cppreference.com/w/cpp/header/mutex).
-3. `std::defer`: A `constexpr defer_lock_t` object. Do not acquire ownership of the mutex.
+3. `std::defer`: A `constexpr defer_lock_t` object. Do not acquire ownership of the mutex. (Does not
+   lock automatically; requires manual locking.)
 4. `std::try_to_lock`: A `constexpr try_to_lock_t` object. Try to acquire ownership of the mutex
    without blocking.
 5. `std::adopt_lock`: A `constexpr adopt_lock_t` object. Assume the calling thread already has
-   ownership of the mutex.
+   ownership of the mutex. (The mutex has been locked.)
 
 ### `std::call_once` and `std::once_flag`
 
