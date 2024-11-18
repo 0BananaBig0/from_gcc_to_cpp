@@ -694,6 +694,21 @@ std::shared_timed_mutex stmutex_name;
 2. All mutex objects are passed to them by reference.
 3. All lock objects do not manage the lifetime of the mutex object in any way: the duration of the
    mutex object shall extend at least until the destruction of the lock object that locks it.
+4. **One mutex object** can only lock **one shared resource**.
+5. A mutex can be defined in various scopes depending on the accessibility and synchronization needs
+   of the shared resource it protects:
+   - **Global scope**: Suitable for global resources accessed across multiple functions, providing
+     broad accessibility.
+   - **Local scope (function/block)**: Useful for synchronizing limited code sections within a
+     function or block, especially if declared as `static`.
+   - **Class member**: Protects class-specific resources; a `static` mutex in a class provides a
+     class-level lock shared among all instances.
+   - **Namespace scope**: Limits mutex access to code within a specific namespace, aiding modularity
+     by avoiding global namespace pollution.
+   - **Anonymous namespace (file/module scope)**: Restricts mutex visibility to a single file,
+     making it accessible only within that file, which is useful for file-specific resources.
+   - **Smart pointer (`std::shared_ptr` or `std::unique_ptr`)**: Enables dynamic or conditional
+     mutex management, allowing shared or exclusive ownership of the mutex among objects.
 
 ### `std::lock_guard`
 
