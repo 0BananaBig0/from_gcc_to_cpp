@@ -57,6 +57,10 @@
       - [Nested Types](#nested-types)
       - [Member Functions](#member-functions-2)
     - [**Notes**](#notes-1)
+    - [Mutex Locking](#mutex-locking)
+    - [Mutual Exclusion](#mutual-exclusion)
+    - [Unlocking](#unlocking)
+    - [Key Points to Consider](#key-points-to-consider)
   - [`std::lock_guard`](#stdlock_guard)
     - [Explanation](#explanation-9)
     - [Syntax](#syntax-7)
@@ -549,7 +553,7 @@ std::cref( var_name );
 #### `std::mutex`
 
 1. A mutex is **a lockable object** that is designed to signal when critical sections of code need
-   exclusive access, **preventing other threads** with the same protection from **executing
+   **exclusive access**, **preventing other threads** with the same protection from **executing
    concurrently and access the same memory locations**.
 2. `std::mutex` objects provide **exclusive ownership** and **do not support recursivity** (i.e., a
    thread shall not `lock` a `std::mutex` it already owns) -- see `std::recursive_mutex` for an
@@ -709,6 +713,39 @@ std::shared_timed_mutex stmutex_name;
      making it accessible only within that file, which is useful for file-specific resources.
    - **Smart pointer (`std::shared_ptr` or `std::unique_ptr`)**: Enables dynamic or conditional
      mutex management, allowing shared or exclusive ownership of the mutex among objects.
+
+#### Mutex Locking
+
+1. When a thread wants to **access a shared resource protected by a mutex**, it calls `lock()` on
+   the mutex (usually done via `std::lock_guard` or `std::unique_lock`).
+2. If **no other thread has locked the mutex**, the thread **successfully acquires the lock** and
+   can **access the shared resource**.
+3. If **another thread has already locked the mutex**, the requesting thread will **block (wait)
+   until the mutex is available**.
+
+#### Mutual Exclusion
+
+1. **Only one thread can own the lock** on the mutex at any given time.
+2. **Other threads** attempting to lock the mutex **must wait**, ensuring that only one thread
+   accesses the protected resource at a time.
+
+#### Unlocking
+
+1. **Once a thread finishes its operations** on the shared resource, it **unlocks the mutex**,
+   **allowing another waiting thread to acquire the lock**.
+2. If the thread used a `std::lock_guard` or `std::unique_lock`, the mutex will be automatically
+   unlocked when the guard or lock object goes out of scope.
+
+#### Key Points to Consider
+
+1. **Deadlock**: If two or more threads try to lock multiple mutexes in different orders, a deadlock
+   may occur, where each thread waits indefinitely for the other to release the mutex. Techniques
+   like always locking mutexes in a specific order or using `std::scoped_lock` can prevent this.
+2. **Performance**: Locking and unlocking a mutex are relatively inexpensive operations, but if many
+   threads frequently compete for the same mutex, contention can slow down the program.
+3. **Recursive Locking**: In C++, `std::mutex` does not allow a thread to lock the same mutex
+   multiple times without unlocking, as it would lead to a deadlock with itself. To handle recursive
+   locking by the same thread, `std::recursive_mutex` is available.
 
 ### `std::lock_guard`
 
