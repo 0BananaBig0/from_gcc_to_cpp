@@ -271,12 +271,12 @@
 <li><a href="#unscoped-enumeration-syntax">Unscoped Enumeration Syntax</a></li>
 <li><a href="#scoped-enumeration-syntax">Scoped Enumeration Syntax</a></li>
 <li><a href="#differences-between-enum-unscoped-enumeration-and-enum-class-scoped-enumeration">Differences Between <code>enum</code> (Unscoped Enumeration) and <code>enum class</code> (Scoped Enumeration)</a><ul>
-<li><a href="#1-syntax">1) Syntax</a></li>
-<li><a href="#2-namespace-scoping">2) Namespace Scoping</a></li>
-<li><a href="#3-type-safety">3) Type Safety</a></li>
-<li><a href="#4-underlying-type">4) Underlying Type</a></li>
-<li><a href="#5-forward-declaration">5) Forward Declaration</a></li>
-<li><a href="#6-bitwise-operations">6) Bitwise Operations</a></li>
+<li><a href="#syntax">Syntax</a></li>
+<li><a href="#namespace-scoping">Namespace Scoping</a></li>
+<li><a href="#type-safety">Type Safety</a></li>
+<li><a href="#underlying-type">Underlying Type</a></li>
+<li><a href="#forward-declaration">Forward Declaration</a></li>
+<li><a href="#bitwise-operations">Bitwise Operations</a></li>
 </ul>
 </li>
 </ul>
@@ -315,28 +315,28 @@ EnumName enum_name = Mem2;
 EnumName enum_name = EnumName::Mem2;
 </code></pre>
 <h3 id="differences-between-enum-unscoped-enumeration-and-enum-class-scoped-enumeration">Differences Between <code>enum</code> (Unscoped Enumeration) and <code>enum class</code> (Scoped Enumeration)</h3>
-<h4 id="1-syntax">1) Syntax</h4>
-<h4 id="2-namespace-scoping">2) Namespace Scoping</h4>
+<h4 id="syntax">Syntax</h4>
+<h4 id="namespace-scoping">Namespace Scoping</h4>
 <ol>
 <li><code>enum</code>: Enum values injected into enclosing scope.</li>
 <li><code>enum class</code>: Enum values scoped within the enum type.</li>
 </ol>
-<h4 id="3-type-safety">3) Type Safety</h4>
+<h4 id="type-safety">Type Safety</h4>
 <ol>
 <li><code>enum</code>: Implicitly converts to int.</li>
 <li><code>enum class</code>: No implicit conversions.</li>
 </ol>
-<h4 id="4-underlying-type">4) Underlying Type</h4>
+<h4 id="underlying-type">Underlying Type</h4>
 <ol>
 <li><code>enum</code>: Cannot specify underlying type explicitly.</li>
 <li><code>enum class</code>: Can specify underlying type (e.g., <code>enum class Color : unsigned int</code>).</li>
 </ol>
-<h4 id="5-forward-declaration">5) Forward Declaration</h4>
+<h4 id="forward-declaration">Forward Declaration</h4>
 <ol>
 <li><code>enum</code>: Not allowed.</li>
 <li><code>enum class</code>: Allowed.</li>
 </ol>
-<h4 id="6-bitwise-operations">6) Bitwise Operations</h4>
+<h4 id="bitwise-operations">Bitwise Operations</h4>
 <ol>
 <li><code>enum</code>: Allowed without extra effort.</li>
 <li><code>enum class</code>: Not allowed without operator overloading.</li>

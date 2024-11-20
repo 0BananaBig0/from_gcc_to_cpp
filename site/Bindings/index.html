@@ -358,18 +358,18 @@
    fixed-size arrays, or user-defined types).</li>
 <li>It simplifies the syntax for unpacking values and allows for more expressive code.</li>
 <li><strong>The number of variables</strong> in <code>[var1, var2, ...]</code> is equal to <strong>the number of values</strong> provided
-   by the <code>initializer</code>.</li>
+   by the <code>tuple_like_structure</code>.</li>
 </ol>
 <h4 id="syntax">Syntax</h4>
 <pre><code class="language-CPP">// Decomposition.
 // Except for fixed-size arrays, `std::tuple`, and `std::pair`, other containers can only use this
 // syntax to work with a single tuple-like element.
-auto [var1, var2, ...] = initializer;
+auto [var1, var2, ...] = tuple_like_structure;
 </code></pre>
 <pre><code class="language-CPP">// Decomposition.
 // Except for fixed-size arrays, `std::tuple`, and `std::pair`, other containers can only use this
 // syntax to work with a single tuple-like element.
-auto&amp; [var1, var2, ...] = initializer;
+auto&amp; [var1, var2, ...] = tuple_like_structure;
 </code></pre>
 <pre><code class="language-CPP">// Decomposition with a range-based for loop.
 // All containers can use structured bindings when iterating over elements.
@@ -383,8 +383,8 @@ for ( auto&amp; [var1, var2, ...] : container ) { ...; };
    them.</li>
 <li>This is particularly useful when working with functions that return <strong>multiple values</strong> in
    <strong>tuple format</strong>.</li>
-<li>The <strong><code>initializer</code></strong> passed to <code>std::tie</code> must evaluate to <strong>a tuple-like structure</strong>, such as
-   <code>std::tuple</code> or <code>std::pair</code>. It will <strong>not work</strong> with types that <strong>lack a tuple-like
+<li>The <strong><code>tuple_like_structure</code></strong> passed to <code>std::tie</code> must evaluate to <strong>a tuple-like structure</strong>,
+   such as <code>std::tuple</code> or <code>std::pair</code>. It will <strong>not work</strong> with types that <strong>lack a tuple-like
    interface</strong>, such as <code>std::get</code>.</li>
 <li><code>std::tie</code> should <strong>not</strong> be used to <strong>bind a temporary object</strong> to avoid <strong>undefined behavior</strong>.</li>
 </ol>
@@ -392,13 +392,13 @@ for ( auto&amp; [var1, var2, ...] : container ) { ...; };
 <pre><code class="language-CPP">Type1 var1;
 Type2 var2;
 ...;
-std::tie( var1, var2, ... ) = initializer;
+std::tie( var1, var2, ... ) = tuple_like_structure;
 </code></pre>
 <h3 id="differences-between-structured-binding-and-stdtie">Differences Between Structured Binding and <code>std::tie</code></h3>
 <ol>
 <li>Their syntax differs.</li>
-<li><strong>Structured binding</strong> can unpack all values from the initializer into new <strong>variables or
-   references</strong>, while <strong><code>std::tie</code></strong> only binds these values to <strong>references</strong>.</li>
+<li><strong>Structured binding</strong> can unpack all values from the <code>tuple_like_structure</code> into new <strong>variables
+   or references</strong>, while <strong><code>std::tie</code></strong> only binds these values to <strong>references</strong>.</li>
 <li><strong>Structured binding</strong> can bind <strong>a wider variety of types</strong> than <code>std::tie</code>, as it can unpack
    values from any tuple-like structure, <strong>including arrays and user-defined types</strong> that implement
    the necessary interface, while <strong><code>std::tie</code></strong> is <strong>limited</strong> to binding <strong>only</strong> to <strong>existing

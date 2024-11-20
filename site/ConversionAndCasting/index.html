@@ -688,6 +688,10 @@ int main() {
 <li>When <strong>converting a <code>void</code> pointer type to a specific pointer type (or vice versa)</strong>,
    <strong><code>static_cast</code> is the preferred choice</strong>. It is best used for casting between <code>void</code> pointer
    type and other pointer types, provided there’s no need for low-level reinterpretation.</li>
+<li><strong><code>const</code> lvalue references can bind to temporary results directly</strong>.</li>
+<li><strong>Non-const lvalue references cannot bind to temporaries directly</strong>; you need a separate
+   variable.</li>
+<li><strong>Rvalue references can bind to temporaries, including results of casts and conversions</strong>.</li>
 </ol>
 <h4 id="explicit"><code>explicit</code></h4>
 <h5 id="explanation_9">Explanation</h5>

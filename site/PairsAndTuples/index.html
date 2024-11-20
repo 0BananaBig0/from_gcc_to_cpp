@@ -410,7 +410,7 @@ std::pair&lt; V1, V2 &gt; make_pair(
 <li><code>operator==</code>, <code>operator!=/&lt;!--&lt;=/--&gt;/&gt;=</code> (removed in C++20), <code>operator&lt;=&gt;</code> (C++20): Lexicographically
    compares the values in the pair (function template).</li>
 <li><code>std::swap( std::pair )</code>: Specializes the <code>std::swap algorithm</code> (function template).</li>
-<li><code>get( std::pair )</code>: Accesses an element of a pair (function template).</li>
+<li><code>get( std::pair )</code>: Accesses an element of a pair (function template). <a href="#stdget"><code>std::get</code></a>.</li>
 </ol>
 <h4 id="helper-classes">Helper Classes</h4>
 <ol>
@@ -574,7 +574,7 @@ std::cout &lt;&lt; std::get&lt; Type &gt; &lt;&lt; std::endl;
 <li><code>make_tuple</code>: Creates a tuple object of the type defined by the argument types (function
    template).</li>
 <li><code>tie</code>: Creates a tuple of lvalue references or unpacks a tuple into individual objects (function
-   template).</li>
+   template). <a href="../Bindings/#stdtie"><code>std::tie</code></a></li>
 <li><code>forward_as_tuple</code>: Creates a tuple of forwarding references (function template).</li>
 <li><code>tuple_cat</code>: Creates a tuple by concatenating any number of tuples (function template).</li>
 <li><code>get( std::tuple )</code>: Tuple accesses specified element (function template).</li>

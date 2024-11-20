@@ -318,7 +318,7 @@
 </ul>
 </li>
 <li><a href="#template-aliases">Template Aliases</a></li>
-<li><a href="#universial-references-forward-references">Universial References (Forward References)</a></li>
+<li><a href="#stdforward-and-universial-references-forward-references"><code>std::forward</code> and Universial References (Forward References)</a></li>
 </ul>
 <!-- vim-markdown-toc -->
 
@@ -784,26 +784,9 @@ template&lt; typename T, ... &gt; RetType funcName( T t, ... ) {
 <ol>
 <li><a href="../UsingTypedefNameSpaces/#using"><code>using</code></a></li>
 </ol>
-<h3 id="universial-references-forward-references">Universial References (Forward References)</h3>
+<h3 id="stdforward-and-universial-references-forward-references"><code>std::forward</code> and Universial References (Forward References)</h3>
 <ol>
-<li>A universal reference is <strong>a type of reference</strong> in C++ that <strong>can bind to both lvalues and
-   rvalues</strong>.</li>
-<li>It is also called <strong>a forwarding reference</strong> in modern C++ terminology.</li>
-<li>The term "universal reference" is <strong>particularly used in the context of template functions</strong>.</li>
-<li>A universal reference typically appears in a template function parameter when the type is
-   declared as <code>T&amp;&amp;</code> but is not a reference type (such as in <code>T&amp;&amp;</code> where <code>T</code> is a template
-   parameter). This is a special case of rvalue reference, which can either bind to:</li>
-<li>An rvalue (temporary object).</li>
-<li>An lvalue (persistent object) if it's used in the context of a template.</li>
-<li>Lvalue reference (<code>T&amp;</code>) and rvalue reference (<code>T&amp;&amp;</code>) are distinct in C++. But when template type
-   deduction is used, the compiler deduces the right reference type depending on the value category
-   of the argument passed.</li>
-<li>When an lvalue is passed, <code>T</code> is deduced as <code>Type&amp;</code>, so the universal reference becomes
-     <code>Type&amp; &amp;</code>, which is collapsed to <code>Type&amp;</code>.</li>
-<li>When an rvalue is passed, <code>T</code> is deduced as <code>Type&amp;</code>, and the universal reference becomes
-     <code>Type&amp; &amp;</code>.</li>
-<li>Universal references are often used in <strong>perfect forwarding</strong>, where you want to forward the
-   arguments exactly as received, keeping their value category intact.</li>
+<li><a href="../Threads/##stdforward-and-universial-references-forward-references"><code>std::forward</code> and Universial References (Forward References)</a></li>
 </ol></div>
             </div>
         </div>
