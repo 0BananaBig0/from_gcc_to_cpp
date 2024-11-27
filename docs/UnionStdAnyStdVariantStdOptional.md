@@ -204,7 +204,7 @@ std::visit(
 // Handling invalid access.
 try {
    Type var_val = std::get< Type >(
-      var_name );   // This will throw if myVariant does not hold a double.
+      var_name );   // This will throw if var_name does not hold a Type.
 } catch( const std::bad_variant_access& e ) {
    std::cerr << "Bad variant access: " << e.what() << std::endl;
 };
@@ -290,9 +290,9 @@ std::any var_name;
 
 ```CPP
 // Definition syntax.
-std::any var_name = val;
+std::any var_name = val1;
 // Assignment syntax.
-var_name = val;
+var_name = val2;
 ```
 
 ```CPP
@@ -451,7 +451,7 @@ var_name.reset();   // Clears the value.
 
 #### Member Types
 
-1. `value_type`: `T`
+1. `value_type`: `T`.
 2. `iterator` (since C++26): Implementation-defined `LegacyRandomAccessIterator`,
    `ConstexprIterator`, and `contiguous_iterator` whose `value_type` and `reference` are
    `std::remove_cv_t< T >` and `T&`, respectively.

@@ -455,7 +455,7 @@ std::visit(
 <pre><code class="language-CPP">// Handling invalid access.
 try {
    Type var_val = std::get&lt; Type &gt;(
-      var_name );   // This will throw if myVariant does not hold a double.
+      var_name );   // This will throw if var_name does not hold a Type.
 } catch( const std::bad_variant_access&amp; e ) {
    std::cerr &lt;&lt; &quot;Bad variant access: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
 };
@@ -534,9 +534,9 @@ try {
 std::any var_name;
 </code></pre>
 <pre><code class="language-CPP">// Definition syntax.
-std::any var_name = val;
+std::any var_name = val1;
 // Assignment syntax.
-var_name = val;
+var_name = val2;
 </code></pre>
 <pre><code class="language-CPP">// Definition syntax.
 std::any var_name1 = val;
@@ -660,7 +660,7 @@ var_name.reset();   // Clears the value.
 </ol>
 <h4 id="member-types">Member Types</h4>
 <ol>
-<li><code>value_type</code>: <code>T</code></li>
+<li><code>value_type</code>: <code>T</code>.</li>
 <li><code>iterator</code> (since C++26): Implementation-defined <code>LegacyRandomAccessIterator</code>,
    <code>ConstexprIterator</code>, and <code>contiguous_iterator</code> whose <code>value_type</code> and <code>reference</code> are
    <code>std::remove_cv_t&lt; T &gt;</code> and <code>T&amp;</code>, respectively.</li>
