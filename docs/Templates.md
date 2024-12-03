@@ -38,6 +38,9 @@
     - [Syntax](#syntax-6)
   - [Template Aliases](#template-aliases)
   - [`std::forward` and Universial References (Forward References)](#stdforward-and-universial-references-forward-references)
+    - [`std::forward`](#stdforward)
+    - [Universial References (Forward References)](#universial-references-forward-references)
+    - [Syntax](#syntax-7)
 
 <!-- vim-markdown-toc -->
 
@@ -124,7 +127,10 @@
 
 1. Function templates allow for the definition of **functions** that can **operate with any data
    type**.
-2. This capability **reduces code duplication** and **enhances type safety**, as the compiler can
+2. Function templates in C++ **allow automatic type deduction** for the template parameters, which
+   means that the type of the argument passed to the function can be used to deduce the
+   corresponding template type `T`.
+3. This capability **reduces code duplication** and **enhances type safety**, as the compiler can
    automatically generate type-specific implementations based on the provided template parameters.
 
 #### Syntax
@@ -152,7 +158,7 @@ template Type funcName< ... >( ... );
 ```
 
 ```CPP
-// Usage syntax, implicit instantitaion syntax.
+// Usage syntax, implicit instantitaion syntax, automatic type deduction.
 Type result = funcName( ... );
 ```
 
@@ -575,4 +581,69 @@ template< typename T, ... > RetType funcName( T t, ... ) {
 
 ### `std::forward` and Universial References (Forward References)
 
-1. [`std::forward` and Universial References (Forward References)](./Threads.md##stdforward-and-universial-references-forward-references)
+#### `std::forward`
+
+1. `std::forward` is **a utility function** that is used **for perfect forwarding of function
+   arguments**, ensuring that their value categories (whether they are lvalues or rvalues) are
+   preserved during the forwarding process.
+2. It returns an rvalue reference to `obj_name` if `obj_name` is not an lvalue reference.
+3. If `obj_name` is an lvalue reference, the function returns `obj_name` without modifying its type.
+4. `std::forward` **acts as a transfer station** that **preserves the original value category
+   (whether it is an lvalue or an rvalue) of the argument it forwards**.
+5. Its header file is `<utility>`.
+
+#### Universial References (Forward References)
+
+1. A universal reference is **a type of reference** in C++ that **can bind to both lvalues and
+   rvalues**.
+2. It is also called **a forwarding reference** in modern C++ terminology.
+3. The term "universal reference" is **particularly used in the context of template functions**.
+4. A universal reference typically appears in a template function parameter when the type is
+   declared as `T&&` but is neither a rvalue reference type nor a lvalue reference type.
+5. This is a special reference, which can either bind to:
+   - An rvalue (temporary object).
+   - An lvalue (persistent object) if it's used in the context of a template.
+6. **Only** when **automatic template type deduction** is used (e.g., in function templates or
+   templated constructors), the compiler deduces the universal reference depending on the value
+   category of the argument passed.
+   - When an lvalue is passed, `T` is deduced as `Type&`, so the universal reference becomes
+     `Type& &&`, which is collapsed to `Type&`, obeying **reference collapsing rules**.
+   - When an rvalue is passed, `T` is deduced as `Type`, and the universal reference becomes
+     `Type&&`.
+7. Universal references are often used in **perfect forwarding**, where you want to forward the
+   arguments exactly as received, keeping their value category intact.
+8. If `T` is **explicitly specified or in a non-deduced context**, `T&&` is **a pure rvalue
+   reference**.
+
+#### Syntax
+
+```CPP
+// Usage syntax.
+std::forward( obj_name );
+```
+
+```CPP
+template< typename T, ... > RetType funcName( T&& arg, ... ) {
+   ...;
+}
+```
+
+```CPP
+// An usage example.
+#include <iostream>
+#include <utility>   // For std::forward
+// Function to demonstrate perfect forwarding
+template< typename T > void wrapper( T&& arg ) {
+   // Forward the argument to another function
+   // This preserves whether arg is an lvalue or rvalue
+   process( std::forward< T >( arg ) );
+};
+// Helper function to handle both lvalues and rvalues
+void process( int& x ) { std::cout << "Lvalue processed: " << x << std::endl; };
+void process( int&& x ) { std::cout << "Rvalue processed: " << x << std::endl; };
+int main() {
+   int x = 42;
+   wrapper( x );   // Lvalue passed, so it will call process(int&)
+   wrapper( 10 );   // Rvalue passed, so it will call process(int&&)
+};
+```

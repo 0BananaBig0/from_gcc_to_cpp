@@ -123,8 +123,8 @@
 
 ### Definitions
 
-1. A definition **provides a body** that implements a function, class, struct or variable. It
-   includes **an actual value or implementation** and **allocates storage for variables**.
+1. A definition **provides a body** that implements a function, class, struct or variable.
+2. It includes **an actual value or implementation** and **allocates storage for variables**.
 
 ### Variables, Instances, Objects, Initializers and Values
 
@@ -304,9 +304,11 @@
    type, because `auto` cannot deduce a type as a reference without using `&`.
 7. A reference is **neither a variable nor an object**.
 8. Categories:
-   - [Lvalue References (`Type&`)](#lvalue-references-type)
-   - [Rvalue References (`Type&&`)](#rvalue-references-type)
-   - [Universial References (Forward References)](./Templates.md#universial-references-forward-references)
+   - [Lvalue References (`Type&`)](#lvalue-references-type).
+   - [Rvalue References (`Type&&`)](#rvalue-references-type).
+   - [Universial References (Forward References)](./Templates.md#stdforward-and-universial-references-forward-references).
+   - [value categories in cplusplus]().
+   - [value categories in cppreference](https://en.cppreference.com/w/cpp/language/value_category).
 
 ### Parameters
 

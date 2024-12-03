@@ -117,6 +117,11 @@ git rm TargetList
 git commit -m "Your comments"
 ```
 
+```SH
+git rm TargetList -r # if TargetList includes folders.
+git commit -m "Your comments"
+```
+
 ### Check the Status
 
 ```SH
