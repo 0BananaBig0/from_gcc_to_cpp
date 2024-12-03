@@ -767,14 +767,16 @@ std::lock_guard< MutexType > lck( mtx, std::adopt_lock );
 // Its usage syntax.
 MutexType mtx;
 std::unique_lock< MutexType > ulck( mtx );
-std::shared_lock< MutexType > slck( mtx );
+SharedMutexType smtx;
+std::shared_lock< MutexType > slck( smtx );
 ```
 
 ```CPP
 // Its usage syntax.
 MutexType mtx;
 std::unique_lock< MutexType > ulck1( mtx );
-std::shared_lock< MutexType > slck1( mtx );
+SharedMutexType smtx;
+std::shared_lock< MutexType > slck1( smtx );
 // Move constructor.
 std::unique_lock< MutexType > ulck2( std::move( ulck1 ) );
 std::shared_lock< MutexType > slck2( std::move( slck1 ) );
@@ -785,7 +787,8 @@ std::shared_lock< MutexType > slck2( std::move( slck1 ) );
 MutexType mtx;
 std::unique_lock< MutexType > ulck( mtx, std::defer_lock );
 ulck.lock();
-std::shared_lock< MutexType > slck( mtx, std::defer_lock );
+SharedMutexType smtx;
+std::shared_lock< MutexType > slck( smtx, std::defer_lock );
 slck.lock();
 ```
 
@@ -799,7 +802,8 @@ if( ulck.owns_lock() ) {
 } else {
    // Lock acquisition failed, handle the situation appropriately.
 };
-std::shared_lock< MutexType > slck( mtx, std::try_to_lock );
+SharedMutexType smtx;
+std::shared_lock< MutexType > slck( smtx, std::try_to_lock );
 if( slck.owns_lock() ) {
    // Critical section: code that must be executed atomically.
 } else {
@@ -812,7 +816,9 @@ if( slck.owns_lock() ) {
 MutexType mtx;
 mtx.lock();
 std::unique_lock< MutexType > ulck( mtx, std::adopt_lock );
-std::shared_lock< MutexType > slck( mtx, std::adopt_lock );
+SharedMutexType smtx;
+smtx.lock();
+std::shared_lock< MutexType > slck( smtx, std::adopt_lock );
 ```
 
 ```CPP
@@ -820,7 +826,8 @@ std::shared_lock< MutexType > slck( mtx, std::adopt_lock );
 MutexType mtx;
 std::chrono::duration< Type, std::ratio< num1, num2 >(Optional) > dur;
 std::unique_lock< MutexType > ulck( mtx, dur );
-std::shared_lock< MutexType > slck( mtx, dur );
+SharedMutexType smtx;
+std::shared_lock< MutexType > slck( smtx, dur );
 ```
 
 ```CPP
@@ -828,7 +835,8 @@ std::shared_lock< MutexType > slck( mtx, dur );
 MutexType mtx;
 std::chrono::time_point< Clock > tpoint;
 std::unique_lock< MutexType > ulck( mtx, tpoint );
-std::shared_lock< MutexType > slck( mtx, tpoint );
+SharedMutexType smtx;
+std::shared_lock< MutexType > slck( smtx, tpoint );
 ```
 
 #### Members and Related Stuffs

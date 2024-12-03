@@ -5,8 +5,8 @@
   - [Advantages and Disadvantages](#advantages-and-disadvantages)
     - [Advantages (Why Use Functions)](#advantages-why-use-functions)
     - [Disadvantages](#disadvantages)
-  - [Definition Syntax](#definition-syntax)
   - [Declaration Syntax](#declaration-syntax)
+  - [Definition Syntax](#definition-syntax)
   - [Reference Syntax](#reference-syntax)
   - [Function Arguments](#function-arguments)
   - [Function Argument Pushing Order (Stack Order)](#function-argument-pushing-order-stack-order)
@@ -126,6 +126,12 @@
    - Changes in one function may require updates to others that depend on it, which can lead to
      maintenance challenges.
 
+### Declaration Syntax
+
+```CPP
+RetType funcName( para_list );
+```
+
 ### Definition Syntax
 
 ```CPP
@@ -138,12 +144,6 @@ RetType funcName( para_list ) {
 auto funcName( para_list ) -> RetType {
    // Function body.
 };
-```
-
-### Declaration Syntax
-
-```CPP
-RetType funcName( para_list );
 ```
 
 ### Reference Syntax
@@ -198,8 +198,15 @@ RetType var_name = funcName( arg_list );
      base class method **cannot be altered**.
    - The default arguments of the base class will remain applicable, which may lead to confusion.
 4. **Function pointers**:
-   - In the context of function pointers, **default arguments are not considered**.
+   - When using function pointers, **default arguments cannot be used** in the pointer type because
+     the default argument mechanism relies on the compiler knowing the function signature, and
+     function pointers do not inherently know this.
    - The function pointer type must match the function signature precisely.
+5. **Cannot change default arguments between declarations and definitions**.
+6. **Default arguments cannot be repeated**:
+   - Default arguments must be provided only once in the function declaration or definition.
+   - If you specify default arguments in both the declaration and definition, the compiler will
+     raise an error.
 
 ### Keywords Related to Functions
 
@@ -639,6 +646,7 @@ template< typename... Ts > RetType funcName( Ts... args ) {
 5. However, a function signature in C++ does **not include**:
    - The **return type** of the function.
    - The **const qualifier** of parameters **passed by value** (e.g., `int x` vs. `const int x`).
+   - The **constexpr** of parameters (e.g., `int x` vs. `constexpr int x`).
    - **Default argument values**.
 
 ### Hiding, Overloading, Overriding, and Overwriting

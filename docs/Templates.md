@@ -245,9 +245,7 @@ template< para_list > class ClassName {
 template<> class ClassName< arg_list2 > {
       // Another implementation.
 };
-```
 
-```CPP
 // Usage syntax.
 ClassName< arg_list1 > obj1;   // Utilizes the generic version.
 ClassName< arg_list2 > obj2;   // Utilizes the specialized version.
@@ -475,6 +473,15 @@ ClassName< TType, ..., val, ... > var_name;
      ```
 
 #### Syntax
+
+```CPP
+// The definition of `std::enable_if`.
+template< bool Cond, class T = void > struct enable_if {};
+
+template< class T > struct enable_if< true, T > {
+      typedef T type;
+};
+```
 
 ```CPP
 // With `std::enable_if`.

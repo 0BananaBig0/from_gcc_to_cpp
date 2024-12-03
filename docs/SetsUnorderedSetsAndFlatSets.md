@@ -99,7 +99,7 @@ std::set< Type > set_name;
 ```
 
 ```CPP
-// Not common, not recommend
+// Not common, not recommend.
 class Compare {
       bool _reverse;
    public:

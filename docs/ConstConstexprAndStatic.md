@@ -141,7 +141,7 @@ const Type var_name = value;
 1. A `const` reference is **a reference** that **points to a value but cannot modify it**.
 2. `const` references are commonly **used to avoid copying large objects** in function parameters or
    to ensure a value isn’t modified when it’s passed as a reference.
-3. **a `const` reference** can bind to **a literal value or a temporary result**.
+3. **A `const` reference** can bind to **a literal value or a temporary result**.
 
 ###### Syntax
 
@@ -360,7 +360,7 @@ constexpr& Type var_name = initializer;
 ###### Explanation
 
 1. A `constexpr` member variable is **a variable** defined within a class that can be **initialized
-   with constant expressions**.
+   with constant expressions or a `constexpr` constructor**.
 2. This allows them to be **evaluated at compile time**, which can lead to **performance
    improvements** and enable more complex compile-time computations.
 
@@ -369,7 +369,11 @@ constexpr& Type var_name = initializer;
 ```CPP
 class ClassName {
    public:
+      constexpr ClassName( Type mem ): _mem( mem ) { ...; };
+      ...;
+   private:
       constexpr Type _mem = initializer;
+      ...;
 };
 ```
 
@@ -465,10 +469,11 @@ constexpr ClassName obj_ptr;
 ###### Syntax
 
 ```CPP
-constexpr RetType operator"" _name( Type para, ... ) {
+constexpr RetType operator"" _suffix_name( Type para, ... ) {
    // Do something that can be evaluated at compile time.
    return ...;
-}
+};
+Type var_name = value_suffix_name;
 ```
 
 ### `static`

@@ -71,8 +71,9 @@ int main() {
    **different**. For example, **const functions and noexcept functions**.
 3. However, **the return type does not** play a role in distinguishing overloaded functions.
 4. Functions **cannot** be overloaded solely based on different **return types**.
-5. C++ allows overloading **based on the number of arguments, their types, or both**.
-6. Overloading is **resolved at compile time** (**static polymorphism**).
+5. Only when they have **different function signatures**, they can be overloaded.
+6. C++ allows overloading **based on the number of arguments, their types, or both**.
+7. Overloading is **resolved at compile time** (**static polymorphism**).
 
 #### Syntax
 

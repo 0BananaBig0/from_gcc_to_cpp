@@ -12,11 +12,11 @@
 
 ### Explanation
 
-1. The `volatile` keyword tells the compiler that a variable's value may change unexpectedly,
-   outside the program's control (e.g., hardware, interrupts, etc.).
-2. It prevents the compiler from optimizing reads and writes to the variable, ensuring that every
-   read/write of a variable occurs exactly as written in the code.
-3. It is used when variables might be modified by hardware, interrupts, or external threads.
+1. The `volatile` keyword tells the compiler that **a variable's value may change unexpectedly**,
+   **outside the program's control** (e.g., hardware, interrupts, etc.).
+2. It **prevents the compiler from optimizing** reads and writes to the variable, ensuring that
+   every read/write of a variable occurs exactly as written in the code.
+3. It is used when variables **might be modified by hardware, interrupts, or external threads**.
 
 ### Syntax
 

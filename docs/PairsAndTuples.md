@@ -284,7 +284,7 @@ std::tuple< VTypes... > make_tuple(
 ##### Explanation
 
 1. `std::get` is a template function that returns a reference to the `I`th element of tuple `t`.
-2. (1-4) Extracts the `I`th element from the tuple. I must be an integer value in
+2. (1-4) Extracts the `I`th element from the tuple. `I` must be an integer value in
    `[0, sizeof...(Types))`.
 3. (5-8) Extracts the element of the tuple `t` whose type is `T`. Fails to compile unless the tuple
    has exactly one element of that type.
@@ -301,28 +301,28 @@ typename std::tuple_element< I, std::tuple< Types... > >::type& get(
 
 ```CPP
 // Its declaration syntax.
-( constexpr since C++ 14 ) template< std::size_t I, class... Types >
+/* ( */ constexpr /* since C++ 14 ) */ template< std::size_t I, class... Types >
 typename std::tuple_element< I, std::tuple< Types... > >::type&& get(
    std::tuple< Types... >&& t ) noexcept;   // (2) (since C++11)
 ```
 
 ```CPP
 // Its declaration syntax.
-( constexpr since C++ 14 ) template< std::size_t I, class... Types >
+/* ( */ constexpr /* since C++ 14 ) */ template< std::size_t I, class... Types >
 const typename std::tuple_element< I, std::tuple< Types... > >::type& get(
    const std::tuple< Types... >& t ) noexcept;   // (3) (since C++11)
 ```
 
 ```CPP
 // Its declaration syntax.
-( constexpr since C++ 14 ) template< std::size_t I, class... Types >
+/* ( */ constexpr /* since C++ 14 ) */ template< std::size_t I, class... Types >
 const typename std::tuple_element< I, std::tuple< Types... > >::type&& get(
    const std::tuple< Types... >&& t ) noexcept;   // (4) (since C++11)
 ```
 
 ```CPP
 // Its declaration syntax.
-( constexpr since C++ 14 ) template< class T, class... Types >
+/* ( */ constexpr /* since C++ 14 ) */ template< class T, class... Types >
 constexpr T& get( std::tuple< Types... >& t ) noexcept;   // (5) (since C++14)
 ```
 

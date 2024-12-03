@@ -257,7 +257,9 @@
 6. **After** a pointer is **declared**, it should be **initialized with `nullptr` or a concret
    address immediately**.
 7. **Before releasing** a pointer, it should be **checked to ensure it is not `nullptr`**.
-8. It is possible to **encapsulate safe and efficient resource release functions within a macro**,
+8. **After a pointer is shallowly copied** to another pointer, **the original pointer** should be
+   **set to `nullptr`**.
+9. It is possible to **encapsulate safe and efficient resource release functions within a macro**,
    and **conditionally enable or disable** them based on the selected build configuration.
 
 ##### Void Pointers
