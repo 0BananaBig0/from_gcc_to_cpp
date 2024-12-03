@@ -79,29 +79,29 @@ flowchart LR
      submitted to the staging area.
 3. Current branch:
    - This refers to the branch you are currently working on in your project.
-4. HEAD:
-   - It is a pointer that refers to the current commit in your local repository.
-   - It indicates where you are in the commit history.
-   - When you make new commits, HEAD moves forward to point to the latest commit.
+4. origin
+   - origin is the default name given to a remote repository when you first clone a repository or
+     add a remote with the command `git remote add origin TheRemoteRepositoryLink`
+   - It is a shorthand alias used to refer to that remote repository, making it easier to work with
+     Git commands without typing the full URL each time.
 5. master:
    - It is typically the name of the main branch in your local repository.
    - It represents the latest commit on that branch. When you switch to the master branch, HEAD
      points to master.
-6. origin/master:
+6. HEAD:
+   - It is a pointer that refers to the current commit in your local repository.
+   - It indicates where you are in the commit history.
+   - When you make new commits, HEAD moves forward to point to the latest commit.
+7. origin/master:(Notes 4 and 5)
    - It is a remote-tracking branch that represents the state of the master branch on the remote
      repository (usually named origin).
    - It reflects the last known state of the master branch on the remote when you last fetched or
      pulled changes.
    - It doesn't change unless you explicitly fetch or pull.
-7. origin/HEAD:
+8. origin/HEAD:(Notes 4 and 6)
    - It is a symbolic reference that points to the default branch of the origin remote repository,
      often pointing to origin/master.
    - It helps Git determine which branch to track for new clones of the repository.
-8. origin
-   - origin is the default name given to a remote repository when you first clone a repository or
-     add a remote with the command `git remote add origin TheRemoteRepositoryLink`
-   - It is a shorthand alias used to refer to that remote repository, making it easier to work with
-     Git commands without typing the full URL each time.
 
 ### Add Files to a Branch
 
@@ -292,7 +292,7 @@ git rebase
 ### Tag Commits
 
 ```SH
-git tag #Check tags
+git tag # Check tags
 ```
 
 ```SH

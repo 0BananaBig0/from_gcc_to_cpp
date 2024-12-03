@@ -150,6 +150,9 @@
   - [`explicit`](#explicit)
   - [`using`](#using)
   - [Hiding, Overloading, Overriding, and Overwriting](#hiding-overloading-overriding-and-overwriting)
+  - [Bitfields](#bitfields)
+    - [Explanation](#explanation-36)
+    - [Syntax](#syntax-27)
   - [Notes](#notes-4)
 
 <!-- vim-markdown-toc -->
@@ -1456,6 +1459,35 @@ class FinalClass final {};
 ### Hiding, Overloading, Overriding, and Overwriting
 
 1. [Hiding, Overloading, Overriding, and Overwriting](./HidingOverloadingOverridingAndOverwriting.md)
+
+### Bitfields
+
+#### Explanation
+
+1. A **bitfield** in C++ is **a data structure** that allows you to **allocate a specific number of
+   bits for individual members** **within a `struct` or `class`**.
+2. This is particularly useful for **saving memory** when you need to store multiple small values
+   that can fit into fewer bits than the size of the default data types (e.g., `int`, `char`).
+3. Bitfields are commonly used for:
+   - Flags.
+   - Control registers.
+   - Packed data structures.
+4. `Type` is an integral type (e.g., `int`, `unsigned int`, `short`).
+5. `mem_name` is the name of the bitfield member.
+6. `num_of_bits` is the number of bits allocated to this member.
+7. The size of `ClassName` is equal to
+   ` ceil( (double)( num_of_bits1 + num_of_bits2 + ... ) / sizeof( maximum-size type ) ) * sizeof( maximum - size type );`.
+
+#### Syntax
+
+```cpp
+class ClassName {
+   public:
+      Type1 mem_name1: num_of_bits1;
+      Type2 mem_name2: num_of_bits2;
+      ...;
+};
+```
 
 ### Notes
 
