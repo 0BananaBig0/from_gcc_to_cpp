@@ -479,12 +479,12 @@ class ClassName {
 ##### Explanation
 
 1. Reference member variables are **alternatives to pointers** that **refer to existing objects**.
-   They **cannot be reassigned** once established.
-2. Theyt must be **initialized when defined** and **cannot be null**.
-3. There are **only two ways to initialize** a reference member:
+2. They **cannot be reassigned** once established.
+3. Theyt must be **initialized when defined** and **cannot be null**.
+4. There are **only two ways to initialize** a reference member:
    - **In-Class Initialization**: It can be **overridden** by the constructor.
    - **Constructor Initialization**.
-4. When **initializing a reference member** in a class, the reference **must be bound to** either
+5. When **initializing a reference member** in a class, the reference **must be bound to** either
    **another member variable** of the class or **an external variable passed as a reference** during
    object construction.
 

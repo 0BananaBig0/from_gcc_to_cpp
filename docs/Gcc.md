@@ -197,7 +197,7 @@
 ###### Explanation
 
 1. Implicit linking, also referred to as **load-time dynamic linking** is a form of dynamic linking
-   where required libraries are automatically loaded at application startup.
+   where **required libraries** are **automatically loaded at application startup**.
 2. It is **a process** whereby an executable is linked to shared libraries **at compile time**.
 3. This method allows the program to **utilize functions and variables** defined in those libraries
    **without incorporating their code directly** into the executable.
@@ -205,7 +205,8 @@
 ###### Characteristics
 
 1. Automatic resolution:
-   - The operating system loads the shared libraries automatically when the application starts.
+   - The operating system **automatically loads all required shared libraries** **when the
+     application starts**, even if they are not used.
 2. Simplified development:
    - Developers include the DLL's import library (`.lib` file) in Windows or the shared library
      (`.so` file) in Linux during compilation, simplifying the linking process.

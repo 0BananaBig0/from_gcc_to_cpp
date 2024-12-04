@@ -11,6 +11,9 @@
   - [Delete Files of a Branch](#delete-files-of-a-branch)
   - [Check the Status](#check-the-status)
   - [Discard Current Modifications](#discard-current-modifications)
+  - [Restore Local Files Before Using `git add` or `git rm` to Stage Deletions](#restore-local-files-before-using-git-add-or-git-rm-to-stage-deletions)
+  - [Restore Local Files After Using `git add` or `git rm` to Stage Deletions](#restore-local-files-after-using-git-add-or-git-rm-to-stage-deletions)
+  - [Check the Differences After Using `git add` or `git rm`, but Before `git commit`](#check-the-differences-after-using-git-add-or-git-rm-but-before-git-commit)
   - [Check the Differences](#check-the-differences)
   - [Check the Revision History](#check-the-revision-history)
   - [Revert to the Previous Version While Keeping Current Modifications](#revert-to-the-previous-version-while-keeping-current-modifications)
@@ -23,7 +26,7 @@
   - [Create a New Branch and Switch to The New Branch](#create-a-new-branch-and-switch-to-the-new-branch)
   - [Merge Another Branch into the Current Branch](#merge-another-branch-into-the-current-branch)
   - [Delete a Branch](#delete-a-branch)
-  - [Stash Current Changes and Restore Previous Changes](#stash-current-changes-and-restore-previous-changes)
+  - [Stash Current Changes, Show Stashed Changes, Restore Previous Changes and Clear Stashes](#stash-current-changes-show-stashed-changes-restore-previous-changes-and-clear-stashes)
   - [Copy the Specific Modification from Another Branch to the Current Branch](#copy-the-specific-modification-from-another-branch-to-the-current-branch)
   - [Push the Current Branch to The Remote Repository](#push-the-current-branch-to-the-remote-repository)
   - [Reorganize the Commit History](#reorganize-the-commit-history)
@@ -37,6 +40,10 @@
 
 1. This file lists only common Git commands.
 2. For a deeper understanding of Git, you should learn from a comprehensive Git tutorial.
+3. [Git Handbook (Official)](https://docs.github.com/en/get-started).
+4. [Pro Git Book (Free)](https://git-scm.com/book/en/v2).
+5. [Git Handbook (Gitee)](https://portrait.gitee.com/help/articles/4105).
+6. By asking ChatGPT questions like "Is there any Git tutorial?", you can get more answers.
 
 ### Create and Initialize a Repository
 
@@ -113,6 +120,13 @@ git commit -m "Your comments"
 ### Delete Files of a Branch
 
 ```SH
+# `git add` is also used to stage file deletions if you have deleted files in your local repository.
+git add TargetList
+git commit -m "Your comments"
+```
+
+```SH
+# `git rm` does not require file deletions in your local repository.
 git rm TargetList
 git commit -m "Your comments"
 ```
@@ -132,6 +146,36 @@ git status
 
 ```SH
 git checkout -- TargetList
+```
+
+### Restore Local Files Before Using `git add` or `git rm` to Stage Deletions
+
+```SH
+git restore TargetList # Used when local files are deleted.
+```
+
+### Restore Local Files After Using `git add` or `git rm` to Stage Deletions
+
+```SH
+git log -Number(How many, Optional)
+git reset CommitNumber(A sequence of number) TargetList(Optional)
+git restore TargetList
+```
+
+```SH
+git log -Number(How many, Optional)
+git reset CommitNumber(A sequence of number) TargetList(Optional)
+git checkout -- TargetList
+```
+
+### Check the Differences After Using `git add` or `git rm`, but Before `git commit`
+
+```SH
+git diff --cached TargetList(Optional)
+```
+
+```SH
+git diff --staged TargetList(Optional)
 ```
 
 ### Check the Differences
@@ -248,17 +292,27 @@ git branch -d ABranch
 ```
 
 ```SH
-git branch -D ABranch # Force
+git branch -D ABranch # Force.
 ```
 
-### Stash Current Changes and Restore Previous Changes
+### Stash Current Changes, Show Stashed Changes, Restore Previous Changes and Clear Stashes
 
 ```SH
-git stash # Stash current changes
+git stash # Stash current changes.
 ```
 
 ```SH
-git stash list # List all stashes
+git stash list # List all stashes.
+# The larger the `StashNumber`, the earlier the stash.
+```
+
+```SH
+git stash show # Show a summary of the changes in the most recent stash.
+git stash show -p #  Shows the full diff of the changes in the most recent stash.
+git stash list # List all stashes.
+git stash show stash@{StashNumber} # Show a summary of the changes in the specific stash.
+git stash show -p stash@{StashNumber} #  Shows the full diff of the changes in the specific stash.
+# The larger the `StashNumber`, the earlier the stash.
 ```
 
 ```SH
@@ -267,10 +321,14 @@ git stash pop # Restore the recent stash and delete it in the stash.
 ```
 
 ```SH
-git stash list # List all stashes
-git stash apply stash@{number}(Optional) # Restore the recent stash
-git stash drop stash@{number}(Optional) # Delete it in the stash.
-# The larger the number, the earlier the stash.
+git stash list # List all stashes.
+git stash apply stash@{StashNumber}(Optional) # Restore the specific stash.
+git stash drop stash@{StashNumber}(Optional) # Delete it in the stash.
+# The larger the `StashNumber`, the earlier the stash.
+```
+
+```SH
+git stash clear # Clear all stashes.
 ```
 
 ### Copy the Specific Modification from Another Branch to the Current Branch
