@@ -9,7 +9,7 @@
   - [Definition Syntax](#definition-syntax)
   - [Reference Syntax](#reference-syntax)
   - [Function Arguments](#function-arguments)
-  - [Function Argument Pushing Order (Stack Order)](#function-argument-pushing-order-stack-order)
+    - [Function Argument Pushing Order (Stack Order)](#function-argument-pushing-order-stack-order)
     - [How to Pass Arguments to a Function](#how-to-pass-arguments-to-a-function)
     - [Limitations of Function Default Arguments](#limitations-of-function-default-arguments)
   - [Keywords Related to Functions](#keywords-related-to-functions)
@@ -43,8 +43,8 @@
     - [Why Use Lambda Functions](#why-use-lambda-functions)
     - [Explanation](#explanation-6)
     - [Syntax](#syntax-2)
-      - [Code for Passing It as a Variable](#code-for-passing-it-as-a-variable)
-      - [Code for Defining It as a Function](#code-for-defining-it-as-a-function)
+      - [Passing It as a Variable](#passing-it-as-a-variable)
+      - [Defining It as a Function](#defining-it-as-a-function)
       - [Explanation](#explanation-7)
     - [Capture Clause](#capture-clause)
       - [Explanation](#explanation-8)
@@ -158,7 +158,7 @@ RetType var_name = funcName( arg_list );
 
 ### Function Arguments
 
-### Function Argument Pushing Order (Stack Order)
+#### Function Argument Pushing Order (Stack Order)
 
 1. **Right to left** (**most common**):
    - In most platforms and compilers (e.g., x86 and x64 using the C calling convention), arguments
@@ -439,16 +439,16 @@ func_pt_name( arg_list );
 
 #### Syntax
 
-##### Code for Passing It as a Variable
+##### Passing It as a Variable
 
 ```CPP
-[capture]( para_list ) -> RetType { // Funtion body. };
+[capture]( para_list ) -> RetType { /* Funtion body. */ };
 ```
 
-##### Code for Defining It as a Function
+##### Defining It as a Function
 
 ```CPP
-auto funcName =  [capture]( para_list ) -> RetType { // Funtion body. };
+auto funcName =  [capture]( para_list ) -> RetType { /* Funtion body. */ };
 ```
 
 ##### Explanation
@@ -629,7 +629,7 @@ template< typename... Ts > RetType funcName( Ts... args ) {
      - **Const qualifiers** on **reference** and **pointer** parameters. (**Only references and
        pointers**).
 4. **All keywords and specifiers that appear after the parameter list but before the function body
-   or `;` are considered part of the function signature in C++**:
+   or `;` are considered part of the function signature in C++, except for `final`**:
    - **`const` qualifier**.
    - **Reference qualifiers**: For example, `RetType funcName( ... ) &` (lvalue qualifier) is
      distinct from `RetType funcName( ... ) &&` (rvalue qualifier).

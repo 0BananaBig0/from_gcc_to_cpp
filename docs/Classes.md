@@ -295,23 +295,30 @@ ClassName obj_name = ClassName::createClassName();
 
 #### Limitations of Aggregate Initialization
 
-1. **No user-defined constructors**: Aggregate initialization is only applicable to aggregate types
-   that lack user-defined constructors. If a class has any constructor defined, aggregate
-   initialization cannot be used.
-2. **Public members only**: Only public members can be initialized via aggregate initialization.
-   Private or protected members cannot be accessed.
-3. **No default member initializers**: Default member initializers in aggregates are ignored during
-   aggregate initialization, meaning you must explicitly specify values for all members.
-4. **Order of initialization**: Members are initialized in the order they are declared. This can
-   lead to issues if one member relies on another being initialized first.
-5. **No designated initializers**: C++ does not support designated initializers (as in C99),
-   preventing the ability to initialize specific members without initializing all preceding members.
-6. **Type matching**: The types in the initializer list must match the types of the aggregate's
-   members exactly. A mismatch results in a compilation error.
-7. **No implicit conversions**: Aggregate initialization does not allow implicit type conversions,
-   which can limit flexibility.
-8. **No inheritance**: Aggregate initialization is not applicable for derived classes, limiting its
-   use in inheritance scenarios.
+1. **No user-defined constructors**:
+   - Aggregate initialization is only applicable to aggregate types that lack user-defined
+     constructors.
+   - If a class has any constructor defined, aggregate initialization cannot be used.
+2. **Public members only**:
+   - Only public members can be initialized via aggregate initialization.
+   - Private or protected members cannot be accessed.
+3. **No default member initializers**:
+   - Default member initializers in aggregates are ignored during aggregate initialization, meaning
+     you must explicitly specify values for all members.
+4. **Order of initialization**:
+   - Members are initialized in the order they are declared.
+   - This can lead to issues if one member relies on another being initialized first.
+5. **No designated initializers**:
+   - C++ does not support designated initializers (as in C99), preventing the ability to initialize
+     specific members without initializing all preceding members.
+6. **Type matching**:
+   - The types in the initializer list must match the types of the aggregate's members exactly.
+   - A mismatch results in a compilation error.
+7. **No implicit conversions**:
+   - Aggregate initialization does not allow implicit type conversions, which can limit flexibility.
+8. **No inheritance**:
+   - Aggregate initialization is not applicable for derived classes, limiting its use in inheritance
+     scenarios.
 
 ### Class Pointers
 
@@ -595,6 +602,8 @@ class Derived: public Base {
 1. Constructors are **special member functions** of a class that are **automatically called when an
    object** of that class is **created**.
 2. They are used to **initialize** the object's properties and **set up** any necessary resources.
+3. **All constructors** **except for copy and move constructors** will **cause default
+   initialization** of class members if the constructor **lacks an initializer list**.
 
 ##### Syntax
 
@@ -602,7 +611,12 @@ class Derived: public Base {
 class ClassName {
    public:
       ClassName( para_list ){
+         ...;
       };
+   private:
+      Type1 _mem1 = val1; // Default initialization.
+      Type2 _mem2; // Default initialization.
+      ...;
 };
 ```
 
@@ -681,12 +695,13 @@ class ClassName {
    constructor's initialization phase before the body of the constructor executes.
 2. Member variables are **initialized in the order they are declared** in the class, **not the order
    they appear in the initializer list**.
-3. Using initializer lists can be more **efficient**, as it allows **direct initialization** of the
+3. Using initializer lists can be **more efficient**, as it allows **direct initialization** of the
    member variables, **avoiding unnecessary default construction** followed by assignment.
 4. An initializer list is **required** to **initialize `const` and reference members**, as they
    cannot be assigned after construction.
-5. If members are **initialized in** the constructor's **body**, those members are first
-   default-initialized before being assigned, which can lead to **additional overhead** compared to
+5. If members are **initialized in the body** of the constructor, they are **first
+   default-initialized** before **being assigned**.
+6. **Initialization in the constructor body** can result in **additional overhead** compared to
    direct initialization in the initializer list.
 
 ##### Syntax
@@ -1041,6 +1056,7 @@ class ClassName {
    - **Multiple** arguments: parameterized constructor.
 2. If an object **already exists** and is assigned a new object, the **assignment operator** will be
    called:
+   - A **different-type** object: **conversion** operator.
    - Same type (**lvalue reference**): **copy**-assignment operator.
    - Same type (**rvalue reference**): **move**-assignment operator.
 
@@ -1476,7 +1492,7 @@ class FinalClass final {};
 5. `mem_name` is the name of the bitfield member.
 6. `num_of_bits` is the number of bits allocated to this member.
 7. The size of `ClassName` is equal to
-   ` ceil( (double)( num_of_bits1 + num_of_bits2 + ... ) / sizeof( maximum-size type ) ) * sizeof( maximum - size type );`.
+   ` ceil( (double)( num_of_bits1 + num_of_bits2 + ... ) / sizeof( maximum-size type ) ) * sizeof( maximum-size type );`.
 
 #### Syntax
 
