@@ -32,26 +32,30 @@
 
 ```CPP
 enum EnumName {
-   Mem1,            // 0
-   Mem2,            // 1
-   ...; Memn = n,   // n
-   Memn1            // n + 1
+   MEM1,   // 0
+   MEM2,   // 1
+   ...,
+   MEMN = n,   // n
+   MEMN1,       // n + 1
+   ...
 };
 
-EnumName enum_name = Mem2;
+EnumName enum_name = MEM2;
 ```
 
 ### Scoped Enumeration Syntax
 
 ```CPP
-enum EnumName: Type {
-   Mem1,            // 0
-   Mem2,            // 1
-   ...; Memn = n,   // n
-   Memn1            // n + 1
+enum EnumName : Type {
+   MEM1,   // 0
+   MEM2,   // 1
+   ...,
+   MEMN = n,   // n
+   MEMN1       // n + 1
+   ...
 };
 
-EnumName enum_name = EnumName::Mem2;
+EnumName enum_name = EnumName::MEM2;
 ```
 
 ### Differences Between `enum` (Unscoped Enumeration) and `enum class` (Scoped Enumeration)

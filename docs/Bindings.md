@@ -101,6 +101,18 @@ auto& [var1, var2, ...] = tuple_like_structure;
 for ( auto& [var1, var2, ...] : container ) { ...; };
 ```
 
+```CPP
+// Decomposition with a range-based for loop.
+// All containers can use structured bindings when iterating over elements.
+for ( auto var: container ) { ...; };
+```
+
+```CPP
+// Decomposition with a range-based for loop.
+// All containers can use structured bindings when iterating over elements.
+for ( Type var: container ) { ...; };
+```
+
 ### `std::tie`
 
 #### Explanation
