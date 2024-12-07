@@ -295,7 +295,15 @@ clean:
 #### The Syntax of Referencing a Variable
 
 ```Makefile
-$(VAR_NAME)
+$(VAR_NAME) # For Makefile variables to ensure clarity and compatibility.
+```
+
+```Makefile
+${VAR_NAME} # Only when interacting with shell commands or tools that require it.
+```
+
+```Makefile
+$VAR_NAME # Only for automatic variables like `$@`, `$<`, or `$^`.
 ```
 
 #### Default Variables, Common Variables, Automatic Variables, Special Symbols and Environment Variables

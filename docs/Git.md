@@ -192,6 +192,10 @@ git log -Number(How many, Optional)
 git show CommitNumber(A sequence of number, Optional) TargetList(Optional)
 ```
 
+```SH
+git show -Number(How many, Optional)
+```
+
 ### Revert to the Previous Version While Keeping Current Modifications
 
 ```SH
