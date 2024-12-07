@@ -1,4 +1,5 @@
 *.cpp
+!docs/cpp_project_example/*.cpp
 .cache
 .clang*
 *.exe
