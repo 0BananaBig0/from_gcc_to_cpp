@@ -607,9 +607,11 @@ class ClassName {
       static RetType funcName( para_list );
 };
 
-RetType var_name = ClassName::funcName( para_list ){
+ClassName::funcName( para_list ){
    // Function body.
 };
+
+RetType var_name = ClassName::funcName( para_list );
 ```
 
 ##### `static` Global Functions
