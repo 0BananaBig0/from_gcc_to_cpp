@@ -5,6 +5,7 @@
   - [Usage](#usage)
   - [Unscoped Enumeration Syntax](#unscoped-enumeration-syntax)
   - [Scoped Enumeration Syntax](#scoped-enumeration-syntax)
+  - [Unscoped Enumeration Syntax with a Scope](#unscoped-enumeration-syntax-with-a-scope)
   - [Differences Between `enum` (Unscoped Enumeration) and `enum class` (Scoped Enumeration)](#differences-between-enum-unscoped-enumeration-and-enum-class-scoped-enumeration)
     - [Syntax](#syntax)
     - [Namespace Scoping](#namespace-scoping)
@@ -56,6 +57,23 @@ enum EnumName : Type {
 };
 
 EnumName enum_name = EnumName::MEM2;
+```
+
+### Unscoped Enumeration Syntax with a Scope
+
+```CPP
+Class ClassName {
+   enum EnumName {
+      MEM1,   // 0
+      MEM2,   // 1
+      ...,
+      MEMN = n,   // n
+      MEMN1,      // n + 1
+      ...
+   };
+};
+
+EnumName enum_name = ClassName::MEM2;
 ```
 
 ### Differences Between `enum` (Unscoped Enumeration) and `enum class` (Scoped Enumeration)

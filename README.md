@@ -543,6 +543,7 @@
         - [Example 6: Specify Some Variables Captured by Reference and Others by Value](./docs/Functions.md#example-6-specify-some-variables-captured-by-reference-and-others-by-value)
         - [Example 7: Specify Some Variables Captured by Value and Others by Reference](./docs/Functions.md#example-7-specify-some-variables-captured-by-value-and-others-by-reference)
         - [Example 8: Specify Some Variables Captured by Reference and Some by Value](./docs/Functions.md#example-8-specify-some-variables-captured-by-reference-and-some-by-value)
+        - [Example 9: Creates a New Variable within the Lambda and Initializes it with an Expression](./docs/Functions.md#example-9-creates-a-new-variable-within-the-lambda-and-initializes-it-with-an-expression)
       - [`mutable` Lambda Functions](./docs/Functions.md#mutable-lambda-functions)
         - [Explanation](./docs/Functions.md#explanation-9)
         - [Syntax](./docs/Functions.md#syntax-3)
@@ -1219,6 +1220,7 @@
     - [Usage](./docs/Enums.md#usage)
     - [Unscoped Enumeration Syntax](./docs/Enums.md#unscoped-enumeration-syntax)
     - [Scoped Enumeration Syntax](./docs/Enums.md#scoped-enumeration-syntax)
+    - [Unscoped Enumeration Syntax with a Scope](./docs/Enums.md#unscoped-enumeration-syntax-with-a-scope)
     - [Differences Between `enum` (Unscoped Enumeration) and `enum class` (Scoped Enumeration)](./docs/Enums.md#differences-between-enum-unscoped-enumeration-and-enum-class-scoped-enumeration)
       - [Syntax](./docs/Enums.md#syntax)
       - [Namespace Scoping](./docs/Enums.md#namespace-scoping)
@@ -1669,3 +1671,4 @@
         - [All Stuffs Inherited from `std::std::basic_ios`](./docs/FileIOs.md#all-stuffs-inherited-from-stdstdbasic_ios)
         - [All Stuffs Inherited from `std::ios_base`](./docs/FileIOs.md#all-stuffs-inherited-from-stdios_base)
         - [Non-member Functions](./docs/FileIOs.md#non-member-functions)
+  ##./docs/CommonQtStuffes.md# QT Program Requirements or Basics

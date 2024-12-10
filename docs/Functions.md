@@ -56,6 +56,7 @@
       - [Example 6: Specify Some Variables Captured by Reference and Others by Value](#example-6-specify-some-variables-captured-by-reference-and-others-by-value)
       - [Example 7: Specify Some Variables Captured by Value and Others by Reference](#example-7-specify-some-variables-captured-by-value-and-others-by-reference)
       - [Example 8: Specify Some Variables Captured by Reference and Some by Value](#example-8-specify-some-variables-captured-by-reference-and-some-by-value)
+      - [Example 9: Creates a New Variable within the Lambda and Initializes it with an Expression](#example-9-creates-a-new-variable-within-the-lambda-and-initializes-it-with-an-expression)
     - [`mutable` Lambda Functions](#mutable-lambda-functions)
       - [Explanation](#explanation-9)
       - [Syntax](#syntax-3)
@@ -472,7 +473,9 @@ auto funcName =  [capture]( para_list ) -> RetType { /* Funtion body. */ };
    - Copies the variable and makes it accessible inside the lambda.
 2. Capture by reference (`&`):
    - Allows the lambda to modify the variable in the outer scope.
-3. Default capture:
+3. Initializing capture (`var = expr`):
+   - Creates a new variable var within the lambda and initializes it with expr
+4. Default capture:
    - Default capture in a lambda function allows you to specify how variables from the surrounding
      scope are captured **without explicitly listing each one**.
    - You can set **a default capture mode for all variables**, which **can be overridden for
@@ -528,6 +531,12 @@ auto funcName =  [&, =var1, =var2, ...]( para_list ) -> RetType { body };
 
 ```CPP
 auto funcName =  [&var1, &var2, ..., varn1, varn2, ...]( para_list ) -> RetType { body };
+```
+
+##### Example 9: Creates a New Variable within the Lambda and Initializes it with an Expression
+
+```CPP
+auto funcName =  [ var = expr, ...]( para_list ) -> RetType { body };
 ```
 
 #### `mutable` Lambda Functions
