@@ -97,7 +97,7 @@ arr_ptr = nullptr;   // Good practice to avoid dangling pointers.
 ##### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 void* ptr = ::operator new( size_t size );
 ```
 
@@ -121,7 +121,7 @@ Type* ptr = static_cast< Type* >( ::operator new( num * sizeof( Type ) ) );
 ##### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 void operator delete( void* ptr ) noexcept;
 ```
 

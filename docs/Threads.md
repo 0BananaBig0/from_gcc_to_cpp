@@ -395,7 +395,7 @@ std::jthread thread_name2 = std::move( thread_name1 );
 ##### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 std::thread::id get_id() noexcept;
 ```
 
@@ -414,7 +414,7 @@ std::thread::id get_id() noexcept;
 ##### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 template< class Rep, class Period >
 void sleep_for( const std::chrono::duration< Rep, Period >& sleep_duration );
 ```
@@ -431,7 +431,7 @@ void sleep_for( const std::chrono::duration< Rep, Period >& sleep_duration );
 ##### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 template< class Clock, class Duration >
 void sleep_until(
    const std::chrono::time_point< Clock, Duration >& sleep_time );
@@ -447,7 +447,7 @@ void sleep_until(
 ##### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 void yield() noexcept;
 ```
 
@@ -906,12 +906,12 @@ std::shared_lock< MutexType > slck( smtx, tpoint );
 #### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 template< class... MutexTypes > class scoped_lock;
 ```
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 MutexType1 mtx1;
 MutexType2 mtx2;
 ...;
@@ -919,7 +919,7 @@ std::scoped_lock< MutexType1, MutexType2, ... > lck( mtx1, mtx2, ... );
 ```
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 MutexType1 mtx1;
 MutexType2 mtx2;
 ...;
@@ -988,13 +988,13 @@ std::scoped_lock< MutexType1, MutexType2, ... > lck( std::adopt_lock, mtx1, mtx2
 #### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 template< class Lockable1, class Lockable2, class... LockableN >
 void lock( Lockable1& lock1, Lockable2& lock2, LockableN&... lockn );
 ```
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 template< class Lockable1, class Lockable2, class... LockableN >
 int try_lock( Lockable1& lock1, Lockable2& lock2, LockableN&... lockn );
 ```
@@ -1022,7 +1022,7 @@ int try_lock( Lockable1& lock1, Lockable2& lock2, LockableN&... lockn );
 #### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 template< class Callable, class... Args >
 void call_once( std::once_flag& flag, Callable&& f, Args&&... args );
 ```
@@ -1283,7 +1283,7 @@ int main() {
 #### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 void notify_all_at_thread_exit( std::condition_variable& cond,
                                 std::unique_lock< std::mutex > lk );
 ```

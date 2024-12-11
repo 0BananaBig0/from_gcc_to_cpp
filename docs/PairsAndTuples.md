@@ -119,13 +119,13 @@ std::pair< Type1, Type2 > pair_name2 = std::move( pair_name1 );
 ##### Syntax
 
 ```CPP
-Its declaration syntax.
+Declaration syntax.
 template< class T1, class T2 >
 std::pair< T1, T2 > make_pair( T1 t, T2 u );   // ( until C++ 11 ).
 ```
 
 ```CPP
-Its declaration syntax.
+Declaration syntax.
 template< class T1, class T2 >
 std::pair< V1, V2 > make_pair(
    T1&& t, T2&& u );   // ( since C++ 11 ), ( constexpr since C++ 14 ).
@@ -268,7 +268,7 @@ std::tuple< type_para_list > tuple_name( std::move( pair_name ) );
 ##### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 template< class... Types >
 std::tuple< VTypes... > make_tuple(
    Types&&... args );   // (since C++11), (constexpr since C++14)
@@ -293,54 +293,54 @@ std::tuple< VTypes... > make_tuple(
 ##### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 template< std::size_t I, class... Types >
 typename std::tuple_element< I, std::tuple< Types... > >::type& get(
    std::tuple< Types... >& t ) noexcept;   // (1) (since C++11)
 ```
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 /* ( */ constexpr /* since C++ 14 ) */ template< std::size_t I, class... Types >
 typename std::tuple_element< I, std::tuple< Types... > >::type&& get(
    std::tuple< Types... >&& t ) noexcept;   // (2) (since C++11)
 ```
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 /* ( */ constexpr /* since C++ 14 ) */ template< std::size_t I, class... Types >
 const typename std::tuple_element< I, std::tuple< Types... > >::type& get(
    const std::tuple< Types... >& t ) noexcept;   // (3) (since C++11)
 ```
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 /* ( */ constexpr /* since C++ 14 ) */ template< std::size_t I, class... Types >
 const typename std::tuple_element< I, std::tuple< Types... > >::type&& get(
    const std::tuple< Types... >&& t ) noexcept;   // (4) (since C++11)
 ```
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 /* ( */ constexpr /* since C++ 14 ) */ template< class T, class... Types >
 constexpr T& get( std::tuple< Types... >& t ) noexcept;   // (5) (since C++14)
 ```
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 template< class T, class... Types >
 constexpr T&& get( std::tuple< Types... >&& t ) noexcept;   // (6) (since C++14)
 ```
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 template< class T, class... Types >
 constexpr const T& get(
    const std::tuple< Types... >& t ) noexcept;   // (7) (since C++14)
 ```
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 template< class T, class... Types >
 constexpr const T&& get(
    const std::tuple< Types... >&& t ) noexcept;   // (8) (since C++14)

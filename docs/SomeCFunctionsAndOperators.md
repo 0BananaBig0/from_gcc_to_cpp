@@ -66,7 +66,7 @@ sizeof( expression )
 #### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 size_t strlen( const char *str );
 ```
 
@@ -88,7 +88,7 @@ size_t len = strlen( str );
 #### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 void* ptr = malloc( size_t size );
 ```
 
@@ -110,7 +110,7 @@ Type* ptr = (Type*)malloc( num * sizeof( Type ) );
 #### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 void* ptr = calloc( size_t num, size_t size );
 ```
 
@@ -133,7 +133,7 @@ Type* ptr = (Type*)calloc( num, sizeof( Type ) );
 #### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 void* realloc( void* ptr, size_t new_size );
 ```
 
@@ -157,7 +157,7 @@ Type* new_ptr = (Type*)realloc( ptr, num2 * sizeof( Type ) );
 #### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 void free( void* ptr );
 ```
 
@@ -181,7 +181,7 @@ ptr = NULL;   // Good practice to avoid dangling pointers
 #### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 char* strcpy( char* destination, const char* source );
 ```
 
@@ -203,7 +203,7 @@ strcpy( dest, sour_str );
 #### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 void* memcpy( void* destination, const void* source, size_t num );
 ```
 
@@ -232,7 +232,7 @@ memcpy( dest, sour, sizeof( sour ) );
 #### Syntax
 
 ```CPP
-// Its declaration syntax.
+// Declaration syntax.
 void* memset( void* ptr, int value, size_t num );
 ```
 

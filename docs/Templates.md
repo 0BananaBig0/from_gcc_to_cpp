@@ -454,7 +454,7 @@ ClassName< TType, ..., val, ... > var_name;
      ignores that overload instead of producing an error.
    - If a template specialization cannot be matched, it will not result in an error but rather allow
      the compiler to try other template.
-   - Its declaration syntax:
+   - Declaration syntax:
      ```CPP
      template< bool B, class T = void > struct enable_if; // It has a public member typedef `type`, equal to `T`.
      ```
