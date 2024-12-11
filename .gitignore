@@ -1,5 +1,15 @@
 *.cpp
+*.o
+moc*.cpp
+moc*.h
+*.moc
+*.json
+.cache
+.qt
+.qmake*
+.clang*
 !docs/cpp_project_example/*.cpp
+!docs/Qt6_study/*.cpp
 .cache
 .clang*
 *.exe
