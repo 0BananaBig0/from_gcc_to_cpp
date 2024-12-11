@@ -237,18 +237,37 @@ StructName< Type, ... > obj;               // Implicit instantiation of StructNa
 
 ```CPP
 // Definition syntax.
-template< para_list > class ClassName {
+template< para_list1 > class ClassName {
       // Implementation.
 };
 
-// Full specialization for `arg_list2`.
-template<> class ClassName< arg_list2 > {
+// Full specialization for `arg_type_list2`.
+template<> class ClassName< arg_type_list2 > {
       // Another implementation.
 };
 
 // Usage syntax.
-ClassName< arg_list1 > obj1;   // Utilizes the generic version.
-ClassName< arg_list2 > obj2;   // Utilizes the specialized version.
+ClassName< arg_type_list1 > obj1;   // Utilizes the generic version.
+ClassName< arg_type_list2 > obj2;   // Utilizes the specialized version.
+```
+
+```CPP
+// Definition syntax.
+template< para_list1 >
+RetType funcName( para_list1 ){
+   // Implementation.
+};
+
+// Full specialization for `arg_type_list2`.
+template<>
+RetType funcName< arg_type_list2 >( para_list2 ){
+   // Another implementation.
+};
+
+// Usage syntax.
+RetType var_name1 = funcName( arg_list1 );   // Utilizes the generic version.
+RetType var_name2
+   = funcName( arg_list2 );   // Utilizes the specialized version.
 ```
 
 #### Partial Specialization (Partial Parameters)
@@ -270,16 +289,33 @@ template< para_list1 > class ClassName {
       // Implementation.
 };
 
-// Partial specialization for `arg_list3`.
-template< para_list2 > class ClassName< arg_list3 > {
+// Partial specialization for `arg_type_list3`.
+template< para_list2 > class ClassName< arg_type_list3 > {
       // Another implementation.
 };
-```
 
-```CPP
 // Usage syntax.
 ClassName< arg_list1 > obj1;              // Utilizes the generic version.
 ClassName< arg_list2, arg_list3 > obj2;   // Utilizes the specialized version.
+```
+
+```CPP
+// Definition syntax.
+template< para_list1 >
+RetType funcName( para_list1 ){
+   // Implementation.
+};
+
+// Partial specialization for `arg_type_list3`.
+template< para_list2t >
+RetType funcName< arg_type_list3 >( para_list2f, para_list3 ){
+   // Another implementation.
+};
+
+// Usage syntax.
+RetType var_name1 = funcName( arg_list1 );   // Utilizes the generic version.
+RetType var_name2
+   = funcName( arg_list2, arg_list3 );   // Utilizes the specialized version.
 ```
 
 ```CPP

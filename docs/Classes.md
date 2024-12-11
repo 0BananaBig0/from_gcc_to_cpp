@@ -109,6 +109,7 @@
       - [Explanation](#explanation-24)
     - [Construction Order](#construction-order)
     - [Destruction Order](#destruction-order)
+    - [Calling Functions Defined in Base Classes from Derived Classes](#calling-functions-defined-in-base-classes-from-derived-classes)
     - [`virtual` Inheritance](#virtual-inheritance)
   - [`virtual`](#virtual)
     - [Explanation](#explanation-25)
@@ -1054,11 +1055,16 @@ class ClassName {
    - **Single** argument of the same type (**lvalue reference**): **copy** constructor.
    - **Single** argument of the same type (**rvalue reference**): **move** constructor.
    - **Multiple** arguments: parameterized constructor.
+   - If there is no `explicit` keyword before the called constructor, implicit conversion occurs,
+     and the five rules mentioned above are followed to determine which constructor will be called.
 2. If an object **already exists** and is assigned a new object, the **assignment operator** will be
    called:
    - A **different-type** object: **conversion** operator.
    - Same type (**lvalue reference**): **copy**-assignment operator.
    - Same type (**rvalue reference**): **move**-assignment operator.
+   - If there is no `explicit` keyword before the called assignment operator, implicit conversion
+     occurs, and the four rules mentioned above are followed to determine which assignment operator
+     will be called.
 
 ### Inheritance
 
@@ -1078,8 +1084,8 @@ class ClassName {
 ##### Code
 
 ```CPP
-class public Base{
-   // Members of base class.
+class Base {
+      // Members of base class.
 };
 
 class Derived: public Base {
@@ -1089,8 +1095,8 @@ class Derived: public Base {
 
 ```CPP
 template< class T, ... >
-class public Base{
-   // Members of base class.
+class Base {
+      // Members of base class.
 };
 
 template< class T, ... >
@@ -1140,6 +1146,63 @@ class Derived: public Base {
 
 1. **Derived** class destructor: Called first to release resources specific to the derived class.
 2. **Base** class destructor: Called last to release resources inherited from the base class.
+
+#### Calling Functions Defined in Base Classes from Derived Classes
+
+```CPP
+// Calling hidden functions.
+class Base {
+   public:
+      virtual RetType funcName( ... ) { ...; };
+      ...;
+
+   private:
+      ...;
+};
+
+class Derived: public Base {
+   public:
+      RetType funcName( ... ) override {
+         RetType var_name = Base::funcName( ... );
+         ...;
+      };
+      ...;
+
+   private:
+      ...;
+};
+```
+
+```CPP
+// Calling private functions.
+class Base {
+   public:
+      RetType1 funcName1( ... ) {
+         RetType2 var_name2 = funcName2( ... );
+         ...;
+      };
+
+      ...;
+
+   private:
+      virtual RetType2 funcName2( ... ) { ...; };
+
+      ...;
+};
+
+class Derived: public Base {
+   public:
+      RetType3 funcName3( ... ) override {
+         RetType1 var_name1 = funcName1( ... );
+         ...;
+      };
+
+      ...;
+
+   private:
+      ...;
+};
+```
 
 #### `virtual` Inheritance
 

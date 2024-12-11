@@ -3,13 +3,16 @@
 ### QT Program Requirements or Basics
 
 1. [QApplication](https://doc.qt.io/qt-6/qapplication.html).
-2. [Qt Fundamentals](https://doc.qt.io/qt-6/topics-core.html).
-3. [Q_OBJECT](https://doc.qt.io/qt-6/qobject.html#Q_OBJECT).
-4. [QEvent](https://doc.qt.io/qt-6/qevent.html).
-5. [Qt for Linux/X11](https://doc.qt.io/qt-6/linux.html).
-6. [Qt for Windows](https://doc.qt.io/qt-6/windows.html).
-7. Recommend:
-   - The `Q_OBJECT` macro should be used with Qt classes to avoid unexpected behavior..
+2. [QObject](https://doc.qt.io/qt-6/qobject.html).
+3. [QMetaObject](https://doc.qt.io/qt-6/qmetaobject.html).
+4. [Qt Fundamentals](https://doc.qt.io/qt-6/topics-core.html).
+5. [Q_OBJECT](https://doc.qt.io/qt-6/qobject.html#Q_OBJECT).
+6. [QEvent](https://doc.qt.io/qt-6/qevent.html).
+7. [Qt for Linux/X11](https://doc.qt.io/qt-6/linux.html).
+8. [Qt for Windows](https://doc.qt.io/qt-6/windows.html).
+9. Recommend:
+   - The `Q_OBJECT` macro should be used with Qt classes to avoid unexpected behavior.
+   - `Q_SIGNALS` and `Q_SLOTS` should be used instead of `signals` and `slots`.
 
 ### QT IOs
 

@@ -63,27 +63,30 @@
       - [User-defined Literals](#user-defined-literals)
         - [Explanation](#explanation-19)
         - [Syntax](#syntax-17)
+      - [`constexpr` with `if` (C++17 and later)](#constexpr-with-if-c17-and-later)
+        - [Explanation](#explanation-20)
+        - [Syntax](#syntax-18)
   - [`static`](#static)
-    - [Explanation](#explanation-20)
+    - [Explanation](#explanation-21)
     - [Usage](#usage-2)
       - [`static` Local Variables](#static-local-variables)
-        - [Explanation](#explanation-21)
-        - [Syntax](#syntax-18)
-      - [`static` Global Variables](#static-global-variables)
         - [Explanation](#explanation-22)
         - [Syntax](#syntax-19)
-      - [`static` Member Variables](#static-member-variables)
+      - [`static` Global Variables](#static-global-variables)
         - [Explanation](#explanation-23)
         - [Syntax](#syntax-20)
-      - [`static` Methods (`static` Member Functions)](#static-methods-static-member-functions)
+      - [`static` Member Variables](#static-member-variables)
         - [Explanation](#explanation-24)
         - [Syntax](#syntax-21)
-      - [`static` Global Functions](#static-global-functions)
+      - [`static` Methods (`static` Member Functions)](#static-methods-static-member-functions)
         - [Explanation](#explanation-25)
         - [Syntax](#syntax-22)
-      - [`static` Instances of Classes](#static-instances-of-classes)
+      - [`static` Global Functions](#static-global-functions)
         - [Explanation](#explanation-26)
         - [Syntax](#syntax-23)
+      - [`static` Instances of Classes](#static-instances-of-classes)
+        - [Explanation](#explanation-27)
+        - [Syntax](#syntax-24)
 
 <!-- vim-markdown-toc -->
 
@@ -476,6 +479,28 @@ constexpr RetType operator"" _suffix_name( Type para, ... ) {
 Type var_name = value_suffix_name;
 ```
 
+##### `constexpr` with `if` (C++17 and later)
+
+###### Explanation
+
+1. `if constexpr` allows you to **conditionally compile code** depending on whether a condition is
+   constant at compile time.
+2. Its key feature is that **only the branch of the statement** that is **true** (according to the
+   compile-time condition) **will be compiled**.
+3. **The other branch** will **be discarded** entirely by the compiler.
+
+###### Syntax
+
+```CPP
+if constexpr( expr1 ) {
+   ...;
+} else if constexpr( expr2 ) {
+   ...;
+} else {
+   ...;
+};
+```
+
 ### `static`
 
 #### Explanation
@@ -565,6 +590,8 @@ class ClassName {
       static constexpr Type12 _staticMember12 = val12;
 };
 
+// If the `ClassName` definition is in a header file, the following statement
+// should be placed in the .cpp file to avoid One Definition Rule (ODR) violations.
 // Providing definition and initialization for the static member.
 Type1 ClassName::_staticMember1 = val1;
 Type2 ClassName::_staticMember2 = val2;

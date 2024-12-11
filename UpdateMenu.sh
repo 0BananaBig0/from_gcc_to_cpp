@@ -12,7 +12,7 @@ docs_dir="./docs"
 file_name="${HOME}/.vimrc"
 lines_to_add=(
 "function! ExecuteAfterDelay()"
-"  sleep 2"
+"  sleep 3"
 "  call RetabAndDeleteTraillingUselessChars()"
 "  call UpdateMarkdownMenu()"
 "  call CocAction('format')"
