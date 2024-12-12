@@ -4,10 +4,9 @@
   > Mail: 1184903633@qq.com
   > Created Time: Sat 07 Dec 2024 09:41:51 PM CST
  ************************************************************************/
-#include "basic.h"
+#include "Basic.h"
 #include <QVBoxLayout>
 #include <QCoreApplication>
-
 // Define the CustomEvent type
 const QEvent::Type CustomEvent::EventType
    = static_cast< QEvent::Type >( QEvent::User + 1 );

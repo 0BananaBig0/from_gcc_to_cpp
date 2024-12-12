@@ -1,4 +1,4 @@
-#include "basic.h"
+#include "Basic.h"
 #include <QApplication>
 
 int main( int argc, char* argv[] ) {

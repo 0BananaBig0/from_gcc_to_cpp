@@ -25,4 +25,4 @@ add_executable(${Target} ${SOURCES} ${MOC_SOURCES})
 target_link_libraries(${Target} PRIVATE Qt6::Widgets Qt6::Core)
 
 # Set include directories
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${Target} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
