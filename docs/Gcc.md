@@ -105,6 +105,9 @@
     - [3. Usage](#3-usage)
     - [4. Output](#4-output)
     - [5. Special Notes](#5-special-notes)
+- [`g++`, `clang++` and `mscv++`](#g-clang-and-mscv)
+  - [Explanation](#explanation-4)
+  - [Code Examples](#code-examples)
 
 <!-- vim-markdown-toc -->
 
@@ -669,3 +672,45 @@ g++ Main.cpp -L. -lFun -o Main.exe
 #### 5. Special Notes
 
 1. `g++` links a dynamic library by default.
+
+## `g++`, `clang++` and `mscv++`
+
+### Explanation
+
+1. There are various compilers available. Which compiler is the best? The choice of compiler depends
+   on the library and system being used. Most libraries are optimized for specific compilers. Even
+   when libraries serve the same purpose, their implementations are often tailored to a particular
+   compiler.
+2. For example, `libstdc++` and `libc++` are both implementations of the C++ Standard Template
+   Library (STL). However, when `clang++` is used with `libstdc++` to compile, the execution
+   performance can be very slow. In contrast, using `libc++` with `clang++` often results in
+   significantly faster execution. An example code snippet is shown below.
+3. Additionally, different systems configure different default libraries. For instance, Linux
+   systems typically configure `libstdc++` as the default library, whereas Apple systems set
+   `libc++` as the default. Modifying these default settings can be complex and may lead to errors.
+4. Therefore, when choosing a compiler, first check which system you are using. Then, if possible,
+   verify the library requirements for your project.
+5. Tips:
+   - Linux - `g++`
+   - Macos - `clang++`
+   - Win - `mscv++`
+
+### Code Examples
+
+```CPP
+#include <iostream>
+#include <random>
+using namespace std;
+mt19937::result_type seed = 0;
+mt19937 gen( seed );
+uniform_real_distribution< double > distr( 0, 1 );
+
+int main() {
+   double s = 0;
+   for( auto i = 1; i <= 100000000; ++i ) {
+      s += distr( gen );
+   }
+   std::cout << s;
+   return 0;
+}
+```

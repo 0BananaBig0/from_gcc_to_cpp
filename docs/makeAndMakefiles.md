@@ -120,6 +120,9 @@
    reading instructions from a configuration file called a Makefile.
 3. Additionally, it **checks the return value of each executed command** in the Makefile. If a
    command returns **an error** (**a non-zero value**), `make` will **exit**.
+4. **Notes**: Only lines starting with **tabs** are treated as **commands**. Using **the space key**
+   instead of **the tab key** will result in **the error**
+   `makefile:x: *** missing separator. Stop.`
 
 #### Makefile
 
