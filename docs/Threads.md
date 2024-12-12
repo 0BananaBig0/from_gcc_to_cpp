@@ -170,9 +170,9 @@
 5. A `joinable` thread becomes not `joinable` if moved from, or if either `join` or `detach` are
    called on them.
 6. A `std::thread` object **cannot be copied** because its copy constructor is deleted.
-7. When **some parameters** of `funName` are **lvalue references**, you **must wrap the
-   corresponding arguments** in **`std::ref`** (for non-const lvalue references) or **`std::cref`**
-   (for `const` lvalue references) **when passing them to `std::thread`**.
+7. When **some parameters** of `funName` are **lvalue references**, **their corresponding arguments
+   must be wrapped** in **`std::ref`** (for non-const lvalue references) or **`std::cref`** (for
+   `const` lvalue references) **when passing them to `std::thread`**.
 8. This is necessary because `std::thread` moves its arguments into the thread function by default,
    which can break lvalue reference bindings.
 9. Its header file is `<thread>`.
@@ -456,7 +456,7 @@ void yield() noexcept;
 #### Explanation
 
 1. `std::ref` is a utility function that **creates a reference wrapper for a given object**.
-2. It is used when you need to pass an argument by reference to a function, particularly in
+2. It is used when you need to **pass an argument by reference to a function**, particularly in
    situations where a function or class expects its argument to be passed by value (like in
    `std::thread` or in certain algorithms that use copy semantics).
 3. The key purpose of `std::ref` is to **ensure that arguments are passed as references even when
@@ -466,8 +466,12 @@ void yield() noexcept;
    receive a `std::reference_wrapper`**.
 6. **`std::cref`** works similarly to `std::ref`, but it creates **a reference wrapper for constant
    references**.
-7. They are usually used with `std::thread` and `std::async`.
-8. Their header file is `<functional>`.
+7. **They are commonly used with `std::thread` and `std::async`**.
+8. Although both use universal references to accept callback function arguments, these arguments are
+   copied internally for thread safety.
+9. As a result, passing a regular reference directly is invalid, necessitating the use of
+   `std::reference_wrapper` when a true reference is required.
+10. Their header file is `<functional>`.
 
 #### Syntax
 
@@ -521,16 +525,16 @@ std::cref( var_name );
 
 #### `std::shared_mutex`
 
-1. The `std::shared_mutex` **template class** is a synchronization primitive that can **be used to
-   protect shared data from being simultaneously accessed by multiple threads**.
+1. The `std::shared_mutex` **template class** is **a synchronization primitive** that can **be used
+   to protect shared data from being simultaneously accessed by multiple threads**.
 2. In contrast to other mutex types which facilitate exclusive access, a `std::shared_mutex` **has
    two levels of access**:
    - **shared (read-shared-data-only)**: several threads can share ownership of the same mutex.
    - **exclusive (read-or-modify-shared-date)**: only one thread can own the mutex.
-3. If one thread has **acquired the exclusive lock (through `lock`, `try_lock`)**, no other threads
-   can acquire the lock (including the shared).
-4. If one thread has **acquired the shared lock (through `lock_shared`, `try_lock_shared`)**, no
+3. If one thread has **acquired the shared lock (through `lock_shared`, `try_lock_shared`)**, no
    other thread can acquire the exclusive lock, but can acquire the shared lock.
+4. If one thread has **acquired the exclusive lock (through `lock`, `try_lock`)**, no other threads
+   can acquire the lock (including the shared).
 5. Only when the exclusive lock has not been acquired by any thread, the shared lock can be acquired
    by multiple threads.
 6. Within **one thread, only one lock** (shared or exclusive) can be acquired at the same time.
@@ -583,8 +587,10 @@ std::shared_timed_mutex stmutex_name;
 6. [`std::recursive_mutex` in cppreference](https://en.cppreference.com/w/cpp/thread/recursive_mutex).
 7. [`std::timed_mutex` in cplusplus](https://cplusplus.com/reference/mutex/timed_mutex/).
 8. [`std::timed_mutex` in cppreference](https://en.cppreference.com/w/cpp/thread/timed_mutex).
-9. [`std::recursive_timed_mutex` in cplusplus](https://cplusplus.com/reference/mutex/recursive_timed_mutex/).
-10. [`std::recursive_timed_mutex` in cppreference](https://en.cppreference.com/w/cpp/thread/recursive_timed_mutex).
+9. [`std::recursive_timed_mutex` in cplusplus]().
+10. [`std::recursive_timed_mutex` in cppreference](https://en.cppreference.com/w/cpp/thread/shared_mutex).
+11. [`std::shared_mutex` in cplusplus]().
+12. [`std::shared_timed_mutex` in cppreference](https://en.cppreference.com/w/cpp/thread/shared_timed_mutex).
 
 ##### Nested Types
 
@@ -624,11 +630,13 @@ std::shared_timed_mutex stmutex_name;
 
 1. All lock classes or functions that receive mutex objects implement the locking or unlocking
    behavior by calling the mutex object's lock or unlock member functions.
-2. All mutex objects are passed to them by reference.
+2. All mutex objects are **passed to them by reference**.
 3. All lock objects do not manage the lifetime of the mutex object in any way: the duration of the
    mutex object shall extend at least until the destruction of the lock object that locks it.
-4. **One mutex object** can only lock **one shared resource**.
-5. A mutex can be defined in various scopes depending on the accessibility and synchronization needs
+4. **A single mutex object** can lock **multiple shared resources**.
+5. **All threads** accessing **the same resource** must use **the same mutex object** to lock it, to
+   prevent undefined behavior.
+6. A mutex can be defined in various scopes depending on the accessibility and synchronization needs
    of the shared resource it protects:
    - **Global scope**: Suitable for global resources accessed across multiple functions, providing
      broad accessibility.
@@ -1188,8 +1196,8 @@ std::atomic_ref< Type > avar_name2( avar_name1 );
 #### `std::condition_variable_any`
 
 1. It's **the same as `std::condition_variable`**, except that **its wait functions can take any
-   lockable type** as argument (`std::condition_variable` objects can only take
-   `std::unique_lock< std::mutex >`).
+   lockable type** as argument, while `std::condition_variable` objects can only take
+   `std::unique_lock< std::mutex >`.
 2. Other than that, they are identical.
 3. However, `std::condition_variable_any` is slower than `std::condition_variable`.
 4. Its header file is `<condition_variable>`.
@@ -1211,6 +1219,8 @@ void print_id( int id ) {
    std::unique_lock< std::mutex > lck( mtx );
    while( !ready )
       cv.wait( lck );
+   // The above for-loop is equivalent the following statmenet:
+   // cv.wait( lck, [](){ return ready } );
    // ...;
    std::cout << "thread " << id << '\n';
 };
@@ -1299,7 +1309,9 @@ void notify_all_at_thread_exit( std::condition_variable& cond,
 3. **The second version** (2) lets the caller **select a specific launching policy**, while **the
    first version** (1) uses **automatic selection**, as if calling (2) with
    `launch::async | launch::deferred` as policy.
-4. Its header file is `<future>`.
+4. `std::async` automatically **generates a `std::future` object**, enabling the caller to **obtain
+   the result** of an asynchronous operation.
+5. Its header file is `<future>`.
 
 #### Syntax
 
@@ -1495,21 +1507,27 @@ std::shared_future< Type > sfut_name = std::move( fut_name );
 
 #### Explanation
 
-1. A promise is **an template class object** that can **store a value of type `R` to be retrieved by
-   a `std::future` object** (possibly in another thread), **offering a synchronization point**.
+1. A promise is **an template class object** that can **store a value of type `Type` to be retrieved
+   by a `std::future` object** (possibly in another thread), **offering a synchronization point**.
 2. **On construction**, promise objects are **associated to a new shared state** on which they can
-   **store either a value of type `R` or an exception** derived from `std::exception`.
+   **store either a value of type `Type` or an exception** derived from `std::exception`.
 3. This shared state can be **associated to a `std::future` object** by calling member `get_future`.
 4. After the call, **both objects share the same shared state**:
    - **The promise object** is **the asynchronous provider** and is expected to **set a value for
      the shared state** at some point.
    - **The `std::future` object** is **an asynchronous return object** that can **retrieve the value
      of the shared state**, waiting for it to be ready, if necessary.
-5. The lifetime of the shared state lasts at least until the last object with which it is associated
-   releases it or is destroyed.
-6. Therefore, it can survive the promise object that obtained it in the first place if associated
+5. In other words, `std::promise` is used explicitly when **working with `std::thread`** to **pass
+   data or results back to the main thread** (or another thread).
+6. Since `std::thread` has no built-in mechanism to return results, `std::promise` fills this gap:
+   - The `std::promise` is set by the producer thread.
+   - The `std::future` associated with the `std::promise` is used by the consumer thread to retrieve
+     the result.
+7. **The lifetime** of the shared state lasts at least until the last object with which it is
+   associated releases it or is destroyed.
+8. Therefore, it can survive the promise object that obtained it in the first place if associated
    also to a future.
-7. Its header file is `<future>`.
+9. Its header file is `<future>`.
 
 #### Syntax
 
@@ -1523,10 +1541,27 @@ std::shared_future< Type > sfut_name = fut_name.share();
 ```
 
 ```CPP
-std::promise< Type > pro_name;
-// Convert it to a shared future.
-// Method that `std::shared_future` works with `std::promise`.
-std::shared_future< Type > sfut_name = fut_name.share();
+RetType funcName( ..., std::promise< RetType > pro_name ) {
+   ...;
+   pro_name.set_value( result );   // Notify future
+   return result;
+}
+
+int main() {
+   ...;
+   std::promise< RetType > pro_name;
+   std::future< RetType > pro_fut = pro_name.get_future();
+   std::thread thread_name( funcName, ..., std::move( pro_name ) );
+   // future::get() will wait until the future has a valid result and retrieves it.
+   // Calling wait() before get() is not needed
+   // pro_fut.wait(); // wait for result
+   std::cout << "result=" << pro_fut.get() << '\n';
+   thread_name.join();   // wait for thread completion
+
+   std::future< RetType > async_fut = std::async( funcName, ... );
+   // Retrieve the result
+   std::cout << "Result: " << async_fut.get() << std::endl;
+}
 ```
 
 #### Related Stuffs
@@ -1564,6 +1599,6 @@ std::shared_future< Type > sfut_name = fut_name.share();
 1. A game typically loads different objects asynchronously and in parallel using multiple threads.
    This is why, at times, players can control their characters while some objects remain
    unresponsive.
-2. **To the best of my knowledge, all classes related to threads lack a copy constructor, except for
-   some classes with a `shared` prefix or suffix.**
+2. **To the best of my knowledge, most classes related to threads lack a copy constructor and a
+   copy-assignment operator, except for some classes like `std::shared_future`.**
 3. To prevent deadlock, the order of acquiring multiple locks must be consistent.
