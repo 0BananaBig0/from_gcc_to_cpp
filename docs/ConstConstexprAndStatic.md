@@ -515,6 +515,7 @@ if constexpr( expr1 ) {
    initialized outside the class definition.
 6. **Class member function**: It does **not allow them to access non-static members**, except for
    `static` members.
+7. **All static entities are initialized once before their scopes are entered for the first time**.
 
 #### Usage
 

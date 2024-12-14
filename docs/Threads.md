@@ -22,24 +22,27 @@
         - [Member Types](#member-types-1)
         - [Member functions](#member-functions-1)
         - [Non-member functions](#non-member-functions-1)
-  - [`std::this_thread`](#stdthis_thread)
+  - [`thread_local`](#thread_local)
     - [Explanation](#explanation-3)
+    - [Syntax](#syntax)
+  - [`std::this_thread`](#stdthis_thread)
+    - [Explanation](#explanation-4)
     - [Links](#links-2)
     - [`std::this_thread::get_id`](#stdthis_threadget_id)
-      - [Explanation](#explanation-4)
-      - [Syntax](#syntax)
-    - [`std::this_thread::sleep_for`](#stdthis_threadsleep_for)
       - [Explanation](#explanation-5)
       - [Syntax](#syntax-1)
-    - [`std::this_thread::sleep_until`](#stdthis_threadsleep_until)
+    - [`std::this_thread::sleep_for`](#stdthis_threadsleep_for)
       - [Explanation](#explanation-6)
       - [Syntax](#syntax-2)
-    - [`std::this_thread::yield`](#stdthis_threadyield)
-    - [Explanation](#explanation-7)
+    - [`std::this_thread::sleep_until`](#stdthis_threadsleep_until)
+      - [Explanation](#explanation-7)
       - [Syntax](#syntax-3)
-  - [`std::ref` and `std::cref`](#stdref-and-stdcref)
+    - [`std::this_thread::yield`](#stdthis_threadyield)
     - [Explanation](#explanation-8)
-    - [Syntax](#syntax-4)
+      - [Syntax](#syntax-4)
+  - [`std::ref` and `std::cref`](#stdref-and-stdcref)
+    - [Explanation](#explanation-9)
+    - [Syntax](#syntax-5)
   - [Six STD Mutex Classes](#six-std-mutex-classes)
     - [`std::mutex`](#stdmutex)
     - [`std::recursive_mutex`](#stdrecursive_mutex)
@@ -47,7 +50,7 @@
     - [`std::recursive_timed_mutex`](#stdrecursive_timed_mutex)
     - [`std::shared_mutex`](#stdshared_mutex)
     - [`std::shared_timed_mutex`](#stdshared_timed_mutex)
-    - [Syntax](#syntax-5)
+    - [Syntax](#syntax-6)
     - [Members and Related Stuffs](#members-and-related-stuffs-2)
       - [Links](#links-3)
       - [Nested Types](#nested-types)
@@ -58,8 +61,8 @@
     - [Unlocking](#unlocking)
     - [Key Points to Consider](#key-points-to-consider)
   - [`std::lock_guard`](#stdlock_guard)
-    - [Explanation](#explanation-9)
-    - [Syntax](#syntax-6)
+    - [Explanation](#explanation-10)
+    - [Syntax](#syntax-7)
     - [Members and Related Stuffs](#members-and-related-stuffs-3)
       - [Links](#links-4)
       - [Template Parameters](#template-parameters)
@@ -68,7 +71,7 @@
   - [`std::unique_lock` and `std::shared_lock`](#stdunique_lock-and-stdshared_lock)
     - [`std::unique_lock`](#stdunique_lock)
     - [`std::shared_lock`](#stdshared_lock)
-    - [Syntax](#syntax-7)
+    - [Syntax](#syntax-8)
     - [Members and Related Stuffs](#members-and-related-stuffs-4)
       - [Links](#links-5)
       - [Template Parameters](#template-parameters-1)
@@ -76,8 +79,8 @@
       - [Member Functions](#member-functions-4)
       - [Non-member Functions](#non-member-functions-2)
   - [`std::scoped_lock`](#stdscoped_lock)
-    - [Explanation](#explanation-10)
-    - [Syntax](#syntax-8)
+    - [Explanation](#explanation-11)
+    - [Syntax](#syntax-9)
     - [Members and Related Stuffs](#members-and-related-stuffs-5)
       - [Links](#links-6)
       - [Template Parameters](#template-parameters-2)
@@ -86,15 +89,15 @@
   - [`std::lock` and `std::try_lock`](#stdlock-and-stdtry_lock)
     - [`std::lock`](#stdlock)
     - [`std::try_lock`](#stdtry_lock)
-    - [Syntax](#syntax-9)
+    - [Syntax](#syntax-10)
   - [Three Lock Type Tags](#three-lock-type-tags)
   - [`std::call_once` and `std::once_flag`](#stdcall_once-and-stdonce_flag)
-    - [Explanation](#explanation-11)
-    - [Syntax](#syntax-10)
+    - [Explanation](#explanation-12)
+    - [Syntax](#syntax-11)
   - [`std::atomic` and `std::atomic_ref`](#stdatomic-and-stdatomic_ref)
     - [`std::atomic`](#stdatomic)
     - [`std::atomic_ref`](#stdatomic_ref)
-    - [Syntax](#syntax-11)
+    - [Syntax](#syntax-12)
     - [Members and Related Stuffs](#members-and-related-stuffs-6)
       - [Links](#links-7)
       - [Member Types](#member-types-4)
@@ -114,11 +117,11 @@
       - [Nested Types](#nested-types-2)
       - [Member Functions](#member-functions-7)
   - [`std::notify_all_at_thread_exit`](#stdnotify_all_at_thread_exit)
-    - [Explanation](#explanation-12)
-    - [Syntax](#syntax-12)
-  - [`std::async`](#stdasync)
     - [Explanation](#explanation-13)
     - [Syntax](#syntax-13)
+  - [`std::async`](#stdasync)
+    - [Explanation](#explanation-14)
+    - [Syntax](#syntax-14)
     - [Related Stuffs](#related-stuffs)
       - [Links](#links-9)
       - [Parameters](#parameters)
@@ -136,8 +139,8 @@
       - [`std::future_status` (Returned by `wait_for` and `wait_until` Functions)](#stdfuture_status-returned-by-wait_for-and-wait_until-functions)
     - [Differences Between `std::future` and `std::shared_future`](#differences-between-stdfuture-and-stdshared_future)
   - [`std::promise`](#stdpromise)
-    - [Explanation](#explanation-14)
-    - [Syntax](#syntax-14)
+    - [Explanation](#explanation-15)
+    - [Syntax](#syntax-15)
     - [Related Stuffs](#related-stuffs-1)
       - [Links](#links-11)
       - [Member Functions](#member-functions-9)
@@ -369,6 +372,27 @@ std::jthread thread_name2 = std::move( thread_name1 );
 ###### Non-member functions
 
 1. `std::swap( std::jthread )` (C++20): Specializes the `std::swap` algorithm (function).
+
+### `thread_local`
+
+#### Explanation
+
+1. The `thread_local` storage specifier in C++ is used to **declare variables with thread-local
+   storage duration**.
+2. **Each thread in a program gets its own**, **unique instance** of a `thread_local` variable.
+3. This is particularly useful in multithreaded programs where threads need their own copies of a
+   variable to avoid conflicts.
+4. When a thread is created, **`thread_local` variables** behave **like normal variables** in a
+   single-threaded program.
+5. For example, a `static thread_local` variable is created when the thread starts and is destroyed
+   when the thread terminates, similar to how a normal variable is created when a program starts and
+   destroyed when the program ends.
+
+#### Syntax
+
+```CPP
+thread_local Type var_name;
+```
 
 ### `std::this_thread`
 
@@ -634,9 +658,11 @@ std::shared_timed_mutex stmutex_name;
 3. All lock objects do not manage the lifetime of the mutex object in any way: the duration of the
    mutex object shall extend at least until the destruction of the lock object that locks it.
 4. **A single mutex object** can lock **multiple shared resources**.
-5. **All threads** accessing **the same resource** must use **the same mutex object** to lock it, to
+5. However, **the best practice** is to associate **one mutex object** with **a single resource**
+   for protection.
+6. **All threads** accessing **the same resource** must use **the same mutex object** to lock it, to
    prevent undefined behavior.
-6. A mutex can be defined in various scopes depending on the accessibility and synchronization needs
+7. A mutex can be defined in various scopes depending on the accessibility and synchronization needs
    of the shared resource it protects:
    - **Global scope**: Suitable for global resources accessed across multiple functions, providing
      broad accessibility.
