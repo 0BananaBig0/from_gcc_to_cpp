@@ -3,10 +3,16 @@
 
 int main( int argc, char* argv[] ) {
    QApplication app( argc, argv );
-
-   Example window;
-   window.resize( 300, 200 );
-   window.show();
+   ParentEventFilter pfilter;
+   ParentWidget pwindow;
+   pwindow.installEventFilter( &pfilter );
+   ChildEventFilter cfilter;
+   ChildWidget cwindow( &pwindow );
+   cwindow.installEventFilter( &cfilter );
+   pwindow.resize( 1200, 600 );
+   cwindow.resize( 600, 1200 );
+   pwindow.show();
+   cwindow.show();
 
    return app.exec();
 }

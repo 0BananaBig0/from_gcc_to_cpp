@@ -4,9 +4,8 @@
   > Mail: 1184903633@qq.com
   > Created Time: Mon 09 Dec 2024 04:15:06 PM CST
  ************************************************************************/
-#ifndef EXAMPLE_H
-#define EXAMPLE_H
-
+#ifndef BASIC_H
+#define BASIC_H
 #include <QWidget>
 #include <QPushButton>
 #include <QLabel>
@@ -19,16 +18,36 @@ class CustomEvent: public QEvent {
       CustomEvent(): QEvent( EventType ) {}
 };
 
-class Example: public QWidget {
+class ParentEventFilter: public QObject {
       Q_OBJECT
 
    public:
-      Example( QWidget* parent = nullptr );
+      ParentEventFilter( QObject* parent = nullptr );
+
+   protected:
+      bool eventFilter( QObject* watched, QEvent* event ) override;
+};
+
+class ChildEventFilter: public QObject {
+      Q_OBJECT
+
+   public:
+      ChildEventFilter( QObject* parent = nullptr );
+
+   protected:
+      bool eventFilter( QObject* watched, QEvent* event ) override;
+};
+
+class ParentWidget: public QWidget {
+      Q_OBJECT
+
+   public:
+      ParentWidget( QWidget* parent = nullptr );
 
    protected:
       void customEvent( QEvent* event ) override;
-
-   private slots:
+      bool event( QEvent* event ) override;
+   private Q_SLOTS:
       void onButtonClicked();
 
    private:
@@ -36,4 +55,20 @@ class Example: public QWidget {
       QLabel* label;
 };
 
+class ChildWidget: public QWidget {
+      Q_OBJECT
+
+   public:
+      ChildWidget( QWidget* parent = nullptr );
+
+   protected:
+      void customEvent( QEvent* event ) override;
+      bool event( QEvent* event ) override;
+   private Q_SLOTS:
+      void onButtonClicked();
+
+   private:
+      QPushButton* button;
+      QLabel* label;
+};
 #endif   // EXAMPLE_H
