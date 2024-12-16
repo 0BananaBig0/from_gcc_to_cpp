@@ -80,6 +80,7 @@
   - [Source files](#source-files-2)
   - [Setup Paths of Header Files](#setup-paths-of-header-files)
     - [1. Code](#1-code-2)
+    - [2. The Order of Finding Header Files](#2-the-order-of-finding-header-files)
   - [How to Link Multiple Static Libraries](#how-to-link-multiple-static-libraries)
     - [1. Code](#1-code-3)
   - [How to Create a Static Library](#how-to-create-a-static-library)
@@ -542,6 +543,18 @@ g++ -o Main.o Fun.o -o Main.exe
 g++ Main.cpp Fun.cpp -o Main.exe -I/the/first/path/of/header/files \
     -I/the/second/path/of/header/files ...;
 ```
+
+#### 2. The Order of Finding Header Files
+
+1. For `"..."`:
+   - Relative path;
+   - Compiler arguments(`-I/.../...`);
+   - Environment variables(`CPATH, C_INCLUDE_PATH, CPLUS_INCLUDE_PATH`);
+   - System directories(`/usr/include`).
+2. For `<...>`:
+   - Compiler arguments(`-I/.../...`);
+   - Environment variables(`CPATH, C_INCLUDE_PATH, CPLUS_INCLUDE_PATH`);
+   - System directories(`/usr/include`).
 
 ### How to Link Multiple Static Libraries
 

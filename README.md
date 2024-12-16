@@ -79,6 +79,7 @@
     - [Source files](./docs/Gcc.md#source-files-2)
     - [Setup Paths of Header Files](./docs/Gcc.md#setup-paths-of-header-files)
       - [1. Code](./docs/Gcc.md#1-code-2)
+      - [2. The Order of Finding Header Files](./docs/Gcc.md#2-the-order-of-finding-header-files)
     - [How to Link Multiple Static Libraries](./docs/Gcc.md#how-to-link-multiple-static-libraries)
       - [1. Code](./docs/Gcc.md#1-code-3)
     - [How to Create a Static Library](./docs/Gcc.md#how-to-create-a-static-library)

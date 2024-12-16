@@ -291,3 +291,19 @@
 1. store data on stack > store data on heap > store pointers on stack > store pointers on heap.
 2. The storage order: Text segment, data segment, memory mapping segment, heap, stack. (May vary,
    depending on OS, hardwares and compiler settings)
+3. Hierarchy:
+   ```Markdown
+   High Memory Addresses
+   ----------------------
+   Stack (grows downward)
+   ----------------------
+   Heap (grows upward)
+   ----------------------
+   Memory-Mapped Segment (grows upward)
+   ----------------------
+   Data Segment (Constant segment, initialized and uninitialized data segments)
+   ----------------------
+   Text Segment (read-only, executable code)
+   ----------------------
+   Low Memory Addresses
+   ```

@@ -164,8 +164,18 @@ git restore TargetList
 
 ```SH
 git log -Number(How many, Optional)
+git restore --source=CommitNumber(A sequence of number) -- TargetList
+```
+
+```SH
+git log -Number(How many, Optional)
 git reset CommitNumber(A sequence of number) TargetList(Optional)
 git checkout -- TargetList
+```
+
+```SH
+git log -Number(How many, Optional)
+git checkout CommitNumber(A sequence of number) -- TargetList
 ```
 
 ### Check the Differences After Using `git add` or `git rm`, but Before `git commit`
@@ -193,7 +203,7 @@ git show CommitNumber(A sequence of number, Optional) TargetList(Optional)
 ```
 
 ```SH
-git show -Number(How many, Optional)
+git show -Number(How many, Optional) TargetList(Optional)
 ```
 
 ### Revert to the Previous Version While Keeping Current Modifications

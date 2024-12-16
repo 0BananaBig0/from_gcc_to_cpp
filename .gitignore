@@ -7,6 +7,7 @@
 .qmake*
 .clang*
 *.h
+build
 !docs/cpp_project_example/*.cpp
 !docs/cpp_project_example/*.h
 docs/cpp_project_example/moc*.cpp
