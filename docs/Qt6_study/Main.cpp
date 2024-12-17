@@ -7,7 +7,9 @@ int main( int argc, char* argv[] ) {
    ParentWidget pwindow;
    pwindow.installEventFilter( &pfilter );
    ChildEventFilter cfilter;
-   ChildWidget cwindow( &pwindow );
+   // Without or with the parent.
+   ChildWidget cwindow;
+   // ChildWidget cwindow( &pwindow );
    cwindow.installEventFilter( &cfilter );
    pwindow.resize( 1200, 600 );
    cwindow.resize( 600, 1200 );
