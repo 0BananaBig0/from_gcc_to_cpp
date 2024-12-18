@@ -298,11 +298,11 @@ clean:
 #### The Syntax of Referencing a Variable
 
 ```Makefile
-$(VAR_NAME) # For Makefile variables to ensure clarity and compatibility.
+$(VAR_NAME) # For Makefile simple variables to ensure clarity and compatibility.
 ```
 
 ```Makefile
-${VAR_NAME} # Only when interacting with shell commands or tools that require it.
+${VAR_NAME} # Only when interacting with complex expressions or shell commands or tools that require it.
 ```
 
 ```Makefile

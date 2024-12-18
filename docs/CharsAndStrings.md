@@ -82,7 +82,7 @@ var_name = 'a letter';
    string-type variable by default, which indicates where **the end of the string** is.
 3. The value is enclosed in **double quotes** (`"`) and the **size** of the string is determined by
    **the number of characters plus one** for the null terminator.
-4. `"a string"`: A string literal, a `const char` array.
+4. `"a string"`: A string literal, **a `const char` array**.
 5. A string literal is **stored** in the **read-only section** of memory. However, if it is used to
    **initialize a non-const `char` array**, its **contents** will be **copied to the array**, which
    can then be **modified like any other array**.
