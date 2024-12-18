@@ -19,12 +19,15 @@ bool ParentEventFilter::eventFilter( QObject* watched, QEvent* event ) {
       qDebug() << "ParentEventFilter intercepted a mouse press event!";
       // Consume the event
       return true;
+   } else if( event->type() == QEvent::MouseButtonRelease ) {
+      qDebug() << "ParentEventFilter intercepted a mouse release event!";
+      return true;
    } else if( event->type() == QEvent::KeyPress ) {
       qDebug() << "ParentEventFilter intercepted a key press event!";
       return true;
-   } else if( event->type() == QEvent::MouseButtonDblClick ) {
-      qDebug() << "ParentEventFilter intercepted a mouse double click event!";
-      return true;
+   // } else if( event->type() == QEvent::KeyRelease ) {
+   //    qDebug() << "ParentEventFilter intercepted a key release event!";
+   //    return true;
    }
    // Pass event to the next filter or object
    return QObject::eventFilter( watched, event );
@@ -36,9 +39,6 @@ bool ChildEventFilter::eventFilter( QObject* watched, QEvent* event ) {
    if( event->type() == QEvent::MouseButtonPress ) {
       qDebug() << "ChildEventFilter intercepted a mouse press event!";
       // Consume the event
-      return true;
-   } else if( event->type() == QEvent::KeyPress ) {
-      qDebug() << "ChildEventFilter intercepted a key press event!";
       return true;
    }
    // Pass event to the next filter or object
@@ -53,7 +53,7 @@ ParentWidget::ParentWidget( QWidget* parent ): QWidget( parent ) {
    // Layout
    QGridLayout* layout = new QGridLayout( this );
    button->setBaseSize( 10, 20 );
-   layout->addWidget( button, 1, 1);
+   layout->addWidget( button, 1, 1 );
    layout->addWidget( label, 1, 2 );
    setLayout( layout );
    // Connect signal to slot
@@ -75,20 +75,56 @@ void ParentWidget::customEvent( QEvent* event ) {
 
 bool ParentWidget::event( QEvent* event ) {
    if( event->type() == QEvent::MouseButtonPress ) {
-      qDebug() << "ParentWidget handling mouse press event!";
-      // Handle the event
-      return true;
-   } else if( event->type() == QEvent::KeyPress ) {
-      qDebug() << "ParentWidget handling key event!";
+      qDebug() << "ParentWidget handled a mouse press event!";
       // Handle the event
       return true;
    } else if( event->type() == QEvent::MouseButtonRelease ) {
-      qDebug() << "ParentWidget handling mouse release event!";
+      qDebug() << "ParentWidget handled a mouse release event!";
       // Handle the event
       return true;
+   } else if( event->type() == QEvent::KeyPress ) {
+      qDebug() << "ParentWidget handled a key press event!";
+      return true;
+   } else if( event->type() == QEvent::KeyRelease ) {
+      qDebug() << "ParentWidget handled a key release event!";
+      return true;
+   // } else if( event->type() == QEvent::Wheel ) {
+   //    qDebug() << "ParentWidget handled a mouse wheel event!";
+   //    // Handle the event
+   //    return true;
    }
    // Default handling
    return QWidget::event( event );
+}
+
+void ParentWidget::mousePressEvent( QMouseEvent* event ) {
+   qDebug() << "ParentWidget handled a mousePressEvent!";
+   QWidget::mousePressEvent( event );
+}
+
+void ParentWidget::mouseReleaseEvent( QMouseEvent* event ) {
+   qDebug() << "ParentWidget handled a mouseReleaseEvent!";
+   QWidget::mouseReleaseEvent( event );
+}
+
+void ParentWidget::keyPressEvent( QKeyEvent* event ) {
+   qDebug() << "ParentWidget handled a keyPressEvent!";
+   QWidget::keyPressEvent( event );
+}
+
+void ParentWidget::keyReleaseEvent( QKeyEvent* event ) {
+   qDebug() << "ParentWidget handled a keyReleaseEvent!";
+   QWidget::keyReleaseEvent( event );
+}
+
+void ParentWidget::wheelEvent( QWheelEvent* event ) {
+   qDebug() << "ParentWidget handled a wheelEvent!";
+   QWidget::wheelEvent( event );
+}
+
+void ParentWidget::mouseDoubleClickEvent( QMouseEvent* event ) {
+   qDebug() << "ParentWidget handled a mouseDoubleClickEvent!";
+   QWidget::mouseDoubleClickEvent( event );
 }
 
 // Example class implementation
@@ -99,7 +135,7 @@ ChildWidget::ChildWidget( QWidget* parent ): QWidget( parent ) {
    // Layout
    QGridLayout* layout = new QGridLayout( this );
    button->setBaseSize( 10, 20 );
-   layout->addWidget( button, 2, 1);
+   layout->addWidget( button, 2, 1 );
    layout->addWidget( label, 2, 2 );
    setLayout( layout );
    // Connect signal to slot
@@ -121,18 +157,38 @@ void ChildWidget::customEvent( QEvent* event ) {
 
 bool ChildWidget::event( QEvent* event ) {
    if( event->type() == QEvent::MouseButtonPress ) {
-      qDebug() << "ChildWidget handling mouse press event!";
-      // Handle the event
-      return true;
-   } else if( event->type() == QEvent::KeyPress ) {
-      qDebug() << "ChildWidget handling key event!";
+      qDebug() << "ChildWidget handled a mouse press event!";
       // Handle the event
       return true;
    } else if( event->type() == QEvent::MouseButtonRelease ) {
-      qDebug() << "ChildWidget handling mouse release event!";
-      // Handle the event
+      qDebug() << "ChildWidget handled a mouse release event!";
       return true;
    }
    // Default handling
    return QWidget::event( event );
+}
+
+void ChildWidget::mousePressEvent( QMouseEvent* event ) {
+   qDebug() << "ChildWidget handled a mousePressEvent!";
+   QWidget::mousePressEvent( event );
+}
+
+void ChildWidget::mouseReleaseEvent( QMouseEvent* event ) {
+   qDebug() << "ChildWidget handled a mouseReleaseEvent!";
+   QWidget::mouseReleaseEvent( event );
+}
+
+void ChildWidget::keyPressEvent( QKeyEvent* event ) {
+   qDebug() << "ChildWidget handled a keyPressEvent!";
+   QWidget::keyPressEvent( event );
+}
+
+void ChildWidget::keyReleaseEvent( QKeyEvent* event ) {
+   qDebug() << "ChildWidget handled a keyReleaseEvent!";
+   QWidget::keyReleaseEvent( event );
+}
+
+void ChildWidget::wheelEvent( QWheelEvent* event ) {
+   qDebug() << "ChildWidget handled a wheelEvent!";
+   QWidget::wheelEvent( event );
 }

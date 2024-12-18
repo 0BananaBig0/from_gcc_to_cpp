@@ -10,6 +10,9 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QEvent>
+#include <QWheelEvent>
+#include <QKeyEvent>
+#include <QMouseEvent>
 
 class CustomEvent: public QEvent {
    public:
@@ -47,6 +50,12 @@ class ParentWidget: public QWidget {
    protected:
       void customEvent( QEvent* event ) override;
       bool event( QEvent* event ) override;
+      void mousePressEvent( QMouseEvent* event ) override;
+      void mouseReleaseEvent(QMouseEvent *event) override;
+      void keyPressEvent( QKeyEvent* event ) override;
+      void keyReleaseEvent( QKeyEvent* event ) override;
+      void wheelEvent( QWheelEvent* event ) override;
+      void mouseDoubleClickEvent( QMouseEvent* event ) override;
    private Q_SLOTS:
       void onButtonClicked();
 
@@ -64,6 +73,11 @@ class ChildWidget: public QWidget {
    protected:
       void customEvent( QEvent* event ) override;
       bool event( QEvent* event ) override;
+      void mousePressEvent( QMouseEvent* event ) override;
+      void mouseReleaseEvent(QMouseEvent *event) override;
+      void keyPressEvent( QKeyEvent* event ) override;
+      void keyReleaseEvent( QKeyEvent* event ) override;
+      void wheelEvent( QWheelEvent* event ) override;
    private Q_SLOTS:
       void onButtonClicked();
 
