@@ -1,18 +1,20 @@
 /*************************************************************************
   >
- * File Name: AnotherMenu.cpp
+ * File Name: MainWindow.cpp
   > Author: Huaxiao Liang
   > Mail:
  * 1184903633@qq.com
   > Created Time: Tue 17 Dec 2024 03:51:39 PM CST
  * ************************************************************************/
+#include "MainWindow.h"
 #include <QMenu>
 #include <QMenuBar>
 #include <QIcon>
-#include "AnotherMenu.h"
 #include <QDebug>
+#include <QDockWidget>
+#include <QListWidget>
 
-AnotherMenu::AnotherMenu( QWidget* parent ): QMainWindow( parent ) {
+MainWindow::MainWindow( QWidget* parent ): QMainWindow( parent ) {
    // auto* newa = new QAction( QIcon::fromTheme( "document-new" ), "&New", this
    // ); auto* open
    //    = new QAction( QIcon::fromTheme( "document-open" ), "&Open", this );
@@ -40,5 +42,12 @@ AnotherMenu::AnotherMenu( QWidget* parent ): QMainWindow( parent ) {
    file->addAction( open );
    file->addSeparator();
    file->addAction( quit );
+   auto* contents_window = new QDockWidget( tr( "Table of Contents" ), this );
+   contents_window->setAllowedAreas( Qt::LeftDockWidgetArea
+                                     | Qt::RightDockWidgetArea );
+   addDockWidget( Qt::LeftDockWidgetArea, contents_window );
+   // auto* headingList = new QListWidget( contents_window );
+   // contents_window->setWidget( headingList );
+
    connect( quit, &QAction::triggered, qApp, &QApplication::quit );
 }

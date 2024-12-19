@@ -1,5 +1,5 @@
 /*************************************************************************
-  > File Name: AnotherMenu.h
+  > File Name: MainWindow.h
   > Author: Huaxiao Liang
   > Mail: 1184903633@qq.com
   > Created Time: Tue 17 Dec 2024 03:51:59 PM CST
@@ -8,7 +8,7 @@
 #include <QMainWindow>
 #include <QApplication>
 
-class AnotherMenu: public QMainWindow {
+class MainWindow: public QMainWindow {
    public:
-      AnotherMenu( QWidget* parent = nullptr );
+      MainWindow( QWidget* parent = nullptr );
 };
