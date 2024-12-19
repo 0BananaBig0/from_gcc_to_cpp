@@ -4,7 +4,7 @@
   > Mail: 1184903633@qq.com
   > Created Time: Sat 07 Dec 2024 09:41:51 PM CST
  ************************************************************************/
-#include "Basic.h"
+#include "ObserveEventsAndSignals.h"
 #include <QVBoxLayout>
 #include <QCoreApplication>
 // In this example, you can modify the accepted events' types to observe how an
@@ -25,9 +25,9 @@ bool ParentEventFilter::eventFilter( QObject* watched, QEvent* event ) {
    } else if( event->type() == QEvent::KeyPress ) {
       qDebug() << "ParentEventFilter intercepted a key press event!";
       return true;
-   // } else if( event->type() == QEvent::KeyRelease ) {
-   //    qDebug() << "ParentEventFilter intercepted a key release event!";
-   //    return true;
+      // } else if( event->type() == QEvent::KeyRelease ) {
+      //    qDebug() << "ParentEventFilter intercepted a key release event!";
+      //    return true;
    }
    // Pass event to the next filter or object
    return QObject::eventFilter( watched, event );
@@ -88,10 +88,10 @@ bool ParentWidget::event( QEvent* event ) {
    } else if( event->type() == QEvent::KeyRelease ) {
       qDebug() << "ParentWidget handled a key release event!";
       return true;
-   // } else if( event->type() == QEvent::Wheel ) {
-   //    qDebug() << "ParentWidget handled a mouse wheel event!";
-   //    // Handle the event
-   //    return true;
+      // } else if( event->type() == QEvent::Wheel ) {
+      //    qDebug() << "ParentWidget handled a mouse wheel event!";
+      //    // Handle the event
+      //    return true;
    }
    // Default handling
    return QWidget::event( event );
@@ -122,9 +122,9 @@ void ParentWidget::wheelEvent( QWheelEvent* event ) {
    QWidget::wheelEvent( event );
 }
 
-void ParentWidget::mouseDoubleClickEvent( QMouseEvent* event ) {
-   qDebug() << "ParentWidget handled a mouseDoubleClickEvent!";
-   QWidget::mouseDoubleClickEvent( event );
+void ParentWidget::leaveEvent( QEvent* event ) {
+   qDebug() << "ParentWidget handled a leaveEvent!";
+   QWidget::leaveEvent( event );
 }
 
 // Example class implementation

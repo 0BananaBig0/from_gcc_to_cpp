@@ -51,11 +51,11 @@ class ParentWidget: public QWidget {
       void customEvent( QEvent* event ) override;
       bool event( QEvent* event ) override;
       void mousePressEvent( QMouseEvent* event ) override;
-      void mouseReleaseEvent(QMouseEvent *event) override;
+      void mouseReleaseEvent( QMouseEvent* event ) override;
       void keyPressEvent( QKeyEvent* event ) override;
       void keyReleaseEvent( QKeyEvent* event ) override;
       void wheelEvent( QWheelEvent* event ) override;
-      void mouseDoubleClickEvent( QMouseEvent* event ) override;
+      void leaveEvent( QEvent* event ) override;
    private Q_SLOTS:
       void onButtonClicked();
 
@@ -74,7 +74,7 @@ class ChildWidget: public QWidget {
       void customEvent( QEvent* event ) override;
       bool event( QEvent* event ) override;
       void mousePressEvent( QMouseEvent* event ) override;
-      void mouseReleaseEvent(QMouseEvent *event) override;
+      void mouseReleaseEvent( QMouseEvent* event ) override;
       void keyPressEvent( QKeyEvent* event ) override;
       void keyReleaseEvent( QKeyEvent* event ) override;
       void wheelEvent( QWheelEvent* event ) override;
