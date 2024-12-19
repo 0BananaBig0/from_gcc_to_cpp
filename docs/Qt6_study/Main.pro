@@ -1,5 +1,5 @@
 TEMPLATE = app
-SOURCES = Main.cpp Basic.cpp SimpleMenu.cpp AnotherMenu.cpp
+SOURCES = Main.cpp ObserveEventsAndSignals.cpp MainWindow.cpp
 QT += widgets core gui
 TARGET = Main.exe
-HEADERS = Basic.h SimpleMenu.h AnotherMenu.h
+HEADERS = ObserveEventsAndSignals.h MainWindow.h

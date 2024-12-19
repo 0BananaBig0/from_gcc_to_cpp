@@ -1,15 +1,15 @@
-#define BEH_OBS
+#define MAI_WIN
 #ifdef BEH_OBS
 // clang-format off
-#include "Basic.h"
+#include "ObserveEventsAndSignals.h"
 #include <QApplication>
 // clang-format on
 // First, on the top left corner of the window
 // press mouse button, release mouse button
 // press a normal key, release a normal key
-// scroll the mouse wheel, doublic press mouse button
+// scroll the mouse wheel, leave the top left conrner
 // Second, on the bottom right corner of the window
-// Repeate the six operations
+// Repeate the first five steps, leave the bottom right corner
 // Observer the output on the terminal
 int main( int argc, char* argv[] ) {
    QApplication app( argc, argv );
@@ -29,36 +29,18 @@ int main( int argc, char* argv[] ) {
 }
 #endif
 
-#ifdef SIM_MEN
+#ifdef MAI_WIN
 // clang-format off
-#include "SimpleMenu.h"
-// clang-format on
-
-int main( int argc, char* argv[] ) {
-   QApplication app( argc, argv );
-   SimpleMenu window;
-   window.resize( 350, 250 );
-   window.setWindowTitle( "Simple menu" );
-   window.show();
-   return app.exec();
-}
-#endif
-
-#ifdef ANO_MEN
-// clang-format off
-#include "AnotherMenu.h"
+#include "MainWindow.h"
 #include <QStringList>
 // clang-format on
 
 int main( int argc, char* argv[] ) {
    QApplication app( argc, argv );
    app.setAttribute( Qt::AA_DontShowIconsInMenus, false );
-   // QIcon::setThemeSearchPaths( QStringList("/usr/share/icons/Adwaita") );
-   // QApplication::setStyle("Fusion");  // or "Adwaita" for GTK style
-   AnotherMenu window;
-   window.resize( 350, 250 );
-   window.setWindowTitle( "Another menu" );
-   window.show();
+   MainWindow window;
+   window.setWindowTitle( "Main Window" );
+   window.showMaximized();
    return app.exec();
 }
 #endif

@@ -11,9 +11,9 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets Core Gui)
 # Define the target name
 set(Target Main.exe)
 # Define the source files
-set(SOURCES Main.cpp Basic.cpp SimpleMenu.cpp AnotherMenu.cpp)
+set(SOURCES Main.cpp ObserveEventsAndSignals.cpp MainWindow.cpp)
 # Define the header files
-set(HEADERS Basic.h SimpleMenu.h AnotherMenu.h)
+set(HEADERS ObserveEventsAndSignals.h MainWindow.h)
 
 # Automatically handle the MOC process for Qt classes with Q_OBJECT macro
 qt_wrap_cpp(MOC_SOURCES ${HEADERS})
