@@ -282,9 +282,13 @@ class ClassName {
 
       // Factory methods for initialization.
       static ClassName createClassName() {
-         return std::move(
-            ClassName( para_list );   // Parameterized constructor.
+         return std::move( ClassName( para_list ) );   // Parameterized constructor.
       };
+
+      // Only used to return an existing object.
+      // static ClassName&& createClassName() {
+      //    return std::move( existing_obj );   // Parameterized constructor.
+      // };
 
       ...;
 };
@@ -1065,6 +1069,9 @@ class ClassName {
    - If there is no `explicit` keyword before the called assignment operator, implicit conversion
      occurs, and the four rules mentioned above are followed to determine which assignment operator
      will be called.
+3. When **a temporary object** is **passed to a function** by value, its copy constructor is not
+   called due to **move semantics or copy elision**. Instead, **the move constructor (if available)
+   or a parameterized constructor** (if the move constructor is not available) is **called**.
 
 ### Inheritance
 

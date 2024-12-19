@@ -115,6 +115,10 @@ class ClassName {
 4. In addition, their **return types** must be **the same type** or **a covariant return type (a
    subtype of the base class's return type, like subclass types)**.
 5. Overriding is **resolved at runtime** (**dynamic polymorphism**).
+6. **The visibility** of a function does **not affect** whether it's successfully **overridden**.
+7. However, when **an overridden function** is called **through a base class pointer (or
+   reference)**, **the accessibility of that function** is determined by **its visibility in the
+   base class**, not in the derived class.
 
 #### Syntax
 
