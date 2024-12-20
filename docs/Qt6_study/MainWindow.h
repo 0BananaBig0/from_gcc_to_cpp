@@ -18,21 +18,35 @@ class MainWindow: public QMainWindow {
 
    private:
       QMenuBar* _mainMenuBar;
-      QMenu* _mainMenuFile;
+
+      QMenu* _fileMenu;
       QAction* _newFile;
       QAction* _saveFile;
       QAction* _quit;
-
       QMenu* _colorSchemeMenu;
-
-      QToolBar* _toolBar;
 
       QDockWidget* _dockWidget;
       QListWidget* _dockHeadingList;
+
+      QMenu* _viewMenu;
+      QAction* _showOrHideToolBar;
+      QAction* _showOrHideDock;
+
+      QMenu* _floatingMenu;
+      QAction* _toggleFloatingDock;
+
+      QToolBar* _toolBar;
    private Q_SLOTS:
-      void createMainMenuFileActions();
-      void createMainMenuFile();
+      void createFileActions();
+      void createFileMenu();
       void createColorSchemeMenu();
-      void createToolBar();
       void createDockWidget();
+      void createViewActions();
+      void createViewMenu();
+      void createFloatingActions();
+      void createFloatingMenu();
+      void createToolBar();
+      void showOrHideToolBar();
+      void showOrHideDock();
+      void toggleFloatingDock();
 };
