@@ -61,6 +61,7 @@
     - [Constructor Initializer Lists](#constructor-initializer-lists)
       - [Explanation](#explanation-12)
       - [Syntax](#syntax-11)
+      - [Differences between Traditional Initializer Lists and Modern Initializer Lists](#differences-between-traditional-initializer-lists-and-modern-initializer-lists)
       - [Notes](#notes-1)
     - [Copy Constructors](#copy-constructors)
       - [Explanation](#explanation-13)
@@ -261,7 +262,8 @@ ClassName obj_name{ };
 ```
 
 ```CPP
-// Aggregate initialization.
+// Without related parameterized constructors and all members are public, aggregate initialization.
+// With related parameterized constructors, parameterized constructor or uniform initialization or brace initialization.
 ClassName obj_name = { para_list };
 ```
 
@@ -712,6 +714,8 @@ class ClassName {
 ##### Syntax
 
 ```CPP
+// Traditional initializer lists.
+// Slighly faster.
 class ClassName {
    public:
       ClassName( Type1 para1, Type2 para2, ... ):
@@ -723,6 +727,39 @@ class ClassName {
       ...;
 };
 ```
+
+```CPP
+// Modern initializer lists.
+// C++11 uniform initialization.
+// Type safe, prevents narrowing conversions.
+// Recommended.
+class ClassName {
+   public:
+      ClassName( Type1 para1, Type2 para2, ... ):
+         _mem1{ para1 }, _mem2{ para2 }, ...{};
+
+   private:
+      Type1 _mem1;
+      Type2 _mem2;
+      ...;
+};
+```
+
+##### Differences between Traditional Initializer Lists and Modern Initializer Lists
+
+1. Traditional initializer lists:
+   - They were used before C++11 and **primarily involved constructor initialization lists** to
+     **initialize member variables**, with less emphasis on consistency across all types.
+2. Modern initializer lists (Introduced in C++11):
+   - Thye bring **a more consistent, type-safe, and uniform syntax for initialization**.
+   - They **prevent narrowing conversions** and **provide a cleaner syntax** that **can be used
+     across all types** (primitives, containers, user-defined types).
+   - They can **work with `std::initializer_list<Type>`** to initialize containers like
+     `std::vector`, but `std::initializer_list< Type >` **introduces a slight overhead**. This
+     overhead arises because `std::initializer_list< Type >` **stores a pointer** to the underlying
+     data and the size of the list. However, this overhead is generally minimal and is unlikely to
+     significantly affect performance in most use cases.
+   - An example:`int int_var{ val };`.
 
 ##### Notes
 

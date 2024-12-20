@@ -272,6 +272,8 @@
    dereference it directly without first casting it to a specific pointer type**.
 4. Functions like **`malloc`** and **`calloc`** **return `void` pointer** which must be cast to the
    appropriate type.
+5. `void*` is **void pointers**. But `void (*)` is **invalid** in C++. `void (*)()` are **void
+   function pointers**.
 
 ##### Null Pointers
 

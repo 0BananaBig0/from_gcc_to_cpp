@@ -35,6 +35,8 @@
 6. The **backslash (`\`)** can be utilized to create **multi-line macros**.
 7. **Excessive use** of macros may adversely **affect** the **readability** of the code.
 8. **Function-like macros** can be **difficult to debug**.
+9. When a macro is defined, from its definition location to the end of the file, all code can use
+   it, regardless of whether it is defined inside a code block. **The scope of a macro is global**.
 
 ### Syntax
 

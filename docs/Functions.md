@@ -68,6 +68,9 @@
     - [Common Syntax](#common-syntax)
     - [Links](#links)
   - [Callback Functions and Registeration Functions](#callback-functions-and-registeration-functions)
+  - [Function References](#function-references)
+    - [Explanation](#explanation-12)
+    - [Declaration and Definition Syntax](#declaration-and-definition-syntax-1)
   - [Function Signatures](#function-signatures)
   - [Hiding, Overloading, Overriding, and Overwriting](#hiding-overloading-overriding-and-overwriting)
 - [`std::function`](#stdfunction)
@@ -621,6 +624,25 @@ template< typename... Ts > RetType funcName( Ts... args ) {
    - It **takes a function pointer as an argument** and **stores or uses it later**, allowing other
      functions to invoke it when needed.
    - It’s essentially a way of registering a function for future calls.
+
+### Function References
+
+#### Explanation
+
+1. A function reference is **an alias of a function** in C++.
+2. It allows you to call a function indirectly through its name, making it possible to **implement
+   callback mechanisms**.
+
+#### Declaration and Definition Syntax
+
+```CPP
+auto& func_ptr_name = funcName;
+```
+
+```CPP
+// This syntax is equivalent to the syntax mentioned above.
+RetType ( &func_ptr_name )( para_type_list ) = funcName;
+```
 
 ### Function Signatures
 
