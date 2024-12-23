@@ -1274,6 +1274,9 @@ class Derived: public Base {
    class correctly overrides a `virtual` function.
 6. If a derived class does **not override** the `virtual` function, the **base class's
    implementation** will be invoked.
+7. Once a function is declared as `virtual` in a base class, it remains `virtual` in all derived
+   classes until the `final` keyword is encountered.
+8. **The `virtual` keyword propagates down the class hierarchy**.
 
 ##### Syntax
 
@@ -1408,6 +1411,11 @@ class Derived: public Base {
 2. It **ensures** that **only one instance of the base class** exists in the final derived class.
 3. It **resolves the diamond inheritance problem**, where two base classes share a common ancestor.
 4. The **base class constructor must be invoked** from the **most-derived class**.
+5. Virtual inheritance **occurs only when a class is inherited using the `virtual` keyword**, and it
+   **propagates down the class hierarchy**.
+6. **For example**, `Base` is virtually inherited by `B` using the `virtual` keyword. Although
+   `Derived` inherits from `B` without using the `virtual` keyword, `Base` is still virtually
+   inherited by `Derived` through `B`, as `B` has virtually inherited `Base`.
 
 ##### Definition Syntax
 
@@ -1527,7 +1535,7 @@ class ClassB {
 
 ##### Explanation
 
-1. The final keyword in C++ is used to prevent further inheritance or overriding of classes and
+1. The final keyword in C++ is used to **prevent further inheritance or overriding** of classes and
    virtual functions.
 2. It plays a crucial role in controlling the behavior of classes in the inheritance hierarchy.
 
@@ -1535,7 +1543,8 @@ class ClassB {
 
 ##### Explanation
 
-1. A final function is **a `virtual` function** that **cannot be overridden** by any derived class.
+1. A `final` function is **a `virtual` function** that **cannot be overridden** by any derived
+   class.
 2. The final specifier ensures that the function's implementation remains fixed in the class that
    declares it as final.
 3. This feature can **improve performance** by **devirtualizing calls** to the final function, as
@@ -1555,12 +1564,12 @@ class Base {
 
 ##### Explanation
 
-1. A final class is **a class** that **cannot be inherited** from. Declaring a class as final
-   ensures that no further subclassing is allowed, which can prevent misuse of inheritance and
-   unintended extensions of the class’s functionality.
-2. Marking a class as final can **improve runtime performance**, as the compiler can **optimize
-   calls** and **remove `virtual` dispatch overhead**.
-3. Final classes are often used for **singleton patterns**, **utility classes**, or
+1. A `final` class is **a class** that **cannot be inherited** from.
+2. Declaring a class as `final` ensures that no further subclassing is allowed, which can prevent
+   misuse of inheritance and unintended extensions of the class’s functionality.
+3. This can **improve runtime performance**, as the compiler can **optimize calls** and **remove
+   `virtual` dispatch overhead**.
+4. `final` classes are often used for **singleton patterns**, **utility classes**, or
    **performance-critical components** to **prevent inheritance overhead**.
 
 ##### Syntax

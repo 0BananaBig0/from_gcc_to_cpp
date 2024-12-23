@@ -30,11 +30,12 @@
 // the property name, treating it as a property with that name.
 
 // When `BINDABLE` is specified, programmers should not emit the `NOTIFY` signal
-// manually and explicitly (otherwise, the signal is emitted twice) in the
-// setter. Instead, they need to register the `NOTIFY` signal with the
-// `BINDABLE` object, which is created using bindable classes or related macros
-// like `Q_OBJECT_BINDABLE_PROPERTY`. Once the bindable object is modified,
-// regardless of the method used, the `NOTIFY` signal is emitted.
+// manually and explicitly (otherwise, the signal is emitted twice if we update
+// values without using bindings.) in the setter. Instead, they need to register
+// the `NOTIFY` signal with the `BINDABLE` object, which is created using
+// bindable classes or related macros like `Q_OBJECT_BINDABLE_PROPERTY`. Once
+// the bindable object is modified, regardless of the method used, the `NOTIFY`
+// signal is emitted.
 
 // Normally, `WRITE` generates a default `WRITE` accessor that does not emit any
 // signal.
@@ -115,10 +116,13 @@ class ProExa: public QObject {
          if( _boundPro == val ) {
             return;
          }
-         if( _boundPro == 9 ) {
-            qDebug() << "Are you kidding me?";
-         }
          _boundPro = val;
+         // It's used to verify that binding ignores the setter.
+         if( _boundPro == 9 || _boundPro == 18 || _boundPro == 48 ) {
+            qDebug() << "Binding calls the setter to set a value directly? "
+                        "_boundPro: "
+                     << _boundPro;
+         }
          // Q_OBJECT_BINDABLE_PROPERTY has registered this signal,
          // we shouldn't emit it manually and explicitly again.
          // emit boundProChanged( val );
@@ -129,6 +133,8 @@ class ProExa: public QObject {
 
       // Can't have any `const` qualifier, when this function is used to bind
       // with other QProperty objects.
+      // Construct a Qbindable object so that the property is allowed to be
+      // bound like QProperty objects.
       QBindable< int > bindBoundPro() { return &_boundPro; }
 
       int boundComPro() const { return _boundComPro.value(); }

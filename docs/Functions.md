@@ -650,7 +650,9 @@ RetType ( &func_ptr_name )( para_type_list ) = funcName;
    identify a function** and differentiate it from others.
 2. The signature **determines if functions are overloads or redefinitions** and allows the compiler
    to select the correct function during compilation.
-3. The function signature in C++ **includes**:
+3. Whenever a function is declared or defined in C++, **the function signature must be consistent in
+   both the declaration and the definition**.
+4. The function signature in C++ **includes**:
    - **Function name**: The name of the function.
    - **Parameter list**:
      - The **number** of parameters.
@@ -659,8 +661,8 @@ RetType ( &func_ptr_name )( para_type_list ) = funcName;
      - Whether parameters are **references (`&`), rvalue references (`&&`)**, or **pointers** (`*`).
      - **Const qualifiers** on **reference** and **pointer** parameters. (**Only references and
        pointers**).
-4. **All keywords and specifiers that appear after the parameter list but before the function body
-   or `;` are considered part of the function signature in C++, except for `final`**:
+5. **All keywords and specifiers that appear after the parameter list but before the function body
+   or `;` are considered part of the function signature in C++, except for `final` and `override`**:
    - **`const` qualifier**.
    - **Reference qualifiers**: For example, `RetType funcName( ... ) &` (lvalue qualifier) is
      distinct from `RetType funcName( ... ) &&` (rvalue qualifier).
@@ -674,7 +676,7 @@ RetType ( &func_ptr_name )( para_type_list ) = funcName;
      - This can prevent optimizations that might otherwise assume the variable is not modified
        unexpectedly.
    - **`noexcpet` qualifier**.
-5. However, a function signature in C++ does **not include**:
+6. However, a function signature in C++ does **not include**:
    - The **return type** of the function.
    - The **const qualifier** of parameters **passed by value** (e.g., `int x` vs. `const int x`).
    - The **constexpr** of parameters (e.g., `int x` vs. `constexpr int x`).

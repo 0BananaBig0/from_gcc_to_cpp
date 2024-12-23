@@ -40,8 +40,8 @@ int main_PRO_OBS() {
    pro_exa.setProperty( "boundPro", 12 );
    pro_exa.setBoundPro( 15 );
 
-   // The above two operations unbind `_prop`, the binding operation is required
-   // again if need.
+   // The above two operations unbind `_bindablePro`, the binding operation is
+   // required again if need.
    pro_exa.setBindablePro( 6 );
    pro_exa.bindBoundPro().setBinding(
       [&]() { return pro_exa.bindBindablePro().value() * 3; } );

@@ -11,8 +11,25 @@
 7. [Qt for Linux/X11](https://doc.qt.io/qt-6/linux.html).
 8. [Qt for Windows](https://doc.qt.io/qt-6/windows.html).
 9. Recommend:
-   - The `Q_OBJECT` macro should be used with Qt classes to avoid unexpected behavior.
+   - The `Q_OBJECT` macro should be used with Qt classes in a header file to avoid unexpected
+     behavior.
    - `Q_SIGNALS` and `Q_SLOTS` should be used instead of `signals` and `slots`.
+10. The system event delivery sequence:
+    - From leaf to root, normally, except for installing a global event filter;
+    - The child event filter (`eventFilter(...)`) → The general event function of the child
+      (`event(...)`)→ Its parent event filter → The general event function of its parent → Specific
+      event functions (event handlers, `xxxEvent(...)`) of its parent and it.
+    - Normally, the event filter intercepts an event and try to process it.
+    - However, the general event function does not process an event, instead, it call correspoding
+      and specific event functions.
+    - Programmers can choose to either reimplement the entire process of the general event function
+      or reimplement part of it and call its parent's general event function to handle other events
+      or specific event functions to handl specific events.
+    - The reimplemented part can process events by itself or by calling user-defined or
+      parent-specific functions.
+    - In addition, programmers can choose whether and how to reimplement the specific event
+      functions, like the general event function.
+    - Key concetps: a event filter, a event function, a event handler or a spcific event function.
 
 ### QT IOs
 
