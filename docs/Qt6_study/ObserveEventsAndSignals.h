@@ -4,6 +4,7 @@
   > Mail: 1184903633@qq.com
   > Created Time: Mon 09 Dec 2024 04:15:06 PM CST
  ************************************************************************/
+#pragma once
 #include <QWidget>
 #include <QPushButton>
 #include <QLabel>

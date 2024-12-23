@@ -7,6 +7,15 @@
 #include "ObserveEventsAndSignals.h"
 #include <QVBoxLayout>
 #include <QCoreApplication>
+#include <QApplication>
+// First, on the top left corner of the window
+// press mouse button, release mouse button
+// press a normal key, release a normal key
+// scroll the mouse wheel, leave the top left conrner
+// Second, on the bottom right corner of the window
+// Repeate the first five steps, leave the bottom right corner
+// Observer the output on the terminal
+
 // In this example, you can modify the accepted events' types to observe how an
 // event is passed and processed when it occurs. Define the CustomEvent type
 const QEvent::Type CustomEvent::EventType

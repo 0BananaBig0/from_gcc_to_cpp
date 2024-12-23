@@ -6,6 +6,7 @@
   >
  * Created Time: Mon 09 Dec 2024 04:15:06 PM CST
  * ************************************************************************/
+#pragma once
 #include <QtCore>
 #include <QDebug>
 #include <QObject>
@@ -29,10 +30,10 @@
 // the property name, treating it as a property with that name.
 
 // When `BINDABLE` is specified, programmers should not emit the `NOTIFY` signal
-// manually and explicitly (otherwise, the signal is emitted twice). Instead,
-// they need to register the `NOTIFY` signal with the `BINDABLE` object, which
-// is created using bindable classes or related macros like
-// `Q_OBJECT_BINDABLE_PROPERTY`. Once the bindable object is modified,
+// manually and explicitly (otherwise, the signal is emitted twice) in the
+// setter. Instead, they need to register the `NOTIFY` signal with the
+// `BINDABLE` object, which is created using bindable classes or related macros
+// like `Q_OBJECT_BINDABLE_PROPERTY`. Once the bindable object is modified,
 // regardless of the method used, the `NOTIFY` signal is emitted.
 
 // Normally, `WRITE` generates a default `WRITE` accessor that does not emit any
@@ -91,8 +92,8 @@ class ProExa: public QObject {
          _boundComPro.notify();
       }
 
-      // Can't have any const qualifier, when this function is used to bind with
-      // other QProperty objects.
+      // Can't have any `const` qualifier, when this function is used to bind
+      // with other QProperty objects.
       QProperty< int >& bindBindablePro() { return _bindablePro; }
 
       void setBindablePro( int val ) {
@@ -108,9 +109,14 @@ class ProExa: public QObject {
 
       int boundPro() const { return _boundPro.value(); }
 
+      // It is not recommended to use a setter to assign a value to a bindable
+      // property.
       void setBoundPro( int val ) {
          if( _boundPro == val ) {
             return;
+         }
+         if( _boundPro == 9 ) {
+            qDebug() << "Are you kidding me?";
          }
          _boundPro = val;
          // Q_OBJECT_BINDABLE_PROPERTY has registered this signal,
@@ -121,11 +127,14 @@ class ProExa: public QObject {
          // _boundComPro.notify();
       }
 
-      // Can't be a const method.
+      // Can't have any `const` qualifier, when this function is used to bind
+      // with other QProperty objects.
       QBindable< int > bindBoundPro() { return &_boundPro; }
 
       int boundComPro() const { return _boundComPro.value(); }
 
+      // Can't have any `const` qualifier, when this function is used to bind
+      // with other QProperty objects.
       QBindable< int > bindBoundComPro() { return &_boundComPro; }
 
    signals:
@@ -146,6 +155,7 @@ class ProExa: public QObject {
       // It's also a BINDABLE property, but can be outside of QObject classes.
       QProperty< int > _bindablePro;
       // The following two BINDABLE property must be inside of QObject classes.
+      // Also, these two BINDABLE property register their changed signals.
       Q_OBJECT_BINDABLE_PROPERTY( ProExa,
                                   int,
                                   _boundPro,

@@ -14,6 +14,7 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QToolBar>
+#include <QStringList>
 
 MainWindow::MainWindow( QWidget* parent ): QMainWindow( parent ) {
 
