@@ -1,5 +1,5 @@
 /*************************************************************************
-  > File Name: basic.cpp
+  > File Name: ObserveEventsAndSignals.cpp
   > Author: Huaxiao Liang
   > Mail: 1184903633@qq.com
   > Created Time: Sat 07 Dec 2024 09:41:51 PM CST
@@ -57,8 +57,10 @@ ParentWidget::ParentWidget( QWidget* parent ): QWidget( parent ) {
    layout->addWidget( label, 1, 2 );
    setLayout( layout );
    // Connect signal to slot
-   connect(
-      button, &QPushButton::clicked, this, &ParentWidget::onButtonClicked );
+   connect( button,
+            &QPushButton::clicked,
+            this,
+            &ParentWidget::onButtonClicked );
 }
 
 void ParentWidget::onButtonClicked() {
@@ -139,8 +141,10 @@ ChildWidget::ChildWidget( QWidget* parent ): QWidget( parent ) {
    layout->addWidget( label, 2, 2 );
    setLayout( layout );
    // Connect signal to slot
-   connect(
-      button, &QPushButton::clicked, this, &ChildWidget::onButtonClicked );
+   connect( button,
+            &QPushButton::clicked,
+            this,
+            &ChildWidget::onButtonClicked );
 }
 
 void ChildWidget::onButtonClicked() {

@@ -1,11 +1,9 @@
 /*************************************************************************
-  > File Name: basic.h
+  > File Name: ObserveEventsAndSignals.h
   > Author: Huaxiao Liang
   > Mail: 1184903633@qq.com
   > Created Time: Mon 09 Dec 2024 04:15:06 PM CST
  ************************************************************************/
-#ifndef BASIC_H
-#define BASIC_H
 #include <QWidget>
 #include <QPushButton>
 #include <QLabel>
@@ -43,9 +41,12 @@ class ChildEventFilter: public QObject {
 
 class ParentWidget: public QWidget {
       Q_OBJECT
+      Q_PROPERTY( int myProperty READ myProperty )
 
    public:
       ParentWidget( QWidget* parent = nullptr );
+
+      int& myProperty() { return m_value; };
 
    protected:
       void customEvent( QEvent* event ) override;
@@ -62,6 +63,7 @@ class ParentWidget: public QWidget {
    private:
       QPushButton* button;
       QLabel* label;
+      int m_value = 1;
 };
 
 class ChildWidget: public QWidget {
@@ -85,4 +87,3 @@ class ChildWidget: public QWidget {
       QPushButton* button;
       QLabel* label;
 };
-#endif   // EXAMPLE_H
