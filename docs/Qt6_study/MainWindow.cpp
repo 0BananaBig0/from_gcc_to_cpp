@@ -22,11 +22,11 @@ MainWindow::MainWindow( QWidget* parent ): QMainWindow( parent ) {
    createFileMenu();
    createColorSchemeMenu();
    createDockWidget();
+   createToolBar();
    createViewActions();
    createViewMenu();
    createFloatingActions();
    createFloatingMenu();
-   createToolBar();
 }
 
 void MainWindow::createFileActions() {
@@ -62,27 +62,29 @@ void MainWindow::createDockWidget() {
                                  | Qt::RightDockWidgetArea );
    addDockWidget( Qt::LeftDockWidgetArea, _dockWidget );
    setCorner( Qt::TopLeftCorner, Qt::LeftDockWidgetArea );
-   _dockHeadingList = new QListWidget( _dockWidget );
-   _dockWidget->setWidget( _dockHeadingList );
+   _dockContent = new QTextEdit( _dockWidget );
+   _dockContent->setText( "Dock Content" );
+   _dockWidget->setWidget( _dockContent );
    _dockWidget->setStyleSheet( "QDockWidget { border: 2px solid red; }" );
+   _dockWidget->setFixedSize( 300, 200 );
    resizeDocks( QList< QDockWidget* >{ _dockWidget },
                 QList< int >{ 200 },
                 Qt::Vertical );
+   connect( _dockWidget,
+            &QDockWidget::visibilityChanged,
+            this,
+            &MainWindow::setShowOrHideDockIcon );
+   connect( _dockWidget,
+            &QDockWidget::topLevelChanged,
+            this,
+            &MainWindow::setToggleFloatingDockIcon );
 }
 
 void MainWindow::createViewActions() {
-   _showOrHideToolBar
-      = new QAction( QIcon::fromTheme( "bookmark-new" ), "&Tool Bar", this );
-   _showOrHideDock
-      = new QAction( QIcon::fromTheme( "bookmark-new" ), "&Dock", this );
-   connect( _showOrHideToolBar,
-            &QAction::triggered,
-            this,
-            &MainWindow::showOrHideToolBar );
-   connect( _showOrHideDock,
-            &QAction::triggered,
-            this,
-            &MainWindow::showOrHideDock );
+   _showOrHideToolBar = _toolBar->toggleViewAction();
+   _showOrHideToolBar->setText( "&Tool Bar" );
+   _showOrHideDock = _dockWidget->toggleViewAction();
+   _showOrHideDock->setText( "&Dock" );
 }
 
 void MainWindow::createViewMenu() {
@@ -112,34 +114,40 @@ void MainWindow::createToolBar() {
    _toolBar->addSeparator();
    _toolBar->addAction( _quit );
    addToolBar( Qt::TopToolBarArea, _toolBar );
+   connect( _toolBar,
+            &QToolBar::visibilityChanged,
+            this,
+            &::MainWindow::setShowOrHideToolBarIcon );
 }
 
-void MainWindow::showOrHideToolBar() {
+void MainWindow::setShowOrHideToolBarIcon() {
    if( _toolBar->isVisible() ) {
-      _showOrHideToolBar->setIcon( QIcon() );
-      _toolBar->setVisible( false );
-   } else {
       _showOrHideToolBar->setIcon( QIcon::fromTheme( "bookmark-new" ) );
-      _toolBar->setVisible( true );
+   } else {
+      _showOrHideToolBar->setIcon( QIcon() );
    }
 }
 
-void MainWindow::showOrHideDock() {
+void MainWindow::setShowOrHideDockIcon() {
    if( _dockWidget->isVisible() ) {
-      _showOrHideDock->setIcon( QIcon() );
-      _dockWidget->setVisible( false );
-   } else {
       _showOrHideDock->setIcon( QIcon::fromTheme( "bookmark-new" ) );
-      _dockWidget->setVisible( true );
-   }
+   } else {
+      _showOrHideDock->setIcon( QIcon() );
+   };
 }
 
 void MainWindow::toggleFloatingDock() {
    if( _dockWidget->isFloating() ) {
-      _toggleFloatingDock->setIcon( QIcon() );
       _dockWidget->setFloating( false );
    } else {
-      _toggleFloatingDock->setIcon( QIcon::fromTheme( "bookmark-new" ) );
       _dockWidget->setFloating( true );
-   }
+   };
+}
+
+void MainWindow::setToggleFloatingDockIcon() {
+   if( _dockWidget->isFloating() ) {
+      _toggleFloatingDock->setIcon( QIcon::fromTheme( "bookmark-new" ) );
+   } else {
+      _toggleFloatingDock->setIcon( QIcon() );
+   };
 }

@@ -9,6 +9,7 @@
 #include <QApplication>
 #include <QListWidget>
 #include <QDockWidget>
+#include <QTextEdit>
 
 class MainWindow: public QMainWindow {
       Q_OBJECT
@@ -26,8 +27,7 @@ class MainWindow: public QMainWindow {
       QMenu* _colorSchemeMenu;
 
       QDockWidget* _dockWidget;
-      QListWidget* _dockHeadingList;
-
+      QTextEdit* _dockContent;
       QMenu* _viewMenu;
       QAction* _showOrHideToolBar;
       QAction* _showOrHideDock;
@@ -37,6 +37,12 @@ class MainWindow: public QMainWindow {
 
       QToolBar* _toolBar;
    private Q_SLOTS:
+      void setShowOrHideToolBarIcon();
+      void setShowOrHideDockIcon();
+      void toggleFloatingDock();
+      void setToggleFloatingDockIcon();
+
+   private:
       void createFileActions();
       void createFileMenu();
       void createColorSchemeMenu();
@@ -46,7 +52,4 @@ class MainWindow: public QMainWindow {
       void createFloatingActions();
       void createFloatingMenu();
       void createToolBar();
-      void showOrHideToolBar();
-      void showOrHideDock();
-      void toggleFloatingDock();
 };
