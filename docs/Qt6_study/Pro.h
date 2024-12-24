@@ -67,6 +67,8 @@ class ProExa: public QObject {
          int boundPro READ boundPro WRITE setBoundPro BINDABLE bindBoundPro )
       Q_PROPERTY( int boundComPro READ boundComPro NOTIFY boundComProChanged
                      STORED false BINDABLE bindBoundComPro )
+      Q_PROPERTY( int bindWithComPro READ bindWithComPro WRITE setBindWithComPro
+                     BINDABLE bindBindWithComPro )
 
    public:
       explicit ProExa( QObject* parent = nullptr ):
@@ -76,6 +78,8 @@ class ProExa: public QObject {
          _boundPro( 0 ) {
          // Binding with the internal QProperty object.
          _boundPro.setBinding( [&]() { return _bindablePro.value() * 3; } );
+         _bindWithComPro.setBinding(
+            [&]() { return _boundComPro.value() * 2; } );
       }
 
       int norPro() const { return _norPro; }
@@ -89,7 +93,8 @@ class ProExa: public QObject {
          // signal.
          emit norProChanged( val );
          // A change in a value which is not a BINDABLE property requires
-         // calling notify.
+         // calling notify. Otherwise, all properties depending on
+         // Q_OBJECT_COMPUTED_PROPERTY are not updated.
          _boundComPro.notify();
       }
 
@@ -126,6 +131,7 @@ class ProExa: public QObject {
          // Q_OBJECT_BINDABLE_PROPERTY has registered this signal,
          // we shouldn't emit it manually and explicitly again.
          // emit boundProChanged( val );
+
          // A BINDABLE property used in the callback changes,
          // the notificiation occurs automatically.
          // _boundComPro.notify();
@@ -143,11 +149,29 @@ class ProExa: public QObject {
       // with other QProperty objects.
       QBindable< int > bindBoundComPro() { return &_boundComPro; }
 
+      int bindWithComPro() const { return _bindWithComPro.value(); }
+
+      // It is not recommended to use a setter to assign a value to a bindable
+      // property.
+      void setBindWithComPro( int val ) {
+         if( _bindWithComPro == val ) {
+            return;
+         }
+         _bindWithComPro = val;
+      }
+
+      // Can't have any `const` qualifier, when this function is used to bind
+      // with other QProperty objects.
+      // Construct a Qbindable object so that the property is allowed to be
+      // bound like QProperty objects.
+      QBindable< int > bindBindWithComPro() { return &_bindWithComPro; }
+
    signals:
       void norProChanged( int );
       void bindableProObjChanged( int );
       void boundProChanged( int value );
       void boundComProChanged();
+      void bindWithComProChanged( int value );
 
    private:
       // Q_OBJECT_COMPUTED_PROPERTY requires this function to be private
@@ -170,4 +194,8 @@ class ProExa: public QObject {
                                   int,
                                   _boundComPro,
                                   &ProExa::sumTheFirstThreePros )
+      Q_OBJECT_BINDABLE_PROPERTY( ProExa,
+                                  int,
+                                  _bindWithComPro,
+                                  &ProExa::bindWithComProChanged );
 };
