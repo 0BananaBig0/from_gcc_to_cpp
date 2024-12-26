@@ -17,8 +17,8 @@
 
 ### Explanation
 
-1. `std::bind` is a function adapter in C++ that allows you to create a callable object by binding
-   one or more arguments to a function or function object.
+1. `std::bind` is **a function adapter** in C++ that allows you to **create a callable object by
+   binding one or more arguments to a function or function object**.
 2. It is part of the `<functional>` header and provides a way to create a new function that can be
    invoked with a specific set of arguments, while leaving some arguments unbound.
 3. `std::bind` is useful when you need to adapt a function to match a specific signature for

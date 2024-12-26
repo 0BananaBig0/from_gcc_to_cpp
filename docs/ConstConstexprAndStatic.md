@@ -241,7 +241,7 @@ const RetType funcName( para_list ) {
 ###### Syntax
 
 ```CPP
-const returnType* funcName() {
+const RetType* funcName() {
     // Function body
 };
 ```
@@ -258,7 +258,7 @@ const returnType* funcName() {
 ###### Syntax
 
 ```CPP
-const returnType& funcName() {
+const RetType& funcName() {
     // Function body
 };
 ```

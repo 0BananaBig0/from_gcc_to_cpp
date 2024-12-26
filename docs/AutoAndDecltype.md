@@ -102,6 +102,10 @@ auto var_name = initializer;
 decltype( expression )
 ```
 
+```CPP
+decltype( ( rvalue ) ) // Deduce it as a reference type.
+```
+
 #### Usage
 
 1. Type deductions: Determine the type of a variable based on another variable.
@@ -118,7 +122,7 @@ decltype( expression )
 
 1. **Use `decltype( expression )&`** instead of `decltype( ( lvalue ) )`, or
    `decltype( ( expression ) )&` if you want to deduce a result as **a reference type**, even if the
-   expression is already a reference. Although these four expressions yield the same inference
+   expression is already a reference. Although these three expressions yield the same inference
    result, the first option is preferred.
 2. **Add `const`** as a prefix to `decltype( expression )` if you want to **deduce a result as a
    const type**, even if the expression is already a `const` type.

@@ -44,7 +44,7 @@
     - [`constexpr` Methods (`constexprt` Member Functions)](#constexpr-methods-constexprt-member-functions)
     - [`static` Methods (`static` Member Functions)](#static-methods-static-member-functions)
     - [`virtual` Methods (`virtual` Functions) (`virtual` Memeber Functions)](#virtual-methods-virtual-functions-virtual-memeber-functions)
-    - [Pure `virtual` Functions and Abstract Class](#pure-virtual-functions-and-abstract-class)
+    - [Pure `virtual` Functions and Abstract Classes](#pure-virtual-functions-and-abstract-classes)
     - [`override` Methods](#override-methods)
       - [Explanation](#explanation-8)
       - [Syntax](#syntax-7)
@@ -120,7 +120,7 @@
       - [Static Binding and Dynamic Binding](#static-binding-and-dynamic-binding)
       - [Polymorphism and Problems](#polymorphism-and-problems)
       - [Notes](#notes-2)
-    - [Pure `virtual` Functions and Abstract Class](#pure-virtual-functions-and-abstract-class-1)
+    - [Pure `virtual` Functions and Abstract Classes](#pure-virtual-functions-and-abstract-classes-1)
       - [Explanation](#explanation-27)
       - [Syntax](#syntax-21)
     - [`virtual` Destructors](#virtual-destructors-1)
@@ -565,7 +565,7 @@ RetType ClassName::funcName( para_list ) { ... };
 
 1. [`virtual` Methods (`virtual` Functions) (`virtual` Memeber Functions)](#virtual-methods-virtual-functions-virtual-memeber-functions-1)
 
-#### Pure `virtual` Functions and Abstract Class
+#### Pure `virtual` Functions and Abstract Classes
 
 1. [Pure `virtual` Functions and Abstract Class](#pure-virtual-functions-and-abstract-class-1)
 
@@ -1331,7 +1331,7 @@ class Derived: public Base {
 1. In cases where **performance** is very important, you should **avoid using `virtual` functions**
    as much as possible.
 
-#### Pure `virtual` Functions and Abstract Class
+#### Pure `virtual` Functions and Abstract Classes
 
 ##### Explanation
 

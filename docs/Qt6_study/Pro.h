@@ -122,10 +122,16 @@ class ProExa: public QObject {
             return;
          }
          _boundPro = val;
-         // It's used to verify that binding ignores the setter.
+         // It's used to verify whether binding ignores the setter.
          if( _boundPro == 9 || _boundPro == 18 || _boundPro == 48 ) {
             qDebug() << "Binding calls the setter to set a value directly? "
-                        "_boundPro: "
+                        "boundPro: "
+                     << _boundPro;
+         }
+         // It's used to verify whether setProperty calls the setter.
+         if( _boundPro == 12 || _boundPro == 54 ) {
+            qDebug() << "setProperty calls the setter to set a value directly? "
+                        "boundPro: "
                      << _boundPro;
          }
          // Q_OBJECT_BINDABLE_PROPERTY has registered this signal,
