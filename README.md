@@ -1695,6 +1695,7 @@
         - [Explanation](./docs/CommonQtStuffes.md#explanation)
         - [Model Indexes, Rows, Columns and Parents](./docs/CommonQtStuffes.md#model-indexes-rows-columns-and-parents)
         - [Item Roles](./docs/CommonQtStuffes.md#item-roles)
+        - [Model Test](./docs/CommonQtStuffes.md#model-test)
       - [View](./docs/CommonQtStuffes.md#view)
         - [Explanation](./docs/CommonQtStuffes.md#explanation-1)
         - [Selections](./docs/CommonQtStuffes.md#selections)

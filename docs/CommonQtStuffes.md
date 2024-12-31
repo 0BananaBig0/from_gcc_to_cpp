@@ -9,6 +9,7 @@
       - [Explanation](#explanation)
       - [Model Indexes, Rows, Columns and Parents](#model-indexes-rows-columns-and-parents)
       - [Item Roles](#item-roles)
+      - [Model Test](#model-test)
     - [View](#view)
       - [Explanation](#explanation-1)
       - [Selections](#selections)
@@ -112,11 +113,13 @@
 2. Interface: [QAbstractItemModel](https://doc.qt.io/qt-6/qabstractitemmodel.html).
 3. Abstract models and proxy models do not store data themselves and rely on implemented methods
    like `data()` and `setData()` to provide and modify the data.
-4. Item-based models do store data internally.
-5. Merely presents an interface that the views use to access the data.
-6. Communicate with Data.
-7. One model, several views.
-8. Ready-made models:
+4. The `data()` method also needs to be changed to set fonts, background colour, alignment and a
+   checkbox.
+5. Item-based models do store data internally.
+6. Merely presents an interface that the views use to access the data.
+7. Communicate with Data.
+8. One model, several views.
+9. Ready-made models:
    - [QAbstractListModel](https://doc.qt.io/qt-6/qabstractlistmodel.html): A simple list of items.
      Not store data.
    - [QAbstractTableModel](https://doc.qt.io/qt-6/qabstracttablemodel.html): A simple table of
@@ -125,7 +128,8 @@
      items. Stores a simple list of strings.
    - [QStandardItemModel](https://doc.qt.io/qt-6/qstandarditemmodel.html): A complex tree structures
      of items. A multi-purpose standard models. Uses `QStandardItem` objects to hold data in a
-     tree-like structure.
+     tree-like structure. Holding data does not necessarily mean storing the actual data. In many
+     cases, it may involve holding a reference (e.g., a pointer) to the data instead.
    - [QFileSystemModel](https://doc.qt.io/qt-6/qfilesystemmodel.html): Provide information about
      files and directories in the local filing system. A standard model. Not hold any items of data
      itself. Asynchronous.
@@ -135,12 +139,12 @@
      conventions.
    - [QSqlRelationalTableModel](https://doc.qt.io/qt-6/qsqlrelationaltablemodel.html): Access
      database using model/view conventions.
-9. Custom models: Subclass these model classes.
-10. All subclasses of `QAbstractItemModel` represent the data as a hierarchical structure containing
+10. Custom models: Subclass these model classes.
+11. All subclasses of `QAbstractItemModel` represent the data as a hierarchical structure containing
     tables of items.
-11. Views use this convention to access items of data in the model.
-12. Use signals and slots mechanism to inform any attached views about data changes.
-13. [Model subclassing reference](https://doc.qt.io/qt-6/model-view-programming.html#model-subclassing-reference).
+12. Views use this convention to access items of data in the model.
+13. Use signals and slots mechanism to inform any attached views about data changes.
+14. [Model subclassing reference](https://doc.qt.io/qt-6/model-view-programming.html#model-subclassing-reference).
 
 ##### Model Indexes, Rows, Columns and Parents
 
@@ -165,15 +169,21 @@
 7. Can retrieve information about any given item by specifying its row and column numbers to the
    model and receive an index that represents the item.
 8. Form top-level indexes to bottom-level indexes like finding a director manually.
+9. `setModel()` automatically connect the `dataChanged()` signal to the view.
 
 ##### Item Roles
 
 1. One item, several roles.
 2. One role, one data type, one situation.
-3. The standard roles are defined by `Qt::ItemDataRole`.
+3. The standard roles are defined by
+   [Qt::ItemDataRole](https://doc.qt.io/qt-6/qt.html#ItemDataRole-enum).
 4. `QVariant value = QAbstractItemModel::data( index, role )`. Retrieve item's data.
 5. By supplying appropriate item data for each role, models can provide hints to views and delegates
    about how items should be presented to the user.
+
+##### Model Test
+
+1. [Model test](https://wiki.qt.io/Model_Test).
 
 #### View
 
@@ -231,16 +241,21 @@
 
 ###### Selection Objects
 
-1. Applied to a collection of model indexes held by a selection model. The most recent selection of
-   items applied is known as the current selection.
-2. Made up of selection ranges: Recording only the starting and ending model indexes for each range
-   of selected items
-3. One selection, several selection ranges.
-4. Two independent states: A current item and a selected item.
-5. A selection is created by specifying a model, and a pair of model indexes to a
+1. Applied to a collection of model indexes held by a selection model.
+2. The most recent selection of items applied is known as the current selection.
+3. Made up of selection ranges: Recording only the starting(topLeft) and ending(bottomRight) model
+   indexes for each range of selected items
+4. One contiguous selection, one selection object, one selection range, two model indexes.
+5. One non-contiguous selection, multiple selection object, multiple selection ranges, multiple
+   model indexes.
+6. Two independent states: A current item and a selected item.
+7. A selection is created by specifying a model, and a pair of model indexes to a
    [QItemSelection](https://doc.qt.io/qt-6/qitemselection.html). Its selection range is always from
    the top-left to bottom-right.
-6. [Selection flags](https://doc.qt.io/qt-6/qitemselectionmodel.html#SelectionFlag-enum).
+8. Only `QItemSelection` is used to create a selection object.
+9. `const QModelIndexList indexes = selectionModel->selectedIndexes();` is used to get the selected
+   indexes.
+10. [Selection flags](https://doc.qt.io/qt-6/qitemselectionmodel.html#SelectionFlag-enum).
 
 ###### Create a Selection Object and Submit it to the Selection Model
 
@@ -296,7 +311,7 @@ selectionModel->select( selection, QItemSelectionModel::Select /* selection flag
     returns a delegate that the view is using.
 11. [QAbstractItemView::setItemDelegate](https://doc.qt.io/qt-6/qabstractitemview.html#setItemDelegate)
     installs or sets a delegate for a view.
-12. Ready-made views:
+12. Ready-made delegates:
     - [QStyledItemDelegate](https://doc.qt.io/qt-6/qstyleditemdelegate.html): Default delegates. Use
       the current style to paint items. With some default display functions.
     - [QItemDelegate](https://doc.qt.io/qt-6/qitemdelegate.html).
