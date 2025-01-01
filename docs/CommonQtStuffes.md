@@ -23,6 +23,7 @@
       - [Providing an Editor and Submitting Data to the Model](#providing-an-editor-and-submitting-data-to-the-model)
     - [Sorting](#sorting)
     - [Convenience classes](#convenience-classes)
+  - [QT Threads](#qt-threads)
   - [QT Widgets (Desktop GUI) (Traditional GUI)](#qt-widgets-desktop-gui-traditional-gui)
 
 <!-- vim-markdown-toc -->
@@ -60,6 +61,11 @@
     - In addition, programmers can choose whether and how to reimplement the specific event
       functions, like the general event function.
     - Key concetps: a event filter, a event function, a event handler or a spcific event function.
+11. Signals: public method, return void, automatically generated; can't be emitted in a `const`
+    method; means that the object's state is changed.
+12. Slots: manually written, no limitations except that the number of their parameters must be less
+    than or equal to the number of parameters of the connected signal; used to response to the
+    signal.
 
 ### QT IOs
 
@@ -145,6 +151,8 @@
 12. Views use this convention to access items of data in the model.
 13. Use signals and slots mechanism to inform any attached views about data changes.
 14. [Model subclassing reference](https://doc.qt.io/qt-6/model-view-programming.html#model-subclassing-reference).
+15. [Qt::ItemFlag](https://doc.qt.io/qt-6/qt.html#ItemFlag-enum) describes the properties of an
+    item.
 
 ##### Model Indexes, Rows, Columns and Parents
 
@@ -371,6 +379,23 @@ selectionModel->select( selection, QItemSelectionModel::Select /* selection flag
 8. [QListWidget](https://doc.qt.io/qt-6/qlistwidget.html).
 9. [QTreeWidget](https://doc.qt.io/qt-6/qtreewidget.html).
 10. [QTableWidget](https://doc.qt.io/qt-6/qtablewidget.html).
+
+### QT Threads
+
+1. The "main thread" is the thread created when a program starts.
+2. In Qt applications, this thread is also known as the "GUI thread".
+3. Other threads are referred to as "worker threads" or "secondary threads".
+4. All widgets and several related classes must operate in the "main thread" and do not work in
+   secondary threads.
+5. Each thread has its own stack but shares the same address space.
+6. `QThread` by itself does not automatically start an event loop in the new thread.
+7. You have to explicitly call `exec()` within the `run()` method of your `QThread` subclass to
+   start one.
+8. To execute methods in a new thread, the following requirements must be met::
+   - Use the worker-object approach;
+   - All methods intended for execution in the new thread must be slots of the worker object;
+   - Use `connect(this, &Controller::operate, worker, &Worker::slot);` to connect the signal and
+     slot.
 
 ### QT Widgets (Desktop GUI) (Traditional GUI)
 

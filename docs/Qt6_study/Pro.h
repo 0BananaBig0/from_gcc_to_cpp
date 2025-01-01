@@ -18,7 +18,7 @@
 // All properties should not be used as a temporary variable.
 // All getters should be and must be a `const` method.
 // All BINDABLE can't be a `const` method.
-// All bindable objects, bound properties and bound properties should be in the
+// All bindable objects, bound properties and bound objects should be in the
 // same thread if they bind with each other.
 
 // Traditional property: Q_PROPERTY.
