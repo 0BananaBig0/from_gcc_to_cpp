@@ -119,7 +119,7 @@
    needing to know all the details at that time.
 3. The complete definition is provided later in the code.
 4. This is typically used to **improve compilation times**, **resolve circular dependencies**, or
-   when the full details of the entity are not yet required.
+   **when the full details of the entity are not yet required**.
 
 ### Definitions
 
@@ -470,9 +470,9 @@
    - Rvalue reference simply indicates that the function can accept an rvalue (temporary object).
    - `std::move` is the mechanism used to cast an lvalue into an rvalue, signaling that you want to
      move the object instead of copying it.
-9. **Even** when a function **receives arguments as rvalue references** (i.e., when they are passed
-   as `Type&&`), you **still need to use `std::move` explicitly** to transfer ownership of these
-   arguments to other objects.
+9. **Even** when a function **receives arguments as rvalue references** (i.e., `Type&&`), you
+   **still need to use `std::move` explicitly** to transfer ownership of these arguments to other
+   objects, unless they are temporary objects.
 
 ##### Usage
 
@@ -512,15 +512,15 @@
 4. It **only** tells the compiler to **treat an object as an rvalue reference**.
 5. **Even** when a function **receives arguments as rvalue references** (i.e., when they are passed
    as `Type&&`), you still need to **use `std::move` explicitly** to transfer ownership of these
-   arguments to other objects.
+   arguments to other objects, unless they are temporary objects.
 6. When **an object** is **transferred into an rvalue reference** with `std::move` and **passed into
    a function** that receives an rvalue reference, whether the original object can still **access
    its original data** **depends on how the function process the rvalue reference**.
 
 ##### Usage
 
-1. Everytime, if you want to assign **an object** that you want to **remove** after assigning to a
-   variable, you can use `std::move`.
+1. Everytime, if you want to assign **an object** that you want to **remove** after the assignment
+   to a variable, you can use `std::move`.
 2. To deal with **double deletion**, **the original pointer** should point a **`nullptr`** after
    **`std::move`** moved its data to another pointer.
 
