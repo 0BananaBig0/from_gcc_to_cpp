@@ -40,3 +40,4 @@
   - [Handles](./Handles.md)
   - [FileIOs](./FileIOs.md)
   - [QT](./CommonQtStuffes.md)
+  - [Design Patterns](./DesignPatterns.md)

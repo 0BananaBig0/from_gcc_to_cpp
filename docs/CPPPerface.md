@@ -560,4 +560,4 @@
 
 1. C++: performance, memory, optimization, safe or not; scope ({})( where we can access the
    function/object/... ) and lifetime; make code clearer; compile time and runtime; limitation and
-   usage; definiton.
+   usage; definition.

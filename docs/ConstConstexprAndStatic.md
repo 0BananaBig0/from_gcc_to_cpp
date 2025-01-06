@@ -625,8 +625,6 @@ class ClassName {
          // Function body.
       };
 };
-
-RetType var_name = ClassName::funcName( para_list );
 ```
 
 ```CPP

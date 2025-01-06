@@ -1607,7 +1607,7 @@ class FinalClass final {};
 4. `Type` is an integral type (e.g., `int`, `unsigned int`, `short`).
 5. `mem_name` is the name of the bitfield member.
 6. `num_of_bits` is the number of bits allocated to this member.
-7. The size of `ClassName` is equal to
+7. The size of `ClassName` is equal to (memory alignment)
    ` ceil( (double)( num_of_bits1 + num_of_bits2 + ... ) / sizeof( maximum-size type ) ) * sizeof( maximum-size type );`.
 
 #### Syntax
