@@ -21,6 +21,7 @@
 - [`realloc`](#realloc)
 - [`free`](#free)
 - [Pointers](#pointers)
+- [Notes](#notes)
 
 <!-- vim-markdown-toc -->
 
@@ -74,12 +75,12 @@ Type* arr_ptr = new( address ) Type[size];   // For an array objects.
 ##### Syntax
 
 ```CPP
-delete ptr;   // For a single object.
+delete ptr;   // For a single object created with `new`.
 ptr = nullptr;   // Good practice to avoid dangling pointers.
 ```
 
 ```CPP
-delete[] arr_ptr;   // For an array objects.
+delete[] arr_ptr;   // For an array object created with `new[]`.
 arr_ptr = nullptr;   // Good practice to avoid dangling pointers.
 ```
 
@@ -150,3 +151,11 @@ ptr = nullptr;   // Good practice to avoid dangling pointers.
 ### Pointers
 
 1. [Pointers](./CPPPerface.md#pointers)
+
+### Notes
+
+1. When a temporary object is created using `new`, `malloc`, or `calloc` and is passed to a function
+   or object, the function or object is responsible for destroying the temporary object.
+2. In fact, when `new`, `malloc`, or `calloc` is called within a pair of parentheses, the owner of
+   the parentheses is the caller of `new`, `malloc`, or `calloc`.
+3. The caller is responsible for destroying the dynamic memory.

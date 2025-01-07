@@ -124,7 +124,7 @@ std::vector< Type >* arr_ptr = new std::vector< Type >{ ... };
 ##### Syntax for Deleting One-dimensional `std::vector` Pointers
 
 ```CPP
-delete arr_ptr;
+delete arr_ptr; // Only for objects created with `new`.
 ```
 
 #### Multidimensional `std::vector` (**Not Recommend**)

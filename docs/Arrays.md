@@ -7,12 +7,12 @@
     - [One-dimensional Raw Arrays](#one-dimensional-raw-arrays)
       - [Declaration Syntax](#declaration-syntax)
       - [Initialization Syntax](#initialization-syntax)
-      - [Syntax for Deleting One-dimensional Raw Array Pointers](#syntax-for-deleting-one-dimensional-raw-array-pointers)
+      - [Syntax for Deleting a Pointer Related to an One-dimensional Raw Array](#syntax-for-deleting-a-pointer-related-to-an-one-dimensional-raw-array)
       - [Three Kinds of Pointers Related to Array](#three-kinds-of-pointers-related-to-array)
     - [Multidimensional Raw Arrays (**Not Recommend**)](#multidimensional-raw-arrays-not-recommend)
       - [Declaration Syntax](#declaration-syntax-1)
       - [Initialization Syntax](#initialization-syntax-1)
-      - [Syntax for Deleting Multidimensional Raw Array Pointers](#syntax-for-deleting-multidimensional-raw-array-pointers)
+      - [Syntax for Deleting Pointers Related to Multidimensional Raw Array](#syntax-for-deleting-pointers-related-to-multidimensional-raw-array)
   - [Static Arrays (`std::array`)](#static-arrays-stdarray)
     - [Explanation](#explanation-2)
     - [One-dimensional `std::array`](#one-dimensional-stdarray)
@@ -55,10 +55,11 @@
 4. The **size** of a raw array is **defined at compile time** and **cannot be changed during
    runtime**. This means that once an array is declared, its size is fixed.
 5. **Array pointer (pointer to an array)**: A pointer that points to an **entire** array (**rather
-   than individual** elements).
-6. **Pointer array (array of pointers)**: An array where each element is a pointer.
+   than individual** elements).`Type ( *arr_ptr )[size];`.
+6. **Pointer array (array of pointers)**: An array where each element is a
+   pointer.`Type* arr_prt[size];` or `Type* arr_prt[];`.
 7. **Element pointer (pointer to an element, pointer to an specific index, array element pointer)**:
-   A pointer that points to **an element** in an array.
+   A pointer that points to **an element** in an array.`Type* arr_ptr;`.
 
 #### One-dimensional Raw Arrays
 
@@ -74,8 +75,7 @@ Type* arr_ptr = new Type[size];
 ```
 
 ```CPP
-Type arr_name[size];
-Type* arr_ptr = arr_name;
+Type( *arr_ptr )[size];
 ```
 
 ##### Initialization Syntax
@@ -109,10 +109,19 @@ Type* arr_ptr = new Type[size]{ ... };
 Type* arr_ptr = new Type[]{ ... };
 ```
 
-##### Syntax for Deleting One-dimensional Raw Array Pointers
+```CPP
+Type arr_name[size] = { ... };
+Type( *arr_ptr )[size] = &arr_name;
+```
 
 ```CPP
-delete[] arr_ptr;
+Type( *arr_ptr )[size] = {};
+```
+
+##### Syntax for Deleting a Pointer Related to an One-dimensional Raw Array
+
+```CPP
+delete[] arr_ptr; // Only for objects created with `new[]`.
 ```
 
 ##### Three Kinds of Pointers Related to Array
@@ -125,7 +134,7 @@ Type (*arr_ptr)[size] = &arr_name; // Array pointer.
 
 ```CPP
 Type arr_name[size] = { ... };
-Type* arr_ptr[szie] = { ... }; // Pointer array.
+Type* arr_ptr[size] = { ... }; // Pointer array.
 ```
 
 ```CPP
@@ -136,7 +145,11 @@ Type* arr_ptr = arr_name; // Element pointer points to the first element of arr_
 ```CPP
 Type arr_name[size] = { ... };
 Type* arr_ptr = &arr_name[index]; // Element pointer points to the `index` element of arr_name.
-// array pointer + 1 = element pointer + size;
+```
+
+```CPP
+Type* arr_ptr = new Type[size]; // Element pointer points to the first element of an array created on the heap.
+delete[] arr_ptr;
 ```
 
 #### Multidimensional Raw Arrays (**Not Recommend**)
@@ -212,7 +225,7 @@ Type arr_name1[size_x][size_y][size_z] = {
 Type arr_name2[size_x][size_y][size_z] = arr_name1;
 ```
 
-##### Syntax for Deleting Multidimensional Raw Array Pointers
+##### Syntax for Deleting Pointers Related to Multidimensional Raw Array
 
 ```CPP
 for( size_t i = 0; i < size_x; i++ ) {
@@ -322,7 +335,7 @@ std::array< Type, size >* arr_ptr = new std::array< Type, size >{ ... };
 ##### Syntax for Deleting One-dimensional `std::array` Pointers
 
 ```CPP
-delete arr_ptr;
+delete arr_ptr; // Only for objects created with `new`.
 ```
 
 #### Multidimensional `std::array` ( **Not Recommend** )

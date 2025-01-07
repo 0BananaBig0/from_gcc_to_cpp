@@ -10,6 +10,12 @@
 - [Structural Patterns](#structural-patterns)
   - [Adapter](#adapter)
   - [Bridge](#bridge)
+  - [Composite](#composite)
+  - [Decorator](#decorator)
+  - [Facade](#facade)
+  - [Flyweight](#flyweight)
+  - [Proxy](#proxy)
+- [Behavioral Patterns](#behavioral-patterns)
 
 <!-- vim-markdown-toc -->
 
@@ -146,10 +152,113 @@
        `Implementor`.
      - Create a class, `RefinedAbstraction`, inheriting from `Abstraction`.
      - `RefinedAbstraction` implements all pure `virtual` methods to access `Implementor` and its
-       subclasses. It also creates a pointer to an `Implementor` instance.
+       subclasses. It also creates an `Implementor` pointer to an instance of a subclass of
+       `Implementor`.
      - The client only needs to:
        - Create an `Implementor` pointer to a specific instance of a subclass of `Implementor`.
        - Use it to construct an `Abstraction` pointer to a `RefinedAbstraction` instance.
        - Call methods of the `Abstraction` interface.
 4. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/bridge).
 5. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/bridge/Bridge.cpp).
+
+### Composite
+
+1. Compose objects into tree structures to represent whole-part hierarchies. Composite lets clients
+   treat individual objects and compositions of objects uniformly.
+2. Recursive composition.
+3. "Directories contain entries, each of which could be a directory."
+4. 1-to-many "has a" up the "is a" hierarchy.
+5. The four statements above imply the following:
+   - Use a subclass to manage and access other subclasses.
+   - There are at least three classes: `Component`, `Composite`, and `Leaf`.
+   - `Component` is an interface that provides pure `virtual` methods to access itself.
+   - Both `Composite` and `Leaf` inherit from `Component`.
+   - `Composite` has at least one container member used to store instances of `Leaf`.
+   - It provides methods to manage this container and implements all `virtual` methods of
+     `Component` by calling the corresponding `virtual` methods with the same function signature
+     implemented by `Leaf` to access all `Leaf` instances stored in this container.
+   - `Leaf` implements all `virtual` methods of `Component` to access itself.
+   - The client only needs to create an instance of `Composite` to manage and access all instances
+     of `Leaf`.
+6. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/composite).
+7. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/composite/Composite.cpp).
+
+### Decorator
+
+1. Attach additional responsibilities to an object dynamically. Decorators provide a flexible
+   alternative to subclassing for extending functionality.
+2. Client-specified embellishment of a core object by recursively wrapping it.
+3. Wrapping a gift, putting it in a box, and wrapping the box.
+4. The three statements above imply the following:
+   - Replace combinational inheritance with combinational construction.
+   - Use one subclass to decorate another subclass.
+   - For example:
+     - Create five classes: `Component`, `ConcreteComponent`, `Decorator`, `ConcreteDecoratorA`, and
+       `ConcreteDecoratorB`.
+     - Both `ConcreteComponent` and `Decorator` inherit from `Component`.
+     - Both `ConcreteDecoratorA` and `ConcreteDecoratorB` inherit from `Decorator` and are used to
+       decorate `ConcreteComponent`.
+     - `Component` acts as an interface.
+     - `ConcreteComponent` implements all `virtual` methods of `Component` to manage its data.
+     - `Decorator` stores a `Component` pointer to an instance of `ConcreteComponent` or a subclass
+       of `Decorator` and implements all `virtual` methods of `Component` by calling the
+       corresponding `virtual` methods with the same function signature implemented by the instance
+       the pointer refers to (`ConcreteComponent` or subclasses of `Decorator`).
+     - `ConcreteDecoratorA` and `ConcreteDecoratorB` override all `virtual` methods of `Decorator`
+       by:
+       - Calling the corresponding `virtual` methods with the same function signature implemented by
+         `Decorator` first.
+       - Providing their own operations.
+     - The client only needs to create a `Component` pointer to a combinational-construction object
+       like this:
+       `Compoenent* tar = new ConcreteDecoratorB( new ConcreteDecoratorA( new ConcreteComponent() ) );`.
+       The instance of `ConcreteComponent` must be created first.
+5. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/decorator).
+6. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/decorator/Decorator.cpp).
+
+### Facade
+
+1. Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level
+   interface that makes the subsystem easier to use.
+2. Wrap a complicated subsystem with a simpler interface.
+3. The two statements above imply the following:
+   - Define a wrapper to encapsulate multiple classes and unify the access operations to these
+     classes.
+   - For example:
+     - There are four classes: `SubsystemA`, `SubsystemB`, `SubsystemC`, and `Facade`.
+     - The three subsystem classes (`SubsystemA`, `SubsystemB`, and `SubsystemC`) only provide their
+       own methods.
+     - `Facade` stores three pointers to the subsystem classes and provides methods that either:
+       - Call methods of the subsystem classes to access their functionality, or
+       - Manage the lifetime of the subsystem classes.
+     - The client only needs to create a `Facade` instance to access and manage these three
+       subsystem classes.
+4. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/facade).
+5. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/facade/Facade.cpp).
+
+### Flyweight
+
+1. Use sharing to support large numbers of fine-grained objects efficiently.
+2. The Motif GUI strategy of replacing heavy-weight widgets with light-weight gadgets.
+3. The two statements above imply the following:
+   - If the number of instances of a class is significant, the class should be separated into two
+     parts: the shared (state-independent, intrinsic) part and the unique (state-dependent,
+     extrinsic) part.
+   - The shared part is stored in the `Flyweight`.
+   - The unique part is either stored or computed by client objects and passed to the `Flyweight`
+     when its operations are invoked.
+4. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/flyweight).
+5. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/flyweight/Flyweight.cpp).
+
+### Proxy
+
+1. Provide a surrogate or placeholder for another object to control access to it.
+2. Use an extra level of indirection to support distributed, controlled, or intelligent access.
+3. Add a wrapper and delegation to protect the real component from undue complexity.
+4. The three statements above imply the following:
+   - Create a Proxy object that holds a pointer to the RealSubject object and provides methods to
+     access and manage it.
+5. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/proxy).
+6. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/proxy/Proxy.cpp).
+
+## Behavioral Patterns

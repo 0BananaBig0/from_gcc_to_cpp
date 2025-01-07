@@ -33,6 +33,7 @@
       - [Null Pointers](#null-pointers)
       - [Dangling Pointers](#dangling-pointers)
       - [Wild Pointers](#wild-pointers)
+      - [Three Kinds of Pointers Related to Array](#three-kinds-of-pointers-related-to-array)
     - [References](#references)
   - [Parameters](#parameters)
   - [Arguments](#arguments)
@@ -296,6 +297,14 @@
 2. Accessing a wild pointer can lead to unpredictable results since it may point to any arbitrary
    location in memory.
 
+##### Three Kinds of Pointers Related to Array
+
+1. **Array pointer (pointer to an array)**:`Type ( *arr_ptr )[size];`.
+2. **Pointer array (array of pointers)**: `Type* arr_prt[size];` or `Type* arr_prt[];`.
+3. **Element pointer (pointer to an element, pointer to an specific index, array element pointer)**:
+   `Type* arr_ptr;`.
+4. [Three Kinds of Pointers Related to Array](./Arrays.md#three-kinds-of-pointers-related-to-array).
+
 #### References
 
 1. A reference is **an alias for an existing variable**.
@@ -311,8 +320,8 @@
    - [Lvalue References (`Type&`)](#lvalue-references-type).
    - [Rvalue References (`Type&&`)](#rvalue-references-type).
    - [Universial References (Forward References)](./Templates.md#stdforward-and-universial-references-forward-references).
-   - [value categories in cplusplus]().
-   - [value categories in cppreference](https://en.cppreference.com/w/cpp/language/value_category).
+   - [Value categories in cplusplus]().
+   - [Value categories in cppreference](https://en.cppreference.com/w/cpp/language/value_category).
 
 ### Parameters
 
