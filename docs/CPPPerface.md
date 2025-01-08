@@ -34,6 +34,7 @@
       - [Dangling Pointers](#dangling-pointers)
       - [Wild Pointers](#wild-pointers)
       - [Three Kinds of Pointers Related to Array](#three-kinds-of-pointers-related-to-array)
+      - [How to Determine the Type of a Pointer](#how-to-determine-the-type-of-a-pointer)
     - [References](#references)
   - [Parameters](#parameters)
   - [Arguments](#arguments)
@@ -262,6 +263,8 @@
    **set to `nullptr`**.
 9. It is possible to **encapsulate safe and efficient resource release functions within a macro**,
    and **conditionally enable or disable** them based on the selected build configuration.
+10. [Pointers in cplusplus](https://cplusplus.com/doc/tutorial/pointers/).
+11. [Pointers in cppreference](https://en.cppreference.com/w/cpp/language/pointer).
 
 ##### Void Pointers
 
@@ -304,6 +307,51 @@
 3. **Element pointer (pointer to an element, pointer to an specific index, array element pointer)**:
    `Type* arr_ptr;`.
 4. [Three Kinds of Pointers Related to Array](./Arrays.md#three-kinds-of-pointers-related-to-array).
+
+##### How to Determine the Type of a Pointer
+
+1. **Begin from the name**:
+   - Start by locating the name of the variable (e.g., `ptr`).
+2. **From inside to outside**:
+   - If there are parentheses, process the content inside them first. Parentheses group components
+     and affect precedence.
+3. **From right to left**:
+   - Read the declaration from the name outward, moving to the right for the base type and to the
+     left for additional qualifiers (e.g., pointer, array, or function).
+4. Summary:
+   - Always prioritize parentheses when present.
+   - Read declarations in a structured order to avoid confusion.
+   - Use tools like [cdecl](https://cdecl.org/) for complex pointer declarations.
+5. Examples:[Link](https://www.runoob.com/w3cnote/c-pointer-detail.html).
+   - `int *ptr`:
+     - Start with the name `ptr`.
+     - Moving outwards: `*` indicates `ptr` is a pointer.
+     - `int` specifies the type it points to.
+     - Interpretation: `ptr` is a pointer to an `int`.
+   - `int ( *ptr )[3]`:
+     - Start with `ptr`.
+     - Parentheses indicate precedence, so process `( *ptr )` first.
+     - `*ptr` means `ptr` is a pointer.
+     - `[3]` indicates it points to an array of size 3.
+     - `int` specifies the type of elements in the array.
+     - Interpretation: `ptr` is a pointer to an array of 3 integers.
+   - `int *ptr[3]`:
+     - Start with `ptr`.
+     - `[3]` indicates `ptr` is an array of size 3.
+     - `*` specifies that each element in the array is a pointer.
+     - `int` specifies the type it points to.
+     - Interpretation: `ptr` is an array of 3 pointers to `int`.
+   - `int ( *ptr )( int )`:
+     - Start with `ptr`.
+     - Parentheses indicate `( *ptr )` is processed first.
+     - `*ptr` means `ptr` is a pointer.
+     - `( int )` specifies it points to a function taking an `int` argument.
+     - `int` indicates the return type of the function.
+     - Interpretation: `ptr` is a pointer to a function that takes an `int` and returns an `int`.
+   - `const int *ptr`:
+     - Start with `ptr`.
+     - `*` indicates `ptr` is a pointer.
+     - `const int` specifies the type it points to is a `const int`.
 
 #### References
 

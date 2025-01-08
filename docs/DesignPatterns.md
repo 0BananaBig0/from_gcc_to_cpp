@@ -1,6 +1,7 @@
 <!-- vim-markdown-toc GFM -->
 
 - [Creational Patterns](#creational-patterns)
+  - [Explanation](#explanation)
   - [Abstract Factory](#abstract-factory)
   - [Builder](#builder)
   - [Factory](#factory)
@@ -8,6 +9,7 @@
   - [Prototype](#prototype)
   - [Sigleton](#sigleton)
 - [Structural Patterns](#structural-patterns)
+  - [Explanation](#explanation-1)
   - [Adapter](#adapter)
   - [Bridge](#bridge)
   - [Composite](#composite)
@@ -16,10 +18,28 @@
   - [Flyweight](#flyweight)
   - [Proxy](#proxy)
 - [Behavioral Patterns](#behavioral-patterns)
+  - [Explanation](#explanation-2)
+  - [Chain of Responsibility](#chain-of-responsibility)
+  - [Command](#command)
+  - [Interpreter](#interpreter)
+  - [Iterator](#iterator)
+  - [Mediator](#mediator)
+  - [Memento](#memento)
+  - [Observer](#observer)
+  - [State](#state)
+  - [Strategy](#strategy)
 
 <!-- vim-markdown-toc -->
 
 ## Creational Patterns
+
+### Explanation
+
+1. In software engineering, creational design patterns are design patterns that deal with object
+   creation mechanisms, trying to create objects in a manner suitable to the situation.
+2. The basic form of object creation could result in design problems or added complexity to the
+   design.
+3. Creational design patterns solve this problem by somehow controlling this object creation.
 
 ### Abstract Factory
 
@@ -107,6 +127,11 @@
 5. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/singleton/Singleton.cpp).
 
 ## Structural Patterns
+
+### Explanation
+
+1. In Software Engineering, Structural Design Patterns are Design Patterns that ease the design by
+   identifying a simple way to realize relationships between entities.
 
 ### Adapter
 
@@ -262,3 +287,210 @@
 6. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/proxy/Proxy.cpp).
 
 ## Behavioral Patterns
+
+### Explanation
+
+1. In software engineering, behavioral design patterns are design patterns that identify common
+   communication patterns between objects and realize these patterns.
+2. By doing so, these patterns increase flexibility in carrying out this communication.
+
+### Chain of Responsibility
+
+1. Avoid coupling the sender of a request to its receiver by giving more than one object a chance to
+   handle the request. Chain the receiving objects and pass the request along the chain until an
+   object handles it.
+2. Launch-and-leave requests with a single processing pipeline that contains many possible handlers.
+3. An object-oriented linked list with recursive traversal.
+4. The three statements above imply the following:
+   - Allow objects to handle a request, similar to the event mechanism in Qt.
+   - Create a `Handler` class as a base class.
+   - The `Handler` class stores a pointer to another `Handler` instance (usually a subclass) and
+     provides at least two methods:
+     - One method to set the pointer to another `Handler` instance (usually a subclass).
+     - Another method, `handleRequest`, to call the `handleRequest` method overridden by a subclass
+       instance.
+   - Subclasses of `Handler` must override the `handleRequest` method to process the request:
+     - If the request is successfully handled, terminate the execution of the `handleRequest`
+       method.
+     - Otherwise, call the `handleRequest` method of the base `Handler` class.
+     - The base `Handler` class's `handleRequest` method attempts to delegate the request to the
+       next `Handler` instance in the chain.
+   - Clients only need to create multiple instances of `Handler` subclasses and organize these
+     instances in the desired order to complete the request.
+5. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/chain-of-responsibility).
+6. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/chain-of-responsibility/ChainOfResponsibility.cpp).
+
+### Command
+
+1. Encapsulate a request as an object, thereby letting you parametrize clients with different
+   requests, queue or log requests, and support undoable operations.
+2. Promote "invocation of a method on an object" to full object status
+3. An object-oriented callback.
+4. The three statements above imply the following:
+   - Bind actions to specific objects, with or without a chain order, similar to the signal/slot
+     mechanism in Qt.
+5. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/command).
+6. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/command/Command.cpp).
+
+### Interpreter
+
+1. Given a language, define a representation for its grammar along with an interpreter that uses the
+   representation to interpret sentences in the language.
+2. Map a domain to a language, the language to a grammar, and the grammar to a hierarchical
+   object-oriented design.
+3. The two statements above imply the following:
+   - Design an interpreter to process a language that has its own grammar for representing its
+     words, sentences, and other constructs.
+   - In modern C++, this design pattern commonly works with abstract syntax trees, syntax trees, and
+     tools like Lex (Flex) and Yacc (Bison).
+4. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/interpreter).
+5. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/interpreter/Interpreter.cpp).
+
+### Iterator
+
+1. Provide a way to access the elements of an aggregate object sequentially without exposing its
+   underlying representation.
+2. The C++ and Java standard library abstraction that makes it possible to decouple collection
+   classes and algorithms.
+3. Promote to "full object status" the traversal of a collection.
+4. Polymorphic traversal.
+5. The four statements above imply the following:
+   - Define a class that provides a uniform way to access elements stored in another class.
+   - Refer to STL containers and iterators.
+6. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/iterator).
+7. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/iterator/Iterator.cpp).
+
+### Mediator
+
+1. Define an object that encapsulates how a set of objects interact. Mediator promotes loose
+   coupling by keeping objects from referring to each other explicitly, and it lets you vary their
+   interaction independently.
+2. Design an intermediary to decouple many peers.
+3. Promote the many-to-many relationships between interacting peers to "full object status".
+4. The three statements above imply the following:
+   - Define a class used to manage data transfer among multiple objects.
+5. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/mediator).
+6. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/mediator/Mediator.cpp).
+
+### Memento
+
+1. Without violating encapsulation, capture and externalize an object's internal state so that the
+   object can be returned to this state later.
+2. A magic cookie that encapsulates a "check point" capability.
+3. Promote undo or rollback to full object status.
+4. The three statements above imply the following:
+   - Define two classes to manage another class: `Memento`, `Originator`, and `CareTaker`.
+   - `Memento` is used to store a single previous state of the `Originator`.
+   - `Originator` is a user-defined class that stores data and is declared as a friend class of
+     `Memento`.
+   - `CareTaker` is a class used to manage the `Originator` and utilizes a container with `Memento`
+     to store multiple previous states of the `Originator`.
+   - It is responsible for saving the state of the `Originator` after the state has been changed and
+     for restoring the `Originator` to a previous state if needed.
+   - The client only needs to create an `Originator` object and pass it to a `CareTaker` object.
+   - Every time the client changes the state of the `Originator` object, they should also call the
+     `store` method of the `CareTaker` object to save the state of the `Originator`.
+   - If the client wants to restore the `Originator` object to a previous state, they can call the
+     `undo` method of the `CareTaker` object.
+5. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/memento).
+6. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/memento/Memento.cpp).
+
+### Observer
+
+1. Define a one-to-many dependency between objects so that when one object changes state, all its
+   dependents are notified and updated automatically.
+2. Encapsulate the core (or common or engine) components in a Subject abstraction, and the variable
+   (or optional or user interface) components in an Observer hierarchy.
+3. The "View" part of Model-View-Controller.
+4. The three statements above imply the following:
+   - There are multiple classes whose states depend on another class. Observers depend on a subject.
+   - When the state of the other class changes, these classes should be notified.
+   - When these classes are instantiated, they should be attached to an instance of the other class
+     so that the other class can notify them that its state has changed.
+   - For example:
+     - Create four classes: `Observer`, `ConcreteObserver`, `Subject`, and `ConcreteSubject`.
+     - `ConcreteObserver` and `ConcreteSubject` inherit from `Observer` and `Subject`, respectively.
+     - `Observer` provides pure `virtual` methods to update its state and access its state.
+     - `Subject` provides pure `virtual` methods to update its state and access its state.
+     - Additionally, `Subject` provides the following methods:
+       - Attach `Observer` instances (usually subclasses) to it.
+       - Detach `Observer` instances (usually subclasses) from it.
+       - Notify all attached instances that its state has changed.
+     - `Subject` also maintains a container to store the `Observer` pointers to the attached
+       `Observer` instances (usually subclasses).
+     - `ConcreteObserver` and `ConcreteSubject` only need to implement `virtual` functions and
+       manage their states.
+     - The client only needs to use `ConcreteObserver` and `ConcreteSubject` to create objects and
+       attach `ConcreteObserver` objects to specific `ConcreteSubject` objects.
+5. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/observer).
+6. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/observer/Observer.cpp).
+
+### State
+
+1. Allow an object to alter its behavior when its internal state changes. The object will appear to
+   change its class.
+2. An object-oriented state machine.
+3. wrapper + polymorphic wrappee + collaboration.
+4. The three statements above imply the following:
+   - Use a `State` class and its subclasses to determine how the `Machine` class behaves.
+   - For example:
+     - Define four classes: `State`, `ConcreteStateA`, `ConcreteStateB`, and `Machine`.
+     - Both `ConcreteStateA` and `ConcreteStateB` inherit from `State` and represent different
+       states of the machine.
+     - `State` acts as an abstract base class or interface.
+     - `ConcreteStateA` and `ConcreteStateB` provide different implementations of the `State`
+       interface.
+     - The `Machine` class stores a pointer to a `State` object (typically one of its subclasses)
+       and provides a `setState` method to modify its state and manage the lifetime of the `State`
+       objects.
+     - It also provides other methods to invoke actions defined by the `State` object to complete
+       tasks.
+     - The client only needs to create a `Machine` object, pass a specific `State` object to it, and
+       call its methods to complete tasks.
+5. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/state).
+6. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/state/State.cpp).
+
+### Strategy
+
+1. Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets
+   the algorithm vary independently from the clients that use it.
+2. Capture the abstraction in an interface, bury implementation details in derived classes.
+3. The two statements above imply the following:
+   - Define a family of algorithms in an inheritance tree.
+   - A class not in this tree stores a base pointer to one of their instances and is defined for
+     calling this family of algorithms.
+   - For example:
+     - Define five classes: `Strategy`, `ConcreteStrategyA`, `ConcreteStrategyB`,
+       `ConcreteStrategyC`, and `Context`.
+     - `ConcreteStrategyA`, `ConcreteStrategyB`, and `ConcreteStrategyC` all inherit from
+       `Strategy`.
+     - `Strategy` provides a pure virtual method to implement a family of algorithms.
+     - `ConcreteStrategyA`, `ConcreteStrategyB`, and `ConcreteStrategyC` implement this method
+       slightly differently according to their specific purposes, but they all aim for the same
+       goal.
+     - `Context` stores a `Strategy` pointer to a `Strategy` object (usually one of its subclasses)
+       and provides a method to call the algorithm or method implemented by that object.
+     - The client only needs to create a `Context` object, pass a specific `Strategy` object
+       (usually one of its subclasses) to it, and call the method of the `Context` object.
+4. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/strategy).
+5. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/strategy/Strategy.cpp).
+
+### Template
+
+1. Define the skeleton of an algorithm in an operation, deferring some steps to client subclasses.
+   Template Method lets subclasses redefine certain steps of an algorithm without changing the
+   algorithm's structure.
+2. Base class declares algorithm 'placeholders', and derived classes implement the placeholders.
+3. The two statements above imply the following:
+   - Multiple algorithms share similar steps.
+   - Except for some critical steps, all other steps are the same across these algorithms.
+   - A class inheritance hierarchy can be used to implement these algorithms.
+   - The base class provides:
+     - Implementations of the shared steps as methods.
+     - Pure `virtual` methods to define the critical steps.
+     - A unique method that calls all the step methods in the appropriate order.
+   - A subclass representing a specific algorithm only needs to implement the `virtual` methods for
+     the critical steps of its algorithm.
+   - The client only needs to create a specific subclass object and call the unique method.
+4. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/template-method).
+5. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/template-method/TemplateMethod.cpp).

@@ -56,21 +56,12 @@ using AliasName = Type;
    template< typename T, ... > using aliasName = funcName< T, ... >;
    ```
 3. Function pointer declaration.
-
    ```CPP
    using FuncPtrName = RetType ( * )( parameter_types );
    FuncPtrName func_ptr_name;
+   // using funcPtrName = RetType ( SpaceName::* )( ... );   // Alias for member function
+   // using funcPtrName = RetType ( ClassName::* )( ... );   // Alias for member function
    ```
-
-   ```CPP
-   struct ClassName {
-         RetType funcName( ... ) {};
-         ...;
-
-         using funcPtrName = RetType ( MyClass::* )( ... );   // Alias for member function
-   };
-   ```
-
 4. Alias for member types in classes.
    ```CPP
    class ClassName {
@@ -79,6 +70,13 @@ using AliasName = Type;
          using AliasName = Type;
          AliasName _mem;
    };
+   ```
+5. Alias for an array.
+   ```CPP
+   using AliasName = Type[size];
+   AliasName arr_name;
+   // using AliasName = Type[];
+   // AliasName arr_name = { ... };
    ```
 
 ### `typedef`
@@ -114,6 +112,8 @@ typedef Type AliasName;
    ```CPP
    typedef RetType ( *FuncPtrName )( parameter_types );
    FuncPtrName func_ptr_name;
+   // typedef RetType ( SpaceName::*FuncPtrName )( parameter_types );
+   // typedef RetType ( ClassName::*FuncPtrName )( parameter_types );
    ```
 4. Alias for member types in classes.
    ```CPP
@@ -124,11 +124,32 @@ typedef Type AliasName;
          AliasName _mem;
    };
    ```
+5. Alias for an array.
+   ```CPP
+   Typedef Type AliasName[size];
+   AliasName arr_name;
+   // Typedef Type AliasName[];
+   // AliasName arr_name = { ... };
+   ```
+6. Define multiple alias names in a single line.
+   ```CPP
+   typedef Type TypeAlias, *PtrAlias, (&FunRefAlias)( parameter_types ), ArrayAlias[size];
+   TypeAlias var_name;
+   PtrAlias var_ptr;
+   FunRefAlias fun_ref = ...;
+   ArrayAlias arr_name;
+   ```
 
 ### Notes
 
 1. Using `using` is generally better than using `typedef` for aliasing a data type, especially in
    modern C++ (C++11 and beyond).
+2. Both `typedef` and `using` in C++ (and `typedef` in C) create type aliases.
+3. These aliases are only for valid type specifiers, such as fundamental types (`int`, `float`,
+   `char`, etc.), user-defined types (`struct`, `class`, etc.), pointers, arrays, function types,
+   etc.
+4. Any other string in the `typedef` or `using` declaration but not in `{}` or `()` serves as the
+   alias name and must not conflict with C/C++ keywords.
 
 ## `namespace`
 

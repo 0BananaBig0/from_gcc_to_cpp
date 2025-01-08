@@ -9,6 +9,9 @@
       - [Initialization Syntax](#initialization-syntax)
       - [Syntax for Deleting a Pointer Related to an One-dimensional Raw Array](#syntax-for-deleting-a-pointer-related-to-an-one-dimensional-raw-array)
       - [Three Kinds of Pointers Related to Array](#three-kinds-of-pointers-related-to-array)
+      - [Function Pointer Arrays](#function-pointer-arrays)
+    - [Syntax for a Raw Array Declaration Using `using`](#syntax-for-a-raw-array-declaration-using-using)
+    - [Syntax for a Raw Array Pinter Declaration Using `typedef`](#syntax-for-a-raw-array-pinter-declaration-using-typedef)
     - [Multidimensional Raw Arrays (**Not Recommend**)](#multidimensional-raw-arrays-not-recommend)
       - [Declaration Syntax](#declaration-syntax-1)
       - [Initialization Syntax](#initialization-syntax-1)
@@ -128,7 +131,7 @@ delete[] arr_ptr; // Only for objects created with `new[]`.
 
 ```CPP
 Type arr_name[size] = { ... };
-Type (*arr_ptr)[size] = &arr_name; // Array pointer.
+Type ( *arr_ptr )[size] = &arr_name; // Array pointer.
 // array pointer + 1 = element pointer + size;
 ```
 
@@ -151,6 +154,36 @@ Type* arr_ptr = &arr_name[index]; // Element pointer points to the `index` eleme
 Type* arr_ptr = new Type[size]; // Element pointer points to the first element of an array created on the heap.
 delete[] arr_ptr;
 ```
+
+##### Function Pointer Arrays
+
+```CPP
+// Use an array to store function pointers.
+// The implicit conversion does not occur.
+RetType ( *func_ptr_name[] )( para_type_list ) = { &funcName1, &funcName2 }; // Recommend.
+// RetType ( *func_ptr_name[] )( para_type_list ) = { &SpaceName::funcName1, &SpaceName::funcName2 }; // Recommend.
+// RetType ( *func_ptr_name[] )( para_type_list ) = { &ClassName::funcName1, &ClassName::funcName2 }; // Recommend.
+```
+
+#### Syntax for a Raw Array Declaration Using `using`
+
+1. [Syntax for Function Pinter Declaration Using `using`](./UsingTypedefNameSpaces.md#usage)
+   ```CPP
+   using AliasName = Type[size];
+   AliasName arr_name;
+   // using AliasName = Type[];
+   // AliasName arr_name = { ... };
+   ```
+
+#### Syntax for a Raw Array Pinter Declaration Using `typedef`
+
+1. [Syntax for Function Pinter Declaration Using `typedef`](./UsingTypedefNameSpaces.md#usage-1)
+   ```CPP
+   Typedef Type AliasName[size];
+   AliasName arr_name;
+   // Typedef Type AliasName[];
+   // AliasName arr_name = { ... };
+   ```
 
 #### Multidimensional Raw Arrays (**Not Recommend**)
 

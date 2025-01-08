@@ -36,6 +36,7 @@
     - [Explanation](#explanation-5)
     - [Declaration and Definition Syntax](#declaration-and-definition-syntax)
     - [Declaration and Assignment Syntax](#declaration-and-assignment-syntax)
+    - [Function Pointer Arrays](#function-pointer-arrays)
     - [Syntax for Function Calls Using Function Pointers](#syntax-for-function-calls-using-function-pointers)
     - [Syntax for Function Pinter Declaration Using `using`](#syntax-for-function-pinter-declaration-using-using)
     - [Syntax for Function Pinter Declaration Using `typedef`](#syntax-for-function-pinter-declaration-using-typedef)
@@ -352,25 +353,33 @@ asm("assembly_code");
 
 ```CPP
 // The implicit conversion occurs.
-auto func_ptr_name = funcName;
+auto func_ptr_name = funcName; // Not recommend.
+// auto func_ptr_name = SpaceName::funcName; // Not allow.
+// auto func_ptr_name = ClassName::funcName; // Not allow.
 ```
 
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
 // The implicit conversion does not occur.
-auto func_ptr_name = &funcName;
+auto func_ptr_name = &funcName; // Recommend.
+// auto func_ptr_name = &SpaceName::funcName; // Recommend.
+// auto func_ptr_name = &ClassName::funcName; // Recommend.
 ```
 
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
 // The implicit conversion occurs.
-RetType ( *func_ptr_name )( para_type_list ) = funcName;
+RetType ( *func_ptr_name )( para_type_list ) = funcName; // Not recommend.
+// RetType ( *func_ptr_name )( para_type_list ) = SpaceName::funcName; // Not allow.
+// RetType ( *func_ptr_name )( para_type_list ) = ClassName::funcName; // Not allow.
 ```
 
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
 // The implicit conversion does not occur.
-RetType ( *func_ptr_name )( para_type_list ) = &funcName;
+RetType ( *func_ptr_name )( para_type_list ) = &funcName; // Recommend.
+// RetType ( *func_ptr_name )( para_type_list ) = &SpaceName::funcName; // Recommend.
+// RetType ( *func_ptr_name )( para_type_list ) = &ClassName::funcName; // Recommend.
 ```
 
 #### Declaration and Assignment Syntax
@@ -378,31 +387,71 @@ RetType ( *func_ptr_name )( para_type_list ) = &funcName;
 ```CPP
 RetType ( *func_ptr_name )( para_type_list );
 // The implicit conversion occurs.
-func_ptr_name = funcName;
+func_ptr_name = funcName; // Not recommend.
 ```
 
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
 // The implicit conversion does not occur.
 RetType ( *func_ptr_name )( para_type_list );
-func_ptr_name = &funcName;
+func_ptr_name = &funcName; // Recommend.
 ```
+
+#### Function Pointer Arrays
+
+1. [Function Pointer Arrays](./Arrays.md#function-pointer-arrays)
 
 #### Syntax for Function Calls Using Function Pointers
 
 ```CPP
 // A function whose return type isn't `void`.
-auto result = func_ptr_name( arg_list );
+auto result = func_ptr_name( arg_list ); // Not recommend.
+auto result = ( *func_ptr_name )( arg_list ); // Recommend.
 ```
 
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
-RetType result = func_ptr_name( arg_list );
+RetType result = func_ptr_name( arg_list ); // Not recommend.
+RetType result = ( *func_ptr_name )( arg_list ); // Recommend.
 ```
 
 ```CPP
 // A function whose return type is `void`.
-func_pt_name( arg_list );
+func_pt_name( arg_list ); // Not recommend.
+( *func_ptr_name )( arg_list ); // Recommend.
+```
+
+```CPP
+RetType ( *func_ptr_name )( para_type_list ) = &ClassName::funcName; // Recommend.
+ClassName obj_name;
+ClassName* obj_ptr = &obj_name;
+// A function whose return type isn't `void`.
+auto result = ( obj_name.func_ptr_name )( arg_list ); // Not allow.
+auto result = ( obj_name->func_ptr_name )( arg_list ); // Not allow.
+auto result = ( obj_name.*func_ptr_name )( arg_list ); // Recommend.
+auto result = ( obj_name->*func_ptr_name )( arg_list ); // Recommend.
+```
+
+```CPP
+RetType ( *func_ptr_name )( para_type_list ) = &ClassName::funcName; // Recommend.
+ClassName obj_name;
+ClassName* obj_ptr = &obj_name;
+// This syntax is equivalent to the syntax mentioned above.
+RetType result = ( obj_name.func_ptr_name )( arg_list ); // Not allow.
+RetType result = ( obj_name->func_ptr_name )( arg_list ); // Not allow.
+RetType result = ( obj_name.*func_ptr_name )( arg_list ); // Recommend.
+RetType result = ( obj_name->*func_ptr_name )( arg_list ); // Recommend.
+```
+
+```CPP
+RetType ( *func_ptr_name )( para_type_list ) = &ClassName::funcName; // Recommend.
+ClassName obj_name;
+ClassName* obj_ptr = &obj_name;
+// A function whose return type is `void`.
+( obj_name.func_ptr_name )( arg_list ); // Not allow.
+( obj_name->func_ptr_name )( arg_list ); // Not allow.
+( obj_name.*func_ptr_name )( arg_list ); // Recommend.
+( obj_name->*func_ptr_name )( arg_list ); // Recommend.
 ```
 
 #### Syntax for Function Pinter Declaration Using `using`
@@ -411,6 +460,8 @@ func_pt_name( arg_list );
    ```CPP
    using FuncPtrName = RetType ( * )( parameter_types );
    FuncPtrName func_ptr_name;
+   // using funcPtrName = RetType ( SpaceName::* )( ... );   // Alias for member function
+   // using funcPtrName = RetType ( ClassName::* )( ... );   // Alias for member function
    ```
 
 #### Syntax for Function Pinter Declaration Using `typedef`
@@ -419,6 +470,8 @@ func_pt_name( arg_list );
    ```CPP
    typedef RetType ( *FuncPtrName )( parameter_types );
    FuncPtrName func_ptr_name;
+   // typedef RetType ( SpaceName::*FuncPtrName )( parameter_types );
+   // typedef RetType ( ClassName::*FuncPtrName )( parameter_types );
    ```
 
 ### Lambda Functions
