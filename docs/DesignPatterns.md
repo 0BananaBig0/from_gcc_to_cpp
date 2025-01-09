@@ -170,7 +170,8 @@
 1. Decouple an abstraction from its implementation so that the two can vary independently.
 2. Publish interface in an inheritance hierarchy, and bury implementation in its own inheritance
    hierarchy.
-3. Beyond encapsulation, to insulation
+3. Beyond encapsulation, to insulation.
+4. The three statements above imply two meanings as follows:
    - Create two interfaces: `Implementor` and `Abstraction`.
    - Both `Implementor` and `Abstraction` only provide pure `virtual` methods.
    - Subclasses of `Abstraction` are associated with `Implementor`, but both can vary independently.
@@ -178,15 +179,14 @@
      - Create two classes, `ConcreteImplementorA` and `ConcreteImplementorB`, inheriting from
        `Implementor`.
      - Create a class, `RefinedAbstraction`, inheriting from `Abstraction`.
-     - `RefinedAbstraction` implements all pure `virtual` methods to access `Implementor` and its
-       subclasses. It also creates an `Implementor` pointer to an instance of a subclass of
-       `Implementor`.
+     - `RefinedAbstraction` stores an `Implementor` pointer to an instance of a subclass of
+       `Implementor`. It implements all pure `virtual` methods to access this object.
      - The client only needs to:
        - Create an `Implementor` pointer to a specific instance of a subclass of `Implementor`.
        - Use it to construct an `Abstraction` pointer to a `RefinedAbstraction` instance.
        - Call methods of the `Abstraction` interface.
-4. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/bridge).
-5. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/bridge/Bridge.cpp).
+5. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/bridge).
+6. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/bridge/Bridge.cpp).
 
 ### Composite
 
@@ -283,8 +283,8 @@
 2. Use an extra level of indirection to support distributed, controlled, or intelligent access.
 3. Add a wrapper and delegation to protect the real component from undue complexity.
 4. The three statements above imply the following:
-   - Create a Proxy object that holds a pointer to the RealSubject object and provides methods to
-     access and manage it.
+   - Create a `Proxy` object that holds a pointer to the `RealSubject` object and provides methods
+     to access and manage it.
 5. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/proxy).
 6. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/proxy/Proxy.cpp).
 
