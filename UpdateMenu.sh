@@ -7,7 +7,8 @@
 #!/bin/bash
 
 # Directory containing markdown files
-docs_dir="./docs"
+script_dir=$(dirname "$(realpath "$0")")
+docs_dir="$script_dir/docs"
 #!/bin/bash
 file_name="${HOME}/.vimrc"
 lines_to_add=(
@@ -39,6 +40,6 @@ start_line=$((insert_after_line - 8))  # Line number to start deleting from
 end_line=$((start_line + 7))  # Calculate the end line number
 # Delete lines from start_line to end_line
 sed -i "${start_line},${end_line}d" "$file_name"
-g++ UpdateMenu.cpp -o UpdateMenu.exe
-./UpdateMenu.exe
-rm ./UpdateMenu.exe
+g++ $script_dir/UpdateMenu.cpp -o $script_dir/UpdateMenu.exe
+$script_dir/UpdateMenu.exe
+rm $script_dir/UpdateMenu.exe

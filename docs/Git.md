@@ -7,9 +7,11 @@
     - [The Workflow of `git add TargetList` and `git commit -m "Your comments"`](#the-workflow-of-git-add-targetlist-and-git-commit--m-your-comments)
       - [The Workflow](#the-workflow)
       - [Explanation](#explanation)
+  - [Check the Usage of `git`](#check-the-usage-of-git)
   - [Add Files to a Branch](#add-files-to-a-branch)
   - [Delete Files of a Branch](#delete-files-of-a-branch)
   - [Check the Status](#check-the-status)
+  - [Check Who Modified the File](#check-who-modified-the-file)
   - [Discard Current Modifications](#discard-current-modifications)
   - [Restore Local Files Before Using `git add` or `git rm` to Stage Deletions](#restore-local-files-before-using-git-add-or-git-rm-to-stage-deletions)
   - [Restore Local Files After Using `git add` or `git rm` to Stage Deletions](#restore-local-files-after-using-git-add-or-git-rm-to-stage-deletions)
@@ -110,6 +112,15 @@ flowchart LR
      often pointing to origin/master.
    - It helps Git determine which branch to track for new clones of the repository.
 
+### Check the Usage of `git`
+
+```SH
+git --help
+git help TargetCommand(Optional)
+git help -a
+git help -g
+```
+
 ### Add Files to a Branch
 
 ```SH
@@ -140,6 +151,12 @@ git commit -m "Your comments"
 
 ```SH
 git status
+```
+
+### Check Who Modified the File
+
+```SH
+git blame Target
 ```
 
 ### Discard Current Modifications

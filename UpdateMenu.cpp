@@ -1,46 +1,46 @@
-#include <filesystem>
 #include <iostream>
 #include <fstream>
-#include <optional>
 #include <string>
-
-using namespace std;
+#include <unistd.h>
+#include <limits.h>
 
 // Function to check if a file exists
-bool fileExists( const string& filename ) {
-   ifstream file( filename );
+bool fileExists( const std::string& filename ) {
+   std::ifstream file( filename );
    return file.good();
 }
 
 // Function to clear the content of a file if it exists
-void clearFile( const string& filename ) {
+void clearFile( const std::string& filename ) {
    if( fileExists( filename ) ) {
-      ofstream file( filename, ios::trunc );   // Open in truncate mode
+      std::ofstream file( filename, std::ios::trunc );   // Open in truncate
+                                                         // mode
       file.close();
    }
 }
 
 // Function to process the FromGccToCPP.md and generate the README.md
-void processMarkdownFiles( const string& root_path ) {
-   // Check if README.md exists. If it does, clear its content. If not, create it.
-   string readme_file = root_path + "/README.md";
+void processMarkdownFiles( const std::string& root_path ) {
+   // Check if README.md exists. If it does, clear its content. If not, create
+   // it.
+   std::string readme_file = root_path + "/README.md";
    clearFile( readme_file );
    // Create or open README.md for writing
-   ofstream readme( readme_file, ios::out );
+   std::ofstream readme( readme_file, std::ios::out );
 
    // Read the FromGccToCPP.md file
-   ifstream input_file( root_path + "/docs/FromGccToCPP.md" );
+   std::ifstream input_file( root_path + "/docs/FromGccToCPP.md" );
    if( !input_file.is_open() ) {
-      cout << "Fail to open FromGccToCPP.md." << endl;
+      std::cout << "Fail to open FromGccToCPP.md." << std::endl;
       return;
    }
 
-   string line;
+   std::string line;
    bool first_line_processed = false;
    while( getline( input_file, line ) ) {
       if( !first_line_processed ) {
          // Extract the first line from FromGccToCPP.md
-         readme << line << endl;
+         readme << line << std::endl;
          first_line_processed = true;
          continue;
       }
@@ -64,12 +64,13 @@ void processMarkdownFiles( const string& root_path ) {
                continue;
             }
          }
-         string markdown_file_name(
+         std::string markdown_file_name(
             line.data() + file_name_index_beg,
             file_name_index_end - file_name_index_beg + 1 );
+         std::ifstream target_markdown( root_path + "/docs/"
+                                        + markdown_file_name );
          markdown_file_name.insert( 0, "./docs/" );
-         ifstream target_markdown( markdown_file_name );
-         string target_line;
+         std::string target_line;
          size_t ignore_first_two_lines = 2;
          if( target_markdown.is_open() ) {
             while( getline( target_markdown, target_line ) ) {
@@ -87,10 +88,10 @@ void processMarkdownFiles( const string& root_path ) {
                      break;
                   }
                }
-               string_view first_index_chars(
-                  target_line.data(),
-                  special_char_index );   // Not include '#';
-               string_view left_chars(
+               std::string_view first_index_chars( target_line.data(),
+                                                   // Not include '#';
+                                                   special_char_index );
+               std::string_view left_chars(
                   target_line.data() + special_char_index,
                   target_line.size() - special_char_index );
                for( size_t i = space_number; i > 0; i-- ) {
@@ -98,7 +99,7 @@ void processMarkdownFiles( const string& root_path ) {
                }
                readme << first_index_chars;
                readme << markdown_file_name;
-               readme << left_chars << endl;
+               readme << left_chars << std::endl;
             }
             target_markdown.close();
          }
@@ -108,26 +109,16 @@ void processMarkdownFiles( const string& root_path ) {
    readme.close();
 }
 
-optional< filesystem::path > findGitRoot( const filesystem::path& startPath ) {
-   auto currentPath = startPath;
-
-   while( !currentPath.empty() ) {
-      // Check if ".git" exists in the current directory
-      if( filesystem::exists( currentPath / ".git" ) ) {
-         return currentPath;   // Return the path if ".git" directory is found
-      }
-
-      // Move up one directory level
-      currentPath = currentPath.parent_path();
-   }
-
-   // Return an empty optional if no ".git" directory is found
-   return nullopt;
+std::string getExecutablePath() {
+   char path[PATH_MAX];
+   ssize_t count = readlink( "/proc/self/exe", path, PATH_MAX );
+   return ( count != -1 ) ? std::string( path, count ) : std::string();
 }
 
 int main() {
-   auto currentPath = filesystem::current_path();
-   auto gitRootPath = findGitRoot( currentPath );
-   processMarkdownFiles( gitRootPath->generic_string() );
+   std::string executable_path = getExecutablePath();
+   auto last_slash_pos = executable_path.find_last_of( '/' );
+   executable_path.resize( last_slash_pos );
+   processMarkdownFiles( executable_path );
    return 0;
 }

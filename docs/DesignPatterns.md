@@ -219,7 +219,7 @@
 3. Wrapping a gift, putting it in a box, and wrapping the box.
 4. The three statements above imply the following:
    - Replace combinational inheritance with combinational construction.
-   - Use one subclass to decorate another subclass.
+   - Use multiple subclasses to decorate another subclass.
    - For example:
      - Create five classes: `Component`, `ConcreteComponent`, `Decorator`, `ConcreteDecoratorA`, and
        `ConcreteDecoratorB`.
