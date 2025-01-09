@@ -28,6 +28,8 @@
   - [Observer](#observer)
   - [State](#state)
   - [Strategy](#strategy)
+  - [Template](#template)
+  - [Visitor](#visitor)
 
 <!-- vim-markdown-toc -->
 
@@ -77,7 +79,7 @@
 
 1. Define an interface for creating an object, but let subclasses decide which class to instantiate.
    Factory Method lets a class defer instantiation to subclasses.
-2. Defining a "virtual" constructor.
+2. Defining a `virtual` constructor.
 3. The `new` operator considered harmful.
 4. The three statements above imply the following:
    - There are multiple products.
@@ -494,3 +496,26 @@
    - The client only needs to create a specific subclass object and call the unique method.
 4. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/template-method).
 5. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/template-method/TemplateMethod.cpp).
+
+### Visitor
+
+1. Represent an operation to be performed on the elements of an object structure. Visitor lets you
+   define a new operation without changing the classes of the elements on which it operates.
+2. The classic technique for recovering lost type information.
+3. Do the right thing based on the type of two objects.
+4. Double dispatch.
+5. The four statements above imply the following:
+   - Utilize polymorphism to allow one class to access another class but not modify its data.
+   - For example:
+     - Define six classes: `Visitor`, `ConcreteVisitor1`, `ConcreteVisitor2`, `Element`,
+       `ConcreteElementA`, and `ConcreteElementB`.
+     - `Visitor` and `Element` act as interfaces.
+     - `Visitor` provides two pure `virtual` methods that accept pointers to `ConcreteElementA` and
+       `ConcreteElementB` as arguments, respectively.
+     - `ConcreteVisitor1` and `ConcreteVisitor2` must provide implementations for these two methods.
+     - `Element` defines a pure `virtual` `accept` method whose parameter is a `Visitor` pointer
+       type, allowing it to receive a `Visitor` subclass object.
+     - The client only needs to create instances of the four concrete classes and call the `accept`
+       methods of `Element` objects to pass `Visitor` objects to them.
+6. [README](https://gitee.com/banana33/design-patterns-cpp/tree/master/visitor).
+7. [Code](https://gitee.com/banana33/design-patterns-cpp/blob/master/visitor/Visitor.cpp).

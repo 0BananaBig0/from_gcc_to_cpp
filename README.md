@@ -1749,3 +1749,5 @@
     - [Observer](./docs/DesignPatterns.md#observer)
     - [State](./docs/DesignPatterns.md#state)
     - [Strategy](./docs/DesignPatterns.md#strategy)
+    - [Template](./docs/DesignPatterns.md#template)
+    - [Visitor](./docs/DesignPatterns.md#visitor)
