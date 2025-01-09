@@ -175,6 +175,7 @@
    - Create two interfaces: `Implementor` and `Abstraction`.
    - Both `Implementor` and `Abstraction` only provide pure `virtual` methods.
    - Subclasses of `Abstraction` are associated with `Implementor`, but both can vary independently.
+   - Use `Abstraction` objects to access `Implementor` objects.
    - For example:
      - Create two classes, `ConcreteImplementorA` and `ConcreteImplementorB`, inheriting from
        `Implementor`.
