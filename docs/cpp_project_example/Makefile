@@ -2,7 +2,7 @@
 #											 Makefile
 #		Makefile to build exe
 #################################################################
-.PHONY: clean, all
+.PHONY: all clean
 # Define the compiler variable
 CC = g++
 
@@ -20,6 +20,7 @@ DEPS = $(SRCS:.cpp=.d)
 # Default target:
 # $(TARGET): $(OBJS)
 #		$(CC) -o $@ $^
+all: $(TARGET)
 $(TARGET): $(OBJS) $(STATIC_LIBS) $(SHARED_LIBS)
 	$(CC) -o $@ $< -L. -lFun -lFunN
 
