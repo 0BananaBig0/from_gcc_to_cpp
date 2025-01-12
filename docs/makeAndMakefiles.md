@@ -9,14 +9,16 @@
   - [How `make` Processes a Makefile](#how-make-processes-a-makefile)
     - [Prerequisites](#prerequisites)
     - [**Steps**](#steps)
+    - [Notes](#notes)
   - [`.PHONY`, a Pseudo Target](#phony-a-pseudo-target)
     - [Syntax](#syntax)
     - [Explanation and Usage](#explanation-and-usage)
+    - [Notes](#notes-1)
     - [Example](#example)
   - [Implicit Rule](#implicit-rule)
     - [Explanation](#explanation-1)
     - [Common Implicit Rules](#common-implicit-rules)
-    - [Notes](#notes)
+    - [Notes](#notes-2)
   - [Variables in Makefile](#variables-in-makefile)
     - [Explanation and Usage](#explanation-and-usage-1)
     - [The Syntax of Defining a Variable](#the-syntax-of-defining-a-variable)
@@ -41,7 +43,7 @@
     - [Basic Syntax](#basic-syntax)
       - [Code](#code-1)
       - [Explanation](#explanation-3)
-    - [Notes](#notes-1)
+    - [Notes](#notes-3)
     - [How to Understand the Actual Process of Pattern Rules](#how-to-understand-the-actual-process-of-pattern-rules)
     - [Example Without Variables](#example-without-variables)
       - [Example 1: Compiling `.cpp` files to `.o` files](#example-1-compiling-cpp-files-to-o-files)
@@ -101,6 +103,12 @@
   - [How to Precompile Header Files](#how-to-precompile-header-files)
     - [Problem](#problem-1)
     - [Solution](#solution-1)
+  - [How to Generate Multiple Targets with One Command Set for Efficient Parallel Compilation](#how-to-generate-multiple-targets-with-one-command-set-for-efficient-parallel-compilation)
+    - [Problem](#problem-2)
+    - [Solution](#solution-2)
+      - [Explanation](#explanation-21)
+        - [Solution1](#solution1)
+        - [Solution2](#solution2)
   - [Some Common `make` command](#some-common-make-command)
     - [`make`](#make-1)
     - [`make -jn`](#make--jn)
@@ -141,6 +149,8 @@
 #### Code
 
 ```Makefile
+# If `target1 = target2`, the second rule `target2: dependency set2`
+# overwrites the first rule `target1: dependency set1`.
 target1: dependency set1
   command set1
 target2: dependency set2
@@ -148,11 +158,36 @@ target2: dependency set2
   ...;
 ```
 
+```Makefile
+# Even though `target1 = target2`, both rules are preserved and executed sequentially:
+# First, the first rule; Then, the second rule.
+# First, `build dependency set1` and execute `command set1`;
+# Second, `build dependency set2` and execute `command set2`;
+target1:: dependency set1
+  command set1
+target2:: dependency set2
+  command set2
+  ...;
+```
+
+```Makefile
+target1 target2: dependency set
+  command set
+  ...;
+# The following commented code is equivalent to the one above.
+# target1: dependency set
+#   command set
+# target2: dependency set
+#   command set
+#   ...;
+```
+
 #### Explanation
 
 1. `target`:
    - It is **a file** you want to **create**, **except for a pseudo target**.
    - It can be an object file, a `.cpp` file, a `.txt` file, and so on.
+   - It also can be a set of `target`.
 2. `dependency`:
    - It is **a file** that **a target requires** during its creation.
    - It can be an object file, a `.cpp` file, a `.txt` file, and so on.
@@ -181,15 +216,25 @@ target2: dependency set2
    - Locate the first target in the Makefile and treat it as the final or default target.
    - For example, in the basic rule of the makefile above, `target1` is the first target.
 3. Build the dependency graph:
+   - The `make` command does not dynamically update the dependency graph.
+   - Once executed, the dependency graph is constructed and remains static until another `make`
+     command is invoked.
+   - Therefore, we should manually specify files in the `Makefile` if they are generated during the
+     `make` process.
    - `make` examines the dependencies listed in the Makefile and constructs a dependency graph.
    - Each target can depend on other files or targets, which are updated recursively if necessary.
    - Each node in the dependency graph represents a target or a file and its associated commands,
      except for the leaf nodes.
    - A child node represents a dependency of its parent (a file or target), except for the leaf
      nodes.
-   - Each leaf node represents a source or a library file or a target file and its command set
-     witout any dependency.
+   - Each leaf node represents a source file, a library file, or a target file, with or without an
+     associated command set, and without any dependencies.
    - The root node represents the final target and its command set.
+   - The command set is not limited to generating its associated target file; it can generate
+     multiple targets.
+   - However, this approach may lead to some issues.
+   - See also:
+     [How to Generate Multiple Targets with One Command Set for Efficient Parallel Compilation](#how-to-generate-multiple-targets-with-one-command-set-for-efficient-parallel-compilation).
 4. Recursively scan the dependency graph:
    - Traverse the dependency graph in a breadth-first manner, starting from the leaves up to the
      root.
@@ -203,6 +248,10 @@ target2: dependency set2
        rebuild it.
      - If the file does not exist and it's a leaf without a command set, exit and report an error:
        "No rule to make target 'xxx', needed by 'yyy'. Stop.".
+
+#### Notes
+
+1. To understand the process of `make`, manually build a dependency tree starting from the root.
 
 ### `.PHONY`, a Pseudo Target
 
@@ -220,6 +269,12 @@ target2: dependency set2
    non-file related tasks like tests.
 3. Since these targets do not correspond to actual files, they are **marked as `.PHONY` to avoid
    conflicts** with files of the same name that might exist in the directory.
+
+#### Notes
+
+1. Avoid using pseudo-targets to generate files whenever possible, as the commands associated with
+   pseudo-targets are executed every time the `make` command runs.
+2. Pseudo-targets are treated as if they are updated on every execution of `make`.
 
 #### Example
 
@@ -242,19 +297,14 @@ clean:
 #### Common Implicit Rules
 
 1. Compiling `.c` to `.o`:
-
    - Implicit rule: `n.o`: `n.c`
    - Command: `$(CC) -c $(CFLAGS) n.c -o n.o`
    - This rule tells make how to compile a `.c` file into an object (`.o`) file.
-
 2. Compiling `.cpp` to `.o`:
-
    - Implicit rule: `n.o`: `n.cpp`
    - Command: `$(CXX) -c $(CXXFLAGS) n.cpp -o n.o`
    - Similarly, this rule tells make how to compile C++ files into object files.
-
 3. Linking object files into an executable:
-
    - Implicit rule: `prog`: `prog.o`
    - Command: `$(CC) prog.o $(LDFLAGS) -o prog`
    - This rule links an object file into an executable.
@@ -281,22 +331,18 @@ clean:
 #### The Syntax of Defining a Variable
 
 1. Simple assignment (`VAR_NAME = value`):
-
-- The value is expanded when the variable is used.
-- Whenever its dependencies are updated, or anything that depends on it is modified, all related
-  components will be updated.
-
+   - The value is expanded when the variable is used.
+   - Whenever its dependencies are updated, or anything that depends on it is modified, all related
+     components will be updated.
 2. Immediate assignment (`VAR_NAME := value`):
-
-- The value is expanded when the variable is defined.
-- Whenever its dependencies are updated, or anything that depends on it is modified, all related
-  components will not be updated.
-
+   - The value is expanded when the variable is defined.
+   - Whenever its dependencies are updated, or anything that depends on it is modified, all related
+     components will not be updated.
+   - The environment variables and arguments passed by `make` cannot update it.
 3. Conditional assignment (`VAR_NAME ?= value`):
-
-- Only assigns if the variable is not already defined.
-- Whenever its dependencies are updated, or anything that depends on it is modified, all related
-  components will be updated.
+   - Only assigns if the variable is not already defined.
+   - Whenever its dependencies are updated, or anything that depends on it is modified, all related
+     components will be updated.
 
 #### The Syntax of Referencing a Variable
 
@@ -492,6 +538,8 @@ target-pattern: prerequisite-pattern
    targets that follow a similar pattern.
 5. The part of the file name that `%` matches is called the stem.
 6. The stem is used to correlate the target with the prerequisite.
+7. If pattern rules are applied in a chain of dependencies, some implicitly generated files are
+   deleted at the end of the `make` process.
 
 #### How to Understand the Actual Process of Pattern Rules
 
@@ -829,7 +877,8 @@ $(TARGET_PATTERN): %.cpp
 
 1. I have introduced the common knowledge regarding custom rules, implicit rules, and pattern rules.
 2. However, these rules cannot process header files effectively.
-3. The `make` command cannot determine which header files the C/C++ files depend on.
+3. The `make` command cannot determine which header files the C/C++ files depend on if the header
+   files are not listed as dependencies.
 4. These dependencies are only identified when the compiler processes the C/C++ files, and there
    isn't a straightforward name-mapping rule.
 5. Consequently, issues arise: if any **header files** are updated, the `make` command remains
@@ -861,7 +910,9 @@ $(TARGET): $(OBJS)
 
 # The rule for # xyz.d is generated by xyz.cpp:
 %.d: %.cpp
-  $(CC) -MM $< > $@
+  $(CC) -MM $< > $@.tmp
+  sed "s,\($*\)\.o[ :]*,\1.o $@ : ,g" < $@.tmp > $@;
+  rm -f $@.tmp
 
 # Pattern rules:
 %.o: %.cpp
@@ -926,6 +977,91 @@ $(PCHS_OUTPUT): $(PCHS)
 clean:
   rm -rf *.o *.gch $(TARGET)
 ```
+
+### How to Generate Multiple Targets with One Command Set for Efficient Parallel Compilation
+
+#### Problem
+
+1. Nowadays, parallel compilation is popular due to its efficiency.
+2. Most projects and tools support parallel compilation.
+3. However, when using the `make` tool, utilizing parallel compilation can lead to errors if a
+   single command set generates multiple targets that other targets depend on.
+4. One issue is that the previous command set may be executed multiple times.
+5. Another is that subsequent targets may fail to locate their dependencies.
+6. These issues are particularly common when working with `lex` and `yacc` (or `flex` and `bison`).
+
+#### Solution
+
+```Makefile
+# Before
+.PHONY: clean
+
+Final.txt: Dep1.txt Dep2.txt
+  cat Dep1.txt Dep2.txt > Final.txt
+
+Dep1.txt:
+  touch Dep1.txt Dep2.txt
+
+clean:
+  @echo "Cleaning ..."
+  rm -f *.txt
+```
+
+```Makefile
+# After, Soultion1
+.PHONY: clean
+
+Final.txt: Dep1.txt Dep2.txt
+  cat Dep1.txt Dep2.txt > Final.txt
+
+# Create a transfer tmp.
+Dep1.txt Dep2.txt: Dep.tra.tmp
+  # @echo "This command set is still executed multiple times, so leaving it empty is the best option."
+
+Dep.tra.tmp:
+  touch Dep1.txt Dep2.txt
+  touch $@
+
+clean:
+  @echo "Cleaning ..."
+  rm -f *.txt *.tra.tmp
+```
+
+```Makefile
+# After, Soultion2
+.PHONY: clean
+
+Final.txt: Dep1.txt Dep2.txt
+  cat Dep1.txt Dep2.txt > Final.txt
+
+# Create a chain of dependencies.
+Dep1.txt: Dep2.txt
+  # @echo "Although this command set is not executed multiple times, leaving it empty is also the best option."
+Dep2.txt:
+  touch Dep1.txt Dep2.txt
+
+clean:
+  @echo "Cleaning ..."
+  rm -f *.txt
+```
+
+##### Explanation
+
+###### Solution1
+
+1. `make` does not consider the content of a command set.
+2. It only checks whether the target or dependency files are created or need to be updated.
+3. To address this, we can use a temporary file as a pseudo-dependency with an empty command set,
+   acting as a transfer station.
+4. The actual command set used to generate the actual dependency files is combined with a command to
+   create the temporary file, forming a new command set for the target, the temporary file.
+
+###### Solution2
+
+1. `make` does not consider the content of a command set.
+2. It only checks whether the target or dependency files are created or need to be updated.
+3. To address this, we create a chain of dependencies.
+4. Only the last element in the chain has a non-empty command set.
 
 ### Some Common `make` command
 

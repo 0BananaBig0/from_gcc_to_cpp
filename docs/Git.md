@@ -223,6 +223,10 @@ git show CommitNumber(A sequence of number, Optional) TargetList(Optional)
 git show -Number(How many, Optional) TargetList(Optional)
 ```
 
+```SH
+git show --name-only -Number(How many, Optional) TargetList(Optional)
+```
+
 ### Revert to the Previous Version While Keeping Current Modifications
 
 ```SH
