@@ -36,28 +36,28 @@
       - [Three Kinds of Pointers Related to Array](#three-kinds-of-pointers-related-to-array)
       - [How to Determine the Type of a Pointer](#how-to-determine-the-type-of-a-pointer)
     - [References](#references)
-  - [Parameters](#parameters)
-  - [Arguments](#arguments)
-  - [Expressions](#expressions)
-    - [Explanation](#explanation-6)
-    - [Types of Expressions in C++](#types-of-expressions-in-c)
   - [Lvalues and Rvalues: Value Categories in C++](#lvalues-and-rvalues-value-categories-in-c)
     - [Lvalues (Left Values)](#lvalues-left-values)
     - [Rvalues (Right Values)](#rvalues-right-values)
     - [How to Identify Whether an Object is an Lvalue or an Rvalue](#how-to-identify-whether-an-object-is-an-lvalue-or-an-rvalue)
     - [Lvalue References (`Type&`)](#lvalue-references-type)
-      - [Explanation](#explanation-7)
+      - [Explanation](#explanation-6)
       - [Usage](#usage)
       - [Notes](#notes)
     - [Rvalue References (`Type&&`)](#rvalue-references-type)
-      - [Explanation](#explanation-8)
+      - [Explanation](#explanation-7)
       - [Usage](#usage-1)
     - [Move Semantics](#move-semantics)
-      - [Explanation](#explanation-9)
+      - [Explanation](#explanation-8)
       - [Usage](#usage-2)
     - [`std::move`](#stdmove)
-      - [Explanation](#explanation-10)
+      - [Explanation](#explanation-9)
       - [Usage](#usage-3)
+  - [Parameters](#parameters)
+  - [Arguments](#arguments)
+  - [Expressions](#expressions)
+    - [Explanation](#explanation-10)
+    - [Types of Expressions in C++](#types-of-expressions-in-c)
   - [Interface](#interface)
   - [Keywords](#keywords)
   - [Type Specifiers](#type-specifiers)
@@ -364,99 +364,17 @@
 6. A reference is defined as a type. However, I believe it is **merely an alias**, not a distinct
    type, because `auto` cannot deduce a type as a reference without using `&`.
 7. A reference is **neither a variable nor an object**.
-8. Categories:
+8. When a function **returns a reference** (whether an **lvalue** reference or an **rvalue**
+   reference), **the object** being referred to **must still exist** after the function call, **or**
+   the program will invoke **undefined behavior**:
+   - `const` methods return `const` lvalue reference;
+   - non-const methods return non-const rvalue reference.
+9. Categories:
    - [Lvalue References (`Type&`)](#lvalue-references-type).
    - [Rvalue References (`Type&&`)](#rvalue-references-type).
    - [Universial References (Forward References)](./Templates.md#stdforward-and-universial-references-forward-references).
    - [Value categories in cplusplus]().
    - [Value categories in cppreference](https://en.cppreference.com/w/cpp/language/value_category).
-
-### Parameters
-
-1. A parameter is **a variable declared in a function definition**.
-2. It **serves as a placeholder** for the values that will be passed to the function when it is
-   called.
-3. Parameters are used to **receive input values** within the function and specify the type of data
-   the function expects.
-
-### Arguments
-
-1. An argument is **an actual value, variable, object or reference passed to the function** when it
-   is called.
-2. Arguments are the specific data supplied to the function's parameters.
-
-### Expressions
-
-#### Explanation
-
-1. An expression is **any valid combination of variables, literals, operators, or function calls**
-   that **evaluates to a value**.
-2. Expressions are the building blocks of C++ programs and can range from simple values like `42` to
-   complex operations involving multiple variables and function calls.
-3. They **can be evaluated at runtime** to produce a result if possible, which may or may not be
-   used further in the program.
-
-#### Types of Expressions in C++
-
-1. Literal expressions
-   - A literal (such as `42`, `a`, or `3.14`) is the simplest form of an expression.
-   - It evaluates to its own value.
-2. Variable expressions
-   - A variable by itself is also an expression, and it evaluates to the value it stores.
-   - For example,
-     ```CPP
-     int x = 10;
-     x; // Evaluates to 10.
-     ```
-3. Arithmetic expressions
-   - These use arithmetic operators (`+`, `-`, `*`, `/`, `%`) to produce numeric results.
-   - For example,
-     ```CPP
-     int y = 5 + 3 * 2; // Evaluates to 11.
-     ```
-4. Logical and relational expressions
-   - Logical expressions (`&&`, `||`, `!`) produce a boolean result.
-   - Relational expressions (`==`, `!=`, `<`, `>`, `<=`, `>=`) compare values and return true or
-     false.
-   - For example,
-     ```CPP
-     bool result = (x > && (y < 10); // Evaluates to true.
-     ```
-5. Assignment expressions
-   - An assignment operation is also an expression that returns the assigned value.
-   - For example,
-     ```CPP
-     int z;
-     z = 20; // Evaluates to 20.
-     ```
-6. Function call expressions
-   - A function call acts as an expression, with the result being the return value of the function.
-   - For example,
-     ```CPP
-     int absValue = std::abs( -5 ); // Evaluates to 5.
-     ```
-7. Conditional (ternary) expressions
-   - A ternary expression evaluates a condition and returns one of two values based on the result.
-   - For example,
-     ```CPP
-     int max = (x > y) ? x : y; // Returns x if x > y, otherwise y.
-     ```
-8. Member access expressions
-   - Accessing a member of an object or a struct is also an expression.
-   - For example,
-     ```CPP
-     struct Point { int x, y; };
-     Point p = {3, 4};
-     p.x; // Evaluates to 3.
-     ```
-9. Pointer expressions
-   - Dereferencing a pointer or using the & operator to take the address of a variable forms an
-     expression.
-   - For example,
-     ```CPP
-     int* ptr = &x; // Evaluates to the address of x.
-     *ptr; // Evaluates to the value of x (10).
-     ```
 
 ### Lvalues and Rvalues: Value Categories in C++
 
@@ -580,6 +498,93 @@
    to a variable, you can use `std::move`.
 2. To deal with **double deletion**, **the original pointer** should point a **`nullptr`** after
    **`std::move`** moved its data to another pointer.
+
+### Parameters
+
+1. A parameter is **a variable declared in a function definition**.
+2. It **serves as a placeholder** for the values that will be passed to the function when it is
+   called.
+3. Parameters are used to **receive input values** within the function and specify the type of data
+   the function expects.
+
+### Arguments
+
+1. An argument is **an actual value, variable, object or reference passed to the function** when it
+   is called.
+2. Arguments are the specific data supplied to the function's parameters.
+
+### Expressions
+
+#### Explanation
+
+1. An expression is **any valid combination of variables, literals, operators, or function calls**
+   that **evaluates to a value**.
+2. Expressions are the building blocks of C++ programs and can range from simple values like `42` to
+   complex operations involving multiple variables and function calls.
+3. They **can be evaluated at runtime** to produce a result if possible, which may or may not be
+   used further in the program.
+
+#### Types of Expressions in C++
+
+1. Literal expressions
+   - A literal (such as `42`, `a`, or `3.14`) is the simplest form of an expression.
+   - It evaluates to its own value.
+2. Variable expressions
+   - A variable by itself is also an expression, and it evaluates to the value it stores.
+   - For example,
+     ```CPP
+     int x = 10;
+     x; // Evaluates to 10.
+     ```
+3. Arithmetic expressions
+   - These use arithmetic operators (`+`, `-`, `*`, `/`, `%`) to produce numeric results.
+   - For example,
+     ```CPP
+     int y = 5 + 3 * 2; // Evaluates to 11.
+     ```
+4. Logical and relational expressions
+   - Logical expressions (`&&`, `||`, `!`) produce a boolean result.
+   - Relational expressions (`==`, `!=`, `<`, `>`, `<=`, `>=`) compare values and return true or
+     false.
+   - For example,
+     ```CPP
+     bool result = (x > && (y < 10); // Evaluates to true.
+     ```
+5. Assignment expressions
+   - An assignment operation is also an expression that returns the assigned value.
+   - For example,
+     ```CPP
+     int z;
+     z = 20; // Evaluates to 20.
+     ```
+6. Function call expressions
+   - A function call acts as an expression, with the result being the return value of the function.
+   - For example,
+     ```CPP
+     int absValue = std::abs( -5 ); // Evaluates to 5.
+     ```
+7. Conditional (ternary) expressions
+   - A ternary expression evaluates a condition and returns one of two values based on the result.
+   - For example,
+     ```CPP
+     int max = (x > y) ? x : y; // Returns x if x > y, otherwise y.
+     ```
+8. Member access expressions
+   - Accessing a member of an object or a struct is also an expression.
+   - For example,
+     ```CPP
+     struct Point { int x, y; };
+     Point p = {3, 4};
+     p.x; // Evaluates to 3.
+     ```
+9. Pointer expressions
+   - Dereferencing a pointer or using the & operator to take the address of a variable forms an
+     expression.
+   - For example,
+     ```CPP
+     int* ptr = &x; // Evaluates to the address of x.
+     *ptr; // Evaluates to the value of x (10).
+     ```
 
 ### Interface
 

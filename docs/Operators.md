@@ -168,8 +168,12 @@ ClassName& operator=( const ClassName& ) = default;
 
 ```CPP
 ClassName& operator=( const ClassName& other ) {
-   // Custom copy logic here.
-   return *this;
+   // If copy to the same object, nothing need to be done.
+   if( this != &other ) {
+      // Custom copy logic here.
+      // Copy the other object's resources into this object.
+   }
+   return *this; // Returning *this enables chained assignments.
 };
 ```
 
@@ -212,7 +216,7 @@ ClassName& operator=( ClassName&& other ) noexcept {
       // Release this object's resources.
       // Move the other object's resources into this object.
    }
-   return *this;
+   return *this; // Returning *this enables chained assignments.
 };
 ```
 

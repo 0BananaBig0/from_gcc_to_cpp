@@ -46,6 +46,7 @@
 
 ```CPP
 // Function-like Macros
+// para_list without Type specifiers.
 #define funcName( para_list ) replacement_text
 ```
 

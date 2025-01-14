@@ -149,13 +149,15 @@
     - [`final` Classes](#final-classes)
       - [Explanation](#explanation-35)
       - [Syntax](#syntax-26)
+    - [Notes](#notes-4)
   - [`explicit`](#explicit)
   - [`using`](#using)
   - [Hiding, Overloading, Overriding, and Overwriting](#hiding-overloading-overriding-and-overwriting)
   - [Bitfields](#bitfields)
     - [Explanation](#explanation-36)
     - [Syntax](#syntax-27)
-  - [Notes](#notes-4)
+  - [A Demonstration](#a-demonstration)
+  - [Notes](#notes-5)
 
 <!-- vim-markdown-toc -->
 
@@ -750,16 +752,37 @@ class ClassName {
 1. Traditional initializer lists:
    - They were used before C++11 and **primarily involved constructor initialization lists** to
      **initialize member variables**, with less emphasis on consistency across all types.
+   - **Initialization order:**
+     - **Matched constructor**:
+       - The constructor that best matches the initializer list is chosen first.
+     - **Implicit conversion**:
+       - If no exact match is found for the constructor, implicit conversions can be applied, and
+         the constructor that matches the converted type is chosen.
 2. Modern initializer lists (Introduced in C++11):
    - Thye bring **a more consistent, type-safe, and uniform syntax for initialization**.
    - They **prevent narrowing conversions** and **provide a cleaner syntax** that **can be used
      across all types** (primitives, containers, user-defined types).
-   - They can **work with `std::initializer_list<Type>`** to initialize containers like
+   - They can **work with `std::initializer_list< Type >`** to initialize containers like
      `std::vector`, but `std::initializer_list< Type >` **introduces a slight overhead**. This
      overhead arises because `std::initializer_list< Type >` **stores a pointer** to the underlying
      data and the size of the list. However, this overhead is generally minimal and is unlikely to
      significantly affect performance in most use cases.
+   - This is only used to initialize the values of elements in an object and cannot specify the size
+     of the object, except when the size itself is a member of the object.
+     ```CPP
+     std::vector< int > vec{ val }; // Create a vector with one element.
+     std::vector< int > vec( size ); // Create a vector with `size` elements.
+     ```
    - An example:`int int_var{ val };`.
+   - **Initialization order:**
+     - **Constructor with an initializer list**:
+       - If the class has a constructor that takes a `std::initializer_list`, it will be prioritized
+         when initializing with curly braces and matching arguments.
+     - **Other constructors**: contain the implicition conversion.
+       - If the initializer list constructor is not available or does not match, the compiler looks
+         for a regular constructor that matches the arguments.
+     - **Aggregate initialization**:
+       - If no constructors are defined, aggregate initialization applies to structs or classes.
 
 ##### Notes
 
@@ -1013,6 +1036,13 @@ class ClassName {
 #### `virtual` Constructors
 
 1. The concept of a "`virtual` constructor" does not exist.
+2. The `virtual` keyword requires a `vtable` to support runtime polymorphism.
+3. The constructor is responsible for initializing the `vtable` and constructing the object.
+4. However, when the constructor is called, the `vtable` does not yet exist.
+5. Therefore, if the constructor were allowed to be declared as a `virtual` method, a conflict would
+   arise:
+   - The constructor would need the `vtable` to be called, but the `vtable` itself is created as
+     part of the constructor's process.
 
 #### `explicit` Constructors
 
@@ -1258,6 +1288,7 @@ class Derived: public Base {
 
 1. The `virtual` keyword in C++ is integral to **enabling dynamic polymorphism** and ensuring the
    **correct behavior** of objects in **inheritance** hierarchies.
+2. **The `virtual` keyword propagates down the class hierarchy**.
 
 #### `virtual` Methods (`virtual` Functions) (`virtual` Memeber Functions)
 
@@ -1355,7 +1386,7 @@ class Derived: public Base {
 class ClassName {
    public:
       // Pure `virtual` function.
-      virtual RetType funcName const = 0;
+      virtual RetType funcName( para_list ) const = 0;
 };
 ```
 
@@ -1416,6 +1447,7 @@ class Derived: public Base {
 6. **For example**, `Base` is virtually inherited by `B` using the `virtual` keyword. Although
    `Derived` inherits from `B` without using the `virtual` keyword, `Base` is still virtually
    inherited by `Derived` through `B`, as `B` has virtually inherited `Base`.
+7. **The `virtual` keyword propagates down the class hierarchy**.
 
 ##### Definition Syntax
 
@@ -1535,8 +1567,8 @@ class ClassB {
 
 ##### Explanation
 
-1. The final keyword in C++ is used to **prevent further inheritance or overriding** of classes and
-   virtual functions.
+1. The `final` keyword in C++ is used to **prevent further inheritance or overriding** of classes
+   and `virtual` functions.
 2. It plays a crucial role in controlling the behavior of classes in the inheritance hierarchy.
 
 #### `final` Functions
@@ -1545,8 +1577,8 @@ class ClassB {
 
 1. A `final` function is **a `virtual` function** that **cannot be overridden** by any derived
    class.
-2. The final specifier ensures that the function's implementation remains fixed in the class that
-   declares it as final.
+2. The `final` specifier ensures that the function's implementation remains fixed in the class that
+   declares it as `final`.
 3. This feature can **improve performance** by **devirtualizing calls** to the final function, as
    the compiler can safely **inline such calls**, knowing that no further overrides exist and **not
    add this function to `vtable`**.
@@ -1579,6 +1611,13 @@ class FinalClass final {};
 
 // class Derived: public FinalClass {};   // Error: Cannot inherit from a final class
 ```
+
+#### Notes
+
+1. `final` functions should not be combined with the `override` keyword, but `virtual` methods in
+   `final` classes should still be declared with the `override` keyword.
+2. `final` classes do not need to contain functions with the `final` keyword.
+3. Functions marked with `override` must be `virtual` functions.
 
 ### `explicit`
 
@@ -1619,6 +1658,306 @@ class ClassName {
       Type2 mem_name2: num_of_bits2;
       ...;
 };
+```
+
+### A Demonstration
+
+```cpp
+#include <algorithm>
+#include <future>
+#include <iostream>
+#include <mutex>
+#include <random>
+#include <vector>
+#ifdef PRINT_MES
+   #define OUTMES( inf ) std::cout << inf << std::endl;
+#else
+   #define OUTMES( inf ) ;
+#endif
+class Sort {
+   public:
+      virtual void operate() { return; };
+
+      Sort() { OUTMES( "Default constructor." ); };
+
+      Sort( const Sort& other ) {
+         OUTMES( "Copy constructor." );
+         if( this != &other ) {
+            _vec = other.getVec();
+         };
+      };   // Not require move semenetatic.
+
+      Sort( Sort&& other ) {
+         OUTMES( "Move constructor." );
+         if( this != &other ) {
+            _vec = std::move( other.getVec() );
+         };
+      };   // Require move semenetatic.
+
+      explicit Sort( const std::vector< int >& vec ): _vec{ vec } {
+         OUTMES( "Parameterized constructor with copy." );
+      };
+
+      explicit Sort( std::vector< int >&& vec ): _vec{ std::move( vec ) } {
+         OUTMES( "Parameterized constructor with move semenetatic." );
+      };
+
+      virtual ~Sort() = default;
+
+      const std::vector< int >& getVec() const {
+         OUTMES( "lvalue" );
+         return _vec;
+      };   // Not allow move sementatic.
+
+      std::vector< int >&& getVec() {
+         OUTMES( "rvalue" );
+         return std::move( _vec );
+      };   // Allow move sementatic.
+
+      Sort& operator=( const Sort& other ) {
+         OUTMES( "Copy assignment." );
+         if( this != &other ) {
+            _vec = other.getVec();
+         };
+         return *this;   // Allow chain assignment.
+      };   // Not require move semenetatic.
+
+      Sort& operator=( Sort&& other ) {
+         OUTMES( "Move assignment." );
+         if( this != &other ) {
+            _vec = std::move( other.getVec() );
+         };
+         return *this;
+      };   // Require move sementatic.
+
+      // Friend function to overload `<<`
+      // Why require `friend`:
+      // The << operator is typically implemented as a non-member function
+      // because the left-hand operand (std::ostream) is not part of the class.
+      friend std::ostream& operator<<( std::ostream& os, const Sort& sort );
+
+      Sort operator+( const Sort& other ) {
+         OUTMES( "*This + other." );
+         std::vector< int > res = _vec;
+         if( _vec.size() == other.getVec().size() ) {
+            for( size_t i = 0; i < _vec.size(); i++ ) {
+               res[i] = res[i] + other.getVec()[i];
+            }
+         }
+         return Sort( std::move( res ) );
+      };
+
+      Sort& operator+=( const Sort& other ) {
+         OUTMES( "*This += other." );
+         if( _vec.size() == other.getVec().size() ) {
+            for( size_t i = 0; i < _vec.size(); i++ ) {
+               _vec[i] += other.getVec()[i];
+            }
+         }
+         return *this;   // Allow chain rules.
+      };
+
+      bool operator<( const Sort& other ) const {
+         OUTMES( "*This < other?" );
+         if( _vec.size() == other.getVec().size() ) {
+            for( size_t i = 0; i < _vec.size(); i++ ) {
+               return _vec[i] < other.getVec()[i];
+            }
+         }
+         return _vec[0];
+      };
+
+      // Overload prefix increment (++x)
+      Sort& operator++() {
+         OUTMES( "++( *This )." );
+         for( auto& val: _vec ) {
+            ++val;
+         };
+         return *this;   // Return the updated object
+      }
+
+      // Overload postfix increment (x++)
+      // The dummy `int` parameter differentiates the postfix increment from
+      // prefix increment. The parameter is not used but is necessary for the
+      // signature.
+      Sort operator++( int ) {
+         OUTMES( "( *This )++." );
+         Sort temp = *this;   // Save the current state
+         for( auto& val: _vec ) {
+            ++val;
+         };
+         return temp;   // Return the original state
+      }
+
+   protected:
+      std::vector< int > _vec;
+};
+
+// Implementation of `<<` operator
+std::ostream& operator<<( std::ostream& os, const Sort& sort ) {
+   os << "[ ";
+   for( auto& ele: sort.getVec() ) {
+      os << ele;
+      os << " ";
+   }
+   os << "]";
+   return os;
+};
+
+template< typename T > class CircularQueue {
+   public:
+      CircularQueue() = default;
+      explicit CircularQueue( size_t vec_size ):
+         _vec( vec_size ),
+         _popIndex( 0 ),
+         _pushIndex( 0 ),
+         _count( 0 ) {};
+
+      T pop() {
+         if( _count == 0 ) {
+            exit( 0 );
+            return T( 0 );
+         };
+         size_t tmp = _popIndex;
+         _count--;
+         _popIndex++;
+         if( _popIndex >= _vec.size() ) {
+            _popIndex -= _vec.size();
+         };
+         return _vec[tmp];
+      };
+
+      void push( const T& other ) {
+         if( _count >= _vec.size() ) {
+            _vec.push_back( other );
+         } else {
+            _vec[_pushIndex] = other;
+         }
+         _count++;
+         _pushIndex++;
+         if( _pushIndex >= _vec.size() ) {
+            _pushIndex -= _vec.size();
+         };
+      };
+
+      size_t size() { return _count; };
+
+   private:
+      std::vector< T > _vec;
+      size_t _popIndex;
+      size_t _pushIndex;
+      size_t _count;
+};
+
+class MergeSort final: public Sort {
+   public:
+      void operate() override;
+
+      MergeSort(): Sort{}, _que(), _finished{ false } {
+         OUTMES( "Derived default constructor." );
+      };
+
+      MergeSort( const MergeSort& other ):
+         Sort{ other },
+         _que( _vec.size() ),
+         _finished{ false } {
+         OUTMES( "Derived copy constructor." );
+      };   // Not require move semenetatic.
+
+      MergeSort( MergeSort&& other ):
+         Sort{ std::move( other ) },
+         _que( _vec.size() ),
+         _finished{ false } {
+         OUTMES( "Derived move constructor." );
+      };   // Require move semenetatic.
+
+      explicit MergeSort( const std::vector< int >& vec ):
+         Sort{ vec },
+         _que( _vec.size() ),
+         _finished{ false } {
+         OUTMES( "Derived parameterized constructor with copy." );
+      };
+
+      explicit MergeSort( std::vector< int >&& vec ):
+         Sort{ std::move( vec ) },
+         _que( _vec.size() ),
+         _finished{ false } {
+         OUTMES( "Derived parameterized constructor with move semenetatic." );
+      };
+
+      ~MergeSort() override {
+         while( _que.size() > 0 ) {
+            auto ele = _que.pop();
+            delete ele;
+         }
+      };
+
+   private:
+      std::mutex _queueMtx;
+      CircularQueue< std::vector< int >* > _que;
+      bool _finished;
+};
+
+void MergeSort::operate() {
+   auto merge = [&]( std::vector< int >* vec1, std::vector< int >* vec2 ) {
+      size_t len = vec1->size() + vec2->size();
+      std::vector< int >* res;
+      if( len == _vec.size() ) {
+         _finished = true;
+         res = &( _vec );
+      } else {
+         res = new std::vector< int >( len );
+      }
+      for( size_t il = 0, i1 = 0, i2 = 0; il < len; il++ ) {
+         if( ( i1 < vec1->size() && i2 < vec2->size()
+               && ( *vec1 )[i1] < ( *vec2 )[i2] )
+             || ( i1 < vec1->size() && i2 >= vec2->size() ) ) {
+            ( *res )[il] = ( *vec1 )[i1++];
+         } else {
+            ( *res )[il] = ( *vec2 )[i2++];
+         }
+      };
+      delete vec1;
+      delete vec2;
+      if( len == _vec.size() ) {
+         return res;
+      }
+      _queueMtx.lock();
+      _que.push( res );
+      _queueMtx.unlock();
+      return res;
+   };
+   if( _vec.size() < 2 ) {
+      _finished = true;
+      return;
+   }
+   for( size_t i = 0; i < _vec.size(); i++ ) {
+      _que.push( new std::vector< int >{ _vec[i] } );
+   }
+   std::future< std::vector< int >* > get_res;
+   while( !_finished ) {
+      if( _que.size() > 1 ) {
+         _queueMtx.lock();
+         auto vec1 = _que.pop();
+         auto vec2 = _que.pop();
+         _queueMtx.unlock();
+         get_res = std::async( merge, vec1, vec2 );
+      }
+   }
+   get_res.wait();
+};
+
+std::vector< int > generateRandomVector( size_t size, int min, int max ) {
+   // Random number generator
+   std::random_device rd;                             // Seed
+   std::mt19937 gen( rd() );                          // Mersenne Twister engine
+   std::uniform_int_distribution<> dis( min, max );   // Uniform
+                                                      // distribution
+   // Generate vector with random values
+   std::vector< int > vec( size );
+   std::generate( vec.begin(), vec.end(), [&]() { return dis( gen ); } );
+   return vec;
+}
 ```
 
 ### Notes

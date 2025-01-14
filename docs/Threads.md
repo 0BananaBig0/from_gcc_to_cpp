@@ -178,7 +178,9 @@
    `const` lvalue references) **when passing them to `std::thread`**.
 8. This is necessary because `std::thread` moves its arguments into the thread function by default,
    which can break lvalue reference bindings.
-9. Its header file is `<thread>`.
+9. Before a `std::thread` object is destroyed, its `join()` or `detach()` method must be called to
+   avoid terminating the program.
+10. Its header file is `<thread>`.
 
 ##### Declaration Syntax
 
@@ -1337,7 +1339,10 @@ void notify_all_at_thread_exit( std::condition_variable& cond,
    `launch::async | launch::deferred` as policy.
 4. `std::async` automatically **generates a `std::future` object**, enabling the caller to **obtain
    the result** of an asynchronous operation.
-5. Its header file is `<future>`.
+5. When **some parameters** of `funName` are **lvalue references**, **their corresponding arguments
+   must be wrapped** in **`std::ref`** (for non-const lvalue references) or **`std::cref`** (for
+   `const` lvalue references) **when passing them to `std::async`**.
+6. Its header file is `<future>`.
 
 #### Syntax
 
@@ -1533,8 +1538,9 @@ std::shared_future< Type > sfut_name = std::move( fut_name );
 
 #### Explanation
 
-1. A promise is **an template class object** that can **store a value of type `Type` to be retrieved
-   by a `std::future` object** (possibly in another thread), **offering a synchronization point**.
+1. A `promise` is **an template class object** that can **store a value of type `Type` to be
+   retrieved by a `std::future` object** (possibly in another thread), **offering a synchronization
+   point**.
 2. **On construction**, promise objects are **associated to a new shared state** on which they can
    **store either a value of type `Type` or an exception** derived from `std::exception`.
 3. This shared state can be **associated to a `std::future` object** by calling member `get_future`.
@@ -1551,7 +1557,7 @@ std::shared_future< Type > sfut_name = std::move( fut_name );
      the result.
 7. **The lifetime** of the shared state lasts at least until the last object with which it is
    associated releases it or is destroyed.
-8. Therefore, it can survive the promise object that obtained it in the first place if associated
+8. Therefore, it can survive the `promise` object that obtained it in the first place if associated
    also to a future.
 9. Its header file is `<future>`.
 

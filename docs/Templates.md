@@ -63,6 +63,9 @@
    them.
 7. Because templates **exist and are compiled only for specific types when instantiated**, they
    **can** be **declared and defined in header files**.
+8. For template classes or functions, **the full definition must be visible before instantiation**.
+9. **Forward declarations** are generally **not practical for templates** unless you use explicit
+   specialization or separate declarations for `inline` implementations.
 
 ### Order of Parameters in the Parameter List
 

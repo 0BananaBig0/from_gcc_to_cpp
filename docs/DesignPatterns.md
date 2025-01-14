@@ -199,7 +199,8 @@
 5. The four statements above imply the following:
    - Use a subclass to manage and access other subclasses.
    - There are at least three classes: `Component`, `Composite`, and `Leaf`.
-   - `Component` is an interface that provides pure `virtual` methods to access itself.
+   - `Component` is an abstract class that provides pure `virtual` methods to access itself and
+     other methods to mangage itself.
    - Both `Composite` and `Leaf` inherit from `Component`.
    - `Composite` has at least one container member used to store instances of `Leaf`.
    - It provides methods to manage this container and implements all `virtual` methods of
