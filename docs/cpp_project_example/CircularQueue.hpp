@@ -6,11 +6,17 @@
 ///////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#include "Sort.hpp"
+#include <cstddef>
+#include <cstdlib>
+#include <vector>
 
 template< typename T > class CircularQueue {
    public:
-      CircularQueue() = default;
+      CircularQueue():
+         _vec( 0 ),
+         _popIndex( 0 ),
+         _pushIndex( 0 ),
+         _count( 0 ) {};
       explicit CircularQueue( size_t vec_size ):
          _vec( vec_size ),
          _popIndex( 0 ),
@@ -34,11 +40,12 @@ template< typename T > class CircularQueue {
       void push( const T& other ) {
          if( _count >= _vec.size() ) {
             _vec.push_back( other );
+            _pushIndex = 0;
          } else {
             _vec[_pushIndex] = other;
+            _pushIndex++;
          }
          _count++;
-         _pushIndex++;
          if( _pushIndex >= _vec.size() ) {
             _pushIndex -= _vec.size();
          };
