@@ -10,6 +10,7 @@
 #include "Sort.hpp"
 #include "CircularQueue.hpp"
 #include "MergeSort.hpp"
+#include "BubbleSort.hpp"
 
 int main() {
    // tPrint();
@@ -25,7 +26,7 @@ int main() {
    std::cin >> max_number;
    std::vector< int > ovec
       = generateRandomVector( num_of_test, min_number, max_number );
-   MergeSort sort_vec( ovec );
+   BubbleSort sort_vec( ovec );
    std::cout << "Before sorted:" << sort_vec << std::endl;
    sort_vec.operate();
    std::cout << "After sorted:" << sort_vec << std::endl;

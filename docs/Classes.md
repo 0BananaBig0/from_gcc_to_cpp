@@ -1806,7 +1806,11 @@ std::ostream& operator<<( std::ostream& os, const Sort& sort ) {
 
 template< typename T > class CircularQueue {
    public:
-      CircularQueue() = default;
+      CircularQueue():
+         _vec( 0 ),
+         _popIndex( 0 ),
+         _pushIndex( 0 ),
+         _count( 0 ) {};
       explicit CircularQueue( size_t vec_size ):
          _vec( vec_size ),
          _popIndex( 0 ),
@@ -1830,11 +1834,12 @@ template< typename T > class CircularQueue {
       void push( const T& other ) {
          if( _count >= _vec.size() ) {
             _vec.push_back( other );
+            _pushIndex = 0;
          } else {
             _vec[_pushIndex] = other;
+            _pushIndex++;
          }
          _count++;
-         _pushIndex++;
          if( _pushIndex >= _vec.size() ) {
             _pushIndex -= _vec.size();
          };
@@ -1853,57 +1858,42 @@ class MergeSort final: public Sort {
    public:
       void operate() override;
 
-      MergeSort(): Sort{}, _que(), _finished{ false } {
-         OUTMES( "Derived default constructor." );
-      };
+      MergeSort(): Sort{} { OUTMES( "Derived default constructor." ); };
 
-      MergeSort( const MergeSort& other ):
-         Sort{ other },
-         _que( _vec.size() ),
-         _finished{ false } {
+      MergeSort( const MergeSort& other ): Sort{ other } {
          OUTMES( "Derived copy constructor." );
       };   // Not require move semenetatic.
 
-      MergeSort( MergeSort&& other ):
-         Sort{ std::move( other ) },
-         _que( _vec.size() ),
-         _finished{ false } {
+      MergeSort( MergeSort&& other ): Sort{ std::move( other ) } {
          OUTMES( "Derived move constructor." );
       };   // Require move semenetatic.
 
-      explicit MergeSort( const std::vector< int >& vec ):
-         Sort{ vec },
-         _que( _vec.size() ),
-         _finished{ false } {
+      explicit MergeSort( const std::vector< int >& vec ): Sort{ vec } {
          OUTMES( "Derived parameterized constructor with copy." );
       };
 
-      explicit MergeSort( std::vector< int >&& vec ):
-         Sort{ std::move( vec ) },
-         _que( _vec.size() ),
-         _finished{ false } {
+      explicit MergeSort( std::vector< int >&& vec ): Sort{ std::move( vec ) } {
          OUTMES( "Derived parameterized constructor with move semenetatic." );
       };
 
-      ~MergeSort() override {
-         while( _que.size() > 0 ) {
-            auto ele = _que.pop();
-            delete ele;
-         }
-      };
-
    private:
-      std::mutex _queueMtx;
-      CircularQueue< std::vector< int >* > _que;
-      bool _finished;
 };
 
 void MergeSort::operate() {
+   if( _vec.size() < 2 ) {
+      return;
+   }
+   std::mutex que_mtx;
+   CircularQueue< std::vector< int >* > que( _vec.size() );
+   bool finished = false;
+   for( size_t i = 0; i < _vec.size(); i++ ) {
+      que.push( new std::vector< int >{ _vec[i] } );
+   }
    auto merge = [&]( std::vector< int >* vec1, std::vector< int >* vec2 ) {
       size_t len = vec1->size() + vec2->size();
       std::vector< int >* res;
       if( len == _vec.size() ) {
-         _finished = true;
+         finished = true;
          res = &( _vec );
       } else {
          res = new std::vector< int >( len );
@@ -1922,25 +1912,18 @@ void MergeSort::operate() {
       if( len == _vec.size() ) {
          return res;
       }
-      _queueMtx.lock();
-      _que.push( res );
-      _queueMtx.unlock();
+      que_mtx.lock();
+      que.push( res );
+      que_mtx.unlock();
       return res;
    };
-   if( _vec.size() < 2 ) {
-      _finished = true;
-      return;
-   }
-   for( size_t i = 0; i < _vec.size(); i++ ) {
-      _que.push( new std::vector< int >{ _vec[i] } );
-   }
    std::future< std::vector< int >* > get_res;
-   while( !_finished ) {
-      if( _que.size() > 1 ) {
-         _queueMtx.lock();
-         auto vec1 = _que.pop();
-         auto vec2 = _que.pop();
-         _queueMtx.unlock();
+   while( !finished ) {
+      if( que.size() > 1 ) {
+         que_mtx.lock();
+         auto vec1 = que.pop();
+         auto vec2 = que.pop();
+         que_mtx.unlock();
          get_res = std::async( merge, vec1, vec2 );
       }
    }
