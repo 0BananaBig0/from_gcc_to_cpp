@@ -100,6 +100,11 @@
    - There are many different STL implementations in C++; some are more efficient than the default
      STL, such as EASTL. Why hasn't the default STL been replaced with these more efficient
      alternatives?
+8. While theoretical algorithm complexity focuses on the number of operations (such as comparisons
+   or arithmetic operations), it often overlooks practical considerations like memory operations,
+   cache performance, and hardware constraints. These factors can significantly impact real-world
+   performance, sometimes making an algorithm with a higher theoretical complexity faster in
+   specific scenarios.
 
 ## Some Basic Concepts
 

@@ -338,7 +338,7 @@ start = Clock::now();
 end = Clock::now();
 std::chrono::duration< float, std::ratio< num1, num2 > > dur
    = std::chrono::duration_cast< CorrespondingTemplateInstantiation > ( end - start );
-std::cout << "Elapsed time: " << dur.count() << " time unit\n";
+std::cout << "Elapsed time: " << dur.count() << " time unit.\n";
 ```
 
 ```CPP
@@ -347,7 +347,7 @@ auto start = Clock::now();
 // Do something.
 auto end = Clock::now();
 auto dur = std::chrono::duration_cast< CorrespondingTemplateInstantiation > ( end - start );
-std::cout << "Elapsed time: " << dur.count() << " time unit\n";
+std::cout << "Elapsed time: " << dur.count() << " time unit.\n";
 ```
 
 ```CPP
