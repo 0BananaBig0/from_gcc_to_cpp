@@ -10,23 +10,25 @@
 #include "Sort.hpp"
 #include "CircularQueue.hpp"
 #include "MergeSort.hpp"
+#include "MergeSortLayerByLayer.hpp"
 #include "BubbleSort.hpp"
 
 int main() {
    // tPrint();
    // ttPrint();
-   size_t num_of_test = 0;
-   int min_number = 0;
-   int max_number = INT32_MAX;
-   std::cout << "Type the number of test patterns:" << std::endl;
-   std::cin >> num_of_test;
-   std::cout << "Type the minimum number in the test patterns:" << std::endl;
-   std::cin >> min_number;
-   std::cout << "Type the maximum number in the test patterns:" << std::endl;
-   std::cin >> max_number;
-   std::vector< int > ovec
-      = generateRandomVector( num_of_test, min_number, max_number );
-   BubbleSort sort_vec( ovec );
+   // size_t num_of_test = 0;
+   // int min_number = 0;
+   // int max_number = INT32_MAX;
+   // std::cout << "Type the number of test patterns:" << std::endl;
+   // std::cin >> num_of_test;
+   // std::cout << "Type the minimum number in the test patterns:" << std::endl;
+   // std::cin >> min_number;
+   // std::cout << "Type the maximum number in the test patterns:" << std::endl;
+   // std::cin >> max_number;
+   // std::vector< int > ovec
+   //    = generateRandomVector( num_of_test, min_number, max_number );
+   std::vector< int > ovec = generateRandomVector( 10000, 0, 100000 );
+   MergeSortLayerByLayer sort_vec( ovec );
    std::cout << "Before sorted:" << sort_vec << std::endl;
    sort_vec.operate();
    std::cout << "After sorted:" << sort_vec << std::endl;

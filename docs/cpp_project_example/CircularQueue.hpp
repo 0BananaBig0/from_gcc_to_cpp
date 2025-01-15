@@ -26,7 +26,7 @@ template< typename T > class CircularQueue {
       T pop() {
          if( _count == 0 ) {
             exit( 0 );
-            return T( 0 );
+            return T{};
          };
          size_t tmp = _popIndex;
          _count--;
@@ -39,7 +39,7 @@ template< typename T > class CircularQueue {
 
       void push( const T& other ) {
          if( _count >= _vec.size() ) {
-            _vec.push_back( other );
+            _vec.emplace_back( other );
             _pushIndex = 0;
          } else {
             _vec[_pushIndex] = other;
@@ -51,11 +51,29 @@ template< typename T > class CircularQueue {
          };
       };
 
+      // Manually push.
+      size_t push() {
+         size_t man_index = _pushIndex;
+         if( _count >= _vec.size() ) {
+            _vec.emplace_back( T{} );
+            _pushIndex = 0;
+            man_index = _vec.size() - 1;
+         } else {
+            _pushIndex++;
+         }
+         _count++;
+         if( _pushIndex >= _vec.size() ) {
+            _pushIndex -= _vec.size();
+         };
+         return man_index;
+      };
+
       size_t size() { return _count; };
 
    private:
+      friend class MergeSortLayerByLayer;
       std::vector< T > _vec;
-      size_t _popIndex;
-      size_t _pushIndex;
+      size_t _popIndex;    // Current pop
+      size_t _pushIndex;   // Next push, empty now.
       size_t _count;
 };

@@ -35,24 +35,29 @@ class MergeSort final: public Sort {
 };
 
 void MergeSort::operate() {
+   // One element, the result = the input.
    if( _vec.size() < 2 ) {
       return;
    }
-   std::mutex que_mtx;
+
    CircularQueue< std::vector< int >* > que( _vec.size() );
-   bool finished = false;
    for( size_t i = 0; i < _vec.size(); i++ ) {
       que.push( new std::vector< int >{ _vec[i] } );
    }
+
+   std::mutex que_mtx;
+   bool finished = false;
    auto merge = [&]( std::vector< int >* vec1, std::vector< int >* vec2 ) {
       size_t len = vec1->size() + vec2->size();
       std::vector< int >* res;
       if( len == _vec.size() ) {
-         finished = true;
+         // The last thread, store the result into the original vector.
          res = &( _vec );
       } else {
          res = new std::vector< int >( len );
       }
+
+      // Merge
       for( size_t il = 0, i1 = 0, i2 = 0; il < len; il++ ) {
          if( ( i1 < vec1->size() && i2 < vec2->size()
                && ( *vec1 )[i1] < ( *vec2 )[i2] )
@@ -64,23 +69,25 @@ void MergeSort::operate() {
       };
       delete vec1;
       delete vec2;
+
       if( len == _vec.size() ) {
-         return res;
+         // The last thread.
+         finished = true;
+         return;
       }
+      // Store the result.
       que_mtx.lock();
       que.push( res );
       que_mtx.unlock();
-      return res;
+      return;
    };
-   std::future< std::vector< int >* > get_res;
    while( !finished ) {
       if( que.size() > 1 ) {
          que_mtx.lock();
          auto vec1 = que.pop();
          auto vec2 = que.pop();
          que_mtx.unlock();
-         get_res = std::async( merge, vec1, vec2 );
-      }
-   }
-   get_res.wait();
+         auto get_res = std::async( merge, vec1, vec2 );
+      };
+   };
 };
