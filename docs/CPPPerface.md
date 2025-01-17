@@ -105,6 +105,10 @@
    cache performance, and hardware constraints. These factors can significantly impact real-world
    performance, sometimes making an algorithm with a higher theoretical complexity faster in
    specific scenarios.
+9. A theory to keep in mind is that no single algorithm is universally perfect for every situation.
+   If an algorithm performs well in various scenarios, it is likely composed of a family of
+   algorithms. For more detailed information, you can explore the implementation of `std::sort`. The
+   reasoning behind this is discussed in point eight.
 
 ## Some Basic Concepts
 
