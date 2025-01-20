@@ -109,6 +109,7 @@
 - [`g++`, `clang++` and `mscv++`](#g-clang-and-mscv)
   - [Explanation](#explanation-4)
   - [Code Examples](#code-examples)
+- [Notes](#notes)
 
 <!-- vim-markdown-toc -->
 
@@ -727,3 +728,13 @@ int main() {
    return 0;
 }
 ```
+
+## Notes
+
+1. When compiling C/C++ code, the `-pedantic-errors` compiler argument is strongly recommended.
+2. This argument disables all compiler extensions not specified in the C/C++ standards.
+3. Compiler extensions are features added by compiler developers to enhance compatibility with other
+   versions of the language (e.g., C99) or for historical reasons, and they are always enabled by
+   default.
+4. We had better add a newline to the end of code files if it is missing, as this is a requirement
+   of the C++ standard for compliance with pedantic rules."

@@ -153,11 +153,35 @@
 
 1. This **preprocessor directive** provides additional information to the compiler, often used for
    **controlling compiler-specific behaviors** but can also be relevant in the context of macros.
+2. The `#pragma` directive itself does not belong to compiler extensions—it is a standardized part
+   of the C and C++ language specifications.
+3. However, the specific `#pragma` directives provided by compilers are often compiler extensions,
+   meaning their behavior and availability depend on the compiler.
+4. Different compilers support different `#pragma` directives. The following `#pragma` directives
+   work with GCC/G++ and Clang/Clang++ but may not be supported by other compilers.
+5. `#pragma once` is supported by most modern C/C++ compilers.
 
 ##### Syntax
 
 ```CPP
-#pragma once  // Ensures the file is included only once
+#pragma once  // Ensures the file is included only once.
+```
+
+```CPP
+#pragma GCC optimize( "ONumber" ) // Controls optimization levels.
+```
+
+```CPP
+// Controls diagnostic messages (warnings/errors).
+#pragma GCC diagnostic push // Save current state.
+#pragma GCC diagnostic ignored "-Wunused-variable" // Ignore unused variable warnings.
+CPP code; // No warning here.
+#pragma GCC diagnostic pop // Restore original state.
+```
+
+```CPP
+#pragma STDC FENV_ACCESS ON // Enable floating-point environment access.
+#pragma STDC FP_CONTRACT OFF // Disable floating-point contraction.
 ```
 
 #### `const` and `constexpr`
