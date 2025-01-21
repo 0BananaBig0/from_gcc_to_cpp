@@ -210,8 +210,8 @@
 
 ##### Explanation
 
-1. An initializer is **a way** to **assign a value to a variable or an object** at the time of its
-   **creation**.
+1. An initializer is **a way(the syntax)** to **assign a value to a variable or an object** at the
+   time of its **creation**.
 2. It can be an object, a function, a variable, a value, an expression, and so on.
 3. **All items used to initialize a target** are referred to as initializers.
 
@@ -632,3 +632,6 @@
 1. C++: performance, memory, optimization, safe or not; scope ({})( where we can access the
    function/object/... ) and lifetime; make code clearer; compile time and runtime; limitation and
    usage; definition.
+2. At the library, program, or function level, use comments to describe what.
+3. Inside the library, program, or function, use comments to describe how.
+4. At the statement level, use comments to describe why.

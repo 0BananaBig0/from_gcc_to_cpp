@@ -717,6 +717,7 @@ class ClassName {
 
 ```CPP
 // Traditional initializer lists.
+// Direct-initialization (initial value in parenthesis).
 // Slighly faster.
 class ClassName {
    public:
@@ -732,6 +733,7 @@ class ClassName {
 
 ```CPP
 // Modern initializer lists.
+// Direct-list-initialization (initial value in braces).
 // C++11 uniform initialization.
 // Type safe, prevents narrowing conversions.
 // Recommended.

@@ -108,6 +108,7 @@
   - [`g++`, `clang++` and `mscv++`](./docs/Gcc.md#g-clang-and-mscv)
     - [Explanation](./docs/Gcc.md#explanation-4)
     - [Code Examples](./docs/Gcc.md#code-examples)
+  - [Notes](./docs/Gcc.md#notes)
   - [`make` and Makefile](./docs/makeAndMakefiles.md#make-and-makefile)
     - [`make`](./docs/makeAndMakefiles.md#make)
     - [Makefile](./docs/makeAndMakefiles.md#makefile)
