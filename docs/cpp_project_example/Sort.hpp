@@ -12,6 +12,7 @@
 #include <mutex>
 #include <random>
 #include <vector>
+// Determines whether we need to observe the behavior of constructors and operators.
 #ifdef PRINT_MES
    #define OUTMES( inf ) std::cout << inf << std::endl;
 #else
@@ -181,3 +182,4 @@ bool verify( const std::vector< int >& origin,
    };
    return true;
 };
+

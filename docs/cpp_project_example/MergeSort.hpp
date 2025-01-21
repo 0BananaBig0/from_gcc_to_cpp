@@ -40,12 +40,15 @@ void MergeSort::operate() {
       return;
    }
 
+   // Storing a pointer is faster than storing an entire vector.
+   // Merge sort requires a new vector to store the result.
    CircularQueue< std::vector< int >* > que( _vec.size() );
    for( size_t i = 0; i < _vec.size(); i++ ) {
       que.push( new std::vector< int >{ _vec[i] } );
    }
 
    std::mutex que_mtx;
+   // Indicates whether the last thread has finished.
    bool finished = false;
    auto merge = [&]( std::vector< int >* vec1, std::vector< int >* vec2 ) {
       size_t len = vec1->size() + vec2->size();
@@ -82,6 +85,7 @@ void MergeSort::operate() {
       return;
    };
    while( !finished ) {
+      // One sub thread process two tasks.
       if( que.size() > 1 ) {
          que_mtx.lock();
          auto vec1 = que.pop();
@@ -91,3 +95,4 @@ void MergeSort::operate() {
       };
    };
 };
+

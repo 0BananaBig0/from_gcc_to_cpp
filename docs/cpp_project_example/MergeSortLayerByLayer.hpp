@@ -57,6 +57,8 @@ void MergeSortLayerByLayer::operate() {
    };
 
    std::mutex que_mtx;
+   // These two variables verify whether all threads related to a layer have
+   // finished.
    std::atomic_size_t count_finished_threads = 0;
    size_t count_needed_threads = 0;
    auto merge = [&]( VecInfo vec_info1,
@@ -82,6 +84,7 @@ void MergeSortLayerByLayer::operate() {
       };
 
       // Store the VecInfo of the result.
+      // Use indexes to prevent invalid pointers and invalid references
       que_mtx.lock();
       auto push_id = que.push();
       que_mtx.unlock();
@@ -175,3 +178,4 @@ void MergeSortLayerByLayer::operate() {
       tmp_or_vec = !tmp_or_vec;
    };
 };
+

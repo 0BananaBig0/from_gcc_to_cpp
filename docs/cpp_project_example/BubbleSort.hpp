@@ -36,6 +36,7 @@ class BubbleSort final: public Sort {
 };
 
 void BubbleSort::operate() {
+   // Determine whether all elements have been sorted.
    bool flag = false;
    do {
       flag = false;
@@ -49,3 +50,4 @@ void BubbleSort::operate() {
       };
    } while( flag );
 };
+

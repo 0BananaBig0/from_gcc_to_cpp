@@ -52,6 +52,7 @@ template< typename T > class CircularQueue {
       };
 
       // Manually push.
+      // Prevent invalid pointers or references.
       size_t push() {
          size_t man_index = _pushIndex;
          if( _count >= _vec.size() ) {
@@ -73,7 +74,7 @@ template< typename T > class CircularQueue {
    private:
       friend class MergeSortLayerByLayer;
       std::vector< T > _vec;
-      size_t _popIndex;    // Current pop
+      size_t _popIndex;    // Current pop.
       size_t _pushIndex;   // Next push, empty now.
-      size_t _count;
+      size_t _count;       // The number of stored results.
 };
