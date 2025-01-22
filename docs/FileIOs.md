@@ -220,6 +220,7 @@ std::wclog << L"Log message";     // Wide character log output
 2. It often used when you need to print a newline and flush the output immediately (e.g., after
    displaying a message).
 3. It causes a flush of the output stream, in addition to inserting a newline character.
+4. `std::endl` is slightly slower than `\n` due to additional flushing.
 
 #### `std::ends`
 

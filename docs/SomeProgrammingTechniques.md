@@ -30,19 +30,21 @@
   - [Usage](#usage)
   - [Advantages](#advantages)
   - [Disadvantages](#disadvantages)
+- [How to Process Unused Variables](#how-to-process-unused-variables)
+  - [Attribute `[[maybe_unused]]` (C++17)](#attribute-maybe_unused-c17)
+  - [Syntax](#syntax)
 
 <!-- vim-markdown-toc -->
 
 ## Some Small Knowledge
 
 1. The **performance** of `<` is better than `<=`.
-2. `std::endl` is a little **slower** than `"\n"` in **debug mode**. Otherwise, `std::endl` is
-   **faster**.
-3. **Function argument evaluation order** is **undefined** in C++. Differenct compilers with
+2. **Function argument evaluation order** is **undefined** in C++. Differenct compilers with
    different flags have different evaluation orders, until C++17, an uncomplete definiton of the
    function argument evaluation order comes.
-4. **All variables, objects, references, and pointers** should be \*\*initialized explicitly and
-5. **Float:** Be very careful. Both `float` and `double` type variables **have precision
+3. **All variables, objects, references, and pointers** should be **initialized explicitly and
+   immediately** after they are declared or created. This can avoid many unpredictable issues
+4. **Float:** Be very careful. Both `float` and `double` type variables **have precision
    limitations**. You should **never use `==` or `!=` to compare them** with any number. Instead,
    you should try to **convert the comparison into `>=` or `<=` forms**.
 
@@ -301,7 +303,9 @@ struct Vector3 {
 3. Write some shell scripts to test your project.
 4. Write some shell scripts to manage your project and execute these scripts you write on previous
    three steps.
-5. Use some tools to visualize these steps, for example, Jenkins. (**Optional**)
+5. Or write a `test` rule in `Makefile` to manage your project and execute these scripts you write
+   on previous three steps
+6. Use some tools to visualize these steps, for example, Jenkins. (**Optional**)
 
 ## RAII (Resource Acquisition Is Initialization)
 
@@ -351,3 +355,27 @@ struct Vector3 {
 5. Not suitable for non-scope-based resources:
    - Less effective for resources not naturally scoped to an object’s lifetime (e.g., global or
      shared resources).
+
+## How to Process Unused Variables
+
+### Attribute `[[maybe_unused]]` (C++17)
+
+1. The attribute `[[maybe_unused]]` allows the compiler to ignore unused variables, even when the
+   `-Werror=unused-variable` argument is enabled.
+2. Once a variable is declared as `[[maybe_unused]]`, the compiler will **not generate any warnings
+   or errors related to it**.
+3. Additionally, the compiler will **likely optimize these variables** out of the program, so they
+   have no performance impact.
+4. This attribute is useful when importing, copying, or pasting data that includes unused variables.
+5. Besides, if a variable is currently unused but may be used in the future, this attribute can be
+   applied.
+
+### Syntax
+
+```CPP
+[[maybe_unused]] Type var_name{};
+```
+
+## What Causes Undefined Behavior (UB)
+
+1. Using uninitialized variables.

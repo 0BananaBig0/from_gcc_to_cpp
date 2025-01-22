@@ -238,7 +238,7 @@ git reset CommitNumber(A sequence of number) TargetList(Optional)
 
 ```SH
 git log -Number(How many, Optional)
-git reset --hard CommitNumber(A sequence of number) TargetList(Optional)
+git reset --hard CommitNumber(A sequence of number)
 ```
 
 ### Link the Local Repository to a Remote Repository
