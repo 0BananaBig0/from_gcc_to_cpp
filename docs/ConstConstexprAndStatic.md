@@ -96,12 +96,14 @@
 
 #### Explanation
 
-1. The `const` **keyword** is used to **declare constants or read-only variables**.
-2. When a variable is declared as `const`, its value **cannot be modified** after it is initialized.
-3. This concept is beneficial for **protecting data** from unintended changes and for **enhancing
-   code readability and maintainability**.
-4. However, it is **just a promise** that programmers should keep something constant and **can be
-   broken**.
+1. The `const` **keyword** is used to **declare constants or read-only
+   variables**.
+2. When a variable is declared as `const`, its value **cannot be modified**
+   after it is initialized.
+3. This concept is beneficial for **protecting data** from unintended changes
+   and for **enhancing code readability and maintainability**.
+4. However, it is **just a promise** that programmers should keep something
+   constant and **can be broken**.
 
 #### Usage
 
@@ -109,12 +111,13 @@
 
 ###### Explanation
 
-1. A `const` variable is **a variable** whose value **cannot be changed** after it has been
-   initialized.
-2. The keyword `const` stands for "constant" and is used to define variables that should remain
-   unchanged throughout their lifespan.
+1. A `const` variable is **a variable** whose value **cannot be changed** after
+   it has been initialized.
+2. The keyword `const` stands for "constant" and is used to define variables
+   that should remain unchanged throughout their lifespan.
 3. A `const` variable must **be initialized when it is declared**.
-4. It can be **evaluated at compile time** if it is **initialized with a constant expression**.
+4. It can be **evaluated at compile time** if it is **initialized with a
+   constant expression**.
 5. It can bind to **a literal value or a temporary result**.
 
 ###### Syntax
@@ -127,10 +130,10 @@ const Type var_name = value;
 
 ###### Explanation
 
-1. `const Type* pointer_name;` means **the value** pointed to cannot be altered through this
-   pointer.
-2. `Type* const pointer_name;` means **the pointer address itself** cannot be changed after it is
-   initialized.
+1. `const Type* pointer_name;` means **the value** pointed to cannot be altered
+   through this pointer.
+2. `Type* const pointer_name;` means **the pointer address itself** cannot be
+   changed after it is initialized.
 
 ###### Syntax
 
@@ -141,10 +144,13 @@ const Type var_name = value;
 
 ###### Explanation
 
-1. A `const` reference is **a reference** that **points to a value but cannot modify it**.
-2. `const` references are commonly **used to avoid copying large objects** in function parameters or
-   to ensure a value isn’t modified when it’s passed as a reference.
-3. **A `const` reference** can bind to **a literal value or a temporary result**.
+1. A `const` reference is **a reference** that **points to a value but cannot
+   modify it**.
+2. `const` references are commonly **used to avoid copying large objects** in
+   function parameters or to ensure a value isn’t modified when it’s passed as a
+   reference.
+3. **A `const` reference** can bind to **a literal value or a temporary
+   result**.
 
 ###### Syntax
 
@@ -156,12 +162,12 @@ const& Type var_name = value;
 
 ###### Explanation
 
-1. A `const` data member **must be initialized** when the object is **constructed** because its
-   value **cannot be changed** after initialization.
+1. A `const` data member **must be initialized** when the object is
+   **constructed** because its value **cannot be changed** after initialization.
 2. There are only two way to initialize a `const` member:
    - **In-class initialization**:
-     - In-class initialization works well **for constants of integral types (like int, char, etc.)
-       or other literal types**.
+     - In-class initialization works well **for constants of integral types
+       (like int, char, etc.) or other literal types**.
      - For **non-integral types**, **initializer lists** must be used.
      - It can be **overridden** by the constructor.
    - **Constructor initializer lists**.
@@ -180,18 +186,19 @@ class ClassName {
 
 ###### Explanation
 
-1. A `const` member method is **a member function of a class** that **does not modify the object**
-   on which it is called.
-2. This means the `const` member function **can't modify any non-mutable member variables** of the
-   class or object.
-3. In addition, a `const` function can **be overloaded** with other non-const functions, even if
-   their names and parameter lists are the same.
-4. This is possible because their signatures differ, as the **`const`** keyword **modifies the
-   function signatures**.
-5. However, if a member is of **pointer** type, **the value or object** the pointer points to does
-   **not belong to the class**.
+1. A `const` member method is **a member function of a class** that **does not
+   modify the object** on which it is called.
+2. This means the `const` member function **can't modify any non-mutable member
+   variables** of the class or object.
+3. In addition, a `const` function can **be overloaded** with other non-const
+   functions, even if their names and parameter lists are the same.
+4. This is possible because their signatures differ, as the **`const`** keyword
+   **modifies the function signatures**.
+5. However, if a member is of **pointer** type, **the value or object** the
+   pointer points to does **not belong to the class**.
 6. **Only the address** stored in the pointer **belongs to the class**.
-7. Therefore, a `const` function can **still modify the pointed-to value or object**.
+7. Therefore, a `const` function can **still modify the pointed-to value or
+   object**.
 
 ###### Syntax
 
@@ -203,8 +210,8 @@ RetType funcName( para_list ) const;
 
 ###### Explanation
 
-1. A `const` parameter is **a parameter** that **receives an argument** and **ensures** that the
-   function **does not change the argument**.
+1. A `const` parameter is **a parameter** that **receives an argument** and
+   **ensures** that the function **does not change the argument**.
 
 ###### Syntax
 
@@ -216,10 +223,11 @@ void funcName( const Type para1, ... );
 
 ###### Explanation
 
-1. **Returning a `const` value** from a function indicates that the returned value **cannot be
-   modified** by the caller.
-2. However, if **a `const`** return value **is assigned** to **a non-const** variable, it **becomes
-   modifiable** once the **assignment operation** is complete.
+1. **Returning a `const` value** from a function indicates that the returned
+   value **cannot be modified** by the caller.
+2. However, if **a `const`** return value **is assigned** to **a non-const**
+   variable, it **becomes modifiable** once the **assignment operation** is
+   complete.
 
 ###### Syntax
 
@@ -233,10 +241,10 @@ const RetType funcName( para_list ) {
 
 ###### Explanation
 
-1. A function can return **a pointer to a constant value**, ensuring that **the value** being
-   pointed to **cannot be modified** through the pointer.
-2. To **assign a `const` return pointer to a variable**, the **variable** must likewise be **a
-   pointer to `const`**.
+1. A function can return **a pointer to a constant value**, ensuring that **the
+   value** being pointed to **cannot be modified** through the pointer.
+2. To **assign a `const` return pointer to a variable**, the **variable** must
+   likewise be **a pointer to `const`**.
 
 ###### Syntax
 
@@ -250,10 +258,10 @@ const RetType* funcName() {
 
 ###### Explanation
 
-1. A function can return **a reference to a constant object**, allowing **efficient access** to the
-   object while ensuring it **cannot be modified**.
-2. To **assign a `const` return reference to a variable**, the **variable** must likewise be **a
-   `const` reference**.
+1. A function can return **a reference to a constant object**, allowing
+   **efficient access** to the object while ensuring it **cannot be modified**.
+2. To **assign a `const` return reference to a variable**, the **variable** must
+   likewise be **a `const` reference**.
 
 ###### Syntax
 
@@ -267,14 +275,15 @@ const RetType& funcName() {
 
 ###### Explanation
 
-1. A `const` instance **ensures** that none of its **non-mutable members can be modified** after
-   initialization.
-2. However, if a member is of **pointer** type, **the value or object** the pointer points to does
-   **not belong to the class**.
+1. A `const` instance **ensures** that none of its **non-mutable members can be
+   modified** after initialization.
+2. However, if a member is of **pointer** type, **the value or object** the
+   pointer points to does **not belong to the class**.
 3. Only the **address** stored in the pointer **belongs to the class**.
-4. Therefore, a `const` instance **cannot ensure** that this **value or object remains unmodified**.
-5. **Only const-qualified member functions can be called** on a `const` instance. These are
-   functions that do not modify the object’s state.
+4. Therefore, a `const` instance **cannot ensure** that this **value or object
+   remains unmodified**.
+5. **Only const-qualified member functions can be called** on a `const`
+   instance. These are functions that do not modify the object’s state.
 6. A `const` instance can still **modify `mutable` members**.
 
 ###### Syntax
@@ -287,24 +296,26 @@ const ClassName obj_ptr;
 
 #### Explanation
 
-1. The `constexpr` **keyword** is used to **declare variables and functions** that can be
-   **evaluated at compile-time**.
-2. This feature allows the compiler to perform calculations and allocate memory for certain
-   constructs even before the program runs.
-3. When a variable or function is declared as `constexpr`, **all elements related to it** should be
-   **evaluated at compile time**. For example, the function cannot contain any runtime I/O
-   operations, as they cannot be evaluated at compile time.
-4. It enforces that **certain values and calculations** can be **performed at compile-time**,
-   leading to significant performance improvements.
-5. Any variable or object declared with the `constexpr` keyword is constant and **cannot be modified
-   after it is initialized**.
+1. The `constexpr` **keyword** is used to **declare variables and functions**
+   that can be **evaluated at compile-time**.
+2. This feature allows the compiler to perform calculations and allocate memory
+   for certain constructs even before the program runs.
+3. When a variable or function is declared as `constexpr`, **all elements
+   related to it** should be **evaluated at compile time**. For example, the
+   function cannot contain any runtime I/O operations, as they cannot be
+   evaluated at compile time.
+4. It enforces that **certain values and calculations** can be **performed at
+   compile-time**, leading to significant performance improvements.
+5. Any variable or object declared with the `constexpr` keyword is constant and
+   **cannot be modified after it is initialized**.
 6. It enhances **the code readabilit**.
 
 #### Allowed Elements (Valid Elements)
 
 1. Constant expressions (e.g., literals, `constexpr` variables).
 2. Simple arithmetic operations.
-3. Control flow statements (like if, switch, and loops) that do not depend on runtime values.
+3. Control flow statements (like if, switch, and loops) that do not depend on
+   runtime values.
 
 #### Disallowed Elements
 
@@ -318,8 +329,8 @@ const ClassName obj_ptr;
 
 ###### Explanation
 
-1. A `constexpr` variable is **a variable** that **must be initialized with an initializer** that
-   can be fully **resolved at compile-time**.
+1. A `constexpr` variable is **a variable** that **must be initialized with an
+   initializer** that can be fully **resolved at compile-time**.
 2. The **initializer must** be **evaluated at compile time**.
 
 ###### Syntax
@@ -332,9 +343,10 @@ constexpr Type var_name = initializer;
 
 ###### Explanation
 
-1. `constexpr` applies to the **pointer itself**, meaning **the address** stored in the pointer must
-   **be a constant expression**.
-2. The **address** stored in a `constexpr` pointer must **be known at compile-time**.
+1. `constexpr` applies to the **pointer itself**, meaning **the address** stored
+   in the pointer must **be a constant expression**.
+2. The **address** stored in a `constexpr` pointer must **be known at
+   compile-time**.
 
 ###### Syntax
 
@@ -346,11 +358,13 @@ constexpr Type* var_name = initializer;
 
 ###### Explanation
 
-1. A `constexpr` reference is **a constant reference** that can **be evaluated at compile time**.
+1. A `constexpr` reference is **a constant reference** that can **be evaluated
+   at compile time**.
 2. It can bind to **a literal value or a temporary result**.
-3. `constexpr` references are used when you need a reference to a compile-time constant expression.
-4. To declare a `constexpr` reference, it must be a const reference, and it must refer to a constant
-   expression.
+3. `constexpr` references are used when you need a reference to a compile-time
+   constant expression.
+4. To declare a `constexpr` reference, it must be a const reference, and it must
+   refer to a constant expression.
 
 ###### Syntax
 
@@ -362,10 +376,12 @@ constexpr& Type var_name = initializer;
 
 ###### Explanation
 
-1. A `constexpr` member variable is **a variable** defined within a class that can be **initialized
-   with constant expressions or a `constexpr` constructor**.
-2. This allows them to be **evaluated at compile time**, which can lead to **performance
-   improvements** and enable more complex compile-time computations.
+1. A `constexpr` member variable is **a variable** defined within a class that
+   can be **initialized with constant expressions or a `constexpr`
+   constructor**.
+2. This allows them to be **evaluated at compile time**, which can lead to
+   **performance improvements** and enable more complex compile-time
+   computations.
 
 ###### Syntax
 
@@ -384,16 +400,16 @@ class ClassName {
 
 ###### Explanation
 
-1. A `constexpr` function is **a function** that will be **evaluated at compile-time** if **given
-   compile-time constant arguments**.
-2. If the result of a `constexpr` function is **assigned to** a variable, the best choice is to keep
-   the variable as **a `constexpr` variable**.
-3. This ensures that the variable is **initialized at compile time**, which means **the result** of
-   the function is also **evaluated at compile time**.
-4. Additionally, its **parameters** should be **`const` values** or **constant expressions** to
-   ensure that the function is executed at compile time.
-5. **`RetType`** must be **a literal type**, which includes integral types, floating-point types,
-   pointers, and certain user-defined types.
+1. A `constexpr` function is **a function** that will be **evaluated at
+   compile-time** if **given compile-time constant arguments**.
+2. If the result of a `constexpr` function is **assigned to** a variable, the
+   best choice is to keep the variable as **a `constexpr` variable**.
+3. This ensures that the variable is **initialized at compile time**, which
+   means **the result** of the function is also **evaluated at compile time**.
+4. Additionally, its **parameters** should be **`const` values** or **constant
+   expressions** to ensure that the function is executed at compile time.
+5. **`RetType`** must be **a literal type**, which includes integral types,
+   floating-point types, pointers, and certain user-defined types.
 
 ###### Syntax
 
@@ -409,13 +425,13 @@ constexpr RetType var_name = funcName( para_list );
 
 ###### Explanation
 
-1. A `constexpr` constructor is **a construcotr** that can be used to **create instances** of the
-   class with **constant expressions**.
-2. When a `constexpr` constructor is used to construct an object, the best choice is to keep the
-   **object as a `constexpr` type**, and **its initializer** should be **evaluated at compile
-   time**.
-3. Only when all related elements can be evaluated at compile time can the constructor also be
-   evaluated at compile time.
+1. A `constexpr` constructor is **a construcotr** that can be used to **create
+   instances** of the class with **constant expressions**.
+2. When a `constexpr` constructor is used to construct an object, the best
+   choice is to keep the **object as a `constexpr` type**, and **its
+   initializer** should be **evaluated at compile time**.
+3. Only when all related elements can be evaluated at compile time can the
+   constructor also be evaluated at compile time.
 
 ###### Syntax
 
@@ -436,17 +452,21 @@ constexpr ClassName obj_name( para_list );
 
 ###### Explanation
 
-1. A `constexpr` instance is **an object** that is **evaluated at compile-time**, if all its
-   dependencies (constructors, functions, and data) are also `constexpr`.
-2. A `constexpr` instance must remain **immutable**, meaning its state cannot change after
-   initialization.
-3. **All data members** must be **initialized** by **the `constexpr` constructor** since further
-   modifications are not allowed.
+1. A `constexpr` instance is **an object** that is **evaluated at
+   compile-time**, if all its dependencies (constructors, functions, and data)
+   are also `constexpr`.
+2. A `constexpr` instance must remain **immutable**, meaning its state cannot
+   change after initialization.
+3. **All data members** must be **initialized** by **the `constexpr`
+   constructor** since further modifications are not allowed.
 4. The class **must have a `constexpr` constructor**.
-5. All **member functions** invoked on a `constexpr` object **must also be `constexpr`**.
-6. Data members used in `constexpr` evaluation must be integral constants or themselves `constexpr`.
-7. A `constexpr` instance **is always `const`** implicitly, but the reverse is not true—`const`
-   instances are not guaranteed to be evaluated at compile time.
+5. All **member functions** invoked on a `constexpr` object **must also be
+   `constexpr`**.
+6. Data members used in `constexpr` evaluation must be integral constants or
+   themselves `constexpr`.
+7. A `constexpr` instance **is always `const`** implicitly, but the reverse is
+   not true—`const` instances are not guaranteed to be evaluated at compile
+   time.
 
 ###### Syntax
 
@@ -458,16 +478,16 @@ constexpr ClassName obj_ptr;
 
 ###### Explanation
 
-1. User-defined literals allow you to **create custom literal suffixes** that **extend the
-   functionality of built-in literals**.
-2. This feature lets you **define special behaviors for literals of various types**, including
-   integers, floating-point numbers, and strings.
-3. It's especially useful for **creating more readable code**, **adding context or units to
-   values**, and **improving type safety**.
-4. User-defined literals are **created by defining functions with specific naming and parameter
-   rules**.
-5. They **begin with an underscore** and **are appended to a literal to convert it into a specific
-   type or to invoke custom logic**.
+1. User-defined literals allow you to **create custom literal suffixes** that
+   **extend the functionality of built-in literals**.
+2. This feature lets you **define special behaviors for literals of various
+   types**, including integers, floating-point numbers, and strings.
+3. It's especially useful for **creating more readable code**, **adding context
+   or units to values**, and **improving type safety**.
+4. User-defined literals are **created by defining functions with specific
+   naming and parameter rules**.
+5. They **begin with an underscore** and **are appended to a literal to convert
+   it into a specific type or to invoke custom logic**.
 
 ###### Syntax
 
@@ -483,10 +503,10 @@ Type var_name = value_suffix_name;
 
 ###### Explanation
 
-1. `if constexpr` allows you to **conditionally compile code** depending on whether a condition is
-   constant at compile time.
-2. Its key feature is that **only the branch of the statement** that is **true** (according to the
-   compile-time condition) **will be compiled**.
+1. `if constexpr` allows you to **conditionally compile code** depending on
+   whether a condition is constant at compile time.
+2. Its key feature is that **only the branch of the statement** that is **true**
+   (according to the compile-time condition) **will be compiled**.
 3. **The other branch** will **be discarded** entirely by the compiler.
 
 ###### Syntax
@@ -505,17 +525,22 @@ if constexpr( expr1 ) {
 
 #### Explanation
 
-1. The `static` **keyword** in C++ is used to **change the storage duration and visibility** of
-   variables and functions. It alters how variables are initialized and where they can be accessed.
-2. All `static` elements are **initialized only once** and **persist until the program terminates**.
-3. **Local** variables/objects: It **changes their lifetime** but does not change their scope.
-4. **Global** variables/objects/function: It does not change their lifetime, but it **changes their
-   scope** by limiting them to the file where they are defined or declared.
-5. **Class members variables**: It **changes their scope and lifetime**. `static` data members are
-   initialized outside the class definition.
-6. **Class member function**: It does **not allow them to access non-static members**, except for
-   `static` members.
-7. **All static entities are initialized once before their scopes are entered for the first time**.
+1. The `static` **keyword** in C++ is used to **change the storage duration and
+   visibility** of variables and functions. It alters how variables are
+   initialized and where they can be accessed.
+2. All `static` elements are **initialized only once** and **persist until the
+   program terminates**.
+3. **Local** variables/objects: It **changes their lifetime** but does not
+   change their scope.
+4. **Global** variables/objects/function: It does not change their lifetime, but
+   it **changes their scope** by limiting them to the file where they are
+   defined or declared.
+5. **Class members variables**: It **changes their scope and lifetime**.
+   `static` data members are initialized outside the class definition.
+6. **Class member function**: It does **not allow them to access non-static
+   members**, except for `static` members.
+7. **All static entities are initialized once before their scopes are entered
+   for the first time**.
 
 #### Usage
 
@@ -523,11 +548,12 @@ if constexpr( expr1 ) {
 
 ###### Explanation
 
-1. A `static` local variable is **a `static` variable** declared within a function that **maintains
-   its state between function calls**.
-2. It has **local scope**, meaning it is **only accessible within the function where it is
-   declared**.
-3. The variable is **automatically initialized to zero** if **not explicitly initialized**.
+1. A `static` local variable is **a `static` variable** declared within a
+   function that **maintains its state between function calls**.
+2. It has **local scope**, meaning it is **only accessible within the function
+   where it is declared**.
+3. The variable is **automatically initialized to zero** if **not explicitly
+   initialized**.
 
 ###### Syntax
 
@@ -543,9 +569,11 @@ RetType funcName() {
 
 ###### Explanation
 
-1. A `static` global variable is declared outside of all functions and is **only accessible within
-   the file** in which it is declared, **preventing name conflicts in other files**.
-2. The variable is **automatically initialized to zero** if **not explicitly initialized**.
+1. A `static` global variable is declared outside of all functions and is **only
+   accessible within the file** in which it is declared, **preventing name
+   conflicts in other files**.
+2. The variable is **automatically initialized to zero** if **not explicitly
+   initialized**.
 
 ###### Syntax
 
@@ -557,16 +585,18 @@ static Type var_name;
 
 ###### Explanation
 
-1. `static` members of a class belong to the class itself rather than any object instance and **can
-   be accessed without an instance**. **`static` members** are **shared among all instances of that
-   class**.
+1. `static` members of a class belong to the class itself rather than any object
+   instance and **can be accessed without an instance**. **`static` members**
+   are **shared among all instances of that class**.
 2. They are **accessed using the class name** instead of the object name.
-3. `static` keyword **only changes their lifetime**; it does **not affect their visibility**.
-4. **Non-inline or non-constexpr** `static` member variables should be **defined or initialized
-   outside the class**.
-5. **`inline` or `constexpr`** `static` member variables can be **defined or initialized inside or
-   outside the class**.
-6. In fact, `static` members are **`static` variables defined within a namespace**.
+3. `static` keyword **only changes their lifetime**; it does **not affect their
+   visibility**.
+4. **Non-inline or non-constexpr** `static` member variables should be **defined
+   or initialized outside the class**.
+5. **`inline` or `constexpr`** `static` member variables can be **defined or
+   initialized inside or outside the class**.
+6. In fact, `static` members are **`static` variables defined within a
+   namespace**.
 
 ###### Syntax
 
@@ -608,12 +638,12 @@ Type10 ClassName::_staticMember10 = val10;
 
 ###### Explanation
 
-1. A `static` member function is **a function** defined within a class that can **be called without
-   creating an instance** of the class.
-2. It **cannot access instance variables or instance methods** directly, since it **does not have a
-   `this`** pointer.
-3. This means it can **only access `static` data members** or other **`static` member functions**
-   within the class.
+1. A `static` member function is **a function** defined within a class that can
+   **be called without creating an instance** of the class.
+2. It **cannot access instance variables or instance methods** directly, since
+   it **does not have a `this`** pointer.
+3. This means it can **only access `static` data members** or other **`static`
+   member functions** within the class.
 4. It can be **called using the class name**.
 
 ###### Syntax
@@ -644,8 +674,9 @@ RetType var_name = ClassName::funcName( para_list );
 
 ###### Explanation
 
-1. A `static` global function is a function **limited in visibility to the file** where it is
-   defined, which helps to **avoid name conflicts across different files**.
+1. A `static` global function is a function **limited in visibility to the
+   file** where it is defined, which helps to **avoid name conflicts across
+   different files**.
 
 ###### Syntax
 
@@ -659,12 +690,16 @@ static RetType funcName() {
 
 ###### Explanation
 
-1. A `static` instance of a class refers to **an object of the class** that has `static` storage
-   duration.
-2. It **persists** for the **entire duration** of the program (until the program terminates).
-3. It is **initialized only once**, **the first time** its definition or block **is executed**.
-4. It can be scoped to a function, class, or namespace, depending on where it is declared.
-5. In fact, it's **a `static` variable**, a `static` local variable or a `static` global variable.
+1. A `static` instance of a class refers to **an object of the class** that has
+   `static` storage duration.
+2. It **persists** for the **entire duration** of the program (until the program
+   terminates).
+3. It is **initialized only once**, **the first time** its definition or block
+   **is executed**.
+4. It can be scoped to a function, class, or namespace, depending on where it is
+   declared.
+5. In fact, it's **a `static` variable**, a `static` local variable or a
+   `static` global variable.
 
 ###### Syntax
 

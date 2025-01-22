@@ -31,7 +31,8 @@
 
 ##### Explanation
 
-1. The `new` operator **dynamically allocates memory** for an object and **calls its constructor**.
+1. The `new` operator **dynamically allocates memory** for an object and **calls
+   its constructor**.
 2. It **returns a `void` pointer** to the allocated memory.
 
 ##### Syntax
@@ -48,10 +49,11 @@ Type* arr_ptr = new Type[size];   // For an array objects.
 
 ##### Explanation
 
-1. The placement `new` operator allows you to **construct an object at a specified memory address**,
-   which is useful for **optimizing memory usage** or **working with pre-allocated memory**.
-2. It also **calls the constructor** of the object and **returns a `void` pointer** to the allocated
-   memory.
+1. The placement `new` operator allows you to **construct an object at a
+   specified memory address**, which is useful for **optimizing memory usage**
+   or **working with pre-allocated memory**.
+2. It also **calls the constructor** of the object and **returns a `void`
+   pointer** to the allocated memory.
 
 ##### Syntax
 
@@ -67,10 +69,11 @@ Type* arr_ptr = new( address ) Type[size];   // For an array objects.
 
 ##### Explanation
 
-1. The `delete` operator **deallocates memory** that was previously **allocated with `new`**,
-   **calling the destructor** of the object **before releasing** the memory.
-2. After calling `delete`, it's a good practice to set the pointer to `nullptr` to avoid dangling
-   pointers.
+1. The `delete` operator **deallocates memory** that was previously **allocated
+   with `new`**, **calling the destructor** of the object **before releasing**
+   the memory.
+2. After calling `delete`, it's a good practice to set the pointer to `nullptr`
+   to avoid dangling pointers.
 
 ##### Syntax
 
@@ -88,12 +91,13 @@ arr_ptr = nullptr;   // Good practice to avoid dangling pointers.
 
 ##### Explanation
 
-1. `::operator new` is **a global operator function** that **allocates** raw memory **without
-   initializing** it.
-2. It's similar to `malloc`, but it **can be overridden** to customize memory allocation for
-   user-defined types.
+1. `::operator new` is **a global operator function** that **allocates** raw
+   memory **without initializing** it.
+2. It's similar to `malloc`, but it **can be overridden** to customize memory
+   allocation for user-defined types.
 3. It does **not call constructors** and **only allocates memory**.
-4. **`::operator delete`** should be used to free memory allocated with **`::operator new`**.
+4. **`::operator delete`** should be used to free memory allocated with
+   **`::operator new`**.
 
 ##### Syntax
 
@@ -111,13 +115,14 @@ Type* ptr = static_cast< Type* >( ::operator new( num * sizeof( Type ) ) );
 
 ##### Explanation
 
-1. `::operator delete` is **a global operator function** that **deallocates memory** previously
-   **allocated with `::operator new`**.
-2. It's similar to `free`, but it **can be overridden** to customize memory deallocation for
-   user-defined types.
-3. `::operator delete` does **not call destructors** and **only frees the memory**.
-4. After calling `::operator delete`, it's a good practice to set the pointer to `nullptr` to avoid
-   dangling pointers.
+1. `::operator delete` is **a global operator function** that **deallocates
+   memory** previously **allocated with `::operator new`**.
+2. It's similar to `free`, but it **can be overridden** to customize memory
+   deallocation for user-defined types.
+3. `::operator delete` does **not call destructors** and **only frees the
+   memory**.
+4. After calling `::operator delete`, it's a good practice to set the pointer to
+   `nullptr` to avoid dangling pointers.
 
 ##### Syntax
 
@@ -154,8 +159,10 @@ ptr = nullptr;   // Good practice to avoid dangling pointers.
 
 ### Notes
 
-1. When a temporary object is created using `new`, `malloc`, or `calloc` and is passed to a function
-   or object, the function or object is responsible for destroying the temporary object.
-2. In fact, when `new`, `malloc`, or `calloc` is called within a pair of parentheses, the owner of
-   the parentheses is the caller of `new`, `malloc`, or `calloc`.
+1. When a temporary object is created using `new`, `malloc`, or `calloc` and is
+   passed to a function or object, the function or object is responsible for
+   destroying the temporary object.
+2. In fact, when `new`, `malloc`, or `calloc` is called within a pair of
+   parentheses, the owner of the parentheses is the caller of `new`, `malloc`,
+   or `calloc`.
 3. The caller is responsible for destroying the dynamic memory.

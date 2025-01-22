@@ -23,12 +23,13 @@
 
 #### Explanation
 
-1. Hiding occurs when **a derived class** declares a function (or variable) with **the same name**
-   as a function (or variable) in **the base class**, regardless of the parameters.
-2. The **base class function** is **hidden** in the derived class scope, **even** if the
-   **signatures (parameter types) differ**.
-3. This can lead to confusion or errors because the **base class function** is **no longer
-   accessible directly** from the derived class.
+1. Hiding occurs when **a derived class** declares a function (or variable) with
+   **the same name** as a function (or variable) in **the base class**,
+   regardless of the parameters.
+2. The **base class function** is **hidden** in the derived class scope,
+   **even** if the **signatures (parameter types) differ**.
+3. This can lead to confusion or errors because the **base class function** is
+   **no longer accessible directly** from the derived class.
 
 #### Syntax
 
@@ -64,15 +65,20 @@ int main() {
 
 #### Explanation
 
-1. Overloading occurs when **two or more functions** in **the same scope** have **the same name**
-   but **different parameter types or numbers of parameters**.
-2. Additionally, if **a keyword** appears **between** the function **parameters** and the **function
-   body**, it can be used to create **overloaded** functions because their **signatures** are
-   **different**. For example, **const functions and noexcept functions**.
-3. However, **the return type does not** play a role in distinguishing overloaded functions.
-4. Functions **cannot** be overloaded solely based on different **return types**.
-5. Only when they have **different function signatures**, they can be overloaded.
-6. C++ allows overloading **based on the number of arguments, their types, or both**.
+1. Overloading occurs when **two or more functions** in **the same scope** have
+   **the same name** but **different parameter types or numbers of parameters**.
+2. Additionally, if **a keyword** appears **between** the function
+   **parameters** and the **function body**, it can be used to create
+   **overloaded** functions because their **signatures** are **different**. For
+   example, **const functions and noexcept functions**.
+3. However, **the return type does not** play a role in distinguishing
+   overloaded functions.
+4. Functions **cannot** be overloaded solely based on different **return
+   types**.
+5. Only when they have **different function signatures**, they can be
+   overloaded.
+6. C++ allows overloading **based on the number of arguments, their types, or
+   both**.
 7. Overloading is **resolved at compile time** (**static polymorphism**).
 
 #### Syntax
@@ -106,19 +112,23 @@ class ClassName {
 
 #### Explanation
 
-1. Overriding occurs when **a derived class** provides **its own implementation** of **a virtual
-   function (or a pure virtual function)** that is **already defined** in the base class.
-2. The function in the derived class must have **the same signature** as the base class's **virtual
-   function**.
-3. This means, for a function in a derived class to override a function in a base class, it must
-   **have the same name**, **parameter list**, and **qualifiers** as the function in the base class.
-4. In addition, their **return types** must be **the same type** or **a covariant return type (a
-   subtype of the base class's return type, like subclass types)**.
+1. Overriding occurs when **a derived class** provides **its own
+   implementation** of **a virtual function (or a pure virtual function)** that
+   is **already defined** in the base class.
+2. The function in the derived class must have **the same signature** as the
+   base class's **virtual function**.
+3. This means, for a function in a derived class to override a function in a
+   base class, it must **have the same name**, **parameter list**, and
+   **qualifiers** as the function in the base class.
+4. In addition, their **return types** must be **the same type** or **a
+   covariant return type (a subtype of the base class's return type, like
+   subclass types)**.
 5. Overriding is **resolved at runtime** (**dynamic polymorphism**).
-6. **The visibility** of a function does **not affect** whether it's successfully **overridden**.
-7. However, when **an overridden function** is called **through a base class pointer (or
-   reference)**, **the accessibility of that function** is determined by **its visibility in the
-   base class**, not in the derived class.
+6. **The visibility** of a function does **not affect** whether it's
+   successfully **overridden**.
+7. However, when **an overridden function** is called **through a base class
+   pointer (or reference)**, **the accessibility of that function** is
+   determined by **its visibility in the base class**, not in the derived class.
 
 #### Syntax
 
@@ -145,14 +155,17 @@ int main() {
 #### Explanation
 
 1. Overwriting is **not a formal term in C++**.
-2. However, it is sometimes colloquially used to describe a situation where **a function or variable
-   in a derived class replaces or redefines a function or variable from a base class**.
+2. However, it is sometimes colloquially used to describe a situation where **a
+   function or variable in a derived class replaces or redefines a function or
+   variable from a base class**.
 3. This serves as a general description rather than a specific C++ concept.
-4. Additionally, the term "overwriting" typically refers to the process of **replacing an existing
-   value in memory**, which includes assigning a new value to an existing variable to replace the
-   old value and writing data to unintended memory locations, often resulting in undefined behavior
-   or memory corruption.
-5. This can occur in various contexts, such as variables, function definitions, or data structures.
+4. Additionally, the term "overwriting" typically refers to the process of
+   **replacing an existing value in memory**, which includes assigning a new
+   value to an existing variable to replace the old value and writing data to
+   unintended memory locations, often resulting in undefined behavior or memory
+   corruption.
+5. This can occur in various contexts, such as variables, function definitions,
+   or data structures.
 
 #### Syntax
 

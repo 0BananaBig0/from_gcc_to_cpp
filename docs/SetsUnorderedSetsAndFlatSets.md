@@ -79,16 +79,19 @@
 
 ### Explanation
 
-1. Sets are **containers (template classes)** that **store unique elements** following **a specific
-   order**.
-2. In a set, the value of an element also identifies it (**the value is itself the key**, of type
-   `Key`), and **each value must be unique**.
-3. **The value** of the elements in a set **cannot be modified** once in the container (the elements
-   are always const), but they **can be inserted or removed** from the container.
-4. Internally, **the elements** in a set are **always sorted** following a specific strict weak
-   ordering criterion indicated **by its internal comparison object** (of type `Compare`).
-5. Set containers are generally **slower than `unordered_set`** containers to **access individual
-   elements** by their key, but they **allow the direct iteration** on subsets based on their order.
+1. Sets are **containers (template classes)** that **store unique elements**
+   following **a specific order**.
+2. In a set, the value of an element also identifies it (**the value is itself
+   the key**, of type `Key`), and **each value must be unique**.
+3. **The value** of the elements in a set **cannot be modified** once in the
+   container (the elements are always const), but they **can be inserted or
+   removed** from the container.
+4. Internally, **the elements** in a set are **always sorted** following a
+   specific strict weak ordering criterion indicated **by its internal
+   comparison object** (of type `Compare`).
+5. Set containers are generally **slower than `unordered_set`** containers to
+   **access individual elements** by their key, but they **allow the direct
+   iteration** on subsets based on their order.
 6. Sets are typically **implemented as red–black trees**.
 7. Their header files is `<set>`.
 
@@ -211,11 +214,11 @@ delete set_ptr;
 #### Template Parameters
 
 1. `Key`: The type of the elements.
-2. `Compare`: A `Compare` type providing a strict weak ordering. By default, the first key (smallest
-   key) is at the beginning of the set because its default `Compare` is `std::less< Key >`, which
-   sorts the elements in ascending order.
-3. `Allocator`: An allocator that is used to acquire/release memory and to construct/destroy the
-   elements in that memory.
+2. `Compare`: A `Compare` type providing a strict weak ordering. By default, the
+   first key (smallest key) is at the beginning of the set because its default
+   `Compare` is `std::less< Key >`, which sorts the elements in ascending order.
+3. `Allocator`: An allocator that is used to acquire/release memory and to
+   construct/destroy the elements in that memory.
 
 #### Member Types
 
@@ -228,17 +231,18 @@ delete set_ptr;
 7. `allocator_type`: `Allocator`.
 8. `reference`: `value_type&`.
 9. `const_reference`: `const value_type&`.
-10. `pointer`: `Allocator::pointer` (until C++11), `std::allocator_traits< Allocator >::pointer`
-    (since C++11).
+10. `pointer`: `Allocator::pointer` (until C++11),
+    `std::allocator_traits< Allocator >::pointer` (since C++11).
 11. `const_pointer`: `Allocator::const_pointer` (until C++11),
     `std::allocator_traits< Allocator >::const_pointer` (since C++11).
 12. `iterator`: Constant `LegacyBidirectionalIterator` to `value_type`.
 13. `const_iterator`: `LegacyBidirectionalIterator` to `const value_type`.
 14. `reverse_iterator`: `std::reverse_iterator< iterator >`.
 15. `const_reverse_iterator`: `std::reverse_iterator< const_iterator >`.
-16. `node_type (since C++17)`: A specialization of node handle representing a container node.
-17. `insert_return_type (since C++17)`: Type describing the result of inserting a `node_type`, a
-    specialization of
+16. `node_type (since C++17)`: A specialization of node handle representing a
+    container node.
+17. `insert_return_type (since C++17)`: Type describing the result of inserting
+    a `node_type`, a specialization of
     ```CPP
     template< class Iter, class NodeType >
     struct /* unspecified */
@@ -256,58 +260,75 @@ delete set_ptr;
 2. (destructor): Destructs the set (public member function).
 3. `operator=`: Assigns values to the container (public member function).
 4. `get_allocator`: Returns the associated allocator (public member function).
-5. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+5. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+   function).
 6. `end`, `cend`: Returns an iterator to the end (public member function).
-7. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
-8. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
+7. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public
+   member function).
+8. `rend`, `crend`: Returns a reverse iterator to the end (public member
+   function).
 9. `empty`: Checks whether the container is empty (public member function).
 10. `size`: Returns the number of elements (public member function).
-11. `max_size`: Returns the maximum possible number of elements (public member function).
+11. `max_size`: Returns the maximum possible number of elements (public member
+    function).
 12. `clear`: Clears the contents (public member function).
 13. `insert`: Inserts elements or nodes(since C++17) (public member function).
-14. `insert_range` (C++23): Inserts a range of elements (public member function).
-15. `emplace`: Constructs elements in-place (public member function).
-16. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-17. `erase`: Erases elements and returns a valid iterator (public member function).
-18. `swap`: Swaps the contents (public member function).
-19. `extract` (C++17): Extracts nodes from the container (public member function).
-20. `merge` (C++17): Splices nodes from another container (public member function).
-21. `count`: Returns the number of elements matching specific key (public member function).
-22. `find`: Finds an element with specific key (public member function).
-23. `contains` (C++20): Checks if the container contains an element with specific key (public member
+14. `insert_range` (C++23): Inserts a range of elements (public member
     function).
-24. `equal_range`: Returns range of elements matching a specific key (public member function).
-25. `lower_bound`: Returns an iterator to the first element not less than the given key (public
+15. `emplace`: Constructs elements in-place (public member function).
+16. `emplace_hint`: Constructs elements in-place using a hint (public member
+    function).
+17. `erase`: Erases elements and returns a valid iterator (public member
+    function).
+18. `swap`: Swaps the contents (public member function).
+19. `extract` (C++17): Extracts nodes from the container (public member
+    function).
+20. `merge` (C++17): Splices nodes from another container (public member
+    function).
+21. `count`: Returns the number of elements matching specific key (public member
+    function).
+22. `find`: Finds an element with specific key (public member function).
+23. `contains` (C++20): Checks if the container contains an element with
+    specific key (public member function).
+24. `equal_range`: Returns range of elements matching a specific key (public
     member function).
-26. `upper_bound`: Returns an iterator to the first element greater than the given key (public
-    member function).
-27. `key_comp`: Returns the function that compares keys (public member function).
-28. `value_comp`: Returns the function that compares keys in objects of type `value_type` (public
-    member function).
+25. `lower_bound`: Returns an iterator to the first element not less than the
+    given key (public member function).
+26. `upper_bound`: Returns an iterator to the first element greater than the
+    given key (public member function).
+27. `key_comp`: Returns the function that compares keys (public member
+    function).
+28. `value_comp`: Returns the function that compares keys in objects of type
+    `value_type` (public member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>` (C++20): Lexicographically
-   compares the values of two sets (function template).
-2. `std::swap( std::set )`: Specializes the `std::swap` algorithm (function template).
-3. `erase_if( std::set )` (C++20): Erases all elements satisfying specific criteria (function
+1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>`
+   (C++20): Lexicographically compares the values of two sets (function
    template).
+2. `std::swap( std::set )`: Specializes the `std::swap` algorithm (function
+   template).
+3. `erase_if( std::set )` (C++20): Erases all elements satisfying specific
+   criteria (function template).
 
 ## Multisets
 
 ### Explanation
 
-1. Multisets are containers **(template classes)** that **store elements** following **a specific
-   order**, and where multiple elements **can have equivalent values**.
-2. In a multiset, the value of an element also identifies it (**the value is itself the key**, of
-   type `Key`).
-3. The value of the elements in a multiset **cannot be modified** once in the container (the
-   elements are always const), but they **can be inserted or removed** from the container.
-4. Internally, the elements in a multiset are **always sorted** following a specific strict weak
-   ordering criterion indicated **by its internal comparison object** (of type `Compare`).
-5. Multiset containers are generally **slower than`unordered_multiset`** containers to **access
-   individual elements** by their key, but they **allow the direct iteration** on subsets based on
-   their order.
+1. Multisets are containers **(template classes)** that **store elements**
+   following **a specific order**, and where multiple elements **can have
+   equivalent values**.
+2. In a multiset, the value of an element also identifies it (**the value is
+   itself the key**, of type `Key`).
+3. The value of the elements in a multiset **cannot be modified** once in the
+   container (the elements are always const), but they **can be inserted or
+   removed** from the container.
+4. Internally, the elements in a multiset are **always sorted** following a
+   specific strict weak ordering criterion indicated **by its internal
+   comparison object** (of type `Compare`).
+5. Multiset containers are generally **slower than`unordered_multiset`**
+   containers to **access individual elements** by their key, but they **allow
+   the direct iteration** on subsets based on their order.
 6. Multisets are typically **implemented as red–black trees**.
 7. Their header files is `<set>`.
 
@@ -430,11 +451,12 @@ delete mset_ptr;
 #### Template Parameters
 
 1. `Key`: The type of the elements.
-2. `Compare`: A `Compare` type providing a strict weak ordering. By default, the first key (smallest
-   key) is at the beginning of the multiset because its default `Compare` is `std::less< Key >`,
-   which sorts the elements in ascending order.
-3. `Allocator`: An allocator that is used to acquire/release memory and to construct/destroy the
-   elements in that memory.
+2. `Compare`: A `Compare` type providing a strict weak ordering. By default, the
+   first key (smallest key) is at the beginning of the multiset because its
+   default `Compare` is `std::less< Key >`, which sorts the elements in
+   ascending order.
+3. `Allocator`: An allocator that is used to acquire/release memory and to
+   construct/destroy the elements in that memory.
 
 #### Member Types
 
@@ -447,15 +469,16 @@ delete mset_ptr;
 7. `allocator_type`: `Allocator`.
 8. `reference`: `value_type&`.
 9. `const_reference`: `const value_type&`.
-10. `pointer`: `Allocator::pointer` (until C++11), `std::allocator_traits< Allocator >::pointer`
-    (since C++11).
+10. `pointer`: `Allocator::pointer` (until C++11),
+    `std::allocator_traits< Allocator >::pointer` (since C++11).
 11. `const_pointer`: `Allocator::const_pointer` (until C++11),
     `std::allocator_traits< Allocator >::const_pointer` (since C++11).
 12. `iterator`: Constant `LegacyBidirectionalIterator` to `value_type`.
 13. `const_iterator`: `LegacyBidirectionalIterator` to `const value_type`.
 14. `reverse_iterator`: `std::reverse_iterator< iterator >`.
 15. `const_reverse_iterator`: `std::reverse_iterator< const_iterator >`.
-16. `node_type (since C++17)`: A specialization of node handle representing a container node.
+16. `node_type (since C++17)`: A specialization of node handle representing a
+    container node.
 
 #### Member Functions
 
@@ -463,61 +486,76 @@ delete mset_ptr;
 2. (destructor): Destructs the multiset (public member function).
 3. `operator=`: Assigns values to the container (public member function).
 4. `get_allocator`: Returns the associated allocator (public member function).
-5. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+5. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+   function).
 6. `end`, `cend`: Returns an iterator to the end (public member function).
-7. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
-8. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
+7. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public
+   member function).
+8. `rend`, `crend`: Returns a reverse iterator to the end (public member
+   function).
 9. `empty`: Checks whether the container is empty (public member function).
 10. `size`: Returns the number of elements (public member function).
-11. `max_size`: Returns the maximum possible number of elements (public member function).
+11. `max_size`: Returns the maximum possible number of elements (public member
+    function).
 12. `clear`: Clears the contents (public member function).
 13. `insert`: Inserts elements or nodes(since C++17) (public member function).
-14. `insert_range` (C++23): Inserts a range of elements (public member function).
-15. `emplace`: Constructs elements in-place (public member function).
-16. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-17. `erase`: Erases elements and returns a valid iterator (public member function).
-18. `swap`: Swaps the contents (public member function).
-19. `extract` (C++17): Extracts nodes from the container (public member function).
-20. `merge` (C++17): Splices nodes from another container (public member function).
-21. `count`: Returns the number of elements matching specific key (public member function).
-22. `find`: Finds an element with specific key (public member function).
-23. `contains` (C++20): Checks if the container contains an element with specific key (public member
+14. `insert_range` (C++23): Inserts a range of elements (public member
     function).
-24. `equal_range`: Returns range of elements matching a specific key (public member function).
-25. `lower_bound`: Returns an iterator to the first element not less than the given key (public
+15. `emplace`: Constructs elements in-place (public member function).
+16. `emplace_hint`: Constructs elements in-place using a hint (public member
+    function).
+17. `erase`: Erases elements and returns a valid iterator (public member
+    function).
+18. `swap`: Swaps the contents (public member function).
+19. `extract` (C++17): Extracts nodes from the container (public member
+    function).
+20. `merge` (C++17): Splices nodes from another container (public member
+    function).
+21. `count`: Returns the number of elements matching specific key (public member
+    function).
+22. `find`: Finds an element with specific key (public member function).
+23. `contains` (C++20): Checks if the container contains an element with
+    specific key (public member function).
+24. `equal_range`: Returns range of elements matching a specific key (public
     member function).
-26. `upper_bound`: Returns an iterator to the first element greater than the given key (public
-    member function).
-27. `key_comp`: Returns the function that compares keys (public member function).
-28. `value_comp`: Returns the function that compares keys in objects of type `value_type` (public
-    member function).
+25. `lower_bound`: Returns an iterator to the first element not less than the
+    given key (public member function).
+26. `upper_bound`: Returns an iterator to the first element greater than the
+    given key (public member function).
+27. `key_comp`: Returns the function that compares keys (public member
+    function).
+28. `value_comp`: Returns the function that compares keys in objects of type
+    `value_type` (public member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>` (C++20): Lexicographically
-   compares the values of two multisets (function template).
-2. `std::swap( std::multiset )`: Specializes the `std::swap` algorithm (function template).
-3. `erase_if( std::multiset )` (C++20): Erases all elements satisfying specific criteria (function
+1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>`
+   (C++20): Lexicographically compares the values of two multisets (function
    template).
+2. `std::swap( std::multiset )`: Specializes the `std::swap` algorithm (function
+   template).
+3. `erase_if( std::multiset )` (C++20): Erases all elements satisfying specific
+   criteria (function template).
 
 ## Unordered Sets
 
 ### Explanation
 
-1. Unordered sets are **containers (template classes)** that **store unique elements** in **no
-   particular order**, and which allow for **fast retrieval** of individual elements based on their
-   value.
-2. In an `unordered_set`, **the value of an element is at the same time its key**, that identifies
-   it uniquely.
-3. Keys are **immutable**, therefore, the elements in an `unordered_set` **cannot be modified** once
-   in the container - they **can be inserted and removed**, though.
-4. Internally, the elements in the `unordered_set` are **not sorted in any particular order**, but
-   **organized into buckets** depending on their **hash values** to allow for **fast access** to
-   individual **elements** directly by their values (with **a constant average time complexity on
-   average**).
-5. `unordered_set` containers are **faster than set containers** to **access individual elements**
-   by their key, although they are generally **less efficient for range iteration** through a subset
-   of their elements.
+1. Unordered sets are **containers (template classes)** that **store unique
+   elements** in **no particular order**, and which allow for **fast retrieval**
+   of individual elements based on their value.
+2. In an `unordered_set`, **the value of an element is at the same time its
+   key**, that identifies it uniquely.
+3. Keys are **immutable**, therefore, the elements in an `unordered_set`
+   **cannot be modified** once in the container - they **can be inserted and
+   removed**, though.
+4. Internally, the elements in the `unordered_set` are **not sorted in any
+   particular order**, but **organized into buckets** depending on their **hash
+   values** to allow for **fast access** to individual **elements** directly by
+   their values (with **a constant average time complexity on average**).
+5. `unordered_set` containers are **faster than set containers** to **access
+   individual elements** by their key, although they are generally **less
+   efficient for range iteration** through a subset of their elements.
 6. Iterators in the container are **at least forward iterators**.
 7. Their header files is `<unordered_set>`.
 
@@ -663,15 +701,17 @@ delete uset_ptr;
 #### Template Parameters
 
 1. `Key`: The type of the elements.
-2. `Hash`: A unary function object type that takes an object of the same type as the elements as
-   argument and returns a unique value of type `size_t` based on it. This can either be a class
-   implementing a function call operator or a pointer to a function (see constructor for an
-   example). This defaults to `std::hash< Key >`.
-3. `KeyEqual`: A binary predicate that takes two arguments of the same type as the elements and
-   returns a bool. The expression `KeyEqual( a,b )`, where `KeyEqual` is an object of this type and
-   `a` and `b` are key values, shall return true if `a` is to be considered equivalent to `b`.
-4. `Allocator`: An allocator that is used to acquire/release memory and to construct/destroy the
-   elements in that memory.
+2. `Hash`: A unary function object type that takes an object of the same type as
+   the elements as argument and returns a unique value of type `size_t` based on
+   it. This can either be a class implementing a function call operator or a
+   pointer to a function (see constructor for an example). This defaults to
+   `std::hash< Key >`.
+3. `KeyEqual`: A binary predicate that takes two arguments of the same type as
+   the elements and returns a bool. The expression `KeyEqual( a,b )`, where
+   `KeyEqual` is an object of this type and `a` and `b` are key values, shall
+   return true if `a` is to be considered equivalent to `b`.
+4. `Allocator`: An allocator that is used to acquire/release memory and to
+   construct/destroy the elements in that memory.
 
 #### Member Types
 
@@ -688,15 +728,16 @@ delete uset_ptr;
 11. `const_pointer`: `std::allocator_traits< Allocator >::const_pointer`.
 12. `iterator`: Constant `LegacyForwardIterator` to `value_type`.
 13. `const_iterator`: `LegacyForwardIterator` to `const value_type`.
-14. `local_iterator`: An iterator type whose category, value, difference, pointer and reference
-    types are the same as iterator. This iterator can be used to iterate through a single bucket but
-    not across buckets
-15. `const_local_iterator`: An iterator type whose category, value, difference, pointer and
-    reference types are the same as `const_iterator`. This iterator can be used to iterate through a
-    single bucket but not across buckets
-16. `node_type (since C++17)`: A specialization of node handle representing a container node.
-17. `insert_return_type` (since C++17): Type describing the result of inserting a `node_type`, a
-    specialization of
+14. `local_iterator`: An iterator type whose category, value, difference,
+    pointer and reference types are the same as iterator. This iterator can be
+    used to iterate through a single bucket but not across buckets
+15. `const_local_iterator`: An iterator type whose category, value, difference,
+    pointer and reference types are the same as `const_iterator`. This iterator
+    can be used to iterate through a single bucket but not across buckets
+16. `node_type (since C++17)`: A specialization of node handle representing a
+    container node.
+17. `insert_return_type` (since C++17): Type describing the result of inserting
+    a `node_type`, a specialization of
     ```CPP
     template< class Iter, class NodeType >
     struct /* unspecified */
@@ -714,69 +755,87 @@ delete uset_ptr;
 2. (destructor): Destructs the unordered set (public member function).
 3. `operator=`: Assigns values to the container (public member function).
 4. `get_allocator`: Returns the associated allocator (public member function).
-5. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+5. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+   function).
 6. `end`, `cend`: Returns an iterator to the end (public member function).
 7. `empty`: Checks whether the container is empty (public member function).
 8. `size`: Returns the number of elements (public member function).
-9. `max_size`: Returns the maximum possible number of elements (public member function).
+9. `max_size`: Returns the maximum possible number of elements (public member
+   function).
 10. `clear`: Clears the contents (public member function).
 11. `insert`: Inserts elements or nodes(since C++17) (public member function).
-12. `insert_range` (C++23): Inserts a range of elements (public member function).
+12. `insert_range` (C++23): Inserts a range of elements (public member
+    function).
 13. `emplace`: Constructs elements in-place (public member function).
-14. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-15. `erase`: Erases elements and returns a valid iterator (public member function).
+14. `emplace_hint`: Constructs elements in-place using a hint (public member
+    function).
+15. `erase`: Erases elements and returns a valid iterator (public member
+    function).
 16. `swap`: Swaps the contents (public member function).
-17. `extract` (C++17): Extracts nodes from the container (public member function).
-18. `merge` (C++17): Splices nodes from another container (public member function).
-19. `count`: Returns the number of elements matching specific key (public member function).
+17. `extract` (C++17): Extracts nodes from the container (public member
+    function).
+18. `merge` (C++17): Splices nodes from another container (public member
+    function).
+19. `count`: Returns the number of elements matching specific key (public member
+    function).
 20. `find`: Finds an element with specific key (public member function).
-21. `contains` (C++20): Checks if the container contains an element with specific key (public member
-    function).
-22. `equal_range`: Returns range of elements matching a specific key (public member function).
-23. `begin( size_type )`, `cbegin( size_type )`: Returns an iterator to the beginning of the
-    specified bucket (public member function).
-24. `end( size_type )`, `cend( size_type )`: Returns an iterator to the end of the specified bucket
-    (public member function).
+21. `contains` (C++20): Checks if the container contains an element with
+    specific key (public member function).
+22. `equal_range`: Returns range of elements matching a specific key (public
+    member function).
+23. `begin( size_type )`, `cbegin( size_type )`: Returns an iterator to the
+    beginning of the specified bucket (public member function).
+24. `end( size_type )`, `cend( size_type )`: Returns an iterator to the end of
+    the specified bucket (public member function).
 25. `bucket_count`: Returns the number of buckets (public member function).
-26. `max_bucket_count`: Returns the maximum number of buckets (public member function).
-27. `bucket_size`: Returns the number of elements in specific bucket (public member function).
-28. `bucket`: Returns the bucket for specific key (public member function).
-29. `load_factor`: Returns average number of elements per bucket (public member function).
-30. `max_load_factor`: Manages maximum average number of elements per bucket (public member
+26. `max_bucket_count`: Returns the maximum number of buckets (public member
     function).
-31. `rehash`: Reserves at least the specified number of buckets and regenerates the hash table
+27. `bucket_size`: Returns the number of elements in specific bucket (public
+    member function).
+28. `bucket`: Returns the bucket for specific key (public member function).
+29. `load_factor`: Returns average number of elements per bucket (public member
+    function).
+30. `max_load_factor`: Manages maximum average number of elements per bucket
     (public member function).
-32. `reserve`: Reserves space for at least the specified number of elements and regenerates the hash
-    table (public member function).
-33. `hash_function`: Returns function used to hash the keys (public member function).
-34. `key_eq`: Returns the function used to compare keys for equality (public member function).
+31. `rehash`: Reserves at least the specified number of buckets and regenerates
+    the hash table (public member function).
+32. `reserve`: Reserves space for at least the specified number of elements and
+    regenerates the hash table (public member function).
+33. `hash_function`: Returns function used to hash the keys (public member
+    function).
+34. `key_eq`: Returns the function used to compare keys for equality (public
+    member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator!=` (removed in C++20): Lexicographically compares the values of two
-   unordered sets (function template).
-2. `std::swap( std::unordered_set )`: Specializes the `std::swap` algorithm (function template).
-3. `erase_if( std::unordered_set )` (C++20): Erases all elements satisfying specific criteria
+1. `operator==`, `operator!=` (removed in C++20): Lexicographically compares the
+   values of two unordered sets (function template).
+2. `std::swap( std::unordered_set )`: Specializes the `std::swap` algorithm
    (function template).
+3. `erase_if( std::unordered_set )` (C++20): Erases all elements satisfying
+   specific criteria (function template).
 
 ## Unordered Multisets
 
 ### Explanation
 
-1. Unordered multisets are **containers (template classes)** that **store elements** in **no
-   particular order**, allowing **fast retrieval** of individual elements based on their value, much
-   like `unordered_set` containers, but **allowing** different elements to **have equivalent
+1. Unordered multisets are **containers (template classes)** that **store
+   elements** in **no particular order**, allowing **fast retrieval** of
+   individual elements based on their value, much like `unordered_set`
+   containers, but **allowing** different elements to **have equivalent
    values**.
-2. In an `unordered_multiset`, **the value of an element is at the same time its key**, used to
-   identify it.
-3. Keys are **immutable**, therefore, the elements in an `unordered_multiset` **cannot be modified**
-   once in the container - they **can be inserted and removed**, though.
-4. Internally, the elements in the `unordered_multiset` are **not sorted in any particular**, but
-   **organized into buckets** depending on their **hash values** to allow for **fast access** to
-   individual **elements** directly by their values (with **a constant average time complexity on
-   average**).
-5. Elements with **equivalent values** are **grouped together in the same bucket** and in such a way
-   that an iterator (see `equal_range`) can iterate through all of them.
+2. In an `unordered_multiset`, **the value of an element is at the same time its
+   key**, used to identify it.
+3. Keys are **immutable**, therefore, the elements in an `unordered_multiset`
+   **cannot be modified** once in the container - they **can be inserted and
+   removed**, though.
+4. Internally, the elements in the `unordered_multiset` are **not sorted in any
+   particular**, but **organized into buckets** depending on their **hash
+   values** to allow for **fast access** to individual **elements** directly by
+   their values (with **a constant average time complexity on average**).
+5. Elements with **equivalent values** are **grouped together in the same
+   bucket** and in such a way that an iterator (see `equal_range`) can iterate
+   through all of them.
 6. Iterators in the container are **at least forward iterators**.
 7. Their header files is `<unordered_set>`.
 
@@ -922,15 +981,17 @@ delete umset_ptr;
 #### Template Parameters
 
 1. `Key`: The type of the elements.
-2. `Hash`: A unary function object type that takes an object of the same type as the elements as
-   argument and returns a unique value of type `size_t` based on it. This can either be a class
-   implementing a function call operator or a pointer to a function (see constructor for an
-   example). This defaults to `std::hash< Key >`.
-3. `KeyEqual`: A binary predicate that takes two arguments of the same type as the elements and
-   returns a bool. The expression `KeyEqual( a,b )`, where `KeyEqual` is an object of this type and
-   `a` and `b` are key values, shall return true if `a` is to be considered equivalent to `b`.
-4. `Allocator`: An allocator that is used to acquire/release memory and to construct/destroy the
-   elements in that memory.
+2. `Hash`: A unary function object type that takes an object of the same type as
+   the elements as argument and returns a unique value of type `size_t` based on
+   it. This can either be a class implementing a function call operator or a
+   pointer to a function (see constructor for an example). This defaults to
+   `std::hash< Key >`.
+3. `KeyEqual`: A binary predicate that takes two arguments of the same type as
+   the elements and returns a bool. The expression `KeyEqual( a,b )`, where
+   `KeyEqual` is an object of this type and `a` and `b` are key values, shall
+   return true if `a` is to be considered equivalent to `b`.
+4. `Allocator`: An allocator that is used to acquire/release memory and to
+   construct/destroy the elements in that memory.
 
 #### Member Types
 
@@ -947,13 +1008,14 @@ delete umset_ptr;
 11. `const_pointer`: `std::allocator_traits< Allocator >::const_pointer`.
 12. `iterator`: Constant `LegacyForwardIterator` to `value_type`.
 13. `const_iterator`: `LegacyForwardIterator` to `const value_type`.
-14. `local_iterator`: An iterator type whose category, value, difference, pointer and reference
-    types are the same as iterator. This iterator can be used to iterate through a single bucket but
-    not across buckets
-15. `const_local_iterator`: An iterator type whose category, value, difference, pointer and
-    reference types are the same as `const_iterator`. This iterator can be used to iterate through a
-    single bucket but not across buckets
-16. `node_type (since C++17)`: A specialization of node handle representing a container node.
+14. `local_iterator`: An iterator type whose category, value, difference,
+    pointer and reference types are the same as iterator. This iterator can be
+    used to iterate through a single bucket but not across buckets
+15. `const_local_iterator`: An iterator type whose category, value, difference,
+    pointer and reference types are the same as `const_iterator`. This iterator
+    can be used to iterate through a single bucket but not across buckets
+16. `node_type (since C++17)`: A specialization of node handle representing a
+    container node.
 
 #### Member Functions
 
@@ -961,72 +1023,90 @@ delete umset_ptr;
 2. (destructor): Destructs the unordered multiset (public member function).
 3. `operator=`: Assigns values to the container (public member function).
 4. `get_allocator`: Returns the associated allocator (public member function).
-5. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+5. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+   function).
 6. `end`, `cend`: Returns an iterator to the end (public member function).
 7. `empty`: Checks whether the container is empty (public member function).
 8. `size`: Returns the number of elements (public member function).
-9. `max_size`: Returns the maximum possible number of elements (public member function).
+9. `max_size`: Returns the maximum possible number of elements (public member
+   function).
 10. `clear`: Clears the contents (public member function).
 11. `insert`: Inserts elements or nodes(since C++17) (public member function).
-12. `insert_range` (C++23): Inserts a range of elements (public member function).
+12. `insert_range` (C++23): Inserts a range of elements (public member
+    function).
 13. `emplace`: Constructs elements in-place (public member function).
-14. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-15. `erase`: Erases elements and returns a valid iterator (public member function).
+14. `emplace_hint`: Constructs elements in-place using a hint (public member
+    function).
+15. `erase`: Erases elements and returns a valid iterator (public member
+    function).
 16. `swap`: Swaps the contents (public member function).
-17. `extract` (C++17): Extracts nodes from the container (public member function).
-18. `merge` (C++17): Splices nodes from another container (public member function).
-19. `count`: Returns the number of elements matching specific key (public member function).
+17. `extract` (C++17): Extracts nodes from the container (public member
+    function).
+18. `merge` (C++17): Splices nodes from another container (public member
+    function).
+19. `count`: Returns the number of elements matching specific key (public member
+    function).
 20. `find`: Finds an element with specific key (public member function).
-21. `contains` (C++20): Checks if the container contains an element with specific key (public member
-    function).
-22. `equal_range`: Returns range of elements matching a specific key (public member function).
-23. `begin( size_type )`, `cbegin( size_type )`: Returns an iterator to the beginning of the
-    specified bucket (public member function).
-24. `end( size_type )`, `cend( size_type )`: Returns an iterator to the end of the specified bucket
-    (public member function).
+21. `contains` (C++20): Checks if the container contains an element with
+    specific key (public member function).
+22. `equal_range`: Returns range of elements matching a specific key (public
+    member function).
+23. `begin( size_type )`, `cbegin( size_type )`: Returns an iterator to the
+    beginning of the specified bucket (public member function).
+24. `end( size_type )`, `cend( size_type )`: Returns an iterator to the end of
+    the specified bucket (public member function).
 25. `bucket_count`: Returns the number of buckets (public member function).
-26. `max_bucket_count`: Returns the maximum number of buckets (public member function).
-27. `bucket_size`: Returns the number of elements in specific bucket (public member function).
-28. `bucket`: Returns the bucket for specific key (public member function).
-29. `load_factor`: Returns average number of elements per bucket (public member function).
-30. `max_load_factor`: Manages maximum average number of elements per bucket (public member
+26. `max_bucket_count`: Returns the maximum number of buckets (public member
     function).
-31. `rehash`: Reserves at least the specified number of buckets and regenerates the hash table
+27. `bucket_size`: Returns the number of elements in specific bucket (public
+    member function).
+28. `bucket`: Returns the bucket for specific key (public member function).
+29. `load_factor`: Returns average number of elements per bucket (public member
+    function).
+30. `max_load_factor`: Manages maximum average number of elements per bucket
     (public member function).
-32. `reserve`: Reserves space for at least the specified number of elements and regenerates the hash
-    table (public member function).
-33. `hash_function`: Returns function used to hash the keys (public member function).
-34. `key_eq`: Returns the function used to compare keys for equality (public member function).
+31. `rehash`: Reserves at least the specified number of buckets and regenerates
+    the hash table (public member function).
+32. `reserve`: Reserves space for at least the specified number of elements and
+    regenerates the hash table (public member function).
+33. `hash_function`: Returns function used to hash the keys (public member
+    function).
+34. `key_eq`: Returns the function used to compare keys for equality (public
+    member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator!=` (removed in C++20): Lexicographically compares the values of two
-   unordered multisets (function template).
-2. `std::swap( std::unordered_multiset )`: Specializes the `std::swap` algorithm (function
-   template).
-3. `erase_if( std::unordered_multiset )` (C++20): Erases all elements satisfying specific criteria
+1. `operator==`, `operator!=` (removed in C++20): Lexicographically compares the
+   values of two unordered multisets (function template).
+2. `std::swap( std::unordered_multiset )`: Specializes the `std::swap` algorithm
    (function template).
+3. `erase_if( std::unordered_multiset )` (C++20): Erases all elements satisfying
+   specific criteria (function template).
 
 ## Flat Sets
 
 ### Explanation
 
-1. Flat sets are a container adaptor that **store unique elements** following **a specific order**.
-2. In a flat set, the value of an element also identifies it (**the value is itself the key**, of
-   type `Key`), and **each value must be unique**.
-3. **The value** of the elements in a flat set **cannot be modified** once in the container (the
-   elements are always const), but they **can be inserted or removed** from the container.
-4. Internally, **the elements** in a `flat_set` are stored **in a sorted manner** using **a
-   contiguous memory structure**, which allows for **efficient access and iteration**.
-5. `flat_set` containers are generally **faster than set** containers for **accessing** individual
-   **elements** by their key due to their underlying array structure, but they require that elements
-   **be kept sorted upon insertion**.
-6. `flat_set` is typically **implemented as a sorted vector**, allowing for **efficient searching
-   and iteration**.
-7. The **class template** `flat_set` **acts as a wrapper** to the underlying sorted container passed
-   as object of type `KeyContainer`.
-8. The header file for `flat_set` is `<experimental/flat_set>` (or may be found in other namespaces
-   in different implementations).
+1. Flat sets are a container adaptor that **store unique elements** following
+   **a specific order**.
+2. In a flat set, the value of an element also identifies it (**the value is
+   itself the key**, of type `Key`), and **each value must be unique**.
+3. **The value** of the elements in a flat set **cannot be modified** once in
+   the container (the elements are always const), but they **can be inserted or
+   removed** from the container.
+4. Internally, **the elements** in a `flat_set` are stored **in a sorted
+   manner** using **a contiguous memory structure**, which allows for
+   **efficient access and iteration**.
+5. `flat_set` containers are generally **faster than set** containers for
+   **accessing** individual **elements** by their key due to their underlying
+   array structure, but they require that elements **be kept sorted upon
+   insertion**.
+6. `flat_set` is typically **implemented as a sorted vector**, allowing for
+   **efficient searching and iteration**.
+7. The **class template** `flat_set` **acts as a wrapper** to the underlying
+   sorted container passed as object of type `KeyContainer`.
+8. The header file for `flat_set` is `<experimental/flat_set>` (or may be found
+   in other namespaces in different implementations).
 
 ### Declaration Syntax
 
@@ -1194,12 +1274,14 @@ delete fset_ptr;
 #### Template Parameters
 
 1. `Key`: The type of the elements.
-2. `Compare`: A `Compare` type providing a strict weak ordering. By default, the first key (smallest
-   key) is at the beginning of the flat set because its default `Compare` is `std::less< Key >`,
-   which sorts the elements in ascending order.
-3. `KeyContainer`: The type of the underlying SequenceContainer to store the elements. The iterators
-   of such container should satisfy `LegacyRandomAccessIterator` or model `random_access_iterator`.
-   The standard containers `std::vector` and `std::deque` satisfy these requirements.
+2. `Compare`: A `Compare` type providing a strict weak ordering. By default, the
+   first key (smallest key) is at the beginning of the flat set because its
+   default `Compare` is `std::less< Key >`, which sorts the elements in
+   ascending order.
+3. `KeyContainer`: The type of the underlying SequenceContainer to store the
+   elements. The iterators of such container should satisfy
+   `LegacyRandomAccessIterator` or model `random_access_iterator`. The standard
+   containers `std::vector` and `std::deque` satisfy these requirements.
 
 #### Member Types
 
@@ -1212,8 +1294,8 @@ delete fset_ptr;
 7. `const_reference`: `const value_type&`.
 8. `size_type`: `typename KeyContainer::size_type`.
 9. `difference_type`: `typename KeyContainer::difference_type`.
-10. `iterator`: Implementation-defined `LegacyRandomAccessIterator` and `random_access_iterator` to
-    `value_type`.
+10. `iterator`: Implementation-defined `LegacyRandomAccessIterator` and
+    `random_access_iterator` to `value_type`.
 11. `const_iterator`: Implementation-defined `LegacyRandomAccessIterator` and
     `random_access_iterator` to `const value_type`.
 12. `reverse_iterator`: `std::reverse_iterator< iterator >`.
@@ -1221,83 +1303,101 @@ delete fset_ptr;
 
 #### Member Objects
 
-1. `c` (`private`): The underlying container of `container_type` (exposition-only member object`*`).
-2. `compare` (`private`): The comparison function object of type `key_compare` (exposition-only
-   member object`*`).
+1. `c` (`private`): The underlying container of `container_type`
+   (exposition-only member object`*`).
+2. `compare` (`private`): The comparison function object of type `key_compare`
+   (exposition-only member object`*`).
 
 #### Member Functions
 
 1. (constructor): Constructs the flat set (public member function).
-2. (destructor) (implicitly declared): Destroys every element of the container adaptor (public
-   member function).
-3. `operator=`: Assigns values to the container adaptor (public member function).
-4. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+2. (destructor) (implicitly declared): Destroys every element of the container
+   adaptor (public member function).
+3. `operator=`: Assigns values to the container adaptor (public member
+   function).
+4. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+   function).
 5. `end`, `cend`: Returns an iterator to the end (public member function).
-6. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
-7. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
-8. `empty`: Checks whether the container adaptor is empty (public member function).
+6. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public
+   member function).
+7. `rend`, `crend`: Returns a reverse iterator to the end (public member
+   function).
+8. `empty`: Checks whether the container adaptor is empty (public member
+   function).
 9. `size`: Returns the number of elements (public member function).
-10. `max_size`: Returns the maximum possible number of elements (public member function).
+10. `max_size`: Returns the maximum possible number of elements (public member
+    function).
 11. `emplace`: Constructs elements in-place (public member function).
-12. `emplace_hint`: Constructs elements in-place using a hint (public member function).
+12. `emplace_hint`: Constructs elements in-place using a hint (public member
+    function).
 13. `insert`: Inserts elements (public member function).
 14. `insert_range`: Inserts a range of elements (public member function).
 15. `extract`: Extracts the underlying container (public member function).
 16. `replace`: Replaces the underlying container (public member function).
-17. `erase`: Erases elements and returns a valid iterator (public member function).
+17. `erase`: Erases elements and returns a valid iterator (public member
+    function).
 18. `swap`: Swaps the contents (public member function).
 19. `clear`: Clears the contents (public member function).
 20. `find`: Finds an element with specific key (public member function).
-21. `count`: Returns the number of elements matching specific key (public member function).
-22. `contains`: Checks if the container contains an element with specific key (public member
+21. `count`: Returns the number of elements matching specific key (public member
     function).
-23. `lower_bound`: Returns an iterator to the first element not less than the given key (public
+22. `contains`: Checks if the container contains an element with specific key
+    (public member function).
+23. `lower_bound`: Returns an iterator to the first element not less than the
+    given key (public member function).
+24. `upper_bound`: Returns an iterator to the first element greater than the
+    given key (public member function).
+25. `equal_range`: Returns range of elements matching a specific key (public
     member function).
-24. `upper_bound`: Returns an iterator to the first element greater than the given key (public
-    member function).
-25. `equal_range`: Returns range of elements matching a specific key (public member function).
-26. `key_comp`: Returns the function that compares keys (public member function).
-27. `value_comp`: Returns the function that compares keys in objects of type `value_type` (public
-    member function).
+26. `key_comp`: Returns the function that compares keys (public member
+    function).
+27. `value_comp`: Returns the function that compares keys in objects of type
+    `value_type` (public member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator<=>`: Lexicographically compares the values of two flat sets (function
+1. `operator==`, `operator<=>`: Lexicographically compares the values of two
+   flat sets (function template).
+2. `std::swap( std::flat_set )`: Specializes the `std::swap` algorithm (function
    template).
-2. `std::swap( std::flat_set )`: Specializes the `std::swap` algorithm (function template).
-3. `erase_if( std::flat_set )`: Erases all elements satisfying specific criteria (function
-   template).
+3. `erase_if( std::flat_set )`: Erases all elements satisfying specific criteria
+   (function template).
 
 #### Helper classes
 
-1. `std::uses_allocator< std::flat_set >` (C++23): Specializes the `std::uses_allocat` or type trait
-   (class template specialization).
+1. `std::uses_allocator< std::flat_set >` (C++23): Specializes the
+   `std::uses_allocat` or type trait (class template specialization).
 
 #### Tags
 
-1. `sorted_unique`, `sorted_unique_t` (C++23): indicates that elements of a range are sorted and
-   unique (tag).
+1. `sorted_unique`, `sorted_unique_t` (C++23): indicates that elements of a
+   range are sorted and unique (tag).
 
 ## Flat Multisets
 
 ### Explanation
 
-1. Multilat sets are a container adaptor that **store elements** following **a specific order**.
-2. In a flat multiset, the value of an element also identifies it (**the value is itself the key**,
-   of type `Key`), but **each value does not need to be unique**.
-3. **The value** of the elements in a flat multiset **cannot be modified** once in the container
-   (the elements are always const), but they **can be inserted or removed** from the container.
-4. Internally, **the elements** in a `flat_multiset` are stored **in a sorted manner** using **a
-   contiguous memory structure**, which allows for **efficient access and iteration**.
-5. `flat_multiset` containers are generally **faster than set** containers for **accessing**
-   individual **elements** by their key due to their underlying array structure, but they require
-   that elements **be kept sorted upon insertion**.
-6. `flat_multiset` is typically **implemented as a sorted vector**, allowing for **efficient
-   searching and iteration**.
-7. The **class template** `flat_multiset` **acts as a wrapper** to the underlying sorted container
-   passed as object of type `KeyContainer`.
-8. The header file for `flat_multiset` is `<experimental/flat_set>` (or may be found in other
-   namespaces in different implementations).
+1. Multilat sets are a container adaptor that **store elements** following **a
+   specific order**.
+2. In a flat multiset, the value of an element also identifies it (**the value
+   is itself the key**, of type `Key`), but **each value does not need to be
+   unique**.
+3. **The value** of the elements in a flat multiset **cannot be modified** once
+   in the container (the elements are always const), but they **can be inserted
+   or removed** from the container.
+4. Internally, **the elements** in a `flat_multiset` are stored **in a sorted
+   manner** using **a contiguous memory structure**, which allows for
+   **efficient access and iteration**.
+5. `flat_multiset` containers are generally **faster than set** containers for
+   **accessing** individual **elements** by their key due to their underlying
+   array structure, but they require that elements **be kept sorted upon
+   insertion**.
+6. `flat_multiset` is typically **implemented as a sorted vector**, allowing for
+   **efficient searching and iteration**.
+7. The **class template** `flat_multiset` **acts as a wrapper** to the
+   underlying sorted container passed as object of type `KeyContainer`.
+8. The header file for `flat_multiset` is `<experimental/flat_set>` (or may be
+   found in other namespaces in different implementations).
 
 ### Declaration Syntax
 
@@ -1465,12 +1565,14 @@ delete fmset_ptr;
 #### Template Parameters
 
 1. `Key`: The type of the elements.
-2. `Compare`: A `Compare` type providing a strict weak ordering. By default, the first key (smallest
-   key) is at the beginning of the flat multiset because its default `Compare` is
-   `std::less< Key >`, which sorts the elements in ascending order.
-3. `KeyContainer`: The type of the underlying SequenceContainer to store the elements. The iterators
-   of such container should satisfy `LegacyRandomAccessIterator` or model `random_access_iterator`.
-   The standard containers `std::vector` and `std::deque` satisfy these requirements.
+2. `Compare`: A `Compare` type providing a strict weak ordering. By default, the
+   first key (smallest key) is at the beginning of the flat multiset because its
+   default `Compare` is `std::less< Key >`, which sorts the elements in
+   ascending order.
+3. `KeyContainer`: The type of the underlying SequenceContainer to store the
+   elements. The iterators of such container should satisfy
+   `LegacyRandomAccessIterator` or model `random_access_iterator`. The standard
+   containers `std::vector` and `std::deque` satisfy these requirements.
 
 #### Member Types
 
@@ -1483,8 +1585,8 @@ delete fmset_ptr;
 7. `const_reference`: `const value_type&`.
 8. `size_type`: `typename KeyContainer::size_type`.
 9. `difference_type`: `typename KeyContainer::difference_type`.
-10. `iterator`: Implementation-defined `LegacyRandomAccessIterator` and `random_access_iterator` to
-    `value_type`.
+10. `iterator`: Implementation-defined `LegacyRandomAccessIterator` and
+    `random_access_iterator` to `value_type`.
 11. `const_iterator`: Implementation-defined `LegacyRandomAccessIterator` and
     `random_access_iterator` to `const value_type`.
 12. `reverse_iterator`: `std::reverse_iterator< iterator >`.
@@ -1492,59 +1594,72 @@ delete fmset_ptr;
 
 #### Member Objects
 
-1. `c` (`private`): The underlying container of `container_type` (exposition-only member object`*`).
-2. `compare` (`private`): The comparison function object of type `key_compare` (exposition-only
-   member object`*`).
+1. `c` (`private`): The underlying container of `container_type`
+   (exposition-only member object`*`).
+2. `compare` (`private`): The comparison function object of type `key_compare`
+   (exposition-only member object`*`).
 
 #### Member Functions
 
 1. (constructor): Constructs the flat multiset (public member function).
-2. (destructor) (implicitly declared): Destroys every element of the container adaptor (public
-   member function).
-3. `operator=`: Assigns values to the container adaptor (public member function).
-4. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+2. (destructor) (implicitly declared): Destroys every element of the container
+   adaptor (public member function).
+3. `operator=`: Assigns values to the container adaptor (public member
+   function).
+4. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+   function).
 5. `end`, `cend`: Returns an iterator to the end (public member function).
-6. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
-7. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
-8. `empty`: Checks whether the container adaptor is empty (public member function).
+6. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public
+   member function).
+7. `rend`, `crend`: Returns a reverse iterator to the end (public member
+   function).
+8. `empty`: Checks whether the container adaptor is empty (public member
+   function).
 9. `size`: Returns the number of elements (public member function).
-10. `max_size`: Returns the maximum possible number of elements (public member function).
+10. `max_size`: Returns the maximum possible number of elements (public member
+    function).
 11. `emplace`: Constructs elements in-place (public member function).
-12. `emplace_hint`: Constructs elements in-place using a hint (public member function).
+12. `emplace_hint`: Constructs elements in-place using a hint (public member
+    function).
 13. `insert`: Inserts elements (public member function).
 14. `insert_range`: Inserts a range of elements (public member function).
 15. `extract`: Extracts the underlying container (public member function).
 16. `replace`: Replaces the underlying container (public member function).
-17. `erase`: Erases elements and returns a valid iterator (public member function).
+17. `erase`: Erases elements and returns a valid iterator (public member
+    function).
 18. `swap`: Swaps the contents (public member function).
 19. `clear`: Clears the contents (public member function).
 20. `find`: Finds an element with specific key (public member function).
-21. `count`: Returns the number of elements matching specific key (public member function).
-22. `contains`: Checks if the container contains an element with specific key (public member
+21. `count`: Returns the number of elements matching specific key (public member
     function).
-23. `lower_bound`: Returns an iterator to the first element not less than the given key (public
+22. `contains`: Checks if the container contains an element with specific key
+    (public member function).
+23. `lower_bound`: Returns an iterator to the first element not less than the
+    given key (public member function).
+24. `upper_bound`: Returns an iterator to the first element greater than the
+    given key (public member function).
+25. `equal_range`: Returns range of elements matching a specific key (public
     member function).
-24. `upper_bound`: Returns an iterator to the first element greater than the given key (public
-    member function).
-25. `equal_range`: Returns range of elements matching a specific key (public member function).
-26. `key_comp`: Returns the function that compares keys (public member function).
-27. `value_comp`: Returns the function that compares keys in objects of type `value_type` (public
-    member function).
+26. `key_comp`: Returns the function that compares keys (public member
+    function).
+27. `value_comp`: Returns the function that compares keys in objects of type
+    `value_type` (public member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator<=>`: Lexicographically compares the values of two flat multisets
+1. `operator==`, `operator<=>`: Lexicographically compares the values of two
+   flat multisets (function template).
+2. `std::swap( std::flat_multiset )`: Specializes the `std::swap` algorithm
    (function template).
-2. `std::swap( std::flat_multiset )`: Specializes the `std::swap` algorithm (function template).
-3. `erase_if( std::flat_multiset )`: Erases all elements satisfying specific criteria (function
-   template).
+3. `erase_if( std::flat_multiset )`: Erases all elements satisfying specific
+   criteria (function template).
 
 #### Helper classes
 
-1. `std::uses_allocator< std::flat_multiset >` (C++23): Specializes the `std::uses_allocat` or type
-   trait (class template specialization).
+1. `std::uses_allocator< std::flat_multiset >` (C++23): Specializes the
+   `std::uses_allocat` or type trait (class template specialization).
 
 #### Tags
 
-1. `sorted_equivalent`, `sorted_equivalent_t` (C++23): indicates that elements of a range are sorted
-   and unique (tag).
+1. `sorted_equivalent`, `sorted_equivalent_t` (C++23): indicates that elements
+   of a range are sorted and unique (tag).

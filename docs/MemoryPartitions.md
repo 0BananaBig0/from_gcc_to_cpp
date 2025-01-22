@@ -57,15 +57,15 @@
 
 #### Purpose
 
-1. Stores **local variables** and **function call information** (such as return addresses and
-   parameters).
+1. Stores **local variables** and **function call information** (such as return
+   addresses and parameters).
 2. Data is **lost** when it goes **out of scope**.
 
 #### Allocation/Deallocation
 
 1. **Automatically handled** by the compiler.
-2. Memory for local variables is **allocated when a function is called** and **deallocated when the
-   function exits**.
+2. Memory for local variables is **allocated when a function is called** and
+   **deallocated when the function exits**.
 3. Allocating memory requires **only one CPU instruction**.
 
 #### Lifetime
@@ -78,21 +78,23 @@
 
 #### Size
 
-1. **Predefined to a default value** (typically between **1 MB and 10 MB**, determined by the OS),
-   but the stack **can grow** as the application progresses. (Grows downward in memory).
+1. **Predefined to a default value** (typically between **1 MB and 10 MB**,
+   determined by the OS), but the stack **can grow** as the application
+   progresses. (Grows downward in memory).
 2. However, **the stack's growth** is usually **limited by system settings**.
 3. If the stack grows too large, a **stack overflow** occurs.
-4. The stack is **prone to overflow** due to **deep recursion** or **large allocations** of local
-   variables.
-5. On Linux systems, **the stack size limit** for **a process** **can be adjusted**, either
-   temporarily or permanently, **using the `ulimit` command**, providing flexibility in managing
-   memory resources during runtime.
+4. The stack is **prone to overflow** due to **deep recursion** or **large
+   allocations** of local variables.
+5. On Linux systems, **the stack size limit** for **a process** **can be
+   adjusted**, either temporarily or permanently, **using the `ulimit`
+   command**, providing flexibility in managing memory resources during runtime.
 
 #### Structure
 
 1. Follows a **LIFO (Last In, First Out)** structure.
 2. Memory is deallocated in reverse order of allocation.
-3. Stores data like a physical stack, pushing new data and updating the **stack pointer**.
+3. Stores data like a physical stack, pushing new data and updating the **stack
+   pointer**.
 
 #### Performance
 
@@ -119,10 +121,10 @@
 #### Lifetime
 
 1. Exists until **explicitly deallocated** by the programmer.
-2. Remains available even after the function that allocated it exits, as long as the pointer is
-   preserved.
-3. If the programmer forgets to release these variables, the system will delete them and reclaim the
-   memory they occupied after the program exits.
+2. Remains available even after the function that allocated it exits, as long as
+   the pointer is preserved.
+3. If the programmer forgets to release these variables, the system will delete
+   them and reclaim the memory they occupied after the program exits.
 
 #### Scope
 
@@ -131,8 +133,8 @@
 
 #### Size
 
-1. **Predefined** to a default value according to the system but **can grow and shrink** as the
-   application progresses. (Grows upward in memory).
+1. **Predefined** to a default value according to the system but **can grow and
+   shrink** as the application progresses. (Grows upward in memory).
 2. Limited by **system memory** and subject to **fragmentation**.
 3. Large allocations are possible, unlike the stack.
 
@@ -143,14 +145,16 @@
 
 #### Performance
 
-1. **Slower** than stack due to non-contiguous memory and overhead of managing free space.
+1. **Slower** than stack due to non-contiguous memory and overhead of managing
+   free space.
 2. Fragmentation can impact performance over time.
 
 #### Other Characteristics
 
-1. Maintains **a free list** to check if there is free memory available for the application to use.
-2. If there is **not enough heap memory**, it will ask the system to **allocate more memory**. The
-   **performance cost** of this allocation is **high**.
+1. Maintains **a free list** to check if there is free memory available for the
+   application to use.
+2. If there is **not enough heap memory**, it will ask the system to **allocate
+   more memory**. The **performance cost** of this allocation is **high**.
 3. **More cache misses**.
 
 ### Data Segment (Global/Static Memory)
@@ -182,10 +186,13 @@
 
 1. Includes:
    - **Constant segment**: Stores **string literals** and **constants**.
-   - **Initialized data segment**: Stores variables with **explicit initial** values.
-   - **BSS (uninitialized data segment, block started by symbol)**: Stores variables with **no
-     initial** values, which are initialized to **zero by default**.
-2. Organized as **a continuous memory block** for static, global and const variables/values.
+   - **Initialized data segment**: Stores variables with **explicit initial**
+     values.
+   - **BSS (uninitialized data segment, block started by symbol)**: Stores
+     variables with **no initial** values, which are initialized to **zero by
+     default**.
+2. Organized as **a continuous memory block** for static, global and const
+   variables/values.
 3. **The storage order: Constant segment, initialized data segment, BSS**.
 
 #### Performance
@@ -242,7 +249,8 @@
 #### Purpose
 
 1. Used for **mapping files or shared libraries** into memory.
-2. Enables efficient access to large files without loading them entirely into RAM.
+2. Enables efficient access to large files without loading them entirely into
+   RAM.
 
 #### Allocation/Deallocation
 
@@ -260,7 +268,8 @@
 #### Size
 
 1. Depends on the **size of the mapped file or library**.
-2. **Either fixed or dynamic (grows upward in memory)**, depending on the type of mapping.
+2. **Either fixed or dynamic (grows upward in memory)**, depending on the type
+   of mapping.
 
 #### Structure
 
@@ -280,17 +289,21 @@
 ### Memory Partitioning in C++ Program Execution
 
 1. Stack vs. Heap:
-   - The stack is **fast** and **automatically managed**, but **limited in size**.
-   - The heap allows for more flexible memory usage at the cost of **manual management**.
+   - The stack is **fast** and **automatically managed**, but **limited in
+     size**.
+   - The heap allows for more flexible memory usage at the cost of **manual
+     management**.
 2. Global/Static vs. Local:
-   - Global and static variables have global lifetimes, while local variables (on the stack) have a
-     shorter scope, limited to the block they are declared in.
+   - Global and static variables have global lifetimes, while local variables
+     (on the stack) have a shorter scope, limited to the block they are declared
+     in.
 
 ### Notes
 
-1. store data on stack > store data on heap > store pointers on stack > store pointers on heap.
-2. The storage order: Text segment, data segment, memory mapping segment, heap, stack. (May vary,
-   depending on OS, hardwares and compiler settings)
+1. store data on stack > store data on heap > store pointers on stack > store
+   pointers on heap.
+2. The storage order: Text segment, data segment, memory mapping segment, heap,
+   stack. (May vary, depending on OS, hardwares and compiler settings)
 3. Hierarchy:
    ```Markdown
    High Memory Addresses

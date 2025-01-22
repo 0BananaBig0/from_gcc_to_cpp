@@ -27,11 +27,12 @@
 
 #### Explanation
 
-1. `using` is **a keyword** and has multiple uses, each serving a different purpose depending on the
-   context.
-2. It can be used for **type aliasing**, **namespace introduction (not recommend)**, and **template
-   aliasing**.
-3. It offers more flexibility compared to `typedef`, particularly when working with templates.
+1. `using` is **a keyword** and has multiple uses, each serving a different
+   purpose depending on the context.
+2. It can be used for **type aliasing**, **namespace introduction (not
+   recommend)**, and **template aliasing**.
+3. It offers more flexibility compared to `typedef`, particularly when working
+   with templates.
 
 #### Syntax
 
@@ -83,10 +84,11 @@ using AliasName = Type;
 
 #### Explanation
 
-1. `typedef` is **a keyword** used to **create an alias for a data type**, allowing you to define
-   new names for existing types.
-2. This can improve code readability, simplify complex type definitions, and enhance maintainability
-   by making it easier to manage changes in data types throughout your code.
+1. `typedef` is **a keyword** used to **create an alias for a data type**,
+   allowing you to define new names for existing types.
+2. This can improve code readability, simplify complex type definitions, and
+   enhance maintainability by making it easier to manage changes in data types
+   throughout your code.
 
 #### Syntax
 
@@ -97,8 +99,8 @@ typedef Type AliasName;
 #### Usage
 
 1. Syntax simplicity.
-2. Template aliases. (**Only allows inside a struct or class, but not allows outside of a struct or
-   class**).
+2. Template aliases. (**Only allows inside a struct or class, but not allows
+   outside of a struct or class**).
    ```CPP
    // `ClassName` is a template class that has been implmented.
    template< typename T, ... > class ClassName< T, ... > { ...; };
@@ -142,25 +144,27 @@ typedef Type AliasName;
 
 ### Notes
 
-1. Using `using` is generally better than using `typedef` for aliasing a data type, especially in
-   modern C++ (C++11 and beyond).
+1. Using `using` is generally better than using `typedef` for aliasing a data
+   type, especially in modern C++ (C++11 and beyond).
 2. Both `typedef` and `using` in C++ (and `typedef` in C) create type aliases.
-3. These aliases are only for valid type specifiers, such as fundamental types (`int`, `float`,
-   `char`, etc.), user-defined types (`struct`, `class`, etc.), pointers, arrays, function types,
-   etc.
-4. Any other string in the `typedef` or `using` declaration but not in `{}` or `()` serves as the
-   alias name and must not conflict with C/C++ keywords.
+3. These aliases are only for valid type specifiers, such as fundamental types
+   (`int`, `float`, `char`, etc.), user-defined types (`struct`, `class`, etc.),
+   pointers, arrays, function types, etc.
+4. Any other string in the `typedef` or `using` declaration but not in `{}` or
+   `()` serves as the alias name and must not conflict with C/C++ keywords.
 
 ## `namespace`
 
 ### Explanation
 
-1. A `namespace` is **a way to organize and group related classes, functions, variables, and other
-   identifiers** to **avoid name conflicts**.
-2. It provides a logical structure that helps manage large codebases, particularly when multiple
-   libraries or modules are used that might define identifiers with the same names.
-3. In fact, if we do not implement our classes, functions, variables, and other identifiers within a
-   named `namespace`, they are implemented in **an anonymous `namespace`**.
+1. A `namespace` is **a way to organize and group related classes, functions,
+   variables, and other identifiers** to **avoid name conflicts**.
+2. It provides a logical structure that helps manage large codebases,
+   particularly when multiple libraries or modules are used that might define
+   identifiers with the same names.
+3. In fact, if we do not implement our classes, functions, variables, and other
+   identifiers within a named `namespace`, they are implemented in **an
+   anonymous `namespace`**.
 
 ### Declaration Syntax
 
@@ -207,13 +211,14 @@ using namespace SpaceNameA::SpaceNameB;
 
 #### Disadvantages
 
-1. It's **difficult** to determine from **which** namespace a **function is being called** if both
-   namespaces contain a function **with the same name**. There are multiple scenarios:
+1. It's **difficult** to determine from **which** namespace a **function is
+   being called** if both namespaces contain a function **with the same name**.
+   There are multiple scenarios:
    - Both functions have **the same signature**.
-   - Both functions do not have the same signature, but **implicit conversion** can occur between
-     their parameters.
+   - Both functions do not have the same signature, but **implicit conversion**
+     can occur between their parameters.
 
 ### Notes
 
-1. **Do not use it** in header files, but it can be **used within a small scope**, such as a
-   function or an if statement.
+1. **Do not use it** in header files, but it can be **used within a small
+   scope**, such as a function or an if statement.

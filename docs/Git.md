@@ -41,11 +41,13 @@
 ### Perface
 
 1. This file lists only common Git commands.
-2. For a deeper understanding of Git, you should learn from a comprehensive Git tutorial.
+2. For a deeper understanding of Git, you should learn from a comprehensive Git
+   tutorial.
 3. [Git Handbook (Official)](https://docs.github.com/en/get-started).
 4. [Pro Git Book (Free)](https://git-scm.com/book/en/v2).
 5. [Git Handbook (Gitee)](https://portrait.gitee.com/help/articles/4105).
-6. By asking ChatGPT questions like "Is there any Git tutorial?", you can get more answers.
+6. By asking ChatGPT questions like "Is there any Git tutorial?", you can get
+   more answers.
 
 ### Create and Initialize a Repository
 
@@ -80,37 +82,41 @@ flowchart LR
 
 1. Working directory:
    - This is the directory where you work on your project.
-   - Typically, it serves as the root directory and often contains a `.git` directory, which
-     primarily includes the config file, the staging area, branches, and the head.
+   - Typically, it serves as the root directory and often contains a `.git`
+     directory, which primarily includes the config file, the staging area,
+     branches, and the head.
    - You can use the `exa` command to explore its tree structure.
 2. Stage:
-   - After executing the `git add TargetList` command, all changes to the files in `TargetList` are
-     submitted to the staging area.
+   - After executing the `git add TargetList` command, all changes to the files
+     in `TargetList` are submitted to the staging area.
 3. Current branch:
    - This refers to the branch you are currently working on in your project.
 4. origin
-   - origin is the default name given to a remote repository when you first clone a repository or
-     add a remote with the command `git remote add origin TheRemoteRepositoryLink`
-   - It is a shorthand alias used to refer to that remote repository, making it easier to work with
-     Git commands without typing the full URL each time.
+   - origin is the default name given to a remote repository when you first
+     clone a repository or add a remote with the command
+     `git remote add origin TheRemoteRepositoryLink`
+   - It is a shorthand alias used to refer to that remote repository, making it
+     easier to work with Git commands without typing the full URL each time.
 5. master:
    - It is typically the name of the main branch in your local repository.
-   - It represents the latest commit on that branch. When you switch to the master branch, HEAD
-     points to master.
+   - It represents the latest commit on that branch. When you switch to the
+     master branch, HEAD points to master.
 6. HEAD:
    - It is a pointer that refers to the current commit in your local repository.
    - It indicates where you are in the commit history.
-   - When you make new commits, HEAD moves forward to point to the latest commit.
+   - When you make new commits, HEAD moves forward to point to the latest
+     commit.
 7. origin/master:(Notes 4 and 5)
-   - It is a remote-tracking branch that represents the state of the master branch on the remote
-     repository (usually named origin).
-   - It reflects the last known state of the master branch on the remote when you last fetched or
-     pulled changes.
+   - It is a remote-tracking branch that represents the state of the master
+     branch on the remote repository (usually named origin).
+   - It reflects the last known state of the master branch on the remote when
+     you last fetched or pulled changes.
    - It doesn't change unless you explicitly fetch or pull.
 8. origin/HEAD:(Notes 4 and 6)
-   - It is a symbolic reference that points to the default branch of the origin remote repository,
-     often pointing to origin/master.
-   - It helps Git determine which branch to track for new clones of the repository.
+   - It is a symbolic reference that points to the default branch of the origin
+     remote repository, often pointing to origin/master.
+   - It helps Git determine which branch to track for new clones of the
+     repository.
 
 ### Check the Usage of `git`
 

@@ -17,14 +17,16 @@
 
 ### Explanation
 
-1. `std::bind` is **a function adapter** in C++ that allows you to **create a callable object by
-   binding one or more arguments to a function or function object**.
-2. It is part of the `<functional>` header and provides a way to create a new function that can be
-   invoked with a specific set of arguments, while leaving some arguments unbound.
-3. `std::bind` is useful when you need to adapt a function to match a specific signature for
-   algorithms or event-driven programming.
-4. It can also be used to create a function that calls another function with a fixed set of
-   arguments, reducing the need to repeatedly pass those arguments.
+1. `std::bind` is **a function adapter** in C++ that allows you to **create a
+   callable object by binding one or more arguments to a function or function
+   object**.
+2. It is part of the `<functional>` header and provides a way to create a new
+   function that can be invoked with a specific set of arguments, while leaving
+   some arguments unbound.
+3. `std::bind` is useful when you need to adapt a function to match a specific
+   signature for algorithms or event-driven programming.
+4. It can also be used to create a function that calls another function with a
+   fixed set of arguments, reducing the need to repeatedly pass those arguments.
 
 ### Syntax
 
@@ -85,15 +87,17 @@ template< class R, class F, class... Args >
 
 ### Explanation
 
-1. `std::function` is a template class in C++ that provides a type-safe wrapper for any callable
-   entity, including functions, function pointers, and function objects.
-2. It is part of the <functional> header and allows you to store and invoke callable objects with a
-   specific signature.
-3. `std::function` is useful for scenarios where you need to store or pass around functions as
-   first-class objects, such as callback functions, event handlers, or when working with algorithms
-   that require generic function signatures.
-4. For high-performance code where overhead is a concern, function pointers or direct calls may be
-   more suitable.
+1. `std::function` is a template class in C++ that provides a type-safe wrapper
+   for any callable entity, including functions, function pointers, and function
+   objects.
+2. It is part of the <functional> header and allows you to store and invoke
+   callable objects with a specific signature.
+3. `std::function` is useful for scenarios where you need to store or pass
+   around functions as first-class objects, such as callback functions, event
+   handlers, or when working with algorithms that require generic function
+   signatures.
+4. For high-performance code where overhead is a concern, function pointers or
+   direct calls may be more suitable.
 
 ### Syntax
 

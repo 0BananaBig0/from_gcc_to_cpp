@@ -11,11 +11,13 @@
 
 ### Explanation
 
-1. Handles are **an abstract reference or identifier for a resource** (e.g., file, memory, window)
-   that is **managed by the operating system or runtime system**.
-2. They allow **interaction with resources** **without exposing low-level details**, ensuring
-   **safe** and **controlled access**.
-3. They provides **abstraction**, **resource management**, and **cross-platform compatibility**.
+1. Handles are **an abstract reference or identifier for a resource** (e.g.,
+   file, memory, window) that is **managed by the operating system or runtime
+   system**.
+2. They allow **interaction with resources** **without exposing low-level
+   details**, ensuring **safe** and **controlled access**.
+3. They provides **abstraction**, **resource management**, and **cross-platform
+   compatibility**.
 
 ### Types of Handles
 
@@ -24,12 +26,14 @@
 2. Window handle (HWND):
    - A unique identifier for a window or UI component in GUI programming.
 3. Memory handle:
-   - A reference to a block of memory, typically used for managing resources like shared memory.
+   - A reference to a block of memory, typically used for managing resources
+     like shared memory.
 4. Object handle:
-   - A pointer or reference to an object, often used in object-oriented programming to manage object
-     instances.
+   - A pointer or reference to an object, often used in object-oriented
+     programming to manage object instances.
 5. Database handle:
-   - A reference to a database connection used to execute SQL queries and retrieve results.
+   - A reference to a database connection used to execute SQL queries and
+     retrieve results.
 
 ### Usage
 

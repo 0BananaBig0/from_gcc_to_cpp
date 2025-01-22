@@ -57,13 +57,13 @@
 
 ### Explanation
 
-1. Stacks are a type of **container adaptor**, specifically designed to operate in **a LIFO context
-   (last-in first-out)**, where elements are inserted and extracted only from one end of the
-   container.
-2. The stack **class template** acts as **a wrapper to the underlying container** - **only a
-   specific set of functions is provided**.
-3. The stack pushes and pops the element from the back of the underlying container, known as the top
-   of the stack.
+1. Stacks are a type of **container adaptor**, specifically designed to operate
+   in **a LIFO context (last-in first-out)**, where elements are inserted and
+   extracted only from one end of the container.
+2. The stack **class template** acts as **a wrapper to the underlying
+   container** - **only a specific set of functions is provided**.
+3. The stack pushes and pops the element from the back of the underlying
+   container, known as the top of the stack.
 4. Their header file is `<stack>`.
 
 ### Declaration Syntax
@@ -161,17 +161,19 @@ delete stack_ptr;
 
 #### Template Parameters
 
-1. `T`: The type of the stored elements. The program is ill-formed if `T` is not the same type as
-   `Container::value_type`.
-2. `Container`: The type of the underlying container to use to store the elements. The container
-   must satisfy the requirements of `SequenceContainer`. Additionally, it must provide the following
-   functions with the usual semantics:
+1. `T`: The type of the stored elements. The program is ill-formed if `T` is not
+   the same type as `Container::value_type`.
+2. `Container`: The type of the underlying container to use to store the
+   elements. The container must satisfy the requirements of `SequenceContainer`.
+   Additionally, it must provide the following functions with the usual
+   semantics:
    - `back()`, e.g., `std::vector::back()`,
    - `push_back()`, e.g., `std::deque::push_back()`,
    - `pop_back()`, e.g., `std::list::pop_back()`.
-3. The standard containers `std::vector` (including `std::vector< bool >`), `std::deque` and
-   `std::list` satisfy these requirements. **By default**, if no container class is specified for a
-   particular stack class instantiation, **the standard container `std::deque`** is used.
+3. The standard containers `std::vector` (including `std::vector< bool >`),
+   `std::deque` and `std::list` satisfy these requirements. **By default**, if
+   no container class is specified for a particular stack class instantiation,
+   **the standard container `std::deque`** is used.
 
 #### Member Types
 
@@ -189,40 +191,45 @@ delete stack_ptr;
 
 1. (constructor): Constructs the stack (public member function).
 2. (destructor): Destructs the stack (public member function).
-3. `operator=`: Assigns values to the container adaptor (public member function).
+3. `operator=`: Assigns values to the container adaptor (public member
+   function).
 4. `top`: Accesses the top element (public member function).
-5. `empty`: Checks whether the container adaptor is empty (public member function).
+5. `empty`: Checks whether the container adaptor is empty (public member
+   function).
 6. `size`: Returns the number of elements (public member function).
 7. `push`: Inserts element at the top (public member function).
-8. `push_range` (C++23): Inserts a range of elements at the top (public member function).
+8. `push_range` (C++23): Inserts a range of elements at the top (public member
+   function).
 9. `emplace`: Constructs element in-place at the top (public member function).
 10. `pop`: Removes the top element (public member function).
 11. `swap`: Swaps the contents (public member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>` (C++20): Lexicographically
-   compares the values of two stacks (function template).
-2. `std::swap( std::stack )`: Specializes the `std::swap` algorithm (function template).
+1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>`
+   (C++20): Lexicographically compares the values of two stacks (function
+   template).
+2. `std::swap( std::stack )`: Specializes the `std::swap` algorithm (function
+   template).
 
 ### Helper Classes
 
-1. `std::uses_allocator< std::stack >`: Specializes the `std::uses_allocator` type trait (class
-   template specialization).
-2. `std::formatter< std::stack >` (C++23): Formatting support for `std::stack` (class template
-   specialization).
+1. `std::uses_allocator< std::stack >`: Specializes the `std::uses_allocator`
+   type trait (class template specialization).
+2. `std::formatter< std::stack >` (C++23): Formatting support for `std::stack`
+   (class template specialization).
 
 ## Queues
 
 ### Explanation
 
-1. Queues are a type of **container adaptor**, specifically designed to operate in **a FIFO context
-   (first-in first-out)**, where elements are inserted into one end of the container and extracted
-   from the other.
-2. The queue **class template** acts as **a wrapper to the underlying container - only a specific
-   set of functions is provided**.
-3. The queue pushes the elements on the back of the underlying container and pops them from the
-   front.
+1. Queues are a type of **container adaptor**, specifically designed to operate
+   in **a FIFO context (first-in first-out)**, where elements are inserted into
+   one end of the container and extracted from the other.
+2. The queue **class template** acts as **a wrapper to the underlying
+   container - only a specific set of functions is provided**.
+3. The queue pushes the elements on the back of the underlying container and
+   pops them from the front.
 4. Their header file is `<queue>`.
 
 ### Declaration Syntax
@@ -319,16 +326,18 @@ delete queue_ptr;
 
 #### Template Parameters
 
-1. `T`: The type of the stored elements. The program is ill-formed if `T` is not the same type as
-   `Container::value_type`.
-2. `Container`: The type of the underlying container to use to store the elements. The container
-   must satisfy the requirements of `SequenceContainer`. Additionally, it must provide the following
-   functions with the usual semantics:
+1. `T`: The type of the stored elements. The program is ill-formed if `T` is not
+   the same type as `Container::value_type`.
+2. `Container`: The type of the underlying container to use to store the
+   elements. The container must satisfy the requirements of `SequenceContainer`.
+   Additionally, it must provide the following functions with the usual
+   semantics:
    - `back()`, e.g., `std::deque::back()`,
    - `front()`, e.g. `std::list::front()`,
    - `push_back()`, e.g., `std::deque::push_back()`,
    - `pop_front()`, e.g., `std::list::pop_front()`.
-3. The standard containers `std::deque` and `std::list` satisfy these requirements.
+3. The standard containers `std::deque` and `std::list` satisfy these
+   requirements.
 
 #### Member Types
 
@@ -346,43 +355,50 @@ delete queue_ptr;
 
 1. (constructor): Constructs the queue (public member function).
 2. (destructor): Destructs the queue (public member function).
-3. `operator=`: Assigns values to the container adaptor (public member function).
+3. `operator=`: Assigns values to the container adaptor (public member
+   function).
 4. `front`: Access the first element (public member function).
 5. `back`: Access the last element (public member function).
-6. `empty`: Checks whether the container adaptor is empty (public member function).
+6. `empty`: Checks whether the container adaptor is empty (public member
+   function).
 7. `size`: Returns the number of elements (public member function).
 8. `push`: Inserts element at the end (public member function).
-9. `push_range` (C++23): Inserts a range of elements at the end (public member function).
+9. `push_range` (C++23): Inserts a range of elements at the end (public member
+   function).
 10. `emplace`: Constructs element in-place at the end (public member function).
 11. `pop`: Removes the first element (public member function).
 12. `swap`: Swaps the contents (public member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>` (C++20): Lexicographically
-   compares the values of two queues (function template).
-2. `std::swap( std::queue )`: Specializes the `std::swap` algorithm (function template).
+1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>`
+   (C++20): Lexicographically compares the values of two queues (function
+   template).
+2. `std::swap( std::queue )`: Specializes the `std::swap` algorithm (function
+   template).
 
 #### Helper Classes
 
-1. `std::uses_allocator< std::queue >`: Specializes the `std::uses_allocator` type trait (class
-   template specialization).
-2. `std::formatter< std::queue >` (C++23): Formatting support for `std::queue` (class template
-   specialization).
+1. `std::uses_allocator< std::queue >`: Specializes the `std::uses_allocator`
+   type trait (class template specialization).
+2. `std::formatter< std::queue >` (C++23): Formatting support for `std::queue`
+   (class template specialization).
 
 ## Priority Queues
 
 ### Explanation
 
-1. Priority queues are a type of **container adaptors**, specifically designed such that its **first
-   element is always the largest of the elements it contains**, according to **some strict weak
-   ordering criterion**.
-2. **A user-provided `Compare`** can be supplied to **change the ordering**, e.g. using
-   `std::greater< T >` would cause the smallest element to appear as the `top()`.
-3. This context is **similar to a heap**, where elements can be **inserted at any moment**, and
-   **only the max heap element can be retrieved** (the one at the top in the priority queue).
-4. The priority queue **class template** acts as **a wrapper to the underlying container** - **only
-   a specific set of functions is provided**.
+1. Priority queues are a type of **container adaptors**, specifically designed
+   such that its **first element is always the largest of the elements it
+   contains**, according to **some strict weak ordering criterion**.
+2. **A user-provided `Compare`** can be supplied to **change the ordering**,
+   e.g. using `std::greater< T >` would cause the smallest element to appear as
+   the `top()`.
+3. This context is **similar to a heap**, where elements can be **inserted at
+   any moment**, and **only the max heap element can be retrieved** (the one at
+   the top in the priority queue).
+4. The priority queue **class template** acts as **a wrapper to the underlying
+   container** - **only a specific set of functions is provided**.
 5. Their header file is `<queue>`.
 
 ### Declaration Syntax
@@ -514,20 +530,22 @@ delete pri_queue_ptr;
 
 #### Template Parameters
 
-1. `T`: The type of the stored elements. The program is ill-formed if `T` is not the same type as
-   `Container::value_type`.
-2. `Container`: The type of the underlying container to use to store the elements. The container
-   must satisfy the requirements of `SequenceContainer`, and its iterators must satisfy the
-   requirements of `LegacyRandomAccessIterator`. Additionally, it must provide the following
+1. `T`: The type of the stored elements. The program is ill-formed if `T` is not
+   the same type as `Container::value_type`.
+2. `Container`: The type of the underlying container to use to store the
+   elements. The container must satisfy the requirements of `SequenceContainer`,
+   and its iterators must satisfy the requirements of
+   `LegacyRandomAccessIterator`. Additionally, it must provide the following
    functions with the usual semantics:
    - `front()`, e.g., `std::vector::front()`,
    - `push_back()`, e.g., `std::deque::push_back()`,
    - `pop_back()`, e.g., `std::vector::pop_back()`.
-3. The standard containers `std::vector` (including `std::vector< bool >`) and `std::deque` satisfy
-   these requirements.
-4. `Compare`: A `Compare` type providing a strict weak ordering. By default, the first key (largest
-   key) is at the top of the queue because its underlying structure is a max-heap, which uses
-   `std::less< T >` to maintain that structure, ensuring the largest element is accessible first.
+3. The standard containers `std::vector` (including `std::vector< bool >`) and
+   `std::deque` satisfy these requirements.
+4. `Compare`: A `Compare` type providing a strict weak ordering. By default, the
+   first key (largest key) is at the top of the queue because its underlying
+   structure is a max-heap, which uses `std::less< T >` to maintain that
+   structure, ensuring the largest element is accessible first.
 
 #### Member Types
 
@@ -547,43 +565,49 @@ delete pri_queue_ptr;
 
 1. (constructor): Constructs the priority_queue (public member function).
 2. (destructor): Destructs the priority_queue (public member function).
-3. `operator=`: Assigns values to the container adaptor (public member function).
-4. `top`: Accesses the top element (public member function).
-5. `empty`: Checks whether the container adaptor is empty (public member function).
-6. `size`: Returns the number of elements (public member function).
-7. `push`: Inserts element and sorts the underlying container (public member function).
-8. `push_range` (C++23): Inserts a range of elements and sorts the underlying container (public
-   member function).
-9. `emplace`: Constructs element in-place and sorts the underlying container (public member
+3. `operator=`: Assigns values to the container adaptor (public member
    function).
+4. `top`: Accesses the top element (public member function).
+5. `empty`: Checks whether the container adaptor is empty (public member
+   function).
+6. `size`: Returns the number of elements (public member function).
+7. `push`: Inserts element and sorts the underlying container (public member
+   function).
+8. `push_range` (C++23): Inserts a range of elements and sorts the underlying
+   container (public member function).
+9. `emplace`: Constructs element in-place and sorts the underlying container
+   (public member function).
 10. `pop`: Removes the top element (public member function).
 11. `swap`: Swaps the contents (public member function).
 
 #### Non-member Functions
 
-1. `std::swap( std::priority_queue )`: Specializes the `std::swap` algorithm (function template).
+1. `std::swap( std::priority_queue )`: Specializes the `std::swap` algorithm
+   (function template).
 
 #### Helper Classes
 
-1. `std::uses_allocator< std::priority_queue >`: Specializes the `std::uses_allocator` type trait
-   (class template specialization).
-2. `std::formatter< std::priority_queue >` (C++23): Formatting support for `std::priority_queue`
-   (class template specialization).
+1. `std::uses_allocator< std::priority_queue >`: Specializes the
+   `std::uses_allocator` type trait (class template specialization).
+2. `std::formatter< std::priority_queue >` (C++23): Formatting support for
+   `std::priority_queue` (class template specialization).
 
 ## Deques (Double-ended Queue) (Deck)
 
 ### Explanation
 
-1. Deques are **sequence containers (template classes)** with **dynamic sizes** that can be expanded
-   or contracted on both ends (either its front or its back).
-2. They allow for the individual elements to be accessed directly through **random access
-   iterators**, with storage handled automatically by expanding and contracting the container as
-   needed.
-3. They provide a functionality **similar to vectors**, **but with efficient insertion and
-   deletion** of elements also **at the beginning** of the sequence, and not only **at its end**.
-4. But, unlike vectors, deques are **not** guaranteed to **store all its elements in contiguous
-   storage locations**: **accessing elements** in a deque by **offsetting a pointer to another
-   element** causes **undefined behavior**.
+1. Deques are **sequence containers (template classes)** with **dynamic sizes**
+   that can be expanded or contracted on both ends (either its front or its
+   back).
+2. They allow for the individual elements to be accessed directly through
+   **random access iterators**, with storage handled automatically by expanding
+   and contracting the container as needed.
+3. They provide a functionality **similar to vectors**, **but with efficient
+   insertion and deletion** of elements also **at the beginning** of the
+   sequence, and not only **at its end**.
+4. But, unlike vectors, deques are **not** guaranteed to **store all its
+   elements in contiguous storage locations**: **accessing elements** in a deque
+   by **offsetting a pointer to another element** causes **undefined behavior**.
 5. Their header file is `<deque>`.
 
 ### Declaration Syntax
@@ -685,8 +709,8 @@ delete deque_ptr;
 #### Template Parameters
 
 1. `T`: The type of the elements.
-2. `Allocator`: An allocator that is used to acquire/release memory and to construct/destroy the
-   elements in that memory.
+2. `Allocator`: An allocator that is used to acquire/release memory and to
+   construct/destroy the elements in that memory.
 
 #### Member Types
 
@@ -696,8 +720,8 @@ delete deque_ptr;
 4. `difference_type`: Signed integer type (usually `std::ptrdiff_t`).
 5. `reference`: `value_type&`.
 6. `const_reference`: `const value_type&`.
-7. `pointer`: `Allocator::pointer` (until C++11), `std::allocator_traits< Allocator >::pointer`
-   (since C++11).
+7. `pointer`: `Allocator::pointer` (until C++11),
+   `std::allocator_traits< Allocator >::pointer` (since C++11).
 8. `const_pointer`: `Allocator::const_pointer` (until C++11),
    `std::allocator_traits< Allocator >::const_pointer` (since C++11).
 9. `iterator`: `LegacyBidirectionalIterator` to `value_type`.
@@ -711,40 +735,54 @@ delete deque_ptr;
 2. (destructor): Destructs the deque (public member function).
 3. `operator=`: Assigns values to the container (public member function).
 4. `assign`: Assigns values to the container (public member function).
-5. `assign_range` (C++23): Assigns a range of values to the container (public member function).
+5. `assign_range` (C++23): Assigns a range of values to the container (public
+   member function).
 6. `get_allocator`: Returns the associated allocator (public member function).
 7. `at`: Access specified element with bounds checking (public member function).
 8. `operator[]`: Access specified element (public member function).
 9. `front`: Access the first element (public member function).
 10. `back`: Access the last element (public member function).
-11. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+11. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+    function).
 12. `end`, `cend`: Returns an iterator to the end (public member function).
-13. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
-14. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
+13. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public
+    member function).
+14. `rend`, `crend`: Returns a reverse iterator to the end (public member
+    function).
 15. `empty`: Checks whether the container is empty (public member function).
 16. `size`: Returns the number of elements (public member function).
-17. `max_size`: Returns the maximum possible number of elements (public member function).
-18. `shrink_to_fit` (`DR*`): Reduces memory usage by freeing unused memory (public member function).
+17. `max_size`: Returns the maximum possible number of elements (public member
+    function).
+18. `shrink_to_fit` (`DR*`): Reduces memory usage by freeing unused memory
+    (public member function).
 19. `clear`: Clears the contents (public member function).
 20. `insert`: Inserts elements (public member function).
-21. `insert_range` (C++23): Inserts a range of elements (public member function).
+21. `insert_range` (C++23): Inserts a range of elements (public member
+    function).
 22. `emplace`: Constructs elements in-place (public member function).
-23. `erase`: Erases elements and returns a valid iterator (public member function).
+23. `erase`: Erases elements and returns a valid iterator (public member
+    function).
 24. `push_back`: Adds an element to the end (public member function).
-25. `emplace_back`: Constructs an element in-place at the end (public member function).
-26. `append_range` (C++23): Adds a range of elements to the end (public member function).
+25. `emplace_back`: Constructs an element in-place at the end (public member
+    function).
+26. `append_range` (C++23): Adds a range of elements to the end (public member
+    function).
 27. `pop_back`: Removes the last element (public member function).
 28. `push_front`: Inserts an element to the beginning (public member function).
-29. `emplace_front`: Constructs an element in-place at the beginning (public member function).
-30. `prepend_range` (C++23): Adds a range of elements to the beginning (public member function).
+29. `emplace_front`: Constructs an element in-place at the beginning (public
+    member function).
+30. `prepend_range` (C++23): Adds a range of elements to the beginning (public
+    member function).
 31. `pop_front`: Removes the first element (public member function).
 32. `resize`: Changes the number of elements stored (public member function).
 33. `swap`: Swaps the contents (public member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>` (C++20): Lexicographically
-   compares the values of two deques (function template).
-2. `std::swap( std::deque )`: Specializes the `std::swap` algorithm (function template).
-3. `erase( std::deque )` (C++20), `erase_if( std::deque )` (C++20): Erases all elements satisfying
-   specific criteria (function template).
+1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>`
+   (C++20): Lexicographically compares the values of two deques (function
+   template).
+2. `std::swap( std::deque )`: Specializes the `std::swap` algorithm (function
+   template).
+3. `erase( std::deque )` (C++20), `erase_if( std::deque )` (C++20): Erases all
+   elements satisfying specific criteria (function template).

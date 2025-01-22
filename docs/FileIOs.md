@@ -55,29 +55,32 @@
 
 ### Explanation
 
-1. The`iostream` library provides functionalities for **handling input and output operations** in
-   C++.
-2. It includes **both wide and narrow character streams** for interacting with data, allowing for
-   flexibility in **handling different encodings**, such as single-byte characters (ASCII) and
-   multi-byte characters (UTF-16, UTF-32).
+1. The`iostream` library provides functionalities for **handling input and
+   output operations** in C++.
+2. It includes **both wide and narrow character streams** for interacting with
+   data, allowing for flexibility in **handling different encodings**, such as
+   single-byte characters (ASCII) and multi-byte characters (UTF-16, UTF-32).
 
 ### `std::cin` and `std::wcin`
 
 ### `std::cin`
 
-1. `std::cin` is the standard input stream used to read data from the standard input (usually the
-   keyboard) for narrow character types (`char`).
-2. Typically, it's used for reading user input in the form of various data types (e.g., integers,
-   strings).
-3. It waits for user input before processing it and may buffer the input to optimize performance.
+1. `std::cin` is the standard input stream used to read data from the standard
+   input (usually the keyboard) for narrow character types (`char`).
+2. Typically, it's used for reading user input in the form of various data types
+   (e.g., integers, strings).
+3. It waits for user input before processing it and may buffer the input to
+   optimize performance.
 
 ### `std::wcin`
 
-1. `std::wcin` is the wide-character equivalent of `std::cin`, used for reading wide characters
-   (`wchar_t`) from standard input. This is useful for reading internationalized or Unicode data.
-2. It's used to read wide-character data, often necessary for handling non-ASCII characters or
-   multi-byte encodings.
-3. Similar to `std::cin`, its input is buffered and processed after the user types it.
+1. `std::wcin` is the wide-character equivalent of `std::cin`, used for reading
+   wide characters (`wchar_t`) from standard input. This is useful for reading
+   internationalized or Unicode data.
+2. It's used to read wide-character data, often necessary for handling non-ASCII
+   characters or multi-byte encodings.
+3. Similar to `std::cin`, its input is buffered and processed after the user
+   types it.
 
 #### Syntax
 
@@ -105,18 +108,19 @@ std::wcin >> wvar_name;      // Wide character input
 
 #### `std::cout`
 
-1. `std::cout` is the standard output stream used for writing data to the console, typically using
-   narrow characters (`char`).
-2. It's used to display output to the user, such as text, numbers, or formatted data.
-3. Data written to `std::cout` is stored in memory and written to the console when the buffer is
-   full or flushed.
+1. `std::cout` is the standard output stream used for writing data to the
+   console, typically using narrow characters (`char`).
+2. It's used to display output to the user, such as text, numbers, or formatted
+   data.
+3. Data written to `std::cout` is stored in memory and written to the console
+   when the buffer is full or flushed.
 
 #### `std::wcout`
 
-1. `std::wcout` is the wide-character output stream for writing wide characters (`wchar_t`) to the
-   console.
-2. It's used for outputting wide-character data, necessary when working with non-ASCII or multi-byte
-   character sets, such as internationalized text.
+1. `std::wcout` is the wide-character output stream for writing wide characters
+   (`wchar_t`) to the console.
+2. It's used for outputting wide-character data, necessary when working with
+   non-ASCII or multi-byte character sets, such as internationalized text.
 3. Like `std::cout`, data is buffered before being output to the console.
 
 #### Syntax
@@ -143,15 +147,16 @@ std::wcout << L"Message";       // Wide character output
 
 #### `std::cerr`
 
-1. `std::cerr` is used for outputting error messages to the standard error stream (`stderr`),
-   typically without buffering.
+1. `std::cerr` is used for outputting error messages to the standard error
+   stream (`stderr`), typically without buffering.
 2. It's commonly used for reporting errors, warnings, or diagnostics.
-3. It ensures that error messages are immediately displayed, regardless of buffering.
+3. It ensures that error messages are immediately displayed, regardless of
+   buffering.
 
 #### `std::wcerr`
 
-1. `std::wcerr` is the wide-character version of `std::cerr`, used for outputting error messages in
-   wide-character format (`wchar_t`).
+1. `std::wcerr` is the wide-character version of `std::cerr`, used for
+   outputting error messages in wide-character format (`wchar_t`).
 2. It's used when you need to output wide-character error messages.
 3. Just like `std::cerr`, it outputs error messages immediately.
 
@@ -178,14 +183,15 @@ std::wcerr << L"Error occurred";  // Wide character error output
 
 #### `std::clog`
 
-1. `std::clog` is used for logging information to the standard error stream (`stderr`), typically
-   buffered.
+1. `std::clog` is used for logging information to the standard error stream
+   (`stderr`), typically buffered.
 2. It's commonly used for logging messages, warnings, or diagnostic data.
 3. It stores the log messages in memory before outputting them.
 
 #### `std::wclog`
 
-1. `std::wclog` is the wide-character version of `std::clog`, used for logging wide-character data.
+1. `std::wclog` is the wide-character version of `std::clog`, used for logging
+   wide-character data.
 2. It's used when the log messages contain wide-character data.
 3. Like `std::clog`, it buffers log messages before outputting them.
 
@@ -215,32 +221,36 @@ std::wclog << L"Log message";     // Wide character log output
 
 #### `std::endl`
 
-1. `std::endl` inserts a newline character (`\n`) into the output stream and flushes the stream,
-   ensuring immediate output.
-2. It often used when you need to print a newline and flush the output immediately (e.g., after
-   displaying a message).
-3. It causes a flush of the output stream, in addition to inserting a newline character.
+1. `std::endl` inserts a newline character (`\n`) into the output stream and
+   flushes the stream, ensuring immediate output.
+2. It often used when you need to print a newline and flush the output
+   immediately (e.g., after displaying a message).
+3. It causes a flush of the output stream, in addition to inserting a newline
+   character.
 4. `std::endl` is slightly slower than `\n` due to additional flushing.
 
 #### `std::ends`
 
 1. `std::ends` inserts a null character (`'\0'`) into the output stream.
-2. It is commonly used when working with C-style strings, where a null terminator is needed to mark
-   the end of the string.
-3. It's useful when building strings that need to be null-terminated, particularly for compatibility
-   with C-style string functions or libraries that expect a null terminator.
-4. It can be used in conjunction with `std::ostringstream` or other streams when constructing such
-   strings.
+2. It is commonly used when working with C-style strings, where a null
+   terminator is needed to mark the end of the string.
+3. It's useful when building strings that need to be null-terminated,
+   particularly for compatibility with C-style string functions or libraries
+   that expect a null terminator.
+4. It can be used in conjunction with `std::ostringstream` or other streams when
+   constructing such strings.
 5. It does not force a flush of the output buffer.
-6. It simply appends the null character to the stream's content without affecting the buffer state.
+6. It simply appends the null character to the stream's content without
+   affecting the buffer state.
 
 #### `std::flush`
 
-1. `std::flush` forces the output stream to flush, ensuring any buffered data is immediately written
-   out, without inserting a newline.
-2. It's used when you want to ensure that all output is immediately written, but without adding a
-   newline.
-3. It forces a flush of the output stream, but does not insert any characters into the stream.
+1. `std::flush` forces the output stream to flush, ensuring any buffered data is
+   immediately written out, without inserting a newline.
+2. It's used when you want to ensure that all output is immediately written, but
+   without adding a newline.
+3. It forces a flush of the output stream, but does not insert any characters
+   into the stream.
 
 #### Syntax
 
@@ -259,47 +269,54 @@ std::cout << oss.str().c_str();       // Displays the content as a C-style strin
 
 ### Explanation
 
-1. The `<fstream>` header in C++ provides classes to perform file-based input and output operations.
-2. It defines `std::ifstream`, `std::ofstream`, and `std::fstream`, each suited to specific file
-   handling tasks.
-3. These classes support text and binary I/O and are built on top of the basic iostream
-   functionality.
+1. The `<fstream>` header in C++ provides classes to perform file-based input
+   and output operations.
+2. It defines `std::ifstream`, `std::ofstream`, and `std::fstream`, each suited
+   to specific file handling tasks.
+3. These classes support text and binary I/O and are built on top of the basic
+   iostream functionality.
 
 ### `std::ifstream`, `std::ofstream` and `std::fstream`
 
 #### `std::ifstream`
 
 1. `std::ifstream` is a file input stream class used to read data from files.
-2. It provides input operations similar to `std::cin` but specifically for file reading.
-3. It's primarily used to open a file in read mode. Once opened, the file data can be read line by
-   line or as individual characters.
-4. It uses a buffer to read chunks of data, allowing efficient input operations by reducing file
-   access time.
+2. It provides input operations similar to `std::cin` but specifically for file
+   reading.
+3. It's primarily used to open a file in read mode. Once opened, the file data
+   can be read line by line or as individual characters.
+4. It uses a buffer to read chunks of data, allowing efficient input operations
+   by reducing file access time.
 5. It is a non-copyable class.
-6. `std::wifstream` is the wide-character equivalent of `std::ifstream`, used to read data from
-   files.
+6. `std::wifstream` is the wide-character equivalent of `std::ifstream`, used to
+   read data from files.
 
 #### `std::ofstream`
 
 1. `std::ofstream` is a file output stream class used to write data to files.
-2. It behaves similarly to `std::cout` but writes output to a file instead of the console.
+2. It behaves similarly to `std::cout` but writes output to a file instead of
+   the console.
 3. It's commonly used to open a file in write mode.
-4. Text and data can be written to the file, either as individual characters or lines.
-5. It buffers output data for efficient file writing by reducing the number of write operations.
+4. Text and data can be written to the file, either as individual characters or
+   lines.
+5. It buffers output data for efficient file writing by reducing the number of
+   write operations.
 6. It is a non-copyable class.
-7. `std::wofstream` is the wide-character equivalent of `std::ofstream`, used to write data to
-   files.
+7. `std::wofstream` is the wide-character equivalent of `std::ofstream`, used to
+   write data to files.
 
 #### `std::fstream`
 
-1. `std::fstream` is a file stream class that supports both input and output operations.
+1. `std::fstream` is a file stream class that supports both input and output
+   operations.
 2. It allows reading from and writing to the same file.
 3. Typically, it's used when a file requires both reading and writing.
 4. It can be opened in various modes (read-only, write-only, or both).
-5. It uses a buffer to handle I/O operations efficiently, reducing direct file access calls.
+5. It uses a buffer to handle I/O operations efficiently, reducing direct file
+   access calls.
 6. It is a non-copyable class.
-7. `std::wfstream` is the wide-character equivalent of `std::fstream`, providing both input and
-   output operations.
+7. `std::wfstream` is the wide-character equivalent of `std::fstream`, providing
+   both input and output operations.
 
 #### Declaration Syntax
 
@@ -404,78 +421,86 @@ if( file.is_open() ) {
 ##### Member Types
 
 1. `char_type`: `CharT`
-2. `traits_type`: `Traits`; the program is ill-formed if `Traits::char_type` is not `CharT`.
+2. `traits_type`: `Traits`; the program is ill-formed if `Traits::char_type` is
+   not `CharT`.
 3. `int_type`: `Traits::int_type`.
 4. `pos_type`: `Traits::pos_type`.
 5. `off_type`: `Traits::off_type`.
-6. `native_handle_type` (C++26): Implementation-defined type that is `TriviallyCopyable` and
-   `semiregular`.
+6. `native_handle_type` (C++26): Implementation-defined type that is
+   `TriviallyCopyable` and `semiregular`.
 
 ##### Member Functions
 
 1. (constructor): Constructs the file stream (public member function).
-2. (destructor) [`virtual`] (implicitly declared): Destructs the ifstream/ofstream/fstream and the
-   associated buffer, closes the file (virtual public member function).
+2. (destructor) [`virtual`] (implicitly declared): Destructs the
+   ifstream/ofstream/fstream and the associated buffer, closes the file (virtual
+   public member function).
 3. `operator=`: Moves the file stream (public member function).
 4. `swap`: Swaps two file streams (public member function).
-5. `rdbuf`: Returns the underlying raw file device object (public member function).
-6. `native_handle` (C++26): Returns the underlying implementation-defined handle (public member
+5. `rdbuf`: Returns the underlying raw file device object (public member
    function).
-7. `is_open`: Checks if the stream has an associated file (public member function).
-8. `open`: Opens a file and associates it with the stream (public member function).
+6. `native_handle` (C++26): Returns the underlying implementation-defined handle
+   (public member function).
+7. `is_open`: Checks if the stream has an associated file (public member
+   function).
+8. `open`: Opens a file and associates it with the stream (public member
+   function).
 9. `close`: Closes the associated file (public member function).
 
 ##### Member Functions Inherited from `std::basic_istream` (for `std::ifstream` and `std::fstream`)
 
 1. `operator>>`: Extracts formatted data (public member function of
    `std::basic_istream< CharT, Traits >`).
-2. `get`: Extracts characters (public member function of `std::basic_istream< CharT, Traits >`).
-3. `peek`: Reads the next character without extracting it (public member function of
+2. `get`: Extracts characters (public member function of
    `std::basic_istream< CharT, Traits >`).
+3. `peek`: Reads the next character without extracting it (public member
+   function of `std::basic_istream< CharT, Traits >`).
 4. `unget`: Unextracts a character (public member function of
    `std::basic_istream< CharT, Traits >`).
 5. `putback`: Puts a character into the input stream (public member function of
    `std::basic_istream< CharT, Traits >`).
-6. `getline`: Extracts characters until the given character is found (public member function of
-   `std::basic_istream< CharT, Traits >`).
-7. `ignore`: Extracts and discards characters until the given character is found (public member
-   function of `std::basic_istream< CharT, Traits >`).
+6. `getline`: Extracts characters until the given character is found (public
+   member function of `std::basic_istream< CharT, Traits >`).
+7. `ignore`: Extracts and discards characters until the given character is found
+   (public member function of `std::basic_istream< CharT, Traits >`).
 8. `read`: Extracts blocks of characters (public member function of
    `std::basic_istream< CharT, Traits >`).
-9. `readsome`: Extracts already available blocks of characters (public member function of
-   `std::basic_istream< CharT, Traits >`).
-10. `gcount`: Returns the number of characters extracted by the last unformatted input operation
-    (public member function of `std::basic_istream< CharT, Traits >`).
+9. `readsome`: Extracts already available blocks of characters (public member
+   function of `std::basic_istream< CharT, Traits >`).
+10. `gcount`: Returns the number of characters extracted by the last unformatted
+    input operation (public member function of
+    `std::basic_istream< CharT, Traits >`).
 11. `tellg`: Returns the input position indicator (public member function of
     `std::basic_istream< CharT, Traits >`).
 12. `seekg`: Sets the input position indicator (public member function of
     `std::basic_istream< CharT, Traits >`).
-13. `sync`: Synchronizes with the underlying storage device (public member function of
-    `std::basic_istream< CharT, Traits >`).
+13. `sync`: Synchronizes with the underlying storage device (public member
+    function of `std::basic_istream< CharT, Traits >`).
 
 ##### Member Classes Inherited from `std::basic_istream` (for `std::ifstream` and `std::fstream`)
 
-1. `sentry`: Implements basic logic for preparation of the stream for input operations (public
-   member class of `std::basic_istream< CharT,Traits >`).
+1. `sentry`: Implements basic logic for preparation of the stream for input
+   operations (public member class of `std::basic_istream< CharT,Traits >`).
 
 ##### Member Functions Inherited from `std::basic_istream` (for `std::ofstream` and `std::fstream`)
 
 1. `operator<<`: Inserts formatted data (public member function of
    `std::basic_ostream< CharT, Traits >`).
-2. `put`: Inserts a character (public member function of `std::basic_ostream< CharT, Traits >`).
+2. `put`: Inserts a character (public member function of
+   `std::basic_ostream< CharT, Traits >`).
 3. `write`: Inserts blocks of characters (public member function of
    `std::basic_ostream< CharT, Traits >`).
 4. `tellp`: Returns the output position indicator (public member function of
    `std::basic_ostream< CharT, Traits >`).
 5. `seekp`: Sets the output position indicator (public member function of
    `std::basic_ostream< CharT, Traits >`).
-6. `flush`: Synchronizes with the underlying storage device (public member function of
-   `std::basic_ostream< CharT, Traits >`).
+6. `flush`: Synchronizes with the underlying storage device (public member
+   function of `std::basic_ostream< CharT, Traits >`).
 
 ##### Member Classes Inherited from `std::basic_istream` (for `std::ofstream` and `std::fstream`)
 
-1. `sentry`: Implements basic logic for preparation of the stream for output operations (public
-   member class of `std::basic_ostream< CharT,Traits >`).
+1. `sentry`: Implements basic logic for preparation of the stream for output
+   operations (public member class of `std::basic_ostream< CharT,Traits >`).
 
 ##### All Stuffs Inherited from `std::std::basic_ios`
 
@@ -491,4 +516,5 @@ if( file.is_open() ) {
 
 ##### Non-member Functions
 
-1. `std::swap( std::ifstream )`: specializes the `std::swap` algorithm (function template).
+1. `std::swap( std::ifstream )`: specializes the `std::swap` algorithm (function
+   template).

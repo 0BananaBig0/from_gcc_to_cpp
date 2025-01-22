@@ -26,25 +26,30 @@
 
 ### Macro
 
-1. Macros are typically defined using the **preprocessor directive** `#define`, which allows for
-   **text substitution** **prior** to the actual **compilation** of the code.
+1. Macros are typically defined using the **preprocessor directive** `#define`,
+   which allows for **text substitution** **prior** to the actual
+   **compilation** of the code.
 2. They are classified as **preprocessor statements**.
 3. Macros may **represent** simple **constants** or **complex expressions**.
-4. When the preprocessor encounters a macro, it replaces it with the corresponding value or code.
-5. They enable the **compilation of identical code** to produce varied outcomes **based on distinct
-   configurations**.
+4. When the preprocessor encounters a macro, it replaces it with the
+   corresponding value or code.
+5. They enable the **compilation of identical code** to produce varied outcomes
+   **based on distinct configurations**.
 6. The **backslash (`\`)** can be utilized to create **multi-line macros**.
-7. **Excessive use** of macros may adversely **affect** the **readability** of the code.
+7. **Excessive use** of macros may adversely **affect** the **readability** of
+   the code.
 8. **Function-like macros** can be **difficult to debug**.
-9. When a macro is defined, from its definition location to the end of the file, all code can use
-   it, regardless of whether it is defined inside a code block. **The scope of a macro is global**.
+9. When a macro is defined, from its definition location to the end of the file,
+   all code can use it, regardless of whether it is defined inside a code block.
+   **The scope of a macro is global**.
 
 ### Preprocessor Directives
 
-1. **A preprocessor directive** is **a command** that instructs the C or C++ **preprocessor to
-   perform specific operations** **before the actual compilation** of the source code begins.
-2. These directives always **start with the `#` symbol** and are **processed by the preprocessor**,
-   which runs before the compiler.
+1. **A preprocessor directive** is **a command** that instructs the C or C++
+   **preprocessor to perform specific operations** **before the actual
+   compilation** of the source code begins.
+2. These directives always **start with the `#` symbol** and are **processed by
+   the preprocessor**, which runs before the compiler.
 
 ### Syntax
 
@@ -71,8 +76,9 @@
 
 ##### Explanation
 
-1. These **preprocessor directives** are used for **conditional compilation**, allowing code to be
-   **included or excluded** based on whether a macro is defined or not.
+1. These **preprocessor directives** are used for **conditional compilation**,
+   allowing code to be **included or excluded** based on whether a macro is
+   defined or not.
 
 ##### Syntax
 
@@ -112,8 +118,8 @@
 
 ##### Explanation
 
-1. This **preprocessor directive** is used to **undefine a macro**, making it unavailable after that
-   point in the code.
+1. This **preprocessor directive** is used to **undefine a macro**, making it
+   unavailable after that point in the code.
 
 ##### Syntax
 
@@ -126,16 +132,17 @@
 
 ##### Explanation
 
-1. This **preprocessor directive** is **not a macro** but is often **used with macros** to **include
-   header files** where macros may be defined.
+1. This **preprocessor directive** is **not a macro** but is often **used with
+   macros** to **include header files** where macros may be defined.
 2. `#include <HeaderFile>`:
-   - This syntax instructs the preprocessor to **search for the specified header file** exclusively
-     **in the standard include directories**.
+   - This syntax instructs the preprocessor to **search for the specified header
+     file** exclusively **in the standard include directories**.
    - It is typically used for **system or library headers**.
 3. `#include "path/to/HeaderFile"`:
-   - This syntax tells the preprocessor to **look for the specified header file in the specific path
-     first**.
-   - If it is **not found** there, it then **searches the standard include directories**.
+   - This syntax tells the preprocessor to **look for the specified header file
+     in the specific path first**.
+   - If it is **not found** there, it then **searches the standard include
+     directories**.
 
 ##### Syntax
 
@@ -151,14 +158,17 @@
 
 ##### Explanation
 
-1. This **preprocessor directive** provides additional information to the compiler, often used for
-   **controlling compiler-specific behaviors** but can also be relevant in the context of macros.
-2. The `#pragma` directive itself does not belong to compiler extensions—it is a standardized part
-   of the C and C++ language specifications.
-3. However, the specific `#pragma` directives provided by compilers are often compiler extensions,
-   meaning their behavior and availability depend on the compiler.
-4. Different compilers support different `#pragma` directives. The following `#pragma` directives
-   work with GCC/G++ and Clang/Clang++ but may not be supported by other compilers.
+1. This **preprocessor directive** provides additional information to the
+   compiler, often used for **controlling compiler-specific behaviors** but can
+   also be relevant in the context of macros.
+2. The `#pragma` directive itself does not belong to compiler extensions—it is a
+   standardized part of the C and C++ language specifications.
+3. However, the specific `#pragma` directives provided by compilers are often
+   compiler extensions, meaning their behavior and availability depend on the
+   compiler.
+4. Different compilers support different `#pragma` directives. The following
+   `#pragma` directives work with GCC/G++ and Clang/Clang++ but may not be
+   supported by other compilers.
 5. `#pragma once` is supported by most modern C/C++ compilers.
 
 ##### Syntax
@@ -186,13 +196,13 @@ CPP code; // No warning here.
 
 #### `const` and `constexpr`
 
-1. These keywords are **alternatives** to macros for **defining constant values** with **type
-   safety**.
+1. These keywords are **alternatives** to macros for **defining constant
+   values** with **type safety**.
 2. [`const`](./ConstConstexprAndStatic.md#const).
 3. [`constexpr`](./ConstConstexprAndStatic.md#constexpr).
 
 #### `inline`
 
-1. This keyword can be used to **define functions** that behave **like macros** **but with type
-   checking and scope**.
+1. This keyword can be used to **define functions** that behave **like macros**
+   **but with type checking and scope**.
 2. [`inline`](./Functions.md#inline).

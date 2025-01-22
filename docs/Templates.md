@@ -48,93 +48,105 @@
 
 ### Explanation
 
-1. Templates are C++ entities that use the **`template` keyword** to define and use **the `typename`
-   or the `class` keyword** to speficy a generic type .
+1. Templates are C++ entities that use the **`template` keyword** to define and
+   use **the `typename` or the `class` keyword** to speficy a generic type .
 2. Template parameters **cannot be references or pointers**.
-3. Template parameters **must be either types (e.g., `class T`, `typename T`) or values (e.g.,
-   `int N`)**.
-4. All **type parameters** can be bound to **default types**, and all **non-type parameters** can be
-   bound to **default values**.
-5. Templates empower developers to write **generic and reusable code**. By enabling functions and
-   classes to **operate on arbitrary data types**, templates facilitate enhanced flexibility and
-   **type safety** in programming.
-6. They **do not exist**, and the compiler **does not create them**, and some compilers **do not
-   detect its syntax** **until they are called**. At compile time, the compiler create and detect
-   them.
-7. Because templates **exist and are compiled only for specific types when instantiated**, they
-   **can** be **declared and defined in header files**.
-8. For template classes or functions, **the full definition must be visible before instantiation**.
-9. **Forward declarations** are generally **not practical for templates** unless you use explicit
-   specialization or separate declarations for `inline` implementations.
+3. Template parameters **must be either types (e.g., `class T`, `typename T`) or
+   values (e.g., `int N`)**.
+4. All **type parameters** can be bound to **default types**, and all **non-type
+   parameters** can be bound to **default values**.
+5. Templates empower developers to write **generic and reusable code**. By
+   enabling functions and classes to **operate on arbitrary data types**,
+   templates facilitate enhanced flexibility and **type safety** in programming.
+6. They **do not exist**, and the compiler **does not create them**, and some
+   compilers **do not detect its syntax** **until they are called**. At compile
+   time, the compiler create and detect them.
+7. Because templates **exist and are compiled only for specific types when
+   instantiated**, they **can** be **declared and defined in header files**.
+8. For template classes or functions, **the full definition must be visible
+   before instantiation**.
+9. **Forward declarations** are generally **not practical for templates** unless
+   you use explicit specialization or separate declarations for `inline`
+   implementations.
 
 ### Order of Parameters in the Parameter List
 
-1. For **function templates**, there is **no specific order** for parameters in the parameter list.
-   Type or non-type parameters, whether they have default types or values, and parameter packs can
-   be placed anywhere in the list.
+1. For **function templates**, there is **no specific order** for parameters in
+   the parameter list. Type or non-type parameters, whether they have default
+   types or values, and parameter packs can be placed anywhere in the list.
 2. However, **for class templates**, there is **a specific order**:
-   - All parameters without default types or values must be placed at the beginning of the parameter
-     list.
-   - All parameters with default types or values must be specified at the end of the parameter list,
-     but before any parameter packs.
+   - All parameters without default types or values must be placed at the
+     beginning of the parameter list.
+   - All parameters with default types or values must be specified at the end of
+     the parameter list, but before any parameter packs.
    - All parameter packs must be placed at the end of the parameter list.
 3. **Better orders**:
-   - **Type parameters without default types, non-type parameters without default values, type
-     parameters with default types, non-type parameters with default values, and parameter packs**.
-   - Non-type parameters without default values, type parameters without default types, non-type
-     parameters with default values, type parameters with default types, and parameter packs.
+   - **Type parameters without default types, non-type parameters without
+     default values, type parameters with default types, non-type parameters
+     with default values, and parameter packs**.
+   - Non-type parameters without default values, type parameters without default
+     types, non-type parameters with default values, type parameters with
+     default types, and parameter packs.
 
 ### Limitations of Template Default Types and Values
 
 1. **Order of parameters**:
-   - **It is not permissible to omit a parameter with a default value if one intends to provide
-     values for later parameters**.
+   - **It is not permissible to omit a parameter with a default value if one
+     intends to provide values for later parameters**.
 2. **Dependent names**:
-   - Default template parameters **cannot depend on other template parameters**. A template
-     parameter cannot be utilized to define the default value of another template parameter.
+   - Default template parameters **cannot depend on other template parameters**.
+     A template parameter cannot be utilized to define the default value of
+     another template parameter.
 3. **Ambiguity in overloading**:
-   - The use of default template parameters in function overloading may lead to ambiguity.
-   - If multiple templates can potentially match a call due to the presence of default arguments,
-     the compiler may encounter difficulty in determining which template to invoke.
+   - The use of default template parameters in function overloading may lead to
+     ambiguity.
+   - If multiple templates can potentially match a call due to the presence of
+     default arguments, the compiler may encounter difficulty in determining
+     which template to invoke.
 4. **Inheritance and template defaults**:
-   - **In derived template classes**, **the default arguments** inherited from the base class
-     **cannot be modified**.
+   - **In derived template classes**, **the default arguments** inherited from
+     the base class **cannot be modified**.
    - It is necessary to explicitly specify the types in the derived class.
 5. **Specialization limitations**:
-   - Template specializations are **unable to alter default template parameters**.
-   - If a specialization employs a different type or value, it must explicitly define those
-     parameters.
+   - Template specializations are **unable to alter default template
+     parameters**.
+   - If a specialization employs a different type or value, it must explicitly
+     define those parameters.
 
 ### Explicit Instantiation
 
-1. The explicit instantiation refers to the deliberate and formal creation of a specific instance of
-   a template with a particular type, as specified by the programmer.
-2. **It works similarly to declaring a template with specific types and then using it**.
-3. This is done **using the `template` keyword** followed by the instantiation of the template with
+1. The explicit instantiation refers to the deliberate and formal creation of a
+   specific instance of a template with a particular type, as specified by the
+   programmer.
+2. **It works similarly to declaring a template with specific types and then
+   using it**.
+3. This is done **using the `template` keyword** followed by the instantiation
+   of the template with
 4. the desired type.
-5. This mechanism is primarily used to control when and where a template is instantiated,
-   particularly in larger codebases where managing template definitions and instances can become
-   complex.
+5. This mechanism is primarily used to control when and where a template is
+   instantiated, particularly in larger codebases where managing template
+   definitions and instances can become complex.
 
 ### Implicit Instantiation (**Common Instantiation**)
 
-1. The implicit instantiation refers to the automatic creation of a template instance by the
-   compiler when a template is used with a specific type, without requiring explicit instantiation
-   by the programmer.
-2. **It works similarly to using a template directly with specific types, without any prior
-   declaration**.
+1. The implicit instantiation refers to the automatic creation of a template
+   instance by the compiler when a template is used with a specific type,
+   without requiring explicit instantiation by the programmer.
+2. **It works similarly to using a template directly with specific types,
+   without any prior declaration**.
 
 ### Function Templates
 
 #### Explanation
 
-1. Function templates allow for the definition of **functions** that can **operate with any data
-   type**.
-2. Function templates in C++ **allow automatic type deduction** for the template parameters, which
-   means that the type of the argument passed to the function can be used to deduce the
-   corresponding template type `T`.
-3. This capability **reduces code duplication** and **enhances type safety**, as the compiler can
-   automatically generate type-specific implementations based on the provided template parameters.
+1. Function templates allow for the definition of **functions** that can
+   **operate with any data type**.
+2. Function templates in C++ **allow automatic type deduction** for the template
+   parameters, which means that the type of the argument passed to the function
+   can be used to deduce the corresponding template type `T`.
+3. This capability **reduces code duplication** and **enhances type safety**, as
+   the compiler can automatically generate type-specific implementations based
+   on the provided template parameters.
 
 #### Syntax
 
@@ -179,10 +191,11 @@ Type result = funcName< ... >( ... );
 
 #### Explanation
 
-1. Class templates or struct templates enable the creation of **classes or structs** that can
-   **manage various data types**.
-2. This feature is particularly advantageous for **implementing data structures** such as **lists,
-   stacks, and queues**, where **the type of data may vary**.
+1. Class templates or struct templates enable the creation of **classes or
+   structs** that can **manage various data types**.
+2. This feature is particularly advantageous for **implementing data
+   structures** such as **lists, stacks, and queues**, where **the type of data
+   may vary**.
 
 #### Syntax
 
@@ -220,21 +233,23 @@ StructName< Type, ... > obj;               // Implicit instantiation of StructNa
 
 #### Explanation
 
-1. Template specialization allows for the definition of **a specific implementation of a template
-   for a particular data type** to **meet specific conditions**.
-2. However, they do **not allow more than one specialization for the same type parameters**. The
-   compiler will throw **an error** if multiple specializations that match the same signature are
-   declared.
-3. This feature is useful when **the generic implementation requires adjustment for certain types to
-   enhance functionality or performance**.
+1. Template specialization allows for the definition of **a specific
+   implementation of a template for a particular data type** to **meet specific
+   conditions**.
+2. However, they do **not allow more than one specialization for the same type
+   parameters**. The compiler will throw **an error** if multiple
+   specializations that match the same signature are declared.
+3. This feature is useful when **the generic implementation requires adjustment
+   for certain types to enhance functionality or performance**.
 
 #### Full specialization
 
 ##### Explanation
 
-1. In **full specialization**, it is imperative to **specify all template parameters explicitly**.
-2. For instance, if your template accepts two parameters, both must be explicitly defined in the
-   specialization.
+1. In **full specialization**, it is imperative to **specify all template
+   parameters explicitly**.
+2. For instance, if your template accepts two parameters, both must be
+   explicitly defined in the specialization.
 
 ##### Syntax
 
@@ -277,12 +292,12 @@ RetType var_name2
 
 ##### Explanation
 
-1. In **partial specialization**, it is permissible to **leave some template parameters
-   unspecified**, allowing them to **remain generic**.
-2. **The names** of the unspecified template parameters **do not need to remain the same as
-   before**, **except for their remaining quantity**.
-3. This flexibility is advantageous for **providing specialized behavior tailored to specific
-   categories of types**.
+1. In **partial specialization**, it is permissible to **leave some template
+   parameters unspecified**, allowing them to **remain generic**.
+2. **The names** of the unspecified template parameters **do not need to remain
+   the same as before**, **except for their remaining quantity**.
+3. This flexibility is advantageous for **providing specialized behavior
+   tailored to specific categories of types**.
 
 ##### Syntax
 
@@ -361,20 +376,22 @@ template< typename T, typename... Args > class ClassName< T(... Args) > {
 
 #### Explanation
 
-1. Variadic templates are **templates** that **contain at least one parameter pack**.
-2. **A template parameter pack** is **a template parameter** that **accepts zero or more template
-   arguments** (non-types, types, or templates).
-3. The **common way** to **store the arguments of a template parameter pack** and **access them** is
-   by using **`std::tuple`** and **`std::get`**.
-4. This feature is beneficial for functions that need to **handle a flexible number of arguments**,
-   thereby enhancing versatility.
-5. For **a function template**, **multiple parameter packs** can be defined, while **a class
-   template** can **only have one**.
-6. For **a function template**, a template parameter pack can **automatically deduce types** and the
-   types are not explicitly specified when the function is called.
-7. However, **for a class template** (such as `std::tuple` or `std::vector`), **the types must be
-   explicitly specified** because template parameter packs are typically not deduced in class
-   templates.
+1. Variadic templates are **templates** that **contain at least one parameter
+   pack**.
+2. **A template parameter pack** is **a template parameter** that **accepts zero
+   or more template arguments** (non-types, types, or templates).
+3. The **common way** to **store the arguments of a template parameter pack**
+   and **access them** is by using **`std::tuple`** and **`std::get`**.
+4. This feature is beneficial for functions that need to **handle a flexible
+   number of arguments**, thereby enhancing versatility.
+5. For **a function template**, **multiple parameter packs** can be defined,
+   while **a class template** can **only have one**.
+6. For **a function template**, a template parameter pack can **automatically
+   deduce types** and the types are not explicitly specified when the function
+   is called.
+7. However, **for a class template** (such as `std::tuple` or `std::vector`),
+   **the types must be explicitly specified** because template parameter packs
+   are typically not deduced in class templates.
 
 #### Common Syntax
 
@@ -441,11 +458,12 @@ int main() {
 
 #### Explanation
 
-1. Template parameters can include **non-type parameters**, which are constants of integral or
-   enumeration types, pointers, references, or even certain types of non-type template parameters.
-2. This feature allows you to create templates that are more flexible and capable of **handling
-   specific values alongside types**, enabling **additional control over template behavior and
-   structure**.
+1. Template parameters can include **non-type parameters**, which are constants
+   of integral or enumeration types, pointers, references, or even certain types
+   of non-type template parameters.
+2. This feature allows you to create templates that are more flexible and
+   capable of **handling specific values alongside types**, enabling
+   **additional control over template behavior and structure**.
 
 #### Syntax
 
@@ -465,13 +483,14 @@ ClassName< TType, ..., val, ... > var_name;
 
 #### Explanation
 
-1. Class templates, function templates, and non-template functions (typically members of class
-   templates) might be associated with **a constraint**, which **specifies the requirements on
-   template arguments**, which can be **used to select the most appropriate function overloads and
-   template specializations**.
-2. **Named sets of such requirements** are called **concepts**. Each concept is a predicate,
-   evaluated at compile time, and becomes a part of the interface of a template where it is used as
-   a constraint:
+1. Class templates, function templates, and non-template functions (typically
+   members of class templates) might be associated with **a constraint**, which
+   **specifies the requirements on template arguments**, which can be **used to
+   select the most appropriate function overloads and template
+   specializations**.
+2. **Named sets of such requirements** are called **concepts**. Each concept is
+   a predicate, evaluated at compile time, and becomes a part of the interface
+   of a template where it is used as a constraint:
 
 #### Links
 
@@ -482,17 +501,19 @@ ClassName< TType, ..., val, ... > var_name;
 
 #### Explanation
 
-1. It is **a principle** that **allows template substitutions to fail** and **may** still **result
-   in a compilation error** — **but** it is **not treated as an error** in the context of template
-   instantiation.
-2. This is useful for **enabling or disabling templates based on certain conditions**.
-3. **`std::enable_if`** is a common tool for implementing SFINAE, there are other techniques and
-   constructs that can also be used, such as function overloading, template specialization, type
-   traits, constraints and concepts in templates, and more.
-   - If a function template cannot be instantiated due to type mismatches, the compiler simply
-     ignores that overload instead of producing an error.
-   - If a template specialization cannot be matched, it will not result in an error but rather allow
-     the compiler to try other template.
+1. It is **a principle** that **allows template substitutions to fail** and
+   **may** still **result in a compilation error** — **but** it is **not treated
+   as an error** in the context of template instantiation.
+2. This is useful for **enabling or disabling templates based on certain
+   conditions**.
+3. **`std::enable_if`** is a common tool for implementing SFINAE, there are
+   other techniques and constructs that can also be used, such as function
+   overloading, template specialization, type traits, constraints and concepts
+   in templates, and more.
+   - If a function template cannot be instantiated due to type mismatches, the
+     compiler simply ignores that overload instead of producing an error.
+   - If a template specialization cannot be matched, it will not result in an
+     error but rather allow the compiler to try other template.
    - Declaration syntax:
      ```CPP
      template< bool B, class T = void > struct enable_if; // It has a public member typedef `type`, equal to `T`.
@@ -583,12 +604,12 @@ template< TempName T, ... > RetType funcName( T para, ... ) {
 
 #### Explanation
 
-1. Type traits are **a set of template classes (or structures or functions** even with the
-   `constexpr` keyword) provided by the C++ Standard Library that allow you to **query and
-   manipulate type information at compile time**.
-2. They can be **combined** with various techniques used to **complete evaluations at compile
-   time**, such as `static const`, `constexpr`, `templates`, `std::enable_if`, `static_assert`, and
-   more.
+1. Type traits are **a set of template classes (or structures or functions**
+   even with the `constexpr` keyword) provided by the C++ Standard Library that
+   allow you to **query and manipulate type information at compile time**.
+2. They can be **combined** with various techniques used to **complete
+   evaluations at compile time**, such as `static const`, `constexpr`,
+   `templates`, `std::enable_if`, `static_assert`, and more.
 3. All type traits are in the header **`<type_traits>`**.
 
 #### Syntax
@@ -629,34 +650,42 @@ template< typename T, ... > RetType funcName( T t, ... ) {
 
 #### `std::forward`
 
-1. `std::forward` is **a utility function** that is used **for perfect forwarding of function
-   arguments**, ensuring that their value categories (whether they are lvalues or rvalues) are
-   preserved during the forwarding process.
-2. It returns an rvalue reference to `obj_name` if `obj_name` is not an lvalue reference.
-3. If `obj_name` is an lvalue reference, the function returns `obj_name` without modifying its type.
-4. `std::forward` **acts as a transfer station** that **preserves the original value category
-   (whether it is an lvalue or an rvalue) of the argument it forwards**.
+1. `std::forward` is **a utility function** that is used **for perfect
+   forwarding of function arguments**, ensuring that their value categories
+   (whether they are lvalues or rvalues) are preserved during the forwarding
+   process.
+2. It returns an rvalue reference to `obj_name` if `obj_name` is not an lvalue
+   reference.
+3. If `obj_name` is an lvalue reference, the function returns `obj_name` without
+   modifying its type.
+4. `std::forward` **acts as a transfer station** that **preserves the original
+   value category (whether it is an lvalue or an rvalue) of the argument it
+   forwards**.
 5. Its header file is `<utility>`.
 
 #### Universial References (Forward References)
 
-1. A universal reference is **a special type of reference** in C++ that **can bind to both lvalues
-   (temporary object) and rvalues (persistent object)**.
+1. A universal reference is **a special type of reference** in C++ that **can
+   bind to both lvalues (temporary object) and rvalues (persistent object)**.
 2. It is also called **a forwarding reference** in modern C++ terminology.
-3. The term "universal reference" is **particularly used in the context of template functions**.
-4. A universal reference typically appears in a template function parameter when the type is
-   declared as `T&&` but is neither a rvalue reference type nor a lvalue reference type.
-5. **Only** when **automatic template type deduction** is used (e.g., in function templates or
-   templated constructors), the compiler deduces the universal reference depending on the value
-   category of the argument passed.
-   - When an lvalue is passed, `T` is deduced as `Type&`, so the universal reference becomes
-     `Type& &&`, which is collapsed to `Type&`, obeying **reference collapsing rules**.
-   - When an rvalue is passed, `T` is deduced as `Type`, and the universal reference becomes
-     `Type&&`.
-6. Universal references are often used in **perfect forwarding**, where you want to forward the
-   arguments exactly as received, keeping their value category intact.
-7. If `T` is **explicitly specified or in a non-deduced context**, `T&&` is **a pure rvalue
-   reference**.
+3. The term "universal reference" is **particularly used in the context of
+   template functions**.
+4. A universal reference typically appears in a template function parameter when
+   the type is declared as `T&&` but is neither a rvalue reference type nor a
+   lvalue reference type.
+5. **Only** when **automatic template type deduction** is used (e.g., in
+   function templates or templated constructors), the compiler deduces the
+   universal reference depending on the value category of the argument passed.
+   - When an lvalue is passed, `T` is deduced as `Type&`, so the universal
+     reference becomes `Type& &&`, which is collapsed to `Type&`, obeying
+     **reference collapsing rules**.
+   - When an rvalue is passed, `T` is deduced as `Type`, and the universal
+     reference becomes `Type&&`.
+6. Universal references are often used in **perfect forwarding**, where you want
+   to forward the arguments exactly as received, keeping their value category
+   intact.
+7. If `T` is **explicitly specified or in a non-deduced context**, `T&&` is **a
+   pure rvalue reference**.
 
 #### Syntax
 

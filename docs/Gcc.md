@@ -121,189 +121,215 @@
 
 ### CPP File
 
-1. The compiler translates **the CPP files into assembly code** and **then into machine code**
-   **without** performing any **linking** operations.
-2. Typically, there is **one OBJ file per CPP file**, but **sometimes multiple CPP files may result
-   in a single OBJ file**.
+1. The compiler translates **the CPP files into assembly code** and **then into
+   machine code** **without** performing any **linking** operations.
+2. Typically, there is **one OBJ file per CPP file**, but **sometimes multiple
+   CPP files may result in a single OBJ file**.
 3. During the compilation phase, the compiler also optimizes your code.
 
 ### OBJ File (Machine Code File, `.obj` in Windows, `.o` in Linux)
 
 1. **All OBJ files** will be **combined into a single file** by the linker.
-2. The C++ **linker** can **perform certain optimizations**, although its primary role is focused on
-   linking object files and libraries rather than optimizing code.
+2. The C++ **linker** can **perform certain optimizations**, although its
+   primary role is focused on linking object files and libraries rather than
+   optimizing code.
 
 ### Linking (Static Linking and Dynamic Linking)
 
 #### Libraries
 
 1. Static (`.lib` or `.a`) vs dynamic libraries (`.dll` or `.so`):
-   - Linking with static libraries is **faster** than dynamic libraries because the C++ linker
-     performs optimizations during static linking.
+   - Linking with static libraries is **faster** than dynamic libraries because
+     the C++ linker performs optimizations during static linking.
 2. Import libraries (`xxxdll.lib` files):
-   - These files **contain references to functions and symbols** defined in the `xxx.dll` files,
-     facilitating linking at compile time.
-   - This process ensures that the correct function signatures and addresses are utilized, allowing
-     the linker to ascertain their locations at runtime.
-   - Import libraries are **specific to Windows**, while **Linux integrates this functionality
-     directly into dynamic libraries**.
+   - These files **contain references to functions and symbols** defined in the
+     `xxx.dll` files, facilitating linking at compile time.
+   - This process ensures that the correct function signatures and addresses are
+     utilized, allowing the linker to ascertain their locations at runtime.
+   - Import libraries are **specific to Windows**, while **Linux integrates this
+     functionality directly into dynamic libraries**.
 
 #### Static Linking
 
 ##### Explanation
 
-1. Static linking refers to the process of combining all necessary library code into the final
-   executable **at compile time**.
-2. This results in a standalone binary that does **not rely on external libraries at runtime**.
+1. Static linking refers to the process of combining all necessary library code
+   into the final executable **at compile time**.
+2. This results in a standalone binary that does **not rely on external
+   libraries at runtime**.
 
 ##### Characteristics
 
 1. Self-contained:
    - The executable includes all the library code it needs.
 2. No runtime dependencies:
-   - Once compiled, it doesn't require the presence of shared libraries on the target system.
+   - Once compiled, it doesn't require the presence of shared libraries on the
+     target system.
 3. Larger executable size:
-   - The resulting binary is typically larger due to the inclusion of library code.
+   - The resulting binary is typically larger due to the inclusion of library
+     code.
 4. No versioning issues:
-   - The code is fixed at compile time, reducing concerns about library version compatibility.
+   - The code is fixed at compile time, reducing concerns about library version
+     compatibility.
 
 ##### How It Works
 
 1. Compilation:
-   - The developer compiles the source code and links it against static library files (usually
-     `.lib` in windows, `.a` files in linux).
+   - The developer compiles the source code and links it against static library
+     files (usually `.lib` in windows, `.a` files in linux).
 2. Linking:
-   - The linker combines the object files with the static library code, resolving all symbol
-     references.
+   - The linker combines the object files with the static library code,
+     resolving all symbol references.
 3. Executable creation:
-   - The final output is a single executable file that includes all necessary code.
+   - The final output is a single executable file that includes all necessary
+     code.
 
 #### Dynamic Linking (Implicit Linking and Explicit Linking)
 
 ##### Explanation
 
-1. Dynamic linking allows a program to **link to libraries at runtime** rather than at compile time.
+1. Dynamic linking allows a program to **link to libraries at runtime** rather
+   than at compile time.
 2. This can **improve modularity** and **reduce executable size**.
 
 ##### Characteristics
 
 1. Reduced executable size:
-   - Only references to shared libraries are included, keeping the executable smaller.
+   - Only references to shared libraries are included, keeping the executable
+     smaller.
 2. Shared code:
-   - Multiple programs can share the same library code in memory, saving resources.
+   - Multiple programs can share the same library code in memory, saving
+     resources.
 3. Version flexibility:
-   - Libraries can be updated independently of the applications that use them, allowing for easier
-     updates and bug fixes.
+   - Libraries can be updated independently of the applications that use them,
+     allowing for easier updates and bug fixes.
 4. Runtime dependencies:
-   - The executable requires the appropriate shared libraries to be present at runtime.
+   - The executable requires the appropriate shared libraries to be present at
+     runtime.
 
 ##### Implicit Linking (Load-time Dynamic Linking) (Default Dynamic Linking) (Standard Dynamic Linking)
 
 ###### Explanation
 
-1. Implicit linking, also referred to as **load-time dynamic linking** is a form of dynamic linking
-   where **required libraries** are **automatically loaded at application startup**.
-2. It is **a process** whereby an executable is linked to shared libraries **at compile time**.
-3. This method allows the program to **utilize functions and variables** defined in those libraries
-   **without incorporating their code directly** into the executable.
+1. Implicit linking, also referred to as **load-time dynamic linking** is a form
+   of dynamic linking where **required libraries** are **automatically loaded at
+   application startup**.
+2. It is **a process** whereby an executable is linked to shared libraries **at
+   compile time**.
+3. This method allows the program to **utilize functions and variables** defined
+   in those libraries **without incorporating their code directly** into the
+   executable.
 
 ###### Characteristics
 
 1. Automatic resolution:
-   - The operating system **automatically loads all required shared libraries** **when the
-     application starts**, even if they are not used.
+   - The operating system **automatically loads all required shared libraries**
+     **when the application starts**, even if they are not used.
 2. Simplified development:
-   - Developers include the DLL's import library (`.lib` file) in Windows or the shared library
-     (`.so` file) in Linux during compilation, simplifying the linking process.
+   - Developers include the DLL's import library (`.lib` file) in Windows or the
+     shared library (`.so` file) in Linux during compilation, simplifying the
+     linking process.
 3. Single entry point:
-   - The operating system resolves function calls from the shared libraries automatically, allowing
-     the application to use them seamlessly.
+   - The operating system resolves function calls from the shared libraries
+     automatically, allowing the application to use them seamlessly.
 4. Version dependency:
-   - If the required version of a shared library is missing or incompatible, the application may
-     fail to start.
+   - If the required version of a shared library is missing or incompatible, the
+     application may fail to start.
 
 ###### How It Works in **Windows**
 
 1. Linking with **import libraries**:
-   - When compiling the application, the developer links against the DLL's import library, which
-     provides necessary metadata for the linker.
+   - When compiling the application, the developer links against the DLL's
+     import library, which provides necessary metadata for the linker.
 2. Creating the executable:
-   - The resulting executable contains references to the required DLLs but does not embed their
-     code, reducing the executable's size.
+   - The resulting executable contains references to the required DLLs but does
+     not embed their code, reducing the executable's size.
 3. Loading the DLLs:
-   - Upon execution, the Windows loader reads the executable's headers to identify the required DLLs
-     and loads them into memory.
+   - Upon execution, the Windows loader reads the executable's headers to
+     identify the required DLLs and loads them into memory.
 4. Resolving symbols:
-   - The loader resolves function calls to the appropriate addresses in the loaded DLLs, ensuring
-     that the application can access the necessary functions and variables.
+   - The loader resolves function calls to the appropriate addresses in the
+     loaded DLLs, ensuring that the application can access the necessary
+     functions and variables.
 5. Execution:
-   - Control is then passed to the application's entry point, allowing it to call functions from the
-     linked DLLs, enabling shared access to the library's functionality.
+   - Control is then passed to the application's entry point, allowing it to
+     call functions from the linked DLLs, enabling shared access to the
+     library's functionality.
 
 ###### How It Works in **Linux**
 
 1. Linking with **shared libraries**:
-   - When compiling the application, the developer specifies shared libraries using flags (e.g.,
-     `-l` for linking) in the compilation command, allowing the linker to record these dependencies
-     in the executable.
+   - When compiling the application, the developer specifies shared libraries
+     using flags (e.g., `-l` for linking) in the compilation command, allowing
+     the linker to record these dependencies in the executable.
 2. Creating the executable:
-   - The resulting executable contains references to the shared libraries but does not include their
-     code.
-   - This reduces the executable's size and enables shared access to the libraries.
+   - The resulting executable contains references to the shared libraries but
+     does not include their code.
+   - This reduces the executable's size and enables shared access to the
+     libraries.
 3. Loading the libraries:
-   - Upon execution, the dynamic linker/loader (typically ld.so or ld-linux.so) reads the
-     executable's metadata to identify the required shared libraries and loads them into memory.
+   - Upon execution, the dynamic linker/loader (typically ld.so or ld-linux.so)
+     reads the executable's metadata to identify the required shared libraries
+     and loads them into memory.
 4. Resolving symbols:
-   - The linker resolves the function calls and variable references to the appropriate addresses in
-     the loaded shared libraries, allowing the executable to use their functionality.
+   - The linker resolves the function calls and variable references to the
+     appropriate addresses in the loaded shared libraries, allowing the
+     executable to use their functionality.
 5. Execution:
-   - Control is passed to the application's entry point, enabling it to call functions and access
-     data from the linked shared libraries.
+   - Control is passed to the application's entry point, enabling it to call
+     functions and access data from the linked shared libraries.
 
 ##### Explicit Linking (Run-time Dynamic Linking)
 
 ###### Explanation
 
-1. Explicit linking, also known as **run-time dynamic linking**, is a dynamic linking form where the
-   application manually loads libraries during execution.
-2. It gives the programmer more control, allowing applications to **dynamically load shared
-   libraries** and **access their functions** during execution, rather than linking them at compile
-   time.
-3. The programmers will **use some specific functions to manage the dynamic linking explicitly**.
+1. Explicit linking, also known as **run-time dynamic linking**, is a dynamic
+   linking form where the application manually loads libraries during execution.
+2. It gives the programmer more control, allowing applications to **dynamically
+   load shared libraries** and **access their functions** during execution,
+   rather than linking them at compile time.
+3. The programmers will **use some specific functions to manage the dynamic
+   linking explicitly**.
 
 ###### Characteristics
 
 1. Dynamic control:
-   - Developers can load libraries based on runtime conditions, providing flexibility.
+   - Developers can load libraries based on runtime conditions, providing
+     flexibility.
 2. Lazy loading:
-   - Libraries can be loaded only when needed, which can improve startup performance.
+   - Libraries can be loaded only when needed, which can improve startup
+     performance.
 3. Error handling:
-   - Applications can handle scenarios where a library fails to load or is not found.
+   - Applications can handle scenarios where a library fails to load or is not
+     found.
 
 ###### How It Works in **Windows**
 
 1. Load the DLL:
-   - Use `LoadLibrary( "library.dll" )` to load the desired DLL into the process's address space.
+   - Use `LoadLibrary( "library.dll" )` to load the desired DLL into the
+     process's address space.
 2. Get function pointers:
-   - Use `GetProcAddress( handle, "function_name" )` to obtain pointers to the functions within the
-     loaded DLL.
+   - Use `GetProcAddress( handle, "function_name" )` to obtain pointers to the
+     functions within the loaded DLL.
 3. Use the functions:
    - Call the functions using the retrieved pointers.
 4. Unload the DLL:
-   - Optionally, use `FreeLibrary( handle )` to unload the DLL when it’s no longer needed.
+   - Optionally, use `FreeLibrary( handle )` to unload the DLL when it’s no
+     longer needed.
 
 ###### How It Works in **Linux**
 
 1. Load the library:
-   - Use `dlopen( "library.so", RTLD_LAZY )` to load the desired shared library into the process's
-     address space.
+   - Use `dlopen( "library.so", RTLD_LAZY )` to load the desired shared library
+     into the process's address space.
 2. Get function pointers:
-   - Use `dlsym( handle, "function_name" )` to obtain pointers to the functions within the loaded
-     library.
+   - Use `dlsym( handle, "function_name" )` to obtain pointers to the functions
+     within the loaded library.
 3. Use the functions:
    - Call the functions using the retrieved pointers.
 4. Unload the library:
-   - Optionally, use `dlclose( handle )` to unload the library when it’s no longer needed.
+   - Optionally, use `dlclose( handle )` to unload the library when it’s no
+     longer needed.
 
 ## Differences Between `gcc` and `g++`
 
@@ -311,20 +337,22 @@
 
 #### 1. `gcc`
 
-1. Primarily the GNU C Compiler, but it can also compile C++ files if passed the appropriate flags.
+1. Primarily the GNU C Compiler, but it can also compile C++ files if passed the
+   appropriate flags.
 2. It defaults to treating source files as C code unless you specify C++.
 
 #### 2. `g++`
 
 1. A specialized driver for C++ compilation.
-2. It automatically links the C++ standard library and handles C++-specific extensions.
+2. It automatically links the C++ standard library and handles C++-specific
+   extensions.
 
 ### Linking
 
 #### 1. `gcc`
 
-1. When compiling C++ files with `gcc`, you must manually link the C++ standard library (e.g.,
-   -lstdc++).
+1. When compiling C++ files with `gcc`, you must manually link the C++ standard
+   library (e.g., -lstdc++).
 
 #### 2. `g++`
 
@@ -334,12 +362,13 @@
 
 #### 1. `gcc`
 
-1. When used with C, `gcc` processes headers as C-specific (using `.h` headers for the most part).
+1. When used with C, `gcc` processes headers as C-specific (using `.h` headers
+   for the most part).
 
 #### 2. `g++`
 
-1. Treats headers as C++ files and supports C++ header files (like `<iostream>` instead of
-   `<stdio.h>`).
+1. Treats headers as C++ files and supports C++ header files (like `<iostream>`
+   instead of `<stdio.h>`).
 
 ## How to Compile One CPP File
 
@@ -433,10 +462,11 @@
 
 #### 1. Usage
 
-1. Compile Main.cpp with optimization level `n` (where `0 ≤ n ≤ 3`). Higher values of `n` result in
-   longer compile times and more aggressive optimizations.
-2. Compiler optimization levels adjust the types of optimizations applied during compilation to
-   balance speed, size, and behavior.
+1. Compile Main.cpp with optimization level `n` (where `0 ≤ n ≤ 3`). Higher
+   values of `n` result in longer compile times and more aggressive
+   optimizations.
+2. Compiler optimization levels adjust the types of optimizations applied during
+   compilation to balance speed, size, and behavior.
 3. **No optimization (`-O0`)**:
    - Keeps debugging information intact, with no optimizations.
    - Best for development and debugging.
@@ -444,22 +474,25 @@
    - Minor optimizations like dead code elimination improve speed slightly.
    - Suitable for builds needing small improvements without large compile times.
 5. **Moderate optimization (`-O2`)**:
-   - Balances speed and code size with optimizations like loop unrolling and better register usage.
+   - Balances speed and code size with optimizations like loop unrolling and
+     better register usage.
    - Ideal for production builds.
 6. **Aggressive optimization (`-O3`)**:
-   - Adds further optimizations like vectorization, yielding higher speed but potentially increasing
-     code size and instability.
-   - Best for performance-critical applications, though requires careful testing.
+   - Adds further optimizations like vectorization, yielding higher speed but
+     potentially increasing code size and instability.
+   - Best for performance-critical applications, though requires careful
+     testing.
 7. **Optimize for size (`-Os`)**:
    - Prioritizes a smaller binary, omitting some space-costly optimizations.
    - Useful for memory-constrained environments.
 8. **Fastest optimization (`-Ofast`)**:
-   - Maximizes speed with non-standard optimizations, such as unsafe math operations, reducing
-     standard compliance.
-   - Suitable for performance-critical applications that can relax stability or portability
-     requirements.
-9. Generally, `-O2` and `-Os` are widely used for balanced builds, while `-O3` and `-Ofast` cater to
-   performance-intensive needs where behavior can be less predictable.
+   - Maximizes speed with non-standard optimizations, such as unsafe math
+     operations, reducing standard compliance.
+   - Suitable for performance-critical applications that can relax stability or
+     portability requirements.
+9. Generally, `-O2` and `-Os` are widely used for balanced builds, while `-O3`
+   and `-Ofast` cater to performance-intensive needs where behavior can be less
+   predictable.
 
 #### 2. Output
 
@@ -636,8 +669,8 @@ g++ Main.cpp -L. -Wl,-Bstatic -lFun -Wl,-Bdynamic -o Main.exe
 
 #### 3. -Wl,-Bdynamic
 
-1. Reverts the linker back to dynamic libraries, in case you are linking other dynamic libraries
-   afterward.
+1. Reverts the linker back to dynamic libraries, in case you are linking other
+   dynamic libraries afterward.
 
 #### 4. Situation
 
@@ -645,8 +678,8 @@ g++ Main.cpp -L. -Wl,-Bstatic -lFun -Wl,-Bdynamic -o Main.exe
 
 #### 5. Usage
 
-1. Create both a static library and a dynamic library. They have the same name. Link the static
-   library explicitly.
+1. Create both a static library and a dynamic library. They have the same name.
+   Link the static library explicitly.
 
 #### 6. Output
 
@@ -691,19 +724,22 @@ g++ Main.cpp -L. -lFun -o Main.exe
 
 ### Explanation
 
-1. There are various compilers available. **Which compiler is the best?** The choice of compiler
-   depends on the library and system being used. Most libraries are optimized for specific
-   compilers. Even when libraries serve the same purpose, their implementations are often tailored
-   to a particular compiler.
-2. For example, `libstdc++` and `libc++` are both implementations of the C++ Standard Template
-   Library (STL). However, when `clang++` is used with `libstdc++` to compile, the execution
-   performance can be very slow. In contrast, using `libc++` with `clang++` often results in
-   significantly faster execution. An example code snippet is shown below.
-3. Additionally, different systems configure different default libraries. For instance, Linux
-   systems typically configure `libstdc++` as the default library, whereas Apple systems set
-   `libc++` as the default. Modifying these default settings are complex and may lead to errors.
-4. Therefore, when choosing a compiler, first check which system you are using. Then, if possible,
-   verify the library requirements for your project.
+1. There are various compilers available. **Which compiler is the best?** The
+   choice of compiler depends on the library and system being used. Most
+   libraries are optimized for specific compilers. Even when libraries serve the
+   same purpose, their implementations are often tailored to a particular
+   compiler.
+2. For example, `libstdc++` and `libc++` are both implementations of the C++
+   Standard Template Library (STL). However, when `clang++` is used with
+   `libstdc++` to compile, the execution performance can be very slow. In
+   contrast, using `libc++` with `clang++` often results in significantly faster
+   execution. An example code snippet is shown below.
+3. Additionally, different systems configure different default libraries. For
+   instance, Linux systems typically configure `libstdc++` as the default
+   library, whereas Apple systems set `libc++` as the default. Modifying these
+   default settings are complex and may lead to errors.
+4. Therefore, when choosing a compiler, first check which system you are using.
+   Then, if possible, verify the library requirements for your project.
 5. **Tips, in most cases**:
    - Linux - `gcc/g++`
    - Macos - `clang/clang++`
@@ -731,10 +767,13 @@ int main() {
 
 ## Notes
 
-1. When compiling C/C++ code, the `-pedantic-errors` compiler argument is strongly recommended.
-2. This argument disables all compiler extensions not specified in the C/C++ standards.
-3. Compiler extensions are features added by compiler developers to enhance compatibility with other
-   versions of the language (e.g., C99) or for historical reasons, and they are always enabled by
-   default.
-4. We had better add a newline to the end of code files if it is missing, as this is a requirement
-   of the C++ standard for compliance with pedantic rules."
+1. When compiling C/C++ code, the `-pedantic-errors` compiler argument is
+   strongly recommended.
+2. This argument disables all compiler extensions not specified in the C/C++
+   standards.
+3. Compiler extensions are features added by compiler developers to enhance
+   compatibility with other versions of the language (e.g., C99) or for
+   historical reasons, and they are always enabled by default.
+4. We had better add a newline to the end of code files if it is missing, as
+   this is a requirement of the C++ standard for compliance with pedantic
+   rules."

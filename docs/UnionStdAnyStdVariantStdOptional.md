@@ -43,13 +43,14 @@
 
 ### Explanation
 
-1. Unions are special data structures that **store different types** of data **in the same memory
-   location**.
-2. **Only one** of the union **members** can **hold a value** at any given time, which means **the
-   size** of a union is **determined by** **the size of** its **largest member**, and **all
-   members** in the union **share the same memory**.
-3. Typically, we **use an anonymous union**. It allows us to **treat a variable as different types**
-   and helps **save memory**.
+1. Unions are special data structures that **store different types** of data
+   **in the same memory location**.
+2. **Only one** of the union **members** can **hold a value** at any given time,
+   which means **the size** of a union is **determined by** **the size of** its
+   **largest member**, and **all members** in the union **share the same
+   memory**.
+3. Typically, we **use an anonymous union**. It allows us to **treat a variable
+   as different types** and helps **save memory**.
 
 ### Synatx
 
@@ -82,9 +83,10 @@ obj.mem2 = val2;   // obj.mem1 will also be set to val2.
 
 #### Explanation
 
-1. Anonymous unions are **unions without names**, allowing their **members** to **be accessed
-   directly** without the need to qualify them with a union name.
-2. This can **simplify code** when the union is used **frequently within a class or structure**.
+1. Anonymous unions are **unions without names**, allowing their **members** to
+   **be accessed directly** without the need to qualify them with a union name.
+2. This can **simplify code** when the union is used **frequently within a class
+   or structure**.
 
 #### Syntax
 
@@ -129,15 +131,18 @@ obj._mem2 = val2;   // obj._mem1 will also be set to  val2.
 
 ### Explanation
 
-1. `std::variant` is **a type-safe union** introduced that allows us to **list various types** for a
-   variable, as well as assign and reassign it to different types of values.
-2. It functions similarly to **a template class** or **a template structure**, rather than a union.
-   While **a union** is **more efficient**, **it** is **type safer**.
-3. In some cases, using `std::variant` helps us obtain more information rather than just optional
-   data, such as when reading a file.
-4. `std::variant` can **store exactly one value at a time** from a predefined set of types. This
-   means that while you can specify multiple types when declaring a `std::variant`, it can **only
-   hold an instance** of one of those types at any given moment.
+1. `std::variant` is **a type-safe union** introduced that allows us to **list
+   various types** for a variable, as well as assign and reassign it to
+   different types of values.
+2. It functions similarly to **a template class** or **a template structure**,
+   rather than a union. While **a union** is **more efficient**, **it** is
+   **type safer**.
+3. In some cases, using `std::variant` helps us obtain more information rather
+   than just optional data, such as when reading a file.
+4. `std::variant` can **store exactly one value at a time** from a predefined
+   set of types. This means that while you can specify multiple types when
+   declaring a `std::variant`, it can **only hold an instance** of one of those
+   types at any given moment.
 5. `std::variant` is **type safer** than `std::any`.
 6. Its header file is `<variant>`.
 
@@ -219,48 +224,56 @@ try {
 
 #### Template parameters
 
-1. `Types`: The types that may be stored in this variant. All types must meet the Destructible
-   requirements (in particular, array types and non-object types are not allowed).
+1. `Types`: The types that may be stored in this variant. All types must meet
+   the Destructible requirements (in particular, array types and non-object
+   types are not allowed).
 
 #### Member Functions
 
 1. (constructor): Constructs the variant object (public member function).
-2. (destructor): Destroys the variant, along with its contained value (public member function).
+2. (destructor): Destroys the variant, along with its contained value (public
+   member function).
 3. `operator=`: Assigns a variant (public member function).
-4. `index`: Returns the zero-based index of the alternative held by the variant (public member
+4. `index`: Returns the zero-based index of the alternative held by the variant
+   (public member function).
+5. `valueless_by_exception`: Checks if the variant is in the invalid state
+   (public member function).
+6. `emplace`: Constructs a value in the variant, in place (public member
    function).
-5. `valueless_by_exception`: Checks if the variant is in the invalid state (public member function).
-6. `emplace`: Constructs a value in the variant, in place (public member function).
 7. `swap`: Swaps with another variant (public member function).
-8. `visit` (C++26): Calls the provided functor with the argument held by the variant (public member
-   function).
+8. `visit` (C++26): Calls the provided functor with the argument held by the
+   variant (public member function).
 
 #### Non-member Functions
 
-1. `visit` (C++17): Calls the provided functor with the arguments held by one or more variants
+1. `visit` (C++17): Calls the provided functor with the arguments held by one or
+   more variants (function template).
+2. `holds_alternative` (C++17): Checks if a variant currently holds a given type
    (function template).
-2. `holds_alternative` (C++17): Checks if a variant currently holds a given type (function
+3. `get( std::variant )` (C++17): Reads the value of the variant given the index
+   or the type (if the type is unique), throws on error (function template).
+4. `get_if` (C++17): Obtains a pointer to the value of a pointed-to variant
+   given the index or the type (if unique), returns null on error (function
    template).
-3. `get( std::variant )` (C++17): Reads the value of the variant given the index or the type (if the
-   type is unique), throws on error (function template).
-4. `get_if` (C++17): Obtains a pointer to the value of a pointed-to variant given the index or the
-   type (if unique), returns null on error (function template).
-5. `operator==/!=/</<=/>/>=` ( C++ 17 ), `operator<=>` (C++20): Compares variant objects as their
-   contained values (function template).
-6. `std::swap( std::variant )` (C++17): Specializes the `std::swap` algorithm (function template).
+5. `operator==/!=/</<=/>/>=` ( C++ 17 ), `operator<=>` (C++20): Compares variant
+   objects as their contained values (function template).
+6. `std::swap( std::variant )` (C++17): Specializes the `std::swap` algorithm
+   (function template).
 
 #### Helper classes
 
-1. `monostate` (C++17): Placeholder type for use as the first alternative in a variant of
-   non-default-constructible types (class).
-2. `bad_variant_access` (C++17): Exception thrown on invalid accesses to the value of a variant
-   (class).
-3. `variant_size` (C++17), `variant_size_v` (C++17): Obtains the size of the variant's list of
-   alternatives at compile time (class template) (variable template).
-4. `variant_alternative`, `variant_alternative_t` (C++17): Obtains the type of the alternative
-   specified by its index, at compile time (class template) (alias template).
-5. `std::hash< std::variant >` (C++17): Hash support for `std::variant` (class template
-   specialization).
+1. `monostate` (C++17): Placeholder type for use as the first alternative in a
+   variant of non-default-constructible types (class).
+2. `bad_variant_access` (C++17): Exception thrown on invalid accesses to the
+   value of a variant (class).
+3. `variant_size` (C++17), `variant_size_v` (C++17): Obtains the size of the
+   variant's list of alternatives at compile time (class template) (variable
+   template).
+4. `variant_alternative`, `variant_alternative_t` (C++17): Obtains the type of
+   the alternative specified by its index, at compile time (class template)
+   (alias template).
+5. `std::hash< std::variant >` (C++17): Hash support for `std::variant` (class
+   template specialization).
 
 #### Helper objects
 
@@ -270,15 +283,18 @@ try {
 
 ### Explanation
 
-1. `std::any` is **a type-safe container (a class)** for **single values** of **any type**.
-2. It can hold **an instance of any type**, enabling you to store heterogeneous values **without
-   knowing their types at compile time**.
-3. This feature makes `std::any` particularly useful in scenarios like **dynamic type storage and
-   type erasure**.
-4. When used to **store small-sized variables**, typically **up to 32 bytes** depending on its
-   implementation, it functions **similarly to `std::variant`**.
-5. However, if **larger sizes** are required, **dynamic allocations** are necessary, which can
-   **impact performance**. This feature is **not useful**, and **few programmers use it**.
+1. `std::any` is **a type-safe container (a class)** for **single values** of
+   **any type**.
+2. It can hold **an instance of any type**, enabling you to store heterogeneous
+   values **without knowing their types at compile time**.
+3. This feature makes `std::any` particularly useful in scenarios like **dynamic
+   type storage and type erasure**.
+4. When used to **store small-sized variables**, typically **up to 32 bytes**
+   depending on its implementation, it functions **similarly to
+   `std::variant`**.
+5. However, if **larger sizes** are required, **dynamic allocations** are
+   necessary, which can **impact performance**. This feature is **not useful**,
+   and **few programmers use it**.
 6. Its header file is `<any>`.
 
 ### Synatx
@@ -349,8 +365,8 @@ var_name.reset();   // clears the stored value.
 1. (constructor): Constructs an any object (public member function).
 2. (destructor): Destroys an any object (public member function).
 3. `operator=`: Assigns an any object (public member function).
-4. `emplace`: Change the contained object, constructing the new object directly (public member
-   function).
+4. `emplace`: Change the contained object, constructing the new object directly
+   (public member function).
 5. `reset`: Destroys contained object (public member function).
 6. `swap`: Swaps two any objects (public member function).
 7. `has_value`: Checks if object holds a value (public member function).
@@ -358,26 +374,29 @@ var_name.reset();   // clears the stored value.
 
 #### Non-member Functions
 
-1. `std::swap( std::any )` (C++17): Specializes the `std::swap` algorithm (function).
-2. `any_cast` (C++17): Type-safe access to the contained object (function template).
+1. `std::swap( std::any )` (C++17): Specializes the `std::swap` algorithm
+   (function).
+2. `any_cast` (C++17): Type-safe access to the contained object (function
+   template).
 3. `make_any` (C++17): Creates an any object (function template).
 
 #### Helper Classes
 
-1. `bad_any_cast` (C++17): Exception thrown by the value-returning forms of `any_cast` on a type
-   mismatch (class).
+1. `bad_any_cast` (C++17): Exception thrown by the value-returning forms of
+   `any_cast` on a type mismatch (class).
 
 ## `std::optional` (Optional Data)
 
 ### Explanation
 
-1. `std::optional` is **a wrapper type (a template class)** used to **represent an object** that
-   **may or may not contain a value**.
-2. It encapsulates an optional value, offering **a safer alternative** to **return values** from
-   functions (e.g., when searching for elements), **`nullptr`** or **sentinel values** (e.g., `-1`
-   as an invalid index).
-3. By explicitly managing cases where a value might be absent, it **enhances code clarity** and
-   **reduces the risks of runtime errors** (like accessing uninitialized variables).
+1. `std::optional` is **a wrapper type (a template class)** used to **represent
+   an object** that **may or may not contain a value**.
+2. It encapsulates an optional value, offering **a safer alternative** to
+   **return values** from functions (e.g., when searching for elements),
+   **`nullptr`** or **sentinel values** (e.g., `-1` as an invalid index).
+3. By explicitly managing cases where a value might be absent, it **enhances
+   code clarity** and **reduces the risks of runtime errors** (like accessing
+   uninitialized variables).
 4. An example is using it to **determine whether a file is successfully read**.
 5. Its header file is `<optional>`.
 
@@ -452,61 +471,72 @@ var_name.reset();   // Clears the value.
 #### Member Types
 
 1. `value_type`: `T`.
-2. `iterator` (since C++26): Implementation-defined `LegacyRandomAccessIterator`,
-   `ConstexprIterator`, and `contiguous_iterator` whose `value_type` and `reference` are
-   `std::remove_cv_t< T >` and `T&`, respectively.
-3. `const_iterator` (since C++26): Implementation-defined `LegacyRandomAccessIterator`,
-   `ConstexprIterator`, and `contiguous_iterator` whose `value_type` and reference are
-   `std::remove_cv_t< T >` and `const T&`, respectively.
+2. `iterator` (since C++26): Implementation-defined
+   `LegacyRandomAccessIterator`, `ConstexprIterator`, and `contiguous_iterator`
+   whose `value_type` and `reference` are `std::remove_cv_t< T >` and `T&`,
+   respectively.
+3. `const_iterator` (since C++26): Implementation-defined
+   `LegacyRandomAccessIterator`, `ConstexprIterator`, and `contiguous_iterator`
+   whose `value_type` and reference are `std::remove_cv_t< T >` and `const T&`,
+   respectively.
 
 #### Member Functions
 
 1. (constructor): Constructs the optional object (public member function).
-2. (destructor): Destroys the contained value, if there is one (public member function).
+2. (destructor): Destroys the contained value, if there is one (public member
+   function).
 3. `operator=`: Assigns contents (public member function).
-4. `begin` (C++26): Returns an iterator to the beginning (public member function).
+4. `begin` (C++26): Returns an iterator to the beginning (public member
+   function).
 5. `end` (C++26): Returns an iterator to the end (public member function).
-6. `operator->`, `operator*`: Accesses the contained value (public member function).
-7. `operator bool`, `has_value`: Checks whether the object contains a value (public member
+6. `operator->`, `operator*`: Accesses the contained value (public member
    function).
+7. `operator bool`, `has_value`: Checks whether the object contains a value
+   (public member function).
 8. `value`: Returns the contained value (public member function).
-9. `value_or`: Returns the contained value if available, another value otherwise (public member
-   function).
-10. `and_then` (C++23): Returns the result of the given function on the contained value if it
-    exists, or an empty optional otherwise (public member function).
-11. `transform` (C++23): Returns an optional containing the transformed contained value if it
-    exists, or an empty optional otherwise (public member function).
-12. `or_else` (C++23): Returns the optional itself if it contains a value, or the result of the
-    given function otherwise (public member function).
+9. `value_or`: Returns the contained value if available, another value otherwise
+   (public member function).
+10. `and_then` (C++23): Returns the result of the given function on the
+    contained value if it exists, or an empty optional otherwise (public member
+    function).
+11. `transform` (C++23): Returns an optional containing the transformed
+    contained value if it exists, or an empty optional otherwise (public member
+    function).
+12. `or_else` (C++23): Returns the optional itself if it contains a value, or
+    the result of the given function otherwise (public member function).
 13. `swap`: Exchanges the contents (public member function).
 14. `reset`: Destroys any contained value (public member function).
 15. `emplace`: Constructs the contained value in-place (public member function).
 
 #### Non-member functions
 
-1. `operator==/!=/</<=/>/>=` (C++17), `operator<=>` (C++20): Compares optional objects (function
-   template).
+1. `operator==/!=/</<=/>/>=` (C++17), `operator<=>` (C++20): Compares optional
+   objects (function template).
 2. `make_optional` (C++17): Creates an optional object (function template).
-3. `std::swap( std::optional )` (C++17): Specializes the `std::swap` algorithm (function template).
+3. `std::swap( std::optional )` (C++17): Specializes the `std::swap` algorithm
+   (function template).
 
 #### Helper classes
 
-1. `std::hash< std::optional >` (C++17): Hash support for `std::optional` (class template
-   specialization).
-2. `nullopt_t` (C++17): indicator of an `std::optional` that does not contain a value (class).
-3. `bad_optional_access` (C++17): Exception indicating checked access to an optional that doesn't
-   contain a value (class).
+1. `std::hash< std::optional >` (C++17): Hash support for `std::optional` (class
+   template specialization).
+2. `nullopt_t` (C++17): indicator of an `std::optional` that does not contain a
+   value (class).
+3. `bad_optional_access` (C++17): Exception indicating checked access to an
+   optional that doesn't contain a value (class).
 
 #### Helpers
 
 1. `nullopt` (C++17): An object of type `nullopt_t` (constant).
-2. `in_place` (C++17), `in_place_type` (C++17), `in_place_index` (C++17), `in_place_t` (C++17),
-   `in_place_type_t` (C++17), `in_place_index_t` (C++17): `in-place` construction tag (tag).
+2. `in_place` (C++17), `in_place_type` (C++17), `in_place_index` (C++17),
+   `in_place_t` (C++17), `in_place_type_t` (C++17), `in_place_index_t` (C++17):
+   `in-place` construction tag (tag).
 
 #### Helper specializations
 
-1. `template< class T > constexpr bool ranges::enable_view< std::optional< T > > = true;` (since
-   C++26): This specialization of `ranges::enable_view` makes optional satisfy view.
+1. `template< class T > constexpr bool ranges::enable_view< std::optional< T > > = true;`
+   (since C++26): This specialization of `ranges::enable_view` makes optional
+   satisfy view.
 2. `template< class T > constexpr auto format_kind< std::optional< T > > = range_format::disabled;`
-   (since C++26): This specialization of `format_kind` disables the range formatting support of
-   optional.
+   (since C++26): This specialization of `format_kind` disables the range
+   formatting support of optional.

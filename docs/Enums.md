@@ -20,14 +20,16 @@
 
 ### Explanation
 
-1. An enum (short for "enumeration") is **a user-defined type** that consists of **a set of** named
-   integral **constants**, providing a way to define a collection of related constants with
-   meaningful names.
-2. Enumerations improve code **readability** by replacing numeric values with descriptive names.
+1. An enum (short for "enumeration") is **a user-defined type** that consists of
+   **a set of** named integral **constants**, providing a way to define a
+   collection of related constants with meaningful names.
+2. Enumerations improve code **readability** by replacing numeric values with
+   descriptive names.
 
 ### Usage
 
-1. **Represent some states with integers** by using an enum to group and represent them.
+1. **Represent some states with integers** by using an enum to group and
+   represent them.
 
 ### Unscoped Enumeration Syntax
 
@@ -93,7 +95,8 @@ EnumName enum_name = ClassName::MEM2;
 #### Underlying Type
 
 1. `enum`: Cannot specify underlying type explicitly.
-2. `enum class`: Can specify underlying type (e.g., `enum class Color : unsigned int`).
+2. `enum class`: Can specify underlying type (e.g.,
+   `enum class Color : unsigned int`).
 
 #### Forward Declaration
 

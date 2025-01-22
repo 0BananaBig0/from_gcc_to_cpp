@@ -83,20 +83,24 @@
 
 ### Explanation
 
-1. Maps are **associative containers** that **store elements** formed by **a combination of a key
-   value and a mapped value**, following **a specific order**.
-2. In a map, **the key values** are generally **used to sort and uniquely identify the elements**,
-   while **the mapped values** store **the content** associated to this key.
-3. The types of key and mapped value may differ, and are **grouped together** in member type
-   `value_type`, which is **a pair type** combining both: `typedef pair<const Key, T> value_type;`.
+1. Maps are **associative containers** that **store elements** formed by **a
+   combination of a key value and a mapped value**, following **a specific
+   order**.
+2. In a map, **the key values** are generally **used to sort and uniquely
+   identify the elements**, while **the mapped values** store **the content**
+   associated to this key.
+3. The types of key and mapped value may differ, and are **grouped together** in
+   member type `value_type`, which is **a pair type** combining both:
+   `typedef pair<const Key, T> value_type;`.
 4. **Different mapped values** must have **different key values**.
-5. Internally, **the elements** in a map are always **sorted by its key** following a specific
-   strict weak ordering criterion indicated by its internal comparison object (of type Compare).
-6. Map containers are generally **slower than `unordered_map`** containers to **access** individual
-   **elements** by their key, but they **allow the direct iteration** on subsets based on their
-   order.
-7. The mapped values in a map can be accessed directly by their corresponding key **using the
-   bracket operator (`(operator[]`)**.
+5. Internally, **the elements** in a map are always **sorted by its key**
+   following a specific strict weak ordering criterion indicated by its internal
+   comparison object (of type Compare).
+6. Map containers are generally **slower than `unordered_map`** containers to
+   **access** individual **elements** by their key, but they **allow the direct
+   iteration** on subsets based on their order.
+7. The mapped values in a map can be accessed directly by their corresponding
+   key **using the bracket operator (`(operator[]`)**.
 8. Maps are typically **implemented as red–black trees**.
 9. Their header file is `<map>`.
 
@@ -219,11 +223,11 @@ delete map_ptr;
 
 1. `Key`: Type of the keys.
 2. `T`: Type of the mapped value.
-3. `Compare`: A `Compare` type providing a strict weak ordering. By default, the first key (smallest
-   key) is at the beginning of the map because its default `Compare` is `std::less< Key >`, which
-   sorts the elements in ascending order.
-4. `Allocator`: An allocator that is used to acquire/release memory and to construct/destroy the
-   elements in that memory.
+3. `Compare`: A `Compare` type providing a strict weak ordering. By default, the
+   first key (smallest key) is at the beginning of the map because its default
+   `Compare` is `std::less< Key >`, which sorts the elements in ascending order.
+4. `Allocator`: An allocator that is used to acquire/release memory and to
+   construct/destroy the elements in that memory.
 
 #### Member Types
 
@@ -236,17 +240,18 @@ delete map_ptr;
 7. `allocator_type`: `Allocator`.
 8. `reference`: `value_type&`.
 9. `const_reference`: `const value_type&`.
-10. `pointer`: `Allocator::pointer` (until C++11), `std::allocator_traits< Allocator >::pointer`
-    (since C++11).
+10. `pointer`: `Allocator::pointer` (until C++11),
+    `std::allocator_traits< Allocator >::pointer` (since C++11).
 11. `const_pointer`: `Allocator::const_pointer` (until C++11),
     `std::allocator_traits< Allocator >::const_pointer` (since C++11).
 12. `iterator`: Constant `LegacyBidirectionalIterator` to `value_type`.
 13. `const_iterator`: `LegacyBidirectionalIterator` to `const value_type`.
 14. `reverse_iterator`: `std::reverse_iterator< iterator >`.
 15. `const_reverse_iterator`: `std::reverse_iterator< const_iterator >`.
-16. `node_type (since C++17)`: A specialization of node handle representing a container node.
-17. `insert_return_type (since C++17)`: Type describing the result of inserting a `node_type`, a
-    specialization of
+16. `node_type (since C++17)`: A specialization of node handle representing a
+    container node.
+17. `insert_return_type (since C++17)`: Type describing the result of inserting
+    a `node_type`, a specialization of
     ```CPP
     template< class Iter, class NodeType >
     struct /* unspecified */
@@ -270,63 +275,80 @@ delete map_ptr;
 4. `get_allocator`: Returns the associated allocator (public member function).
 5. `at`: Access specified element with bounds checking (public member function).
 6. `operator[]`: Access or insert specified element (public member function).
-7. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+7. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+   function).
 8. `end`, `cend`: Returns an iterator to the end (public member function).
-9. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
-10. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
+9. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public
+   member function).
+10. `rend`, `crend`: Returns a reverse iterator to the end (public member
+    function).
 11. `empty`: Checks whether the container is empty (public member function).
 12. `size`: Returns the number of elements (public member function).
-13. `max_size`: Returns the maximum possible number of elements (public member function).
+13. `max_size`: Returns the maximum possible number of elements (public member
+    function).
 14. `clear`: Clears the contents (public member function).
 15. `insert`: Inserts elements or nodes(since C++17) (public member function).
-16. `insert_range` (C++23): Inserts a range of elements (public member function).
-17. `insert_or_assign` (C++17): Inserts an element or assigns to the current element if the key
-    already exists (public member function).
-18. `emplace`: Constructs elements in-place (public member function).
-19. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-20. `try_emplace` (C++17): Inserts in-place if the key does not exist, does nothing if the key
-    exists (public member function).
-21. `erase`: Erases elements and returns a valid iterator (public member function).
-22. `swap`: Swaps the contents (public member function).
-23. `extract` (C++17): Extracts nodes from the container (public member function).
-24. `merge` (C++17): Splices nodes from another container (public member function).
-25. `count`: Returns the number of elements matching specific key (public member function).
-26. `find`: Finds an element with specific key (public member function).
-27. `contains` (C++20): Checks if the container contains an element with specific key (public member
+16. `insert_range` (C++23): Inserts a range of elements (public member
     function).
-28. `equal_range`: Returns range of elements matching a specific key (public member function).
-29. `lower_bound`: Returns an iterator to the first element not less than the given key (public
+17. `insert_or_assign` (C++17): Inserts an element or assigns to the current
+    element if the key already exists (public member function).
+18. `emplace`: Constructs elements in-place (public member function).
+19. `emplace_hint`: Constructs elements in-place using a hint (public member
+    function).
+20. `try_emplace` (C++17): Inserts in-place if the key does not exist, does
+    nothing if the key exists (public member function).
+21. `erase`: Erases elements and returns a valid iterator (public member
+    function).
+22. `swap`: Swaps the contents (public member function).
+23. `extract` (C++17): Extracts nodes from the container (public member
+    function).
+24. `merge` (C++17): Splices nodes from another container (public member
+    function).
+25. `count`: Returns the number of elements matching specific key (public member
+    function).
+26. `find`: Finds an element with specific key (public member function).
+27. `contains` (C++20): Checks if the container contains an element with
+    specific key (public member function).
+28. `equal_range`: Returns range of elements matching a specific key (public
     member function).
-30. `upper_bound`: Returns an iterator to the first element greater than the given key (public
-    member function).
-31. `key_comp`: Returns the function that compares keys (public member function).
-32. `value_comp`: Returns the function that compares keys in objects of type `value_type` (public
-    member function).
+29. `lower_bound`: Returns an iterator to the first element not less than the
+    given key (public member function).
+30. `upper_bound`: Returns an iterator to the first element greater than the
+    given key (public member function).
+31. `key_comp`: Returns the function that compares keys (public member
+    function).
+32. `value_comp`: Returns the function that compares keys in objects of type
+    `value_type` (public member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>` (C++20): Lexicographically
-   compares the values of two maps (function template).
-2. `std::swap( std::map )`: Specializes the `std::swap` algorithm (function template).
-3. `erase_if( std::map )` (C++20): Erases all elements satisfying specific criteria (function
+1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>`
+   (C++20): Lexicographically compares the values of two maps (function
    template).
+2. `std::swap( std::map )`: Specializes the `std::swap` algorithm (function
+   template).
+3. `erase_if( std::map )` (C++20): Erases all elements satisfying specific
+   criteria (function template).
 
 ## Multimaps
 
 ### Explanation
 
-1. Multimaps are **associative containers** that **store elements** formed by **a combination of a
-   key value and a mapped value**, following **a specific order**, and where multiple elements **can
-   have equivalent keys**.
-2. In a multimap, **the key values** are generally **used to sort and uniquely identify the
-   elements**, while **the mapped values** store **the content** associated to this key.
-3. The types of key and mapped value may differ, and are **grouped together** in member type
-   `value_type`, which is **a pair type** combining both: `typedef pair<const Key, T> value_type;`.
-4. Internally, **the elements** in a multimap are always **sorted by its key** following a specific
-   strict weak ordering criterion indicated by its internal comparison object (of type Compare).
-5. Multimap containers are generally **slower than `unordered_multimap`** containers to **access**
-   individual **elements** by their key, but they **allow the direct iteration** on subsets based on
-   their order.
+1. Multimaps are **associative containers** that **store elements** formed by
+   **a combination of a key value and a mapped value**, following **a specific
+   order**, and where multiple elements **can have equivalent keys**.
+2. In a multimap, **the key values** are generally **used to sort and uniquely
+   identify the elements**, while **the mapped values** store **the content**
+   associated to this key.
+3. The types of key and mapped value may differ, and are **grouped together** in
+   member type `value_type`, which is **a pair type** combining both:
+   `typedef pair<const Key, T> value_type;`.
+4. Internally, **the elements** in a multimap are always **sorted by its key**
+   following a specific strict weak ordering criterion indicated by its internal
+   comparison object (of type Compare).
+5. Multimap containers are generally **slower than `unordered_multimap`**
+   containers to **access** individual **elements** by their key, but they
+   **allow the direct iteration** on subsets based on their order.
 6. Multimaps are typically **implemented as red–black trees**.
 7. Their header file is `<map>`.
 
@@ -449,11 +471,12 @@ delete mmap_ptr;
 
 1. `Key`: Type of the keys.
 2. `T`: Type of the mapped value.
-3. `Compare`: A `Compare` type providing a strict weak ordering. By default, the first key (smallest
-   key) is at the beginning of the multimap because its default `Compare` is `std::less< Key >`,
-   which sorts the elements in ascending order.
-4. `Allocator`: An allocator that is used to acquire/release memory and to construct/destroy the
-   elements in that memory.
+3. `Compare`: A `Compare` type providing a strict weak ordering. By default, the
+   first key (smallest key) is at the beginning of the multimap because its
+   default `Compare` is `std::less< Key >`, which sorts the elements in
+   ascending order.
+4. `Allocator`: An allocator that is used to acquire/release memory and to
+   construct/destroy the elements in that memory.
 
 #### Member Types
 
@@ -466,15 +489,16 @@ delete mmap_ptr;
 7. `allocator_type`: `Allocator`.
 8. `reference`: `value_type&`.
 9. `const_reference`: `const value_type&`.
-10. `pointer`: `Allocator::pointer` (until C++11), `std::allocator_traits< Allocator >::pointer`
-    (since C++11).
+10. `pointer`: `Allocator::pointer` (until C++11),
+    `std::allocator_traits< Allocator >::pointer` (since C++11).
 11. `const_pointer`: `Allocator::const_pointer` (until C++11),
     `std::allocator_traits< Allocator >::const_pointer` (since C++11).
 12. `iterator`: Constant `LegacyBidirectionalIterator` to `value_type`.
 13. `const_iterator`: `LegacyBidirectionalIterator` to `const value_type`.
 14. `reverse_iterator`: `std::reverse_iterator< iterator >`.
 15. `const_reverse_iterator`: `std::reverse_iterator< const_iterator >`.
-16. `node_type (since C++17)`: A specialization of node handle representing a container node.
+16. `node_type (since C++17)`: A specialization of node handle representing a
+    container node.
 
 #### Member Classes
 
@@ -486,62 +510,77 @@ delete mmap_ptr;
 2. (destructor): Destructs the multimap (public member function).
 3. `operator=`: Assigns values to the container (public member function).
 4. `get_allocator`: Returns the associated allocator (public member function).
-5. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+5. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+   function).
 6. `end`, `cend`: Returns an iterator to the end (public member function).
-7. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
-8. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
+7. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public
+   member function).
+8. `rend`, `crend`: Returns a reverse iterator to the end (public member
+   function).
 9. `empty`: Checks whether the container is empty (public member function).
 10. `size`: Returns the number of elements (public member function).
-11. `max_size`: Returns the maximum possible number of elements (public member function).
+11. `max_size`: Returns the maximum possible number of elements (public member
+    function).
 12. `clear`: Clears the contents (public member function).
 13. `insert`: Inserts elements or nodes(since C++17) (public member function).
-14. `insert_range` (C++23): Inserts a range of elements (public member function).
-15. `emplace`: Constructs elements in-place (public member function).
-16. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-17. `erase`: Erases elements and returns a valid iterator (public member function).
-18. `swap`: Swaps the contents (public member function).
-19. `extract` (C++17): Extracts nodes from the container (public member function).
-20. `merge` (C++17): Splices nodes from another container (public member function).
-21. `count`: Returns the number of elements matching specific key (public member function).
-22. `find`: Finds an element with specific key (public member function).
-23. `contains` (C++20): Checks if the container contains an element with specific key (public member
+14. `insert_range` (C++23): Inserts a range of elements (public member
     function).
-24. `equal_range`: Returns range of elements matching a specific key (public member function).
-25. `lower_bound`: Returns an iterator to the first element not less than the given key (public
+15. `emplace`: Constructs elements in-place (public member function).
+16. `emplace_hint`: Constructs elements in-place using a hint (public member
+    function).
+17. `erase`: Erases elements and returns a valid iterator (public member
+    function).
+18. `swap`: Swaps the contents (public member function).
+19. `extract` (C++17): Extracts nodes from the container (public member
+    function).
+20. `merge` (C++17): Splices nodes from another container (public member
+    function).
+21. `count`: Returns the number of elements matching specific key (public member
+    function).
+22. `find`: Finds an element with specific key (public member function).
+23. `contains` (C++20): Checks if the container contains an element with
+    specific key (public member function).
+24. `equal_range`: Returns range of elements matching a specific key (public
     member function).
-26. `upper_bound`: Returns an iterator to the first element greater than the given key (public
-    member function).
-27. `key_comp`: Returns the function that compares keys (public member function).
-28. `value_comp`: Returns the function that compares keys in objects of type `value_type` (public
-    member function).
+25. `lower_bound`: Returns an iterator to the first element not less than the
+    given key (public member function).
+26. `upper_bound`: Returns an iterator to the first element greater than the
+    given key (public member function).
+27. `key_comp`: Returns the function that compares keys (public member
+    function).
+28. `value_comp`: Returns the function that compares keys in objects of type
+    `value_type` (public member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>` (C++20): Lexicographically
-   compares the values of two multimaps (function template).
-2. `std::swap( std::multimap )`: Specializes the `std::swap` algorithm (function template).
-3. `erase_if( std::multimap )` (C++20): Erases all elements satisfying specific criteria (function
+1. `operator==`, `operator!=/</<=/>/>=` (removed in C++20), `operator<=>`
+   (C++20): Lexicographically compares the values of two multimaps (function
    template).
+2. `std::swap( std::multimap )`: Specializes the `std::swap` algorithm (function
+   template).
+3. `erase_if( std::multimap )` (C++20): Erases all elements satisfying specific
+   criteria (function template).
 
 ## Unordered Maps
 
 ### Explanation
 
-1. Unordered maps are **associative containers** that **store elements** formed by **the combination
-   of a key value and a mapped value**, and which allows for **fast retrieval** of individual
-   elements based on their keys.
-2. In an `unordered_map`, **the key value** is generally **used to uniquely identify the element**,
-   while **the mapped value** is an object with **the content** associated to this key. Types of key
-   and mapped value may differ.
-3. Internally, the elements in the `unordered_map` are **not sorted** in any particular order with
-   respect to either their key or mapped values, but **organized into buckets** depending on their
-   **hash** values to allow for **fast access** to individual **elements** directly by their key
-   values (**with a constant average time complexity on average**).
-4. `unordered_map` containers are **faster than map** containers to access individual elements by
-   their key, although they are generally **less efficient for range iteration** through a subset of
-   their elements.
-5. Unordered maps implement **the direct access operator (`operator[]`)** which allows for direct
-   access of the mapped value using its key value as argument.
+1. Unordered maps are **associative containers** that **store elements** formed
+   by **the combination of a key value and a mapped value**, and which allows
+   for **fast retrieval** of individual elements based on their keys.
+2. In an `unordered_map`, **the key value** is generally **used to uniquely
+   identify the element**, while **the mapped value** is an object with **the
+   content** associated to this key. Types of key and mapped value may differ.
+3. Internally, the elements in the `unordered_map` are **not sorted** in any
+   particular order with respect to either their key or mapped values, but
+   **organized into buckets** depending on their **hash** values to allow for
+   **fast access** to individual **elements** directly by their key values
+   (**with a constant average time complexity on average**).
+4. `unordered_map` containers are **faster than map** containers to access
+   individual elements by their key, although they are generally **less
+   efficient for range iteration** through a subset of their elements.
+5. Unordered maps implement **the direct access operator (`operator[]`)** which
+   allows for direct access of the mapped value using its key value as argument.
 6. Iterators in the container are **at least forward iterators**.
 7. Their header file is `<unordered_map>`.
 
@@ -687,15 +726,17 @@ delete umap_ptr;
 #### Template Parameters
 
 1. `Key`: The type of the elements.
-2. `Hash`: A unary function object type that takes an object of the same type as the elements as
-   argument and returns a unique value of type `size_t` based on it. This can either be a class
-   implementing a function call operator or a pointer to a function (see constructor for an
-   example). This defaults to `std::hash< Key >`.
-3. `KeyEqual`: A binary predicate that takes two arguments of the same type as the elements and
-   returns a bool. The expression `KeyEqual( a,b )`, where `KeyEqual` is an object of this type and
-   `a` and `b` are key values, shall return true if `a` is to be considered equivalent to `b`.
-4. `Allocator`: An allocator that is used to acquire/release memory and to construct/destroy the
-   elements in that memory.
+2. `Hash`: A unary function object type that takes an object of the same type as
+   the elements as argument and returns a unique value of type `size_t` based on
+   it. This can either be a class implementing a function call operator or a
+   pointer to a function (see constructor for an example). This defaults to
+   `std::hash< Key >`.
+3. `KeyEqual`: A binary predicate that takes two arguments of the same type as
+   the elements and returns a bool. The expression `KeyEqual( a,b )`, where
+   `KeyEqual` is an object of this type and `a` and `b` are key values, shall
+   return true if `a` is to be considered equivalent to `b`.
+4. `Allocator`: An allocator that is used to acquire/release memory and to
+   construct/destroy the elements in that memory.
 
 #### Member Types
 
@@ -713,15 +754,16 @@ delete umap_ptr;
 12. `const_pointer`: `std::allocator_traits< Allocator >::const_pointer`.
 13. `iterator`: Constant `LegacyForwardIterator` to `value_type`.
 14. `const_iterator`: `LegacyForwardIterator` to `const value_type`.
-15. `local_iterator`: An iterator type whose category, value, difference, pointer and reference
-    types are the same as iterator. This iterator can be used to iterate through a single bucket but
-    not across buckets
-16. `const_local_iterator`: An iterator type whose category, value, difference, pointer and
-    reference types are the same as `const_iterator`. This iterator can be used to iterate through a
-    single bucket but not across buckets
-17. `node_type (since C++17)`: A specialization of node handle representing a container node.
-18. `insert_return_type` (since C++17): Type describing the result of inserting a `node_type`, a
-    specialization of
+15. `local_iterator`: An iterator type whose category, value, difference,
+    pointer and reference types are the same as iterator. This iterator can be
+    used to iterate through a single bucket but not across buckets
+16. `const_local_iterator`: An iterator type whose category, value, difference,
+    pointer and reference types are the same as `const_iterator`. This iterator
+    can be used to iterate through a single bucket but not across buckets
+17. `node_type (since C++17)`: A specialization of node handle representing a
+    container node.
+18. `insert_return_type` (since C++17): Type describing the result of inserting
+    a `node_type`, a specialization of
     ```CPP
     template< class Iter, class NodeType >
     struct /* unspecified */
@@ -739,71 +781,92 @@ delete umap_ptr;
 2. (destructor): Destructs the unordered map (public member function).
 3. `operator=`: Assigns values to the container (public member function).
 4. `get_allocator`: Returns the associated allocator (public member function).
-5. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+5. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+   function).
 6. `end`, `cend`: Returns an iterator to the end (public member function).
 7. `empty`: Checks whether the container is empty (public member function).
 8. `size`: Returns the number of elements (public member function).
-9. `max_size`: Returns the maximum possible number of elements (public member function).
+9. `max_size`: Returns the maximum possible number of elements (public member
+   function).
 10. `clear`: Clears the contents (public member function).
 11. `insert`: Inserts elements or nodes(since C++17) (public member function).
-12. `insert_range` (C++23): Inserts a range of elements (public member function).
-13. `insert_or_assign` (C++17): Inserts an element or assigns to the current element if the key
+12. `insert_range` (C++23): Inserts a range of elements (public member
+    function).
+13. `insert_or_assign` (C++17): Inserts an element or assigns to the current
+    element if the key
 14. `emplace`: Constructs elements in-place (public member function).
-15. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-16. `try_emplace` (C++17): Inserts in-place if the key does not exist, does nothing if the key
-17. `erase`: Erases elements and returns a valid iterator (public member function).
+15. `emplace_hint`: Constructs elements in-place using a hint (public member
+    function).
+16. `try_emplace` (C++17): Inserts in-place if the key does not exist, does
+    nothing if the key
+17. `erase`: Erases elements and returns a valid iterator (public member
+    function).
 18. `swap`: Swaps the contents (public member function).
-19. `extract` (C++17): Extracts nodes from the container (public member function).
-20. `merge` (C++17): Splices nodes from another container (public member function).
-21. `at`: Access specified element with bounds checking (public member function).
+19. `extract` (C++17): Extracts nodes from the container (public member
+    function).
+20. `merge` (C++17): Splices nodes from another container (public member
+    function).
+21. `at`: Access specified element with bounds checking (public member
+    function).
 22. `operator[]`: Access or insert specified element (public member function).
-23. `count`: Returns the number of elements matching specific key (public member function).
+23. `count`: Returns the number of elements matching specific key (public member
+    function).
 24. `find`: Finds an element with specific key (public member function).
-25. `contains` (C++20): Checks if the container contains an element with specific key (public member
-    function).
-26. `equal_range`: Returns range of elements matching a specific key (public member function).
-27. `begin( size_type )`, `cbegin( size_type )`: Returns an iterator to the beginning of the
-    specified bucket (public member function).
-28. `end( size_type )`, `cend( size_type )`: Returns an iterator to the end of the specified bucket
-    (public member function).
+25. `contains` (C++20): Checks if the container contains an element with
+    specific key (public member function).
+26. `equal_range`: Returns range of elements matching a specific key (public
+    member function).
+27. `begin( size_type )`, `cbegin( size_type )`: Returns an iterator to the
+    beginning of the specified bucket (public member function).
+28. `end( size_type )`, `cend( size_type )`: Returns an iterator to the end of
+    the specified bucket (public member function).
 29. `bucket_count`: Returns the number of buckets (public member function).
-30. `max_bucket_count`: Returns the maximum number of buckets (public member function).
-31. `bucket_size`: Returns the number of elements in specific bucket (public member function).
-32. `bucket`: Returns the bucket for specific key (public member function).
-33. `load_factor`: Returns average number of elements per bucket (public member function).
-34. `max_load_factor`: Manages maximum average number of elements per bucket (public member
+30. `max_bucket_count`: Returns the maximum number of buckets (public member
     function).
-35. `rehash`: Reserves at least the specified number of buckets and regenerates the hash table
+31. `bucket_size`: Returns the number of elements in specific bucket (public
+    member function).
+32. `bucket`: Returns the bucket for specific key (public member function).
+33. `load_factor`: Returns average number of elements per bucket (public member
+    function).
+34. `max_load_factor`: Manages maximum average number of elements per bucket
     (public member function).
-36. `reserve`: Reserves space for at least the specified number of elements and regenerates the hash
-    table (public member function).
-37. `hash_function`: Returns function used to hash the keys (public member function).
-38. `key_eq`: Returns the function used to compare keys for equality (public member function).
+35. `rehash`: Reserves at least the specified number of buckets and regenerates
+    the hash table (public member function).
+36. `reserve`: Reserves space for at least the specified number of elements and
+    regenerates the hash table (public member function).
+37. `hash_function`: Returns function used to hash the keys (public member
+    function).
+38. `key_eq`: Returns the function used to compare keys for equality (public
+    member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator!=` (removed in C++20): Lexicographically compares the values of two
-   unordered maps (function template).
-2. `std::swap( std::unordered_map )`: Specializes the `std::swap` algorithm (function template).
-3. `erase_if( std::unordered_map )` (C++20): Erases all elements satisfying specific criteria
+1. `operator==`, `operator!=` (removed in C++20): Lexicographically compares the
+   values of two unordered maps (function template).
+2. `std::swap( std::unordered_map )`: Specializes the `std::swap` algorithm
    (function template).
+3. `erase_if( std::unordered_map )` (C++20): Erases all elements satisfying
+   specific criteria (function template).
 
 ## Unordered Multimaps
 
 ### Explanation
 
-1. Unordered multimaps are **associative containers** that **store elements** formed by **the
-   combination of a key value and a mapped value**, much like `unordered_map` containers, but
-   **allowing different elements to have equivalent keys**.
-2. In an `unordered_multimap`, **the key value is generally used to uniquely identify the element**,
-   while **the mapped value** is an object with **the content** associated to this key. Types of key
-   and mapped value may differ.
-3. Internally, the elements in the `unordered_multimap` are **not sorted** in any particular order
-   with respect to either their key or mapped values, but **organized into buckets** depending on
-   their **hash** values to allow for **fast access** to individual **elements** directly by their
-   key values (**with a constant average time complexity on average**).
-4. Elements with equivalent keys are **grouped together** in the same bucket and in such a way that
-   an iterator (see `equal_range`) can iterate through all of them.
+1. Unordered multimaps are **associative containers** that **store elements**
+   formed by **the combination of a key value and a mapped value**, much like
+   `unordered_map` containers, but **allowing different elements to have
+   equivalent keys**.
+2. In an `unordered_multimap`, **the key value is generally used to uniquely
+   identify the element**, while **the mapped value** is an object with **the
+   content** associated to this key. Types of key and mapped value may differ.
+3. Internally, the elements in the `unordered_multimap` are **not sorted** in
+   any particular order with respect to either their key or mapped values, but
+   **organized into buckets** depending on their **hash** values to allow for
+   **fast access** to individual **elements** directly by their key values
+   (**with a constant average time complexity on average**).
+4. Elements with equivalent keys are **grouped together** in the same bucket and
+   in such a way that an iterator (see `equal_range`) can iterate through all of
+   them.
 5. Iterators in the container are **at least forward iterators**.
 6. Their header file is `<unordered_map>`.
 
@@ -949,15 +1012,17 @@ delete ummap_ptr;
 #### Template Parameters
 
 1. `Key`: The type of the elements.
-2. `Hash`: A unary function object type that takes an object of the same type as the elements as
-   argument and returns a unique value of type `size_t` based on it. This can either be a class
-   implementing a function call operator or a pointer to a function (see constructor for an
-   example). This defaults to `std::hash< Key >`.
-3. `KeyEqual`: A binary predicate that takes two arguments of the same type as the elements and
-   returns a bool. The expression `KeyEqual( a,b )`, where `KeyEqual` is an object of this type and
-   `a` and `b` are key values, shall return true if `a` is to be considered equivalent to `b`.
-4. `Allocator`: An allocator that is used to acquire/release memory and to construct/destroy the
-   elements in that memory.
+2. `Hash`: A unary function object type that takes an object of the same type as
+   the elements as argument and returns a unique value of type `size_t` based on
+   it. This can either be a class implementing a function call operator or a
+   pointer to a function (see constructor for an example). This defaults to
+   `std::hash< Key >`.
+3. `KeyEqual`: A binary predicate that takes two arguments of the same type as
+   the elements and returns a bool. The expression `KeyEqual( a,b )`, where
+   `KeyEqual` is an object of this type and `a` and `b` are key values, shall
+   return true if `a` is to be considered equivalent to `b`.
+4. `Allocator`: An allocator that is used to acquire/release memory and to
+   construct/destroy the elements in that memory.
 
 #### Member Types
 
@@ -975,15 +1040,16 @@ delete ummap_ptr;
 12. `const_pointer`: `std::allocator_traits< Allocator >::const_pointer`.
 13. `iterator`: Constant `LegacyForwardIterator` to `value_type`.
 14. `const_iterator`: `LegacyForwardIterator` to `const value_type`.
-15. `local_iterator`: An iterator type whose category, value, difference, pointer and reference
-    types are the same as iterator. This iterator can be used to iterate through a single bucket but
-    not across buckets
-16. `const_local_iterator`: An iterator type whose category, value, difference, pointer and
-    reference types are the same as `const_iterator`. This iterator can be used to iterate through a
-    single bucket but not across buckets
-17. `node_type (since C++17)`: A specialization of node handle representing a container node.
-18. `insert_return_type` (since C++17): Type describing the result of inserting a `node_type`, a
-    specialization of
+15. `local_iterator`: An iterator type whose category, value, difference,
+    pointer and reference types are the same as iterator. This iterator can be
+    used to iterate through a single bucket but not across buckets
+16. `const_local_iterator`: An iterator type whose category, value, difference,
+    pointer and reference types are the same as `const_iterator`. This iterator
+    can be used to iterate through a single bucket but not across buckets
+17. `node_type (since C++17)`: A specialization of node handle representing a
+    container node.
+18. `insert_return_type` (since C++17): Type describing the result of inserting
+    a `node_type`, a specialization of
     ```CPP
     template< class Iter, class NodeType >
     struct /* unspecified */
@@ -1001,84 +1067,105 @@ delete ummap_ptr;
 2. (destructor): Destructs the unordered multimap (public member function).
 3. `operator=`: Assigns values to the container (public member function).
 4. `get_allocator`: Returns the associated allocator (public member function).
-5. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+5. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+   function).
 6. `end`, `cend`: Returns an iterator to the end (public member function).
 7. `empty`: Checks whether the container is empty (public member function).
 8. `size`: Returns the number of elements (public member function).
-9. `max_size`: Returns the maximum possible number of elements (public member function).
+9. `max_size`: Returns the maximum possible number of elements (public member
+   function).
 10. `clear`: Clears the contents (public member function).
 11. `insert`: Inserts elements or nodes(since C++17) (public member function).
-12. `insert_range` (C++23): Inserts a range of elements (public member function).
-13. `insert_or_assign` (C++17): Inserts an element or assigns to the current element if the key
+12. `insert_range` (C++23): Inserts a range of elements (public member
+    function).
+13. `insert_or_assign` (C++17): Inserts an element or assigns to the current
+    element if the key
 14. `emplace`: Constructs elements in-place (public member function).
-15. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-16. `try_emplace` (C++17): Inserts in-place if the key does not exist, does nothing if the key
-17. `erase`: Erases elements and returns a valid iterator (public member function).
+15. `emplace_hint`: Constructs elements in-place using a hint (public member
+    function).
+16. `try_emplace` (C++17): Inserts in-place if the key does not exist, does
+    nothing if the key
+17. `erase`: Erases elements and returns a valid iterator (public member
+    function).
 18. `swap`: Swaps the contents (public member function).
-19. `extract` (C++17): Extracts nodes from the container (public member function).
-20. `merge` (C++17): Splices nodes from another container (public member function).
-21. `at`: Access specified element with bounds checking (public member function).
+19. `extract` (C++17): Extracts nodes from the container (public member
+    function).
+20. `merge` (C++17): Splices nodes from another container (public member
+    function).
+21. `at`: Access specified element with bounds checking (public member
+    function).
 22. `operator[]`: Access or insert specified element (public member function).
-23. `count`: Returns the number of elements matching specific key (public member function).
+23. `count`: Returns the number of elements matching specific key (public member
+    function).
 24. `find`: Finds an element with specific key (public member function).
-25. `contains` (C++20): Checks if the container contains an element with specific key (public member
-    function).
-26. `equal_range`: Returns range of elements matching a specific key (public member function).
-27. `begin( size_type )`, `cbegin( size_type )`: Returns an iterator to the beginning of the
-    specified bucket (public member function).
-28. `end( size_type )`, `cend( size_type )`: Returns an iterator to the end of the specified bucket
-    (public member function).
+25. `contains` (C++20): Checks if the container contains an element with
+    specific key (public member function).
+26. `equal_range`: Returns range of elements matching a specific key (public
+    member function).
+27. `begin( size_type )`, `cbegin( size_type )`: Returns an iterator to the
+    beginning of the specified bucket (public member function).
+28. `end( size_type )`, `cend( size_type )`: Returns an iterator to the end of
+    the specified bucket (public member function).
 29. `bucket_count`: Returns the number of buckets (public member function).
-30. `max_bucket_count`: Returns the maximum number of buckets (public member function).
-31. `bucket_size`: Returns the number of elements in specific bucket (public member function).
-32. `bucket`: Returns the bucket for specific key (public member function).
-33. `load_factor`: Returns average number of elements per bucket (public member function).
-34. `max_load_factor`: Manages maximum average number of elements per bucket (public member
+30. `max_bucket_count`: Returns the maximum number of buckets (public member
     function).
-35. `rehash`: Reserves at least the specified number of buckets and regenerates the hash table
+31. `bucket_size`: Returns the number of elements in specific bucket (public
+    member function).
+32. `bucket`: Returns the bucket for specific key (public member function).
+33. `load_factor`: Returns average number of elements per bucket (public member
+    function).
+34. `max_load_factor`: Manages maximum average number of elements per bucket
     (public member function).
-36. `reserve`: Reserves space for at least the specified number of elements and regenerates the hash
-    table (public member function).
-37. `hash_function`: Returns function used to hash the keys (public member function).
-38. `key_eq`: Returns the function used to compare keys for equality (public member function).
+35. `rehash`: Reserves at least the specified number of buckets and regenerates
+    the hash table (public member function).
+36. `reserve`: Reserves space for at least the specified number of elements and
+    regenerates the hash table (public member function).
+37. `hash_function`: Returns function used to hash the keys (public member
+    function).
+38. `key_eq`: Returns the function used to compare keys for equality (public
+    member function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator!=` (removed in C++20): Lexicographically compares the values of two
-   unordered multimaps (function template).
-2. `std::swap( std::unordered_multimap )`: Specializes the `std::swap` algorithm (function
-   template).
-3. `erase_if( std::unordered_multimap )` (C++20): Erases all elements satisfying specific criteria
+1. `operator==`, `operator!=` (removed in C++20): Lexicographically compares the
+   values of two unordered multimaps (function template).
+2. `std::swap( std::unordered_multimap )`: Specializes the `std::swap` algorithm
    (function template).
+3. `erase_if( std::unordered_multimap )` (C++20): Erases all elements satisfying
+   specific criteria (function template).
 
 ## Flat Maps
 
 ### Explanation
 
-1. Flat maps are **an associative container** that **stores elements** formed by **a combination of
-   a key value and a mapped value**, but is **implemented as a sorted sequence**, typically using a
-   vector.
-2. In a `flat_map`, **the key values are generally used to sort and uniquely identify the
-   elements**, while **the mapped values** store **the content** associated with this key, similar
-   to traditional maps.
-3. The types of key and mapped value may differ and are **grouped together** in the member type
-   `value_type`, which is **a pair type** combining both:
+1. Flat maps are **an associative container** that **stores elements** formed by
+   **a combination of a key value and a mapped value**, but is **implemented as
+   a sorted sequence**, typically using a vector.
+2. In a `flat_map`, **the key values are generally used to sort and uniquely
+   identify the elements**, while **the mapped values** store **the content**
+   associated with this key, similar to traditional maps.
+3. The types of key and mapped value may differ and are **grouped together** in
+   the member type `value_type`, which is **a pair type** combining both:
    `typedef std::pair<const Key, T> value_type;`.
-4. **Different mapped values** must have **different key values**, ensuring that each key in a
-   `flat_map` uniquely identifies a single mapped value.
-5. Internally, the elements in a `flat_map` are stored as **a sorted vector**, which allows for
-   **binary search** for **efficient lookups and iteration** based on the key’s order.
-6. `flat_map` containers can be **faster than traditional maps** for access to individual
-   **elements** by their key due to **contiguous memory storage**, but they may **incur overhead**
-   for **insertions and deletions** due to the need to maintain sorted order.
-7. The mapped values in a `flat_map` can be accessed directly by their corresponding key **using the
-   bracket operator (`operator[]`)**, similar to regular maps.
-8. The **class template `flat_map`** acts as **a wrapper** to the **two underlying containers**,
-   passed as objects of type `KeyContainer` and `MappedContainer` respectively. The first container
-   is sorted, and for each key its corresponding value is in the second container at the same index
+4. **Different mapped values** must have **different key values**, ensuring that
+   each key in a `flat_map` uniquely identifies a single mapped value.
+5. Internally, the elements in a `flat_map` are stored as **a sorted vector**,
+   which allows for **binary search** for **efficient lookups and iteration**
+   based on the key’s order.
+6. `flat_map` containers can be **faster than traditional maps** for access to
+   individual **elements** by their key due to **contiguous memory storage**,
+   but they may **incur overhead** for **insertions and deletions** due to the
+   need to maintain sorted order.
+7. The mapped values in a `flat_map` can be accessed directly by their
+   corresponding key **using the bracket operator (`operator[]`)**, similar to
+   regular maps.
+8. The **class template `flat_map`** acts as **a wrapper** to the **two
+   underlying containers**, passed as objects of type `KeyContainer` and
+   `MappedContainer` respectively. The first container is sorted, and for each
+   key its corresponding value is in the second container at the same index
    (`offset`). The number of elements in both containers is the same.
-9. The header file for `flat_map` is `<experimental/flat_map>` (or may be found in other namespaces
-   in different implementations).
+9. The header file for `flat_map` is `<experimental/flat_map>` (or may be found
+   in other namespaces in different implementations).
 
 ### Declaration Syntax
 
@@ -1243,13 +1330,15 @@ delete fmap_ptr;
 
 1. `Key`: The type of the keys.
 2. `T`: The type of mapped values.
-3. `Compare`: A `Compare` type providing a strict weak ordering. By default, the first key (smallest
-   key) is at the beginning of the flat set because its default `Compare` is `std::less< Key >`,
-   which sorts the elements in ascending order.
-4. `KeyContainer`, `MappedContainer`: The type of the underlying SequenceContainer to store the
-   elements. The iterators of such container should satisfy `LegacyRandomAccessIterator` or model
-   `random_access_iterator`. The standard containers `std::vector` and `std::deque` satisfy these
-   requirements.
+3. `Compare`: A `Compare` type providing a strict weak ordering. By default, the
+   first key (smallest key) is at the beginning of the flat set because its
+   default `Compare` is `std::less< Key >`, which sorts the elements in
+   ascending order.
+4. `KeyContainer`, `MappedContainer`: The type of the underlying
+   SequenceContainer to store the elements. The iterators of such container
+   should satisfy `LegacyRandomAccessIterator` or model
+   `random_access_iterator`. The standard containers `std::vector` and
+   `std::deque` satisfy these requirements.
 
 #### Member Types
 
@@ -1263,10 +1352,10 @@ delete fmap_ptr;
 8. `const_reference`: `std::pair< const key_type&, const mapped_type& >`.
 9. `size_type`: `std::size_t`.
 10. `difference_type`: `std::ptrdiff_t`.
-11. `iterator`: Implementation-defined `LegacyInputIterator` and `random_access_iterator` to
-    `value_type`.
-12. `const_iterator`: Implementation-defined `LegacyInputIterator` and `random_access_iterator` to
-    `const value_type`.
+11. `iterator`: Implementation-defined `LegacyInputIterator` and
+    `random_access_iterator` to `value_type`.
+12. `const_iterator`: Implementation-defined `LegacyInputIterator` and
+    `random_access_iterator` to `const value_type`.
 13. `reverse_iterator`: `std::reverse_iterator< iterator >`.
 14. `const_reverse_iterator`: `std::reverse_iterator< const_iterator >`.
 15. `containers`: Type describing the underlying containers.
@@ -1283,94 +1372,116 @@ delete fmap_ptr;
 
 #### Member Objects
 
-1. `c` (`private`): The object of type containers (exposition-only member object`*`).
-2. `compare` (`private`): The comparison function object of type `key_compare` (exposition-only
-   member object`*`).
+1. `c` (`private`): The object of type containers (exposition-only member
+   object`*`).
+2. `compare` (`private`): The comparison function object of type `key_compare`
+   (exposition-only member object`*`).
 
 #### Member Functions
 
 1. (constructor): Constructs the flat map (public member function).
-2. (destructor) (implicitly declared): Destroys every element of the container adaptor (public
-   member function).
-3. `operator=`: Assigns values to the container adaptor (public member function).
+2. (destructor) (implicitly declared): Destroys every element of the container
+   adaptor (public member function).
+3. `operator=`: Assigns values to the container adaptor (public member
+   function).
 4. `at`: Access specified element with bounds checking (public member function).
 5. `operator[]`: Access or insert specified element (public member function).
-6. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+6. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+   function).
 7. `end`, `cend`: Returns an iterator to the end (public member function).
-8. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
-9. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
-10. `empty`: Checks whether the container adaptor is empty (public member function).
+8. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public
+   member function).
+9. `rend`, `crend`: Returns a reverse iterator to the end (public member
+   function).
+10. `empty`: Checks whether the container adaptor is empty (public member
+    function).
 11. `size`: Returns the number of elements (public member function).
-12. `max_size`: Returns the maximum possible number of elements (public member function).
+12. `max_size`: Returns the maximum possible number of elements (public member
+    function).
 13. `emplace`: Constructs elements in-place (public member function).
-14. `emplace_hint`: Constructs elements in-place using a hint (public member function).
-15. `try_emplace` (C++17): Inserts in-place if the key does not exist, does nothing if the key
+14. `emplace_hint`: Constructs elements in-place using a hint (public member
+    function).
+15. `try_emplace` (C++17): Inserts in-place if the key does not exist, does
+    nothing if the key
 16. `insert`: Inserts elements (public member function).
 17. `insert_range`: Inserts a range of elements (public member function).
-18. `insert_or_assign` (C++17): Inserts an element or assigns to the current element if the key
+18. `insert_or_assign` (C++17): Inserts an element or assigns to the current
+    element if the key
 19. `extract`: Extracts the underlying containers (public member function).
 20. `replace`: Replaces the underlying containers (public member function).
-21. `erase`: Erases elements and returns a valid iterator (public member function).
+21. `erase`: Erases elements and returns a valid iterator (public member
+    function).
 22. `swap`: Swaps the contents (public member function).
 23. `clear`: Clears the contents (public member function).
 24. `find`: Finds an element with specific key (public member function).
-25. `count`: Returns the number of elements matching specific key (public member function).
-26. `contains`: Checks if the container contains an element with specific key (public member
+25. `count`: Returns the number of elements matching specific key (public member
     function).
-27. `lower_bound`: Returns an iterator to the first element not less than the given key (public
+26. `contains`: Checks if the container contains an element with specific key
+    (public member function).
+27. `lower_bound`: Returns an iterator to the first element not less than the
+    given key (public member function).
+28. `upper_bound`: Returns an iterator to the first element greater than the
+    given key (public member function).
+29. `equal_range`: Returns range of elements matching a specific key (public
     member function).
-28. `upper_bound`: Returns an iterator to the first element greater than the given key (public
-    member function).
-29. `equal_range`: Returns range of elements matching a specific key (public member function).
-30. `key_comp`: Returns the function that compares keys (public member function).
-31. `value_comp`: Returns the function that compares keys in objects of type `value_type` (public
-    member function).
-32. `keys`: Direct access to the underlying keys container (public member function).
-33. `values`: Direct access to the underlying values container (public member function).
+30. `key_comp`: Returns the function that compares keys (public member
+    function).
+31. `value_comp`: Returns the function that compares keys in objects of type
+    `value_type` (public member function).
+32. `keys`: Direct access to the underlying keys container (public member
+    function).
+33. `values`: Direct access to the underlying values container (public member
+    function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator<=>`: Lexicographically compares the values of two flat maps (function
+1. `operator==`, `operator<=>`: Lexicographically compares the values of two
+   flat maps (function template).
+2. `std::swap( std::flat_map )`: Specializes the `std::swap` algorithm (function
    template).
-2. `std::swap( std::flat_map )`: Specializes the `std::swap` algorithm (function template).
-3. `erase_if( std::flat_map )`: Erases all elements satisfying specific criteria (function
-   template).
+3. `erase_if( std::flat_map )`: Erases all elements satisfying specific criteria
+   (function template).
 
 #### Helper classes
 
-1. `std::uses_allocator< std::flat_map >` (C++23): Specializes the `std::uses_allocat` or type trait
-   (class template specialization).
+1. `std::uses_allocator< std::flat_map >` (C++23): Specializes the
+   `std::uses_allocat` or type trait (class template specialization).
 
 #### Tags
 
-1. `sorted_unique`, `sorted_unique_t` (C++23): indicates that elements of a range are sorted and
-   unique (tag).
+1. `sorted_unique`, `sorted_unique_t` (C++23): indicates that elements of a
+   range are sorted and unique (tag).
 
 ## Flat Multimaps
 
 ### Explanation
 
-1. Flat multimaps are **an associative container** that **stores elements** formed by **a
-   combination of a key value and a mapped value**, **implemented as a sorted sequence**, typically
-   using a vector.
-2. In a `flat_multimap`, **the key values can be associated with multiple mapped values**, allowing
-   for duplicate keys, which distinguishes it from `flat_map`.
-3. The types of key and mapped value may differ and are **grouped together** in the member type
-   `value_type`, which is **a pair type** combining both:
+1. Flat multimaps are **an associative container** that **stores elements**
+   formed by **a combination of a key value and a mapped value**, **implemented
+   as a sorted sequence**, typically using a vector.
+2. In a `flat_multimap`, **the key values can be associated with multiple mapped
+   values**, allowing for duplicate keys, which distinguishes it from
+   `flat_map`.
+3. The types of key and mapped value may differ and are **grouped together** in
+   the member type `value_type`, which is **a pair type** combining both:
    `typedef std::pair<const Key, T> value_type;`.
-4. **Multiple mapped values** can share **the same key value**, enabling the storage of collections
-   of values for each unique key, reflecting the nature of multimaps.
-5. Internally, the elements in a `flat_multimap` are **stored as a sorted vector**, which allows for
-   **binary search** for **efficient lookups and iteration** based on the key’s order.
-6. `flat_multimap` containers can be **faster than traditional multimaps** for **access** to
-   individual **elements** by their key due to **contiguous memory storage**, but they may **incur
-   overhead for insertions and deletions** due to the need to maintain sorted order.
-7. The mapped values in a `flat_multimap` can **be accessed using iterators** or the
-   **`equal_range`** method to **retrieve all values** corresponding to **a particular key**.
-8. `flat_multimap` is typically **implemented using a sorted vector**, allowing for **fast lookups**
-   while maintaining a compact memory footprint.
-9. The header file for `flat_multimap` is `<experimental/flat_map>` (or may be found in other
-   namespaces in different implementations).
+4. **Multiple mapped values** can share **the same key value**, enabling the
+   storage of collections of values for each unique key, reflecting the nature
+   of multimaps.
+5. Internally, the elements in a `flat_multimap` are **stored as a sorted
+   vector**, which allows for **binary search** for **efficient lookups and
+   iteration** based on the key’s order.
+6. `flat_multimap` containers can be **faster than traditional multimaps** for
+   **access** to individual **elements** by their key due to **contiguous memory
+   storage**, but they may **incur overhead for insertions and deletions** due
+   to the need to maintain sorted order.
+7. The mapped values in a `flat_multimap` can **be accessed using iterators** or
+   the **`equal_range`** method to **retrieve all values** corresponding to **a
+   particular key**.
+8. `flat_multimap` is typically **implemented using a sorted vector**, allowing
+   for **fast lookups** while maintaining a compact memory footprint.
+9. The header file for `flat_multimap` is `<experimental/flat_map>` (or may be
+   found in other namespaces in different implementations).
 
 ### Declaration Syntax
 
@@ -1535,13 +1646,15 @@ delete fmmap_ptr;
 
 1. `Key`: The type of the keys.
 2. `T`: The type of mapped values.
-3. `Compare`: A `Compare` type providing a strict weak ordering. By default, the first key (smallest
-   key) is at the beginning of the flat set because its default `Compare` is `std::less< Key >`,
-   which sorts the elements in ascending order.
-4. `KeyContainer`, `MappedContainer`: The type of the underlying SequenceContainer to store the
-   elements. The iterators of such container should satisfy `LegacyRandomAccessIterator` or model
-   `random_access_iterator`. The standard containers `std::vector` and `std::deque` satisfy these
-   requirements.
+3. `Compare`: A `Compare` type providing a strict weak ordering. By default, the
+   first key (smallest key) is at the beginning of the flat set because its
+   default `Compare` is `std::less< Key >`, which sorts the elements in
+   ascending order.
+4. `KeyContainer`, `MappedContainer`: The type of the underlying
+   SequenceContainer to store the elements. The iterators of such container
+   should satisfy `LegacyRandomAccessIterator` or model
+   `random_access_iterator`. The standard containers `std::vector` and
+   `std::deque` satisfy these requirements.
 
 #### Member Types
 
@@ -1555,10 +1668,10 @@ delete fmmap_ptr;
 8. `const_reference`: `std::pair< const key_type&, const mapped_type& >`.
 9. `size_type`: `std::size_t`.
 10. `difference_type`: `std::ptrdiff_t`.
-11. `iterator`: Implementation-defined `LegacyInputIterator` and `random_access_iterator` to
-    `value_type`.
-12. `const_iterator`: Implementation-defined `LegacyInputIterator` and `random_access_iterator` to
-    `const value_type`.
+11. `iterator`: Implementation-defined `LegacyInputIterator` and
+    `random_access_iterator` to `value_type`.
+12. `const_iterator`: Implementation-defined `LegacyInputIterator` and
+    `random_access_iterator` to `const value_type`.
 13. `reverse_iterator`: `std::reverse_iterator< iterator >`.
 14. `const_reverse_iterator`: `std::reverse_iterator< const_iterator >`.
 15. `containers`: Type describing the underlying containers.
@@ -1575,61 +1688,76 @@ delete fmmap_ptr;
 
 #### Member Objects
 
-1. `c` (`private`): The object of type containers (exposition-only member object`*`).
-2. `compare` (`private`): The comparison function object of type `key_compare` (exposition-only
-   member object`*`).
+1. `c` (`private`): The object of type containers (exposition-only member
+   object`*`).
+2. `compare` (`private`): The comparison function object of type `key_compare`
+   (exposition-only member object`*`).
 
 #### Member Functions
 
 1. (constructor): Constructs the flat multimap (public member function).
-2. (destructor) (implicitly declared): Destroys every element of the container adaptor (public
-   member function).
-3. `operator=`: Assigns values to the container adaptor (public member function).
-4. `begin`, `cbegin`: Returns an iterator to the beginning (public member function).
+2. (destructor) (implicitly declared): Destroys every element of the container
+   adaptor (public member function).
+3. `operator=`: Assigns values to the container adaptor (public member
+   function).
+4. `begin`, `cbegin`: Returns an iterator to the beginning (public member
+   function).
 5. `end`, `cend`: Returns an iterator to the end (public member function).
-6. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public member function).
-7. `rend`, `crend`: Returns a reverse iterator to the end (public member function).
-8. `empty`: Checks whether the container adaptor is empty (public member function).
+6. `rbegin`, `crbegin`: Returns a reverse iterator to the beginning (public
+   member function).
+7. `rend`, `crend`: Returns a reverse iterator to the end (public member
+   function).
+8. `empty`: Checks whether the container adaptor is empty (public member
+   function).
 9. `size`: Returns the number of elements (public member function).
-10. `max_size`: Returns the maximum possible number of elements (public member function).
+10. `max_size`: Returns the maximum possible number of elements (public member
+    function).
 11. `emplace`: Constructs elements in-place (public member function).
-12. `emplace_hint`: Constructs elements in-place using a hint (public member function).
+12. `emplace_hint`: Constructs elements in-place using a hint (public member
+    function).
 13. `insert`: Inserts elements (public member function).
 14. `insert_range`: Inserts a range of elements (public member function).
 15. `extract`: Extracts the underlying containers (public member function).
 16. `replace`: Replaces the underlying containers (public member function).
-17. `erase`: Erases elements and returns a valid iterator (public member function).
+17. `erase`: Erases elements and returns a valid iterator (public member
+    function).
 18. `swap`: Swaps the contents (public member function).
 19. `clear`: Clears the contents (public member function).
 20. `find`: Finds an element with specific key (public member function).
-21. `count`: Returns the number of elements matching specific key (public member function).
-22. `contains`: Checks if the container contains an element with specific key (public member
+21. `count`: Returns the number of elements matching specific key (public member
     function).
-23. `lower_bound`: Returns an iterator to the first element not less than the given key (public
+22. `contains`: Checks if the container contains an element with specific key
+    (public member function).
+23. `lower_bound`: Returns an iterator to the first element not less than the
+    given key (public member function).
+24. `upper_bound`: Returns an iterator to the first element greater than the
+    given key (public member function).
+25. `equal_range`: Returns range of elements matching a specific key (public
     member function).
-24. `upper_bound`: Returns an iterator to the first element greater than the given key (public
-    member function).
-25. `equal_range`: Returns range of elements matching a specific key (public member function).
-26. `key_comp`: Returns the function that compares keys (public member function).
-27. `value_comp`: Returns the function that compares keys in objects of type `value_type` (public
-    member function).
-28. `keys`: Direct access to the underlying keys container (public member function).
-29. `values`: Direct access to the underlying values container (public member function).
+26. `key_comp`: Returns the function that compares keys (public member
+    function).
+27. `value_comp`: Returns the function that compares keys in objects of type
+    `value_type` (public member function).
+28. `keys`: Direct access to the underlying keys container (public member
+    function).
+29. `values`: Direct access to the underlying values container (public member
+    function).
 
 #### Non-member Functions
 
-1. `operator==`, `operator<=>`: Lexicographically compares the values of two flat multimaps
+1. `operator==`, `operator<=>`: Lexicographically compares the values of two
+   flat multimaps (function template).
+2. `std::swap( std::flat_multimap )`: Specializes the `std::swap` algorithm
    (function template).
-2. `std::swap( std::flat_multimap )`: Specializes the `std::swap` algorithm (function template).
-3. `erase_if( std::flat_multimap )`: Erases all elements satisfying specific criteria (function
-   template).
+3. `erase_if( std::flat_multimap )`: Erases all elements satisfying specific
+   criteria (function template).
 
 #### Helper classes
 
-1. `std::uses_allocator< std::flat_multimap >` (C++23): Specializes the `std::uses_allocat` or type
-   trait (class template specialization).
+1. `std::uses_allocator< std::flat_multimap >` (C++23): Specializes the
+   `std::uses_allocat` or type trait (class template specialization).
 
 #### Tags
 
-1. `sorted_equivalent`, `sorted_equivalent_t` (C++23): indicates that elements of a range are sorted
-   and unique (tag).
+1. `sorted_equivalent`, `sorted_equivalent_t` (C++23): indicates that elements
+   of a range are sorted and unique (tag).
