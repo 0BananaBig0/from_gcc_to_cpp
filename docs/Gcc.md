@@ -106,6 +106,10 @@
     - [3. Usage](#3-usage)
     - [4. Output](#4-output)
     - [5. Special Notes](#5-special-notes)
+  - [How to Only Link Necessary Libraries](#how-to-only-link-necessary-libraries)
+    - [1. Code](#1-code-9)
+    - [2. -Wl,--as-needed](#2--wl--as-needed)
+    - [3. Some Behaviors](#3-some-behaviors)
 - [`g++`, `clang++` and `mscv++`](#g-clang-and-mscv)
   - [Explanation](#explanation-4)
   - [Code Examples](#code-examples)
@@ -719,6 +723,46 @@ g++ Main.cpp -L. -lFun -o Main.exe
 #### 5. Special Notes
 
 1. `g++` links a dynamic library by default.
+
+### How to Only Link Necessary Libraries
+
+#### 1. Code
+
+```sh
+g++ Main.cpp -L/the/first/path/of/libraries \
+    -L/the/second/path/of/libraries ... \
+    -Wl,-Bstatic -lxxx -lyyy ... \
+    -Wl,--as-needed -Wl,-Bdynamic -lzzz ... -o Main.exe
+```
+
+```sh
+g++ Main.cpp -L/the/first/path/of/libraries \
+    -L/the/second/path/of/libraries ... \
+    -Wl,--as-needed -lzzz ... -o Main.exe
+```
+
+#### 2. -Wl,--as-needed
+
+1. Improves startup performance by reducing unnecessary dynamic library loading.
+2. Reduce the size of executable without linking to unnecessary libraries.
+3. Safe in most cases, but issues may arise if the program relies on implicit
+   behavior from unused libraries, such as: dynamic binding and implicit
+   conversions.
+
+#### 3. Some Behaviors
+
+1. Initialization code:
+   - Some libraries might initialize global variables or perform certain startup
+     tasks when loaded, even if their functions aren’t called directly in the
+     code.
+2. Static object constructors:
+   - Some libraries may have static objects whose constructors are invoked
+     automatically when the library is loaded. These constructors might perform
+     important setup tasks.
+3. Unreferenced functions:
+   - Some functions or symbols might be referenced implicitly by the runtime or
+     other parts of the library, even if not directly invoked by the main
+     application code.
 
 ## `g++`, `clang++` and `mscv++`
 

@@ -26,3 +26,5 @@ docs/Qt6_study/moc*.h
 !docs/performance_comparison_between_gcc_and_clang/*.h
 docs/performance_comparison_between_gcc_and_clang/moc*.cpp
 docs/performance_comparison_between_gcc_and_clang/moc*.h
+.vimspector
+.vscode

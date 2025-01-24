@@ -5,6 +5,81 @@
   - [Visibility](#visibility)
   - [Declaration Syntax](#declaration-syntax)
   - [Definition Syntax](#definition-syntax)
+  - [Member Variables](#member-variables)
+    - [Explanation](#explanation-1)
+    - [Syntax](#syntax)
+    - [`this`](#this)
+      - [Explanation](#explanation-2)
+      - [Syntax](#syntax-1)
+    - [`const` Member Variables](#const-member-variables)
+    - [`constexpr` Member Variables](#constexpr-member-variables)
+    - [`static` Member Variables](#static-member-variables)
+    - [`mutable` Member Variables](#mutable-member-variables)
+      - [Explanation](#explanation-3)
+      - [Syntax](#syntax-2)
+    - [Pointer Member Variables](#pointer-member-variables)
+      - [Explanation](#explanation-4)
+      - [Syntax](#syntax-3)
+    - [Reference Member Variables](#reference-member-variables)
+      - [Explanation](#explanation-5)
+      - [Syntax](#syntax-4)
+  - [Methods](#methods)
+    - [Explanation](#explanation-6)
+    - [Syntax](#syntax-5)
+    - [`const` Methods (`const` Member Functions)](#const-methods-const-member-functions)
+    - [`constexpr` Methods (`constexprt` Member Functions)](#constexpr-methods-constexprt-member-functions)
+    - [`static` Methods (`static` Member Functions)](#static-methods-static-member-functions)
+    - [`virtual` Methods (`virtual` Functions) (`virtual` Memeber Functions)](#virtual-methods-virtual-functions-virtual-memeber-functions)
+    - [Pure `virtual` Functions and Abstract Classes](#pure-virtual-functions-and-abstract-classes)
+    - [`override` Methods](#override-methods)
+      - [Explanation](#explanation-7)
+      - [Syntax](#syntax-6)
+      - [Notes](#notes)
+  - [Constructors](#constructors)
+    - [Explanation](#explanation-8)
+    - [Syntax](#syntax-7)
+    - [Defalut Constructors and `default` Constructors](#defalut-constructors-and-default-constructors)
+      - [Explanation](#explanation-9)
+      - [Syntax](#syntax-8)
+    - [Parameterized Constructors](#parameterized-constructors)
+      - [Explanation](#explanation-10)
+      - [Syntax](#syntax-9)
+    - [Constructor Initializer Lists](#constructor-initializer-lists)
+      - [Explanation](#explanation-11)
+      - [Syntax](#syntax-10)
+      - [Differences between Traditional Initializer Lists and Modern Initializer Lists](#differences-between-traditional-initializer-lists-and-modern-initializer-lists)
+      - [Notes](#notes-1)
+    - [Copy Constructors](#copy-constructors)
+      - [Explanation](#explanation-12)
+      - [Default Copy (`default`) (Avoid) (Double Destructions)](#default-copy-default-avoid-double-destructions)
+        - [Explanation](#explanation-13)
+        - [Syntax](#syntax-11)
+      - [Shallow Copy (e.g. `memcpy`) (Avoid) (Double Destructions)](#shallow-copy-eg-memcpy-avoid-double-destructions)
+        - [Explanation](#explanation-14)
+        - [Syntax](#syntax-12)
+      - [Deep Copy (Recommend)](#deep-copy-recommend)
+        - [Explanation](#explanation-15)
+        - [Syntax](#syntax-13)
+    - [Move Constructors](#move-constructors)
+      - [Explanation](#explanation-16)
+      - [Default Move Constructors](#default-move-constructors)
+        - [Explanation](#explanation-17)
+        - [Syntax](#syntax-14)
+      - [Custom Move Constructor](#custom-move-constructor)
+        - [Explanation](#explanation-18)
+        - [Syntax](#syntax-15)
+    - [Conversion Constructors](#conversion-constructors)
+      - [Explanation](#explanation-19)
+      - [Syntax](#syntax-16)
+    - [`virtual` Constructors](#virtual-constructors)
+    - [`explicit` Constructors](#explicit-constructors)
+  - [Destructors](#destructors)
+    - [Explanation](#explanation-20)
+    - [Syntax](#syntax-17)
+    - [Default Destructors](#default-destructors)
+      - [Explanation](#explanation-21)
+      - [Syntax](#syntax-18)
+    - [`virtual` Destructors](#virtual-destructors)
   - [Common Objects](#common-objects)
     - [Declaration Syntax](#declaration-syntax-1)
     - [Initialization Syntax](#initialization-syntax)
@@ -17,83 +92,8 @@
   - [`constexpr` Instances of Classes](#constexpr-instances-of-classes)
   - [`static` Instances of Classes](#static-instances-of-classes)
   - [Anonymous Classes](#anonymous-classes)
-    - [Explanation](#explanation-1)
-    - [Syntax](#syntax)
-  - [Member Variables](#member-variables)
-    - [Explanation](#explanation-2)
-    - [Syntax](#syntax-1)
-    - [`this`](#this)
-      - [Explanation](#explanation-3)
-      - [Syntax](#syntax-2)
-    - [`const` Member Variables](#const-member-variables)
-    - [`constexpr` Member Variables](#constexpr-member-variables)
-    - [`static` Member Variables](#static-member-variables)
-    - [`mutable` Member Variables](#mutable-member-variables)
-      - [Explanation](#explanation-4)
-      - [Syntax](#syntax-3)
-    - [Pointer Member Variables](#pointer-member-variables)
-      - [Explanation](#explanation-5)
-      - [Syntax](#syntax-4)
-    - [Reference Member Variables](#reference-member-variables)
-      - [Explanation](#explanation-6)
-      - [Syntax](#syntax-5)
-  - [Methods](#methods)
-    - [Explanation](#explanation-7)
-    - [Syntax](#syntax-6)
-    - [`const` Methods (`const` Member Functions)](#const-methods-const-member-functions)
-    - [`constexpr` Methods (`constexprt` Member Functions)](#constexpr-methods-constexprt-member-functions)
-    - [`static` Methods (`static` Member Functions)](#static-methods-static-member-functions)
-    - [`virtual` Methods (`virtual` Functions) (`virtual` Memeber Functions)](#virtual-methods-virtual-functions-virtual-memeber-functions)
-    - [Pure `virtual` Functions and Abstract Classes](#pure-virtual-functions-and-abstract-classes)
-    - [`override` Methods](#override-methods)
-      - [Explanation](#explanation-8)
-      - [Syntax](#syntax-7)
-      - [Notes](#notes)
-  - [Constructors](#constructors)
-    - [Explanation](#explanation-9)
-    - [Syntax](#syntax-8)
-    - [Defalut Constructors and `default` Constructors](#defalut-constructors-and-default-constructors)
-      - [Explanation](#explanation-10)
-      - [Syntax](#syntax-9)
-    - [Parameterized Constructors](#parameterized-constructors)
-      - [Explanation](#explanation-11)
-      - [Syntax](#syntax-10)
-    - [Constructor Initializer Lists](#constructor-initializer-lists)
-      - [Explanation](#explanation-12)
-      - [Syntax](#syntax-11)
-      - [Differences between Traditional Initializer Lists and Modern Initializer Lists](#differences-between-traditional-initializer-lists-and-modern-initializer-lists)
-      - [Notes](#notes-1)
-    - [Copy Constructors](#copy-constructors)
-      - [Explanation](#explanation-13)
-      - [Default Copy (`default`) (Avoid) (Double Destructions)](#default-copy-default-avoid-double-destructions)
-        - [Explanation](#explanation-14)
-        - [Syntax](#syntax-12)
-      - [Shallow Copy (e.g. `memcpy`) (Avoid) (Double Destructions)](#shallow-copy-eg-memcpy-avoid-double-destructions)
-        - [Explanation](#explanation-15)
-        - [Syntax](#syntax-13)
-      - [Deep Copy (Recommend)](#deep-copy-recommend)
-        - [Explanation](#explanation-16)
-        - [Syntax](#syntax-14)
-    - [Move Constructors](#move-constructors)
-      - [Explanation](#explanation-17)
-      - [Default Move Constructors](#default-move-constructors)
-        - [Explanation](#explanation-18)
-        - [Syntax](#syntax-15)
-      - [Custom Move Constructor](#custom-move-constructor)
-        - [Explanation](#explanation-19)
-        - [Syntax](#syntax-16)
-    - [Conversion Constructors](#conversion-constructors)
-      - [Explanation](#explanation-20)
-      - [Syntax](#syntax-17)
-    - [`virtual` Constructors](#virtual-constructors)
-    - [`explicit` Constructors](#explicit-constructors)
-  - [Destructors](#destructors)
-    - [Explanation](#explanation-21)
-    - [Syntax](#syntax-18)
-    - [Default Destructors](#default-destructors)
-      - [Explanation](#explanation-22)
-      - [Syntax](#syntax-19)
-    - [`virtual` Destructors](#virtual-destructors)
+    - [Explanation](#explanation-22)
+    - [Syntax](#syntax-19)
   - [Operator Overloading](#operator-overloading)
     - [Copy-assignment Operator](#copy-assignment-operator)
     - [Move-assignment Operator](#move-assignment-operator)
@@ -198,222 +198,6 @@ class ClassName;
 class ClassName {
    ...;
 };
-```
-
-### Common Objects
-
-#### Declaration Syntax
-
-```CPP
-ClassName obj_name;
-```
-
-#### Initialization Syntax
-
-```CPP
-// Default constructor.
-ClassName obj_name;
-```
-
-```CPP
-// Parameterized constructor.
-ClassName obj_name( para_list );
-```
-
-```CPP
-// Parameterized constructor.
-ClassName obj_name1( para_list );
-// Copy constructor.
-ClassName obj_name2( obj_name1 );
-```
-
-```CPP
-// Not recommend, although the compiler may optimize it so that only one constructor is called.
-// First, parameterized constructor.
-// Second, copy constructor.
-ClassName obj_name = ClassName( para_list );
-```
-
-```CPP
-// Parameterized constructor.
-ClassName obj_name1( para_list );
-// Move constructor.
-ClassName obj_name2( std::move( obj_name1 ) );
-```
-
-```CPP
-// Parameterized constructor.
-ClassName obj_name1( para_list );
-// Move constructor.
-ClassName obj_name2 = std::move( obj_name1 );
-```
-
-```CPP
-// Conversion construcotr, implicit conversion.
-ClassName obj_name = initializer;
-```
-
-```CPP
-// Without related parameterized constructors and all members are public, aggregate initialization.
-// With related parameterized constructors, parameterized constructor or uniform initialization or brace initialization.
-ClassName obj_name{ para_list };
-```
-
-```CPP
-// With default construcotr, default constructor.
-// Otherwise, aggregate initialization.
-// All members are initialized to 0.
-ClassName obj_name{ };
-```
-
-```CPP
-// Without related parameterized constructors and all members are public, aggregate initialization.
-// With related parameterized constructors, parameterized constructor or uniform initialization or brace initialization.
-ClassName obj_name = { para_list };
-```
-
-```CPP
-// When defining a class, assigning default values to its members.
-class ClassName {
-   private:
-      Type _mem1 = initializer1;
-      ...;
-};
-```
-
-```CPP
-class ClassName {
-   public:
-      // Move constructor definition.
-      ...;
-
-      // Factory methods for initialization.
-      static ClassName createClassName() {
-         return std::move( ClassName( para_list ) );   // Parameterized constructor.
-      };
-
-      // Only used to return an existing object.
-      // static ClassName&& createClassName() {
-      //    return std::move( existing_obj );   // Parameterized constructor.
-      // };
-
-      ...;
-};
-
-// First, create a temporary object with the parameterized constructor in the createClassName.
-// Second, create `obj_name` with the move constructor.
-ClassName obj_name = ClassName::createClassName();
-```
-
-#### Limitations of Aggregate Initialization
-
-1. **No user-defined constructors**:
-   - Aggregate initialization is only applicable to aggregate types that lack
-     user-defined constructors.
-   - If a class has any constructor defined, aggregate initialization cannot be
-     used.
-2. **Public members only**:
-   - Only public members can be initialized via aggregate initialization.
-   - Private or protected members cannot be accessed.
-3. **No default member initializers**:
-   - Default member initializers in aggregates are ignored during aggregate
-     initialization, meaning you must explicitly specify values for all members.
-4. **Order of initialization**:
-   - Members are initialized in the order they are declared.
-   - This can lead to issues if one member relies on another being initialized
-     first.
-5. **No designated initializers**:
-   - C++ does not support designated initializers (as in C99), preventing the
-     ability to initialize specific members without initializing all preceding
-     members.
-6. **Type matching**:
-   - The types in the initializer list must match the types of the aggregate's
-     members exactly.
-   - A mismatch results in a compilation error.
-7. **No implicit conversions**:
-   - Aggregate initialization does not allow implicit type conversions, which
-     can limit flexibility.
-8. **No inheritance**:
-   - Aggregate initialization is not applicable for derived classes, limiting
-     its use in inheritance scenarios.
-
-### Class Pointers
-
-#### Declaration Syntax
-
-```CPP
-ClassName* obj_ptr;
-```
-
-#### Definition or Initialization Syntax
-
-```CPP
-// Default constructor.
-ClassName* obj_ptr = new ClassName;
-```
-
-```CPP
-// Parameterized constructor.
-ClassName* obj_ptr = new ClassName( para_list );
-```
-
-```CPP
-// Default constructor.
-ClassName obj_name;
-ClassName* obj_ptr = &obj_name;
-```
-
-### Class References
-
-```CPP
-// Default constructor.
-ClassName obj_name;
-ClassName& obj_ref = &obj_name;
-```
-
-### `const` Instance of Classes
-
-1. [`const` Instance of Classes](./ConstConstexprAndStatic.md#const-instances-of-classes)
-
-### `constexpr` Instances of Classes
-
-1. [`constexpr` Instances of Classes](./ConstConstexprAndStatic.md#constexpr-instances-of-classes)
-
-### `static` Instances of Classes
-
-1. [`static` Instances of Classes](./ConstConstexprAndStatic.md#static-instances-of-classes)
-
-### Anonymous Classes
-
-#### Explanation
-
-1. An anonymous class (also known as an **unnamed class**) is **a class** that
-   is **defined inline without a name**.
-2. These classes are typically used for **creating objects on the fly** or **as
-   part of data structures** without the need to define a separate named class
-
-#### Syntax
-
-```CPP
-class {
-  ...;
-} obj_name;
-```
-
-```CPP
-union {
-      class {
-            ...;
-      };
-      ...;
-};
-```
-
-```CPP
-// In this case, members should all be public.
-class {
-  ...;
-} obj_name{ para_list };
 ```
 
 ### Member Variables
@@ -1157,6 +941,222 @@ class ClassName {
 
 1. [`virtual` Destructors](#virtual-destructors-1)
 
+### Common Objects
+
+#### Declaration Syntax
+
+```CPP
+ClassName obj_name;
+```
+
+#### Initialization Syntax
+
+```CPP
+// Default constructor.
+ClassName obj_name;
+```
+
+```CPP
+// Parameterized constructor.
+ClassName obj_name( para_list );
+```
+
+```CPP
+// Parameterized constructor.
+ClassName obj_name1( para_list );
+// Copy constructor.
+ClassName obj_name2( obj_name1 );
+```
+
+```CPP
+// Not recommend, although the compiler may optimize it so that only one constructor is called.
+// First, parameterized constructor.
+// Second, copy constructor.
+ClassName obj_name = ClassName( para_list );
+```
+
+```CPP
+// Parameterized constructor.
+ClassName obj_name1( para_list );
+// Move constructor.
+ClassName obj_name2( std::move( obj_name1 ) );
+```
+
+```CPP
+// Parameterized constructor.
+ClassName obj_name1( para_list );
+// Move constructor.
+ClassName obj_name2 = std::move( obj_name1 );
+```
+
+```CPP
+// Conversion construcotr, implicit conversion.
+ClassName obj_name = initializer;
+```
+
+```CPP
+// Without related parameterized constructors and all members are public, aggregate initialization.
+// With related parameterized constructors, parameterized constructor or uniform initialization or brace initialization.
+ClassName obj_name{ para_list };
+```
+
+```CPP
+// With default construcotr, default constructor.
+// Otherwise, aggregate initialization.
+// All members are initialized to 0.
+ClassName obj_name{ };
+```
+
+```CPP
+// Without related parameterized constructors and all members are public, aggregate initialization.
+// With related parameterized constructors, parameterized constructor or uniform initialization or brace initialization.
+ClassName obj_name = { para_list };
+```
+
+```CPP
+// When defining a class, assigning default values to its members.
+class ClassName {
+   private:
+      Type _mem1 = initializer1;
+      ...;
+};
+```
+
+```CPP
+class ClassName {
+   public:
+      // Move constructor definition.
+      ...;
+
+      // Factory methods for initialization.
+      static ClassName createClassName() {
+         return std::move( ClassName( para_list ) );   // Parameterized constructor.
+      };
+
+      // Only used to return an existing object.
+      // static ClassName&& createClassName() {
+      //    return std::move( existing_obj );   // Parameterized constructor.
+      // };
+
+      ...;
+};
+
+// First, create a temporary object with the parameterized constructor in the createClassName.
+// Second, create `obj_name` with the move constructor.
+ClassName obj_name = ClassName::createClassName();
+```
+
+#### Limitations of Aggregate Initialization
+
+1. **No user-defined constructors**:
+   - Aggregate initialization is only applicable to aggregate types that lack
+     user-defined constructors.
+   - If a class has any constructor defined, aggregate initialization cannot be
+     used.
+2. **Public members only**:
+   - Only public members can be initialized via aggregate initialization.
+   - Private or protected members cannot be accessed.
+3. **No default member initializers**:
+   - Default member initializers in aggregates are ignored during aggregate
+     initialization, meaning you must explicitly specify values for all members.
+4. **Order of initialization**:
+   - Members are initialized in the order they are declared.
+   - This can lead to issues if one member relies on another being initialized
+     first.
+5. **No designated initializers**:
+   - C++ does not support designated initializers (as in C99), preventing the
+     ability to initialize specific members without initializing all preceding
+     members.
+6. **Type matching**:
+   - The types in the initializer list must match the types of the aggregate's
+     members exactly.
+   - A mismatch results in a compilation error.
+7. **No implicit conversions**:
+   - Aggregate initialization does not allow implicit type conversions, which
+     can limit flexibility.
+8. **No inheritance**:
+   - Aggregate initialization is not applicable for derived classes, limiting
+     its use in inheritance scenarios.
+
+### Class Pointers
+
+#### Declaration Syntax
+
+```CPP
+ClassName* obj_ptr;
+```
+
+#### Definition or Initialization Syntax
+
+```CPP
+// Default constructor.
+ClassName* obj_ptr = new ClassName;
+```
+
+```CPP
+// Parameterized constructor.
+ClassName* obj_ptr = new ClassName( para_list );
+```
+
+```CPP
+// Default constructor.
+ClassName obj_name;
+ClassName* obj_ptr = &obj_name;
+```
+
+### Class References
+
+```CPP
+// Default constructor.
+ClassName obj_name;
+ClassName& obj_ref = &obj_name;
+```
+
+### `const` Instance of Classes
+
+1. [`const` Instance of Classes](./ConstConstexprAndStatic.md#const-instances-of-classes)
+
+### `constexpr` Instances of Classes
+
+1. [`constexpr` Instances of Classes](./ConstConstexprAndStatic.md#constexpr-instances-of-classes)
+
+### `static` Instances of Classes
+
+1. [`static` Instances of Classes](./ConstConstexprAndStatic.md#static-instances-of-classes)
+
+### Anonymous Classes
+
+#### Explanation
+
+1. An anonymous class (also known as an **unnamed class**) is **a class** that
+   is **defined inline without a name**.
+2. These classes are typically used for **creating objects on the fly** or **as
+   part of data structures** without the need to define a separate named class
+
+#### Syntax
+
+```CPP
+class {
+  ...;
+} obj_name;
+```
+
+```CPP
+union {
+      class {
+            ...;
+      };
+      ...;
+};
+```
+
+```CPP
+// In this case, members should all be public.
+class {
+  ...;
+} obj_name{ para_list };
+```
+
 ### Operator Overloading
 
 1. [Operator Overloading](./Operators.md#operator-overloading)
@@ -1200,9 +1200,10 @@ class ClassName {
      implicit conversion occurs, and the four rules mentioned above are followed
      to determine which assignment operator will be called.
 3. When **a temporary object** is **passed to a function** by value, its copy
-   constructor is not called due to **move semantics or copy elision**. Instead,
-   **the move constructor (if available) or a parameterized constructor** (if
-   the move constructor is not available) is **called**.
+   constructor is not called due to **move semantics or copy elision(especially
+   since C++17)**. Instead, **the move constructor (if available) or a
+   parameterized constructor** (if the move constructor is not available) is
+   **called**.
 
 ### Inheritance
 

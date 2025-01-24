@@ -411,4 +411,8 @@ struct Vector3 {
 
 ## What Causes Undefined Behavior (UB)
 
-1. Using uninitialized variables.
+1. Using uninitialized variables. (Compilers can handle it.)
+2. A value-returning function that does not return a value. (Compilers can't
+   always handle it.)
+3. Any use of an object after it has been destroyed. (Compilers can't qandle
+   it.)
