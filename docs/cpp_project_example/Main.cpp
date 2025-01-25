@@ -28,7 +28,7 @@ int main() {
    // std::cin >> max_number;
    // std::vector< int > ovec
    //    = generateRandomVector( num_of_test, min_number, max_number );
-   std::vector< int > ovec = generateRandomVector( 100000, 0, 100000 );
+   std::vector< int > ovec = generateRandomVector( 64, 0, 100000 );
    MergeSort msort_vec( ovec );
    SelectionSort ssort_vec( ovec );
    // std::cout << "Before sorted:" << msort_vec << std::endl;

@@ -130,6 +130,9 @@
    allocating storage or providing an implementation**.
 2. It **merely states** that a function, class, struct or variable **exists**
    without concerning itself with a definition.
+3. All definitions are declarations in C++.
+4. Conversely, not all declarations are definitions. Declarations that aren’t
+   definitions are called pure declarations.
 
 #### Forward Declarations
 
@@ -142,6 +145,8 @@
 4. This is typically used to **improve compilation times**, **resolve circular
    dependencies**, or **when the full details of the entity are not yet
    required**.
+5. Forward Declarations are pure declarations.
+6. **Forward declarations do not work on templates.**
 
 ### Definitions
 
@@ -697,7 +702,15 @@
 3. Modify read-only memory, for example,
    `const Type var_name = val1; var_name = val2;`.
 4. Stack overflow, infinite loop.
-5. Multiple destruction or multiple deletion.
+5. Multiple destruction or multiple deletion:
+   - In this situation, the issue arises from calling a destructor and `delete`
+     recursively, resulting in a stack overflow. For example, if a destructor of
+     an object calls `delete` to destroy the object, the `delete` operator will
+     invoke the object's destructor again, leading to repeated destruction until
+     a stack overflow occurs.
+   - In fact, multiple destruction can result not only in a segmentation fault
+     or access violation but also in errors such as
+     `free(): double free detected in tcache 2 ...`.
 
 ### Notes
 

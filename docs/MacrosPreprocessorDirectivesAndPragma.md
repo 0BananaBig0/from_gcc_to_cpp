@@ -41,7 +41,9 @@
 8. **Function-like macros** can be **difficult to debug**.
 9. When a macro is defined, from its definition location to the end of the file,
    all code can use it, regardless of whether it is defined inside a code block.
-   **The scope of a macro is global**.
+10. **The scope of a macro is global**.
+11. This is because the preprocessor doesn’t understand C++ concepts like
+    functions.
 
 ### Preprocessor Directives
 
@@ -50,6 +52,8 @@
    compilation** of the source code begins.
 2. These directives always **start with the `#` symbol** and are **processed by
    the preprocessor**, which runs before the compiler.
+3. Directives defined in one file **do not have any impact on other files**
+   (**unless they are #included into another file**).
 
 ### Syntax
 

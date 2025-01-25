@@ -926,7 +926,12 @@ $(TARGET_PATTERN): %.cpp
 
 1. I have introduced the common knowledge regarding custom rules, implicit
    rules, and pattern rules.
-2. However, these rules cannot process header files effectively.
+2. However, these rules cannot process header files effectively:
+   - Listing header files as dependencies for each target individually is a
+     heavy and tedious task.
+   - Utilizing pattern rules and listing header files as common dependencies for
+     all targets is inefficient because, once header files are modified, all
+     pattern rules are executed.
 3. The `make` command cannot determine which header files the C/C++ files depend
    on if the header files are not listed as dependencies.
 4. These dependencies are only identified when the compiler processes the C/C++
