@@ -585,14 +585,20 @@ g++ Main.cpp Fun.cpp -o Main.exe -I/the/first/path/of/header/files \
 #### 2. The Order of Finding Header Files
 
 1. For `"..."`:
-   - Relative path;
-   - Compiler arguments(`-I/.../...`);
-   - Environment variables(`CPATH, C_INCLUDE_PATH, CPLUS_INCLUDE_PATH`);
-   - System directories(`/usr/include`).
+   - Paths relative to the paths storing the C++ source files;
+   - Compiler arguments(`-I/.../...`, Configured by programmers with build
+     automation tools, such as built-in automation tools of the `IDE`., `make`
+     and `cmake`);
+   - Environment variables(`CPATH, C_INCLUDE_PATH, CPLUS_INCLUDE_PATH`,
+     Configured by programmers);
+   - System directories(`/usr/include`, Configured by C/C++ compilers).
 2. For `<...>`:
-   - Compiler arguments(`-I/.../...`);
-   - Environment variables(`CPATH, C_INCLUDE_PATH, CPLUS_INCLUDE_PATH`);
-   - System directories(`/usr/include`).
+   - Compiler arguments(`-I/.../...`, Configured by programmers with build
+     automation tools, such as built-in automation tools of the `IDE`., `make`
+     and `cmake`);
+   - Environment variables(`CPATH, C_INCLUDE_PATH, CPLUS_INCLUDE_PATH`,
+     Configured by programmers);
+   - System directories(`/usr/include`, Configured by C/C++ compilers).
 
 ### How to Link Multiple Static Libraries
 
@@ -771,8 +777,9 @@ g++ Main.cpp -L/the/first/path/of/libraries \
 1. There are various compilers available. **Which compiler is the best?** The
    choice of compiler depends on the library and system being used. Most
    libraries are optimized for specific compilers. Even when libraries serve the
-   same purpose, their implementations are often tailored to a particular
-   compiler.
+   same purpose, their implementations are often tailored to particular
+   compilers. Furthermore, even if the compilers are of the same type but differ
+   in version or system, the compilation results may still vary.
 2. For example, `libstdc++` and `libc++` are both implementations of the C++
    Standard Template Library (STL). However, when `clang++` is used with
    `libstdc++` to compile, the execution performance can be very slow. In

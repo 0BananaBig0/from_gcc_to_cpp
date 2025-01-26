@@ -83,6 +83,17 @@
 1. These **preprocessor directives** are used for **conditional compilation**,
    allowing code to be **included or excluded** based on whether a macro is
    defined or not.
+2. This can be used as a header guard, similar to `#pragma once`, to resolve
+   **duplicate definition problems**.
+3. However, these methods **cannot completely eliminate such problems**.
+4. For example:
+   - There are three files: `Main.cpp`, `Fun.cpp`, and `Header.h`.
+   - Both `Main.cpp` and `Fun.cpp` include `Header.h`.
+   - `Main.cpp` references something from `Fun.cpp`.
+   - `Header.h` contains a global variable definition.
+   - When we compile these three files, multiple definition errors occur.
+5. Therefore, we **recommend** that **header files only contain templates,
+   declarations, and type definitions**.
 
 ##### Syntax
 
