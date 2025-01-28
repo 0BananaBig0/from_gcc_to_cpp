@@ -12,7 +12,8 @@
 #include <mutex>
 #include <random>
 #include <vector>
-// Determines whether we need to observe the behavior of constructors and operators.
+// Determines whether we need to observe the behavior of constructors and
+// operators.
 #ifdef PRINT_MES
    #define OUTMES( inf ) std::cout << inf << std::endl;
 #else
@@ -57,6 +58,12 @@ class Sort {
          OUTMES( "rvalue" );
          return std::move( _vec );
       };   // Allow move sementatic.
+
+      Sort& operator=( std::vector< int >& vec ) {
+         OUTMES( "Copy assignment." );
+         _vec = vec;
+         return *this;   // Allow chain assignment.
+      };   // Not require move semenetatic.
 
       Sort& operator=( const Sort& other ) {
          OUTMES( "Copy assignment." );
@@ -134,7 +141,7 @@ class Sort {
       }
 
    protected:
-      std::vector< int > _vec;
+      std::vector< int > _vec;   // Storing its pointer would be better.
 };
 
 // Implementation of `<<` operator
@@ -148,17 +155,22 @@ std::ostream& operator<<( std::ostream& os, const Sort& sort ) {
    return os;
 };
 
-std::vector< int > generateRandomVector( size_t size, int min, int max ) {
+int generateRandomNum( int min, int max ) {
    // Random number generator
-   std::random_device rd;                             // Seed
-   std::mt19937 gen( rd() );                          // Mersenne Twister engine
-   std::uniform_int_distribution<> dis( min, max );   // Uniform
-                                                      // distribution
+   std::random_device rd;      // Seed
+   std::mt19937 gen( rd() );   // Mersenne Twister engine
+   std::uniform_int_distribution< int > dis( min, max );
+   return dis( gen );
+};
+
+std::vector< int > generateRandomVector( size_t size, int min, int max ) {
    // Generate vector with random values
    std::vector< int > vec( size );
-   std::generate( vec.begin(), vec.end(), [&]() { return dis( gen ); } );
+   std::generate( vec.begin(), vec.end(), [&]() {
+      return generateRandomNum( min, max );
+   } );
    return vec;
-}
+};
 
 std::ostream& operator<<( std::ostream& os, const std::vector< int >& vec ) {
 
@@ -181,5 +193,27 @@ bool verify( const std::vector< int >& origin,
       };
    };
    return true;
+};
+
+int testSort( Sort* sort, int test_count ) {
+   int fail_count = 0;
+   for( int i = 0; i < test_count; i++ ) {
+      size_t size = generateRandomNum( 0, generateRandomNum( 1, 10000 ) );
+      int min = generateRandomNum( INT32_MIN, INT32_MAX );
+      int max = generateRandomNum( INT32_MIN, INT32_MAX );
+      if( min > max ) {
+         int tmp = min;
+         min = max;
+         max = tmp;
+      };
+      std::vector< int > origin
+         = std::move( generateRandomVector( size, min, max ) );
+      *sort = origin;
+      sort->operate();
+      if( !verify( origin, sort->getVec() ) ) {
+         fail_count++;
+      };
+   };
+   return fail_count;
 };
 

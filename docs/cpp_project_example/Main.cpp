@@ -17,17 +17,15 @@
 int main() {
    // tPrint();
    // ttPrint();
-   // size_t num_of_test = 0;
-   // int min_number = 0;
-   // int max_number = INT32_MAX;
-   // std::cout << "Type the number of test patterns:" << std::endl;
-   // std::cin >> num_of_test;
-   // std::cout << "Type the minimum number in the test patterns:" << std::endl;
-   // std::cin >> min_number;
-   // std::cout << "Type the maximum number in the test patterns:" << std::endl;
-   // std::cin >> max_number;
-   // std::vector< int > ovec
-   //    = generateRandomVector( num_of_test, min_number, max_number );
+#ifdef TEST_SORT
+   std::cout << "All tests are running:\n";
+   int fail_count = testSort( new MergeSort(), 10 );
+   if( fail_count > 0 ) {
+      std::cout << "Fail " << fail_count << " times.";
+   } else {
+      std::cout << "All tests have completed successfully.\n";
+   };
+#endif
    std::vector< int > ovec = generateRandomVector( 64, 0, 100000 );
    MergeSort msort_vec( ovec );
    SelectionSort ssort_vec( ovec );
