@@ -319,8 +319,10 @@
    that need to **handle different data types** or for **dynamic memory
    allocation**.
 3. However, because a `void` pointer does not have a specific type associated
-   with it, you **cannot dereference it directly without first casting it to a
-   specific pointer type**.
+   with it, the compiler lacks sufficient information to determine how much
+   memory to allocate for objects of that type. As a result, you **cannot
+   dereference it directly without first casting it to a specific pointer
+   type**.
 4. Functions like **`malloc`** and **`calloc`** **return `void` pointer** which
    must be cast to the appropriate type.
 5. `void*` is **a void pointer**. But `void (*)` is **invalid** in C++.
@@ -330,9 +332,11 @@
 
 1. **`nullptr`** is a **null pointer** constant introduced in C++11.
 2. It represents a pointer that does **not point to any valid memory location**.
-3. It provides type safety compared to the traditional `NULL`, which is
+3. It provides **type safety** compared to the traditional `NULL`, which is
    typically **defined as 0**.
-4. **Access `nullptr`: segmentation fault (Linux), access violation (Win)**.
+4. This means it prevents some bugs caused by implicit conversion in certain
+   situations, such as when calling overloaded functions.
+5. **Access `nullptr`: segmentation fault (Linux), access violation (Win)**.
 
 ##### Dangling Pointers
 

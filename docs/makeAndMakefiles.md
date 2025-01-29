@@ -290,7 +290,10 @@ target1 target2: dependency set
 1. Avoid using pseudo-targets to generate files whenever possible, as the
    commands associated with pseudo-targets are executed every time the `make`
    command runs.
-2. Pseudo-targets are treated as if they are updated on every execution of
+2. Avoid including a pseudo-target in a dependency set whenever possible, as the
+   command set corresponding to the dependency set with the pseudo-target is
+   always executed every time the `make` command runs.
+3. Pseudo-targets are treated as if they are updated on every execution of
    `make`.
 
 #### Example

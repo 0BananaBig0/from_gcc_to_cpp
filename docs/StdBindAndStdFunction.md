@@ -87,9 +87,9 @@ template< class R, class F, class... Args >
 
 ### Explanation
 
-1. `std::function` is a template class in C++ that provides a type-safe wrapper
-   for any callable entity, including functions, function pointers, and function
-   objects.
+1. `std::function` is **a template class** in C++ that provides **a type-safe
+   wrapper** for any callable entity, including functions, function pointers,
+   and function objects.
 2. It is part of the <functional> header and allows you to store and invoke
    callable objects with a specific signature.
 3. `std::function` is useful for scenarios where you need to store or pass

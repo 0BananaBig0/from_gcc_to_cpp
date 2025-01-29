@@ -49,7 +49,35 @@
 4. **Float:** Be very careful. Both `float` and `double` type variables **have
    precision limitations**. You should **never use `==` or `!=` to compare
    them** with any number. Instead, you should try to **convert the comparison
-   into `>=` or `<=` forms**.
+   into `>=` or `<=` forms**. **Rounding errors** make floating point
+   comparisons tricky. Performing mathematical operations on these values will
+   cause the rounding errors to grow larger.
+5. You might assume that types that use less memory would be faster than types
+   that use more memory. This is not always true. **CPUs are often optimized to
+   process data of a certain size (e.g. 32 bits)**, and **types that match that
+   size may be processed quicker**. On such a machine, a 32-bit int could be
+   faster than a 16-bit short or an 8-bit char.
+6. Using unsigned integers is not recommended because their wrap-around action
+   can result in numerous bugs (but sometimes, have to). Favor signed numbers
+   over unsigned numbers for holding quantities (even quantities that should be
+   non-negative) and mathematical operations. Avoid mixing signed and unsigned
+   numbers.
+7. Some compilers limit the largest creatable object to half the maximum value
+   of `std::size_t` (an explanation for this can be found
+   [here](https://stackoverflow.com/questions/42428003/largest-possible-object-on-size-t-explanations/42428240#42428240)).
+8. The C++ standard only defines the minimum size of integral types but does not
+   specify their exact sizes. Furthermore, the standard does not define any size
+   requirements for `float`, `double`, and `long double`. As a result, different
+   compilers and systems implement these types with varying sizes. However, most
+   compilers and systems follow the IEEE 754 floating-point standard, so the
+   size of `float` is typically 32 bits, and `double` is 64 bits. It is
+   advisable to avoid using `long double` because its size varies significantly
+   across systems.
+9. Always make sure the type of your literals match the type of the variables
+   they’re being assigned to or used to initialize. Otherwise an unnecessary
+   conversion will result, possibly with a loss of precision.
+10. Favor `double` over `float` unless space is at a premium, as the lack of
+    precision in a float will often lead to inaccuracies.
 
 ## Type Puning
 
@@ -411,8 +439,15 @@ struct Vector3 {
 
 ## What Causes Undefined Behavior (UB)
 
-1. Using uninitialized variables. (Compilers can handle it.)
-2. Failure to return a value from a non-void function. (Compilers can't
-   always handle it.)
-3. Any use of an object after it has been destroyed. (Compilers can't qandle
-   it.)
+0. Undefined behavior (UB) refers to a behavior that can produce different
+   results depending on the system and compiler implementation.
+1. Using uninitialized variables. (Result in a UB.) (Compilers can handle it.)
+2. Failure to return a value from a non-void function. (Result in a UB.)
+   (Compilers can't always handle it.)
+3. Any use of an object after it has been destroyed. (Result in a UB.)
+   (Compilers can't handle it.)
+4. Signed integer overflow is undefined behavior in C++, while unsigned integer
+   overflow is well-defined. However, using unsigned integers is not recommended
+   because their wrap-around action can result in numerous bugs. (Is a UB.)
+5. A rounding error in floating type numbers becsuase of their limited
+   precision. (May result in a UB.)

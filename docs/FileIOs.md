@@ -7,11 +7,13 @@
   - [`std::wcin`](#stdwcin)
     - [Syntax](#syntax)
     - [Links](#links)
+    - [Notes](#notes)
   - [`std::cout` and `std::wcout`](#stdcout-and-stdwcout)
     - [`std::cout`](#stdcout)
     - [`std::wcout`](#stdwcout)
     - [Syntax](#syntax-1)
     - [Links](#links-1)
+    - [Notes](#notes-1)
   - [`std::cerr` and `std::wcerr`](#stdcerr-and-stdwcerr)
     - [`std::cerr`](#stdcerr)
     - [`std::wcerr`](#stdwcerr)
@@ -104,6 +106,18 @@ std::wcin >> wvar_name;      // Wide character input
 2. [`std::wcin` in cplusplus](https://cplusplus.com/reference/iostream/wcin/).
 3. [`std::cin` and `std::wcin` in cppreference](https://en.cppreference.com/w/cpp/io/cin).
 
+#### Notes
+
+1. `std::cin >> std::boolalpha;` allows users to enter the strings `"true"` and
+   `"false"` as input for a boolean variable. Otherwise, `std::cin` enters a
+   failure mode and stores a zero value in the boolean variable.
+2. However, when `std::boolalpha` is enabled for input, numeric values will no
+   longer be accepted (they evaluate to false and cause `std::cin` to enter
+   failure mode).
+3. Enabling `std::boolalpha` for input will only allow lower-cased false or true
+   to be accepted. Variations with capital letters will not be accepted. 0 and 1
+   will also no longer be accepted.
+
 ### `std::cout` and `std::wcout`
 
 #### `std::cout`
@@ -143,12 +157,27 @@ std::wcout << L"Message";       // Wide character output
 2. [`std::wcout` in cplusplus](https://cplusplus.com/reference/iostream/wcout/).
 3. [`std::cout` and `std::wcout` in cppreference](https://en.cppreference.com/w/cpp/io/cout).
 
+#### Notes
+
+1. To disable the buffering of `std::cout` for debugging purposes, add the
+   following code before the `main` function:
+   ```CPP
+   std::cout << std::unitbuf; // enable automatic flushing for std::cout (for debugging)
+   ```
+2. When outputting floating point numbers, `std::cout` has a default precision
+   of 6 -- that is, it assumes all floating point variables are only significant
+   to 6 digits (the minimum precision of a `float`), and hence it will truncate
+   anything after that.
+3. We can override the default precision that `std::cout` shows by using an
+   output manipulator function named `std::setprecision()`. Output manipulators
+   alter how data is output, and are defined in the `iomanip` header.
+
 ### `std::cerr` and `std::wcerr`
 
 #### `std::cerr`
 
 1. `std::cerr` is used for outputting error messages to the standard error
-   stream (`stderr`), typically without buffering.
+   stream (`stderr`), typically **without buffering**.
 2. It's commonly used for reporting errors, warnings, or diagnostics.
 3. It ensures that error messages are immediately displayed, regardless of
    buffering.

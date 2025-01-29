@@ -373,6 +373,8 @@ asm("assembly_code");
 
 ```CPP
 // The implicit conversion occurs.
+// If the function is overloaded, `static_cast` should be used to convert `funcName` explicitly.
+// Alternatively, avoid using `auto` and declare the function pointer with an explicitly specific type.
 auto func_ptr_name = funcName; // Not recommend.
 // auto func_ptr_name = SpaceName::funcName; // Not allow.
 // auto func_ptr_name = ClassName::funcName; // Not allow.
