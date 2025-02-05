@@ -704,15 +704,18 @@ template< typename T, ... > RetType funcName( T&& arg, ... ) {
 // An usage example.
 #include <iostream>
 #include <utility>   // For std::forward
+
 // Function to demonstrate perfect forwarding
 template< typename T > void wrapper( T&& arg ) {
    // Forward the argument to another function
    // This preserves whether arg is an lvalue or rvalue
    process( std::forward< T >( arg ) );
 };
+
 // Helper function to handle both lvalues and rvalues
 void process( int& x ) { std::cout << "Lvalue processed: " << x << std::endl; };
 void process( int&& x ) { std::cout << "Rvalue processed: " << x << std::endl; };
+
 int main() {
    int x = 42;
    wrapper( x );   // Lvalue passed, so it will call process(int&)

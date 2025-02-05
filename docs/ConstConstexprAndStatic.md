@@ -116,8 +116,9 @@
 2. The keyword `const` stands for "constant" and is used to define variables
    that should remain unchanged throughout their lifespan.
 3. A `const` variable must **be initialized when it is declared**.
-4. It can be **evaluated at compile time** if it is **initialized with a
-   constant expression**.
+4. It can be **evaluated at compile time (providing more opportunity for the
+   compiler to optimize programs)** if it is **initialized with a constant
+   expression**.
 5. It can bind to **a literal value or a temporary result**.
 
 ###### Syntax

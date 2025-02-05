@@ -50,6 +50,11 @@
       - [All Stuffs Inherited from `std::std::basic_ios`](#all-stuffs-inherited-from-stdstdbasic_ios)
       - [All Stuffs Inherited from `std::ios_base`](#all-stuffs-inherited-from-stdios_base)
       - [Non-member Functions](#non-member-functions)
+- [`std::getline`](#stdgetline)
+  - [Explanation](#explanation-2)
+  - [Syntax](#syntax-5)
+  - [Links](#links-5)
+  - [Notes](#notes-2)
 
 <!-- vim-markdown-toc -->
 
@@ -117,6 +122,9 @@ std::wcin >> wvar_name;      // Wide character input
 3. Enabling `std::boolalpha` for input will only allow lower-cased false or true
    to be accepted. Variations with capital letters will not be accepted. 0 and 1
    will also no longer be accepted.
+4. `std::cin >> char_var;` cannot store a space character into `char_var`, but
+   `std::cin.get(char_var)` can.
+5. `std::cint >> std::ws;` discards leading whitespace from an input stream.
 
 ### `std::cout` and `std::wcout`
 
@@ -547,3 +555,80 @@ if( file.is_open() ) {
 
 1. `std::swap( std::ifstream )`: specializes the `std::swap` algorithm (function
    template).
+
+## `std::getline`
+
+### Explanation
+
+1. `std::getline` is a function that reads characters from an input stream and
+   places them into a string.
+2. It's defined in `<string>`.
+
+### Syntax
+
+```CPP
+// Definitions.
+template< class CharT, class Traits, class Allocator >
+std::basic_istream< CharT, Traits >& getline(
+   std::basic_istream< CharT, Traits >& input,
+   std::basic_string< CharT, Traits, Allocator >& str,
+   CharT delim );   // ( 1 )
+
+template< class CharT, class Traits, class Allocator >
+std::basic_istream< CharT, Traits >& getline(
+   std::basic_istream< CharT, Traits >&& input,
+   std::basic_string< CharT, Traits, Allocator >& str,
+   CharT delim );   // ( 2 )( since C++ 11 )
+
+template< class CharT, class Traits, class Allocator >
+std::basic_istream< CharT, Traits >& getline(
+   std::basic_istream< CharT, Traits >& input,
+   std::basic_string< CharT, Traits, Allocator >& str );   // ( 3 )
+
+template< class CharT, class Traits, class Allocator >
+std::basic_istream< CharT, Traits >& getline(
+   std::basic_istream< CharT, Traits >&& input,
+   std::basic_string< CharT, Traits, Allocator >& str );   // ( 4 )
+```
+
+```CPP
+// Used to get the whole line from `std::cin`.
+std::getline( std::cin >> std::ws, var_name );
+```
+
+```CPP
+// A special case.
+#include <iostream>
+#include <string>
+
+int main() {
+   std::cout << "Pick 1 or 2: ";
+   int choice{};
+   std::cin >> choice;
+
+   std::cout << "Now enter your name: ";
+   std::string name{};
+   std::getline( std::cin >> std::ws, name );   // note: added std::ws here.
+   // std::getline( std::cin, name );   // note: no std::ws here, not get what you want.
+
+   std::cout << "Hello, " << name << ", you picked " << choice << '\n';
+
+   return 0;
+}
+```
+
+### Links
+
+1. [`std::line` in cplusplus](https://cplusplus.com/reference/string/string/getline/).
+2. [`std::line` in cppreference](https://en.cppreference.com/w/cpp/string/basic_string/getline).
+
+### Notes
+
+1. If using `std::getline()` to read strings, use `std::cin >> std::ws` input
+   manipulator to ignore leading whitespace. This needs to be done for each
+   `std::getline()` call, as `std::ws` is not preserved across calls.
+2. When extracting to a variable, the extraction operator (`>>`) ignores leading
+   whitespace. It stops extracting when encountering non-leading whitespace.
+   `std::getline()` does not ignore leading whitespace. If you want it to ignore
+   leading whitespace, pass `std::cin >> std::ws` as the first argument. It
+   stops extracting when encountering a newline.

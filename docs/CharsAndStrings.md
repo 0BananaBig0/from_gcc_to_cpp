@@ -422,6 +422,8 @@ std::string var_name( ch_ptr, count );
 4. **This class** allows for **read-only access** to character sequences,
    **improving performance** in scenarios where **string immutability** is
    required.
+5. A `std::string_view` **may or may not** be **null-terminated**, whiel a
+   C-style string literal and a `std::string` are always null-terminated.
 
 #### Syntax
 
@@ -583,3 +585,46 @@ std::string_view var_name( ch_ptr, count );
    pointers cannot be modified. It is not recommended to store a string in a
    `char` pointer.
 2. Only strings stored in `char` arrays or `std::string` can be modified.
+3. When assigning a string literal to an `std::string` variable, using the
+   suffix `s` is slightly faster because the compiler can evaluate the length of
+   the string literal without calling `strlen`. However, when printing a string
+   literal to the console, using the string literal without the suffix `s` is
+   faster because it avoids calling the overloaded `operator<<`.
+4. When importing suffix literals related only to `std::string`, it is
+   recommended to use `using namespace std::string_literals` instead of
+   `using namespace std::literals`. The former imports only the literals related
+   to `std::string`, whereas the latter imports all standard library literals.
+5. `constexpr std::string` is not supported at all in C++17 or earlier, and only
+   works in very limited cases in C++20/23. If `constexpr` strings are needed,
+   consider using `std::string_view` instead.
+6. If a string (including a C-style string) is used to initialize an object,
+   while `std::string` needs to copy the string, `std::string_view` does not.
+7. All string literals are first created in the data segment and then used to
+   initialize string objects, **except for `char` arrays**. Compilers optimize
+   the storage for `char` arrays. When using `char` arrays to store string
+   literals, the string literals are directly stored in the `char` arrays.
+8. Both a C-style string and a `std::string` will **implicitly** convert to a
+   `std::string_view`, while `std::string_view` will not **implicitly** convert
+   to `std::string`. However, **explicitly** creating a `std::string` with a
+   `std::string_view` initializer and converting an existing `std::string_view`
+   to a `std::string` using `static_cast` are allowed.
+9. When using `std::string_view` to view a `std::string`, pointer invalidations
+   or reference invalidations need to be carefully managed. Pointer and
+   reference invalidations are concerns for all objects that require dynamic
+   allocation and whose data are referenced by other pointers or references.
+10. The best use for `std::string_view` is as a read-only function parameter.
+    This allows us to pass in a C-style string, `std::string`, or
+    `std::string_view` argument without making a copy, as the `std::string_view`
+    will create a view to the argument.
+11. `std::string_view` is preferable to `const std::string&` when used as a
+    return type for a **member** function, to return string literals, a `char`
+    pointer to string literals, a reference-type string parameter, a
+    `std::string_view` parameter, or as a function parameter.
+12. `std::string_view` should not be initialized with a temporary object, except
+    for string literals. This is because `std::string_view` works like a `const`
+    pointer, and string literals are stored in the data segment.
+13. There is one important subtlety here. If the argument is a temporary object
+    (that will be destroyed at the end of the full expression containing the
+    function call), the `std::string_view` return value must be used in the same
+    expression. After that point, the temporary is destroyed and the
+    `std::string_view` is left dangling.

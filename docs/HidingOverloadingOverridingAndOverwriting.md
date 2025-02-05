@@ -162,10 +162,12 @@ int main() {
 4. Additionally, the term "overwriting" typically refers to the process of
    **replacing an existing value in memory**, which includes assigning a new
    value to an existing variable to replace the old value and writing data to
-   unintended memory locations, often resulting in undefined behavior or memory
-   corruption.
+   unintended memory locations, **often resulting in undefined behavior or
+   memory corruption**.
 5. This can occur in various contexts, such as variables, function definitions,
    or data structures.
+6. `Type var; var = xxx;` is an initialization. `Type var{ ... }; var = xxx;` is
+   overwriting.
 
 #### Syntax
 

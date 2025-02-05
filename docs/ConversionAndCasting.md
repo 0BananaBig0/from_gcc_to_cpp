@@ -68,7 +68,8 @@
 ### Explanation
 
 1. In C++, conversion and casting refer to the mechanisms used to **convert a
-   value from one data type to another**.
+   value from one data type to another by receiving an input value to generate a
+   target value**.
 2. Conversion can occur **implicitly** or **explicitly**.
 3. **Implicit conversion**, also known as **type coercion**, happens
    **automatically** when the compiler converts one data type to another

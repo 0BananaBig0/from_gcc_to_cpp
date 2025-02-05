@@ -1,6 +1,7 @@
 <!-- vim-markdown-toc GFM -->
 
 - [Some Small Knowledge](#some-small-knowledge)
+- [Common Compiler Optimization Techniques](#common-compiler-optimization-techniques)
 - [Type Puning](#type-puning)
   - [Explanation](#explanation)
   - [Common Methods of Type Punning](#common-methods-of-type-punning)
@@ -78,6 +79,15 @@
    conversion will result, possibly with a loss of precision.
 10. Favor `double` over `float` unless space is at a premium, as the lack of
     precision in a float will often lead to inaccuracies.
+
+## Common Compiler Optimization Techniques
+
+0. Compilers optimize code for performance, but the specific optimization
+   techniques applied may vary depending on the implementation, system, and
+   configuration.
+1. Constant folding and constant propagation. (`constexpr` enforces this
+   optimization at compile time.)
+2. Dead code elimination.
 
 ## Type Puning
 
@@ -451,3 +461,5 @@ struct Vector3 {
    because their wrap-around action can result in numerous bugs. (Is a UB.)
 5. A rounding error in floating type numbers becsuase of their limited
    precision. (May result in a UB.)
+6. Modify or destroy the initializer related to `std::string_view` objects when
+   using these objects. (May result in a UB.)

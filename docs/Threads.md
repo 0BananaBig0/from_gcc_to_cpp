@@ -108,6 +108,7 @@
         - [Specialized for Integral and Pointer Types Only](#specialized-for-integral-and-pointer-types-only)
         - [Specialized for Integral Types Only](#specialized-for-integral-types-only)
       - [Type Aliases (Only for `std::atomic`)](#type-aliases-only-for-stdatomic)
+    - [Notes](#notes-2)
   - [`std::condition_variable` and `std::condition_variable_any`](#stdcondition_variable-and-stdcondition_variable_any)
     - [`std::condition_variable`](#stdcondition_variable)
     - [`std::condition_variable_any`](#stdcondition_variable_any)
@@ -127,7 +128,7 @@
       - [Parameters](#parameters)
       - [Return Value](#return-value)
       - [Launching Policies](#launching-policies)
-    - [Notes](#notes-2)
+    - [Notes](#notes-3)
   - [`std::future` and `std::shared_future`](#stdfuture-and-stdshared_future)
     - [`std::future`](#stdfuture)
     - [`std::shared_future`](#stdshared_future)
@@ -146,7 +147,7 @@
       - [Member Functions](#member-functions-9)
       - [Non-member Functions](#non-member-functions-3)
       - [Helper Classes](#helper-classes)
-  - [Notes](#notes-3)
+  - [Notes](#notes-4)
 
 <!-- vim-markdown-toc -->
 
@@ -1298,6 +1299,24 @@ std::atomic_ref< Type > avar_name2( avar_name1 );
 
 1. [`std::atomic` in cplusplus](https://cplusplus.com/reference/atomic/atomic/).
 2. [`std::atomic` in cppreference](https://en.cppreference.com/w/cpp/atomic/atomic).
+
+#### Notes
+
+1. All atomic operations, including `std::atomic_ref`, work only with primitive
+   type objects or trivially copyable objects.
+2. A trivially copyable object in C++ is one that can be copied (or moved) using
+   simple memory operations, without needing to invoke any special constructor,
+   destructor, or copy assignment operator.
+3. In technical terms, an object is trivially copyable if it satisfies the
+   following criteria:
+   - It has a trivial copy constructor (no custom logic).
+   - It has a trivial copy assignment operator (no custom logic).
+   - It has a trivial destructor (no custom logic).
+   - Its non-static data members are also trivially copyable.
+4. In other words, a trivially copyable object is an object whose members are
+   primitive type variables or objects containing only primitive type variables.
+   Additionally, neither the object nor its members explicitly define any member
+   functions.
 
 ### `std::condition_variable` and `std::condition_variable_any`
 
