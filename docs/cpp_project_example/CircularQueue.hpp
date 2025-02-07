@@ -78,3 +78,4 @@ template< typename T > class CircularQueue {
       size_t _pushIndex;   // Next push, empty now.
       size_t _count;       // The number of stored results.
 };
+

@@ -35,19 +35,3 @@ class BubbleSort final: public Sort {
    private:
 };
 
-void BubbleSort::operate() {
-   // Determine whether all elements have been sorted.
-   bool flag = false;
-   do {
-      flag = false;
-      for( size_t i = 0; i < _vec.size() - 1; i++ ) {
-         if( _vec[i] > _vec[i + 1] ) {
-            auto tmp = _vec[i];
-            _vec[i] = _vec[i + 1];
-            _vec[i + 1] = tmp;
-            flag = true;
-         };
-      };
-   } while( flag );
-};
-

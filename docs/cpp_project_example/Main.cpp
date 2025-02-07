@@ -27,19 +27,21 @@ int main() {
    };
 #endif
 
-   std::vector< int > ovec = generateRandomVector( 64, 0, 100000 );
-   MergeSort msort_vec( ovec );
+   size_t size;
+   std::cin >> size;
+   std::vector< int > ovec = generateRandomVector( size, 0, 1000000 );
+   SelectionSort ssort_vec( ovec );
    // std::cout << "Before sorted:" << msort_vec << std::endl;
    auto start = std::chrono::high_resolution_clock::now();
-   msort_vec.operate();
+   ssort_vec.operate();
    auto end = std::chrono::high_resolution_clock::now();
    auto dur
       = std::chrono::duration_cast< std::chrono::milliseconds >( end - start );
    std::cout << "Elapsed time: " << dur.count() << " ms.\n";
 
-   SelectionSort ssort_vec( ovec );
+   MergeSortLayerByLayer lsort_vec( ovec );
    start = std::chrono::high_resolution_clock::now();
-   ssort_vec.operate();
+   lsort_vec.operate();
    end = std::chrono::high_resolution_clock::now();
    dur = std::chrono::duration_cast< std::chrono::milliseconds >( end - start );
    std::cout << "Elapsed time: " << dur.count() << " ms.\n";
