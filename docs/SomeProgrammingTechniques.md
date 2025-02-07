@@ -463,3 +463,8 @@ struct Vector3 {
    precision. (May result in a UB.)
 6. Modify or destroy the initializer related to `std::string_view` objects when
    using these objects. (May result in a UB.)
+7. The same `inline` variable can have different values in different translation
+   units. (Result in a UB.)
+8. The order in which expressions (operands, function arguments, and
+   subexpressions) with the same precedence level are evaluated is undefined
+   behavior (UB). (Result in a UB.)

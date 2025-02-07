@@ -131,11 +131,14 @@ std::wcin >> wvar_name;      // Wide character input
 #### `std::cout`
 
 1. `std::cout` is the standard output stream used for writing data to the
-   console, typically using narrow characters (`char`).
-2. It's used to display output to the user, such as text, numbers, or formatted
+   console, typically **buffered** and using narrow characters (`char`).
+2. It is used to display output to the user, such as text, numbers, or formatted
    data.
 3. Data written to `std::cout` is stored in memory and written to the console
    when the buffer is full or flushed.
+4. Its output **can be redirected to a file** using the terminal operator `>`.
+5. When its output is redirected to a file, these messages do not appear on the
+   terminal.
 
 #### `std::wcout`
 
@@ -189,6 +192,9 @@ std::wcout << L"Message";       // Wide character output
 2. It's commonly used for reporting errors, warnings, or diagnostics.
 3. It ensures that error messages are immediately displayed, regardless of
    buffering.
+4. Its output **cannot be redirected to a file** using the terminal operator
+   `>`.
+5. It always prints all messages to the terminal.
 
 #### `std::wcerr`
 
@@ -221,9 +227,12 @@ std::wcerr << L"Error occurred";  // Wide character error output
 #### `std::clog`
 
 1. `std::clog` is used for logging information to the standard error stream
-   (`stderr`), typically buffered.
+   (`stderr`), typically **buffered**.
 2. It's commonly used for logging messages, warnings, or diagnostic data.
 3. It stores the log messages in memory before outputting them.
+4. Its output is similar to `std::cerr`, which **cannot be redirected to a
+   file** using the terminal operator `>`.
+5. It always prints all messages to the terminal.
 
 #### `std::wclog`
 

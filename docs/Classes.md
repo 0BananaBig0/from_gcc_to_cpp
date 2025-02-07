@@ -48,6 +48,7 @@
       - [Explanation](#explanation-11)
       - [Syntax](#syntax-10)
       - [Differences between Traditional Initializer Lists and Modern Initializer Lists](#differences-between-traditional-initializer-lists-and-modern-initializer-lists)
+      - [Limitations of Aggregate Initialization](#limitations-of-aggregate-initialization)
       - [Notes](#notes-1)
     - [Copy Constructors](#copy-constructors)
       - [Explanation](#explanation-12)
@@ -83,7 +84,6 @@
   - [Common Objects](#common-objects)
     - [Declaration Syntax](#declaration-syntax-1)
     - [Initialization Syntax](#initialization-syntax)
-    - [Limitations of Aggregate Initialization](#limitations-of-aggregate-initialization)
   - [Class Pointers](#class-pointers)
     - [Declaration Syntax](#declaration-syntax-2)
     - [Definition or Initialization Syntax](#definition-or-initialization-syntax)
@@ -606,6 +606,38 @@ class ClassName {
        - If no constructors are defined, aggregate initialization applies to
          structs or classes.
 
+##### Limitations of Aggregate Initialization
+
+1. **No user-defined constructors**:
+   - Aggregate initialization is only applicable to aggregate types that lack
+     user-defined constructors.
+   - If a class has any constructor defined, aggregate initialization cannot be
+     used.
+2. **Public members only**:
+   - Only public members can be initialized via aggregate initialization.
+   - Private or protected members cannot be accessed.
+3. **No default member initializers**:
+   - Default member initializers in aggregates are ignored during aggregate
+     initialization, meaning you must explicitly specify values for all members.
+4. **Order of initialization**:
+   - Members are initialized in the order they are declared.
+   - This can lead to issues if one member relies on another being initialized
+     first.
+5. **No designated initializers**:
+   - C++ does not support designated initializers (as in C99), preventing the
+     ability to initialize specific members without initializing all preceding
+     members.
+6. **Type matching**:
+   - The types in the initializer list must match the types of the aggregate's
+     members exactly.
+   - A mismatch results in a compilation error.
+7. **No implicit conversions**:
+   - Aggregate initialization does not allow implicit type conversions, which
+     can limit flexibility.
+8. **No inheritance**:
+   - Aggregate initialization is not applicable for derived classes, limiting
+     its use in inheritance scenarios.
+
 ##### Notes
 
 1. In the constructor initializer list, you'd better initialize the members in
@@ -1045,38 +1077,6 @@ class ClassName {
 // Second, create `obj_name` with the move constructor.
 ClassName obj_name = ClassName::createClassName();
 ```
-
-#### Limitations of Aggregate Initialization
-
-1. **No user-defined constructors**:
-   - Aggregate initialization is only applicable to aggregate types that lack
-     user-defined constructors.
-   - If a class has any constructor defined, aggregate initialization cannot be
-     used.
-2. **Public members only**:
-   - Only public members can be initialized via aggregate initialization.
-   - Private or protected members cannot be accessed.
-3. **No default member initializers**:
-   - Default member initializers in aggregates are ignored during aggregate
-     initialization, meaning you must explicitly specify values for all members.
-4. **Order of initialization**:
-   - Members are initialized in the order they are declared.
-   - This can lead to issues if one member relies on another being initialized
-     first.
-5. **No designated initializers**:
-   - C++ does not support designated initializers (as in C99), preventing the
-     ability to initialize specific members without initializing all preceding
-     members.
-6. **Type matching**:
-   - The types in the initializer list must match the types of the aggregate's
-     members exactly.
-   - A mismatch results in a compilation error.
-7. **No implicit conversions**:
-   - Aggregate initialization does not allow implicit type conversions, which
-     can limit flexibility.
-8. **No inheritance**:
-   - Aggregate initialization is not applicable for derived classes, limiting
-     its use in inheritance scenarios.
 
 ### Class Pointers
 

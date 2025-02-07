@@ -1777,3 +1777,8 @@ int main() {
    `std::shared_future`.**
 3. To prevent deadlock, the order of acquiring multiple locks must be
    consistent.
+4. All `static` variables are initialized in a thread-safe manner in C++11 and
+   later, so there's no need to explicitly lock them during initialization.
+   However, for clarity and code readability, it is still a good practice to use
+   a mutex when modifying shared static variables across threads after
+   initialization.

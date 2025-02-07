@@ -175,7 +175,7 @@ target2:: dependency set2
 ```
 
 ```Makefile
-target1 target2: dependency set
+target set: dependency set
   command set
   ...;
 # The following commented code is equivalent to the one above.
@@ -193,7 +193,8 @@ target1 target2: dependency set
    - It can be an object file, a `.cpp` file, a `.txt` file, and so on.
    - It also can be a set of `target`.
 2. `dependency`:
-   - It is **a file** that **a target requires** during its creation.
+   - It is **a file** that **a target requires** during its creation, **except
+     for a pseudo target used as a dependency**.
    - It can be an object file, a `.cpp` file, a `.txt` file, and so on.
    - Typically, it's unnecessary to explicitly list header files because the
      compiler can automatically track dependencies between source files and
@@ -209,7 +210,7 @@ target1 target2: dependency set
 
 #### Prerequisites
 
-1. Simply type the make command without any suffix or option.
+1. Simply type the `make` command without any suffix or option.
 2. Ensure all source files and the Makefile are in the same folder.
 
 #### **Steps**
@@ -221,30 +222,27 @@ target1 target2: dependency set
 2. Identify the first target:
    - Locate the first target in the Makefile and treat it as the final or
      default target.
-   - For example, in the basic rule of the makefile above, `target1` is the
+   - For example, in the basic rule of the Makefile above, `target1` is the
      first target.
 3. Build the dependency graph:
-   - The `make` command does not dynamically update the dependency graph.
-   - Once executed, the dependency graph is constructed and remains static until
-     another `make` command is invoked.
-   - Therefore, we should manually specify files in the `Makefile` if they are
-     generated during the `make` process.
    - `make` examines the dependencies listed in the Makefile and constructs a
      dependency graph.
    - Each target can depend on other files or targets, which are updated
      recursively if necessary.
-   - Each node in the dependency graph represents a target or a file and its
-     associated commands, except for the leaf nodes.
-   - A child node represents a dependency of its parent (a file or target),
-     except for the leaf nodes.
-   - Each leaf node represents a source file, a library file, or a target file,
-     with or without an associated command set, and without any dependencies.
+   - Each node in the dependency graph represents a target or a file with or
+     without an associated command set.
+   - A child node represents a dependency of its parent (a file or target).
    - The root node represents the final target and its command set.
    - The command set is not limited to generating its associated target file; it
-     can generate multiple targets.
+     can generate multiple files.
    - However, this approach may lead to some issues.
    - See also:
      [How to Generate Multiple Targets with One Command Set for Efficient Parallel Compilation](#how-to-generate-multiple-targets-with-one-command-set-for-efficient-parallel-compilation).
+   - The `make` command does not dynamically update the dependency graph.
+   - Once executed, the dependency graph is constructed and remains static until
+     another `make` command is invoked.
+   - Therefore, files generated during the `make` process should be specified in
+     the Makefile.
 4. Recursively scan the dependency graph:
    - Traverse the dependency graph in a breadth-first manner, starting from the
      leaves up to the root.
@@ -287,10 +285,10 @@ target1 target2: dependency set
 
 #### Notes
 
-1. Avoid using pseudo-targets to generate files whenever possible, as the
-   commands associated with pseudo-targets are executed every time the `make`
-   command runs.
-2. Avoid including a pseudo-target in a dependency set whenever possible, as the
+1. Not use pseudo-targets to generate files whenever possible, as the commands
+   associated with pseudo-targets are executed every time the `make` command
+   runs.
+2. Not include a pseudo-target in a dependency set whenever possible, as the
    command set corresponding to the dependency set with the pseudo-target is
    always executed every time the `make` command runs.
 3. Pseudo-targets are treated as if they are updated on every execution of
@@ -310,11 +308,11 @@ clean:
 #### Explanation
 
 1. In a Makefile, an implicit rule is **a predefined or general rule** that
-   tells make how to build certain types of files automatically without
+   tells `make` how to build certain types of files automatically without
    explicitly specifying a rule for each file.
-2. These rules are built into make and handle common tasks like **compiling `.c`
-   or `.cpp` files into object files, linking object files into executables, and
-   more**.
+2. These rules are built into `make` and handle common tasks like **compiling
+   `.c` or `.cpp` files into object files, linking object files into
+   executables, and more**.
 
 #### Common Implicit Rules
 
@@ -485,12 +483,16 @@ $VAR_NAME # Only for automatic variables like `$@`, `$<`, or `$^`.
 $(ENV_VAR)
 ```
 
+```
+${ENV_VAR}
+```
+
 ###### 2 The Syntax of Overriding an Environment Variable
 
 1. Use an assignment operation to assign a value to it in a Makefile:
    `ENV_VAR = value`, `ENV_VAR := value` or `ENV_VAR ?= value`.
 2. Override environment variables when invoking make from the command line:
-   `make ENV_VAR = value`, `make ENV_VAR := value` or `make ENV_VAR ?= value`.
+   `make ENV_VAR=value`, `make ENV_VAR:=value` or `make ENV_VAR?=value`.
 
 ###### 3 Important Notes
 
@@ -582,7 +584,7 @@ target-pattern: prerequisite-pattern
 
 1. Create a simple `C/C++` project.
 2. Writing multiple simple `C/C++` files.
-3. Copy the following code example into your `Makefile`.
+3. Copy the following code example into your Makefile.
 4. Execute the `make` command in a terminal.
 5. Check the printed information in the terminal.
 6. The printed information shows the actual process of the pattern rules of the
@@ -686,7 +688,6 @@ Exe: Main.o Fun.o
 ###### Code
 
 ```Makefile
-
 EXT = cpp
 
 %.o: %.$(EXT)
@@ -707,7 +708,6 @@ EXT = cpp
 ###### Code
 
 ```Makefile
-
 SRC_DIR = src
 BUILD_DIR = build
 
@@ -730,7 +730,6 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 ###### Code
 
 ```Makefile
-
 CC = g++
 CFLAGS = -Wall -O2
 
@@ -752,7 +751,6 @@ CFLAGS = -Wall -O2
 ###### Code
 
 ```Makefile
-
 LINTER = cppcheck
 
 %.lint: %.cpp
@@ -770,7 +768,6 @@ LINTER = cppcheck
 ###### Code
 
 ```Makefile
-
 SRC_DIR = src
 OBJ_DIR = obj
 CC = g++
@@ -814,7 +811,6 @@ g++ -c $< -o $@
 ###### Code
 
 ```Makefile
-
 OBJS = Main.o Fun.o FunN.o
 EXEC = Main.exe
 
@@ -835,7 +831,6 @@ $(EXEC): $(OBJS)
 ###### Code
 
 ```Makefile
-
 SRCS = Main.cpp Fun.cpp FunN.cpp
 OBJS = $(SRCS:.cpp=.o)
 
@@ -858,7 +853,6 @@ $(OBJS): %.o: %.cpp
 ###### Code
 
 ```Makefile
-
 SRCS = $(wildcard src/\*.cpp)
 OBJS = $(SRCS:src/%.cpp=build/%.o)
 

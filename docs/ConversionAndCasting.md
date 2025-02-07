@@ -102,6 +102,14 @@
    source object is of **a different type**, **implicit conversion** may occur,
    invoking the **assignment operator overload** and potentially a
    **constructor**.
+6. Allowed implicit conversion:
+   - Any pointer -> `void` pointer;
+   - Between primitive types;
+   - Derived classes -> Base classes;
+   - Derived class pointers -> Base class pointers;
+   - Derived class references -> Base class references;
+   - `const` objects -> non-const objects;
+   - Arrays or { ... } -> `std::initializer_list`;
 
 #### Examples
 

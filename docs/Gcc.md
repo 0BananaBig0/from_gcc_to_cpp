@@ -552,7 +552,7 @@ g++ *.cpp -o Main.exe
 ```sh
 g++ -c Main.cpp
 g++ -c Fun.cpp
-g++ -o Main.o Fun.o -o Main.exe
+g++ Main.o Fun.o -o Main.exe
 ```
 
 #### 2. Usage

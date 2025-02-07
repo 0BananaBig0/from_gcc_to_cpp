@@ -72,6 +72,8 @@ var_name = 'a letter';
 1. `char`, `wchar_t`, `char16_t`, and others represent **different character
    types** in C++. While they all store character data, there are notable
    **differences** in **their size** and **intended use**.
+2. `std::uint8_t` and `std::int8_t` may be aliased to a `char` type by some
+   compilers or systems.
 
 ### Raw Strings (`char` **Arrays**)
 

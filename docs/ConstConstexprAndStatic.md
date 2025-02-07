@@ -34,6 +34,7 @@
       - [`const` Instances of Classes](#const-instances-of-classes)
         - [Explanation](#explanation-10)
         - [Syntax](#syntax-9)
+    - [Notes](#notes)
   - [`constexpr`](#constexpr)
     - [Explanation](#explanation-11)
     - [Allowed Elements (Valid Elements)](#allowed-elements-valid-elements)
@@ -293,6 +294,12 @@ const RetType& funcName() {
 const ClassName obj_ptr;
 ```
 
+#### Notes
+
+1. The C++ language standard added an exemption so that `const` integral types
+   with a constant expression initializer would be treated as values known at
+   compile-time, while other types would be not.
+
 ### `constexpr`
 
 #### Explanation
@@ -345,7 +352,8 @@ constexpr Type var_name = initializer;
 ###### Explanation
 
 1. `constexpr` applies to the **pointer itself**, meaning **the address** stored
-   in the pointer must **be a constant expression**.
+   in the pointer must **be a constant expression**, but the value the pointer
+   points to can still be modified if the underlying object is not `const`.
 2. The **address** stored in a `constexpr` pointer must **be known at
    compile-time**.
 
@@ -463,8 +471,8 @@ constexpr ClassName obj_name( para_list );
 4. The class **must have a `constexpr` constructor**.
 5. All **member functions** invoked on a `constexpr` object **must also be
    `constexpr`**.
-6. Data members used in `constexpr` evaluation must be integral constants or
-   themselves `constexpr`.
+6. Data members used in `constexpr` evaluation must be data that can be
+   evaluated at compile-time.
 7. A `constexpr` instance **is always `const`** implicitly, but the reverse is
    not true—`const` instances are not guaranteed to be evaluated at compile
    time.

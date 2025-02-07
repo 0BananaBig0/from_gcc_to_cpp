@@ -175,13 +175,13 @@ RetType var_name = funcName( arg_list );
 
 #### Function Argument Pushing Order (Stack Order)
 
-1. **Right to left** (**most common**):
+1. **Right to left** (**most common**, GCC):
    - In most platforms and compilers (e.g., x86 and x64 using the C calling
      convention), arguments are pushed onto the stack from right to left.
    - This means the rightmost parameter is pushed first.
    - This allows the function to access arguments in the correct order when it
      retrieves them from the stack.
-2. Left to right (less common):
+2. Left to right (less common, Clang):
    - Some calling conventions (e.g., used in some versions of the ARM
      architecture) may push arguments left to right (from leftmost to
      rightmost).
@@ -427,20 +427,20 @@ func_ptr_name = &funcName; // Recommend.
 
 ```CPP
 // A function whose return type isn't `void`.
-auto result = func_ptr_name( arg_list ); // Not recommend.
-auto result = ( *func_ptr_name )( arg_list ); // Recommend.
+auto result = func_ptr_name( arg_list ); // Not recommend, implicit dereference.
+auto result = ( *func_ptr_name )( arg_list ); // Recommend, explicit dereference.
 ```
 
 ```CPP
 // This syntax is equivalent to the syntax mentioned above.
-RetType result = func_ptr_name( arg_list ); // Not recommend.
-RetType result = ( *func_ptr_name )( arg_list ); // Recommend.
+RetType result = func_ptr_name( arg_list ); // Not recommend, implicit dereference.
+RetType result = ( *func_ptr_name )( arg_list ); // Recommend, explicit dereference.
 ```
 
 ```CPP
 // A function whose return type is `void`.
-func_pt_name( arg_list ); // Not recommend.
-( *func_ptr_name )( arg_list ); // Recommend.
+func_pt_name( arg_list ); // Not recommend, implicit dereference.
+( *func_ptr_name )( arg_list ); // Recommend, explicit dereference.
 ```
 
 ```CPP
@@ -448,8 +448,8 @@ RetType ( *func_ptr_name )( para_type_list ) = &ClassName::funcName; // Recommen
 ClassName obj_name;
 ClassName* obj_ptr = &obj_name;
 // A function whose return type isn't `void`.
-auto result = ( obj_name.func_ptr_name )( arg_list ); // Not allow.
-auto result = ( obj_name->func_ptr_name )( arg_list ); // Not allow.
+// auto result = ( obj_name.func_ptr_name )( arg_list ); // Not allow.
+// auto result = ( obj_name->func_ptr_name )( arg_list ); // Not allow.
 auto result = ( obj_name.*func_ptr_name )( arg_list ); // Recommend.
 auto result = ( obj_name->*func_ptr_name )( arg_list ); // Recommend.
 ```
@@ -459,8 +459,8 @@ RetType ( *func_ptr_name )( para_type_list ) = &ClassName::funcName; // Recommen
 ClassName obj_name;
 ClassName* obj_ptr = &obj_name;
 // This syntax is equivalent to the syntax mentioned above.
-RetType result = ( obj_name.func_ptr_name )( arg_list ); // Not allow.
-RetType result = ( obj_name->func_ptr_name )( arg_list ); // Not allow.
+// RetType result = ( obj_name.func_ptr_name )( arg_list ); // Not allow.
+// RetType result = ( obj_name->func_ptr_name )( arg_list ); // Not allow.
 RetType result = ( obj_name.*func_ptr_name )( arg_list ); // Recommend.
 RetType result = ( obj_name->*func_ptr_name )( arg_list ); // Recommend.
 ```
@@ -470,8 +470,8 @@ RetType ( *func_ptr_name )( para_type_list ) = &ClassName::funcName; // Recommen
 ClassName obj_name;
 ClassName* obj_ptr = &obj_name;
 // A function whose return type is `void`.
-( obj_name.func_ptr_name )( arg_list ); // Not allow.
-( obj_name->func_ptr_name )( arg_list ); // Not allow.
+// ( obj_name.func_ptr_name )( arg_list ); // Not allow.
+// ( obj_name->func_ptr_name )( arg_list ); // Not allow.
 ( obj_name.*func_ptr_name )( arg_list ); // Recommend.
 ( obj_name->*func_ptr_name )( arg_list ); // Recommend.
 ```
@@ -482,8 +482,8 @@ ClassName* obj_ptr = &obj_name;
    ```CPP
    using FuncPtrName = RetType ( * )( parameter_types );
    FuncPtrName func_ptr_name;
-   // using funcPtrName = RetType ( SpaceName::* )( ... );   // Alias for member function
-   // using funcPtrName = RetType ( ClassName::* )( ... );   // Alias for member function
+   // using funcPtrName = RetType ( SpaceName::* )( ... );   // Alias for member function.
+   // using funcPtrName = RetType ( ClassName::* )( ... );   // Alias for member function.
    ```
 
 #### Syntax for Function Pinter Declaration Using `typedef`

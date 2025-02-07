@@ -11,6 +11,7 @@
       - [Explanation](#explanation)
       - [Characteristics](#characteristics)
       - [Temporary Variables](#temporary-variables)
+    - [Notes](#notes)
     - [Instances](#instances)
       - [Explanation](#explanation-1)
       - [Characteristics](#characteristics-1)
@@ -43,7 +44,7 @@
     - [Lvalue References (`Type&`)](#lvalue-references-type)
       - [Explanation](#explanation-6)
       - [Usage](#usage)
-      - [Notes](#notes)
+      - [Notes](#notes-1)
     - [Rvalue References (`Type&&`)](#rvalue-references-type)
       - [Explanation](#explanation-7)
       - [Usage](#usage-1)
@@ -62,7 +63,7 @@
   - [Keywords](#keywords)
   - [Type Specifiers](#type-specifiers)
   - [Segmentation Fault (Linux) and Access Violation (Win)](#segmentation-fault-linux-and-access-violation-win)
-  - [Notes](#notes-1)
+  - [Notes](#notes-2)
 
 <!-- vim-markdown-toc -->
 
@@ -184,6 +185,11 @@
    function call or type conversion, which exist only for the duration of their
    use.
 5. They help simplify code without requiring permanent storage.
+
+#### Notes
+
+1. In C++17, to resolve multiple definition issues, the `inline` variable is
+   introduced.
 
 #### Instances
 
