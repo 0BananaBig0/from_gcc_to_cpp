@@ -79,6 +79,8 @@
    conversion will result, possibly with a loss of precision.
 10. Favor `double` over `float` unless space is at a premium, as the lack of
     precision in a float will often lead to inaccuracies.
+11. C++ does not define the order of evaluation for function arguments or the
+    operands of operators.
 
 ## Common Compiler Optimization Techniques
 
@@ -468,3 +470,11 @@ struct Vector3 {
 8. The order in which expressions (operands, function arguments, and
    subexpressions) with the same precedence level are evaluated is undefined
    behavior (UB). (Result in a UB.)
+9. Integer/0. (Result in a UB.)
+10. Number/0.0. (May result in a UB, or `NaN` or `Inf` (on architectures that
+    support IEEE754 floating point format).)
+11. A function or expression is said to have a side effect if it has some
+    observable effect beyond producing a return value. In many cases, C++ also
+    does not specify when the side effects of operators must be applied. Using a
+    variable that has a side effect applied to it more than once in a given
+    statement. (may result in a UB.)
