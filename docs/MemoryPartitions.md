@@ -320,3 +320,7 @@
    ----------------------
    Low Memory Addresses
    ```
+4. On modern computer architectures, the smallest addressable unit of memory is
+   a byte. This means one basic address point to a 8-bit data.
+5. Since all objects need to have unique memory addresses, this means objects
+   must be at least one byte in size.

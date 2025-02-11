@@ -302,3 +302,13 @@ operator TargetType() const {
    ternary operators** can be confusing, so we should **avoid using them**.
 3. The **compiler** is smart enough so that it can **optimize some arithmic
    operations** to some bitwise operations, for example, `5 x 16` to `5 << 4`.
+4. Short circuit evaluation may cause Logical OR and Logical AND to not evaluate
+   the right operand. Avoid using expressions with side effects in conjunction
+   with these operators. Only the built-in versions of these operators perform
+   short-circuit evaluation. If you overload these operators to make them work
+   with your own types, those overloaded operators will not perform
+   short-circuit evaluation.
+5. Avoid using the bitwise operators with signed operands, as many operators
+   will return implementation-defined results prior to C++20 or have other
+   potential gotchas that are easily avoided by using unsigned operands (or
+   std::bitset).

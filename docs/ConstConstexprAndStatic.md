@@ -317,6 +317,9 @@ const ClassName obj_ptr;
 5. Any variable or object declared with the `constexpr` keyword is constant and
    **cannot be modified after it is initialized**.
 6. It enhances **the code readabilit**.
+7. While `extern constexpr` variables cannot be used as forward declarations,
+   they are allowed as definitions but are not useful. `extern const` variables
+   are allowed but are treated as runtime `const` variables.
 
 #### Allowed Elements (Valid Elements)
 
@@ -580,9 +583,21 @@ RetType funcName() {
 
 1. A `static` global variable is declared outside of all functions and is **only
    accessible within the file** in which it is declared, **preventing name
-   conflicts in other files**.
+   conflicts in other files**. (Internal linkage.)
 2. The variable is **automatically initialized to zero** if **not explicitly
    initialized**.
+3. `const` and `constexpr` global variables have internal linkage by default
+   (and thus don’t need the `static` keyword -- if it is used, it will be
+   ignored).
+4. If `const` objects had external linkage by default, they would only be usable
+   in constant expressions in the single translation unit containing the
+   definition, and they could not be effectively propagated via header files, as
+   `#`including the header into more than one source file would result in an ODR
+   violation.
+5. Internal objects (and functions) are defined in different files are
+   considered to be independent entities (even if their names and types are
+   identical), so there is no violation of the one-definition rule. Each
+   internal object only has one definition.
 
 ###### Syntax
 

@@ -49,10 +49,44 @@
    avoid many unpredictable issues
 4. **Float:** Be very careful. Both `float` and `double` type variables **have
    precision limitations**. You should **never use `==` or `!=` to compare
-   them** with any number. Instead, you should try to **convert the comparison
-   into `>=` or `<=` forms**. **Rounding errors** make floating point
-   comparisons tricky. Performing mathematical operations on these values will
-   cause the rounding errors to grow larger.
+   them** with any number, except for both of them are initialized with literal
+   values or constants. Instead, you should try to **convert the comparison into
+   `>=` or `<=` forms**. **Rounding errors** make floating point comparisons
+   tricky. Performing mathematical operations on these values will cause the
+   rounding errors to grow larger.
+
+   ```CPP
+   // Our own constexpr implementation of std::abs (for use in C++14/17/20)
+   // In C++23, use std::abs
+   // constAbs() can be called like a normal function, but can handle different
+   // types of values (e.g. int, double, etc...)
+   template< typename T > constexpr T constAbs( T x ) {
+      return ( x < 0 ? -x : x );
+   }
+
+   // Return true if the difference between a and b is within epsilon percent of
+   // the larger of a and b
+   constexpr bool approximatelyEqualRel( double a, double b, double relEpsilon ) {
+      return ( constAbs( a - b )
+               <= ( std::max( constAbs( a ), constAbs( b ) ) * relEpsilon ) );
+   }
+
+   // Return true if the difference between a and b is less than or equal to
+   // absEpsilon, or within relEpsilon percent of the larger of a and b
+   constexpr bool approximatelyEqualAbsRel( double a,
+                                            double b,
+                                            double absEpsilon,
+                                            double relEpsilon ) {
+      // Check if the numbers are really close -- needed when comparing numbers
+      // near zero.
+      if( constAbs( a - b ) <= absEpsilon )
+         return true;
+
+      // Otherwise fall back to Knuth's algorithm
+      return approximatelyEqualRel( a, b, relEpsilon );
+   }
+   ```
+
 5. You might assume that types that use less memory would be faster than types
    that use more memory. This is not always true. **CPUs are often optimized to
    process data of a certain size (e.g. 32 bits)**, and **types that match that
@@ -81,6 +115,9 @@
     precision in a float will often lead to inaccuracies.
 11. C++ does not define the order of evaluation for function arguments or the
     operands of operators.
+12. The C++ standard says that C++ compilers should support 256 levels of
+    nesting -- however not all do (e.g. as of the time of writing, Visual Studio
+    supports fewer).
 
 ## Common Compiler Optimization Techniques
 

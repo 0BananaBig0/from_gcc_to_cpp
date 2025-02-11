@@ -174,8 +174,9 @@
 4. A class helps enforce encapsulation by limiting access to internal details
    and exposing only the necessary functionalities, **making code more modular,
    reusable**, and **easier to maintain**.
-5. An **empty object** occupy **at least one byte** memory. Creating an object
-   on the stack is faster than on the heap.
+5. An **empty object** occupy **at least one byte** memory, since all objects
+   need to have unique memory addresses. Creating an object on the stack is
+   faster than on the heap.
 6. **Structures( Stored as the class ) + Functions( Stored outside of the class
    ) = Classes**.
 
@@ -1742,6 +1743,7 @@ class FinalClass final {};
 6. `num_of_bits` is the number of bits allocated to this member.
 7. The size of `ClassName` is equal to (memory alignment)
    ` ceil( (double)( num_of_bits1 + num_of_bits2 + ... ) / sizeof( maximum-size type ) ) * sizeof( maximum-size type );`.
+8. It's different from `std::bitset`.
 
 #### Syntax
 
