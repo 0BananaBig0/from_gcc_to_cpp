@@ -41,3 +41,4 @@
   - [FileIOs](./FileIOs.md)
   - [QT](./CommonQtStuffes.md)
   - [Design Patterns](./DesignPatterns.md)
+  - [OpenCL and Cuda](./OpenCLAndCuda.md)

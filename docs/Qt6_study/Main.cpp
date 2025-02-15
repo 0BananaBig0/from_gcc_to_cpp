@@ -1,4 +1,4 @@
-#define PRO_OBS
+#define MAI_WIN
 #ifdef BEH_OBS
 // clang-format off
 #include "ObserveEventsAndSignals.h"
