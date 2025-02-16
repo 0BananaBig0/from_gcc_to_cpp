@@ -6,6 +6,15 @@
   - [OpenCL Compilation Process](#opencl-compilation-process)
   - [Key Differences Between CUDA and OpenCL Compilation](#key-differences-between-cuda-and-opencl-compilation)
   - [Summary of Execution Flow](#summary-of-execution-flow)
+  - [How to Determine the Size of a Local Work Group](#how-to-determine-the-size-of-a-local-work-group)
+- [Copy Engine, DMA, MMU, GPU Memory, and CPU Memory](#copy-engine-dma-mmu-gpu-memory-and-cpu-memory)
+  - [Introduction](#introduction-1)
+  - [Copy Engine](#copy-engine)
+  - [Direct Memory Access (DMA)](#direct-memory-access-dma)
+  - [Memory Management Unit (MMU)](#memory-management-unit-mmu)
+  - [GPU Memory](#gpu-memory)
+  - [CPU Memory](#cpu-memory)
+  - [Interaction Between Components](#interaction-between-components)
 
 <!-- vim-markdown-toc -->
 
@@ -80,8 +89,6 @@ processes, and the files executed at runtime.
    - Host executable (CPU code).
    - Kernel code (PTX or SPIR) compiled and executed by the OpenCL runtime.
 
----
-
 ### Key Differences Between CUDA and OpenCL Compilation
 
 | Aspect                | CUDA                                  | OpenCL                                   |
@@ -94,13 +101,109 @@ processes, and the files executed at runtime.
 
 ### Summary of Execution Flow
 
-- **CUDA**:
-  - `.cu` -> PTX -> (Optional: SASS) -> `.cubin` -> Linked with host code ->
-    Host executable -> Runs on CPU + GPU.
-- **OpenCL**:
-  - `.cl` + Host C/C++ -> Host executable -> Kernel compiled to PTX/SPIR at
-    runtime -> Runs on CPU + GPU.
-- Both CUDA and OpenCL rely on intermediate representations (PTX for CUDA,
-  PTX/SPIR for OpenCL) to ensure portability across different GPU architectures.
-  However, CUDA performs most of the compilation and linking steps at compile
-  time, while OpenCL performs kernel compilation and linking at runtime.
+1. **CUDA**:
+   - `.cu` -> PTX -> (Optional: SASS) -> `.cubin` -> Linked with host code ->
+     Host executable -> Runs on CPU + GPU.
+2. **OpenCL**:
+   - `.cl` + Host C/C++ -> Host executable -> Kernel compiled to PTX/SPIR at
+     runtime -> Runs on CPU + GPU.
+3. Both CUDA and OpenCL rely on intermediate representations (PTX for CUDA,
+   PTX/SPIR for OpenCL) to ensure portability across different GPU
+   architectures. However, CUDA performs most of the compilation and linking
+   steps at compile time, while OpenCL performs kernel compilation and linking
+   at runtime.
+
+### How to Determine the Size of a Local Work Group
+
+1. **Find the Warp Size or Preferred Work Group Size Multiple**:
+   - Look up your GPU architecture to determine its warp size, or use the
+     `clinfo` command to find the `Preferred work group size multiple`.
+2. **Find the Number of Warps per SM**:
+   - Research your GPU architecture to determine the number of warps each
+     Streaming Multiprocessor (SM) can handle.
+3. **Consider Warp Scheduling and Work Group Size**:
+   - Modern GPUs support warp scheduling, which allows idle warps within an SM
+     to process parts of another workgroup while one workgroup is being
+     processed. To maximize efficiency, the optimal workgroup size should have a
+     multiple relationship with the product of the warp size and the number of
+     warps per SM.
+4. **Determine the Local Work Group Size**:
+   - When deciding the size of a local workgroup, consider the following
+     priority order:
+     - `local_size % (warp_size * warp_number) == 0`;
+     - `(warp_size * warp_number) % local_size == 0`;
+     - `local_size % warp_size == 0`;
+     - Other considerations.
+
+## Copy Engine, DMA, MMU, GPU Memory, and CPU Memory
+
+### Introduction
+
+1. In modern computing systems, the **Copy Engine**, **Direct Memory Access
+   (DMA)**, **Memory Management Unit (MMU)**, **GPU Memory**, and **CPU Memory**
+   are integral components that work together to manage data transfers and
+   memory access efficiently.
+
+### Copy Engine
+
+1. The Copy Engine is a dedicated hardware component within the GPU responsible
+   for efficiently transferring data between different memory regions, such as
+   between system memory (CPU memory) and GPU memory, or between multiple GPUs.
+2. This engine operates independently of the GPU's main compute resources,
+   allowing for concurrent data transfers without interrupting computational
+   tasks.
+3. For example, NVIDIA's Volta GV100 GPU features copy engines that can generate
+   page faults for addresses not mapped in the GPU's page tables, enhancing data
+   transfer capabilities.
+
+### Direct Memory Access (DMA)
+
+1. DMA is a feature that allows hardware peripherals, such as GPUs, to access
+   system memory directly, bypassing the CPU.
+2. This direct access facilitates efficient data transfers between the GPU and
+   system memory, reducing CPU overhead and enhancing performance.
+3. For instance, when programming using CUDA, the `memcpy` function can be used
+   to copy data to the CPU or GPU, utilizing the PCIe controller and the DMA
+   engine to handle the data transfer.
+
+### Memory Management Unit (MMU)
+
+1. The MMU is responsible for translating virtual memory addresses to physical
+   addresses, enabling the operating system to manage memory effectively.
+2. In GPUs, the MMU ensures that memory accesses are valid and that the GPU
+   operates within its allocated memory space.
+3. It also enforces memory protection, preventing unauthorized access to certain
+   memory regions.
+4. For instance, a miss in the GPU MMU can result in an Address Translation
+   Request (ATR) to the CPU, which then looks in its page tables for the
+   virtual-to-physical mapping.
+
+### GPU Memory
+
+1. GPU memory, often referred to as VRAM (Video RAM), is dedicated memory used
+   by the GPU to store textures, frame buffers, and other data necessary for
+   rendering graphics and performing computations.
+2. Efficient management of GPU memory is crucial for high-performance computing
+   tasks, as it directly impacts the GPU's ability to process data quickly.
+
+### CPU Memory
+
+1. CPU memory, or system memory, is the main memory used by the CPU to store
+   data and instructions for processing.
+2. This memory is typically larger and slower than GPU memory but is essential
+   for general-purpose computing tasks.
+
+### Interaction Between Components
+
+1. When a GPU performs a DMA operation, the Copy Engine utilizes the DMA engine
+   to transfer data between GPU memory and CPU memory.
+2. The MMU ensures that these memory accesses are valid and properly mapped,
+   translating virtual addresses to physical addresses and enforcing memory
+   protection.
+3. This collaboration allows for efficient and secure data transfers between the
+   CPU and GPU, enhancing overall system performance.
+4. In summary, the Copy Engine, DMA, MMU, GPU memory, and CPU memory work
+   together to manage data transfers and memory access in modern computing
+   systems.
+5. Their coordinated operation ensures efficient and secure data handling, which
+   is essential for high-performance computing tasks.
