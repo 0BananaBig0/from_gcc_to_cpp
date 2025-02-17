@@ -15,6 +15,7 @@
   - [GPU Memory](#gpu-memory)
   - [CPU Memory](#cpu-memory)
   - [Interaction Between Components](#interaction-between-components)
+- [Command Queues (or Cuda Streams), Blocking or Non-blocking and Priorities](#command-queues-or-cuda-streams-blocking-or-non-blocking-and-priorities)
 
 <!-- vim-markdown-toc -->
 
@@ -207,3 +208,58 @@ processes, and the files executed at runtime.
    systems.
 5. Their coordinated operation ensures efficient and secure data handling, which
    is essential for high-performance computing tasks.
+
+## Command Queues (or Cuda Streams), Blocking or Non-blocking and Priorities
+
+1.  Command queues deliver events sequentially and cache all events that have
+    not been delivered.
+2.  The next event is delivered only when the current event has finished in the
+    same command queue, even if multiple physical queues are used.
+3.  The blocking and non-blocking flags indicate whether the host needs to wait
+    for the current blocking or non-blocking enqueued event to finish.
+4.  If it’s blocking, the host does not execute any tasks until the command has
+    finished.
+5.  Otherwise, after enqueuing the command, the host continues doing other work.
+6.  Priorities in OpenCL can influence the order in which events are scheduled
+    for execution, but tasks from different command queues do not preempt each
+    other. The OpenCL runtime schedules tasks based on availability of physical
+    command queues, and higher-priority tasks are executed when a physical queue
+    becomes available. But, the task itself will not forcefully stop the task
+    currently executing in the physical queue.
+7.  In OpenCL, when the number of command queues exceeds the number of available
+    physical queues, the scheduling of events is influenced by:
+    - Enqueued order in the host code: The sequence in which events are added to
+      the queues in the host code matters.
+    - Event order in their own event queue: Events within the same command queue
+      are executed in the order they are enqueued, respecting the dependency
+      chain of the events.
+    - Priorities of the command queues: If the command queues have different
+      priorities, the OpenCL runtime will favor executing tasks from
+      higher-priority queues when physical queues become available.
+8.  Pseudocode: Host code, driver, and events run asynchronously
+    1. Host creates multiple command queues.
+    2. Host enqueues an event into a command queue:
+       - The event may not be enqueued as the last event.
+       - Its position depends on its priority and the priorities of other events
+         cached in the command queue.
+    3. Driver enqueues the command queue into a software queue:
+       - The command queue may not be enqueued as the last command queue.
+       - Its position depends on its priority and the priorities of other
+         command queues cached in the software queue.
+    4. Driver checks if there is an available physical queue:(This step varies
+       depending on the implementation of the driver.)
+       - If a physical queue is available, the software dequeues a command
+         queue:
+         - Driver checks if the command queue is related to a busy physical
+           queue:
+           - If it is, the counter of the busy physical queue is incremented
+             by 1.
+           - If it is not, the command queue dequeues an event, and the counter
+             of the available physical queue is incremented by 1.
+       - Otherwise, the driver waits for an available command queue.
+    5. At the same time, the host checks if the enqueue function is a blocking
+       function:
+       - If it is a blocking function, the host waits for the enqueued event to
+         finish.
+       - If it is not a blocking function, the host continues executing the next
+         code.

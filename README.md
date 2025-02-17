@@ -1799,3 +1799,4 @@
     - [GPU Memory](./docs/OpenCLAndCuda.md#gpu-memory)
     - [CPU Memory](./docs/OpenCLAndCuda.md#cpu-memory)
     - [Interaction Between Components](./docs/OpenCLAndCuda.md#interaction-between-components)
+  - [Command Queues (or Cuda Streams), Blocking or Non-blocking and Priorities](./docs/OpenCLAndCuda.md#command-queues-or-cuda-streams-blocking-or-non-blocking-and-priorities)
