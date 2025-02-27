@@ -1,9 +1,10 @@
-/*************************************************************************
-  > File Name: ObserveEventsAndSignals.cpp
-  > Author: Huaxiao Liang
-  > Mail: 1184903633@qq.com
-  > Created Time: Sat 07 Dec 2024 09:41:51 PM CST
- ************************************************************************/
+////////////////////////////////////////////////////////////////////////////////
+///                  File Name: ObserveEventsAndSignals.cpp                  ///
+///                          Author: Huaxiao Liang                           ///
+///                         Mail: hxliang633@163.com                         ///
+///                         12/07/2024-Sat-09:41:51                          ///
+////////////////////////////////////////////////////////////////////////////////
+
 #include "ObserveEventsAndSignals.h"
 #include <QVBoxLayout>
 #include <QCoreApplication>
@@ -205,3 +206,4 @@ void ChildWidget::wheelEvent( QWheelEvent* event ) {
    qDebug() << "ChildWidget handled a wheelEvent!";
    QWidget::wheelEvent( event );
 }
+

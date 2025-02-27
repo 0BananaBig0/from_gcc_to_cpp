@@ -1,4 +1,11 @@
-#define MAI_WIN
+////////////////////////////////////////////////////////////////////////////////
+///                           File Name: Main.cpp                            ///
+///                          Author: Huaxiao Liang                           ///
+///                         Mail: hxliang633@163.com                         ///
+///                         12/11/2024-Wed-23:51:20                          ///
+////////////////////////////////////////////////////////////////////////////////
+
+#define PRO_OBS
 #ifdef BEH_OBS
 // clang-format off
 #include "ObserveEventsAndSignals.h"

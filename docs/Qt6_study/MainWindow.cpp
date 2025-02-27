@@ -1,11 +1,10 @@
-/*************************************************************************
-  >
- * File Name: MainWindow.cpp
-  > Author: Huaxiao Liang
-  > Mail:
- * 1184903633@qq.com
-  > Created Time: Tue 17 Dec 2024 03:51:39 PM CST
- * ************************************************************************/
+////////////////////////////////////////////////////////////////////////////////
+///                        File Name: MainWindow.cpp                         ///
+///                          Author: Huaxiao Liang                           ///
+///                         Mail: hxliang633@163.com                         ///
+///                         12/17/2024-Tue-15:51:39                          ///
+////////////////////////////////////////////////////////////////////////////////
+
 #include "MainWindow.h"
 #include <QDebug>
 #include <QDockWidget>
@@ -152,3 +151,4 @@ void MainWindow::setToggleFloatingDockIcon() {
       _toggleFloatingDock->setIcon( QIcon() );
    };
 }
+

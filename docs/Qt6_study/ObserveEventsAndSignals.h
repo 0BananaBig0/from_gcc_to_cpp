@@ -1,9 +1,10 @@
-/*************************************************************************
-  > File Name: ObserveEventsAndSignals.h
-  > Author: Huaxiao Liang
-  > Mail: 1184903633@qq.com
-  > Created Time: Mon 09 Dec 2024 04:15:06 PM CST
- ************************************************************************/
+////////////////////////////////////////////////////////////////////////////////
+///                   File Name: ObserveEventsAndSignals.h                   ///
+///                          Author: Huaxiao Liang                           ///
+///                         Mail: hxliang633@163.com                         ///
+///                         12/09/2024-Mon-16:15:06                          ///
+////////////////////////////////////////////////////////////////////////////////
+
 #pragma once
 #include <QWidget>
 #include <QPushButton>
@@ -88,3 +89,4 @@ class ChildWidget: public QWidget {
       QPushButton* button;
       QLabel* label;
 };
+
