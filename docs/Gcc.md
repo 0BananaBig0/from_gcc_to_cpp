@@ -195,6 +195,7 @@
 1. Dynamic linking allows a program to **link to libraries at runtime** rather
    than at compile time.
 2. This can **improve modularity** and **reduce executable size**.
+3. Not need: `ld` and import libraries.
 
 ##### Characteristics
 

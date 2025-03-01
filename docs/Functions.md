@@ -510,7 +510,8 @@ ClassName* obj_ptr = &obj_name;
 #### Explanation
 
 1. A lambda function is a way to define **an anonymous inline function** (i.e.,
-   a function without a name) directly in your code.
+   a function without a name) directly in your code, which is **a function
+   object**.
 2. It allows you to create small, simple function-like entities **`inline`**,
    making your **code more concise and flexible**.
 3. **All elements captured** by a lambda function **must be declared before the

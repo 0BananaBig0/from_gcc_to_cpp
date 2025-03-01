@@ -17,7 +17,7 @@
     - [Full specialization](#full-specialization)
       - [Explanation](#explanation-4)
       - [Syntax](#syntax-2)
-    - [Partial Specialization (Partial Parameters)](#partial-specialization-partial-parameters)
+    - [Partial Specialization (Partial Parameters) (Not Allowed for Functions)](#partial-specialization-partial-parameters-not-allowed-for-functions)
       - [Explanation](#explanation-5)
       - [Syntax](#syntax-3)
   - [Variadic Templates (Template Packs)](#variadic-templates-template-packs)
@@ -288,7 +288,7 @@ RetType var_name2
    = funcName( arg_list2 );   // Utilizes the specialized version.
 ```
 
-#### Partial Specialization (Partial Parameters)
+#### Partial Specialization (Partial Parameters) (Not Allowed for Functions)
 
 ##### Explanation
 
@@ -315,25 +315,6 @@ template< para_list2 > class ClassName< arg_type_list3 > {
 // Usage syntax.
 ClassName< arg_list1 > obj1;              // Utilizes the generic version.
 ClassName< arg_list2, arg_list3 > obj2;   // Utilizes the specialized version.
-```
-
-```CPP
-// Definition syntax.
-template< para_list1 >
-RetType funcName( para_list1 ){
-   // Implementation.
-};
-
-// Partial specialization for `arg_type_list3`.
-template< para_list2t >
-RetType funcName< arg_type_list3 >( para_list2f, para_list3 ){
-   // Another implementation.
-};
-
-// Usage syntax.
-RetType var_name1 = funcName( arg_list1 );   // Utilizes the generic version.
-RetType var_name2
-   = funcName( arg_list2, arg_list3 );   // Utilizes the specialized version.
 ```
 
 ```CPP

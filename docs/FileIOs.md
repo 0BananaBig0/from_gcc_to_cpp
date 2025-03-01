@@ -230,8 +230,8 @@ std::wcerr << L"Error occurred";  // Wide character error output
    (`stderr`), typically **buffered**.
 2. It's commonly used for logging messages, warnings, or diagnostic data.
 3. It stores the log messages in memory before outputting them.
-4. Its output is similar to `std::cerr`, which **cannot be redirected to a
-   file** using the terminal operator `>`.
+4. Its output is similar to `std::cerr` that **cannot be redirected to a file**
+   using the terminal operator `>`.
 5. It always prints all messages to the terminal.
 
 #### `std::wclog`
