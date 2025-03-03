@@ -64,6 +64,7 @@
     - [`noexcept` Lambda Functions](#noexcept-lambda-functions)
       - [Explanation](#explanation-10)
       - [Syntax](#syntax-4)
+    - [Notes](#notes)
   - [Function Parameter Packs](#function-parameter-packs)
     - [Explanation](#explanation-11)
     - [Common Syntax](#common-syntax)
@@ -658,6 +659,17 @@ auto funcName =  [capture]( para_list ) mutable -> RetType { body };
 ```CPP
 auto funcName =  [capture]( para_list ) noexcept -> RetType { body };
 ```
+
+#### Notes
+
+1. If a lambda function is defined within a class and captures members of the
+   class, it implicitly captures the `this` pointer of the class. This allows
+   the lambda function to access all members of the class through the `this`
+   pointer, similar to how member functions of the class operate. As a result,
+   the lambda function can directly modify these members via the `this` pointer.
+2. The lambda function can directly access `static` variables and global
+   variables without explicitly capturing them, as these variables have global
+   or class scope and are not tied to a specific instance of the class.
 
 ### Function Parameter Packs
 
