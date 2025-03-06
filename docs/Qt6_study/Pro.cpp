@@ -11,61 +11,65 @@
 #include "Pro.h"
 
 int main_PRO_OBS() {
-   ProTest pro_exa;
+   ProTest pro_test;
    int count = 0;
-   QProperty< int > bindable_pro( 7 );
+   QProperty< int > modern_pro_outside( 7 );
    auto show_name = [&]() {
-      qDebug() << "count: " << count << ", tradPro: " << pro_exa.tradPro()
-               << ", tMBoundPro: " << pro_exa.tMBoundPro()
-               << ", bindablePro: " << pro_exa.bindBindablePro().value();
+      qDebug() << "count: " << count << ", tradPro: " << pro_test.tradPro()
+               << ", tMBoundPro: " << pro_test.tMBoundPro()
+               << ", modernPro: " << pro_test.bindModernPro().value();
    };
-   QObject::connect( &pro_exa, &ProTest::tradProChanged, show_name );
-   QObject::connect( &pro_exa, &ProTest::tMBoundProChanged, show_name );
-   QObject::connect( &pro_exa, &ProTest::tmBindWithTMComProChanged, [&]() {
+   QObject::connect( &pro_test, &ProTest::tradProChanged, show_name );
+   QObject::connect( &pro_test, &ProTest::tMBoundProChanged, show_name );
+   QObject::connect( &pro_test, &ProTest::tmBindWithTMComProChanged, [&]() {
       qDebug() << "count: " << count
-               << ", tMBoundComPro: " << pro_exa.tMBoundComPro()
+               << ", tMBoundComPro: " << pro_test.tMBoundComPro()
                << ", tmBindWithTMComPro: "
-               << pro_exa.bindTMBindWithTMComPro().value();
+               << pro_test.bindTMBindWithTMComPro().value();
+   } );
+   QObject::connect( &pro_test, &ProTest::modernProObjChanged, [&]() {
+      qDebug() << "count: " << count
+               << ", tMBoundComPro: " << pro_test.tMBoundComPro()
+               << ", tmBindWithTMComPro: "
+               << pro_test.bindTMBindWithTMComPro().value();
    } );
 
    count++;
-   pro_exa.setProperty( "tradPro", 1 );
+   pro_test.setProperty( "tradPro", 1 );
    count++;
-   pro_exa.setTradPro( 2 );
+   pro_test.setTradPro( 2 );
 
    // Binding with the internal QProperty object.
-   // pro_exa.boundObj().setBinding(
-   //    [&]() { return pro_exa.getbindablePropObj().value() * 3; } );
    count++;
-   pro_exa.setBindablePro( 3 );
+   pro_test.setModernPro( 3 );
    count++;
-   pro_exa.setProperty( "tMBoundPro", 12 );
+   pro_test.setProperty( "tMBoundPro", 12 );
    count++;
-   pro_exa.setTMBoundPro( 15 );
+   pro_test.setTMBoundPro( 15 );
 
-   // The above two operations unbind `_bindablePro`, the binding operation is
+   // The above two operations unbind `_modernPro`, the binding operation is
    // required again if need.
    count++;
-   pro_exa.setBindablePro( 6 );
-   pro_exa.bindTMBoundPro().setBinding(
-      [&]() { return pro_exa.bindBindablePro().value() * 3; } );
+   pro_test.setModernPro( 6 );
+   pro_test.bindTMBoundPro().setBinding(
+      [&]() { return pro_test.bindModernPro().value() * 3; } );
 
    // Binding with the external QProperty object.
    count++;
-   pro_exa.bindTMBoundPro().setBinding(
-      [&]() { return bindable_pro.value() * 6; } );
+   pro_test.bindTMBoundPro().setBinding(
+      [&]() { return modern_pro_outside.value() * 6; } );
    count++;
-   bindable_pro = 8;
+   modern_pro_outside = 8;
    count++;
-   pro_exa.setProperty( "tMBoundPro", 54 );
+   pro_test.setProperty( "tMBoundPro", 54 );
    count++;
-   pro_exa.setTMBoundPro( 60 );
+   pro_test.setTMBoundPro( 60 );
 
    // Internal QProperty object binds with external QProperty object.
    count++;
-   bindable_pro = 11;
-   pro_exa.bindBindablePro().setBinding(
-      [&]() { return bindable_pro.value() * 7; } );
+   modern_pro_outside = 11;
+   pro_test.bindModernPro().setBinding(
+      [&]() { return modern_pro_outside.value() * 7; } );
    show_name();
    return 0;
 }

@@ -14,13 +14,18 @@
 #include <QObjectComputedProperty>
 #include <QQuickView>
 
+// Static properties: Defined at compiled time, setProperty() call their setters
+// or writers;
+// Dynamic properties: Added by setProperty() at run time, should emit signals
+// manually;
+
 // All properties should not be used as a temporary variable.
 // All getters should be and must be a `const` method.
 // All BINDABLE can't be a `const` method.
 // All bindable objects, bound properties and bound objects should be in the
 // same thread if they bind with each other.
 
-// Traditional property: Q_PROPERTY.
+// Traditional property: Q_PROPERTY
 // The `Q_PROPERTY()` macro registers a class member variable as a property with
 // a specified `name`, allowing the member to be read and modified using
 // `QObject::property()`(read) and `QObject::setProperty()`(mdoify), which take
@@ -65,6 +70,60 @@
 // When BINDABLE is specified in Q_PROPERTY, it must work with modern properties
 // such as Q_OBJECT_BINDABLE_PROPERTY or QProperty.
 
+// QProperty, QObjectBindableProperty, and QObjectComputedProperty can bind to
+// each other directly and efficiently.
+// Q_PROPERTY cannot directly bind to these modern property types because
+// it relies on the meta-object system.
+// To integrate both systems, you can use Q_OBJECT_BINDABLE_PROPERTY or
+// manually bridge the properties using signals and slots.
+
+// Traditional property: Q_PROPERTY
+// Should emit its signal in its setter or writer;
+// setProperty() calls its setter or writer;
+// Rely on signals and slots to notify its bound properties to update values;
+// Used to define a traditional property or expose a modern property;
+// May or may not store values;
+// Inside a class;
+// Work with QML;
+// With the meta-object system.
+
+// Modern properties:
+// When working with QML or with the meta-object system, should be exposed by
+// Q_PROPERTY.
+// When values are updated by binding in modern Qt properties (like QProperty,
+// QObjectBindableProperty, and QObjectComputedProperty), the setters are not
+// called. Instead, the update happens directly through the binding mechanism,
+// bypassing the setter methods.
+
+//   QProperty:
+//   Does not emit its signal automatically but support automatic data binding
+//   and dependency tracking;
+//   Utilize automatic data binding and dependency tracking to notify its bound
+//   properties to update values;
+//   Store values;
+//   Inside a class or outside a class.
+
+//   QObjectBindableProperty ( Q_OBJECT_BINDABLE_PROPERTY ):
+//   Should register its signal;
+//   Does not need to emit its signal in its setter or writer;
+//   Rely on signals and slots to notify its bound properties to update values;
+//   Store values;
+//   Inside a class.
+
+//   QObjectComputedProperty ( Q_OBJECT_COMPUTED_PROPERTY ):
+//   Can ignore its signal but should call its notify() method in the
+//   traditional properity with which it binds;
+//   When its bound properties are traditional properties, all setters of these
+//   traditional properties should call its notify() method;
+//   When its bound properties are modern properties, all setters of these
+//   modern properties should not call its notify() method;
+//   Not store values;
+//   Inside a class.
+
+// QProperty properties utilize automatic data binding and dependency tracking
+// to notify their bound properties to update values, while other properties
+// rely on signals and slots or a notify function.
+
 // pro = property, t/trad = traditional, m = modern, com = computed
 class ProTest: public QObject {
       Q_OBJECT
@@ -98,29 +157,34 @@ class ProTest: public QObject {
             return;
          }
          _tradPro = val;
+
          // Should emit the signal manually and explicitly, if its related
          // modern property does not register the signal.
          emit tradProChanged( val );
-         // A change in a value which is not a BINDABLE property requires
-         // calling notify. Otherwise, all properties depending on
+
+         // A change in a value which is not a BINDABLE property(tradPro)
+         // requires calling notify. Otherwise, all properties depending on
          // Q_OBJECT_COMPUTED_PROPERTY are not updated.
          _tMBoundComPro.notify();
       }
 
       // Can't have any `const` qualifier, when this function is used to bind
       // with other QProperty objects.
-      QProperty< int >& bindBindablePro() { return _modernPro; }
+      QProperty< int >& bindModernPro() { return _modernPro; }
 
-      void setBindablePro( int val ) {
+      void setModernPro( int val ) {
          if( _modernPro == val ) {
             return;
          }
          _modernPro = val;
-         // Should emit the signal manually and explicitly, if its related
-         // modern property does not register the signal.
+
+         // This does not affect the update of bound properties' values because
+         // QProperty properties utilize automatic data binding and dependency
+         // tracking to notify and update the bound properties.
          emit modernProObjChanged( val );
-         // A BINDABLE property used in the callback changes,
-         // the notificiation occurs automatically.
+
+         // A BINDABLE property used in the callback changes, the notificiation
+         // occurs automatically.
          // _tMBoundComPro.notify();
       }
 
@@ -201,9 +265,22 @@ class ProTest: public QObject {
       int _tradPro;
       // It's also a BINDABLE property, but can be outside of QObject classes.
       QProperty< int > _modernPro;
-      // The following two BINDABLE property must be inside of QObject classes.
-      // Also, these two BINDABLE property register their changed signals.
-      // Work with traditional properties.
+
+      // The following two kinds of BINDABLE properties must be inside of
+      // QObject classes. Also, these two BINDABLE property register their
+      // changed signals. Work with traditional properties.
+
+      // If a property is updated both through its bound property and directly
+      // using setProperty() or its WRITE accessor within the same code block,
+      // the direct update will typically occur first, followed by the indirect
+      // one, regardless of the order in which these methods are called in the
+      // code block.
+
+      // In addition, using setProperty() or its WRITE accessor directly to
+      // update the property will unbind its bound property. This mean if the
+      // bound property is updated, the property is not updated. Programmers
+      // need to bind them together again if need. The binding operation also
+      // emits a changed signal.
       Q_OBJECT_BINDABLE_PROPERTY( ProTest,
                                   int,
                                   _tMBoundPro,
