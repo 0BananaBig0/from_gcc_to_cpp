@@ -37,7 +37,7 @@ set(TARGET Main.exe)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 string(REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE
                "${CMAKE_CXX_FLAGS_RELEASE}")
-# Add a marco Define TEST to enable something
+# Add a marco, define TEST to enable something
 option(TEST "Enable TEST feature" OFF)
 if(TEST)
   message(STATUS "TEST is enabled")

@@ -5,7 +5,6 @@
 ///                         12/11/2024-Wed-23:51:20                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-#define PRO_OBS
 #ifdef BEH_OBS
 // clang-format off
 #include "ObserveEventsAndSignals.h"
