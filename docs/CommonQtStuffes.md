@@ -47,10 +47,11 @@
 10. The system event delivery sequence:
     - From leaf to root, normally, except for installing a global event filter;
     - The child event filter (`eventFilter(...)`) → The general event function
-      of the child (`event(...)`)→ Its parent event filter → The general event
-      function of its parent → Specific event functions (event handlers,
-      `xxxEvent(...)`) of its parent and it. (Because their base classes' event
-      functions call specific event functions to handle events.)
+      of the child (`event(...)`, in fact, calling event handlers)→ Its parent
+      event filter → The general event function of its parent → Specific event
+      functions (event handlers, `xxxEvent(...)`, in fact, called by event()
+      functions of base classes.) of its parent and it. (Because their base
+      classes' event functions call specific event functions to handle events.)
     - Normally, the event filter intercepts an event and try to process it.
     - However, the general event function does not process an event, instead, it
       call correspoding and specific event functions.

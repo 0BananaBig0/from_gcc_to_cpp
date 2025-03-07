@@ -291,8 +291,8 @@ std::thread thread_name2 = std::move( thread_name1 );
 
 ##### Explanation
 
-1. `std::jthread` is **a class** that represents **a managed thread of
-   execution** with **automatic joining** and **optional cooperative
+1. `std::jthread` is a class that represents a managed thread of execution with
+   **automatic joining upon destruction** and **optional cooperative
    cancellation**.
 2. `std::jthread` executes **a sequence of instructions** that can run
    **concurrently** with other threads, all **sharing the same address space**

@@ -65,6 +65,14 @@ Type* ptr = new( address ) Type;   // For a single object.
 Type* arr_ptr = new( address ) Type[size];   // For an array objects.
 ```
 
+```CPP
+// Allocate memory on the stack.
+// Its lifetime is managed by its scope.
+// `delete` should not be used to `delete` it.
+char buffer[sizeof( ClassName )];
+Type* arr_ptr = new( buffer ) ClassName();
+```
+
 #### `delete`
 
 ##### Explanation

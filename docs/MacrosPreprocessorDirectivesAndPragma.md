@@ -19,6 +19,9 @@
       - [Syntax](#syntax-4)
     - [`const` and `constexpr`](#const-and-constexpr)
     - [`inline`](#inline)
+  - [Related Operators `##` and `#`](#related-operators--and-)
+    - [`##`](#)
+    - [`#`](#-1)
 
 <!-- vim-markdown-toc -->
 
@@ -221,3 +224,16 @@ CPP code; // No warning here.
 1. This keyword can be used to **define functions** that behave **like macros**
    **but with type checking and scope**.
 2. [`inline`](./Functions.md#inline).
+
+### Related Operators `##` and `#`
+
+#### `##`
+
+1. The `##` operator is used to concatenate (paste together) two tokens into a
+   single token during macro expansion. This is useful for generating unique
+   names or combining identifiers.
+
+#### `#`
+
+1. The `#` operator converts a macro argument into a string literal. It is used
+   to create string representations of macro arguments.
