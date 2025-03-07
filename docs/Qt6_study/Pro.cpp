@@ -27,12 +27,12 @@ int main_PRO_OBS() {
                << ", tmBindWithTMComPro: "
                << pro_test.bindTMBindWithTMComPro().value();
    } );
-   QObject::connect( &pro_test, &ProTest::modernProObjChanged, [&]() {
-      qDebug() << "count: " << count
-               << ", tMBoundComPro: " << pro_test.tMBoundComPro()
-               << ", tmBindWithTMComPro: "
-               << pro_test.bindTMBindWithTMComPro().value();
-   } );
+   // QObject::connect( &pro_test, &ProTest::modernProObjChanged, [&]() {
+   //    qDebug() << "count: " << count
+   //             << ", tMBoundComPro: " << pro_test.tMBoundComPro()
+   //             << ", tmBindWithTMComPro: "
+   //             << pro_test.bindTMBindWithTMComPro().value();
+   // } );
 
    count++;
    pro_test.setProperty( "tradPro", 1 );
@@ -50,9 +50,10 @@ int main_PRO_OBS() {
    // The above two operations unbind `_modernPro`, the binding operation is
    // required again if need.
    count++;
-   pro_test.setModernPro( 6 );
+   // During the binding process, bound properties are updated.
    pro_test.bindTMBoundPro().setBinding(
       [&]() { return pro_test.bindModernPro().value() * 3; } );
+   pro_test.setModernPro( 6 );
 
    // Binding with the external QProperty object.
    count++;

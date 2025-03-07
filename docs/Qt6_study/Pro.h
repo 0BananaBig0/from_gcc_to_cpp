@@ -125,6 +125,8 @@
 // to notify their bound properties to update values, while other properties
 // rely on signals and slots or a notify function.
 
+// During the binding process, bound properties are updated.
+
 // pro = property, t/trad = traditional, m = modern, com = computed
 class ProTest: public QObject {
       Q_OBJECT
