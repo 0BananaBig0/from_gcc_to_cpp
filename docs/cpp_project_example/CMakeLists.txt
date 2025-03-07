@@ -19,10 +19,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Show the full compilation commands
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-# Add vars for Makefile
-set(TEST_MACRO "-DTEST_SORT")
-set(DBG "-Ofast")
-
 # List all source files
 file(GLOB SRCS CONFIGURE_DEPENDS *.cpp *.h)
 # Define object files (excluding Fun.cpp and FunN.cpp)
@@ -41,11 +37,12 @@ set(TARGET Main.exe)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 string(REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE
                "${CMAKE_CXX_FLAGS_RELEASE}")
-# Add a marco
-if(DEFINED TEST)
+# Add a marco Define TEST to enable something
+option(TEST "Enable TEST feature" OFF)
+if(TEST)
+  message(STATUS "TEST is enabled")
   add_definitions(-DTEST_SORT)
 endif()
-
 # Create static library from Fun.cpp
 add_library(Fun STATIC Fun.cpp)
 
