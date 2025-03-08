@@ -24,7 +24,7 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets Core Gui Quick)
 # Define the target name
 set(Target Main.exe)
 # Define the source files
-file(GLOB SOURCES CONFIGURE_DEPENDS *.cpp *.h)
+file(GLOB SOURCES CONFIGURE_DEPENDS *.cpp *.h *.qrc)
 # Define the header files
 set(HEADERS ObserveEventsAndSignals.h MainWindow.h Pro.h)
 

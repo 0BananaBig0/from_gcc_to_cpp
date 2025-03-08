@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="/">
+    <file>images/application-exit-symbolic.svg</file>
+    <file alias="document-new">images/document-new-symbolic.svg</file>
+    <file alias="document-save">images/document-save-as-symbolic.svg</file>
+    <file alias="color-scheme">images/preferences-color-symbolic.svg</file>
+    <file alias="view">images/view-reveal-symbolic.svg</file>
+    <file alias="view-conceal">images/view-conceal-symbolic.svg</file>
+  </qresource>
+</RCC>

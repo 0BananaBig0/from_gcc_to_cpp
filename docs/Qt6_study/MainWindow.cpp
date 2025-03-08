@@ -31,10 +31,14 @@ MainWindow::MainWindow( QWidget* parent ): QMainWindow( parent ) {
 
 void MainWindow::createFileActions() {
    _newFile
-      = new QAction( QIcon::fromTheme( "document-new" ), "&New File", this );
-   _saveFile
-      = new QAction( QIcon::fromTheme( "document-save" ), "&Save File", this );
-   _quit = new QAction( QIcon::fromTheme( "application-exit" ), "&Quit", this );
+      = new QAction( QIcon::fromTheme( ":/document-new" ), "&New File", this );
+   _saveFile = new QAction( QIcon::fromTheme( ":/document-save" ),
+                            "&Save File",
+                            this );
+   _quit = new QAction(
+      QIcon::fromTheme( ":/images/application-exit-symbolic.svg" ),
+      "&Quit",
+      this );
    _quit->setShortcut( tr( "CTRL+Q" ) );
    connect( _quit, &QAction::triggered, qApp, &QApplication::quit );
 }
@@ -49,9 +53,7 @@ void MainWindow::createFileMenu() {
 
 void MainWindow::createColorSchemeMenu() {
    _colorSchemeMenu
-      = _fileMenu->addMenu( QIcon( "/usr/share/icons/Adwaita/scalable/legacy/"
-                                   "preferences-color-symbolic.svg" ),
-                            "&Color Scheme" );
+      = _fileMenu->addMenu( QIcon( ":/color-scheme" ), "&Color Scheme" );
    _fileMenu->insertMenu( _quit, _colorSchemeMenu );
    _fileMenu->insertSeparator( _quit );
 }
@@ -122,17 +124,17 @@ void MainWindow::createToolBar() {
 
 void MainWindow::setShowOrHideToolBarIcon() {
    if( _toolBar->isVisible() ) {
-      _showOrHideToolBar->setIcon( QIcon::fromTheme( "bookmark-new" ) );
+      _showOrHideToolBar->setIcon( QIcon( ":/view" ) );
    } else {
-      _showOrHideToolBar->setIcon( QIcon() );
+      _showOrHideToolBar->setIcon( QIcon( ":/view-conceal" ) );
    }
 }
 
 void MainWindow::setShowOrHideDockIcon() {
    if( _dockWidget->isVisible() ) {
-      _showOrHideDock->setIcon( QIcon::fromTheme( "bookmark-new" ) );
+      _showOrHideDock->setIcon( QIcon( ":/view" ) );
    } else {
-      _showOrHideDock->setIcon( QIcon() );
+      _showOrHideDock->setIcon( QIcon( ":/view-conceal" ) );
    };
 }
 
