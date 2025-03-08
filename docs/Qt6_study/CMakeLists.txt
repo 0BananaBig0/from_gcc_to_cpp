@@ -23,16 +23,18 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets Core Gui Quick)
 
 # Define the target name
 set(Target Main.exe)
-# Define the source files
-file(GLOB SOURCES CONFIGURE_DEPENDS *.cpp *.h *.qrc)
-# Define the header files
-set(HEADERS ObserveEventsAndSignals.h MainWindow.h Pro.h)
+# List the source files, header files, qrc files
+file(GLOB SOURCES CONFIGURE_DEPENDS *.cpp)
+file(GLOB HEADERS CONFIGURE_DEPENDS *.h)
+file(GLOB RESOURCES CONFIGURE_DEPENDS *.qrc)
 
 # Automatically handle the MOC process for Qt classes with Q_OBJECT macro
 qt_wrap_cpp(MOC_SOURCES ${HEADERS})
+# Process big resource files
+qt_add_big_resources(QT_OBJS ${RESOURCES})
 
 # Create the executable
-add_executable(${Target} ${SOURCES} ${MOC_SOURCES})
+qt_add_executable(${Target} ${SOURCES} ${MOC_SOURCES} ${QT_OBJS})
 # Work with 3rd party signals and slots
 target_compile_definitions(${Target} PRIVATE QT_NO_KEYWORDS)
 # Link to the required Qt libraries

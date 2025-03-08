@@ -124,17 +124,17 @@ void MainWindow::createToolBar() {
 
 void MainWindow::setShowOrHideToolBarIcon() {
    if( _toolBar->isVisible() ) {
-      _showOrHideToolBar->setIcon( QIcon( ":/view" ) );
-   } else {
       _showOrHideToolBar->setIcon( QIcon( ":/view-conceal" ) );
+   } else {
+      _showOrHideToolBar->setIcon( QIcon( ":/view" ) );
    }
 }
 
 void MainWindow::setShowOrHideDockIcon() {
    if( _dockWidget->isVisible() ) {
-      _showOrHideDock->setIcon( QIcon( ":/view" ) );
-   } else {
       _showOrHideDock->setIcon( QIcon( ":/view-conceal" ) );
+   } else {
+      _showOrHideDock->setIcon( QIcon( ":/view" ) );
    };
 }
 
@@ -148,9 +148,9 @@ void MainWindow::toggleFloatingDock() {
 
 void MainWindow::setToggleFloatingDockIcon() {
    if( _dockWidget->isFloating() ) {
-      _toggleFloatingDock->setIcon( QIcon::fromTheme( "bookmark-new" ) );
+      _toggleFloatingDock->setIcon( QIcon( ":/view-conceal" ) );
    } else {
-      _toggleFloatingDock->setIcon( QIcon() );
+      _toggleFloatingDock->setIcon( QIcon( ":/view" ) );
    };
 }
 
