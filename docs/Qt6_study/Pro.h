@@ -163,7 +163,7 @@ class ProTest: public QObject {
 
          // Should emit the signal manually and explicitly, if its related
          // modern property does not register the signal.
-         emit tradProChanged( val );
+         Q_EMIT tradProChanged( val );
 
          // A change in a value which is not a BINDABLE property(tradPro)
          // requires calling notify. Otherwise, all properties depending on
@@ -184,7 +184,7 @@ class ProTest: public QObject {
          // This does not affect the update of bound properties' values because
          // QProperty properties utilize automatic data binding and dependency
          // tracking to notify and update the bound properties.
-         emit modernProObjChanged( val );
+         Q_EMIT modernProObjChanged( val );
 
          // A BINDABLE property used in the callback changes, the notificiation
          // occurs automatically.
@@ -214,7 +214,7 @@ class ProTest: public QObject {
          }
          // Q_OBJECT_BINDABLE_PROPERTY has registered this signal,
          // we shouldn't emit it manually and explicitly again.
-         // emit tMBoundProChanged( val );
+         // Q_EMIT tMBoundProChanged( val );
 
          // A BINDABLE property used in the callback changes,
          // the notificiation occurs automatically.
@@ -250,7 +250,7 @@ class ProTest: public QObject {
       // bound like QProperty objects.
       QBindable< int > bindTMBindWithTMComPro() { return &_tmBindWithTMComPro; }
 
-   signals:
+   Q_SIGNALS:
       void tradProChanged( int );
       void modernProObjChanged( int );
       void tMBoundProChanged( int value );

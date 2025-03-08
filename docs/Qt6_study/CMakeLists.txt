@@ -33,15 +33,16 @@ qt_wrap_cpp(MOC_SOURCES ${HEADERS})
 
 # Create the executable
 add_executable(${Target} ${SOURCES} ${MOC_SOURCES})
-
+# Work with 3rd party signals and slots
+target_compile_definitions(${Target} PRIVATE QT_NO_KEYWORDS)
 # Link to the required Qt libraries
 target_link_libraries(${Target} PRIVATE Qt6::Widgets Qt6::Core Qt6::Gui
                                         Qt6::Quick)
-
 # Set include directories
 target_include_directories(${Target} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 # Enable the use of the Q_OBJECT macro in .cpp files
 set_target_properties(${Target} PROPERTIES AUTOMOC ON)
+
 # Add marcos
 option(PRO "Enable property observation." OFF)
 option(BEH "Enable the event transfer feature." OFF)
