@@ -19,7 +19,9 @@
 #include <QToolBar>
 #include <QStringList>
 
-MainWindow::MainWindow( QWidget* parent ): QMainWindow( parent ) {
+MainWindow::MainWindow( QWidget* parent ):
+   QMainWindow( parent ),
+   _filePath( "/home/banana/from_gcc_to_cpp/docs/Qt6_study/WinSettings.json" ) {
 
    _mainMenuBar = menuBar();
    createFileActions();
@@ -31,7 +33,31 @@ MainWindow::MainWindow( QWidget* parent ): QMainWindow( parent ) {
    createViewMenu();
    createFloatingActions();
    createFloatingMenu();
+   readJsonFile();
 }
+
+MainWindow::~MainWindow() {
+   // Their parent is responsible for deleting them.
+   // delete _mainMenuBar;
+
+   // delete _fileMenu;
+   // delete _newFile;
+   // delete _openFile;
+   // delete _saveFile;
+   // delete _quit;
+   // delete _colorSchemeMenu;
+
+   // delete _dockWidget;
+   // delete _dockContent;
+   // delete _viewMenu;
+   // delete _showOrHideToolBar;
+   // delete _showOrHideDock;
+
+   // delete _floatingMenu;
+   // delete _toggleFloatingDock;
+
+   // delete _toolBar;
+};
 
 void MainWindow::createFileActions() {
    _newFile
@@ -217,3 +243,78 @@ void MainWindow::save() {
    out << text;
    file.close();
 }
+
+void MainWindow::readJsonFile() {
+   QFile file( _filePath );
+   if( !file.open( QIODevice::ReadOnly | QIODevice::Text ) ) {
+      qWarning() << "Failed to open file:" << _filePath;
+      return;
+   }
+
+   QByteArray json_data = file.readAll();
+   file.close();
+
+   QJsonDocument doc = QJsonDocument::fromJson( json_data );
+   if( doc.isNull() ) {
+      qWarning() << "Failed to parse JSON.";
+      return;
+   }
+
+   QJsonObject json_obj = doc.object();
+   resize( json_obj["width"].toInt(), json_obj["height"].toInt() );
+   move( json_obj["x"].toInt(), json_obj["y"].toInt() );
+   _dockWidget->setVisible( json_obj["show_dock"].toBool() );
+   _toolBar->setVisible( json_obj["show_tool_bar"].toBool() );
+   _dockWidget->setFloating( json_obj["float_dock"].toBool() );
+}
+
+void MainWindow::updateJsonFile() {
+   QFile file( _filePath );
+   if( !file.open( QIODevice::ReadOnly | QIODevice::Text ) ) {
+      qWarning() << "Failed to open file:" << _filePath;
+      return;
+   }
+
+   QByteArray json_data = file.readAll();
+   file.close();
+
+   QJsonDocument doc = QJsonDocument::fromJson( json_data );
+   if( doc.isNull() ) {
+      qWarning() << "Failed to parse JSON.";
+      return;
+   }
+
+   QJsonObject json_obj = doc.object();
+
+   // Update values
+   const QSize& win_size = size();
+   const QPoint& win_pos = pos();
+   json_obj["width"] = win_size.width();
+   json_obj["height"] = win_size.height();
+   json_obj["x"] = win_pos.x();
+   json_obj["y"] = win_pos.y();
+   json_obj["show_dock"] = _dockWidget->isVisible();
+   json_obj["show_tool_bar"] = _toolBar->isVisible();
+   json_obj["float_dock"] = _dockWidget->isFloating();
+
+   // Save the updated JSON back to the file
+   QFile save_file( _filePath );
+   if( !save_file.open( QIODevice::WriteOnly | QIODevice::Text ) ) {
+      qWarning() << "Failed to open file for writing:" << _filePath;
+      return;
+   }
+
+   QJsonDocument updated_doc( json_obj );
+   save_file.write( updated_doc.toJson() );
+   save_file.close();
+
+   qDebug() << "JSON file updated successfully.";
+}
+
+void MainWindow::closeEvent( QCloseEvent* event ) {
+   // Custom logic before closing the window
+   qDebug() << "Window is about to close.";
+   updateJsonFile();
+   QWidget::closeEvent( event );
+}
+

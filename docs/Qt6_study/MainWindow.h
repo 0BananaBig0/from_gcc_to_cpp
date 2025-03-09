@@ -11,12 +11,22 @@
 #include <QListWidget>
 #include <QDockWidget>
 #include <QTextEdit>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QDebug>
 
 class MainWindow: public QMainWindow {
       Q_OBJECT
 
    public:
       MainWindow( QWidget* parent = nullptr );
+      ~MainWindow() override;
+      // Restore the app's states.
+      void readJsonFile();
+      // Store the app's states.
+      void updateJsonFile();
 
    private:
       QMenuBar* _mainMenuBar;
@@ -39,6 +49,8 @@ class MainWindow: public QMainWindow {
 
       QToolBar* _toolBar;
       QString _currentFile;
+
+      const QString _filePath;
    private Q_SLOTS:
       void setShowOrHideToolBarIcon();
       void setShowOrHideDockIcon();
@@ -58,5 +70,6 @@ class MainWindow: public QMainWindow {
       void createFloatingActions();
       void createFloatingMenu();
       void createToolBar();
+      void closeEvent( QCloseEvent* event ) override;
 };
 

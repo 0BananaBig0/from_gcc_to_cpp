@@ -57,10 +57,8 @@ int main() { return main_PRO_OBS(); }
 
 int main( int argc, char* argv[] ) {
    QApplication app( argc, argv );
-   app.setAttribute( Qt::AA_DontShowIconsInMenus, false );
    MainWindow window;
-   window.setWindowTitle( "Main Window" );
-   window.showMaximized();
+   window.show();
    return app.exec();
 }
 #endif

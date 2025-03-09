@@ -9,6 +9,8 @@
     <file alias="color-scheme">images/preferences-color-symbolic.svg</file>
     <file alias="view">images/view-reveal-symbolic.svg</file>
     <file alias="view-conceal">images/view-conceal-symbolic.svg</file>
+    <!-- Can't be written. Can't be used to restore the app's status. -->
+    <!-- <file alias="WinSettings">WinSettings.json</file> -->
     <!-- Disable a file -->
     <file empty="true">images/view-app-grid-symbolic.svg</file>
   </qresource>
