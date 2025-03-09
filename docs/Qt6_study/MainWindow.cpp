@@ -6,6 +6,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include "MainWindow.h"
+#include <QFile>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QTextStream>
 #include <QDebug>
 #include <QDockWidget>
 #include <QIcon>
@@ -32,6 +36,9 @@ MainWindow::MainWindow( QWidget* parent ): QMainWindow( parent ) {
 void MainWindow::createFileActions() {
    _newFile
       = new QAction( QIcon::fromTheme( ":/document-new" ), "&New File", this );
+   _openFile = new QAction( QIcon::fromTheme( ":/document-open" ),
+                            "&Open File",
+                            this );
    _saveFile = new QAction( QIcon::fromTheme( ":/document-save" ),
                             "&Save File",
                             this );
@@ -40,12 +47,16 @@ void MainWindow::createFileActions() {
       "&Quit",
       this );
    _quit->setShortcut( tr( "CTRL+Q" ) );
+   connect( _newFile, &QAction::triggered, this, &MainWindow::newDocument );
+   connect( _openFile, &QAction::triggered, this, &MainWindow::open );
+   connect( _saveFile, &QAction::triggered, this, &MainWindow::save );
    connect( _quit, &QAction::triggered, qApp, &QApplication::quit );
 }
 
 void MainWindow::createFileMenu() {
    _fileMenu = _mainMenuBar->addMenu( "&File" );
    _fileMenu->addAction( _newFile );
+   _fileMenu->addAction( _openFile );
    _fileMenu->addAction( _saveFile );
    _fileMenu->addSeparator();
    _fileMenu->addAction( _quit );
@@ -59,19 +70,18 @@ void MainWindow::createColorSchemeMenu() {
 }
 
 void MainWindow::createDockWidget() {
-   _dockWidget = new QDockWidget( tr( "Table of Contents" ), this );
+   _dockWidget = new QDockWidget( this );
    _dockWidget->setAllowedAreas( Qt::LeftDockWidgetArea
                                  | Qt::RightDockWidgetArea );
+   _dockWidget->setFeatures( QDockWidget::DockWidgetClosable
+                             | QDockWidget::DockWidgetMovable
+                             | QDockWidget::DockWidgetFloatable );
    addDockWidget( Qt::LeftDockWidgetArea, _dockWidget );
    setCorner( Qt::TopLeftCorner, Qt::LeftDockWidgetArea );
    _dockContent = new QTextEdit( _dockWidget );
-   _dockContent->setText( "Dock Content" );
+   _dockContent->setText( "Open a file or New a file" );
    _dockWidget->setWidget( _dockContent );
    _dockWidget->setStyleSheet( "QDockWidget { border: 2px solid red; }" );
-   _dockWidget->setFixedSize( 300, 200 );
-   resizeDocks( QList< QDockWidget* >{ _dockWidget },
-                QList< int >{ 200 },
-                Qt::Vertical );
    connect( _dockWidget,
             &QDockWidget::visibilityChanged,
             this,
@@ -87,6 +97,8 @@ void MainWindow::createViewActions() {
    _showOrHideToolBar->setText( "&Tool Bar" );
    _showOrHideDock = _dockWidget->toggleViewAction();
    _showOrHideDock->setText( "&Dock" );
+   setShowOrHideToolBarIcon();
+   setShowOrHideDockIcon();
 }
 
 void MainWindow::createViewMenu() {
@@ -101,6 +113,7 @@ void MainWindow::createFloatingActions() {
             &QAction::triggered,
             this,
             &MainWindow::toggleFloatingDock );
+   setToggleFloatingDockIcon();
 }
 
 void MainWindow::createFloatingMenu() {
@@ -154,3 +167,53 @@ void MainWindow::setToggleFloatingDockIcon() {
    };
 }
 
+void MainWindow::newDocument() {
+   _currentFile.clear();
+   _dockContent->setText( QString() );
+}
+
+void MainWindow::open() {
+   QString file_name = QFileDialog::getOpenFileName( this, "Open the file" );
+   if( file_name.isEmpty() ) {
+      return;
+   }
+   QFile file( file_name );
+   _currentFile = file_name;
+   if( !file.open( QIODevice::ReadOnly | QFile::Text ) ) {
+      QMessageBox::warning( this,
+                            "Warning",
+                            "Cannot open file: " + file.errorString() );
+      return;
+   }
+   setWindowTitle( file_name );
+   QTextStream in( &file );
+   QString text = in.readAll();
+   _dockContent->setText( text );
+   file.close();
+}
+
+void MainWindow::save() {
+   QString file_name;
+   // If we don't have a filename from before, get one.
+   if( _currentFile.isEmpty() ) {
+      file_name = QFileDialog::getSaveFileName( this, "Save" );
+      if( file_name.isEmpty() ) {
+         return;
+      }
+      _currentFile = file_name;
+   } else {
+      file_name = _currentFile;
+   }
+   QFile file( file_name );
+   if( !file.open( QIODevice::WriteOnly | QFile::Text ) ) {
+      QMessageBox::warning( this,
+                            "Warning",
+                            "Cannot save file: " + file.errorString() );
+      return;
+   }
+   setWindowTitle( file_name );
+   QTextStream out( &file );
+   QString text = _dockContent->toPlainText();
+   out << text;
+   file.close();
+}

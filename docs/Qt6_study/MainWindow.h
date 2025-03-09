@@ -23,6 +23,7 @@ class MainWindow: public QMainWindow {
 
       QMenu* _fileMenu;
       QAction* _newFile;
+      QAction* _openFile;
       QAction* _saveFile;
       QAction* _quit;
       QMenu* _colorSchemeMenu;
@@ -37,11 +38,15 @@ class MainWindow: public QMainWindow {
       QAction* _toggleFloatingDock;
 
       QToolBar* _toolBar;
+      QString _currentFile;
    private Q_SLOTS:
       void setShowOrHideToolBarIcon();
       void setShowOrHideDockIcon();
       void toggleFloatingDock();
       void setToggleFloatingDockIcon();
+      void newDocument();
+      void open();
+      void save();
 
    private:
       void createFileActions();
