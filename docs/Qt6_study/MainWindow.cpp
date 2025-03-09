@@ -111,26 +111,24 @@ void MainWindow::createDockWidget() {
    connect( _dockWidget,
             &QDockWidget::visibilityChanged,
             this,
-            &MainWindow::setShowOrHideDockIcon );
+            &MainWindow::toggleDockIcon );
    connect( _dockWidget,
             &QDockWidget::topLevelChanged,
             this,
-            &MainWindow::setToggleFloatingDockIcon );
+            &MainWindow::toggleFloatingDockIcon );
 }
 
 void MainWindow::createViewActions() {
-   _showOrHideToolBar = _toolBar->toggleViewAction();
-   _showOrHideToolBar->setText( "&Tool Bar" );
-   _showOrHideDock = _dockWidget->toggleViewAction();
-   _showOrHideDock->setText( "&Dock" );
-   setShowOrHideToolBarIcon();
-   setShowOrHideDockIcon();
+   _toggleToolBar = _toolBar->toggleViewAction();
+   _toggleToolBar->setText( "&Tool Bar" );
+   _toggleDock = _dockWidget->toggleViewAction();
+   _toggleDock->setText( "&Dock" );
 }
 
 void MainWindow::createViewMenu() {
    _viewMenu = _mainMenuBar->addMenu( "&View" );
-   _viewMenu->addAction( _showOrHideToolBar );
-   _viewMenu->addAction( _showOrHideDock );
+   _viewMenu->addAction( _toggleToolBar );
+   _viewMenu->addAction( _toggleDock );
 }
 
 void MainWindow::createFloatingActions() {
@@ -139,7 +137,6 @@ void MainWindow::createFloatingActions() {
             &QAction::triggered,
             this,
             &MainWindow::toggleFloatingDock );
-   setToggleFloatingDockIcon();
 }
 
 void MainWindow::createFloatingMenu() {
@@ -158,34 +155,30 @@ void MainWindow::createToolBar() {
    connect( _toolBar,
             &QToolBar::visibilityChanged,
             this,
-            &::MainWindow::setShowOrHideToolBarIcon );
+            &::MainWindow::toggleToolBarIcon );
 }
 
-void MainWindow::setShowOrHideToolBarIcon() {
+void MainWindow::toggleToolBarIcon() {
    if( _toolBar->isVisible() ) {
-      _showOrHideToolBar->setIcon( QIcon( ":/view-conceal" ) );
+      _toggleToolBar->setIcon( QIcon( ":/view-conceal" ) );
    } else {
-      _showOrHideToolBar->setIcon( QIcon( ":/view" ) );
+      _toggleToolBar->setIcon( QIcon( ":/view" ) );
    }
 }
 
-void MainWindow::setShowOrHideDockIcon() {
+void MainWindow::toggleDockIcon() {
    if( _dockWidget->isVisible() ) {
-      _showOrHideDock->setIcon( QIcon( ":/view-conceal" ) );
+      _toggleDock->setIcon( QIcon( ":/view-conceal" ) );
    } else {
-      _showOrHideDock->setIcon( QIcon( ":/view" ) );
+      _toggleDock->setIcon( QIcon( ":/view" ) );
    };
 }
 
 void MainWindow::toggleFloatingDock() {
-   if( _dockWidget->isFloating() ) {
-      _dockWidget->setFloating( false );
-   } else {
-      _dockWidget->setFloating( true );
-   };
+   _dockWidget->setFloating( !_dockWidget->isFloating() );
 }
 
-void MainWindow::setToggleFloatingDockIcon() {
+void MainWindow::toggleFloatingDockIcon() {
    if( _dockWidget->isFloating() ) {
       _toggleFloatingDock->setIcon( QIcon( ":/view-conceal" ) );
    } else {
@@ -266,6 +259,9 @@ void MainWindow::readJsonFile() {
    _dockWidget->setVisible( json_obj["show_dock"].toBool() );
    _toolBar->setVisible( json_obj["show_tool_bar"].toBool() );
    _dockWidget->setFloating( json_obj["float_dock"].toBool() );
+   toggleToolBarIcon();
+   toggleDockIcon();
+   toggleFloatingDockIcon();
 }
 
 void MainWindow::updateJsonFile() {

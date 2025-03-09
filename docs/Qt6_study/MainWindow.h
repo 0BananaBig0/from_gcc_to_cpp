@@ -41,8 +41,8 @@ class MainWindow: public QMainWindow {
       QDockWidget* _dockWidget;
       QTextEdit* _dockContent;
       QMenu* _viewMenu;
-      QAction* _showOrHideToolBar;
-      QAction* _showOrHideDock;
+      QAction* _toggleToolBar;
+      QAction* _toggleDock;
 
       QMenu* _floatingMenu;
       QAction* _toggleFloatingDock;
@@ -52,10 +52,10 @@ class MainWindow: public QMainWindow {
 
       const QString _filePath;
    private Q_SLOTS:
-      void setShowOrHideToolBarIcon();
-      void setShowOrHideDockIcon();
+      void toggleToolBarIcon();
+      void toggleDockIcon();
       void toggleFloatingDock();
-      void setToggleFloatingDockIcon();
+      void toggleFloatingDockIcon();
       void newDocument();
       void open();
       void save();
