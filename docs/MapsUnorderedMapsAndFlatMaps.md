@@ -1048,18 +1048,6 @@ delete ummap_ptr;
     can be used to iterate through a single bucket but not across buckets
 17. `node_type (since C++17)`: A specialization of node handle representing a
     container node.
-18. `insert_return_type` (since C++17): Type describing the result of inserting
-    a `node_type`, a specialization of
-    ```CPP
-    template< class Iter, class NodeType >
-    struct /* unspecified */
-    {
-          Iter position;
-          bool inserted;
-          NodeType node;
-    };
-    ```
-    instantiated with template arguments iterator and `node_type`.
 
 #### Member Functions
 
@@ -1078,51 +1066,44 @@ delete ummap_ptr;
 11. `insert`: Inserts elements or nodes(since C++17) (public member function).
 12. `insert_range` (C++23): Inserts a range of elements (public member
     function).
-13. `insert_or_assign` (C++17): Inserts an element or assigns to the current
-    element if the key
-14. `emplace`: Constructs elements in-place (public member function).
-15. `emplace_hint`: Constructs elements in-place using a hint (public member
+13. `emplace`: Constructs elements in-place (public member function).
+14. `emplace_hint`: Constructs elements in-place using a hint (public member
     function).
-16. `try_emplace` (C++17): Inserts in-place if the key does not exist, does
-    nothing if the key
-17. `erase`: Erases elements and returns a valid iterator (public member
+15. `erase`: Erases elements and returns a valid iterator (public member
     function).
-18. `swap`: Swaps the contents (public member function).
-19. `extract` (C++17): Extracts nodes from the container (public member
+16. `swap`: Swaps the contents (public member function).
+17. `extract` (C++17): Extracts nodes from the container (public member
     function).
-20. `merge` (C++17): Splices nodes from another container (public member
+18. `merge` (C++17): Splices nodes from another container (public member
     function).
-21. `at`: Access specified element with bounds checking (public member
+19. `count`: Returns the number of elements matching specific key (public member
     function).
-22. `operator[]`: Access or insert specified element (public member function).
-23. `count`: Returns the number of elements matching specific key (public member
-    function).
-24. `find`: Finds an element with specific key (public member function).
-25. `contains` (C++20): Checks if the container contains an element with
+20. `find`: Finds an element with specific key (public member function).
+21. `contains` (C++20): Checks if the container contains an element with
     specific key (public member function).
-26. `equal_range`: Returns range of elements matching a specific key (public
+22. `equal_range`: Returns range of elements matching a specific key (public
     member function).
-27. `begin( size_type )`, `cbegin( size_type )`: Returns an iterator to the
+23. `begin( size_type )`, `cbegin( size_type )`: Returns an iterator to the
     beginning of the specified bucket (public member function).
-28. `end( size_type )`, `cend( size_type )`: Returns an iterator to the end of
+24. `end( size_type )`, `cend( size_type )`: Returns an iterator to the end of
     the specified bucket (public member function).
-29. `bucket_count`: Returns the number of buckets (public member function).
-30. `max_bucket_count`: Returns the maximum number of buckets (public member
+25. `bucket_count`: Returns the number of buckets (public member function).
+26. `max_bucket_count`: Returns the maximum number of buckets (public member
     function).
-31. `bucket_size`: Returns the number of elements in specific bucket (public
+27. `bucket_size`: Returns the number of elements in specific bucket (public
     member function).
-32. `bucket`: Returns the bucket for specific key (public member function).
-33. `load_factor`: Returns average number of elements per bucket (public member
+28. `bucket`: Returns the bucket for specific key (public member function).
+29. `load_factor`: Returns average number of elements per bucket (public member
     function).
-34. `max_load_factor`: Manages maximum average number of elements per bucket
+30. `max_load_factor`: Manages maximum average number of elements per bucket
     (public member function).
-35. `rehash`: Reserves at least the specified number of buckets and regenerates
+31. `rehash`: Reserves at least the specified number of buckets and regenerates
     the hash table (public member function).
-36. `reserve`: Reserves space for at least the specified number of elements and
+32. `reserve`: Reserves space for at least the specified number of elements and
     regenerates the hash table (public member function).
-37. `hash_function`: Returns function used to hash the keys (public member
+33. `hash_function`: Returns function used to hash the keys (public member
     function).
-38. `key_eq`: Returns the function used to compare keys for equality (public
+34. `key_eq`: Returns the function used to compare keys for equality (public
     member function).
 
 #### Non-member Functions

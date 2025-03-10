@@ -130,7 +130,7 @@ Type( *arr_ptr )[size] = {};
 ##### Syntax for Deleting a Pointer Related to an One-dimensional Raw Array
 
 ```CPP
-delete[] arr_ptr; // For array pointers or objects created with `new Type[...]{ ... }`.
+delete[] arr_ptr; // For objects created with `new Type[...]{ ... }`.
 ```
 
 ##### Three Kinds of Pointers Related to Array
