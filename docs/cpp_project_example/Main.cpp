@@ -4,7 +4,7 @@
   > Mail: 1184903633@qq.com
   > Created Time: Sun 06 Oct 2024 02:51:12 PM CST
  ************************************************************************/
-
+#ifndef LIST
 #include "Header.h"
 #include "FunHeader.h"
 #include "Sort.hpp"
@@ -47,4 +47,5 @@ int main() {
    std::cout << "Elapsed time: " << dur.count() << " ms.\n";
    return 0;
 }
+#endif
 

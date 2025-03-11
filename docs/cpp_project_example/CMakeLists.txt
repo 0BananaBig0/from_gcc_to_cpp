@@ -37,11 +37,16 @@ set(TARGET Main.exe)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 string(REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE
                "${CMAKE_CXX_FLAGS_RELEASE}")
-# Add a marco, define TEST to enable something
+# Add marcos, define Macros to enable something
 option(TEST "Enable TEST feature" OFF)
 if(TEST)
   message(STATUS "TEST is enabled")
   add_definitions(-DTEST_SORT)
+endif()
+option(LIST "Enable LIST feature" OFF)
+if(LIST)
+  message(STATUS "LIST is enabled")
+  add_definitions(-DLIST)
 endif()
 # Create static library from Fun.cpp
 add_library(Fun STATIC Fun.cpp)
