@@ -6,8 +6,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifdef LIST
-#include <iostream>
-#include <vector>
+   #include <iostream>
+   #include <vector>
+
 class MList {
       MList* _pre;
       MList* _nex;
@@ -91,6 +92,7 @@ class MList {
 int main() {
    MList my_list( std::vector< int >{ 1, 3, 3, 1, 8, 2 } );
    my_list.sortAndUnique();
+   std::cout << my_list.get() << '\n';
    MList* nex = my_list.getNex();
    while( nex != nullptr ) {
       std::cout << nex->get() << '\n';
@@ -99,4 +101,3 @@ int main() {
    return 0;
 }
 #endif
-
