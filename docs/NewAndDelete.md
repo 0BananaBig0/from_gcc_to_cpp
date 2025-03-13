@@ -34,6 +34,22 @@
 1. The `new` operator **dynamically allocates memory** for an object and **calls
    its constructor**.
 2. It **returns a `void` pointer** to the allocated memory.
+3. `new` operator:
+   - Memory allocation: Calls `::operator new(size)` to allocate memory for the
+     object.
+   - Object initialization: Calls the constructor to initialize the object.
+   - Allocator usage:
+     - Calls the allocator’s `allocate` function to allocate memory.
+     - Calls the allocator’s `construct` function to initialize the object.
+4. `new[]` operator:
+   - Memory allocation: Calls :`:operator new[](size)` to allocate memory for an
+     array of elements.
+   - Element initialization: Calls the constructor for each element in the
+     array.
+   - Allocator usage:
+     - Calls the allocator’s allocate function to `allocate` memory for the
+       array.
+     - Calls the allocator’s `construct` function to initialize each element.
 
 ##### Syntax
 
@@ -82,6 +98,22 @@ Type* arr_ptr = new( buffer ) ClassName();
    the memory.
 2. After calling `delete`, it's a good practice to set the pointer to `nullptr`
    to avoid dangling pointers.
+3. `delete` operator:
+   - Object destruction:
+     - Calls the destructor to destroy the object.
+   - Allocator usage:
+     - Calls the allocator’s `destroy` function to destroy the object.
+     - Calls the allocator’s `deallocate` function to deallocate memory.
+   - Memory deallocation:
+     - Calls `::operator delete(ptr)` to deallocate memory for the object.
+4. `delete[]` operator:
+   - Object destruction:
+     - Calls the destructor for each element in the array.
+   - Allocator usage:
+     - Calls the allocator’s `destroy` function to destroy each object.
+     - Calls the allocator’s `deallocate` function to deallocate memory.
+   - Memory deallocation:
+     - Calls `::operator delete[](ptr)` to deallocate memory for the array.
 
 ##### Syntax
 

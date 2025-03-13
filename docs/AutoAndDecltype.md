@@ -106,6 +106,7 @@ auto var_name = initializer;
 6. It ensures that the deduced type is consistent with the expression, aiding in
    **type-safe code**.
 7. **The expression cannot be `{ ... }`**.
+8. It can deduce `const`, `&` and `*`.
 
 #### Syntax
 
