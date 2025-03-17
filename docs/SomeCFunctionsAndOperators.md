@@ -38,9 +38,12 @@
 #### Explanation
 
 1. `sizeof` is **a compile-time operator** that **returns the size**, in bytes,
-   **of a type or object**. It can be used with types, variables, or
-   expressions.
-2. The result is of type `size_t`, which is an unsigned integral type.
+   **of a type or object**.
+2. It can be used with types, variables, or expressions.
+3. When using `sizeof` to obtain the size of an object, **the object must be
+   statically allocated**, and **its size must be determinable at compile
+   time**.
+4. The result is of type `size_t`, which is an unsigned integral type.
 
 #### Syntax
 

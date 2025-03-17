@@ -65,28 +65,25 @@ auto var_name = initializer;
 
 #### Notes
 
-1. `auto` can deduce whether a reference is `const` based on the initializer
-   variable. However, for non-reference types, `auto` only deduces the type
-   without adding `const`. Therefore, if you want variables **deduced with
-   `auto` to be `const`**, you'd better **explicitly specify `const`**.
-2. `auto` can deduce whether a type is a pointer based on the initializer.
-   `auto var_name = ptr_name;` `<=>` `auto* var_name = ptr_name; \\ **Better**`
-   However, if you use `auto` to **deduce a type with a pointer** as the
-   initializer, you'd better **specify it explicitly with a star** (`*`).
-3. `auto` **cannot deduce** whether a type is **a reference** based on the
-   initializer. Therefore, If you want the type to be deduced as a reference,
-   **specify it explicitly with `&`**. `auto & var_name = ini_name;`
-4. Specifically, if the initializer is **a const char pointer** or **a const
-   char array** (such as a string literal, "xxx"), auto deduces the variable to
-   be **a const char pointer**.
-5. If you **change the return types of your functions or APIs**, `auto` can help
+1. `auto` cannot deduce whether the type is a reference or includes the const
+   qualifier. When using `auto` to deduce a reference type, pointer type, or
+   `const` type, the following code is recommended:
+   ```CPP
+   auto& obj_name = initializer;
+   const auto obj_name = initializer;
+   const auto& obj_name = initializer;
+   auto* obj_name = pointer-type-initializer;
+   const auto* obj_name = pointer-type-initializer;
+   auto* const obj_name = pointer-type-initializer;
+   ```
+2. If you **change the return types of your functions or APIs**, `auto` can help
    us reduce the amount of code that needs to be modified. However, the code
    will become less readable, and some bugs may occur because the compiler will
    not tell us where changes are needed to adapt to these new functions.
    Therefore, you should **avoid using `auto` in this case**.
-6. **Use `auto`** when working with **an iterator**, as it can make the code
+3. **Use `auto`** when working with **an iterator**, as it can make the code
    more readable.
-7. When calling a function whose **return type has a long name**, you can **use
+4. When calling a function whose **return type has a long name**, you can **use
    `auto`** to make the code more readable.
 
 ### `decltype`

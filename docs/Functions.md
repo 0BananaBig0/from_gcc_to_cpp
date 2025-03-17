@@ -238,9 +238,10 @@ RetType var_name = funcName( arg_list );
 
 1. Functions defined with the `inline` keyword suggest to the compiler that it
    should **attempt** to **expand the function's code at each point where the
-   function is called**, rather than performing a traditional call.
+   function is called** during **compile time**, rather than performing a
+   traditional function call.
 2. Please note that this is **just a suggestion**.
-   - The compiler will decide whether or not to expand the inline function
+   - The compiler will decide whether or not to expand the `inline` function
      depending on the situation.
    - If you want to force the compiler to unfold the function all the time, you
      should understand more about the compiler's behavior.
