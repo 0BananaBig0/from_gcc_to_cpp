@@ -6,10 +6,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 module RippleFullAdder #(parameter N = 16) (input[N-1:0] a,
-                                           input[N-1:0] b,
-                                           input cin,
-                                           output[N-1:0] sum,
-                                           output co);
+                                            input[N-1:0] b,
+                                            input cin,
+                                            output[N-1:0] sum,
+                                            output co);
    wire[N:0] c;
 
    assign c[0] = cin;
