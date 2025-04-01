@@ -13,6 +13,8 @@ site
 .qt
 .qmake*
 *.h
+*.vcd
+*.out
 build
 !docs/cpp_project_example/*.cpp
 !docs/cpp_project_example/*.h
