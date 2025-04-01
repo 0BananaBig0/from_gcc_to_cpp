@@ -6,10 +6,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 module Broadcaster #(parameter N = 16) (input pin_a,
-                                       input pin_b,
-                                       output[N-1:0] a,
-                                       output[N-1:0] b,
-                                       output cin);
+                                        input pin_b,
+                                        output[N-1:0] a,
+                                        output[N-1:0] b,
+                                        output cin);
    assign cin = pin_a;
    genvar i;
    generate
