@@ -5,7 +5,7 @@
 ///                         04/01/2025-Tue-14:27:34                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-module RippleFullAdder #(parameter N = 4) (input[N-1:0] a,
+module RippleFullAdder #(parameter N = 16) (input[N-1:0] a,
                                            input[N-1:0] b,
                                            input cin,
                                            output[N-1:0] sum,

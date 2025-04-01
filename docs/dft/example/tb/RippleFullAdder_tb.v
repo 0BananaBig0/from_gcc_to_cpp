@@ -9,7 +9,7 @@
 `timescale 1ns/1ns
 
 module RippleFullAdder_tb;
-   parameter N = 4;
+   parameter N = 16;
    reg[N-1:0] a, b;
    reg cin;
    wire co;
@@ -19,12 +19,12 @@ module RippleFullAdder_tb;
       $dumpvars(0, RippleFullAdder_tb); // 记录所有信号（0表示记录所有层次）
    end
    initial begin
-      a = 4'b0000;
-      b = 4'b1111;
+      a = 16'h0;
+      b = 16'hFFFF;
       cin = 1'b0;
       #3;
-      a = 4'b1111;
-      b = 4'b0000;
+      a = 16'hFFFF;
+      b = 16'h0;
       cin = 1'b1;
       #3;
       $finish;
