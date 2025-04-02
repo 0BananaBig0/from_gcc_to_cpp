@@ -26,8 +26,8 @@ module BypassRegister_tb;
       $finish;
    end
    initial begin
-       ClockDR = 0 ;
-       forever #3 ClockDR = ~ClockDR ;
+       ClockDR = 0;
+       forever #3 ClockDR = ~ClockDR;
    end
    BypassRegister u1(.TDI(TDI),
                      .ShiftDR(ShiftDR), // = 1, enable shifting TDI

@@ -41,8 +41,8 @@ module BoundaryScanCell_tb;
       $finish;
    end
    initial begin
-       ClockDR = 0 ;
-       forever #3 ClockDR = ~ClockDR ;
+       ClockDR = 0;
+       forever #3 ClockDR = ~ClockDR;
    end
 
    BoundaryScanCell u1(.sys_pin(sys_pin),

@@ -31,8 +31,8 @@ module InstructionRegister_tb;
       $finish;
    end
    initial begin
-       ClockIR = 0 ;
-       forever #3 ClockIR = ~ClockIR ;
+       ClockIR = 0;
+       forever #3 ClockIR = ~ClockIR;
    end
 
    InstructionRegister u1(.TDI(TDI),

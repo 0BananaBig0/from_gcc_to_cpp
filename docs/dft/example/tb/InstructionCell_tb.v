@@ -32,8 +32,8 @@ module InstructionCell_tb;
       $finish;
    end
    initial begin
-       ClockIR = 0 ;
-       forever #3 ClockIR = ~ClockIR ;
+       ClockIR = 0;
+       forever #3 ClockIR = ~ClockIR;
    end
 
    InstructionCell u1(.DI(DI),
