@@ -6,6 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 module InstructionDecoder(input[1:0] instruction,
+                          output reg Mode,
                           output reg sel);
    parameter EXTEST = 2'd0;
    parameter SAMPLE_PRELOAD = 2'd1;
@@ -14,11 +15,26 @@ module InstructionDecoder(input[1:0] instruction,
 
    always @(*) begin
       case(instruction)
-         EXTEST: sel = 0;
-         SAMPLE_PRELOAD: sel = 0;
-         INTEST: sel = 0;
-         BYPASS: sel = 1;
-         default: sel = 1;
+         EXTEST: begin
+            Mode = 1;
+            sel = 0;
+         end
+         SAMPLE_PRELOAD: begin
+            Mode = 0;
+            sel = 0;
+         end
+         INTEST: begin
+            Mode = 1;
+            sel = 0;
+         end
+         BYPASS: begin
+            Mode = 0;
+            sel = 1;
+         end
+         default: begin
+            Mode = 0;
+            sel = 1;
+         end
       endcase
    end
 endmodule

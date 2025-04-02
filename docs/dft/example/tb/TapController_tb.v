@@ -97,11 +97,11 @@ module TapController_tb;
 
    TapController u1(.TMS(TMS),
                     .TCK(TCK),
-                    .ShiftDR(Shift_DR),
+                    .ShiftDR(ShiftDR),
                     .ClockDR(ClockDR),
-                    .UpdateDR(Update_DR),
+                    .UpdateDR(UpdateDR),
                     .Select(Select),
-                    .ShiftIR(Shift_IR),
+                    .ShiftIR(ShiftIR),
                     .ClockIR(ClockIR),
                     .UpdateIR(UpdateIR),
                     .Enable(Enable));
