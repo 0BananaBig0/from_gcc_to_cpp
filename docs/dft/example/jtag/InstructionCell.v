@@ -21,9 +21,9 @@ module InstructionCell(input DI,
          TDO = DI;
       end
    end
-   always @(posedge UpdateIR) begin
+   always @(posedge UpdateIR or posedge Reset) begin
       if(Reset == 1) begin
-         TDO = DI;
+         Q = 1;
       end
       else begin
          Q = TDO;

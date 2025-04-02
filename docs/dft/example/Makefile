@@ -14,7 +14,7 @@ WAVE_VIEWER = gtkwave  # 可选：dve, verdi
 TB_DIR = ./tb
 
 # 自动查找所有RTL和测试平台文件
-RTL_SOURCES = $(wildcard adder/*.v) $(wildcard jtag/*.v)
+RTL_SOURCES = $(wildcard adder/*.v) $(wildcard jtag/*.v) Top.v
 
 all: Top.vcd
 Top.vcd: $(RTL_SOURCES) tb/Top_tb.v
