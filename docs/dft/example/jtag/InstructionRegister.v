@@ -10,6 +10,7 @@ module InstructionRegister(input TDI,
                            input ShiftIR,
                            input ClockIR,
                            input UpdateIR,
+                           input Reset,
                            output TDO,
                            output[1:0] Q);
    wire cell_wire;
@@ -18,6 +19,7 @@ module InstructionRegister(input TDI,
                       .ShiftIR(ShiftIR),
                       .ClockIR(ClockIR),
                       .UpdateIR(UpdateIR),
+                      .Reset(Reset),
                       .TDO(cell_wire),
                       .Q(Q[0]));
    InstructionCell u2(.DI(1'b1),
@@ -25,6 +27,7 @@ module InstructionRegister(input TDI,
                       .ShiftIR(ShiftIR),
                       .ClockIR(ClockIR),
                       .UpdateIR(UpdateIR),
+                      .Reset(Reset),
                       .TDO(TDO),
                       .Q(Q[1]));
 endmodule

@@ -19,6 +19,7 @@ module TapController_tb;
    wire ClockIR;
    wire UpdateIR;
    wire Enable;
+   wire Reset;
    initial begin
       $dumpfile("wave.vcd");  // 指定波形文件名
       $dumpvars(0, TapController_tb); // 记录所有信号（0表示记录所有层次）
@@ -91,8 +92,8 @@ module TapController_tb;
       $finish;
    end
    initial begin
-       TCK = 0 ;
-       forever #3 TCK = ~TCK;
+      TCK = 0 ;
+      forever #3 TCK = ~TCK;
    end
 
    TapController u1(.TMS(TMS),
@@ -104,5 +105,6 @@ module TapController_tb;
                     .ShiftIR(ShiftIR),
                     .ClockIR(ClockIR),
                     .UpdateIR(UpdateIR),
-                    .Enable(Enable));
+                    .Enable(Enable),
+                    .Reset(Reset));
 endmodule

@@ -13,6 +13,7 @@ module InstructionRegister_tb;
    reg ShiftIR;
    reg ClockIR;
    reg UpdateIR;
+   reg Reset;
    wire TDO;
    wire[1:0] Q;
    initial begin
@@ -23,22 +24,26 @@ module InstructionRegister_tb;
       TDI = 0;
       ShiftIR = 0;
       UpdateIR = 0;
+      Reset = 0;
       #12;
       ShiftIR = 1;
       #12;
       UpdateIR = 1;
       #6;
+      Reset = 1;
+      #6
       $finish;
    end
    initial begin
-       ClockIR = 0;
-       forever #3 ClockIR = ~ClockIR;
+      ClockIR = 0;
+      forever #3 ClockIR = ~ClockIR;
    end
 
    InstructionRegister u1(.TDI(TDI),
                           .ShiftIR(ShiftIR),
                           .ClockIR(ClockIR),
                           .UpdateIR(UpdateIR),
+                          .Reset(Reset),
                           .TDO(TDO),
                           .Q(Q));
 endmodule

@@ -10,6 +10,7 @@ module InstructionCell(input DI,
                        input ShiftIR,
                        input ClockIR,
                        input UpdateIR,
+                       input Reset,
                        output reg TDO,
                        output reg Q);
    always @(posedge ClockIR) begin
@@ -21,6 +22,11 @@ module InstructionCell(input DI,
       end
    end
    always @(posedge UpdateIR) begin
-      Q = TDO;
+      if(Reset == 1) begin
+         TDO = DI;
+      end
+      else begin
+         Q = TDO;
+      end
    end
 endmodule

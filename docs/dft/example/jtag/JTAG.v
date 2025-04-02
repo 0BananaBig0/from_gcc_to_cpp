@@ -22,7 +22,7 @@ module JTAG #(parameter N = 16) (input TDI,
                                  output sys_pin_co,
                                  output TDO);
    wire ShiftDR, ClockDR, UpdateDR, Mode;
-   wire BSC, BR, IR, sel_DRs, DR, Select;
+   wire BSC, BR, IR, sel_DRs, DR, Select, Reset;
    wire [1:0] instruction;
    wire D, Enable;
    reg Q;
@@ -52,6 +52,7 @@ module JTAG #(parameter N = 16) (input TDI,
                           .ShiftIR(ShiftIR),
                           .ClockIR(ClockIR),
                           .UpdateIR(UpdateIR),
+                          .Reset(Reset),
                           .TDO(IR),
                           .Q(instruction));
    InstructionDecoder u4(.instruction(instruction),
@@ -77,6 +78,7 @@ module JTAG #(parameter N = 16) (input TDI,
                     .ShiftIR(ShiftIR),
                     .ClockIR(ClockIR),
                     .UpdateIR(UpdateIR),
-                    .Enable(Enable));
+                    .Enable(Enable),
+                    .Reset(Reset));
    bufif1(TDO, Q, Enable);
 endmodule

@@ -13,6 +13,7 @@ module InstructionCell_tb;
    reg ShiftIR;
    reg ClockIR;
    reg UpdateIR;
+   reg Reset;
    wire TDO;
    wire Q;
    initial begin
@@ -24,16 +25,20 @@ module InstructionCell_tb;
       TDI = 0;
       ShiftIR = 0;
       UpdateIR = 0;
+      Reset = 0;
       #6;
       ShiftIR = 1;
       #6;
       UpdateIR = 1;
       #6;
+      DI = 0;
+      Reset = 1;
+      #6;
       $finish;
    end
    initial begin
-       ClockIR = 0;
-       forever #3 ClockIR = ~ClockIR;
+      ClockIR = 0;
+      forever #3 ClockIR = ~ClockIR;
    end
 
    InstructionCell u1(.DI(DI),
@@ -41,6 +46,7 @@ module InstructionCell_tb;
                       .ShiftIR(ShiftIR),
                       .ClockIR(ClockIR),
                       .UpdateIR(UpdateIR),
+                      .Reset(Reset),
                       .TDO(TDO),
                       .Q(Q));
 endmodule

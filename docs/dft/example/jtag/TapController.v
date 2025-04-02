@@ -14,7 +14,8 @@ module TapController(input TMS,
                      output ShiftIR,
                      output ClockIR,
                      output UpdateIR,
-                     output Enable);
+                     output Enable,
+                     output Reset);
 
    // Machine state decode
    parameter Test_Logic_Reset = 4'd0;
@@ -141,6 +142,7 @@ module TapController(input TMS,
    assign CaptureIR = (st_cur == Capture_IR);
    assign UpdateIR = (st_cur == Update_IR);
    assign Enable = (ShiftDR || ShiftIR);
+   assign Reset = (st_cur == Test_Logic_Reset);
 
    reg TCK_DR_en;
    reg TCK_IR_en;
