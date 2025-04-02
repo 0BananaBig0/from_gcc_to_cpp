@@ -14,7 +14,7 @@ module Compactor_tb;
    reg co;
    wire[5:0] com_res;
    initial begin
-      $dumpfile("wave.vcd");  // 指定波形文件名
+      $dumpfile("Compactor.vcd");  // 指定波形文件名
       $dumpvars(0, Compactor_tb); // 记录所有信号（0表示记录所有层次）
    end
    initial begin

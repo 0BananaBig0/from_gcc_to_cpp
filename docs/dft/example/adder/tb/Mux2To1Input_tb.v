@@ -21,7 +21,7 @@ module Mux2To1Input_tb;
    wire[N-1:0] sel_b;
    wire sel_cin;
    initial begin
-      $dumpfile("wave.vcd");  // 指定波形文件名
+      $dumpfile("Mux2To1Input.vcd");  // 指定波形文件名
       $dumpvars(0, Mux2To1Input_tb); // 记录所有信号（0表示记录所有层次）
    end
    initial begin

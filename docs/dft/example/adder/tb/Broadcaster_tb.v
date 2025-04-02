@@ -13,7 +13,7 @@ module Broadcaster_tb;
    wire[N-1:0] a, b;
    wire cin;
    initial begin
-      $dumpfile("wave.vcd");  // 指定波形文件名
+      $dumpfile("Broadcaster.vcd");  // 指定波形文件名
       $dumpvars(0, Broadcaster_tb); // 记录所有信号（0表示记录所有层次）
    end
    initial begin

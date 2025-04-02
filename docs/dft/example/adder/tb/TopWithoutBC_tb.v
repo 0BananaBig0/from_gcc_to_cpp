@@ -15,7 +15,7 @@ module TopWithoutBC_tb;
    wire pin_co;
    wire[N-1:0] pin_sum;
    initial begin
-      $dumpfile("wave.vcd");  // 指定波形文件名
+      $dumpfile("TopWithoutBC.vcd");  // 指定波形文件名
       $dumpvars(0, TopWithoutBC_tb); // 记录所有信号（0表示记录所有层次）
    end
    initial begin
