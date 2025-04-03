@@ -87,5 +87,5 @@ module JTAG #(parameter N = 16) (input TDI,
                     .UpdateIR(UpdateIR),
                     .Enable(Enable),
                     .Reset(Reset));
-   bufif1(TDO, Q, Enable);
+   assign TDO = Enable ? Q : 1'bz;
 endmodule
