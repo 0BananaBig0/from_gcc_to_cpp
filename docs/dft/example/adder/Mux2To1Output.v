@@ -19,8 +19,8 @@ module Mux2To1Output #(parameter N = 16) (input[N-1:0] sum,
          end
          1'b1: begin
             sel_res[5:0] = com_res;
-            sel_res[N-1:6] = {(N-6){1'bz}};  // 使用{}生成重复的Z值;
-            sel_co = 1'bz;
+            sel_res[N-1:6] = sum[N-1:6];
+            sel_co = co;
          end
          default: begin
             sel_res = sum;
