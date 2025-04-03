@@ -29,7 +29,7 @@ module BoundaryScanChain_tb;
    wire sys_pin_co;
    wire TDO;
    initial begin
-      $dumpfile("BoundaryScanChain.vcd");  // 指定波形文件名
+      $dumpfile("sim/BoundaryScanChain.vcd");  // 指定波形文件名
       $dumpvars(0, BoundaryScanChain_tb); // 记录所有信号（0表示记录所有层次）
    end
    initial begin

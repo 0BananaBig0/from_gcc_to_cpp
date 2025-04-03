@@ -16,12 +16,13 @@ TB_DIR = ./tb
 # 自动查找所有RTL和测试平台文件
 RTL_SOURCES = $(wildcard adder/*.v) $(wildcard jtag/*.v) Top.v
 
-all: Top.vcd
-Top.vcd: $(RTL_SOURCES) tb/Top_tb.v
-	$(SIM_TOOL) -o $*.out $^
-	vvp $*.out
+all: sim/Top.vcd
+sim/Top.vcd: $(RTL_SOURCES) tb/Top_tb.v
+	mkdir -p sim
+	$(SIM_TOOL) -o sim/Top.out $^
+	vvp sim/Top.out
 	$(WAVE_VIEWER) $@
 
 # 清理生成文件
 clean:
-	rm -rf *.out *.vcd
+	rm -rf sim/*

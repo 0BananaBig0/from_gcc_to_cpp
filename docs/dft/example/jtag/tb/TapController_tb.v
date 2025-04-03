@@ -21,7 +21,7 @@ module TapController_tb;
    wire Enable;
    wire Reset;
    initial begin
-      $dumpfile("TapController.vcd");  // 指定波形文件名
+      $dumpfile("sim/TapController.vcd");  // 指定波形文件名
       $dumpvars(0, TapController_tb); // 记录所有信号（0表示记录所有层次）
    end
    initial begin

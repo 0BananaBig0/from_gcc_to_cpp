@@ -28,7 +28,7 @@ module JTAG_tb;
    wire TDO;
    integer i;
    initial begin
-      $dumpfile("JTAG.vcd");  // 指定波形文件名
+      $dumpfile("sim/JTAG.vcd");  // 指定波形文件名
       $dumpvars(0, JTAG_tb); // 记录所有信号（0表示记录所有层次）
    end
    initial begin

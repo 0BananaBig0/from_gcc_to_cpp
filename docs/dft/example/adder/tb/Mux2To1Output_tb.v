@@ -17,7 +17,7 @@ module Mux2To1Output_tb;
    wire[N-1:0] sel_res;
    wire sel_co;
    initial begin
-      $dumpfile("Mux2To1Output.vcd");  // 指定波形文件名
+      $dumpfile("sim/Mux2To1Output.vcd");  // 指定波形文件名
       $dumpvars(0, Mux2To1Output_tb); // 记录所有信号（0表示记录所有层次）
    end
    initial begin

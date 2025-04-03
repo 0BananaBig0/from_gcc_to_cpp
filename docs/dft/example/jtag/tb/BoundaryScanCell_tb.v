@@ -18,7 +18,7 @@ module BoundaryScanCell_tb;
    wire to_next_cell;
    wire module_pin;
    initial begin
-      $dumpfile("BoundaryScanCell.vcd");  // 指定波形文件名
+      $dumpfile("sim/BoundaryScanCell.vcd");  // 指定波形文件名
       $dumpvars(0, BoundaryScanCell_tb); // 记录所有信号（0表示记录所有层次）
    end
    initial begin
