@@ -15,7 +15,8 @@ hierarchy -top Top
 # Mark JTAG and TopWithoutBC modules to prevent flattening
 # setattr -mod -set keep_hierarchy JTAG TopWithoutBC
 select Top/u1
-setattr -mod -set keep_hierarchy 1 BoundaryScanChain BypassRegister
+setattr -mod -set keep_hierarchy 1 BoundaryScanChain BoundaryScanChainInput
+setattr -mod -set keep_hierarchy 1 BypassRegister BoundaryScanChainOutput
 setattr -mod -set keep_hierarchy 1 InstructionRegister InstructionDecoder
 setattr -mod -set keep_hierarchy 1 MuxDRs MuxDRIR TapController
 setattr -mod -set keep_hierarchy 1 TopWithoutBC

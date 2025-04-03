@@ -21,29 +21,36 @@ module JTAG #(parameter N = 16) (input TDI,
                                  output[N-1:0] sys_pin_sum,
                                  output sys_pin_co,
                                  output TDO);
+   wire u1_i_to_u1_o;
    wire ShiftDR, ClockDR, UpdateDR, Mode, ShiftIR, ClockIR, UpdateIR;
    wire BSC, BR, IR, sel_DRs, DR, Select, Reset;
    wire [1:0] instruction;
    wire D, Enable;
    reg Q;
-   BoundaryScanChain u1(.TDI(TDI),
-                        .ShiftDR(ShiftDR),
-                        .ClockDR(ClockDR),
-                        .UpdateDR(UpdateDR),
-                        .Mode(Mode),
-                        .sys_pin_a(sys_pin_a),
-                        .sys_pin_b(sys_pin_b),
-                        .sys_pin_cin(sys_pin_cin),
-                        .sys_pin_sel(sys_pin_sel),
-                        .module_pin_sum(module_pin_sum),
-                        .module_pin_co(module_pin_co),
-                        .module_pin_a(module_pin_a),
-                        .module_pin_b(module_pin_b),
-                        .module_pin_cin(module_pin_cin),
-                        .module_pin_sel(module_pin_sel),
-                        .sys_pin_sum(sys_pin_sum),
-                        .sys_pin_co(sys_pin_co),
-                        .TDO(BSC));
+   BoundaryScanChainInput u1_i(.TDI(TDI),
+                               .ShiftDR(ShiftDR),
+                               .ClockDR(ClockDR),
+                               .UpdateDR(UpdateDR),
+                               .Mode(Mode),
+                               .sys_pin_a(sys_pin_a),
+                               .sys_pin_b(sys_pin_b),
+                               .sys_pin_cin(sys_pin_cin),
+                               .sys_pin_sel(sys_pin_sel),
+                               .module_pin_a(module_pin_a),
+                               .module_pin_b(module_pin_b),
+                               .module_pin_cin(module_pin_cin),
+                               .module_pin_sel(module_pin_sel),
+                               .TDO(u1_i_to_u1_o));
+   BoundaryScanChainOutput u1_o(.TDI(u1_i_to_u1_o),
+                                .ShiftDR(ShiftDR),
+                                .ClockDR(ClockDR),
+                                .UpdateDR(UpdateDR),
+                                .Mode(Mode),
+                                .module_pin_sum(module_pin_sum),
+                                .module_pin_co(module_pin_co),
+                                .sys_pin_sum(sys_pin_sum),
+                                .sys_pin_co(sys_pin_co),
+                                .TDO(BSC));
    BypassRegister u2(.TDI(TDI),
                      .ShiftDR(ShiftDR), // = 1, enable shifting TDI
                      .ClockDR(ClockDR),
