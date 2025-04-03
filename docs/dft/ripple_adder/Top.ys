@@ -1,0 +1,30 @@
+# ############################################################################ #
+# #                            File Name: Top.tcl                            # #
+# #                          Author: Huaxiao Liang                           # #
+# #                         Mail: hxliang666@qq.com                          # #
+# #                         04/03/2025-Thu-15:37:09                          # #
+# ############################################################################ #
+
+#!/usr/bin/tclsh
+# Read your design files (replace with actual filenames)
+read_verilog *.v jtag/*.v adder/*.v
+
+# Set the top module
+hierarchy -top Top
+
+# Mark JTAG and TopWithoutBC modules to prevent flattening
+# setattr -mod -set keep_hierarchy JTAG TopWithoutBC
+select Top/u1
+setattr -mod -set keep_hierarchy 1 BoundaryScanChain BypassRegister
+setattr -mod -set keep_hierarchy 1 InstructionRegister InstructionDecoder
+setattr -mod -set keep_hierarchy 1 MuxDRs MuxDRIR TapController
+setattr -mod -set keep_hierarchy 1 TopWithoutBC
+flatten
+# setattr -set keep_hierarchy 1 \Chip.u1 \Chip.u2
+# Flatten the Top module, preserving JTAG and TopWithoutBC as instances
+# flatten
+
+select *
+synth
+
+write_json Top.json

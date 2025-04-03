@@ -23,6 +23,12 @@ sim/Top.vcd: $(RTL_SOURCES) tb/Top_tb.v
 	vvp sim/Top.out
 	$(WAVE_VIEWER) $@
 
+yosys: Top.json
+Top.json: $(RTL_SOURCES) Top.ys
+	yosys Top.ys
+	netlistsvg Top.json -o Top.html
+	firefox Top.html
+
 # 清理生成文件
 clean:
-	rm -rf sim/*
+	rm -rf sim/* *.json *.html
