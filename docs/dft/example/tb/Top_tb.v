@@ -20,7 +20,7 @@ module Top_tb;
    wire[N-1:0] sys_pin_sum;
    wire sys_pin_co;
    wire TDO;
-   integer i;
+   integer i = 0;
    initial begin
       $dumpfile("sim/Top.vcd");  // 指定波形文件名
       $dumpvars(0, Top_tb); // 记录所有信号（0表示记录所有层次）

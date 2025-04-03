@@ -21,7 +21,7 @@ module JTAG #(parameter N = 16) (input TDI,
                                  output[N-1:0] sys_pin_sum,
                                  output sys_pin_co,
                                  output TDO);
-   wire ShiftDR, ClockDR, UpdateDR, Mode;
+   wire ShiftDR, ClockDR, UpdateDR, Mode, ShiftIR, ClockIR, UpdateIR;
    wire BSC, BR, IR, sel_DRs, DR, Select, Reset;
    wire [1:0] instruction;
    wire D, Enable;

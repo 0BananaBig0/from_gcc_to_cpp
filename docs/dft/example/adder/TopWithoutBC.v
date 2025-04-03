@@ -12,7 +12,7 @@ module TopWithoutBC #(parameter N = 16) (input[N-1:0] pin_a,
                                          output[N-1:0] pin_sum,
                                          output pin_co);
    wire[N-1:0] a, b, sel_a, sel_b, sum;
-   wire cin, co;
+   wire cin, co, sel_cin;
    wire[5:0] com_res;
    Broadcaster u1(.pin_a(pin_a[0]),
                   .pin_b(pin_b[0]),
