@@ -5,6 +5,10 @@
 ///                         04/02/2025-Wed-00:37:33                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
+`ifndef _INSTRUCTIONREGISTER_V_  // Guard to prevent double-inclusion
+`define _INSTRUCTIONREGISTER_V_
+
+`include "InstructionCell.v"
 
 module InstructionRegister(input TDI,
                            input ShiftIR,
@@ -31,3 +35,5 @@ module InstructionRegister(input TDI,
                       .TDO(TDO),
                       .Q(Q[1]));
 endmodule
+
+`endif

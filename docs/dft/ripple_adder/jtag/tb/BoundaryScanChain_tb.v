@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
-`timescale 1ns/1ns
+`timescale 1ns / 1ns
 
 module BoundaryScanChain_tb;
    parameter N = 16;
@@ -15,22 +15,24 @@ module BoundaryScanChain_tb;
    reg ClockDR;
    reg UpdateDR;
    reg Mode;
-   reg[N-1:0] sys_pin_a;
-   reg[N-1:0] sys_pin_b;
+   reg [N-1:0] sys_pin_a;
+   reg [N-1:0] sys_pin_b;
    reg sys_pin_cin;
    reg sys_pin_sel;
-   reg[N-1:0] module_pin_sum;
+   reg [N-1:0] module_pin_sum;
    reg module_pin_co;
-   wire[N-1:0] module_pin_a;
-   wire[N-1:0] module_pin_b;
+   wire [N-1:0] module_pin_a;
+   wire [N-1:0] module_pin_b;
    wire module_pin_cin;
    wire module_pin_sel;
-   wire[N-1:0] sys_pin_sum;
+   wire [N-1:0] sys_pin_sum;
    wire sys_pin_co;
    wire TDO;
    initial begin
       $dumpfile("sim/BoundaryScanChain.vcd");  // 指定波形文件名
-      $dumpvars(0, BoundaryScanChain_tb); // 记录所有信号（0表示记录所有层次）
+      $dumpvars(
+         0,
+         BoundaryScanChain_tb);  // 记录所有信号（0表示记录所有层次）
    end
    initial begin
       sys_pin_a = 16'h0;
@@ -54,7 +56,7 @@ module BoundaryScanChain_tb;
       Mode = 0;
       #3;
       ShiftDR = 1;
-      #306; // 6 * (16 + 16 + 2 + 16 + 1);
+      #306;  // 6 * (16 + 16 + 2 + 16 + 1);
       UpdateDR = 1;
       Mode = 1;
       #6;
@@ -70,22 +72,24 @@ module BoundaryScanChain_tb;
       forever #6 TDI = ~TDI;
    end
 
-   BoundaryScanChain u1(.TDI(TDI),
-                        .ShiftDR(ShiftDR),
-                        .ClockDR(ClockDR),
-                        .UpdateDR(UpdateDR),
-                        .Mode(Mode),
-                        .sys_pin_a(sys_pin_a),
-                        .sys_pin_b(sys_pin_b),
-                        .sys_pin_cin(sys_pin_cin),
-                        .sys_pin_sel(sys_pin_sel),
-                        .module_pin_sum(module_pin_sum),
-                        .module_pin_co(module_pin_co),
-                        .module_pin_a(module_pin_a),
-                        .module_pin_b(module_pin_b),
-                        .module_pin_cin(module_pin_cin),
-                        .module_pin_sel(module_pin_sel),
-                        .sys_pin_sum(sys_pin_sum),
-                        .sys_pin_co(sys_pin_co),
-                        .TDO(TDO));
+   BoundaryScanChain u1 (
+      .TDI(TDI),
+      .ShiftDR(ShiftDR),
+      .ClockDR(ClockDR),
+      .UpdateDR(UpdateDR),
+      .Mode(Mode),
+      .sys_pin_a(sys_pin_a),
+      .sys_pin_b(sys_pin_b),
+      .sys_pin_cin(sys_pin_cin),
+      .sys_pin_sel(sys_pin_sel),
+      .module_pin_sum(module_pin_sum),
+      .module_pin_co(module_pin_co),
+      .module_pin_a(module_pin_a),
+      .module_pin_b(module_pin_b),
+      .module_pin_cin(module_pin_cin),
+      .module_pin_sel(module_pin_sel),
+      .sys_pin_sum(sys_pin_sum),
+      .sys_pin_co(sys_pin_co),
+      .TDO(TDO)
+   );
 endmodule

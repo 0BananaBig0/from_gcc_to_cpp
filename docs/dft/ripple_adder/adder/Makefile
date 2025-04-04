@@ -16,7 +16,7 @@ TB_DIR = ./tb
 SIM_DIR = ./sim
 
 # 自动查找所有RTL和测试平台文件
-RTL_SOURCES = $(wildcard $(RTL_DIR)/*.v)
+RTL_SOURCES = TopWithoutBC.v
 
 all: $(SIM_DIR)/TopWithoutBC.vcd
 $(SIM_DIR)/TopWithoutBC.vcd: $(RTL_SOURCES) tb/TopWithoutBC_tb.v

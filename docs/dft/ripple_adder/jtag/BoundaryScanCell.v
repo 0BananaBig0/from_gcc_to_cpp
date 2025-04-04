@@ -5,14 +5,20 @@
 ///                         04/01/2025-Tue-21:55:53                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-module BoundaryScanCell(input sys_pin,
-                        input last_cell_out,
-                        input ShiftDR,
-                        input ClockDR,
-                        input UpdateDR,
-                        input Mode,
-                        output to_next_cell,
-                        output module_pin);
+
+`ifndef _BOUNDARYSCANCELL_V_  // Guard to prevent double-inclusion
+`define _BOUNDARYSCANCELL_V_
+
+module BoundaryScanCell (
+   input  sys_pin,
+   input  last_cell_out,
+   input  ShiftDR,
+   input  ClockDR,
+   input  UpdateDR,
+   input  Mode,
+   output to_next_cell,
+   output module_pin
+);
 
    wire shift_to_clock;
    reg clock_to_update, update_to_mode;
@@ -32,3 +38,5 @@ module BoundaryScanCell(input sys_pin,
    assign module_pin = Mode ? update_to_mode : sys_pin;
 
 endmodule
+
+`endif

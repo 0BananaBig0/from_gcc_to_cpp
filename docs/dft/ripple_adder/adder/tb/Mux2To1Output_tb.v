@@ -6,19 +6,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
-`timescale 1ns/1ns
+`timescale 1ns / 1ns
 
 module Mux2To1Output_tb;
    parameter N = 16;
-   reg[N-1:0] sum;
+   reg [N-1:0] sum;
    reg co;
-   reg[5:0] com_res;
+   reg [5:0] com_res;
    reg sel;
-   wire[N-1:0] sel_res;
+   wire [N-1:0] sel_res;
    wire sel_co;
    initial begin
       $dumpfile("sim/Mux2To1Output.vcd");  // 指定波形文件名
-      $dumpvars(0, Mux2To1Output_tb); // 记录所有信号（0表示记录所有层次）
+      $dumpvars(
+         0,
+         Mux2To1Output_tb);  // 记录所有信号（0表示记录所有层次）
    end
    initial begin
       sum = 16'h0;
@@ -31,10 +33,12 @@ module Mux2To1Output_tb;
       $finish;
    end
 
-   Mux2To1Output u1(.sum(sum),
-                    .co(co),
-                    .com_res(com_res),
-                    .sel(sel),
-                    .sel_res(sel_res),
-                    .sel_co(sel_co));
+   Mux2To1Output u1 (
+      .sum(sum),
+      .co(co),
+      .com_res(com_res),
+      .sel(sel),
+      .sel_res(sel_res),
+      .sel_co(sel_co)
+   );
 endmodule

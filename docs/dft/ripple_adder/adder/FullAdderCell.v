@@ -5,11 +5,22 @@
 ///                         04/01/2025-Tue-14:01:32                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-module FullAdderCell(input a, input b, input cin, output sum, output co);
-  wire c, ab, cci;
-  xor(c, a, b);
-  xor(sum, c, cin);
-  and(ab, a, b);
-  and(cci, c, cin);
-  or(co, ab, cci);
+`ifndef _FULLADDERCELL_V_
+`define _FULLADDERCELL_V_
+
+module FullAdderCell (
+   input  a,
+   input  b,
+   input  cin,
+   output sum,
+   output co
+);
+   wire c, ab, cci;
+   xor (c, a, b);
+   xor (sum, c, cin);
+   and (ab, a, b);
+   and (cci, c, cin);
+   or (co, ab, cci);
 endmodule
+
+`endif

@@ -5,13 +5,20 @@
 ///                         04/01/2025-Tue-21:37:17                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-module BypassRegister(input TDI,
-                      input ShiftDR, // = 1, enable shifting TDI
-                      input ClockDR,
-                      output reg TDO);
+`ifndef _BYPASSREGISTER_V_  // Guard to prevent double-inclusion
+`define _BYPASSREGISTER_V_
+
+module BypassRegister (
+   input TDI,
+   input ShiftDR,  // = 1, enable shifting TDI
+   input ClockDR,
+   output reg TDO
+);
    wire D;
-   and(D, TDI, ShiftDR);
+   and (D, TDI, ShiftDR);
    always @(posedge ClockDR) begin
       TDO = D;
    end
 endmodule
+
+`endif
