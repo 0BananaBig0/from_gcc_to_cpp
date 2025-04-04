@@ -1,0 +1,7 @@
+# Read design and set top module
+read_verilog *.v jtag/*.v adder/*.v
+hierarchy -top TapController
+
+synth -run fsm_detect;   # Detect FSMs in the design
+fsm_extract;    # Extract FSMs (disable auto-detection)
+show -format dot -prefix Fsm;

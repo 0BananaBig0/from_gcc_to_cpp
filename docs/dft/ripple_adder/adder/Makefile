@@ -7,7 +7,7 @@
 
 .PHONY:
 # 工具配置
-SIM_TOOL = iverilog    # 可选：vcs, vsim
+SIM_TOOL = iverilog		 # 可选：vcs, vsim
 WAVE_VIEWER = gtkwave  # 可选：dve, verdi
 
 # 文件路径
@@ -16,12 +16,12 @@ TB_DIR = ./tb
 SIM_DIR = ./sim
 
 # 自动查找所有RTL和测试平台文件
-RTL_SOURCES = TopWithoutBC.v
+RTL_SOURCES = $(wildcard $(RTL_DIR)/*.v)
 
 all: $(SIM_DIR)/TopWithoutBC.vcd
 $(SIM_DIR)/TopWithoutBC.vcd: $(RTL_SOURCES) tb/TopWithoutBC_tb.v
 	mkdir -p $(SIM_DIR)
-	$(SIM_TOOL) -o $(SIM_DIR)/$*.out $^
+	$(SIM_TOOL) -o $(SIM_DIR)/$*.out TopWithoutBC.v tb/TopWithoutBC_tb.v
 	vvp $(SIM_DIR)/$*.out
 	$(WAVE_VIEWER) $@
 

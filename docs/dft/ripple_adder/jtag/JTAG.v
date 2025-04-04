@@ -8,6 +8,16 @@
 `ifndef _JTAG_V_  // Guard to prevent double-inclusion
 `define _JTAG_V_
 
+`include "BoundaryScanChainInput.v"
+`include "BoundaryScanChainOutput.v"
+`include "BypassRegister.v"
+`include "InstructionDecoder.v"
+`include "InstructionRegister.v"
+`include "Mux2To1.v"
+`include "MuxDRIR.v"
+`include "MuxDRs.v"
+`include "TapController.v"
+
 module JTAG #(
    parameter N = 16
 ) (
@@ -110,7 +120,19 @@ module JTAG #(
       .Enable(Enable),
       .Reset(Reset)
    );
-   assign TDO = Enable ? Q : 1'bz;
+   // assign TDO = Enable ? Q : 1'bz;
+   // Mux2To1 u8 (
+   //    .a  (1'bz),
+   //    .b  (Q),
+   //    .sel(Enable),
+   //    .TDO(TDO)
+   // ); // Yosys does not support 1'bz and a tri-state buffer.
+   Mux2To1 u8 (
+      .a  (1'b0),
+      .b  (Q),
+      .sel(Enable),
+      .TDO(TDO)
+   ); // Yosys does not support 1'bz and a tri-state buffer.
 endmodule
 
 `endif

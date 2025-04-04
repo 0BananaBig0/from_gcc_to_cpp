@@ -7,6 +7,7 @@
 
 #!/usr/bin/tclsh
 # Read your design files (replace with actual filenames)
+# verilog_defaults -add -I./adder -I./jtag
 read_verilog *.v jtag/*.v adder/*.v
 
 # Set the top module
