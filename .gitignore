@@ -1,4 +1,7 @@
 .cache
+.vim
+*.log
+transcript
 .clang*
 *.exe
 site
@@ -15,6 +18,10 @@ site
 *.h
 *.vcd
 *.out
+*.html
+*.dot
+*.png
+*.jpg
 build
 !docs/cpp_project_example/*.cpp
 !docs/cpp_project_example/*.h

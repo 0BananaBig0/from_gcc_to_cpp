@@ -74,8 +74,8 @@
 
 ### Explanation
 
-1. Compression is lossless for input stimuli.
-2. Compaction is lossy for output responses.
+1. Compression is **lossless** for **input stimuli**.
+2. Compaction is **lossy** for **output responses**.
 3. Its essence is to map multiple vectors into a single vector or shorten the
    length of each vector.
 
@@ -120,14 +120,14 @@
 
 ##### Advantages
 
-1. The method is simple.
-2. It can be applied to any set of test vectors.
+1. The method is **simple**.
+2. It can be applied to **any set of test vectors**.
 
 ##### Disadvantages
 
-1. The utilization of unspecified bits is low.
-2. The control logic has a high hardware cost.
-3. No commercial tools support it.
+1. **The utilization of unspecified bits** is **low**.
+2. The control logic has **a high hardware cost**.
+3. **No commercial tools** support it.
 
 ##### Dictionary Code (Fixed-to-Fixed)
 
@@ -150,10 +150,10 @@
    for the decompressor.
    - If the dictionary size is 2^b, then the 2^b most frequently occurring
      symbols in the test cubes are placed in the dictionary. Any symbol not in
-     the dictionary remains unencoded, and the dictionary is bypassed. An extra
-     bit is added to each codeword to indicate whether or not to use the
+     the dictionary remains unencoded, and the dictionary is **bypassed**. **An
+     extra bit** is added to each codeword to indicate whether or not to use the
      dictionary. In [Li 2003], compressed and uncompressed vectors are mixed.
-   - In [Würtenberger 2004], a partial dictionary is used along with a
+   - In [Würtenberger 2004], **a partial dictionary** is used along with a
      "correction" network that flips bits to convert a dictionary entry into the
      desired scan slice. By using this correction network, the dictionary size
      can be reduced.
@@ -168,8 +168,8 @@
 
 ###### Explanation
 
-1. It is a statistical coding method that encodes a symbol into a codeword based
-   on its occurrence frequency.
+1. It is **a statistical coding method** that encodes a symbol into a codeword
+   based on its occurrence frequency.
 2. To encode all symbols, a Huffman tree is constructed by merging the two
    lowest frequency nodes into one, which represents the combined occurrence
    count.
@@ -188,8 +188,8 @@
      maximally skew the symbol frequency.
    - A method for **improving compression** by modifying test cubes without
      losing fault coverage is described in [Ichihara 2000]. The goal is to
-     modify specified bits in a way that maximally skews the frequency
-     distribution.
+     modify specified bits in a way that maximally **skews the frequency
+     distribution**.
 
 ###### Links
 
@@ -202,7 +202,8 @@
 1. Uses a **cyclical scan architecture** [Jas 1998] to encode symbols with
    variable length.
 2. The advantage is that test vectors can be ordered so that similar vectors
-   follow each other, allowing difference vectors to contain many zeros.
+   follow each other, **allowing difference vectors to contain many zeros or
+   ones**.
 
 ###### Problems and Solutions
 
@@ -226,16 +227,16 @@
 
 1. Another class of test stimulus compression schemes is based on using linear
    decompressors to expand the data from the tester to fill the scan chains.
-2. Any decompressor consisting only of XOR gates and flip-flops is a linear
-   decompressor.
-3. Its characteristic matrix is an (n × m) matrix that satisfies AX = Z, where X
-   is a set of variables and Z is a test vector.
-4. Every bit stored on the tester can be considered a "free variable" that can
-   be assigned any value, 0 or 1.
-5. Solving the linear equations can be done using Gauss–Jordan elimination
-   [Cullen 1997] with a time complexity of O(mn²).
-6. For Boolean matrices, XOR is used instead of addition, and AND is used
-   instead of multiplication.
+2. Any decompressor **consisting only of XOR gates and flip-flops is a linear
+   decompressor**.
+3. Its **characteristic matrix** is an (n × m) matrix that satisfies AX = Z,
+   where X is a set of variables and Z is a test vector.
+4. Every bit stored on the tester can be considered a **"free variable"** that
+   can be assigned any value, 0 or 1.
+5. Solving the linear equations can be done using **Gauss–Jordan elimination**
+   [Cullen 1997] with a time complexity of **O(mn^2)**.
+6. For Boolean matrices, **XOR is used instead of addition, and AND is used
+   instead of multiplication**.
 
 ##### Problems and Solutions
 
@@ -257,7 +258,10 @@
 ##### Advantages
 
 1. The decoding module is simple to implement.
-2. The linear correlation of the scanning unit is low.
+2. **The linear correlation of the scanning unit is low**.
+   - In a circuit, when referring to linear correlation, this problem involves
+     gate types. XOR gates and flip-flops are commonly associated with linear
+     functions, while AND gates and OR gates introduce nonlinearity.
 3. The encoding efficiency is very high.
 4. ATPG commercial tools support it.
 
