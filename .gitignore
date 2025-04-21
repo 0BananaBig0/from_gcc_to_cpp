@@ -22,6 +22,8 @@ site
 *.dot
 *.png
 *.jpg
+*.cmd.*
+*.log.*
 build
 !docs/cpp_project_example/*.cpp
 !docs/cpp_project_example/*.h
