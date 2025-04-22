@@ -93,6 +93,46 @@ for item in "${array[@]}"; do
     echo "$item"
 done
 
+# Declare a list with 3 elements:
+# Define as positional parameters
+set -- "apple" "banana" "cherry"  # $1=apple, $2=banana, $3=cherry
+# Or as a space-separated string
+fruits="apple banana cherry"
+# Iterate (treat string as list)
+for fruit in $fruits; do
+    echo "$fruit"
+done
+
+# Declare a map
+declare -A person
+person=([name]="Alice" [age]=30 [city]="Paris")
+# Access
+echo "${person[name]}"  # Alice
+echo "All keys: ${!person[@]}"  # Output: name age city
+echo "All values: ${person[@]}"  # Output: Alice 30 Paris
+# Iterate keys
+for key in "${!person[@]}"; do
+    echo "$key: ${person[$key]}"
+done
+# Checking if a key exists
+if [[ -v "person[name]" ]]; then
+    echo "Key 'name' exists: ${person[name]}"
+else
+    echo "Key 'name' does not exist."
+fi
+
+# For shells that don’t support associative arrays (e.g., sh), simulate a map
+# using strings or two parallel arrays:
+# Simulate a map with keys and values
+keys=("name" "age" "city")
+values=("Alice" "30" "Paris")
+# Access by index (manual lookup)
+for i in "${!keys[@]}"; do
+    if [[ "${keys[i]}" == "age" ]]; then
+        echo "Age: ${values[i]}"  # Output: Age: 30
+    fi
+done
+
 # Built-in variables:
 # There are some useful built-in variables, like:
 echo "Last program's return value: $?"

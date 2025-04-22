@@ -42,11 +42,15 @@ set greeting $part1$part2$part3
 # When "set" is given only the name of a variable, it returns the
 # value of that variable:
 set part3 ;# Returns the value of the variable.
+# here, it returns actions
 
 
 # Left and right brackets embed a script to be evaluated for a result to
 # substitute into the word:
+# The [] in TCL is command substitution - it executes the command inside the
+# brackets and substitutes the result.
 set greeting $part1$part2[set part3]
+# <=> set greeting $part1$part2$part3
 
 
 # An embedded script may be composed of multiple commands, the last of which provides
@@ -65,7 +69,7 @@ set action pu
 
 # , the following three commands are equivalent:
 puts $greeting
-${action}ts $greeting 
+${action}ts $greeting
 [set action]ts $greeting
 
 
@@ -185,8 +189,9 @@ namespace eval people {
     }
 }
 
-# Once a variable is declared in a namespace, [set] sees it instead of seeing
-# an identically-named variable in the global namespace:
+# Once a variable is declared in a namespace, [set] executed in this namespace
+# sees the variable in this namespace instead of seeing an identically-named
+# variable in the global namespace:
 namespace eval people {
     namespace eval person1 {
         variable name
@@ -304,7 +309,7 @@ if {3 > 4} {
 }
 
 
-# Loops are implemented as routines.  The first and third arguments to 
+# Loops are implemented as routines.  The first and third arguments to
 # "for" are treated as scripts, while the second argument is treated as
 # an expression:
 set res 0
@@ -394,7 +399,7 @@ try {
 
 set replacement {Archibald Sorbisol}
 set command {set name $replacement}
-set command [subst $command] 
+set command [subst $command]
 try {
     eval $command ;# The same error as before:  too many arguments to "set" in \
         {set name Archibald Sorbisol}
@@ -479,15 +484,15 @@ proc countdown count {
 }
 coroutine countdown1 countdown 3
 coroutine countdown2 countdown 5
-puts [countdown1] ;# -> 2 
-puts [countdown2] ;# -> 4 
-puts [countdown1] ;# -> 1 
-puts [countdown1] ;# -> 0 
+puts [countdown1] ;# -> 2
+puts [countdown2] ;# -> 4
+puts [countdown1] ;# -> 1
+puts [countdown1] ;# -> 0
 catch {
     puts [countdown1] ;# -> invalid command name "countdown1"
-} cres copts 
+} cres copts
 puts $cres
-puts [countdown2] ;# -> 3 
+puts [countdown2] ;# -> 3
 
 
 # Coroutine stacks can yield control to each other:
@@ -526,3 +531,54 @@ coroutine c apply {{} {
 
 # get things moving
 a
+
+# Define a list
+set fruits [list "apple" "banana" "cherry"]
+# Access by index (zero-based)
+puts [lindex $fruits 1]  ;# Output: banana
+# Append/modify
+lappend fruits "date"    ;# Adds "date" to the end
+set fruits [lreplace $fruits 0 0 "apricot"]  ;# Replaces "apple" with "apricot"
+# Iterate
+foreach fruit $fruits {
+    puts $fruit
+}
+
+# Define an array
+array set person {
+    name "Alice"
+    age  30
+    city "Paris"
+}
+# Access by key
+puts $person(name)  ;# Output: Alice
+# Modify
+set person(age) 31  ;# Updates age to 31
+# Check if key exists
+if {[info exists person(city)]} {
+    puts "City: $person(city)"  ;# Output: City: Paris
+}
+# Iterate keys
+foreach key [array names person] {
+    puts "$key: $person($key)"
+}
+
+# Define a dictionary
+set person [dict create name "Alice" age 30 city "Paris"]
+# Access by key
+puts [dict get $person name]  ;# Output: Alice
+# Nested dictionary
+set person [dict create name "Alice" address [dict create city "Paris" zip 75001]]
+# Access nested key
+puts [dict get $person address city]  ;# Output: Paris
+# Modify
+dict set person age 31      ;# Updates age
+dict set person address zip 75002  ;# Updates nested zip
+# Iterate
+dict for {key value} $person {
+    if {[dict is $value]} {  ;# Check if value is a nested dict
+        puts "$key: [dict get $value city]"
+    } else {
+        puts "$key: $value"
+    }
+}
