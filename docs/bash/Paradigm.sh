@@ -5,7 +5,6 @@
 # #                         04/20/2025-Sun-18:13:30                          # #
 # ############################################################################ #
 
-#!/bin/bash
 #!/usr/bin/env bash
 # First line of the script is the shebang which tells the system how to execute
 # the script: https://en.wikipedia.org/wiki/Shebang_(Unix)
@@ -306,6 +305,9 @@ wc -l output.out error.err
 # Run a command and print its file descriptor (e.g. /dev/fd/123)
 # see: man fd
 echo <(echo "#helloworld")
+# Why Use <(command)?
+# Avoid intermediate files: No need to save output to a physical file.
+# Works with commands that expect files: E.g., diff, vimdiff, paste.
 
 # Overwrite output.out with "#helloworld":
 cat > output.out <(echo "#helloworld")
