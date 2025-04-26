@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # ############################################################################ #
 # #                          File Name: Paradigm.sh                          # #
 # #                          Author: Huaxiao Liang                           # #
@@ -5,7 +6,6 @@
 # #                         04/20/2025-Sun-18:13:30                          # #
 # ############################################################################ #
 
-#!/usr/bin/env bash
 # First line of the script is the shebang which tells the system how to execute
 # the script: https://en.wikipedia.org/wiki/Shebang_(Unix)
 # As you already figured, comments start with #. Shebang is also a comment.
@@ -22,12 +22,12 @@ echo "This is the first command"; echo "This is the second command"
 variable="Some string"
 
 # But not like this:
-variable = "Some string" # => returns error "variable: command not found"
+# variable = "Some string" # => returns error "variable: command not found"
 # Bash will decide that `variable` is a command it must execute and give an error
 # because it can't be found.
 
 # Nor like this:
-variable= "Some string" # => returns error: "Some string: command not found"
+# variable= "Some string" # => returns error: "Some string: command not found"
 # Bash will decide that "Some string" is a command it must execute and give an
 # error because it can't be found. In this case the "variable=" part is seen
 # as a variable assignment valid only for the scope of the "Some string"
@@ -36,6 +36,11 @@ variable= "Some string" # => returns error: "Some string: command not found"
 # Using the variable:
 echo "$variable" # => Some string
 echo '$variable' # => $variable
+echo $variable # => Some string
+# "" and '' does not support globbing.
+echo "*.cpp" # => *.cpp
+echo '*.cpp' # => *.cpp
+echo *.cpp # <=> ls *.cpp
 # When you use a variable itself — assign it, export it, or else — you write
 # its name without $. If you want to use the variable's value, you should use $.
 # Note that ' (single quote) won't expand variables!
@@ -92,6 +97,24 @@ echo "${array[@]:3:2}" # => "four five"
 for item in "${array[@]}"; do
     echo "$item"
 done
+# Print all elements each of them on new line.
+# Like printing all elements of a list.
+for item in ${array[*]}; do
+    echo "$item"
+done
+# Print all elements in one line using a loop that executes exactly once.
+for item in "${array[*]}"; do
+    echo "$item"
+done
+# Print all elements each of them on new line.
+# Like printing all elements of a list.
+# After assigning a string to a variable, the quotation marks are not stored.
+# When the variable is later expanded unquoted in a for loop, it gets treated
+# as a whitespace-separated list.
+items="${array[*]}"
+for item in $items; do
+    echo "$item"
+done
 
 # Declare a list with 3 elements:
 # Define as positional parameters
@@ -99,7 +122,24 @@ set -- "apple" "banana" "cherry"  # $1=apple, $2=banana, $3=cherry
 # Or as a space-separated string
 fruits="apple banana cherry"
 # Iterate (treat string as list)
+# This works as expected in Bash but not in Zsh.
 for fruit in $fruits; do
+    echo "$fruit"
+done
+# Print all elements in one line using a loop that executes exactly once.
+for fruit in "${fruits[@]}"; do
+    echo "$fruit"
+done
+# Print all elements in one line using a loop that executes exactly once.
+for fruit in "${fruits[*]}"; do
+    echo "$fruit"
+done
+# Print all elements each of them on new line.
+for fruit in ${fruits[@]}; do
+    echo "$fruit"
+done
+# Print all elements each of them on new line.
+for fruit in ${fruits[*]}; do
     echo "$fruit"
 done
 
@@ -108,8 +148,8 @@ declare -A person
 person=([name]="Alice" [age]=30 [city]="Paris")
 # Access
 echo "${person[name]}"  # Alice
-echo "All keys: ${!person[@]}"  # Output: name age city
-echo "All values: ${person[@]}"  # Output: Alice 30 Paris
+echo "All keys: ${!person[*]}"  # Output: name age city
+echo "All values: ${person[*]}"  # Output: Alice 30 Paris
 # Iterate keys
 for key in "${!person[@]}"; do
     echo "$key: ${person[$key]}"
@@ -138,7 +178,7 @@ done
 echo "Last program's return value: $?"
 echo "Script's PID: $$"
 echo "Number of arguments passed to script: $#"
-echo "All arguments passed to script: $@"
+# echo "All arguments passed to script: $@"
 echo "Script's arguments separated into different variables: $1 $2..."
 
 # Brace Expansion {...}
@@ -149,7 +189,7 @@ echo {a..z} # => a b c d e f g h i j k l m n o p q r s t u v w x y z
 # Note that you can't use variables here:
 from=1
 to=10
-echo {$from..$to} # => {$from..$to}
+echo {\$from..\$to} # => {$from..$to}
 
 # Now that we know how to echo and use variables,
 # let's learn some of the other basics of Bash!
@@ -210,27 +250,6 @@ echo "Always executed" && echo "Only executed if first command does NOT fail"
 # => Always executed
 # => Only executed if first command does NOT fail
 
-# A single ampersand & after a command runs it in the background. A background command's
-# output is printed to the terminal, but it cannot read from the input.
-sleep 30 &
-# List background jobs
-jobs # => [1]+  Running                 sleep 30 &
-# Bring the background job to the foreground
-fg
-# Ctrl-C to kill the process, or Ctrl-Z to pause it
-# Resume a background process after it has been paused with Ctrl-Z
-bg
-# Kill job number 2
-kill %2
-# %1, %2, etc. can be used for fg and bg as well
-
-# Redefine command `ping` as alias to send only 5 packets
-alias ping='ping -c 5'
-# Escape the alias and use command with this name instead
-\ping 192.168.1.1
-# Print all aliases
-alias -p
-
 # Expressions are denoted with the following format:
 echo $(( 10 + 5 )) # => 15
 
@@ -248,7 +267,8 @@ ls -R # Recursively `ls` this directory and all of its subdirectories
 # using a pipe |. Commands chained in this way are called a "pipeline", and are run concurrently.
 # The `grep` command filters the input with provided patterns.
 # That's how we can list .txt files in the current directory:
-ls -l | grep "\.txt"
+# ls -l | grep "\.txt" # Not safe
+find . -maxdepth 1 -type f -name '*.txt' | grep -v '/$'
 
 # Use `cat` to print files to stdout:
 cat file.txt
@@ -408,8 +428,8 @@ do
 done
 
 # ..or the output from a command
-# This will `cat` the output from `ls`.
-for Output in $(ls)
+# This will `cat` the output from the current folder.
+for Output in *
 do
     cat "$Output"
 done
@@ -433,7 +453,7 @@ done
 # Definition:
 function foo ()
 {
-    echo "Arguments work just like script arguments: $@"
+    echo "Arguments work just like script arguments: $*"
     echo "And: $1 $2..."
     echo "This is a function"
     returnValue=0    # Variable values can be returned
@@ -536,3 +556,40 @@ info bash
 info bash 'Bash Features'
 info bash 6
 info --apropos bash
+
+# A single ampersand & after a command runs it in the background. A background command's
+# output is printed to the terminal, but it cannot read from the input.
+sleep 30 &
+# List background jobs
+jobs # => [1]+  Running                 sleep 30 &
+# Bring the background job to the foreground
+fg
+# Ctrl-C to kill the process, or Ctrl-Z to pause it
+# Resume a background process after it has been paused with Ctrl-Z
+bg
+# Kill job number 2
+kill %2
+# %1, %2, etc. can be used for fg and bg as well
+
+# Redefine command `ping` as alias to send only 5 packets
+# This is also a default `ping` alias set by shell.
+alias ping='ping -c 5'
+# Redefine command `ls` as alias to show its manual
+alias ls='ls --help'
+# Escape the alias and use command with this name instead
+\ping 192.168.1.1
+\ls
+# Calling their aliases
+ping 192.168.1.1
+ls
+# Print all aliases
+# Zsh does not support the following command:
+alias -p
+# Print all aliases
+# Both Bash and Zsh support the follwoing command:
+alias
+# Delete `ping` alias
+unalias ping
+# Restore the default shell aliases.
+alias ping='ping -c 5'
+alias ls='ls --color=tty'

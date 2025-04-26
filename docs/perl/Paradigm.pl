@@ -1,3 +1,4 @@
+#!/usr/bin/env perl
 # ############################################################################ #
 # #                          File Name: Paradigm.pl                          # #
 # #                          Author: Huaxiao Liang                           # #
@@ -5,7 +6,6 @@
 # #                         04/22/2025-Tue-10:58:40                          # #
 # ############################################################################ #
 
-#!/usr/bin/env perl
 # Single line comments start with a number sign.
 
 #### Strict and warnings
