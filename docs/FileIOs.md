@@ -136,7 +136,7 @@ std::wcin >> wvar_name;      // Wide character input
    data.
 3. Data written to `std::cout` is stored in memory and written to the console
    when the buffer is full or flushed.
-4. Its output **can be redirected to a file** using the terminal operator `>`.
+4. **To redirect its output to a file**, use the shell operator `>`.
 5. When its output is redirected to a file, these messages do not appear on the
    terminal.
 
@@ -192,9 +192,9 @@ std::wcout << L"Message";       // Wide character output
 2. It's commonly used for reporting errors, warnings, or diagnostics.
 3. It ensures that error messages are immediately displayed, regardless of
    buffering.
-4. Its output **cannot be redirected to a file** using the terminal operator
-   `>`.
-5. It always prints all messages to the terminal.
+4. **To redirect its output to a file**, use the shell operator `2>`.
+5. When its output is redirected to a file, these messages do not appear on the
+   terminal.
 
 #### `std::wcerr`
 
@@ -230,9 +230,9 @@ std::wcerr << L"Error occurred";  // Wide character error output
    (`stderr`), typically **buffered**.
 2. It's commonly used for logging messages, warnings, or diagnostic data.
 3. It stores the log messages in memory before outputting them.
-4. Its output is similar to `std::cerr` that **cannot be redirected to a file**
-   using the terminal operator `>`.
-5. It always prints all messages to the terminal.
+4. **To redirect its output to a file**, use the shell operator `2>`.
+5. When its output is redirected to a file, these messages do not appear on the
+   terminal.
 
 #### `std::wclog`
 
