@@ -59,7 +59,7 @@ echo "${variable}" # => Some string
 echo "${variable/Some/A}" # => A string
 # This will substitute the first occurrence of "Some" with "A".
 
-# Substring from a variable:
+# Substring from a variable: get a substring or a char
 length=7
 echo "${variable:0:length}" # => Some st
 # This will return only the first 7 characters of the value
@@ -252,6 +252,13 @@ echo "Always executed" && echo "Only executed if first command does NOT fail"
 
 # Expressions are denoted with the following format:
 echo $(( 10 + 5 )) # => 15
+echo `expr 10 + 5`
+var=10
+((var=$var + 5))
+echo $var
+var=10
+var=`expr $var + 5`
+echo $var
 
 # Unlike other programming languages, bash is a shell so it works in the context
 # of a current directory. You can list files and directories in the current

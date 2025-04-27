@@ -351,19 +351,62 @@ clean:
 
 #### The Syntax of Defining a Variable
 
-1. Simple assignment (`VAR_NAME = value`):
-   - The value is expanded when the variable is used.
-   - Whenever its dependencies are updated, or anything that depends on it is
-     modified, all related components will be updated.
+1. Simple assignment/recursive assignment (`VAR_NAME = value`):
+   - Value is expanded when the variable is used (delayed expansion).
+   - Changes to referenced variables (e.g., `$(VAR_B) in VAR_A = $(VAR_B)`) will
+     propagate to the variable when it is used.
+   - Can create recursive loops if variables reference each other.
+   ```Makefile
+   VAR_A = $(VAR_B)   # VAR_B is defined later
+   VAR_B = World
+   all:
+       @echo $(VAR_A)  # Output: "World" (expanded at usage time)
+   ```
 2. Immediate assignment (`VAR_NAME := value`):
-   - The value is expanded when the variable is defined.
-   - Whenever its dependencies are updated, or anything that depends on it is
-     modified, all related components will not be updated.
-   - The environment variables and arguments passed by `make` cannot update it.
+   - Value is expanded immediately at definition time.
+   - Subsequent changes to referenced variables do not affect its value.
+   - Overrides environment variables and command-line arguments for the same
+     variable.
+   ```Makefile
+   VAR_C := $(VAR_D)   # VAR_D is undefined here → value is empty
+   VAR_D := Hello
+   all:
+       @echo $(VAR_C)  # Output: "" (value fixed at definition time)
+   ```
 3. Conditional assignment (`VAR_NAME ?= value`):
-   - Only assigns if the variable is not already defined.
-   - Whenever its dependencies are updated, or anything that depends on it is
-     modified, all related components will be updated.
+   - Assigns a value only if the variable is undefined at the time of
+     assignment.
+   - Useful for setting default values while allowing overrides (e.g., via
+     environment variables or command-line arguments).
+   - Expansion timing depends on the assignment operator used for the value
+     (e.g., `=` vs `:=`).
+   ```Makefile
+   VAR_E ?= default_value
+   all:
+       @echo $(VAR_E)  # Output: "default_value" unless overridden
+   ```
+4. Append assignment(`VAR_NAME += value`)
+   - Appends content to an existing variable while preserving its original
+     value.
+   - Expansion timing depends on the original variable’s assignment type:
+     - If the variable was defined with =, the appended value is delayed
+       (expanded when used).
+     - If the variable was defined with :=, the appended value is immediately
+       expanded.
+   ```Makefile
+   # Case 1: Original variable uses `=`
+   VAR_F = Hello
+   VAR_F += $(VAR_G)  # VAR_G is undefined → expands to empty at usage time
+   VAR_G = World
+   all:
+       @echo $(VAR_F)  # Output: "Hello World" (expanded when used)
+   # Case 2: Original variable uses `:=`
+   VAR_H := Hello
+   VAR_H += $(VAR_I)  # VAR_I is undefined → expands to empty immediately
+   VAR_I = World
+   all:
+       @echo $(VAR_H)  # Output: "Hello " (value fixed at append time)
+   ```
 
 #### The Syntax of Referencing a Variable
 
