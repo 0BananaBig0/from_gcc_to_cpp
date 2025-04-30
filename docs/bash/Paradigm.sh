@@ -255,6 +255,7 @@ echo $(( 10 + 5 )) # => 15
 echo `expr 10 + 5`
 var=10
 ((var=$var + 5))
+var=$(($var + 5))
 echo $var
 var=10
 var=`expr $var + 5`

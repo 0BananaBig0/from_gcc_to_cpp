@@ -112,12 +112,18 @@ set greeting "Hello, [set {first name}]"
 # two commands are equivalent:
 set name Neo
 set {*}{name Neo}
+# Dynamically generate arguments
+set args {name Neo}
+set {*}$args   ;# Expands to: set name Neo
 
 
 # An array is a special variable that is a container for other variables.
 set person(name) Neo
 set person(destiny) {The One}
 set greeting "Hello, $person(name)"
+# Create an array dynamically
+set params {x 10 y 20}
+array set my_array {*}$params;# Expands to `array set my_array {x 10 y 20}`.
 
 
 # "variable" can be used to declare or set variables. In contrast with "set",
