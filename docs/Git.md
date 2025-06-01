@@ -11,12 +11,15 @@
   - [Add Files to a Branch](#add-files-to-a-branch)
   - [Delete Files of a Branch](#delete-files-of-a-branch)
   - [Check the Status](#check-the-status)
+  - [Check the Log](#check-the-log)
   - [Check Who Modified the File](#check-who-modified-the-file)
   - [Discard Current Modifications](#discard-current-modifications)
   - [Restore Local Files Before Using `git add` or `git rm` to Stage Deletions](#restore-local-files-before-using-git-add-or-git-rm-to-stage-deletions)
   - [Restore Local Files After Using `git add` or `git rm` to Stage Deletions](#restore-local-files-after-using-git-add-or-git-rm-to-stage-deletions)
   - [Check the Differences After Using `git add` or `git rm`, but Before `git commit`](#check-the-differences-after-using-git-add-or-git-rm-but-before-git-commit)
-  - [Check the Differences](#check-the-differences)
+  - [Check the Differences Between the CommitHash and the Current Working Directory](#check-the-differences-between-the-commithash-and-the-current-working-directory)
+  - [Check the Differences Between the CommitHashes](#check-the-differences-between-the-commithashes)
+  - [Check the Differences Between the CommitHashes](#check-the-differences-between-the-commithashes-1)
   - [Check the Revision History](#check-the-revision-history)
   - [Revert to the Previous Version While Keeping Current Modifications](#revert-to-the-previous-version-while-keeping-current-modifications)
   - [Revert to the Previous Version and Discard Current Modifications](#revert-to-the-previous-version-and-discard-current-modifications)
@@ -32,7 +35,10 @@
   - [Copy the Specific Modification from Another Branch to the Current Branch](#copy-the-specific-modification-from-another-branch-to-the-current-branch)
   - [Push the Current Branch to The Remote Repository](#push-the-current-branch-to-the-remote-repository)
   - [Reorganize the Commit History](#reorganize-the-commit-history)
-  - [Tag Commits](#tag-commits)
+  - [Show Tags](#show-tags)
+  - [Tag a CommitHash](#tag-a-commithash)
+  - [Push the Tag to Remote](#push-the-tag-to-remote)
+  - [Delete a Tag](#delete-a-tag)
 
 <!-- vim-markdown-toc -->
 
@@ -45,8 +51,7 @@
    tutorial.
 3. [Git Handbook (Official)](https://docs.github.com/en/get-started).
 4. [Pro Git Book (Free)](https://git-scm.com/book/en/v2).
-5. [Git Handbook (Gitee)](https://portrait.gitee.com/help/articles/4105).
-6. By asking ChatGPT questions like "Is there any Git tutorial?", you can get
+5. By asking ChatGPT questions like "Is there any Git tutorial?", you can get
    more answers.
 
 ### Create and Initialize a Repository
@@ -159,6 +164,12 @@ git commit -m "Your comments"
 git status
 ```
 
+### Check the Log
+
+```SH
+git log -Number(How many, Optional) BranchName(Optional)
+```
+
 ### Check Who Modified the File
 
 ```SH
@@ -181,48 +192,70 @@ git restore TargetList # Used when local files are deleted.
 
 ```SH
 git log -Number(How many, Optional)
-git reset CommitNumber(A sequence of number) TargetList(Optional)
+git reset CommitHash(A sequence of number) TargetList(Optional)
 git restore TargetList
 ```
 
 ```SH
 git log -Number(How many, Optional)
-git restore --source=CommitNumber(A sequence of number) -- TargetList
+git restore --source=CommitHash(A sequence of number) -- TargetList
 ```
 
 ```SH
 git log -Number(How many, Optional)
-git reset CommitNumber(A sequence of number) TargetList(Optional)
+git reset CommitHash(A sequence of number) TargetList(Optional)
 git checkout -- TargetList
 ```
 
 ```SH
 git log -Number(How many, Optional)
-git checkout CommitNumber(A sequence of number) -- TargetList
+git checkout CommitHash(A sequence of number) -- TargetList
 ```
 
 ### Check the Differences After Using `git add` or `git rm`, but Before `git commit`
 
 ```SH
+# Check the differences between Stage and the last commit
 git diff --cached TargetList(Optional)
 ```
 
 ```SH
+# Check the differences between Stage and the last commit
 git diff --staged TargetList(Optional)
 ```
 
-### Check the Differences
+### Check the Differences Between the CommitHash and the Current Working Directory
 
 ```SH
 git log -Number(How many, Optional)
-git diff CommitNumber(A sequence of number, Optional) TargetList(Optional)
+# If not fill the CommitHash, check the differences between the last
+# CommitHash and the current Working Directory
+git diff CommitHash(A sequence of number, Optional) TargetList(Optional)
+```
+
+### Check the Differences Between the CommitHashes
+
+```SH
+git log -Number(How many, Optional)
+# CommitHashA is treated as the original by git diff.
+# CommitHashB is thought as the modified one by git diff.
+git diff CommitHashA CommitHashB TargetList(Optional)
+```
+
+### Check the Differences Between the CommitHashes
+
+```SH
+# BranchNameA is treated as the original by git diff.
+# BranchNameB is thought as the modified one by git diff.
+# If not fill BranchNameB, the current branch is thought as BranchNameB.
+git diff BranchNameA BranchNameB(Optional) TargetList(Optional)
 ```
 
 ### Check the Revision History
 
 ```SH
 git log -Number(How many, Optional)
-git show CommitNumber(A sequence of number, Optional) TargetList(Optional)
+git show CommitHashList(Optional) TargetList(Optional) BranchName(Optional)
 ```
 
 ```SH
@@ -237,14 +270,14 @@ git show --name-only -Number(How many, Optional) TargetList(Optional)
 
 ```SH
 git log -Number(How many, Optional)
-git reset CommitNumber(A sequence of number) TargetList(Optional)
+git reset CommitHash(A sequence of number) TargetList(Optional)
 ```
 
 ### Revert to the Previous Version and Discard Current Modifications
 
 ```SH
 git log -Number(How many, Optional)
-git reset --hard CommitNumber(A sequence of number)
+git reset --hard CommitHash(A sequence of number)
 ```
 
 ### Link the Local Repository to a Remote Repository
@@ -378,7 +411,7 @@ git stash clear # Clear all stashes.
 git switch AnotherBranch
 git log # Find the specific Modification
 git switch CurrentBranch
-git cherry-pick CommitNumber
+git cherry-pick CommitHash
 ```
 
 ### Push the Current Branch to The Remote Repository
@@ -393,13 +426,36 @@ git push origin CurrentBranch
 git rebase
 ```
 
-### Tag Commits
+### Show Tags
 
 ```SH
 git tag # Check tags
 ```
 
 ```SH
-git tag TagName CommitNumber(Optional)
-# If you tag CommitNumber with TagName, TagName can replace CommitNumber in git commands that require it.
+git tag -l Pattern # Check tags matching the Pattern
+```
+
+### Tag a CommitHash
+
+```SH
+git tag TagName/VersionName CommitHash(Optional) -m Comment(Optional)
+# If you tag CommitHash with TagName, TagName can replace CommitHash in git commands that require it.
+```
+
+### Push the Tag to Remote
+
+```SH
+git push origin TagName # Push the specified TagName to Remote
+```
+
+```SH
+git push origin --tags # Push all tags to Remote
+```
+
+### Delete a Tag
+
+```SH
+git tag -d TagName # Delete local TagName
+git push origin --delete TagName # Delete remote TagName
 ```
