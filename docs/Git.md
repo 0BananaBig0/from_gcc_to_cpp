@@ -74,12 +74,23 @@ git commit -m "Your comments"
 
 ```mermaid
 flowchart LR
-    A[Working Directory] -->|git add TargetList| B[Stage #40;Index#41;]
+    A[Working Directory] -->|git add TargetList| B[Staging Area #40;Index#41;]
     B -->|git commit -m #quot;Your comments#quot;| C[Current Branch]
     D[Head] --> C
-    subgraph Repository
+    E[origin] --> G[Remote]
+    F --> |git push| G
+    B --> |git checkout -- TargetList| A
+    C --> |git reset CommitHash| B
+    C --> |git reset CommitHash --hard: First| B
+    B --> |git reset CommitHash --hard: Second| A
+    G --> |git fetch| F
+    G --> |git clone/pull: First| F
+    F --> |git clone/pull: Second| A
+    subgraph F[Repository]
         B
         C
+        D
+        E
     end
 ```
 
