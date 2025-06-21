@@ -39,6 +39,7 @@
   - [Tag a CommitHash](#tag-a-commithash)
   - [Push the Tag to Remote](#push-the-tag-to-remote)
   - [Delete a Tag](#delete-a-tag)
+  - [Delete Untracked Files](#delete-untracked-files)
 
 <!-- vim-markdown-toc -->
 
@@ -469,4 +470,11 @@ git push origin --tags # Push all tags to Remote
 ```SH
 git tag -d TagName # Delete local TagName
 git push origin --delete TagName # Delete remote TagName
+```
+
+### Delete Untracked Files
+
+```SH
+git clean -dn
+git clean -df
 ```
