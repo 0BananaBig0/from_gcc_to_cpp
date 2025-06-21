@@ -264,6 +264,8 @@ target set: dependency set
 
 1. To understand the process of `make`, manually build a dependency tree
    starting from the root.
+2. When a command set contain multiple commands, if `.ONESHELL` or `\` is not
+   used, make invoke a new shell for each command everytime.
 
 ### `.PHONY`, a Pseudo Target
 
