@@ -17,7 +17,11 @@ report_icl_network -node_type all
             •Instance input ports not tied to constant values
             •Always contains a ScanMux component as its a suffiex of the report result.
 
-2, get_icl_module -of_instances instance_name
+2, get_icl_network node_name -node_type/inputs/outputs/current_input_index
+    1) Behavior:
+        •Reports node_type/inputs/outputs/current_input_index of node_name
+
+3, get_icl_module -of_instances instance_name
    get_icl_ports -of_modules module_name -direction input/output pattern
     1) Behavior:
         •Returns module information for specified instances
@@ -25,33 +29,42 @@ report_icl_network -node_type all
         •Supports pattern matching for port names (wildcards allowed)
         •Direction filter accepts "input", "output", or omitting for all directions
 
-3, get_icl_pins -of_instances instance_name -direction input/output pattern
+4, get_icl_pins -of_instances instance_name -direction input/output pattern
     Behavior:
         •Reports pins/ports with full hierarchical path information
         •Maintains complete instance hierarchy in returned names
         •Supports direction filtering and pattern matching like get_icl_ports
 
-4, get_icl_instances -filter "attr_name==attr_value"
+5, get_icl_instances -filter "attr_name==attr_value"
     Behavior:
         •Reports an instance list meet the requirement "attr_name==attr_value".
 
-5, get_icl_modules -of_instances inst_name -filter "attr_name==attr_value"
+6, get_icl_modules -of_instances inst_name -filter "attr_name==attr_value"
     Behavior:
         •Reports a module related to inst_name.
 
-6, report_attributes {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}
+7, report_attributes {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}
     Behavior:
         •Reports all attributes for {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}.
 
-7, get_attribute_list {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...} {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}
+8, get_attribute_list {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...} {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}
     Behavior:
         •Reports all attributes' names for {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}.
 
-8, get_attribute_value_list {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...} {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...} -name attr_name
+9, get_attribute_value_list {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...} {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...} -name attr_name
     Behavior:
         •Reports all attributes' values of attr_name for {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}.
 
-9, Special objects:
+10, get_icl_objects -object_types object_type -below_instances inst_name
+    Behavior:
+        •Reports all object_type objects contained within the instance inst_name.
+    Our necessary object_type:
+        icl_sib(may not works as expected)
+        icl_scan_mux
+        icl_scan_register
+        icl_instance
+
+11, Special objects:
     1, TDR;
     2, SIB;
     3, TAP Controller;
