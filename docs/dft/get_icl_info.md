@@ -39,9 +39,9 @@ report_icl_network -node_type all
     Behavior:
         •Reports an instance list meet the requirement "attr_name==attr_value".
 
-6, get_icl_modules -of_instances inst_name -filter "attr_name==attr_value"
+6, get_icl_modules -below_instances inst_name
     Behavior:
-        •Reports a module related to inst_name.
+        •Reports all modules related to inst_name.
 
 7, report_attributes {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}
     Behavior:
@@ -62,7 +62,7 @@ report_icl_network -node_type all
         icl_sib(may not works as expected)
         icl_scan_mux
         icl_scan_register
-        icl_instance
+        icl_instance <=> get_icl_instances -below_instances inst_name
 
 11, Special objects:
     1, TDR;
