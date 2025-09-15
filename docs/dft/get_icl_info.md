@@ -39,23 +39,27 @@ report_icl_network -node_type all
     Behavior:
         •Reports an instance list meet the requirement "attr_name==attr_value".
 
-6, get_icl_modules -below_instances inst_name
+6, get_icl_instances -of_pins pin_name
+    Behavior:
+        •Reports an instance name containning pin_name.
+
+7, get_icl_modules -below_instances inst_name
     Behavior:
         •Reports all modules related to inst_name.
 
-7, report_attributes {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}
+8, report_attributes {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}
     Behavior:
         •Reports all attributes for {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}.
 
-8, get_attribute_list {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...} {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}
+9, get_attribute_list {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...} {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}
     Behavior:
         •Reports all attributes' names for {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}.
 
-9, get_attribute_value_list {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...} {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...} -name attr_name
+10, get_attribute_value_list {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...} {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...} -name attr_name
     Behavior:
         •Reports all attributes' values of attr_name for {inst_name1 inst_name2 ... inst_name1.port1 inst_name1.port2 ...}.
 
-10, get_icl_objects -object_types object_type -below_instances inst_name
+11, get_icl_objects -object_types object_type -below_instances inst_name
     Behavior:
         •Reports all object_type objects contained within the instance inst_name.
     Our necessary object_type:
@@ -64,7 +68,19 @@ report_icl_network -node_type all
         icl_scan_register
         icl_instance <=> get_icl_instances -below_instances inst_name
 
-11, Special objects:
+12, get_icl_fanins/get_icl_fanouts pin_name/port_name
+    Behavior:
+        •Reports all fanin/fanout pins with flattened instance names(From bottom(not include ScanRegister and ScanMux) to the current design).
+
+13, get_icl_fanins_in_module/get_icl_fanouts_in_module pin_name/port_name
+    Behavior:
+        •Reports all fanin pins with instance names(only in the current design).
+
+14, get_name_list collection
+    Behavior:
+        •Convert a collection into a list.
+
+15, Special objects:
     1, TDR;
     2, SIB;
     3, TAP Controller;
