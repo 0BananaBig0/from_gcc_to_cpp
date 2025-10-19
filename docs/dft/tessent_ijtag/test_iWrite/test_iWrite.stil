@@ -1,10 +1,8 @@
-STIL 1.0 {
-  Design 2005;
-}
+STIL 1.0;
 
 Header  {
 Title "chip_test_iWrite_stil" ;
-  Date     "Sun Sep 28 23:22:04 2025" ;
+  Date     "Sat Oct 18 17:54:50 2025" ;
   Source  "Tessent Shell  2024.2" ;
   History  {
     Ann {*  Begin_Verify_Section  *}
@@ -19,833 +17,605 @@ Title "chip_test_iWrite_stil" ;
 }
 
 Signals {
-  TCK In; TDI In; capture_en In; sel In; shift_en In; update_en In; 
-  TDO Out; 
+  "TCK" In; "TDI" In; "capture_en" In; "sel" In; "shift_en" In; "update_en" In; 
+  "TDO" Out; 
 }
 
 SignalGroups {
-  PI_grp_0 = 'TDI';
-  _po_ = 'TDO';
-  PI_grp_1 = 'TCK';
-  PI_grp_2 = 'capture_en + sel + shift_en';
-  PI_grp_3 = 'update_en';
+  _pi_ = '"TCK" + "TDI" + "capture_en" + "sel" + "shift_en" + "update_en"';
+  _po_ = '"TDO"';
+  input_time_gen_0 = '"TDI"';
+  input_time_gen_1 = '"TCK"';
+  input_time_gen_2 = '"capture_en" + "sel" + "shift_en"';
+  input_time_gen_3 = '"update_en"';
 }
 
 Timing RETARGET_timing {
   WaveformTable tset_gen_tp1  {
     Period '100ns' ;
     Waveforms  {
-      PI_grp_0  { 01N { '0ns' D/U/N; }}
-      PI_grp_1  { 01 { '0ns' D; '25ns' D/U; '75ns' D;}}
-      PI_grp_2  { 01N { '99ns' D/U/N; }}
-      PI_grp_3  { 01N { '49ns' D/U/N; }}
+      input_time_gen_0  { 01N { '0ns' D/U/N; }}
+      input_time_gen_1  { 01 { '0ns' D; '25ns' D/U; '75ns' D;}}
+      input_time_gen_2  { 01N { '99ns' D/U/N; }}
+      input_time_gen_3  { 01N { '49ns' D/U/N; }}
       _po_ { LHXT { '24ns' L/H/X/T;}}
     }
   }
 }
 PatternBurst ijtagpats {
-  PatList { ijtag_test;  }
+  PatList { ijtag_test; }
 }
 
-PatternExec testexec {
+PatternExec {
   Timing RETARGET_timing;
   PatternBurst ijtagpats;
 }
 
 
 Pattern ijtag_test  {
+  //Pattern:0  Vector:0  TesterCycle:0
   Ann {* Pattern:0  Vector:0  TesterCycle:0 *}
   Ann {* TESSENT_PRAGMA icl_checksum d603cea343d04264dd5ed6689a50fcf9_1 *}
+  //Pattern:0  Vector:0  TesterCycle:0
   Ann {* Pattern:0  Vector:0  TesterCycle:0 *}
   Ann {* TESSENT_PRAGMA pattern_set TDR_fix *}
   Ann {* Pattern_set TDR_fix *}
   Ann {* + System reset *}
-  "pattern 0": 
   W tset_gen_tp1;
-  C {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 000;
-    PI_grp_3 = 0;
+  V {
+       _pi_=100000;
+       _po_=X;
   }
-     V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 000;
-    PI_grp_3 = 0;
-  }
+  //Pattern:0  Vector:1  TesterCycle:1
   Ann {* Pattern:0  Vector:1  TesterCycle:1 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 000;
-    PI_grp_3 = 0;
+       _pi_=100000;
   }
+  //Pattern:0  Vector:2  TesterCycle:2
   Ann {* Pattern:0  Vector:2  TesterCycle:2 *}
-  Ann {* + Targets:
-  Apply 0
-    writes:
-       TDR_1.SR[5:0]  =  000111
-
-
-+ scan vector TDI..TDO (
-       W 1:1    R 1:1   SIB_1.sib
-       W 0:0    R 0:0   SIB_2.sib
-)
-+  Loading: 1_0
-Unloading: 0_0
-+ Associated TAP transition: IDLE -> DRSELECT *}
+  Ann {* + Targets: *}
+  Ann {* +   Apply 0 *}
+  Ann {* +     writes: *}
+  Ann {* +        TDR_1.SR[3:0]  =  0011 *}
+  Ann {* + scan vector TDI..TDO ( *}
+  Ann {* +        W 1:1    R 1:1   SIB_1.sib *}
+  Ann {* +        W 0:0    R 0:0   SIB_2.sib *}
+  Ann {* + ) *}
+  Ann {* +  Loading: 1_0 *}
+  Ann {* + Unloading: 0_0 *}
+  Ann {* + Associated TAP transition: IDLE -> DRSELECT *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 0;
+       _pi_=100100;
   }
+  //Pattern:0  Vector:3  TesterCycle:3
   Ann {* Pattern:0  Vector:3  TesterCycle:3 *}
   Ann {* + Associated TAP transition: DRSELECT -> DRCAPTURE *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 110;
-    PI_grp_3 = 0;
+       _pi_=101100;
   }
+  //Pattern:0  Vector:4  TesterCycle:4
   Ann {* Pattern:0  Vector:4  TesterCycle:4 *}
   Ann {* + Associated TAP transition: DRCAPTURE -> DRSHIFT *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:5  TesterCycle:5
   Ann {* Pattern:0  Vector:5  TesterCycle:5 *}
   Ann {* + Shift Cycles *}
   Ann {* TESSENT_PRAGMA annotation SIB_2.sib -type read -var_bits {0} -pin TDO -relative_cycles {0} *}
   Ann {* TESSENT_PRAGMA annotation SIB_1.sib -type read -var_bits {0} -pin TDO -relative_cycles {1} *}
   Ann {* TESSENT_PRAGMA bit_annotation SIB_2.sib -type read -var_bits {0} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
+       _po_=L;
   }
+  //Pattern:0  Vector:6  TesterCycle:6
   Ann {* Pattern:0  Vector:6  TesterCycle:6 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = SIB_2.sib  *}
   Ann {* + Associated TAP transition: DRSHIFT -> DREXIT1 *}
   Ann {* TESSENT_PRAGMA bit_annotation SIB_1.sib -type read -var_bits {0} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 0;
+       _pi_=110100;
+       _po_=L;
   }
+  //Pattern:0  Vector:7  TesterCycle:7
   Ann {* Pattern:0  Vector:7  TesterCycle:7 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = SIB_1.sib  *}
   Ann {* + Associated TAP transition: DREXIT1 -> DRUPDATE *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 1;
+       _pi_=100101;
+       _po_=X;
   }
+  //Pattern:0  Vector:8  TesterCycle:8
   Ann {* Pattern:0  Vector:8  TesterCycle:8 *}
-  Ann {* + scan vector TDI..TDO (
-       W 8:3    R 8:3   TDR_1.SR[5:0]
-       W 2:2    R 2:2   TDR_1.EN_reg
-       W 1:1    R 1:1   SIB_1.sib
-       W 0:0    R 0:0   SIB_2.sib
-)
-+  Loading: ******_0_1_0
-Unloading: XXXXXX_X_0_0
-+ Associated TAP transition: DRUPDATE -> DRSELECT *}
+  Ann {* + scan vector TDI..TDO ( *}
+  Ann {* +        W 8:3    R 8:3   TDR_1.SR[5:0] *}
+  Ann {* +        W 2:2    R 2:2   TDR_1.EN_reg *}
+  Ann {* +        W 1:1    R 1:1   SIB_1.sib *}
+  Ann {* +        W 0:0    R 0:0   SIB_2.sib *}
+  Ann {* + ) *}
+  Ann {* +  Loading: 00****_0_1_0 *}
+  Ann {* + Unloading: XXXXXX_X_0_0 *}
+  Ann {* + Associated TAP transition: DRUPDATE -> DRSELECT *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 0;
+       _pi_=100100;
   }
+  //Pattern:0  Vector:9  TesterCycle:9
   Ann {* Pattern:0  Vector:9  TesterCycle:9 *}
   Ann {* + Associated TAP transition: DRSELECT -> DRCAPTURE *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 110;
-    PI_grp_3 = 0;
+       _pi_=101100;
   }
+  //Pattern:0  Vector:10  TesterCycle:10
   Ann {* Pattern:0  Vector:10  TesterCycle:10 *}
   Ann {* + Associated TAP transition: DRCAPTURE -> DRSHIFT *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:11  TesterCycle:11
   Ann {* Pattern:0  Vector:11  TesterCycle:11 *}
   Ann {* + Shift Cycles *}
-  Ann {* TESSENT_PRAGMA variable TDR_1.SR -type write -var_bits {5:0} -pin TDI -relative_cycles {8:3} *}
+  Ann {* TESSENT_PRAGMA variable TDR_1.SR -type write -var_bits {3:0} -pin TDI -relative_cycles {6:3} *}
   Ann {* TESSENT_PRAGMA annotation SIB_2.sib(1) -type read -var_bits {0} -pin TDO -relative_cycles {0} *}
   Ann {* TESSENT_PRAGMA annotation SIB_1.sib(1) -type read -var_bits {0} -pin TDO -relative_cycles {1} *}
   Ann {* TESSENT_PRAGMA bit_annotation SIB_2.sib(1) -type read -var_bits {0} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
+       _po_=L;
   }
+  //Pattern:0  Vector:12  TesterCycle:12
   Ann {* Pattern:0  Vector:12  TesterCycle:12 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = SIB_2.sib  *}
   Ann {* TESSENT_PRAGMA bit_annotation SIB_1.sib(1) -type read -var_bits {0} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
+       _po_=L;
   }
+  //Pattern:0  Vector:13  TesterCycle:13
   Ann {* Pattern:0  Vector:13  TesterCycle:13 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = SIB_1.sib  *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
+       _po_=X;
   }
+  //Pattern:0  Vector:14  TesterCycle:14
   Ann {* Pattern:0  Vector:14  TesterCycle:14 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {0} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
   }
+  //Pattern:0  Vector:15  TesterCycle:15
   Ann {* Pattern:0  Vector:15  TesterCycle:15 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {1} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
   }
+  //Pattern:0  Vector:16  TesterCycle:16
   Ann {* Pattern:0  Vector:16  TesterCycle:16 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {2} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:17  TesterCycle:17
   Ann {* Pattern:0  Vector:17  TesterCycle:17 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {3} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:18  TesterCycle:18
   Ann {* Pattern:0  Vector:18  TesterCycle:18 *}
-  Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {4} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:19  TesterCycle:19
   Ann {* Pattern:0  Vector:19  TesterCycle:19 *}
   Ann {* + Associated TAP transition: DRSHIFT -> DREXIT1 *}
-  Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {5} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 0;
+       _pi_=100100;
   }
+  //Pattern:0  Vector:20  TesterCycle:20
   Ann {* Pattern:0  Vector:20  TesterCycle:20 *}
   Ann {* + Associated TAP transition: DREXIT1 -> DRUPDATE *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 1;
+       _pi_=100101;
   }
+  //Pattern:0  Vector:21  TesterCycle:21
   Ann {* Pattern:0  Vector:21  TesterCycle:21 *}
-  Ann {* + Targets:
-  Apply 0
-    reads:
-       TDR_1.SR[5:0]  =  000111
-
-
-+ scan vector TDI..TDO (
-       W 8:3    R 8:3   TDR_1.SR[5:0]
-       W 2:2    R 2:2   TDR_1.EN_reg
-       W 1:1    R 1:1   SIB_1.sib
-       W 0:0    R 0:0   SIB_2.sib
-)
-+  Loading: ******_0_1_1
-Unloading: 000111_X_0_0
-+ Associated TAP transition: DRUPDATE -> DRSELECT *}
+  Ann {* + Targets: *}
+  Ann {* +   Apply 0 *}
+  Ann {* +     reads: *}
+  Ann {* +        TDR_1.SR[3:0]  =  0011 *}
+  Ann {* + scan vector TDI..TDO ( *}
+  Ann {* +        W 8:3    R 8:3   TDR_1.SR[5:0] *}
+  Ann {* +        W 2:2    R 2:2   TDR_1.EN_reg *}
+  Ann {* +        W 1:1    R 1:1   SIB_1.sib *}
+  Ann {* +        W 0:0    R 0:0   SIB_2.sib *}
+  Ann {* + ) *}
+  Ann {* +  Loading: 00****_0_1_1 *}
+  Ann {* + Unloading: XX0011_X_0_0 *}
+  Ann {* + Associated TAP transition: DRUPDATE -> DRSELECT *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 0;
+       _pi_=100100;
   }
+  //Pattern:0  Vector:22  TesterCycle:22
   Ann {* Pattern:0  Vector:22  TesterCycle:22 *}
   Ann {* + Associated TAP transition: DRSELECT -> DRCAPTURE *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 110;
-    PI_grp_3 = 0;
+       _pi_=101100;
   }
+  //Pattern:0  Vector:23  TesterCycle:23
   Ann {* Pattern:0  Vector:23  TesterCycle:23 *}
   Ann {* + Associated TAP transition: DRCAPTURE -> DRSHIFT *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:24  TesterCycle:24
   Ann {* Pattern:0  Vector:24  TesterCycle:24 *}
   Ann {* + Shift Cycles *}
-  Ann {* TESSENT_PRAGMA variable TDR_1.SR -type write -var_bits {5:0} -pin TDI -relative_cycles {8:3} *}
-  Ann {* TESSENT_PRAGMA variable TDR_1.SR -type read -var_bits {5:0} -var_length 6 -pin TDO -relative_cycles {8:3} *}
+  Ann {* TESSENT_PRAGMA variable TDR_1.SR -type write -var_bits {3:0} -pin TDI -relative_cycles {6:3} *}
+  Ann {* TESSENT_PRAGMA variable TDR_1.SR -type read -var_bits {3:0} -var_length 4 -pin TDO -relative_cycles {6:3} *}
   Ann {* TESSENT_PRAGMA annotation SIB_2.sib(2) -type read -var_bits {0} -pin TDO -relative_cycles {0} *}
   Ann {* TESSENT_PRAGMA annotation SIB_1.sib(2) -type read -var_bits {0} -pin TDO -relative_cycles {1} *}
   Ann {* TESSENT_PRAGMA bit_annotation SIB_2.sib(2) -type read -var_bits {0} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
+       _po_=L;
   }
+  //Pattern:0  Vector:25  TesterCycle:25
   Ann {* Pattern:0  Vector:25  TesterCycle:25 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = SIB_2.sib  *}
   Ann {* TESSENT_PRAGMA bit_annotation SIB_1.sib(2) -type read -var_bits {0} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
+       _po_=L;
   }
+  //Pattern:0  Vector:26  TesterCycle:26
   Ann {* Pattern:0  Vector:26  TesterCycle:26 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = SIB_1.sib  *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
+       _po_=X;
   }
+  //Pattern:0  Vector:27  TesterCycle:27
   Ann {* Pattern:0  Vector:27  TesterCycle:27 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {0} -pin TDI -inversion 0b0 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type read -var_bits {0} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = H;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
+       _po_=H;
   }
+  //Pattern:0  Vector:28  TesterCycle:28
   Ann {* Pattern:0  Vector:28  TesterCycle:28 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = TDR_1.SR[0]  *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {1} -pin TDI -inversion 0b0 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type read -var_bits {1} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = H;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
+       _po_=H;
   }
+  //Pattern:0  Vector:29  TesterCycle:29
   Ann {* Pattern:0  Vector:29  TesterCycle:29 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = TDR_1.SR[1]  *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {2} -pin TDI -inversion 0b0 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type read -var_bits {2} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = H;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
+       _po_=L;
   }
+  //Pattern:0  Vector:30  TesterCycle:30
   Ann {* Pattern:0  Vector:30  TesterCycle:30 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = TDR_1.SR[2]  *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {3} -pin TDI -inversion 0b0 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type read -var_bits {3} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
+       _po_=L;
   }
+  //Pattern:0  Vector:31  TesterCycle:31
   Ann {* Pattern:0  Vector:31  TesterCycle:31 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = TDR_1.SR[3]  *}
-  Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {4} -pin TDI -inversion 0b0 *}
-  Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type read -var_bits {4} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
+       _po_=X;
   }
+  //Pattern:0  Vector:32  TesterCycle:32
   Ann {* Pattern:0  Vector:32  TesterCycle:32 *}
-  Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = TDR_1.SR[4]  *}
   Ann {* + Associated TAP transition: DRSHIFT -> DREXIT1 *}
-  Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {5} -pin TDI -inversion 0b0 *}
-  Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type read -var_bits {5} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 0;
+       _pi_=100100;
   }
+  //Pattern:0  Vector:33  TesterCycle:33
   Ann {* Pattern:0  Vector:33  TesterCycle:33 *}
-  Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = TDR_1.SR[5]  *}
   Ann {* + Associated TAP transition: DREXIT1 -> DRUPDATE *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 1;
+       _pi_=100101;
   }
+  //Pattern:0  Vector:34  TesterCycle:34
   Ann {* Pattern:0  Vector:34  TesterCycle:34 *}
-  Ann {* + Targets:
-  Apply 0
-    writes:
-       TDR_1.SR[3:0]  =  1100
-       TDR_2.SR[3:0]  =  0011
-
-
-+ scan vector TDI..TDO (
-       W 15:10    R 15:10   TDR_1.SR[5:0]
-       W  9: 9    R  9: 9   TDR_1.EN_reg
-       W  8: 8    R  8: 8   SIB_1.sib
-       W  7: 2    R  7: 2   TDR_2.SR[5:0]
-       W  1: 1    R  1: 1   TDR_2.EN_reg
-       W  0: 0    R  0: 0   SIB_2.sib
-)
-+  Loading: ******_0_1_00****_0_1
-Unloading: XXXXXX_X_0_XXXXXX_X_0
-+ Associated TAP transition: DRUPDATE -> DRSELECT *}
+  Ann {* + Targets: *}
+  Ann {* +   Apply 0 *}
+  Ann {* +     writes: *}
+  Ann {* +        TDR_1.SR[3:0]  =  1100 *}
+  Ann {* +        TDR_2.SR[3:0]  =  0011 *}
+  Ann {* + scan vector TDI..TDO ( *}
+  Ann {* +        W 15:10    R 15:10   TDR_1.SR[5:0] *}
+  Ann {* +        W  9: 9    R  9: 9   TDR_1.EN_reg *}
+  Ann {* +        W  8: 8    R  8: 8   SIB_1.sib *}
+  Ann {* +        W  7: 2    R  7: 2   TDR_2.SR[5:0] *}
+  Ann {* +        W  1: 1    R  1: 1   TDR_2.EN_reg *}
+  Ann {* +        W  0: 0    R  0: 0   SIB_2.sib *}
+  Ann {* + ) *}
+  Ann {* +  Loading: 00****_0_1_00****_0_1 *}
+  Ann {* + Unloading: XXXXXX_X_0_XXXXXX_X_0 *}
+  Ann {* + Associated TAP transition: DRUPDATE -> DRSELECT *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 0;
+       _pi_=100100;
   }
+  //Pattern:0  Vector:35  TesterCycle:35
   Ann {* Pattern:0  Vector:35  TesterCycle:35 *}
   Ann {* + Associated TAP transition: DRSELECT -> DRCAPTURE *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 110;
-    PI_grp_3 = 0;
+       _pi_=101100;
   }
+  //Pattern:0  Vector:36  TesterCycle:36
   Ann {* Pattern:0  Vector:36  TesterCycle:36 *}
   Ann {* + Associated TAP transition: DRCAPTURE -> DRSHIFT *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:37  TesterCycle:37
   Ann {* Pattern:0  Vector:37  TesterCycle:37 *}
   Ann {* + Shift Cycles *}
-  Ann {* TESSENT_PRAGMA variable TDR_1.SR -type write -var_bits {5:0} -pin TDI -relative_cycles {15:10} *}
+  Ann {* TESSENT_PRAGMA variable TDR_1.SR -type write -var_bits {3:0} -pin TDI -relative_cycles {13:10} *}
   Ann {* TESSENT_PRAGMA variable TDR_2.SR -type write -var_bits {3:0} -pin TDI -relative_cycles {5:2} *}
   Ann {* TESSENT_PRAGMA annotation SIB_2.sib(3) -type read -var_bits {0} -pin TDO -relative_cycles {0} *}
   Ann {* TESSENT_PRAGMA annotation SIB_1.sib(3) -type read -var_bits {0} -pin TDO -relative_cycles {8} *}
   Ann {* TESSENT_PRAGMA bit_annotation SIB_2.sib(3) -type read -var_bits {0} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
+       _po_=L;
   }
+  //Pattern:0  Vector:38  TesterCycle:38
   Ann {* Pattern:0  Vector:38  TesterCycle:38 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = SIB_2.sib  *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
+       _po_=X;
   }
+  //Pattern:0  Vector:39  TesterCycle:39
   Ann {* Pattern:0  Vector:39  TesterCycle:39 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_2.SR -type write -var_bits {0} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
   }
+  //Pattern:0  Vector:40  TesterCycle:40
   Ann {* Pattern:0  Vector:40  TesterCycle:40 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_2.SR -type write -var_bits {1} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
   }
+  //Pattern:0  Vector:41  TesterCycle:41
   Ann {* Pattern:0  Vector:41  TesterCycle:41 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_2.SR -type write -var_bits {2} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:42  TesterCycle:42
   Ann {* Pattern:0  Vector:42  TesterCycle:42 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_2.SR -type write -var_bits {3} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:43  TesterCycle:43
   Ann {* Pattern:0  Vector:43  TesterCycle:43 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:44  TesterCycle:44
   Ann {* Pattern:0  Vector:44  TesterCycle:44 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:45  TesterCycle:45
   Ann {* Pattern:0  Vector:45  TesterCycle:45 *}
   Ann {* TESSENT_PRAGMA bit_annotation SIB_1.sib(3) -type read -var_bits {0} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
+       _po_=L;
   }
+  //Pattern:0  Vector:46  TesterCycle:46
   Ann {* Pattern:0  Vector:46  TesterCycle:46 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = SIB_1.sib  *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
+       _po_=X;
   }
+  //Pattern:0  Vector:47  TesterCycle:47
   Ann {* Pattern:0  Vector:47  TesterCycle:47 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {0} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:48  TesterCycle:48
   Ann {* Pattern:0  Vector:48  TesterCycle:48 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {1} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:49  TesterCycle:49
   Ann {* Pattern:0  Vector:49  TesterCycle:49 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {2} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
   }
+  //Pattern:0  Vector:50  TesterCycle:50
   Ann {* Pattern:0  Vector:50  TesterCycle:50 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {3} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
   }
+  //Pattern:0  Vector:51  TesterCycle:51
   Ann {* Pattern:0  Vector:51  TesterCycle:51 *}
-  Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {4} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:52  TesterCycle:52
   Ann {* Pattern:0  Vector:52  TesterCycle:52 *}
   Ann {* + Associated TAP transition: DRSHIFT -> DREXIT1 *}
-  Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {5} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 0;
+       _pi_=100100;
   }
+  //Pattern:0  Vector:53  TesterCycle:53
   Ann {* Pattern:0  Vector:53  TesterCycle:53 *}
   Ann {* + Associated TAP transition: DREXIT1 -> DRUPDATE *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 1;
+       _pi_=100101;
   }
+  //Pattern:0  Vector:54  TesterCycle:54
   Ann {* Pattern:0  Vector:54  TesterCycle:54 *}
-  Ann {* + Targets:
-  Apply 0
-    writes:
-       TDR_1.SR[2:1]  =  01
-       TDR_2.SR[2:1]  =  10
-
-
-+ scan vector TDI..TDO (
-       W 15:10    R 15:10   TDR_1.SR[5:0]
-       W  9: 9    R  9: 9   TDR_1.EN_reg
-       W  8: 8    R  8: 8   SIB_1.sib
-       W  7: 2    R  7: 2   TDR_2.SR[5:0]
-       W  1: 1    R  1: 1   TDR_2.EN_reg
-       W  0: 0    R  0: 0   SIB_2.sib
-)
-+  Loading: ******_0_1_00**0*_0_1
-Unloading: XXXXXX_X_0_XXXXXX_X_0
-+ Associated TAP transition: DRUPDATE -> DRSELECT *}
+  Ann {* + Targets: *}
+  Ann {* +   Apply 0 *}
+  Ann {* +     writes: *}
+  Ann {* +        TDR_1.SR[2:1]  =  01 *}
+  Ann {* +        TDR_2.SR[2:1]  =  10 *}
+  Ann {* + scan vector TDI..TDO ( *}
+  Ann {* +        W 15:10    R 15:10   TDR_1.SR[5:0] *}
+  Ann {* +        W  9: 9    R  9: 9   TDR_1.EN_reg *}
+  Ann {* +        W  8: 8    R  8: 8   SIB_1.sib *}
+  Ann {* +        W  7: 2    R  7: 2   TDR_2.SR[5:0] *}
+  Ann {* +        W  1: 1    R  1: 1   TDR_2.EN_reg *}
+  Ann {* +        W  0: 0    R  0: 0   SIB_2.sib *}
+  Ann {* + ) *}
+  Ann {* +  Loading: 00****_0_1_00**0*_0_1 *}
+  Ann {* + Unloading: XXXXXX_X_0_XXXXXX_X_0 *}
+  Ann {* + Associated TAP transition: DRUPDATE -> DRSELECT *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 0;
+       _pi_=100100;
   }
+  //Pattern:0  Vector:55  TesterCycle:55
   Ann {* Pattern:0  Vector:55  TesterCycle:55 *}
   Ann {* + Associated TAP transition: DRSELECT -> DRCAPTURE *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 110;
-    PI_grp_3 = 0;
+       _pi_=101100;
   }
+  //Pattern:0  Vector:56  TesterCycle:56
   Ann {* Pattern:0  Vector:56  TesterCycle:56 *}
   Ann {* + Associated TAP transition: DRCAPTURE -> DRSHIFT *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:57  TesterCycle:57
   Ann {* Pattern:0  Vector:57  TesterCycle:57 *}
   Ann {* + Shift Cycles *}
-  Ann {* TESSENT_PRAGMA variable TDR_1.SR -type write -var_bits {5:0} -pin TDI -relative_cycles {15:10} *}
+  Ann {* TESSENT_PRAGMA variable TDR_1.SR -type write -var_bits {3:0} -pin TDI -relative_cycles {13:10} *}
   Ann {* TESSENT_PRAGMA variable TDR_2.SR -type write -var_bits {3:2 0} -pin TDI -relative_cycles {5:4 2} *}
   Ann {* TESSENT_PRAGMA annotation SIB_2.sib(4) -type read -var_bits {0} -pin TDO -relative_cycles {0} *}
   Ann {* TESSENT_PRAGMA annotation SIB_1.sib(4) -type read -var_bits {0} -pin TDO -relative_cycles {8} *}
   Ann {* TESSENT_PRAGMA bit_annotation SIB_2.sib(4) -type read -var_bits {0} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
+       _po_=L;
   }
+  //Pattern:0  Vector:58  TesterCycle:58
   Ann {* Pattern:0  Vector:58  TesterCycle:58 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = SIB_2.sib  *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
+       _po_=X;
   }
+  //Pattern:0  Vector:59  TesterCycle:59
   Ann {* Pattern:0  Vector:59  TesterCycle:59 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_2.SR -type write -var_bits {0} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
   }
+  //Pattern:0  Vector:60  TesterCycle:60
   Ann {* Pattern:0  Vector:60  TesterCycle:60 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:61  TesterCycle:61
   Ann {* Pattern:0  Vector:61  TesterCycle:61 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_2.SR -type write -var_bits {2} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
   }
+  //Pattern:0  Vector:62  TesterCycle:62
   Ann {* Pattern:0  Vector:62  TesterCycle:62 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_2.SR -type write -var_bits {3} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:63  TesterCycle:63
   Ann {* Pattern:0  Vector:63  TesterCycle:63 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:64  TesterCycle:64
   Ann {* Pattern:0  Vector:64  TesterCycle:64 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:65  TesterCycle:65
   Ann {* Pattern:0  Vector:65  TesterCycle:65 *}
   Ann {* TESSENT_PRAGMA bit_annotation SIB_1.sib(4) -type read -var_bits {0} -pin TDO -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = L;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
+       _po_=L;
   }
+  //Pattern:0  Vector:66  TesterCycle:66
   Ann {* Pattern:0  Vector:66  TesterCycle:66 *}
   Ann {* TESSENT_MARKER:Previous scan out : pin TDO , ICL register = SIB_1.sib  *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
+       _po_=X;
   }
+  //Pattern:0  Vector:67  TesterCycle:67
   Ann {* Pattern:0  Vector:67  TesterCycle:67 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {0} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:68  TesterCycle:68
   Ann {* Pattern:0  Vector:68  TesterCycle:68 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {1} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
   }
+  //Pattern:0  Vector:69  TesterCycle:69
   Ann {* Pattern:0  Vector:69  TesterCycle:69 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {2} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:70  TesterCycle:70
   Ann {* Pattern:0  Vector:70  TesterCycle:70 *}
   Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {3} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 1;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=110110;
   }
+  //Pattern:0  Vector:71  TesterCycle:71
   Ann {* Pattern:0  Vector:71  TesterCycle:71 *}
-  Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {4} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 011;
-    PI_grp_3 = 0;
+       _pi_=100110;
   }
+  //Pattern:0  Vector:72  TesterCycle:72
   Ann {* Pattern:0  Vector:72  TesterCycle:72 *}
   Ann {* + Associated TAP transition: DRSHIFT -> DREXIT1 *}
-  Ann {* TESSENT_PRAGMA bit_variable TDR_1.SR -type write -var_bits {5} -pin TDI -inversion 0b0 *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 0;
+       _pi_=100100;
   }
+  //Pattern:0  Vector:73  TesterCycle:73
   Ann {* Pattern:0  Vector:73  TesterCycle:73 *}
   Ann {* + Associated TAP transition: DREXIT1 -> DRUPDATE *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 1;
+       _pi_=100101;
   }
+  //Pattern:0  Vector:74  TesterCycle:74
   Ann {* Pattern:0  Vector:74  TesterCycle:74 *}
   Ann {* + Associated TAP transition: DRUPDATE -> IDLE *}
   V {
-    PI_grp_0 = 0;
-    _po_ = X;
-    PI_grp_1 = 1;
-    PI_grp_2 = 010;
-    PI_grp_3 = 0;
+       _pi_=100100;
   }
   Ann {* Total count Patterns:1  Vectors:75  TesterCycles:75 *}
 }

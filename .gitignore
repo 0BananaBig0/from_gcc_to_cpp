@@ -38,4 +38,11 @@ docs/Qt6_study/moc*.h
 docs/performance_comparison_between_gcc_and_clang/moc*.cpp
 docs/performance_comparison_between_gcc_and_clang/moc*.h
 .vimspector
+*.vec
+*.cfg
+*.info.dict
+transcript
+*.po.name
+work
+*.wlf
 .vscode
